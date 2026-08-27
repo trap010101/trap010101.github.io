@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>2026–2027 방영 예정 애니메이션 캘린더</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow">Anime Schedule · 2026–2027</div>
+      <h1>방영 예정 애니메이션<br>월별 캘린더</h1>
+      <p>
+        2026년 9월부터 2027년 10월까지, 현재 공개된 방영 예정작을 월별로 정리한 페이지입니다.
+        정확한 날짜가 공개되지 않은 작품은 해당 월/분기 기준으로 표시했으며,
+        2027년 하반기는 향후 발표에 따라 크게 변경될 수 있습니다.
+      </p>
+
+      <div class="stat-row">
+        <div class="stat"><b id="totalCount">0</b><span>월 확정·예정 작품</span></div>
+        <div class="stat"><b id="monthCount">14</b><span>대상 월</span></div>
+        <div class="stat"><b>4</b><span>주요 편성 러시</span></div>
+        <div class="stat"><b>2027.10</b><span>정리 범위 끝</span></div>
+      </div>
+    </section>
+
+    <section class="toolbar">
+      <div class="search-row">
+        <label class="search-wrap">
+          <span>⌕</span>
+          <input id="search" type="search" placeholder="작품명 검색..." autocomplete="off" />
+        </label>
+        <button id="resetBtn" type="button">필터 초기화</button>
+      </div>
+
+      <div class="filter-row" id="filters">
+        <button class="chip active" data-filter="all">전체</button>
+        <button class="chip" data-filter="major">주요 기대작</button>
+        <button class="chip" data-filter="follow">후속작</button>
+        <button class="chip" data-filter="new">신작</button>
+        <button class="chip" data-filter="streaming">스트리밍</button>
+      </div>
+
+      <div class="month-nav" id="monthNav"></div>
+    </section>
+
+    <div id="schedule"></div>
+
+    <section class="undated">
+      <button id="undatedToggle" type="button">
+        <span>2027년 내 방영 예정 · 정확한 월 미확정</span>
+        <span id="undatedArrow">＋</span>
+      </button>
+      <div id="undatedContent" class="undated-content hidden">
+        <div class="undated-list" id="undatedList"></div>
+      </div>
+    </section>
+
+    <section class="source-box">
+      <strong>참고</strong><br>
+      이 파일은 2026년 8월 27일 기준 공개 편성 정보를 바탕으로 만든 정리본입니다.
+      방영 시기·플랫폼은 제작사 및 방송사 사정에 따라 변경될 수 있습니다.
+      참고 링크:
+      <a href="https://momokami.net/anime/animekakettei.html" target="_blank" rel="noreferrer">momokami</a>,
+      <a href="https://anime.eiga.com/" target="_blank" rel="noreferrer">Anime Hack</a>,
+      <a href="https://www.toho.co.jp/anime/lineup/" target="_blank" rel="noreferrer">TOHO Animation</a>.
+    </section>
+
+    <footer>
+      검색 및 필터 기능은 JavaScript로 동작하며, GitHub Pages에서 바로 제공되는 정적 사이트입니다.
+    </footer>
+  </main>
+
+<script src="./data.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>
