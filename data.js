@@ -211,5 +211,6 @@ const undated = [
   "마녀와 용병",
   "Fate/kaleid liner 프리즈마☆이리야 FINALE",
   "DEATH STRANDING ISOLATIONS",
-  "Ghost of Tsushima: Legends"
+  "Ghost of Tsushima: Legends",
+  "늑대와 향신료 2기"
 ];
