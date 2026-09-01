@@ -2633,6 +2633,31 @@ const undated = [
   ]
 ];
 
+const posterPositions = {
+  "どこよりも遠い場所にいる君へ": "left center",
+  "BanG Dream! Ave Mujica prima aurora": "left center",
+  "劇場シリーズ【第一部】メイドインアビス 目覚める神秘": "center center",
+  "ヤマトよ永遠に REBEL3199 第七章 虹色の輪廻": "center center",
+  "dreamland (드림랜드)": "right center",
+  "タヌキとキツネ (타누키와 키츠네)": "center center",
+  "ダークサモナーとデキている (다크 서머너와 사귀고 있다)": "right center",
+  "バーテックスフォース (버텍스 포스)": "left center",
+  "マジカル★エクスプローラー (매지컬★익스플로러)": "left center",
+  "世界最強の魔女、始めました (세계 최강의 마녀, 시작했습니다)": "center center",
+  "塩対応の佐藤さんが俺にだけ甘い (쌀쌀맞은 사토 씨가 나한테만 달콤하다)": "center center",
+  "彼女の友達 (그녀의 친구)": "center center",
+  "獣王武神ダンデヴァイン (수왕무신 단데바인)": "center top",
+  "紫禁・御猫房〜紫禁城猫警備室〜 (자금·어묘방 ~자금성 고양이 경비실~)": "left center",
+  "귀환자의 마법은 특별해야 합니다 2기": "left center",
+  "도원암귀 닛코·게곤 폭포편": "right center",
+  "마법소녀 육성계획 restart": "center center",
+  "GROTESQQQUE-グロテスク-": "center center",
+  "楽園追放 心のレゾナンス": "right center",
+  "装甲騎兵ボトムズ 灰色の魔女 第1作": "center top",
+  "魔法使いの夜": "center center",
+  "〈모노가타리〉 시리즈 Off & Monster Season — 業物語 かれんオウガ": "center center"
+};
+
 const posterLinks = {
   "죠죠의 기묘한 모험 스틸 볼 런 2nd & 3rd STAGE": "https://us.oricon-group.com/upimg/detail/4000/4396/img660/Jojo-part7-SteelBallRun%20%282%29.jpg",
   "신 테니스의 왕자 U-17 WORLD CUP 결승 멤버 결정전": "https://img2.animatetimes.com/2026/07/ab80ed5991a36ebb05b25cd08851cfed6a59ad98c81e65_93975609_178cad90638e08c2b33599fe3d1d4960d9ca7fcc.jpg",
@@ -4489,6 +4514,7 @@ function posterMarkup(title) {
       <img
         src="${url}"
         alt="${localTitle(title)}"
+        data-poster-title="${encodeURIComponent(title)}"
         loading="lazy"
         decoding="async"
         referrerpolicy="no-referrer"
@@ -4497,6 +4523,13 @@ function posterMarkup(title) {
       <div class="poster-fallback" aria-hidden="true">?</div>
     </div>
   `;
+}
+
+function applyPosterPositions(root = document) {
+  root.querySelectorAll(".poster-frame img[data-poster-title]").forEach(img => {
+    const title = decodeURIComponent(img.dataset.posterTitle);
+    img.style.objectPosition = posterPositions[title] || "center center";
+  });
 }
 
 function getLinks(title) {
@@ -4763,6 +4796,7 @@ function render() {
   }).join("");
 
   renderUndated();
+  applyPosterPositions();
   updateTitleScrolls();
 }
 
