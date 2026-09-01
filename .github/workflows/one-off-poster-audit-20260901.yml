@@ -1,0 +1,92 @@
+name: One-off poster audit 2026-09-01
+
+on:
+  push:
+    paths:
+      - '.github/workflows/one-off-poster-audit-20260901.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add missing key visuals
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          posters = {
+            'どこよりも遠い場所にいる君へ': 'https://www.shochiku.co.jp/wp-content/uploads/2026/02/%E6%9C%AC%E3%83%93%E3%82%B8%E3%83%A5%E3%82%A2%E3%83%AB.jpg',
+            'BanG Dream! Ave Mujica prima aurora': 'https://gekirock.com/news/assets_c/2026/07/ammain-thumb-1200xauto-135038.png',
+            '劇場シリーズ【第一部】メイドインアビス 目覚める神秘': 'https://storage.googleapis.com/assets.anime.foundation/featured/made-in-abyss-mezameru-shinpi-teaser-trailer-2026/made-in-abyss-mezameru-shinpi-october-2026-seo.webp',
+            'ヤマトよ永遠に REBEL3199 第七章 虹色の輪廻': 'https://pylonport.bandainamcomusiclive.co.jp/user_images/article/album/5/202606291324440.jpg',
+            'dreamland (드림랜드)': 'https://pbs.twimg.com/media/HJVuExnWIAU6QIi.jpg',
+            'タヌキとキツネ (타누키와 키츠네)': 'https://prcdn.freetls.fastly.net/release_image/16756/8824/16756-8824-a65f1d96818e559694f544c8cd6652b9-1000x1414.jpg?width=536&quality=85%2C75&format=jpeg&auto=webp&fit=bounds&bg-color=fff',
+            'ダークサモナーとデキている (다크 서머너와 사귀고 있다)': 'https://static.animecorner.me/2026/06/1781316553-10dce79396c7fd84493748ee947d4c0f.png',
+            'バーテックスフォース (버텍스 포스)': 'https://vertexforce.jp/assets/img/kv/img_main03.jpg',
+            'マジカル★エクスプローラー (매지컬★익스플로러)': 'https://majieku.com/assets/img/top/visual/visual_kv2.jpg',
+            '世界最強の魔女、始めました (세계 최강의 마녀, 시작했습니다)': 'https://spice.eplus.jp/images/OjrDl0NJKB4If7T0RP4h99mZ2ZPwRg4ALtoxheLPNEiZNMKXUYqUdGXMGkA4do7R/',
+            '塩対応の佐藤さんが俺にだけ甘い (쌀쌀맞은 사토 씨가 나한테만 달콤하다)': 'https://shioama-anime.com/img/kv.jpg',
+            '彼女の友達 (그녀의 친구)': 'https://www.animenewsnetwork.com/thumbnails/max600x600/cms/news.9/237120/kanojo-no-tomodachi-visual-2.jpg',
+            '獣王武神ダンデヴァイン (수왕무신 단데바인)': 'https://contents.oricon.co.jp/upimg/news/2459000/2458837/20260603_155218_p_o_22973074.jpg',
+            '紫禁・御猫房〜紫禁城猫警備室〜 (자금·어묘방 ~자금성 고양이 경비실~)': 'https://nekokeibishitsu-anime.com/wp-content/themes/anime-cat/img/home/kv_pc.webp',
+            '귀환자의 마법은 특별해야 합니다 2기': 'https://mezamashi.ismcdn.jp/mwimgs/6/2/708/img_62cac4e34d711e10352ee5fa3cd3be8f472755.jpg',
+            '도원암귀 닛코·게곤 폭포편': 'https://tougenanki-anime.com/img/home/visual_07.jpg',
+            '마법소녀 육성계획 restart': 'https://static.animecorner.me/2025/10/1761043013-7a4dc7270df6cf21e516d4fa48714025.png',
+            'GROTESQQQUE-グロテスク-': 'https://movie-gtq123.com/assets/img/ogp_1.png',
+            '楽園追放 心のレゾナンス': 'https://rakuen-tsuiho-r.com/assets/img/main_kv03_pc.jpg',
+            '装甲騎兵ボトムズ 灰色の魔女 第1作': 'https://a.storyblok.com/f/178900/960x1357/31b86c6f9c/armored-trooper-votoms-die-graue-hexe-teaser-visual.jpg/m/filters%3Aquality%2895%29format%28webp%29',
+            '魔法使いの夜': 'https://pbs.twimg.com/media/HD7HXHIa8AAcIoD.jpg',
+            '〈모노가타리〉 시리즈 Off & Monster Season — 業物語 かれんオウガ': 'https://cimg.kgl-systems.io/camion/files/80198/thumbnail_cjRc.jpg?x=1280',
+          }
+
+          marker_start = '// BEGIN POSTER AUDIT 2026-09-01'
+          marker_end = '// END POSTER AUDIT 2026-09-01'
+          if marker_start in text:
+              raise SystemExit('Poster audit block already exists')
+
+          missing_titles = [title for title in posters if title not in text]
+          if missing_titles:
+              raise SystemExit('Titles not found: ' + ' | '.join(missing_titles))
+
+          anchor = 'const resourceLinks = {'
+          if anchor not in text:
+              raise SystemExit('resourceLinks anchor not found')
+
+          entries = ',\n'.join(
+              '  ' + json.dumps(title, ensure_ascii=False) + ': ' + json.dumps(url, ensure_ascii=False)
+              for title, url in posters.items()
+          )
+          block = (
+              f'{marker_start}\n'
+              'Object.assign(posterLinks, {\n'
+              f'{entries}\n'
+              '});\n'
+              f'{marker_end}\n\n'
+          )
+          text = text.replace(anchor, block + anchor, 1)
+          path.write_text(text, encoding='utf-8')
+          print(f'POSTER_COUNT={len(posters)}')
+          for title, url in posters.items():
+              print(f'POSTER {title} -> {url}')
+          PY
+
+      - name: Commit key visuals
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Add missing anime key visuals"
+          git push
