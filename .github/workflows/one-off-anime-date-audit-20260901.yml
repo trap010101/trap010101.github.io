@@ -1,0 +1,82 @@
+name: One-off anime date audit 2026-09-01
+
+on:
+  push:
+    paths:
+      - '.github/workflows/one-off-anime-date-audit-20260901.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch confirmed detailed air dates
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          import re
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          updates = {
+            'Duel Masters LOST ～断罪の少年～ (듀얼 마스터즈 LOST ~단죄의 소년~)': '10/9',
+            'FX戦士くるみちゃん (FX전사 쿠루미짱)': '10/1',
+            'TANK CHAIR-戦車椅子- (탱크 체어 -전차의자-)': '10/4',
+            'dreamland (드림랜드)': '10/17',
+            'てつりょー！meet with 鉄道むすめ (테츠료! meet with 철도무스메)': '10/8',
+            'ジャンケットバンク / JUNKET BANK (정켓 뱅크)': '10/5',
+            'バーテックスフォース (버텍스 포스)': '10/3',
+            'マジカル★エクスプローラー (매지컬★익스플로러)': '10/3',
+            '世界最強の魔女、始めました (세계 최강의 마녀, 시작했습니다)': '10/7',
+            '凶乱令嬢ニア・リストン 病弱令嬢に転生した神殺しの武人の華麗なる無双録 (흉란영애 니아 리스트온: 병약 영애로 전생한 신살의 무인의 화려한 무쌍록)': '10/6',
+            '彼方から (저편에서)': '10/4',
+            '獣王武神ダンデヴァイン (수왕무신 단데바인)': '10/7',
+            '生徒会にも穴はある！ (학생회에도 구멍은 있다!)': '10/3',
+            '도쿄 리벤저스 삼천전쟁편': '10/2',
+            '마법소녀 육성계획 restart': '10/5',
+            '빙검의 마술사가 세계를 다스린다 II': '10/8',
+            '전생했더니 검이었습니다 II': '10/7',
+            '푸른 상자 Season 2': '10/4',
+            '호타루의 시집가기': '10/9',
+          }
+
+          changed = 0
+          missing = []
+          for title, new_date in updates.items():
+              pattern = re.compile(
+                  r'(\[\s*' + re.escape(json.dumps(title, ensure_ascii=False)) + r'\s*,\s*)"10월"'
+              )
+              text, count = pattern.subn(
+                  lambda m: m.group(1) + json.dumps(new_date, ensure_ascii=False),
+                  text,
+                  count=1,
+              )
+              print(f'{title}: {count} -> {new_date}')
+              changed += count
+              if count != 1:
+                  missing.append(title)
+
+          if missing:
+              raise SystemExit('Missing or already-changed titles: ' + ' | '.join(missing))
+          if changed != len(updates):
+              raise SystemExit(f'Expected {len(updates)} changes, got {changed}')
+
+          path.write_text(text, encoding='utf-8')
+          print(f'DATE_COUNT={changed}')
+          PY
+      - name: Commit detailed air dates
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Update confirmed anime air dates"
+          git push
