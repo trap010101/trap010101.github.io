@@ -1,0 +1,51 @@
+name: One-shot poster and link fix
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-shot-poster-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Patch index.html
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          replacements = {
+              '"どこよりも遠い場所にいる君へ": "left center"': '"どこよりも遠い場所にいる君へ": "center center"',
+              '"劇場シリーズ【第一部】メイドインアビス 目覚める神秘": "https://storage.googleapis.com/assets.anime.foundation/featured/made-in-abyss-mezameru-shinpi-teaser-trailer-2026/made-in-abyss-mezameru-shinpi-october-2026-seo.webp"': '"劇場シリーズ【第一部】メイドインアビス 目覚める神秘": "https://miabyss.com/part1_images/top/visual/v_002_small.jpg"',
+              '"世界最強の魔女、始めました (세계 최강의 마녀, 시작했습니다)": "https://spice.eplus.jp/images/OjrDl0NJKB4If7T0RP4h99mZ2ZPwRg4ALtoxheLPNEiZNMKXUYqUdGXMGkA4do7R/"': '"世界最強の魔女、始めました (세계 최강의 마녀, 시작했습니다)": "https://sekamajo-anime.com/assets/img/home/img_kv02@sp.webp"',
+              '"official": "https://nia-liston-anime.com/"': '"official": "https://kyoranreijo-pr.com/"',
+          }
+
+          for old, new in replacements.items():
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'Expected exactly one match, found {count}: {old}')
+              text = text.replace(old, new, 1)
+
+          path.write_text(text, encoding='utf-8')
+          PY
+      - name: Commit index.html
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --check
+          git commit -m "Fix poster images and Nia Liston link"
+          git push origin HEAD:main
