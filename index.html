@@ -5,28 +5,1355 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
   <title>2026–2027 방영 예정 애니메이션 캘린더</title>
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-jp.css" />
+
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --panel: rgba(20, 23, 32, 0.78);
+      --panel-2: rgba(29, 33, 45, 0.88);
+      --line: rgba(255,255,255,.09);
+      --text: #f6f7fb;
+      --muted: #9ba3b4;
+      --accent: #8ea1ff;
+      --accent-2: #b28cff;
+      --good: #73ddb1;
+      --warn: #ffc979;
+      --shadow: 0 18px 60px rgba(0,0,0,.35);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body, button, input, select, textarea {
+      font-family: "Pretendard Variable", "Pretendard JP", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Pretendard Variable", "Pretendard JP", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(119, 91, 255, .16), transparent 30rem),
+        radial-gradient(circle at 90% 20%, rgba(77, 160, 255, .10), transparent 34rem),
+        linear-gradient(180deg, #090b10 0%, #0d1017 45%, #0a0c11 100%);
+    }
+
+    a { color: inherit; }
+
+    .shell {
+      width: min(1180px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 38px 0 80px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background:
+        linear-gradient(135deg, rgba(132, 111, 255, .14), rgba(59, 102, 176, .06)),
+        rgba(16, 19, 27, .82);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      right: -110px;
+      top: -150px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(178,140,255,.32), transparent 68%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 7px 11px;
+      border-radius: 999px;
+      color: #d8dcff;
+      background: rgba(142,161,255,.11);
+      border: 1px solid rgba(142,161,255,.2);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 16px 0 10px;
+      max-width: 860px;
+      font-size: clamp(30px, 5vw, 58px);
+      line-height: 1.02;
+      letter-spacing: -.045em;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 850px;
+      color: var(--muted);
+      line-height: 1.72;
+      font-size: 15px;
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .stat {
+      padding: 17px 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,.035);
+    }
+
+    .stat b {
+      display: block;
+      font-size: 24px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 10px;
+      z-index: 20;
+      margin: 20px 0;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(11,13,18,.82);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 12px 35px rgba(0,0,0,.22);
+    }
+
+
+    .mobile-toolbar-head {
+      display: none;
+    }
+
+    .toolbar-body {
+      display: block;
+    }
+
+    .mobile-toolbar-head button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-weight: 850;
+    }
+
+    #mobileToolbarTitle {
+      white-space: nowrap;
+    }
+
+    #mobileToolbarIcon {
+      flex: 0 0 auto;
+      font-size: 16px;
+      line-height: 1;
+      opacity: .9;
+    }
+
+    .search-row {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) auto;
+      gap: 10px;
+    }
+
+    .search-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 14px;
+      min-height: 46px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.035);
+    }
+
+    .search-wrap span { opacity: .7; }
+
+    #search {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+    }
+
+    #search::placeholder { color: #687184; }
+
+    button, .chip {
+      border: 1px solid var(--line);
+      color: var(--text);
+      background: rgba(255,255,255,.035);
+      border-radius: 12px;
+      padding: 10px 13px;
+      font: inherit;
+      cursor: pointer;
+      transition: .18s ease;
+    }
+
+    button:hover, .chip:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.065);
+    }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .chip.active {
+      color: #fff;
+      border-color: rgba(142,161,255,.42);
+      background: linear-gradient(135deg, rgba(142,161,255,.24), rgba(178,140,255,.18));
+    }
+
+    .month-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 3px 0 10px;
+      scrollbar-width: thin;
+    }
+
+    .month-nav a {
+      flex: 0 0 auto;
+      text-decoration: none;
+      color: var(--muted);
+      padding: 8px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.025);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .month-nav a:hover { color: #fff; }
+
+    .season-divider {
+      margin: 34px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .season-divider::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: linear-gradient(90deg, var(--line), transparent);
+    }
+
+    .season-divider h2 {
+      margin: 0;
+      font-size: 14px;
+      color: #d9dded;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .month {
+      margin: 16px 0;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: 0 10px 35px rgba(0,0,0,.18);
+    }
+
+    .month-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 15px;
+    }
+
+    .month-head h3 {
+      margin: 0;
+      font-size: 26px;
+      letter-spacing: -.03em;
+    }
+
+    .month-head small {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .month-count {
+      color: #cbd1df;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.045);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+
+    .card {
+      padding: 15px 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.018));
+      transition: .18s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(142,161,255,.25);
+      background: linear-gradient(180deg, rgba(142,161,255,.06), rgba(255,255,255,.022));
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .title {
+      font-size: 15px;
+      font-weight: 850;
+      line-height: 1.45;
+    }
+
+    .date {
+      flex: 0 0 auto;
+      color: #dce1ff;
+      font-size: 11px;
+      font-weight: 850;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: rgba(142,161,255,.10);
+      border: 1px solid rgba(142,161,255,.16);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .badge {
+      padding: 5px 7px;
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,.035);
+      border: 1px solid var(--line);
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .badge.major {
+      color: #d9e5ff;
+      background: rgba(93,143,255,.09);
+    }
+
+    .badge.follow {
+      color: #d8f6e9;
+      background: rgba(115,221,177,.07);
+    }
+
+
+    .badge.series {
+      color: #d9dcff;
+      background: rgba(142,161,255,.08);
+    }
+
+    .badge.comic {
+      color: #ffd9c1;
+      background: rgba(255,164,108,.075);
+    }
+
+    .badge.ln {
+      color: #e6d6ff;
+      background: rgba(178,140,255,.075);
+    }
+
+    .badge.original {
+      color: #cceee5;
+      background: rgba(115,221,177,.07);
+    }
+
+    .badge.movie {
+      color: #ffe2ad;
+      background: rgba(255,201,121,.075);
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      padding: 25px;
+      color: var(--muted);
+      text-align: center;
+      border: 1px dashed var(--line);
+      border-radius: 16px;
+    }
+
+    .undated {
+      margin-top: 32px;
+      border: 1px solid rgba(255,201,121,.18);
+      border-radius: var(--radius);
+      background: rgba(255,201,121,.035);
+      overflow: hidden;
+    }
+
+    #undatedToggle {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 0;
+      border-radius: 0;
+      padding: 18px 20px;
+      background: transparent;
+      text-align: left;
+      font-weight: 900;
+    }
+
+    .undated-item .stream-trigger:not(:disabled) {
+      color: #e8ebff;
+      border: 1px solid rgba(142,161,255,.26);
+      background: linear-gradient(135deg, rgba(142,161,255,.12), rgba(178,140,255,.075));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.018);
+    }
+
+    .undated-item .stream-trigger:not(:disabled):hover {
+      border-color: rgba(142,161,255,.48);
+      background: linear-gradient(135deg, rgba(142,161,255,.18), rgba(178,140,255,.11));
+    }
+
+    .undated-content {
+      padding: 0 20px 20px;
+    }
+
+    .undated-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 8px;
+    }
+
+    .undated-item {
+      padding: 11px 12px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: rgba(255,255,255,.025);
+      color: #d7d9e2;
+      font-size: 13px;
+    }
+
+    .source-box, footer {
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .source-box {
+      padding: 17px 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .source-box strong { color: #e5e8f0; }
+
+    .source-box a {
+      color: #bdc8ff;
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(189,200,255,.4);
+    }
+
+
+    .filter-group {
+      margin-top: 12px;
+    }
+
+    .filter-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 8px 2px;
+      color: #7f899c;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .year-filter {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .year-chip {
+      min-height: 44px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: .02em;
+    }
+
+    .year-chip.active {
+      border-color: rgba(142,161,255,.48);
+      background:
+        linear-gradient(135deg, rgba(142,161,255,.28), rgba(178,140,255,.18));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.035);
+    }
+
+    .month-nav button {
+      flex: 0 0 auto;
+      color: var(--muted);
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.025);
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .month-nav button.active {
+      color: #fff;
+      border-color: rgba(142,161,255,.42);
+      background: rgba(142,161,255,.15);
+    }
+
+    .resource-actions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 7px;
+      margin-top: 13px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,.065);
+    }
+
+    .resource-btn {
+      min-height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 7px 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(142,161,255,.18);
+      background: rgba(142,161,255,.075);
+      color: #dfe4ff;
+      text-decoration: none;
+      font-size: 10px;
+      font-weight: 850;
+      transition: .18s ease;
+    }
+
+    a.resource-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(142,161,255,.4);
+      background: rgba(142,161,255,.14);
+    }
+
+    .resource-btn .external {
+      opacity: .65;
+      font-size: 9px;
+    }
+
+    .resource-btn.disabled {
+      color: #5e6676;
+      border-color: rgba(255,255,255,.045);
+      background: rgba(255,255,255,.018);
+      cursor: not-allowed;
+      user-select: none;
+    }
+
+    .undated-item .resource-actions {
+      margin-top: 10px;
+    }
+
+    .undated-title {
+      color: #e1e4ec;
+      font-weight: 820;
+      line-height: 1.45;
+    }
+
+    .year-summary {
+      margin: 18px 0 4px;
+      color: #8f98aa;
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+
+    .stream-trigger {
+      width: 100%;
+      min-height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 7px 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(142,161,255,.18);
+      background: rgba(142,161,255,.075);
+      color: #dfe4ff;
+      font-size: 10px;
+      font-weight: 850;
+      cursor: pointer;
+      transition: .18s ease;
+    }
+
+    .stream-trigger:hover {
+      transform: translateY(-1px);
+      border-color: rgba(142,161,255,.4);
+      background: rgba(142,161,255,.14);
+    }
+
+    .stream-trigger.disabled,
+    .stream-trigger:disabled {
+      color: #5e6676;
+      border-color: rgba(255,255,255,.045);
+      background: rgba(255,255,255,.018);
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    .stream-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+    }
+
+    .stream-modal.hidden {
+      display: none !important;
+    }
+
+    .stream-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(4, 6, 10, .74);
+      backdrop-filter: blur(8px);
+      animation: modalFade .16s ease-out;
+    }
+
+    .stream-dialog {
+      position: relative;
+      z-index: 1;
+      width: min(560px, 100%);
+      max-height: min(760px, calc(100vh - 36px));
+      overflow: auto;
+      padding: 22px;
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 90% 0%, rgba(142,161,255,.12), transparent 18rem),
+        #11151e;
+      box-shadow: 0 28px 90px rgba(0,0,0,.55);
+      animation: modalUp .18s ease-out;
+    }
+
+    .stream-dialog-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .stream-dialog-head h4 {
+      margin: 0;
+      max-width: 430px;
+      font-size: 19px;
+      line-height: 1.45;
+      letter-spacing: -.025em;
+    }
+
+    .stream-dialog-kicker {
+      margin-bottom: 6px;
+      color: #8993a7;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .stream-close {
+      flex: 0 0 auto;
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border-radius: 11px;
+      color: #cdd2df;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      font-size: 19px;
+      line-height: 1;
+    }
+
+    .stream-dialog-desc {
+      margin: 12px 0 17px;
+      color: #8e97a9;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .ott-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 9px;
+    }
+
+    .ott-option {
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 11px 13px;
+      border-radius: 14px;
+      border: 1px solid rgba(142,161,255,.17);
+      background: rgba(142,161,255,.06);
+      color: #edf0ff;
+      text-decoration: none;
+      transition: .18s ease;
+    }
+
+    a.ott-option:hover {
+      transform: translateY(-1px);
+      border-color: rgba(142,161,255,.38);
+      background: rgba(142,161,255,.12);
+    }
+
+    .ott-option.disabled {
+      color: #596171;
+      border-color: rgba(255,255,255,.04);
+      background: rgba(255,255,255,.015);
+      cursor: not-allowed;
+      user-select: none;
+    }
+
+    .ott-option-name {
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .ott-option-state {
+      flex: 0 0 auto;
+      padding: 4px 6px;
+      border-radius: 999px;
+      color: #9eabd0;
+      background: rgba(142,161,255,.09);
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: .04em;
+    }
+
+    .ott-option.disabled .ott-option-state {
+      color: #505867;
+      background: rgba(255,255,255,.025);
+    }
+
+    .stream-dialog-note {
+      margin: 16px 0 0;
+      padding: 12px 13px;
+      border: 1px solid rgba(255,255,255,.055);
+      border-radius: 12px;
+      background: rgba(255,255,255,.022);
+      color: #7e8799;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    @keyframes modalFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes modalUp {
+      from { opacity: 0; transform: translateY(10px) scale(.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+
+    @media (max-width: 720px) {
+      .mobile-toolbar-head {
+        display: block;
+        margin-bottom: 2px;
+      }
+
+      .toolbar-body {
+        overflow: hidden;
+        max-height: 2400px;
+        opacity: 1;
+        transition: max-height .26s ease, opacity .2s ease, margin .2s ease;
+      }
+
+      .toolbar.is-mobile-collapsed .toolbar-body {
+        max-height: 0;
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .stream-dialog {
+        padding: 18px;
+        border-radius: 20px;
+      }
+
+      .ott-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    .language-row {
+      display: flex;
+      gap: 6px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .language-btn {
+      min-width: 52px;
+      padding: 8px 12px;
+      border-radius: 9px;
+      border: 0;
+      background: transparent;
+      color: #737d90;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .06em;
+    }
+
+    .language-btn.active {
+      color: #fff;
+      background: rgba(142,161,255,.15);
+      box-shadow: inset 0 0 0 1px rgba(142,161,255,.24);
+    }
+@media (max-width: 520px) {
+.language-row { width: 100%; }
+      .language-btn { flex: 1; }
+    }
+
+
+    .hero {
+      padding: 22px 26px 24px;
+      border-radius: 24px;
+    }
+
+    .hero::after {
+      width: 220px;
+      height: 220px;
+      right: -80px;
+      top: -120px;
+    }
+
+    .hero-topline {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      max-width: none;
+      font-size: clamp(30px, 5vw, 52px);
+      line-height: 1;
+      letter-spacing: -.045em;
+    }
+
+    .hero .language-row {
+      flex: 0 0 auto;
+      padding: 3px;
+      background: rgba(8,10,15,.34);
+      border-color: rgba(255,255,255,.08);
+    }
+
+    .hero .language-btn {
+      min-width: 48px;
+      padding: 7px 10px;
+    }
+
+
+    .category-group {
+      overflow: hidden;
+    }
+
+    .filter-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 0 8px;
+      padding: 2px 2px 6px;
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      transform: none;
+    }
+
+    .filter-toggle:hover {
+      transform: none;
+      background: transparent;
+    }
+
+    .filter-toggle .filter-label {
+      margin: 0;
+      pointer-events: none;
+    }
+
+    .filter-toggle-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      color: #8e98aa;
+      background: rgba(255,255,255,.035);
+      border: 1px solid var(--line);
+      font-size: 13px;
+      transition: transform .2s ease, color .2s ease, background .2s ease;
+    }
+
+    .category-content {
+      max-height: 220px;
+      opacity: 1;
+      overflow: hidden;
+      transition: max-height .24s ease, opacity .18s ease, margin .24s ease;
+    }
+
+    .category-group.is-collapsed .category-content {
+      max-height: 0;
+      opacity: 0;
+      margin-top: 0;
+      pointer-events: none;
+    }
+
+    .category-group.is-collapsed .filter-toggle-icon {
+      transform: rotate(180deg);
+    }
+
+
+    .card-layout,
+    .undated-layout {
+      display: grid;
+      grid-template-columns: 112px minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .card-content,
+    .undated-content-main {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .poster-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.075);
+      background:
+        radial-gradient(circle at 50% 30%, rgba(142,161,255,.08), transparent 55%),
+        rgba(255,255,255,.022);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.015);
+    }
+
+    .poster-frame img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .poster-fallback {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: #596273;
+      font-size: 42px;
+      font-weight: 800;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .poster-frame.has-image .poster-fallback {
+      display: none;
+    }
+
+    .poster-frame.poster-error img {
+      display: none;
+    }
+
+    .poster-frame.poster-error .poster-fallback {
+      display: grid;
+    }
+
+    .card-content .resource-actions,
+    .undated-content-main .resource-actions {
+      margin-top: auto;
+      padding-top: 12px;
+    }
+
+    @media (max-width: 820px) {
+      .card-layout,
+      .undated-layout {
+        grid-template-columns: 96px minmax(0, 1fr);
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .card-layout,
+      .undated-layout {
+        grid-template-columns: 82px minmax(0, 1fr);
+        gap: 11px;
+      }
+
+      .poster-frame {
+        border-radius: 10px;
+      }
+
+      .poster-fallback {
+        font-size: 34px;
+      }
+    }
+
+
+    .poster-frame {
+      background:
+        linear-gradient(145deg, rgba(142,161,255,.055), rgba(255,255,255,.012)),
+        #0b0e14;
+    }
+
+    .poster-frame.has-image {
+      border-color: rgba(255,255,255,.095);
+    }
+
+    .undated-item {
+      overflow: hidden;
+    }
+
+
+    .poster-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      background: transparent;
+    }
+
+
+    .poster-frame {
+      align-self: start;
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      min-height: 0;
+      height: auto;
+    }
+
+
+
+    .title-scroll,
+    .undated-title-scroll {
+      position: relative;
+      min-width: 0;
+      overflow: hidden;
+      isolation: isolate;
+      --fade-size: 18px;
+    }
+
+    .title-scroll::before,
+    .title-scroll::after,
+    .undated-title-scroll::before,
+    .undated-title-scroll::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      z-index: 2;
+      width: var(--fade-size);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .2s ease;
+    }
+
+    .title-scroll::before,
+    .undated-title-scroll::before {
+      left: 0;
+      background: linear-gradient(90deg, var(--card, #11151d) 20%, transparent);
+    }
+
+    .title-scroll::after,
+    .undated-title-scroll::after {
+      right: 0;
+      background: linear-gradient(270deg, var(--card, #11151d) 20%, transparent);
+    }
+
+    .title-scroll.is-overflowing::after,
+    .undated-title-scroll.is-overflowing::after {
+      opacity: 1;
+    }
+
+    .title-scroll.is-overflowing.has-scrolled::before,
+    .undated-title-scroll.is-overflowing.has-scrolled::before {
+      opacity: 1;
+    }
+
+    .title-scroll-inner,
+    .undated-title-scroll-inner {
+      display: -webkit-box;
+      width: 100%;
+      max-width: 100%;
+      white-space: normal;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+    }
+
+    .title-scroll-inner.measure-title,
+    .undated-title-scroll-inner.measure-title {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      white-space: normal !important;
+      overflow: visible !important;
+      -webkit-line-clamp: unset !important;
+      line-clamp: unset !important;
+      animation: none !important;
+      transform: none !important;
+    }
+
+    .title-scroll.is-overflowing .title-scroll-inner,
+    .undated-title-scroll.is-overflowing .undated-title-scroll-inner {
+      display: block;
+      width: max-content;
+      max-width: none;
+      white-space: nowrap;
+      overflow: visible;
+      -webkit-line-clamp: unset;
+      line-clamp: unset;
+      will-change: transform;
+      animation: titleMarquee var(--scroll-duration, 12s) ease-in-out 1s infinite alternate;
+    }
+
+    .title-scroll:hover .title-scroll-inner,
+    .undated-title-scroll:hover .undated-title-scroll-inner {
+      animation-play-state: paused;
+    }
+
+    @keyframes titleMarquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(calc(-1 * var(--scroll-distance, 0px))); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .title-scroll.is-overflowing,
+      .undated-title-scroll.is-overflowing {
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      .title-scroll.is-overflowing::-webkit-scrollbar,
+      .undated-title-scroll.is-overflowing::-webkit-scrollbar {
+        display: none;
+      }
+
+      .title-scroll.is-overflowing .title-scroll-inner,
+      .undated-title-scroll.is-overflowing .undated-title-scroll-inner {
+        animation: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .title-scroll,
+      .undated-title-scroll {
+        --fade-size: 14px;
+      }
+    }
+
+
+    .poster-frame {
+      align-self: start;
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      min-height: 0;
+      height: auto;
+    }
+
+
+    .resource-btn,
+    .stream-trigger {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: clip;
+    }
+
+    .resource-label-short {
+      display: none;
+    }
+
+    @media (max-width: 520px) {
+      .resource-actions {
+        gap: 6px;
+      }
+
+      .resource-btn,
+      .stream-trigger {
+        padding-left: 8px;
+        padding-right: 8px;
+        font-size: 11px;
+      }
+
+      .resource-label-long {
+        display: none;
+      }
+
+      .resource-label-short {
+        display: inline;
+      }
+
+      .resource-btn .external,
+      .stream-trigger .external {
+        margin-left: 3px;
+      }
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 18px, 1180px); padding-top: 16px; }
+      .hero { padding: 24px 20px; border-radius: 24px; }
+      .stat-row { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .cards, .undated-list { grid-template-columns: 1fr; }
+      .month { padding: 16px; }
+      .month-head { align-items: center; }
+      .toolbar { top: 6px; border-radius: 17px; }
+      .search-row { grid-template-columns: 1fr; }
+      .resource-actions { grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .year-filter { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      #resetBtn { display: block; width: 100%; }
+    }
+  
+    @media (max-width: 560px) {
+      .hero {
+        padding: 18px 18px 20px;
+        border-radius: 20px;
+      }
+
+      .hero-topline {
+        margin-bottom: 13px;
+      }
+
+      .hero .eyebrow {
+        padding: 6px 9px;
+        font-size: 10px;
+        letter-spacing: .06em;
+      }
+
+      .hero .language-row {
+        width: auto;
+      }
+
+      .hero .language-btn {
+        flex: 0 0 auto;
+        min-width: 42px;
+        padding: 6px 8px;
+      }
+
+      .hero h1 {
+        font-size: clamp(28px, 9vw, 40px);
+      }
+    }
+
+  </style>
 </head>
 <body>
   <main class="shell">
     <section class="hero">
-      <div class="eyebrow">Anime Schedule · 2026–2027</div>
-      <h1>방영 예정 애니메이션<br>월별 캘린더</h1>
-      <p>
-        2026년 9월부터 2027년 10월까지, 현재 공개된 방영 예정작을 월별로 정리한 페이지입니다.
-        정확한 날짜가 공개되지 않은 작품은 해당 월/분기 기준으로 표시했으며,
-        2027년 하반기는 향후 발표에 따라 크게 변경될 수 있습니다.
-      </p>
-
-      <div class="stat-row">
-        <div class="stat"><b id="totalCount">0</b><span>월 확정·예정 작품</span></div>
-        <div class="stat"><b id="monthCount">14</b><span>대상 월</span></div>
-        <div class="stat"><b>4</b><span>주요 편성 러시</span></div>
-        <div class="stat"><b>2027.10</b><span>정리 범위 끝</span></div>
+      <div class="hero-topline">
+        <div class="eyebrow">Anime Schedule · 2026–2027</div>
+        <div class="language-row" id="languageSwitcher" aria-label="Language">
+          <button class="language-btn active" type="button" data-lang="ko">KR</button>
+          <button class="language-btn" type="button" data-lang="ja">JP</button>
+          <button class="language-btn" type="button" data-lang="en">EN</button>
+        </div>
       </div>
+      <h1 id="heroTitle">방영 예정 애니메이션</h1>
     </section>
 
-    <section class="toolbar">
+    <section class="toolbar" id="toolbar">
+      <div class="mobile-toolbar-head">
+        <button id="mobileToolbarToggle" type="button" aria-expanded="false" aria-controls="toolbarBody">
+          <span id="mobileToolbarTitle">검색 · 필터</span>
+          <span id="mobileToolbarIcon" aria-hidden="true">＋</span>
+        </button>
+      </div>
+      <div class="toolbar-body" id="toolbarBody">
       <div class="search-row">
         <label class="search-wrap">
           <span>⌕</span>
@@ -35,15 +1362,36 @@
         <button id="resetBtn" type="button">필터 초기화</button>
       </div>
 
-      <div class="filter-row" id="filters">
-        <button class="chip active" data-filter="all">전체</button>
-        <button class="chip" data-filter="major">주요 기대작</button>
-        <button class="chip" data-filter="follow">후속작</button>
-        <button class="chip" data-filter="new">신작</button>
-        <button class="chip" data-filter="streaming">스트리밍</button>
+      <div class="filter-group">
+        <div class="filter-label" id="yearLabel">Year</div>
+        <div class="year-filter" id="yearFilters">
+          <button class="year-chip active" data-year="2026">2026</button>
+          <button class="year-chip" data-year="2027">2027</button>
+        </div>
       </div>
 
-      <div class="month-nav" id="monthNav"></div>
+      <div class="filter-group">
+        <div class="filter-label" id="monthLabel">Month</div>
+        <div class="month-nav" id="monthNav"></div>
+      </div>
+
+      <div class="filter-group category-group" id="categoryGroup">
+        <button class="filter-toggle" id="categoryToggle" type="button" aria-expanded="true" aria-controls="filters">
+          <span class="filter-label" id="categoryLabel">Category</span>
+          <span class="filter-toggle-icon" id="categoryToggleIcon" aria-hidden="true">⌃</span>
+        </button>
+        <div class="filter-row category-content" id="filters">
+          <button class="chip active" data-filter="all">전체</button>
+          <button class="chip" data-filter="major">주요 기대작</button>
+          <button class="chip" data-filter="new">신작</button>
+          <button class="chip" data-filter="series">시리즈</button>
+          <button class="chip" data-filter="comic">코믹스 원작</button>
+          <button class="chip" data-filter="ln">라이트 노벨 원작</button>
+          <button class="chip" data-filter="original">오리지널</button>
+          <button class="chip" data-filter="movie">극장판</button>
+        </div>
+      </div>
+      </div>
     </section>
 
     <div id="schedule"></div>
@@ -59,21 +1407,3341 @@
     </section>
 
     <section class="source-box">
-      <strong>참고</strong><br>
-      이 파일은 2026년 8월 27일 기준 공개 편성 정보를 바탕으로 만든 정리본입니다.
-      방영 시기·플랫폼은 제작사 및 방송사 사정에 따라 변경될 수 있습니다.
-      참고 링크:
-      <a href="https://momokami.net/anime/animekakettei.html" target="_blank" rel="noreferrer">momokami</a>,
-      <a href="https://anime.eiga.com/" target="_blank" rel="noreferrer">Anime Hack</a>,
-      <a href="https://www.toho.co.jp/anime/lineup/" target="_blank" rel="noreferrer">TOHO Animation</a>.
+      <strong id="updatedLabel">업데이트</strong>
+      <span>2026.09.01</span>
     </section>
 
-    <footer>
-      검색 및 필터 기능은 JavaScript로 동작하며, GitHub Pages에서 바로 제공되는 정적 사이트입니다.
-    </footer>
+
+    <div class="stream-modal hidden" id="streamModal" role="dialog" aria-modal="true" aria-labelledby="streamModalTitle">
+      <div class="stream-modal-backdrop" data-stream-close></div>
+      <section class="stream-dialog">
+        <div class="stream-dialog-head">
+          <div>
+            <div class="stream-dialog-kicker" id="streamKicker">Streaming Platforms</div>
+            <h4 id="streamModalTitle">스트리밍 서비스</h4>
+          </div>
+          <button class="stream-close" type="button" aria-label="닫기" data-stream-close>×</button>
+        </div>
+        <p class="stream-dialog-desc" id="streamDesc">스트리밍 서비스를 선택하세요.</p>
+        <div class="ott-grid" id="ottGrid"></div>
+        
+      </section>
+    </div>
+
+    <footer>2026–2027 Anime Schedule</footer>
   </main>
 
-<script src="./data.js"></script>
-<script src="./app.js"></script>
+<script>
+const data = [
+  {
+    "season": "2026 가을 진입",
+    "month": "2026-09",
+    "label": "2026년 9월",
+    "items": [
+      [
+        "SEKIRO: NO DEFEAT",
+        "9/4",
+        [
+          "major",
+          "new",
+          "movie"
+        ]
+      ],
+      [
+        "最終楽章 響け！ユーフォニアム 後編",
+        "9/11",
+        [
+          "major",
+          "series",
+          "ln",
+          "movie"
+        ]
+      ],
+      [
+        "죠죠의 기묘한 모험 스틸 볼 런 2nd & 3rd STAGE",
+        "9/25",
+        [
+          "major",
+          "series",
+          "comic"
+        ]
+      ],
+      [
+        "신 테니스의 왕자 U-17 WORLD CUP 결승 멤버 결정전",
+        "9/30",
+        [
+          "series",
+          "comic"
+        ]
+      ]
+    ]
+  },
+  {
+    "season": "2026 가을",
+    "month": "2026-10",
+    "label": "2026년 10월",
+    "items": [
+      [
+        "약사의 혼잣말 3기 제1쿨",
+        "10/2",
+        [
+          "major",
+          "series",
+          "ln"
+        ]
+      ],
+      [
+        "란마 1/2 3기",
+        "10/3",
+        [
+          "major",
+          "series",
+          "comic"
+        ]
+      ],
+      [
+        "마법기사 레이어스",
+        "10/7",
+        [
+          "major",
+          "new",
+          "series",
+          "comic"
+        ]
+      ],
+      [
+        "とある暗部の少女共棲 (어떤 암부의 소녀공서)",
+        "10/9",
+        [
+          "major",
+          "new",
+          "ln"
+        ]
+      ],
+      [
+        "どこよりも遠い場所にいる君へ",
+        "10/9",
+        [
+          "new",
+          "ln",
+          "movie"
+        ]
+      ],
+      [
+        "ガールズ＆パンツァー 最終章 第5話",
+        "10/9",
+        [
+          "major",
+          "series",
+          "original",
+          "movie"
+        ]
+      ],
+      [
+        "BanG Dream! Ave Mujica prima aurora",
+        "10/16",
+        [
+          "major",
+          "series",
+          "original",
+          "movie"
+        ]
+      ],
+      [
+        "청춘 돼지는 디어 프렌드의 꿈을 꾸지 않는다",
+        "10/16",
+        [
+          "major",
+          "series",
+          "ln",
+          "movie"
+        ]
+      ],
+      [
+        "사이버펑크: 엣지러너 2",
+        "10/20",
+        [
+          "major",
+          "series",
+          "original"
+        ]
+      ],
+      [
+        "劇場シリーズ【第一部】メイドインアビス 目覚める神秘",
+        "10/23",
+        [
+          "major",
+          "series",
+          "comic",
+          "movie"
+        ]
+      ],
+      [
+        "ヤマトよ永遠に REBEL3199 第七章 虹色の輪廻",
+        "10/30",
+        [
+          "series",
+          "original",
+          "movie"
+        ]
+      ],
+      [
+        "#ゾンビさがしてます (#좀비를 찾고 있습니다)",
+        "10월",
+        [
+          "new"
+        ]
+      ],
+      [
+        "DARK MACHINE THE ANIMATION (다크 머신 더 애니메이션)",
+        "10월",
+        [
+          "new",
+          "original"
+        ]
+      ],
+      [
+        "Duel Masters LOST ～断罪の少年～ (듀얼 마스터즈 LOST ~단죄의 소년~)",
+        "10월",
+        [
+          "new",
+          "series",
+          "original"
+        ]
+      ],
+      [
+        "FX戦士くるみちゃん (FX전사 쿠루미짱)",
+        "10월",
+        [
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "PSYREN -サイレン- (사이렌)",
+        "10월",
+        [
+          "major",
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "TANK CHAIR-戦車椅子- (탱크 체어 -전차의자-)",
+        "10월",
+        [
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "dreamland (드림랜드)",
+        "10월",
+        [
+          "new"
+        ]
+      ],
+      [
+        "てつりょー！meet with 鉄道むすめ (테츠료! meet with 철도무스메)",
+        "10월",
+        [
+          "new"
+        ]
+      ],
+      [
+        "ジャンケットバンク / JUNKET BANK (정켓 뱅크)",
+        "10월",
+        [
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "タヌキとキツネ (타누키와 키츠네)",
+        "10월",
+        [
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "ダークサモナーとデキている (다크 서머너와 사귀고 있다)",
+        "10월",
+        [
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "バーテックスフォース (버텍스 포스)",
+        "10월",
+        [
+          "new",
+          "original"
+        ]
+      ],
+      [
+        "マジカル★エクスプローラー (매지컬★익스플로러)",
+        "10월",
+        [
+          "new",
+          "ln"
+        ]
+      ],
+      [
+        "マロニエ王国の七人の騎士 (마로니에 왕국의 일곱 기사)",
+        "10월",
+        [
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "世界最強の魔女、始めました (세계 최강의 마녀, 시작했습니다)",
+        "10월",
+        [
+          "new"
+        ]
+      ],
+      [
+        "凶乱令嬢ニア・リストン 病弱令嬢に転生した神殺しの武人の華麗なる無双録 (흉란영애 니아 리스트온: 병약 영애로 전생한 신살의 무인의 화려한 무쌍록)",
+        "10월",
+        [
+          "new",
+          "ln"
+        ]
+      ],
+      [
+        "塩対応の佐藤さんが俺にだけ甘い (쌀쌀맞은 사토 씨가 나한테만 달콤하다)",
+        "10월",
+        [
+          "new",
+          "ln"
+        ]
+      ],
+      [
+        "弱気MAX令嬢なのに、辣腕婚約者様の賭けに乗ってしまった (소심 MAX 영애인데 수완 좋은 약혼자의 내기에 올라타 버렸다)",
+        "10월",
+        [
+          "new",
+          "ln"
+        ]
+      ],
+      [
+        "彼女の友達 (그녀의 친구)",
+        "10월",
+        [
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "彼方から (저편에서)",
+        "10월",
+        [
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "朱色の仮面 (주홍빛 가면)",
+        "10월",
+        [
+          "new"
+        ]
+      ],
+      [
+        "獣王武神ダンデヴァイン (수왕무신 단데바인)",
+        "10월",
+        [
+          "new"
+        ]
+      ],
+      [
+        "生徒会にも穴はある！ (학생회에도 구멍은 있다!)",
+        "10월",
+        [
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "目覚めたら最強装備と宇宙船持ちだったので、一戸建て目指して傭兵として自由に生きたい (눈을 떠보니 최강 장비와 우주선을 가지고 있어서, 단독주택을 목표로 용병으로 자유롭게 살고 싶다)",
+        "10월",
+        [
+          "new",
+          "ln"
+        ]
+      ],
+      [
+        "紫禁・御猫房〜紫禁城猫警備室〜 (자금·어묘방 ~자금성 고양이 경비실~)",
+        "10월",
+        [
+          "new"
+        ]
+      ],
+      [
+        "超巡！超条先輩 (초순! 초조 선배)",
+        "10월",
+        [
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "転生した大聖女は、聖女であることをひた隠す (전생한 대성녀는 성녀임을 숨긴다)",
+        "10월",
+        [
+          "new",
+          "ln"
+        ]
+      ],
+      [
+        "転生ゴブリンだけど質問ある？ (전생 고블린인데 질문 있어?)",
+        "10월",
+        [
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "魔法の姉妹ルルットリリィ 第2クール (마법의 자매 루룻토릴리 제2쿨)",
+        "10월",
+        [
+          "series",
+          "original"
+        ]
+      ],
+      [
+        "귀환자의 마법은 특별해야 합니다 2기",
+        "10월",
+        [
+          "series"
+        ]
+      ],
+      [
+        "도원암귀 닛코·게곤 폭포편",
+        "10월",
+        [
+          "series",
+          "comic"
+        ]
+      ],
+      [
+        "도쿄 리벤저스 삼천전쟁편",
+        "10월",
+        [
+          "major",
+          "series",
+          "comic"
+        ]
+      ],
+      [
+        "마법소녀 육성계획 restart",
+        "10월",
+        [
+          "series",
+          "ln"
+        ]
+      ],
+      [
+        "블랙 클로버 2nd Season",
+        "10월",
+        [
+          "major",
+          "series",
+          "comic"
+        ]
+      ],
+      [
+        "빙검의 마술사가 세계를 다스린다 II",
+        "10월",
+        [
+          "series",
+          "ln"
+        ]
+      ],
+      [
+        "사사키와 피짱 Season 2",
+        "10월",
+        [
+          "series",
+          "ln"
+        ]
+      ],
+      [
+        "아오아시 Season 2",
+        "10월",
+        [
+          "major",
+          "series",
+          "comic"
+        ]
+      ],
+      [
+        "전생했더니 검이었습니다 II",
+        "10월",
+        [
+          "series",
+          "ln"
+        ]
+      ],
+      [
+        "치토세 군은 라무네 병 속에 제2쿨",
+        "10월",
+        [
+          "series",
+          "ln"
+        ]
+      ],
+      [
+        "탐정은 이미 죽었다. Season 2",
+        "10월",
+        [
+          "series",
+          "ln"
+        ]
+      ],
+      [
+        "푸른 상자 Season 2",
+        "10월",
+        [
+          "major",
+          "series",
+          "comic"
+        ]
+      ],
+      [
+        "호타루의 시집가기",
+        "10월",
+        [
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "환상수호전",
+        "10월",
+        [
+          "new"
+        ]
+      ]
+    ]
+  },
+  {
+    "season": "2026 가을",
+    "month": "2026-11",
+    "label": "2026년 11월",
+    "items": [
+      [
+        "GROTESQQQUE-グロテスク-",
+        "11/6",
+        [
+          "new",
+          "original",
+          "movie"
+        ]
+      ],
+      [
+        "데몬즈 크레스트",
+        "11/6",
+        [
+          "new",
+          "ln"
+        ]
+      ],
+      [
+        "楽園追放 心のレゾナンス",
+        "11/13",
+        [
+          "major",
+          "series",
+          "original",
+          "movie"
+        ]
+      ],
+      [
+        "装甲騎兵ボトムズ 灰色の魔女 第1作",
+        "11/20",
+        [
+          "series",
+          "original",
+          "movie"
+        ]
+      ],
+      [
+        "魔法使いの夜",
+        "11/20",
+        [
+          "major",
+          "new",
+          "movie"
+        ]
+      ],
+      [
+        "フールナイト / FOOL NIGHT (풀 나이트)",
+        "11/26",
+        [
+          "major",
+          "new",
+          "comic"
+        ]
+      ]
+    ]
+  },
+  {
+    "season": "2026 겨울 진입",
+    "month": "2026-12",
+    "label": "2026년 12월",
+    "items": [
+      [
+        "劇場版 薬屋のひとりごと 亡妃の秘宝",
+        "12/11",
+        [
+          "major",
+          "series",
+          "ln",
+          "movie"
+        ]
+      ],
+      [
+        "〈모노가타리〉 시리즈 Off & Monster Season — 業物語 かれんオウガ",
+        "연말",
+        [
+          "series",
+          "ln"
+        ]
+      ]
+    ]
+  },
+  {
+    "season": "2027 겨울",
+    "month": "2027-01",
+    "label": "2027년 1월",
+    "items": [
+      [
+        "BanG Dream! It's MyGO!!!!! / Ave Mujica 후속 시리즈 (뱅드림! 잇츠 마이고!!!!! / 아베 무지카 후속 시리즈)",
+        "1월",
+        [
+          "major",
+          "series",
+          "original"
+        ]
+      ],
+      [
+        "SAKAMOTO DAYS 2기 (사카모토 데이즈 2기)",
+        "1월",
+        [
+          "major",
+          "series",
+          "comic"
+        ]
+      ],
+      [
+        "えぶりでいホスト 新シリーズ (에브리데이 호스트 신시리즈)",
+        "1월",
+        [
+          "series",
+          "comic"
+        ]
+      ],
+      [
+        "すだちの魔王城 (스다치의 마왕성)",
+        "1월",
+        [
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "マッシュル-MASHLE- 第3期「三魔対争神覚者最終試験編」 (마슐-MASHLE- 3기 「삼마대쟁 신각자 최종시험편」)",
+        "1월",
+        [
+          "major",
+          "series",
+          "comic"
+        ]
+      ],
+      [
+        "ムルシエラゴ / MURCIÉLAGO (무르시엘라고)",
+        "1월",
+        [
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "ラーメン赤猫 其の二 (라멘 아카네코 두 번째)",
+        "1월",
+        [
+          "series",
+          "comic"
+        ]
+      ],
+      [
+        "一式さんは恋を知りたい。 (잇시키 씨는 사랑을 알고 싶어.)",
+        "1월",
+        [
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "俺と悠兄！ (나와 유우 형!)",
+        "1월",
+        [
+          "new"
+        ]
+      ],
+      [
+        "傷口と包帯 (상처와 붕대)",
+        "1월",
+        [
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "欠けた月のメルセデス (이지러진 달의 메르세데스)",
+        "1월",
+        [
+          "new",
+          "ln"
+        ]
+      ],
+      [
+        "茉莉花官吏伝 (말리화 관리전)",
+        "1월",
+        [
+          "new",
+          "ln"
+        ]
+      ],
+      [
+        "風を継ぐもの (바람을 잇는 이들)",
+        "1월",
+        [
+          "new",
+          "original"
+        ]
+      ],
+      [
+        "魔入りました！入間くん if Episode of 魔フィア (마계학교! 이루마군 if Episode of 마피아)",
+        "1월",
+        [
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "가챠를 돌려 동료를 늘리고 최강의 미소녀 군단을 만들자",
+        "1월",
+        [
+          "new",
+          "ln"
+        ]
+      ],
+      [
+        "게임세계전생〈던활〉",
+        "1월",
+        [
+          "new",
+          "ln"
+        ]
+      ],
+      [
+        "결계사의 일륜화",
+        "1월",
+        [
+          "new",
+          "ln"
+        ]
+      ],
+      [
+        "골든 카무이 최종장 폭주열차편",
+        "1월",
+        [
+          "major",
+          "series",
+          "comic"
+        ]
+      ],
+      [
+        "공주기사님의 기둥서방",
+        "1월",
+        [
+          "new",
+          "ln"
+        ]
+      ],
+      [
+        "러브라이브! 하스노소라 여학원 스쿨 아이돌 클럽 TV 시리즈",
+        "1월",
+        [
+          "major",
+          "new",
+          "series",
+          "original"
+        ]
+      ],
+      [
+        "샹그릴라 프론티어 3rd Season",
+        "1월",
+        [
+          "major",
+          "series"
+        ]
+      ],
+      [
+        "아카네바나시 2기",
+        "1월",
+        [
+          "major",
+          "series",
+          "comic"
+        ]
+      ],
+      [
+        "유구의 우자 아즈리의 현자 추천",
+        "1월",
+        [
+          "new",
+          "ln"
+        ]
+      ],
+      [
+        "이세계 전생 소동기",
+        "1월",
+        [
+          "new",
+          "ln"
+        ]
+      ],
+      [
+        "자이언트 아가씨",
+        "1월",
+        [
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "잡용부여술사가 자신의 최강을 깨닫기까지",
+        "1월",
+        [
+          "new",
+          "ln"
+        ]
+      ],
+      [
+        "좀비가 넘쳐나는 세상에서 나만 습격당하지 않는다",
+        "1월",
+        [
+          "new",
+          "ln"
+        ]
+      ],
+      [
+        "카리스마",
+        "1월",
+        [
+          "new",
+          "original"
+        ]
+      ],
+      [
+        "쿠로이와 메다카에게 내 귀여움이 통하지 않아 Season 2",
+        "1월",
+        [
+          "series",
+          "comic"
+        ]
+      ],
+      [
+        "펜과 수갑과 사실혼",
+        "1월",
+        [
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "히라야스미",
+        "1월",
+        [
+          "major",
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "히스토리에",
+        "1월",
+        [
+          "major",
+          "new",
+          "comic"
+        ]
+      ]
+    ]
+  },
+  {
+    "season": "2027 겨울",
+    "month": "2027-02",
+    "label": "2027년 2월",
+    "items": [
+      [
+        "ghost／夜の果て",
+        "2/11",
+        [
+          "new",
+          "original",
+          "movie"
+        ]
+      ],
+      [
+        "劇場版 メダリスト",
+        "2/19",
+        [
+          "major",
+          "series",
+          "comic",
+          "movie"
+        ]
+      ],
+      [
+        "THE ONE PIECE (더 원피스)",
+        "2월",
+        [
+          "major",
+          "new",
+          "series",
+          "comic"
+        ]
+      ]
+    ]
+  },
+  {
+    "season": "2027 겨울",
+    "month": "2027-03",
+    "label": "2027년 3월",
+    "items": [
+      [
+        "機動警察パトレイバー EZY File 3",
+        "3/5",
+        [
+          "series",
+          "original",
+          "movie"
+        ]
+      ]
+    ]
+  },
+  {
+    "season": "2027 봄",
+    "month": "2027-04",
+    "label": "2027년 4월",
+    "items": [
+      [
+        "尚善 (쇼젠)",
+        "4월",
+        [
+          "new"
+        ]
+      ],
+      [
+        "스킵과 로퍼 2nd season",
+        "4월",
+        [
+          "major",
+          "series",
+          "comic"
+        ]
+      ],
+      [
+        "약사의 혼잣말 3기 제2쿨",
+        "4월",
+        [
+          "major",
+          "series",
+          "ln"
+        ]
+      ],
+      [
+        "카구라바치",
+        "4월",
+        [
+          "major",
+          "new",
+          "comic"
+        ]
+      ],
+      [
+        "텐카이치 일본 최강 무예자 결정전",
+        "4월",
+        [
+          "new",
+          "comic"
+        ]
+      ]
+    ]
+  },
+  {
+    "season": "2027 봄",
+    "month": "2027-05",
+    "label": "2027년 5월",
+    "items": []
+  },
+  {
+    "season": "2027 봄",
+    "month": "2027-06",
+    "label": "2027년 6월",
+    "items": []
+  },
+  {
+    "season": "2027 여름",
+    "month": "2027-07",
+    "label": "2027년 7월",
+    "items": []
+  },
+  {
+    "season": "2027 여름",
+    "month": "2027-08",
+    "label": "2027년 8월",
+    "items": []
+  },
+  {
+    "season": "2027 여름",
+    "month": "2027-09",
+    "label": "2027년 9월",
+    "items": []
+  },
+  {
+    "season": "2027 가을",
+    "month": "2027-10",
+    "label": "2027년 10월",
+    "items": [
+      [
+        "Duel Masters LOST ～断罪の少年～ (듀얼 마스터즈 LOST ~단죄의 소년~)",
+        "가을",
+        [
+          "new",
+          "series",
+          "original"
+        ]
+      ],
+      [
+        "던전밥 Season 2",
+        "10월",
+        [
+          "major",
+          "series",
+          "comic"
+        ]
+      ],
+      [
+        "장송의 프리렌 3기 — 황금향편",
+        "10월",
+        [
+          "major",
+          "series",
+          "comic"
+        ]
+      ]
+    ]
+  }
+];
+
+const undated = [
+  [
+    "늑대와 향신료 MERCHANT MEETS THE WISE WOLF 2기",
+    [
+      "series",
+      "ln"
+    ]
+  ],
+  [
+    "단다단 3기",
+    [
+      "series",
+      "comic"
+    ]
+  ],
+  [
+    "이 멋진 세계에 축복을! 4기",
+    [
+      "series",
+      "ln"
+    ]
+  ],
+  [
+    "유루캠△ Season 4",
+    [
+      "series",
+      "comic"
+    ]
+  ],
+  [
+    "내 마음의 위험한 녀석 3기",
+    [
+      "series",
+      "comic"
+    ]
+  ],
+  [
+    "망각 배터리 2기",
+    [
+      "series",
+      "comic"
+    ]
+  ],
+  [
+    "옆자리 아랴 양 2기",
+    [
+      "series",
+      "ln"
+    ]
+  ],
+  [
+    "원펀맨 3기 제2쿨",
+    [
+      "series",
+      "comic"
+    ]
+  ],
+  [
+    "방패 용사 성공담 Season 5",
+    [
+      "series",
+      "ln"
+    ]
+  ],
+  [
+    "악역영애 안의 사람",
+    [
+      "new",
+      "comic"
+    ]
+  ],
+  [
+    "비블리아 고서당 사건수첩",
+    [
+      "new"
+    ]
+  ],
+  [
+    "戦奏教室 (전주교실)",
+    [
+      "new",
+      "comic"
+    ]
+  ],
+  [
+    "블레스",
+    [
+      "new",
+      "comic"
+    ]
+  ],
+  [
+    "마녀와 용병",
+    [
+      "new",
+      "ln"
+    ]
+  ],
+  [
+    "Fate/kaleid liner プリズマ☆イリヤ FINALE (페이트/칼레이드 라이너 프리즈마☆이리야 피날레)",
+    [
+      "series",
+      "comic"
+    ]
+  ],
+  [
+    "DEATH STRANDING ISOLATIONS — Working Title (데스 스트랜딩 아이솔레이션즈 · 가제)",
+    [
+      "new"
+    ]
+  ],
+  [
+    "Ghost of Tsushima: Legends (고스트 오브 쓰시마: 레전드)",
+    [
+      "new"
+    ]
+  ],
+  [
+    "劇場版ハイキュー!! VS 小さな巨人",
+    [
+      "major",
+      "series",
+      "comic",
+      "movie"
+    ]
+  ],
+  [
+    "劇場版 陰の実力者になりたくて！ 残響編",
+    [
+      "major",
+      "series",
+      "ln",
+      "movie"
+    ]
+  ],
+  [
+    "ONE PIECE FILM GOD VALLEY",
+    [
+      "major",
+      "series",
+      "comic",
+      "movie"
+    ]
+  ],
+  [
+    "海が走るエンドロール",
+    [
+      "major",
+      "new",
+      "comic",
+      "movie"
+    ]
+  ]
+];
+
+const posterLinks = {
+  "죠죠의 기묘한 모험 스틸 볼 런 2nd & 3rd STAGE": "https://us.oricon-group.com/upimg/detail/4000/4396/img660/Jojo-part7-SteelBallRun%20%282%29.jpg",
+  "신 테니스의 왕자 U-17 WORLD CUP 결승 멤버 결정전": "https://img2.animatetimes.com/2026/07/ab80ed5991a36ebb05b25cd08851cfed6a59ad98c81e65_93975609_178cad90638e08c2b33599fe3d1d4960d9ca7fcc.jpg",
+  "약사의 혼잣말 3기 제1쿨": "https://cdn.essential-japan.com/wp-content/uploads/2025/10/The-Apothecary-Diaries-Season-3-1.webp",
+  "약사의 혼잣말 3기 제2쿨": "https://cdn.essential-japan.com/wp-content/uploads/2025/10/The-Apothecary-Diaries-Season-3-1.webp",
+  "란마 1/2 3기": "https://contents.oricon.co.jp/upimg/news/2471000/2470087/20260725_184916_p_o_95386341.jpg",
+  "生徒会にも穴はある！ (학생회에도 구멍은 있다!)": "https://www.aniplex.co.jp/animejapan/2026/assets/img/lineup/anime/kv_seitokai.jpg",
+  "TANK CHAIR-戦車椅子- (탱크 체어 -전차의자-)": "https://www.manga-news.com/public/images/dvd/Tank-Chair-anime-visual.webp",
+  "彼方から (저편에서)": "https://a.storyblok.com/f/178900/1452x1920/12ba9b7e1a/from-far-away-teaser-visual.jpg/m/filters%3Aquality%2895%29format%28webp%29",
+  "아오아시 Season 2": "https://a.storyblok.com/f/178900/1460x2064/2600fcea28/aoashi-season-2-key-visual.jpg/m/filters%3Aquality%2895%29format%28webp%29",
+  "푸른 상자 Season 2": "https://pbs.twimg.com/media/HEaOKyfWcAAIS2g.jpg",
+  "超巡！超条先輩 (초순! 초조 선배)": "https://contents.oricon.co.jp/upimg/news/2445000/2444606/20260325_164859_p_o_39031172.jpg",
+  "마법기사 레이어스": "https://a.storyblok.com/f/178900/2717x3840/fa8127d41b/magic-knight-rayearth-key-visual.jpeg/m/filters%3Aquality%2895%29format%28webp%29",
+  "전생했더니 검이었습니다 II": "https://eeo.today/media/wp-content/uploads/2025/07/20250707tennken2.jpg",
+  "とある暗部の少女共棲 (어떤 암부의 소녀공서)": "https://animeanime.jp/imgs/zoom/845017.jpg",
+  "청춘 돼지는 디어 프렌드의 꿈을 꾸지 않는다": "https://image.news.livedoor.com/newsimage/stf/3/5/355ab_1516_dfb4634b_5b89b907.jpg",
+  "FX戦士くるみちゃん (FX전사 쿠루미짱)": "https://ogre.natalie.mu/media/news/comic/2026/0119/kurumichan_anime_teaser2.jpg?imdensity=1&impolicy=hq&imwidth=1460",
+  "PSYREN -サイレン- (사이렌)": "https://psyren-anime.com/kvs/kv01_sp.jpg",
+  "사사키와 피짱 Season 2": "https://assets.ln-news.com/images/medias/1f1d706f272f42c29435d3cade87567e.jpg",
+  "ジャンケットバンク / JUNKET BANK (정켓 뱅크)": "https://spice.eplus.jp/images/uJTP5lmdFxMBdK7XiVMLRx9IoXocDhTwlETmBRY3XF4hhjWfM6SLLfQ8pxhA5nFS",
+  "탐정은 이미 죽었다. Season 2": "https://tanmoshi-anime.jp/core_sys/images/main/tz/250722visual.jpg",
+  "DARK MACHINE THE ANIMATION (다크 머신 더 애니메이션)": "https://s.animeanime.jp/imgs/p/64XVvff3mD9cFhi_PU1_DqGg_6ytrq_oqaqr/815626.jpg?zoom=spacing",
+  "치토세 군은 라무네 병 속에 제2쿨": "https://pbs.twimg.com/media/GqGgSh0a8AAACGp.jpg",
+  "転生ゴブリンだけど質問ある？ (전생 고블린인데 질문 있어?)": "https://img2.animatetimes.com/2026/03/50f2d5184288fa4067f3f45af07c492769b128d1ec4860_68757592_64049c43fe2fb6b430c9cfdf2c69cea8fb989075.jpg",
+  "転生した大聖女は、聖女であることをひた隠す (전생한 대성녀는 성녀임을 숨긴다)": "https://cimg.kgl-systems.io/camion/files/dengeki/70058/af3ccdd27d2000e3f9255a7e3e2c48800.jpg?x=1280",
+  "魔法の姉妹ルルットリリィ 第2クール (마법의 자매 루룻토릴리 제2쿨)": "https://img2.animatetimes.com/2025/12/d0019ca645ca494e48289021cb85a49f6944de6e2694d2_69476193_5f08a0b6f17461805af4c13970ef76a0ef6cd5fe.jpg",
+  "マロニエ王国の七人の騎士 (마로니에 왕국의 일곱 기사)": "https://a.storyblok.com/f/178900/1030x1462/0a41f0b6ee/the-seven-knights-of-the-marronnier-kingdom-teaser-visual.jpg/m/filters%3Aquality%2895%29format%28webp%29",
+  "目覚めたら最強装備と宇宙船持ちだったので、一戸建て目指して傭兵として自由に生きたい (눈을 떠보니 최강 장비와 우주선을 가지고 있어서, 단독주택을 목표로 용병으로 자유롭게 살고 싶다)": "https://contents.oricon.co.jp/upimg/news/2445000/2444139/20260323_201155_p_o_33027868.jpg",
+  "弱気MAX令嬢なのに、辣腕婚約者様の賭けに乗ってしまった (소심 MAX 영애인데 수완 좋은 약혼자의 내기에 올라타 버렸다)": "https://yowaki-max-anime.com/assets/img/top/visual/visual.jpg",
+  "데몬즈 크레스트": "https://demonscrest-anime.com/core_sys/images/main/home/kv01.jpg",
+  "골든 카무이 최종장 폭주열차편": "https://www.anime2you.de/media/2026/03/Golden-Kamuy-KV.jpeg",
+  "SAKAMOTO DAYS 2기 (사카모토 데이즈 2기)": "https://contents.oricon.co.jp/upimg/news/2427000/2426265/20251220_173708_p_o_58385067.jpg",
+  "샹그릴라 프론티어 3rd Season": "https://mangayo.it/img/cms/shangri-la-frontier-season-3-key-visual.jpg",
+  "자이언트 아가씨": "https://a.storyblok.com/f/178900/847x1200/78c6cefbb3/giant-ojo-sama-teaser-visual.jpg/m/filters%3Aquality%2895%29format%28webp%29",
+  "マッシュル-MASHLE- 第3期「三魔対争神覚者最終試験編」 (마슐-MASHLE- 3기 「삼마대쟁 신각자 최종시험편」)": "https://contents.oricon.co.jp/upimg/news/2427000/2426242/20251220_144838_p_o_82271843.jpg",
+  "ラーメン赤猫 其の二 (라멘 아카네코 두 번째)": "https://a.storyblok.com/f/178900/1460x2064/885476da12/ramen_akaneko_season2_teaser_art.jpg/m/filters%3Aquality%2895%29format%28webp%29",
+  "THE ONE PIECE (더 원피스)": "https://pbs.twimg.com/media/HHjeIGlW0AIemyG.jpg",
+  "카구라바치": "https://m.media-amazon.com/images/M/MV5BN2M0NWY1NTAtYTAxNy00ZTMwLWExNzItZGIxMmYxMTdhYWRkXkEyXkFqcGc%40._V1_.jpg",
+  "스킵과 로퍼 2nd season": "https://weebe.net/wp-content/uploads/2025/03/vis-h12.jpg",
+  "장송의 프리렌 3기 — 황금향편": "https://pbs.twimg.com/media/HEbHro4XcAA8UG3.jpg",
+  "던전밥 Season 2": "https://pbs.twimg.com/media/HMZruftbkAAw7Jz.jpg",
+  "늑대와 향신료 MERCHANT MEETS THE WISE WOLF 2기": "https://spice-and-wolf.com/special/img/teaser_visual_season2.jpg",
+  "단다단 3기": "https://pbs.twimg.com/media/G8q5ylcW8AAtblD.jpg",
+  "이 멋진 세계에 축복을! 4기": "https://pbs.twimg.com/media/HOEpwcSa4AA5nxi?format=webp&name=medium",
+  "유루캠△ Season 4": "https://assets.st-note.com/img/1775553843-0Nync21YQtb4hL8ermMvKG9R.jpg",
+  "망각 배터리 2기": "https://s.animeanime.jp/imgs/p/X2bKTbbkhKNuuQZDts1HWTagH66grq_oqaqr/823826.jpg",
+  "옆자리 아랴 양 2기": "https://pbs.twimg.com/media/HEeKOXIXwAAliF_.jpg",
+  "戦奏教室 (전주교실)": "https://animeanime.jp/imgs/zoom/898176.jpg",
+  "Fate/kaleid liner プリズマ☆イリヤ FINALE (페이트/칼레이드 라이너 프리즈마☆이리야 피날레)": "https://times-abema.ismcdn.jp/mwimgs/9/3/1200w/img_937f054939d5824a5deefd64d38bfa6b568108.jpg",
+  "DEATH STRANDING ISOLATIONS — Working Title (데스 스트랜딩 아이솔레이션즈 · 가제)": "https://www.kojimaproductions.jp/sites/default/files/styles/max_2600x2600/public/2025-11/deathstrandingisolations_teaser_1113_coverimage_mobile.jpg?itok=KjUr_qar",
+  "유구의 우자 아즈리의 현자 추천": "https://contents.oricon.co.jp/upimg/news/2435000/2434822/20260205_182125_p_o_28062488.jpg",
+  "バーテックスフォース (버텍스 포스)": "https://vertexforce.jp/assets/img/kv/img_main02.jpg",
+  "凶乱令嬢ニア・リストン 病弱令嬢に転生した神殺しの武人の華麗なる無双録 (흉란영애 니아 리스트온: 병약 영애로 전생한 신살의 무인의 화려한 무쌍록)": "https://kyoranreijo-pr.com/wp/wp-content/themes/kyouran_theme/images/kv1.webp",
+  "Duel Masters LOST ～断罪の少年～ (듀얼 마스터즈 LOST ~단죄의 소년~)": "https://prcdn.freetls.fastly.net/release_image/2610/1988/2610-1988-4acc28875b8281da790710d6fb1912fd-1477x2088.jpg?width=536&quality=85%2C75&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+  "朱色の仮面 (주홍빛 가면)": "https://prcdn.freetls.fastly.net/release_image/51825/747/51825-747-4fcbabe7f0471572462df3f9f85433d9-1909x2700.jpg?auto=webp&bg-color=fff&fit=bounds&format=jpeg&height=1350&quality=85%2C65&width=1950",
+  "빙검의 마술사가 세계를 다스린다 II": "https://a.storyblok.com/f/178900/1000x1400/0a7070fffb/the-iceblade-sorcerer-shall-rule-the-world-season-2-teaser-visual.jpg/m/filters%3Aquality%2895%29format%28webp%29",
+  "가챠를 돌려 동료를 늘리고 최강의 미소녀 군단을 만들자": "https://prcdn.freetls.fastly.net/release_image/48095/2755/48095-2755-07f634f5ca26b8ec5ee5db82f7bb5f65-1910x2700.jpg?auto=webp&bg-color=fff&fit=bounds&format=jpeg&height=1350&quality=85%2C65&width=1950",
+  "잡용부여술사가 자신의 최강을 깨닫기까지": "https://prcdn.freetls.fastly.net/release_image/14531/972/14531-972-28d0da5ab368586c20d92f9554b4d319-991x1400.jpg?auto=webp&bg-color=fff&fit=bounds&format=jpeg&height=1350&quality=85%2C65&width=1950",
+  "쿠로이와 메다카에게 내 귀여움이 통하지 않아 Season 2": "https://monaxmedaka.com/wp-content/uploads/dbd64bb47597edf1d8c7927b7d9ee34e-1170x1600.png",
+  "히라야스미": "https://hirayasumi-anime.jp/img/KV_sp.png",
+  "공주기사님의 기둥서방": "https://himehimo.jp/core_sys/images/main/home/kv.jpg",
+  "尚善 (쇼젠)": "https://www.fujitv.co.jp/shozen/assets/images/img_kv_sp.jpg",
+  "결계사의 일륜화": "https://kekkaishi-ichirinka-anime.com/news/images/20260612_01_1.jpg",
+  "블랙 클로버 2nd Season": "https://bclover.jp/images/special/bckv2_1080_1920.jpg",
+  "マジカル★エクスプローラー (매지컬★익스플로러)": "https://majieku.com/assets/img/top/visual/visual_kv1.jpg",
+  "호타루의 시집가기": "https://pbs.twimg.com/media/HEPrqokWYAAuFPY.jpg",
+  "一式さんは恋を知りたい。 (잇시키 씨는 사랑을 알고 싶어.)": "https://isshikisan-anime.com/core_sys/images/main/home/kv01.png",
+  "風を継ぐもの (바람을 잇는 이들)": "https://d111jwrw4u3bt.cloudfront.net/anime-posters/poster-62483.webp",
+  "#ゾンビさがしてます (#좀비를 찾고 있습니다)": "https://zommasu.com/assets/img/top/visual/visual1.jpg",
+  "てつりょー！meet with 鉄道むすめ (테츠료! meet with 철도무스메)": "https://ogre.natalie.mu/media/news/comic/2026/0328/tetsuryo_teaserKV2_OL.jpg?imdensity=1&impolicy=hq&imwidth=1460",
+  "BanG Dream! It's MyGO!!!!! / Ave Mujica 후속 시리즈 (뱅드림! 잇츠 마이고!!!!! / 아베 무지카 후속 시리즈)": "https://cdn.sanity.io/images/3wl0vtkq/production/5686bf896a0cbe8911b7c8177ceb91eb447d302b-975x1380.jpg",
+  "도쿄 리벤저스 삼천전쟁편": "https://tokyo-revengers-anime.com/img/home/visual_09.jpg",
+  "ムルシエラゴ / MURCIÉLAGO (무르시엘라고)": "https://murcielago-anime.com/core_sys/images/main/home/kv.jpg",
+  "방패 용사 성공담 Season 5": "https://shieldhero-anime.jp/assets/img/5th/fv/vis_000_ja_pc.png",
+  "사이버펑크: 엣지러너 2": "https://gear.cdprojektred.com/cdn/shop/files/Cyberpunk-Edgerunners2-AnimeExpo-Poster-GridImage-600x900-1.jpg?v=1782828602&width=1946",
+  "환상수호전": "https://www.suikoden-anime.com/assets/img/top/fv_visual.jpg",
+  "フールナイト / FOOL NIGHT (풀 나이트)": "https://www.foolnight.com/assets/webp/sp/home/img_kv.webp",
+  "이세계 전생 소동기": "https://www.soudouki.com/core_sys/images/main/home/kv01.jpg",
+  "악역영애 안의 사람": "https://nakanohito-pr.com/assets/img/top/visual/visual.jpg",
+  "비블리아 고서당 사건수첩": "https://biblia-anime.com/assets/images/pc/teaser/img_hero_visual.webp",
+  "最終楽章 響け！ユーフォニアム 後編": "https://anime-eupho.com/img/news/202606061630-news-eupho-mv4-02_visual02.webp",
+  "ガールズ＆パンツァー 最終章 第5話": "https://girls-und-panzer-finale.jp/iaY7mRf2zJ/wp-content/uploads/2026/06/GuPF5_1stAD_B5_0604_FRONT%E5%AE%9F%E5%AF%B8-531x750.jpg",
+  "劇場版 薬屋のひとりごと 亡妃の秘宝": "https://kusuriyanohitorigoto.jp/kh/wp-content/uploads/2026/07/news01.jpg",
+  "SEKIRO: NO DEFEAT": "https://sekiro-anime.jp/assets/news/vis-t2r.webp",
+  "劇場版 陰の実力者になりたくて！ 残響編": "https://shadow-garden.jp/assets/img/common/visual/movie_visual_t1.jpg",
+  "機動警察パトレイバー EZY File 3": "https://ezy.patlabor.tokyo/wp-content/uploads/2026/08/kv_file3_large_20260806.webp",
+  "どこよりも遠い場所にいる君へ": "assets/posters/dokokimi.png",
+  "劇場版 メダリスト": "assets/posters/medalist_movie.png",
+  "劇場版ハイキュー!! VS 小さな巨人": "assets/posters/haikyu_movie.png",
+  "ヤマトよ永遠に REBEL3199 第七章 虹色の輪廻": "assets/posters/yamato_ch7.png"
+};
+
+const resourceLinks = {
+  "약사의 혼잣말 3기 제1쿨": {
+    "pv": "https://youtu.be/9rProUQlD-I",
+    "official": "https://kusuriyanohitorigoto.jp/",
+    "streaming": "https://kusuriyanohitorigoto.jp/streaming/"
+  },
+  "약사의 혼잣말 3기 제2쿨": {
+    "pv": "https://youtu.be/9rProUQlD-I",
+    "official": "https://kusuriyanohitorigoto.jp/",
+    "streaming": "https://kusuriyanohitorigoto.jp/streaming/"
+  },
+  "란마 1/2 3기": {
+    "pv": "https://youtu.be/MnYDGUBUzJQ",
+    "official": "https://ranma-pr.com/",
+    "streaming": "https://ranma-pr.com/ja/onair/"
+  },
+  "아오아시 Season 2": {
+    "pv": "https://www.youtube.com/watch?v=phKPnPXm74c",
+    "official": "https://aoashi-pr.com/",
+    "streaming": null
+  },
+  "푸른 상자 Season 2": {
+    "pv": "https://www.youtube.com/watch?v=ZtFrSp4pMJ4",
+    "official": "https://aonohako-anime.com/",
+    "streaming": "https://www.netflix.com/jp/title/81663323"
+  },
+  "마법기사 레이어스": {
+    "pv": "https://www.youtube.com/watch?v=gISc0dl5R_8",
+    "official": "https://rayearth-anime.com/",
+    "streaming": null
+  },
+  "청춘 돼지는 디어 프렌드의 꿈을 꾸지 않는다": {
+    "pv": "https://www.youtube.com/watch?v=vW3O-7bHwhs",
+    "official": "https://ao-buta.com/dearfriend/",
+    "streaming": null
+  },
+  "SAKAMOTO DAYS 2기 (사카모토 데이즈 2기)": {
+    "pv": "https://www.youtube.com/watch?v=KqXEcl4Whj4",
+    "official": "https://sakamotodays.jp/",
+    "streaming": "https://www.netflix.com/kr-en/title/81663325"
+  },
+  "샹그릴라 프론티어 3rd Season": {
+    "pv": "https://anime.shangrilafrontier.com/movie/",
+    "official": "https://anime.shangrilafrontier.com/",
+    "streaming": "https://anime.shangrilafrontier.com/onair/"
+  },
+  "マッシュル-MASHLE- 第3期「三魔対争神覚者最終試験編」 (마슐-MASHLE- 3기 「삼마대쟁 신각자 최종시험편」)": {
+    "pv": "https://mashle.pw/movie/",
+    "official": "https://mashle.pw/",
+    "streaming": "https://mashle.pw/"
+  },
+  "카구라바치": {
+    "pv": "https://www.youtube.com/watch?v=s9HIgo6_2K4",
+    "official": "https://anime.kagurabachi.jp/",
+    "streaming": null
+  },
+  "스킵과 로퍼 2nd season": {
+    "pv": "https://skip-and-loafer.com/news.html",
+    "official": "https://skip-and-loafer.com/",
+    "streaming": null
+  },
+  "장송의 프리렌 3기 — 황금향편": {
+    "pv": null,
+    "official": "https://frieren-anime.jp/",
+    "streaming": null
+  },
+  "늑대와 향신료 MERCHANT MEETS THE WISE WOLF 2기": {
+    "pv": null,
+    "official": "https://spice-and-wolf.com/",
+    "streaming": null
+  },
+  "죠죠의 기묘한 모험 스틸 볼 런 2nd & 3rd STAGE": {
+    "pv": "https://jojo-portal.com/news/anime/598/",
+    "official": "https://jojo-portal.com/",
+    "streaming": null
+  },
+  "마법소녀 육성계획 restart": {
+    "pv": "https://www.youtube.com/watch?v=34ubb-j0kbI",
+    "official": "https://mahoiku-restart.com/",
+    "streaming": null
+  },
+  "TANK CHAIR-戦車椅子- (탱크 체어 -전차의자-)": {
+    "pv": "https://www.tankchair-anime.com/",
+    "official": "https://www.tankchair-anime.com/",
+    "streaming": null
+  },
+  "凶乱令嬢ニア・リストン 病弱令嬢に転生した神殺しの武人の華麗なる無双録 (흉란영애 니아 리스트온: 병약 영애로 전생한 신살의 무인의 화려한 무쌍록)": {
+    "pv": "https://animation.konami.net/news_2026_001.html",
+    "official": "https://nia-liston-anime.com/",
+    "streaming": null
+  },
+  "超巡！超条先輩 (초순! 초조 선배)": {
+    "pv": "https://chojun-anime.com/",
+    "official": "https://chojun-anime.com/",
+    "streaming": null
+  },
+  "世界最強の魔女、始めました (세계 최강의 마녀, 시작했습니다)": {
+    "pv": "https://sekamajo-anime.com/news/category/information/",
+    "official": "https://sekamajo-anime.com/",
+    "streaming": null
+  },
+  "전생했더니 검이었습니다 II": {
+    "pv": "https://www.tenken-anime.com/news.html",
+    "official": "https://www.tenken-anime.com/",
+    "streaming": null
+  },
+  "とある暗部の少女共棲 (어떤 암부의 소녀공서)": {
+    "pv": "https://www.youtube.com/watch?v=YdxZUe-kclA",
+    "official": "https://toaru-item.com/",
+    "streaming": null
+  },
+  "사이버펑크: 엣지러너 2": {
+    "pv": "https://www.youtube.com/watch?v=mV7451mcw-E",
+    "official": "https://www.cyberpunk.net/en/edgerunners2",
+    "streaming": null
+  },
+  "환상수호전": {
+    "pv": "https://www.suikoden-anime.com/",
+    "official": "https://www.suikoden-anime.com/",
+    "streaming": null
+  },
+  "PSYREN -サイレン- (사이렌)": {
+    "pv": "https://psyren-anime.com/",
+    "official": "https://psyren-anime.com/",
+    "streaming": null
+  },
+  "사사키와 피짱 Season 2": {
+    "pv": "https://sasapi-anime.com/news/article_043.html",
+    "official": "https://sasapi-anime.com/",
+    "streaming": null
+  },
+  "塩対応の佐藤さんが俺にだけ甘い (쌀쌀맞은 사토 씨가 나한테만 달콤하다)": {
+    "pv": "https://www.youtube.com/watch?v=ue63MEfLOx8",
+    "official": "https://shioama-anime.com/",
+    "streaming": null
+  },
+  "탐정은 이미 죽었다. Season 2": {
+    "pv": "https://tanmoshi-anime.jp/Season2/",
+    "official": "https://tanmoshi-anime.jp/Season2/",
+    "streaming": null
+  },
+  "転生ゴブリンだけど質問ある？ (전생 고블린인데 질문 있어?)": {
+    "pv": "https://tengobu-anime.com/news/",
+    "official": "https://tengobu-anime.com/",
+    "streaming": null
+  },
+  "転生した大聖女は、聖女であることをひた隠す (전생한 대성녀는 성녀임을 숨긴다)": {
+    "pv": "https://daiseijo-anime.com/movie/",
+    "official": "https://daiseijo-anime.com/",
+    "streaming": null
+  },
+  "도쿄 리벤저스 삼천전쟁편": {
+    "pv": "https://tokyo-revengers-anime.com/news/archives/4941",
+    "official": "https://tokyo-revengers-anime.com/",
+    "streaming": null
+  },
+  "マジカル★エクスプローラー (매지컬★익스플로러)": {
+    "pv": "https://www.aniplex.co.jp/lineup/majieku/news/detail/?id=71078",
+    "official": "https://majieku.com/",
+    "streaming": null
+  },
+  "블랙 클로버 2nd Season": {
+    "pv": "https://bclover.jp/movie/",
+    "official": "https://www.bclover.jp/",
+    "streaming": null
+  },
+  "호타루의 시집가기": {
+    "pv": "https://www.youtube.com/watch?v=feXx-UG9iZk",
+    "official": "https://hotaru-no-yomeiri.com/",
+    "streaming": null
+  },
+  "マロニエ王国の七人の騎士 (마로니에 왕국의 일곱 기사)": {
+    "pv": "https://www.nhk-character.com/chara/marronnier/",
+    "official": "https://www.nhk-character.com/chara/marronnier/",
+    "streaming": null
+  },
+  "데몬즈 크레스트": {
+    "pv": "https://demonscrest-anime.com/",
+    "official": "https://demonscrest-anime.com/",
+    "streaming": null
+  },
+  "フールナイト / FOOL NIGHT (풀 나이트)": {
+    "pv": "https://www.foolnight.com/",
+    "official": "https://www.foolnight.com/",
+    "streaming": null
+  },
+  "아카네바나시 2기": {
+    "pv": "https://akane-banashi.com/movie/",
+    "official": "https://akane-banashi.com/",
+    "streaming": null
+  },
+  "히스토리에": {
+    "pv": "https://www.historie.info/news.html",
+    "official": "https://www.historie.info/",
+    "streaming": null
+  },
+  "공주기사님의 기둥서방": {
+    "pv": "https://himehimo.jp/",
+    "official": "https://himehimo.jp/",
+    "streaming": null
+  },
+  "すだちの魔王城 (스다치의 마왕성)": {
+    "pv": "https://www.youtube.com/watch?v=CBAYxfzHLSQ",
+    "official": "https://www.sudachi-anime.com/",
+    "streaming": null
+  },
+  "ムルシエラゴ / MURCIÉLAGO (무르시엘라고)": {
+    "pv": "https://www.murcielago-anime.com/",
+    "official": "https://www.murcielago-anime.com/",
+    "streaming": null
+  },
+  "THE ONE PIECE (더 원피스)": {
+    "pv": "https://www.youtube.com/watch?v=3Gmo0EXHyKg",
+    "official": "https://www.netflix.com/tudum/articles/the-one-piece-release-date",
+    "streaming": null
+  },
+  "텐카이치 일본 최강 무예자 결정전": {
+    "pv": "https://tenkaichi-anime.com/news/36/",
+    "official": "https://tenkaichi-anime.com/",
+    "streaming": null
+  },
+  "던전밥 Season 2": {
+    "pv": "https://www.youtube.com/watch?v=qRrXciq7-88",
+    "official": "https://delicious-in-dungeon.com/",
+    "streaming": null
+  },
+  "유루캠△ Season 4": {
+    "pv": "https://yurucamp.jp/movie",
+    "official": "https://yurucamp.jp/",
+    "streaming": null
+  },
+  "원펀맨 3기 제2쿨": {
+    "pv": "https://youtu.be/CFNXR6k3zwI",
+    "official": "https://onepunchman-anime.net/",
+    "streaming": null
+  },
+  "방패 용사 성공담 Season 5": {
+    "pv": "https://shieldhero-anime.jp/en/news/",
+    "official": "https://shieldhero-anime.jp/",
+    "streaming": null
+  },
+  "악역영애 안의 사람": {
+    "pv": "https://www.youtube.com/watch?v=4_S42Vv_1m0",
+    "official": "https://nakanohito-pr.com/",
+    "streaming": null
+  },
+  "비블리아 고서당 사건수첩": {
+    "pv": "https://www.youtube.com/watch?v=lsDiDBKkiPQ",
+    "official": "https://biblia-anime.com/",
+    "streaming": null
+  },
+  "戦奏教室 (전주교실)": {
+    "pv": "https://www.youtube.com/watch?v=KrTyJ-xMJMY",
+    "official": "https://thebuglecall-anime.com/",
+    "streaming": null
+  },
+  "마녀와 용병": {
+    "pv": "https://youtu.be/Ma6twUC12To",
+    "official": "https://www.anime-witch-mercenary-official.com/",
+    "streaming": null
+  },
+  "SEKIRO: NO DEFEAT": {
+    "pv": null,
+    "official": "https://sekiro-anime.jp/",
+    "streaming": null
+  },
+  "最終楽章 響け！ユーフォニアム 後編": {
+    "pv": "https://www.youtube.com/watch?v=ynf-VjW-U4A",
+    "official": "https://anime-eupho.com/",
+    "streaming": null
+  },
+  "どこよりも遠い場所にいる君へ": {
+    "pv": null,
+    "official": "https://sh-anime.shochiku.co.jp/dokokimi-movie/",
+    "streaming": null
+  },
+  "ガールズ＆パンツァー 最終章 第5話": {
+    "pv": "https://youtu.be/yDRK9-yG9X8",
+    "official": "https://girls-und-panzer-finale.jp/",
+    "streaming": null
+  },
+  "BanG Dream! Ave Mujica prima aurora": {
+    "pv": null,
+    "official": "https://avemujica-movie.bang-dream.com/",
+    "streaming": null
+  },
+  "劇場シリーズ【第一部】メイドインアビス 目覚める神秘": {
+    "pv": null,
+    "official": "https://miabyss.com/",
+    "streaming": null
+  },
+  "ヤマトよ永遠に REBEL3199 第七章 虹色の輪廻": {
+    "pv": null,
+    "official": "https://starblazers-yamato.net/",
+    "streaming": null
+  },
+  "GROTESQQQUE-グロテスク-": {
+    "pv": "https://www.youtube.com/watch?v=s4dAQP5MlCs",
+    "official": "https://movie-gtq123.com/",
+    "streaming": null
+  },
+  "楽園追放 心のレゾナンス": {
+    "pv": "https://www.youtube.com/watch?v=9oK5_Z2zfKU",
+    "official": "https://rakuen-tsuiho-r.com/",
+    "streaming": null
+  },
+  "装甲騎兵ボトムズ 灰色の魔女 第1作": {
+    "pv": null,
+    "official": "https://www.votoms-gh.com/",
+    "streaming": null
+  },
+  "魔法使いの夜": {
+    "pv": "https://youtu.be/cvnBsqagQxY",
+    "official": "https://mahoyo-movie.com/",
+    "streaming": null
+  },
+  "劇場版 薬屋のひとりごと 亡妃の秘宝": {
+    "pv": "https://www.youtube.com/watch?v=HP5wg0kTh54",
+    "official": "https://kusuriyanohitorigoto.jp/movie/",
+    "streaming": null
+  },
+  "ghost／夜の果て": {
+    "pv": "https://youtu.be/ikCVQZNiLoc",
+    "official": "https://www.ghost-yoruhate.com/",
+    "streaming": null
+  },
+  "劇場版 メダリスト": {
+    "pv": "https://www.youtube.com/watch?v=C8uDLOYMM5s",
+    "official": "https://medalist-pr.com/",
+    "streaming": null
+  },
+  "機動警察パトレイバー EZY File 3": {
+    "pv": null,
+    "official": "https://ezy.patlabor.tokyo/",
+    "streaming": null
+  },
+  "劇場版ハイキュー!! VS 小さな巨人": {
+    "pv": null,
+    "official": "https://haikyu.jp/movie/index.html",
+    "streaming": null
+  },
+  "劇場版 陰の実力者になりたくて！ 残響編": {
+    "pv": "https://www.youtube.com/watch?v=eJFryCtdQQc",
+    "official": "https://shadow-garden.jp/",
+    "streaming": null
+  },
+  "ONE PIECE FILM GOD VALLEY": {
+    "pv": null,
+    "official": "https://www.onepiece-film.jp/",
+    "streaming": null
+  },
+  "海が走るエンドロール": {
+    "pv": null,
+    "official": "https://umi-endroll-movie.com/",
+    "streaming": null
+  },
+  "신 테니스의 왕자 U-17 WORLD CUP 결승 멤버 결정전": {
+    "pv": null,
+    "official": "https://www.tv-tokyo.co.jp/anime/tenipri-u17/",
+    "streaming": null
+  },
+  "DARK MACHINE THE ANIMATION (다크 머신 더 애니메이션)": {
+    "pv": null,
+    "official": "https://www.fujitv.co.jp/darkmachine_anime/",
+    "streaming": null
+  },
+  "Duel Masters LOST ～断罪の少年～ (듀얼 마스터즈 LOST ~단죄의 소년~)": {
+    "pv": null,
+    "official": "https://www.shopro.co.jp/anime/duelmasters_lost/",
+    "streaming": null
+  },
+  "FX戦士くるみちゃん (FX전사 쿠루미짱)": {
+    "pv": null,
+    "official": "https://fxkurumi-info.com/",
+    "streaming": null
+  },
+  "dreamland (드림랜드)": {
+    "pv": null,
+    "official": "https://www.dreamland-anime.com/",
+    "streaming": null
+  },
+  "タヌキとキツネ (타누키와 키츠네)": {
+    "pv": null,
+    "official": "https://www.fwinc.co.jp/tanukitsu/",
+    "streaming": null
+  },
+  "ダークサモナーとデキている (다크 서머너와 사귀고 있다)": {
+    "pv": null,
+    "official": "https://darksummoner.deregula.com/",
+    "streaming": null
+  },
+  "バーテックスフォース (버텍스 포스)": {
+    "pv": null,
+    "official": "https://vertexforce.jp/",
+    "streaming": null
+  },
+  "彼女の友達 (그녀의 친구)": {
+    "pv": null,
+    "official": "https://kanojo-no-tomodachi.deregula.com/",
+    "streaming": null
+  },
+  "彼方から (저편에서)": {
+    "pv": null,
+    "official": "https://kanatakara-anime.com/",
+    "streaming": null
+  },
+  "朱色の仮面 (주홍빛 가면)": {
+    "pv": null,
+    "official": "https://the-vermilion-mask.com/",
+    "streaming": null
+  },
+  "獣王武神ダンデヴァイン (수왕무신 단데바인)": {
+    "pv": null,
+    "official": "https://gattaishin.com/dandivine/",
+    "streaming": null
+  },
+  "生徒会にも穴はある！ (학생회에도 구멍은 있다!)": {
+    "pv": "https://youtu.be/SSePdGrgYLA?si=iQ0o_9wWWjw_XpXF",
+    "official": "https://nama-anaru.com/",
+    "streaming": null
+  },
+  "紫禁・御猫房〜紫禁城猫警備室〜 (자금·어묘방 ~자금성 고양이 경비실~)": {
+    "pv": null,
+    "official": "https://nekokeibishitsu-anime.com/",
+    "streaming": null
+  },
+  "도원암귀 닛코·게곤 폭포편": {
+    "pv": null,
+    "official": "https://www.tougenanki-anime.com/",
+    "streaming": null
+  },
+  "〈모노가타리〉 시리즈 Off & Monster Season — 業物語 かれんオウガ": {
+    "pv": null,
+    "official": "https://www.monogatari-series.com/oms/",
+    "streaming": null
+  },
+  "BanG Dream! It's MyGO!!!!! / Ave Mujica 후속 시리즈 (뱅드림! 잇츠 마이고!!!!! / 아베 무지카 후속 시리즈)": {
+    "pv": null,
+    "official": "https://anime.bang-dream.com/mygo-avemujica/",
+    "streaming": null
+  },
+  "ラーメン赤猫 其の二 (라멘 아카네코 두 번째)": {
+    "pv": null,
+    "official": "https://ramenakaneko.com/",
+    "streaming": null
+  },
+  "俺と悠兄！ (나와 유우 형!)": {
+    "pv": null,
+    "official": "https://oretoyunii.com/",
+    "streaming": null
+  },
+  "傷口と包帯 (상처와 붕대)": {
+    "pv": null,
+    "official": "https://houtaidoumei.com/",
+    "streaming": null
+  },
+  "欠けた月のメルセデス (이지러진 달의 메르세데스)": {
+    "pv": null,
+    "official": "https://mercedes-anime.com/",
+    "streaming": null
+  },
+  "風を継ぐもの (바람을 잇는 이들)": {
+    "pv": null,
+    "official": "https://kaze-tsugu.com/",
+    "streaming": null
+  },
+  "가챠를 돌려 동료를 늘리고 최강의 미소녀 군단을 만들자": {
+    "pv": null,
+    "official": "https://gachanime.jp/",
+    "streaming": null
+  },
+  "게임세계전생〈던활〉": {
+    "pv": null,
+    "official": "https://dankatsu.com/",
+    "streaming": null
+  },
+  "결계사의 일륜화": {
+    "pv": null,
+    "official": "https://kekkaishi-ichirinka-anime.com/",
+    "streaming": null
+  },
+  "러브라이브! 하스노소라 여학원 스쿨 아이돌 클럽 TV 시리즈": {
+    "pv": null,
+    "official": "https://www.lovelive-anime.jp/hasunosora/",
+    "streaming": null
+  },
+  "이세계 전생 소동기": {
+    "pv": null,
+    "official": "https://www.soudouki.com/",
+    "streaming": null
+  },
+  "자이언트 아가씨": {
+    "pv": null,
+    "official": "https://giant-ojosama-anime.com/",
+    "streaming": null
+  },
+  "잡용부여술사가 자신의 최강을 깨닫기까지": {
+    "pv": null,
+    "official": "https://zatsuyofuyo-pr.com/",
+    "streaming": null
+  },
+  "좀비가 넘쳐나는 세상에서 나만 습격당하지 않는다": {
+    "pv": null,
+    "official": "https://zom-ore.com/",
+    "streaming": null
+  },
+  "카리스마": {
+    "pv": null,
+    "official": "https://anime.charisma-house.com/",
+    "streaming": null
+  },
+  "펜과 수갑과 사실혼": {
+    "pv": null,
+    "official": "https://pentowappa-anime.com/",
+    "streaming": null
+  },
+  "尚善 (쇼젠)": {
+    "pv": null,
+    "official": "https://www.fujitv.co.jp/shozen/",
+    "streaming": null
+  },
+  "단다단 3기": {
+    "pv": null,
+    "official": "https://anime-dandadan.com/",
+    "streaming": null
+  },
+  "이 멋진 세계에 축복을! 4기": {
+    "pv": null,
+    "official": "https://konosuba.com/",
+    "streaming": null
+  },
+  "내 마음의 위험한 녀석 3기": {
+    "pv": null,
+    "official": "https://bokuyaba-anime.com/",
+    "streaming": null
+  },
+  "망각 배터리 2기": {
+    "pv": null,
+    "official": "https://boukyaku-battery.com/",
+    "streaming": null
+  },
+  "옆자리 아랴 양 2기": {
+    "pv": null,
+    "official": "https://roshidere.com/",
+    "streaming": null
+  },
+  "블레스": {
+    "pv": null,
+    "official": "https://bless-anime.com/",
+    "streaming": null
+  },
+  "Fate/kaleid liner プリズマ☆イリヤ FINALE (페이트/칼레이드 라이너 프리즈마☆이리야 피날레)": {
+    "pv": null,
+    "official": "https://anime.prisma-illya.jp/finale/",
+    "streaming": null
+  },
+  "DEATH STRANDING ISOLATIONS — Working Title (데스 스트랜딩 아이솔레이션즈 · 가제)": {
+    "pv": null,
+    "official": "https://www.kojimaproductions.jp/ja/ds_animation_project",
+    "streaming": null
+  },
+  "골든 카무이 최종장 폭주열차편": {
+    "pv": null,
+    "official": "https://www.kamuy-anime.com/",
+    "streaming": null
+  },
+  "Ghost of Tsushima: Legends (고스트 오브 쓰시마: 레전드)": {
+    "pv": null,
+    "official": "https://x.com/Crunchyroll",
+    "streaming": null
+  }
+};
+
+const ottPlatforms = [
+  {
+    "id": "netflix",
+    "name": "Netflix"
+  },
+  {
+    "id": "laftel",
+    "name": "Laftel"
+  },
+  {
+    "id": "disney",
+    "name": "Disney+"
+  },
+  {
+    "id": "prime",
+    "name": "Prime Video"
+  },
+  {
+    "id": "crunchyroll",
+    "name": "Crunchyroll"
+  },
+  {
+    "id": "tving",
+    "name": "TVING"
+  },
+  {
+    "id": "watcha",
+    "name": "WATCHA"
+  }
+];
+
+const ottLinks = {
+  "약사의 혼잣말 3기 제1쿨": {
+    "netflix": "https://www.netflix.com/kr/title/81712068",
+    "laftel": "https://laftel.net/item/41714",
+    "disney": "https://www.disneyplus.com/browse/entity-d7b5390e-b8cb-4cc3-ba7c-7ed570355d7d",
+    "prime": "https://www.primevideo.com/detail/0MIBSTLNZIMP6Z3EULUEJ0KS1U",
+    "crunchyroll": "https://www.crunchyroll.com/ko/series/G3KHEVDJ7/the-apothecary-diaries"
+  },
+  "약사의 혼잣말 3기 제2쿨": {
+    "netflix": "https://www.netflix.com/kr/title/81712068",
+    "laftel": "https://laftel.net/item/41714",
+    "disney": "https://www.disneyplus.com/browse/entity-d7b5390e-b8cb-4cc3-ba7c-7ed570355d7d",
+    "prime": "https://www.primevideo.com/detail/0MIBSTLNZIMP6Z3EULUEJ0KS1U",
+    "crunchyroll": "https://www.crunchyroll.com/ko/series/G3KHEVDJ7/the-apothecary-diaries"
+  },
+  "란마 1/2 3기": {
+    "netflix": "https://www.netflix.com/kr/title/81171925",
+    "watcha": "https://watcha.com/ko-KR/contents/tRW19vl"
+  },
+  "푸른 상자 Season 2": {
+    "netflix": "https://www.netflix.com/kr/title/81663323"
+  },
+  "SAKAMOTO DAYS 2기 (사카모토 데이즈 2기)": {
+    "netflix": "https://www.netflix.com/kr-en/title/81663325"
+  },
+  "샹그릴라 프론티어 3rd Season": {
+    "laftel": "https://laftel.net/item/42411",
+    "prime": "https://www.primevideo.com/detail/0MLYNG1ZK6W01IFVWSLSK7R2OF",
+    "tving": "https://www.tving.com/contents/P001762706",
+    "watcha": "https://watcha.com/ko/contents/tPrzvGO"
+  },
+  "マッシュル-MASHLE- 第3期「三魔対争神覚者最終試験編」 (마슐-MASHLE- 3기 「삼마대쟁 신각자 최종시험편」)": {
+    "prime": "https://www.primevideo.com/-/ko/detail/0FJ5I56FI21X9QOLAPPBFIBO8U",
+    "crunchyroll": "https://www.crunchyroll.com/ko/series/GDKHZEP8W/mashle-magic-and-muscles",
+    "tving": "https://www.tving.com/contents/P001751824",
+    "watcha": "https://watcha.com/ko/contents/tlLrq1W"
+  },
+  "스킵과 로퍼 2nd season": {
+    "prime": "https://www.primevideo.com/-/ja/detail/0MTCF7FVOPIJIAHBNJBUFCK5MT",
+    "tving": "https://www.tving.com/contents/P001707310",
+    "watcha": "https://watcha.com/ko-KR/contents/tRp4vN6"
+  },
+  "장송의 프리렌 3기 — 황금향편": {
+    "netflix": "https://www.netflix.com/kr/title/81726714",
+    "laftel": "https://laftel.net/item/44281",
+    "prime": "https://www.primevideo.com/-/ko/detail/0FCJEHY4FXTDVCLZ5NR9A0N42N",
+    "crunchyroll": "https://www.crunchyroll.com/ko/series/GG5H5XQX4/frieren-beyond-journeys-end",
+    "tving": "https://www.tving.com/contents/P001781702",
+    "watcha": "https://watcha.com/ko/contents/tRN7gzz"
+  },
+  "늑대와 향신료 MERCHANT MEETS THE WISE WOLF 2기": {
+    "prime": "https://www.primevideo.com/-/id/detail/0RIEAZII8XU0DU5E283OD1C2E4",
+    "crunchyroll": "https://www.crunchyroll.com/ko/series/G1XHJV08M/spice-and-wolf-merchant-meets-the-wise-wolf",
+    "tving": "https://www.tving.com/contents/P001755104",
+    "watcha": "https://watcha.com/contents/tPd313d"
+  },
+  "사이버펑크: 엣지러너 2": {
+    "netflix": "https://www.netflix.com/kr-en/title/81054853"
+  },
+  "귀환자의 마법은 특별해야 합니다 2기": {
+    "netflix": "https://www.netflix.com/kr/title/81726466",
+    "crunchyroll": "https://www.crunchyroll.com/ko/series/GEXH3W207/a-returners-magic-should-be-special",
+    "tving": "https://www.tving.com/contents/E004115538"
+  },
+  "사사키와 피짱 Season 2": {
+    "netflix": "https://www.netflix.com/kr/title/81768306",
+    "crunchyroll": "https://www.crunchyroll.com/series/G5PHNM935/sasaki-and-peeps",
+    "tving": "https://www.tving.com/contents/P001756336"
+  },
+  "블랙 클로버 2nd Season": {
+    "crunchyroll": "https://www.crunchyroll.com/ko/series/GRE50KV36/black-clover"
+  },
+  "아오아시 Season 2": {
+    "crunchyroll": "https://www.crunchyroll.com/ko/series/G4PH0WX5J/aoashi"
+  },
+  "전생했더니 검이었습니다 II": {
+    "prime": "https://www.primevideo.com/-/ko/detail/0SMRJS9YUTPHZO3CHCX2OX9AIX"
+  },
+  "탐정은 이미 죽었다. Season 2": {
+    "crunchyroll": "https://www.crunchyroll.com/series/G24H1N334/the-detective-is-already-dead"
+  },
+  "치토세 군은 라무네 병 속에 제2쿨": {
+    "tving": "https://www.tving.com/contents/P001781694",
+    "watcha": "https://watcha.com/ko/contents/tR2eraW"
+  },
+  "도쿄 리벤저스 삼천전쟁편": {
+    "watcha": "https://watcha.com/ko/contents/tRMxXK0"
+  },
+  "단다단 3기": {
+    "crunchyroll": "https://www.crunchyroll.com/series/GG5H5XQ0D/dan-da-dan",
+    "prime": "https://www.primevideo.com/-/ko/detail/0OFFTSH522NN0TQ2QJC1R2J590",
+    "tving": "https://www.tving.com/contents/P001766481",
+    "watcha": "https://watcha.com/ko/contents/tlnN0K1"
+  },
+  "유루캠△ Season 4": {
+    "crunchyroll": "https://www.crunchyroll.com/series/GRWEW95KR/laid-back-camp",
+    "watcha": "https://watcha.com/ko/contents/tRMZgbP"
+  },
+  "내 마음의 위험한 녀석 3기": {
+    "watcha": "https://watcha.com/ko/contents/tPVdZdw"
+  },
+  "옆자리 아랴 양 2기": {
+    "crunchyroll": "https://www.crunchyroll.com/ko/series/G1XHJV0XM/alya-sometimes-hides-her-feelings-in-russian",
+    "prime": "https://www.primevideo.com/-/ko/detail/0FC1DV39B4OFTHOKXX91B1A6SB"
+  },
+  "방패 용사 성공담 Season 5": {
+    "crunchyroll": "https://www.crunchyroll.com/ko/series/G6W4QKX0R/the-rising-of-the-shield-hero",
+    "prime": "https://www.primevideo.com/detail/0M693PSD98T4L9N1NQ6YNPVYMM",
+    "tving": "https://www.tving.com/contents/P001773988",
+    "watcha": "https://watcha.com/ko/contents/tlnN0bz"
+  },
+  "원펀맨 3기 제2쿨": {
+    "tving": "https://www.tving.com/contents/P001778344"
+  },
+  "골든 카무이 최종장 폭주열차편": {
+    "crunchyroll": "https://www.crunchyroll.com/ko/series/GY8DWQN5Y/golden-kamuy",
+    "tving": "https://www.tving.com/contents/P001788312",
+    "watcha": "https://watcha.com/ko/contents/tR2Z3DR"
+  },
+  "〈모노가타리〉 시리즈 Off & Monster Season — 業物語 かれんオウガ": {
+    "crunchyroll": "https://www.crunchyroll.com/series/GNVHKN9W2/monogatari-series-off--monster-season"
+  },
+  "ラーメン赤猫 其の二 (라멘 아카네코 두 번째)": {
+    "crunchyroll": "https://www.crunchyroll.com/ko/series/GVDHX85ZN/ramen-akaneko"
+  },
+  "BanG Dream! It's MyGO!!!!! / Ave Mujica 후속 시리즈 (뱅드림! 잇츠 마이고!!!!! / 아베 무지카 후속 시리즈)": {
+    "crunchyroll": "https://www.crunchyroll.com/series/G0XHWM11X/ave-mujica---the-die-is-cast"
+  },
+  "THE ONE PIECE (더 원피스)": {
+    "netflix": "https://www.netflix.com/kr/title/81594316"
+  },
+  "던전밥 Season 2": {
+    "netflix": "https://www.netflix.com/kr/title/81564899"
+  }
+};
+
+
+const titleLocales = {
+  "죠죠의 기묘한 모험 스틸 볼 런 2nd & 3rd STAGE": {
+    "ko": "죠죠의 기묘한 모험 스틸 볼 런 2nd & 3rd STAGE",
+    "ja": "ジョジョの奇妙な冒険 スティール・ボール・ラン 2nd & 3rd STAGE",
+    "en": "JoJo's Bizarre Adventure: Steel Ball Run — 2nd & 3rd Stage"
+  },
+  "신 테니스의 왕자 U-17 WORLD CUP 결승 멤버 결정전": {
+    "ko": "신 테니스의 왕자 U-17 WORLD CUP 결승 멤버 결정전",
+    "ja": "新テニスの王子様 U-17 WORLD CUP 決勝メンバー決定戦",
+    "en": "The New Prince of Tennis U-17 WORLD CUP: Final Roster Selection"
+  },
+  "약사의 혼잣말 3기 제1쿨": {
+    "ko": "약사의 혼잣말 3기 제1쿨",
+    "ja": "薬屋のひとりごと 第3期 第1クール",
+    "en": "The Apothecary Diaries Season 3 — Part 1"
+  },
+  "란마 1/2 3기": {
+    "ko": "란마 1/2 3기",
+    "ja": "らんま1/2 第3期",
+    "en": "Ranma 1/2 Season 3"
+  },
+  "生徒会にも穴はある！ (학생회에도 구멍은 있다!)": {
+    "ko": "학생회에도 구멍은 있다!",
+    "ja": "生徒会にも穴はある！",
+    "en": "There Are Holes in the Student Council!"
+  },
+  "バーテックスフォース (버텍스 포스)": {
+    "ko": "버텍스 포스",
+    "ja": "バーテックスフォース",
+    "en": "Vertex Force"
+  },
+  "タヌキとキツネ (타누키와 키츠네)": {
+    "ko": "타누키와 키츠네",
+    "ja": "タヌキとキツネ",
+    "en": "Tanuki and Kitsune"
+  },
+  "TANK CHAIR-戦車椅子- (탱크 체어 -전차의자-)": {
+    "ko": "탱크 체어 -전차의자-",
+    "ja": "TANK CHAIR-戦車椅子-",
+    "en": "TANK CHAIR"
+  },
+  "彼方から (저편에서)": {
+    "ko": "저편에서",
+    "ja": "彼方から",
+    "en": "From Far Away"
+  },
+  "아오아시 Season 2": {
+    "ko": "아오아시 Season 2",
+    "ja": "アオアシ Season 2",
+    "en": "Aoashi Season 2"
+  },
+  "푸른 상자 Season 2": {
+    "ko": "푸른 상자 Season 2",
+    "ja": "アオのハコ Season 2",
+    "en": "Blue Box Season 2"
+  },
+  "마법소녀 육성계획 restart": {
+    "ko": "마법소녀 육성계획 restart",
+    "ja": "魔法少女育成計画 restart",
+    "en": "Magical Girl Raising Project restart"
+  },
+  "凶乱令嬢ニア・リストン 病弱令嬢に転生した神殺しの武人の華麗なる無双録 (흉란영애 니아 리스트온: 병약 영애로 전생한 신살의 무인의 화려한 무쌍록)": {
+    "ko": "흉란영애 니아 리스톤",
+    "ja": "凶乱令嬢ニア・リストン 病弱令嬢に転生した神殺しの武人の華麗なる無双録",
+    "en": "Nia Liston: The Merciless Maiden"
+  },
+  "超巡！超条先輩 (초순! 초조 선배)": {
+    "ko": "초순! 초조 선배",
+    "ja": "超巡！超条先輩",
+    "en": "Super Psychic Policeman Chojo"
+  },
+  "世界最強の魔女、始めました (세계 최강의 마녀, 시작했습니다)": {
+    "ko": "세계 최강의 마녀, 시작했습니다",
+    "ja": "世界最強の魔女、始めました",
+    "en": "The World's Strongest Witch Has Begun"
+  },
+  "마법기사 레이어스": {
+    "ko": "마법기사 레이어스",
+    "ja": "魔法騎士レイアース",
+    "en": "Magic Knight Rayearth"
+  },
+  "전생했더니 검이었습니다 II": {
+    "ko": "전생했더니 검이었습니다 II",
+    "ja": "転生したら剣でした II",
+    "en": "Reincarnated as a Sword II"
+  },
+  "とある暗部の少女共棲 (어떤 암부의 소녀공서)": {
+    "ko": "어떤 암부의 소녀공서",
+    "ja": "とある暗部の少女共棲",
+    "en": "A Certain Dark Side's Shared Living"
+  },
+  "Duel Masters LOST ～断罪の少年～ (듀얼 마스터즈 LOST ~단죄의 소년~)": {
+    "ko": "듀얼 마스터즈 LOST ~단죄의 소년~",
+    "ja": "Duel Masters LOST ～断罪の少年～",
+    "en": "Duel Masters LOST: The Condemned Boy"
+  },
+  "사이버펑크: 엣지러너 2": {
+    "ko": "사이버펑크: 엣지러너 2",
+    "ja": "サイバーパンク: エッジランナーズ2",
+    "en": "Cyberpunk: Edgerunners 2"
+  },
+  "청춘 돼지는 디어 프렌드의 꿈을 꾸지 않는다": {
+    "ko": "청춘 돼지는 디어 프렌드의 꿈을 꾸지 않는다",
+    "ja": "青春ブタ野郎はディアフレンドの夢を見ない",
+    "en": "Rascal Does Not Dream of a Dear Friend"
+  },
+  "朱色の仮面 (주홍빛 가면)": {
+    "ko": "주홍빛 가면",
+    "ja": "朱色の仮面",
+    "en": "The Vermilion Mask"
+  },
+  "FX戦士くるみちゃん (FX전사 쿠루미짱)": {
+    "ko": "FX전사 쿠루미짱",
+    "ja": "FX戦士くるみちゃん",
+    "en": "FX Fighter Kurumi-chan"
+  },
+  "彼女の友達 (그녀의 친구)": {
+    "ko": "그녀의 친구",
+    "ja": "彼女の友達",
+    "en": "Her Friend"
+  },
+  "귀환자의 마법은 특별해야 합니다 2기": {
+    "ko": "귀환자의 마법은 특별해야 합니다 2기",
+    "ja": "帰還者の魔法は特別です 第2期",
+    "en": "A Returner's Magic Should Be Special Season 2"
+  },
+  "환상수호전": {
+    "ko": "환상수호전",
+    "ja": "幻想水滸伝",
+    "en": "Suikoden"
+  },
+  "PSYREN -サイレン- (사이렌)": {
+    "ko": "사이렌",
+    "ja": "PSYREN -サイレン-",
+    "en": "PSYREN"
+  },
+  "사사키와 피짱 Season 2": {
+    "ko": "사사키와 피짱 Season 2",
+    "ja": "佐々木とピーちゃん Season 2",
+    "en": "Sasaki and Peeps Season 2"
+  },
+  "塩対応の佐藤さんが俺にだけ甘い (쌀쌀맞은 사토 씨가 나한테만 달콤하다)": {
+    "ko": "쌀쌀맞은 사토 씨가 나한테만 달콤하다",
+    "ja": "塩対応の佐藤さんが俺にだけ甘い",
+    "en": "The Salty Koharu Has a Soft Spot for Me"
+  },
+  "紫禁・御猫房〜紫禁城猫警備室〜 (자금·어묘방 ~자금성 고양이 경비실~)": {
+    "ko": "자금·어묘방 ~자금성 고양이 경비실~",
+    "ja": "紫禁・御猫房〜紫禁城猫警備室〜",
+    "en": "Forbidden City Cat Guard Room"
+  },
+  "ジャンケットバンク / JUNKET BANK (정켓 뱅크)": {
+    "ko": "정켓 뱅크",
+    "ja": "ジャンケットバンク",
+    "en": "JUNKET BANK"
+  },
+  "獣王武神ダンデヴァイン (수왕무신 단데바인)": {
+    "ko": "수왕무신 단데바인",
+    "ja": "獣王武神ダンデヴァイン",
+    "en": "Beast King War God Dandevine"
+  },
+  "#ゾンビさがしてます (#좀비를 찾고 있습니다)": {
+    "ko": "#좀비를 찾고 있습니다",
+    "ja": "#ゾンビさがしてます",
+    "en": "#Looking for Zombies"
+  },
+  "탐정은 이미 죽었다. Season 2": {
+    "ko": "탐정은 이미 죽었다. Season 2",
+    "ja": "探偵はもう、死んでいる。Season 2",
+    "en": "The Detective Is Already Dead Season 2"
+  },
+  "DARK MACHINE THE ANIMATION (다크 머신 더 애니메이션)": {
+    "ko": "다크 머신 더 애니메이션",
+    "ja": "DARK MACHINE THE ANIMATION",
+    "en": "DARK MACHINE THE ANIMATION"
+  },
+  "ダークサモナーとデキている (다크 서머너와 사귀고 있다)": {
+    "ko": "다크 서머너와 사귀고 있다",
+    "ja": "ダークサモナーとデキている",
+    "en": "Dating a Dark Summoner"
+  },
+  "치토세 군은 라무네 병 속에 제2쿨": {
+    "ko": "치토세 군은 라무네 병 속에 제2쿨",
+    "ja": "千歳くんはラムネ瓶のなか 第2クール",
+    "en": "Chitose Is in the Ramune Bottle — Part 2"
+  },
+  "てつりょー！meet with 鉄道むすめ (테츠료! meet with 철도무스메)": {
+    "ko": "테츠료! meet with 철도무스메",
+    "ja": "てつりょー！meet with 鉄道むすめ",
+    "en": "Tetsuryo! meet with Tetsudo Musume"
+  },
+  "転生ゴブリンだけど質問ある？ (전생 고블린인데 질문 있어?)": {
+    "ko": "전생 고블린인데 질문 있어?",
+    "ja": "転生ゴブリンだけど質問ある？",
+    "en": "I'm a Reincarnated Goblin, Any Questions?"
+  },
+  "転生した大聖女は、聖女であることをひた隠す (전생한 대성녀는 성녀임을 숨긴다)": {
+    "ko": "전생한 대성녀는 성녀임을 숨긴다",
+    "ja": "転生した大聖女は、聖女であることをひた隠す",
+    "en": "A Tale of the Secret Saint"
+  },
+  "도쿄 리벤저스 삼천전쟁편": {
+    "ko": "도쿄 리벤저스 삼천전쟁편",
+    "ja": "東京リベンジャーズ 三天戦争編",
+    "en": "Tokyo Revengers: Three Deities War Arc"
+  },
+  "도원암귀 닛코·게곤 폭포편": {
+    "ko": "도원암귀 닛코·게곤 폭포편",
+    "ja": "桃源暗鬼 日光・華厳の滝編",
+    "en": "Tougen Anki: Nikko & Kegon Falls Arc"
+  },
+  "dreamland (드림랜드)": {
+    "ko": "드림랜드",
+    "ja": "dreamland",
+    "en": "dreamland"
+  },
+  "マジカル★エクスプローラー (매지컬★익스플로러)": {
+    "ko": "매지컬★익스플로러",
+    "ja": "マジカル★エクスプローラー",
+    "en": "Magical Explorer"
+  },
+  "빙검의 마술사가 세계를 다스린다 II": {
+    "ko": "빙검의 마술사가 세계를 다스린다 II",
+    "ja": "冰剣の魔術師が世界を統べる II",
+    "en": "The Iceblade Sorcerer Shall Rule the World II"
+  },
+  "블랙 클로버 2nd Season": {
+    "ko": "블랙 클로버 2nd Season",
+    "ja": "ブラッククローバー 2nd Season",
+    "en": "Black Clover 2nd Season"
+  },
+  "호타루의 시집가기": {
+    "ko": "반딧불이의 혼례",
+    "ja": "ホタルの嫁入り",
+    "en": "Firefly Wedding"
+  },
+  "魔法の姉妹ルルットリリィ 第2クール (마법의 자매 루룻토릴리 제2쿨)": {
+    "ko": "마법의 자매 루룻토릴리 제2쿨",
+    "ja": "魔法の姉妹ルルットリリィ 第2クール",
+    "en": "Magical Sisters Lulutto Lilly — Part 2"
+  },
+  "マロニエ王国の七人の騎士 (마로니에 왕국의 일곱 기사)": {
+    "ko": "마로니에 왕국의 7인의 기사",
+    "ja": "マロニエ王国の七人の騎士",
+    "en": "The Seven Knights of the Marronnier Kingdom"
+  },
+  "目覚めたら最強装備と宇宙船持ちだったので、一戸建て目指して傭兵として自由に生きたい (눈을 떠보니 최강 장비와 우주선을 가지고 있어서, 단독주택을 목표로 용병으로 자유롭게 살고 싶다)": {
+    "ko": "눈을 떴더니 최강 무장과 우주선을 가지고 있어서, 집 한채를 목표로 용병으로 자유롭게 살고 싶다",
+    "ja": "目覚めたら最強装備と宇宙船持ちだったので、一戸建て目指して傭兵として自由に生きたい",
+    "en": "I Woke Up With the Strongest Gear and a Spaceship, So I'll Live Freely as a Mercenary"
+  },
+  "弱気MAX令嬢なのに、辣腕婚約者様の賭けに乗ってしまった (소심 MAX 영애인데 수완 좋은 약혼자의 내기에 올라타 버렸다)": {
+    "ko": "소심 MAX 영애인데 수완 좋은 약혼자의 내기에 올라타 버렸다",
+    "ja": "弱気MAX令嬢なのに、辣腕婚約者様の賭けに乗ってしまった",
+    "en": "The Timid MAX Lady Took Her Shrewd Fiancé's Bet"
+  },
+  "데몬즈 크레스트": {
+    "ko": "데몬즈 크레스트",
+    "ja": "デモンズ・クレスト",
+    "en": "Demon's Crest"
+  },
+  "フールナイト / FOOL NIGHT (풀 나이트)": {
+    "ko": "풀 나이트",
+    "ja": "フールナイト",
+    "en": "FOOL NIGHT"
+  },
+  "〈모노가타리〉 시리즈 Off & Monster Season — 業物語 かれんオウガ": {
+    "ko": "〈모노가타리〉 시리즈 오프 & 몬스터 시즌 — 업보 이야기 카렌 오거",
+    "ja": "〈物語〉シリーズ オフ＆モンスターシーズン ― 業物語 かれんオウガ",
+    "en": "Monogatari Series: Off & Monster Season — Wazamonogatari: Karen Ogre"
+  },
+  "아카네바나시 2기": {
+    "ko": "아카네바나시 2기",
+    "ja": "あかね噺 第2期",
+    "en": "Akane-banashi Season 2"
+  },
+  "이세계 전생 소동기": {
+    "ko": "이세계 전생 소동기",
+    "ja": "異世界転生騒動記",
+    "en": "Isekai Tensei Soudouki"
+  },
+  "一式さんは恋を知りたい。 (잇시키 씨는 사랑을 알고 싶어.)": {
+    "ko": "잇시키 씨는 사랑을 알고 싶어.",
+    "ja": "一式さんは恋を知りたい。",
+    "en": "Isshiki-san Wants to Know Love."
+  },
+  "えぶりでいホスト 新シリーズ (에브리데이 호스트 신시리즈)": {
+    "ko": "에브리데이 호스트 신시리즈",
+    "ja": "えぶりでいホスト 新シリーズ",
+    "en": "Everyday Host — New Series"
+  },
+  "俺と悠兄！ (나와 유우 형!)": {
+    "ko": "나와 유우 형!",
+    "ja": "俺と悠兄！",
+    "en": "Me and Big Bro Yuu!"
+  },
+  "風を継ぐもの (바람을 잇는 이들)": {
+    "ko": "바람을 잇는 이들",
+    "ja": "風を継ぐもの",
+    "en": "Those Who Inherit the Wind"
+  },
+  "欠けた月のメルセデス (이지러진 달의 메르세데스)": {
+    "ko": "이지러진 달의 메르세데스",
+    "ja": "欠けた月のメルセデス",
+    "en": "Mercedes and the Waning Moon"
+  },
+  "가챠를 돌려 동료를 늘리고 최강의 미소녀 군단을 만들자": {
+    "ko": "가챠를 돌려 동료를 늘리고 최강의 미소녀 군단을 만들자",
+    "ja": "ガチャを回して仲間を増やす 最強の美少女軍団を作り上げろ",
+    "en": "Gacha to Build the Strongest Beautiful-Girl Army"
+  },
+  "카리스마": {
+    "ko": "카리스마",
+    "ja": "カリスマ",
+    "en": "Charisma"
+  },
+  "傷口と包帯 (상처와 붕대)": {
+    "ko": "상처와 붕대",
+    "ja": "傷口と包帯",
+    "en": "Wound and Bandage"
+  },
+  "쿠로이와 메다카에게 내 귀여움이 통하지 않아 Season 2": {
+    "ko": "쿠로이와 메다카에게 내 귀여움이 통하지 않아 Season 2",
+    "ja": "黒岩メダカに私の可愛いが通じない Season 2",
+    "en": "Medaka Kuroiwa Is Impervious to My Charms Season 2"
+  },
+  "결계사의 일륜화": {
+    "ko": "결계사의 일륜화",
+    "ja": "結界師の一輪華",
+    "en": "Bride of the Barrier Master"
+  },
+  "골든 카무이 최종장 폭주열차편": {
+    "ko": "골든 카무이 최종장 폭주열차편",
+    "ja": "ゴールデンカムイ 最終章 暴走列車編",
+    "en": "Golden Kamuy Final Chapter: Runaway Train Arc"
+  },
+  "잡용부여술사가 자신의 최강을 깨닫기까지": {
+    "ko": "잡용부여술사가 자신의 최강을 깨닫기까지",
+    "ja": "雑用付与術師が自分の最強に気付くまで",
+    "en": "The Jack-of-All-Trades Support Mage Realizes He's the Strongest"
+  },
+  "SAKAMOTO DAYS 2기 (사카모토 데이즈 2기)": {
+    "ko": "사카모토 데이즈 2기",
+    "ja": "SAKAMOTO DAYS 第2期",
+    "en": "SAKAMOTO DAYS Season 2"
+  },
+  "자이언트 아가씨": {
+    "ko": "자이언트 아가씨",
+    "ja": "ジャイアントお嬢様",
+    "en": "Giant Ojou-sama"
+  },
+  "샹그릴라 프론티어 3rd Season": {
+    "ko": "샹그릴라 프론티어 3rd Season",
+    "ja": "シャングリラ・フロンティア 3rd Season",
+    "en": "Shangri-La Frontier Season 3"
+  },
+  "すだちの魔王城 (스다치의 마왕성)": {
+    "ko": "스다치의 마왕성",
+    "ja": "すだちの魔王城",
+    "en": "Sudachi's Demon King's Castle"
+  },
+  "좀비가 넘쳐나는 세상에서 나만 습격당하지 않는다": {
+    "ko": "좀비가 넘쳐나는 세상에서 나만 습격당하지 않는다",
+    "ja": "ゾンビのあふれた世界で俺だけが襲われない",
+    "en": "In a World Overrun With Zombies, I'm the Only One They Don't Attack"
+  },
+  "게임세계전생〈던활〉": {
+    "ko": "게임세계전생〈던활〉",
+    "ja": "ゲーム世界転生〈ダン活〉",
+    "en": "Reincarnated in a Game World: Dungeon Activity"
+  },
+  "BanG Dream! It's MyGO!!!!! / Ave Mujica 후속 시리즈 (뱅드림! 잇츠 마이고!!!!! / 아베 무지카 후속 시리즈)": {
+    "ko": "뱅드림! 잇츠 마이고!!!!! / 아베 무지카 후속 시리즈",
+    "ja": "BanG Dream! It's MyGO!!!!! / Ave Mujica 続編シリーズ",
+    "en": "BanG Dream! It's MyGO!!!!! / Ave Mujica — Sequel Series"
+  },
+  "히스토리에": {
+    "ko": "히스토리에",
+    "ja": "ヒストリエ",
+    "en": "Historie"
+  },
+  "공주기사님의 기둥서방": {
+    "ko": "공주 기사님의 기둥서방",
+    "ja": "姫騎士様のヒモ",
+    "en": "The Kept Man of the Princess Knight"
+  },
+  "히라야스미": {
+    "ko": "히라야스미",
+    "ja": "ひらやすみ",
+    "en": "Hirayasumi"
+  },
+  "펜과 수갑과 사실혼": {
+    "ko": "펜과 수갑과 사실혼",
+    "ja": "ペンと手錠と事実婚",
+    "en": "Pen, Handcuffs and De Facto Marriage"
+  },
+  "魔入りました！入間くん if Episode of 魔フィア (마계학교! 이루마군 if Episode of 마피아)": {
+    "ko": "마계학교! 이루마군 if Episode of 마피아",
+    "ja": "魔入りました！入間くん if Episode of 魔フィア",
+    "en": "Welcome to Demon School! Iruma-kun if — Episode of Mafia"
+  },
+  "マッシュル-MASHLE- 第3期「三魔対争神覚者最終試験編」 (마슐-MASHLE- 3기 「삼마대쟁 신각자 최종시험편」)": {
+    "ko": "마슐-MASHLE- 3기 「삼마대쟁 신각자 최종시험편」",
+    "ja": "マッシュル-MASHLE- 第3期「三魔対争神覚者最終試験編」",
+    "en": "MASHLE Season 3: Divine Visionary Final Exam Arc"
+  },
+  "茉莉花官吏伝 (말리화 관리전)": {
+    "ko": "말리화 관리전",
+    "ja": "茉莉花官吏伝",
+    "en": "Matsurika Kanriden"
+  },
+  "ムルシエラゴ / MURCIÉLAGO (무르시엘라고)": {
+    "ko": "무르시엘라고",
+    "ja": "ムルシエラゴ",
+    "en": "MURCIÉLAGO"
+  },
+  "유구의 우자 아즈리의 현자 추천": {
+    "ko": "유구의 우자 아즈리의 현자 추천",
+    "ja": "悠久の愚者アズリーの、賢者のすゝめ",
+    "en": "The Principle of a Philosopher by Eternal Fool Asley"
+  },
+  "러브라이브! 하스노소라 여학원 스쿨 아이돌 클럽 TV 시리즈": {
+    "ko": "러브라이브! 하스노소라 여학원 스쿨 아이돌 클럽 TV 시리즈",
+    "ja": "ラブライブ！蓮ノ空女学院スクールアイドルクラブ TVシリーズ",
+    "en": "Love Live! Hasunosora Girls' High School Idol Club TV Series"
+  },
+  "ラーメン赤猫 其の二 (라멘 아카네코 두 번째)": {
+    "ko": "라멘 아카네코 두 번째",
+    "ja": "ラーメン赤猫 其の二",
+    "en": "Ramen Akaneko — Part Two"
+  },
+  "THE ONE PIECE (더 원피스)": {
+    "ko": "더 원피스",
+    "ja": "THE ONE PIECE",
+    "en": "THE ONE PIECE"
+  },
+  "카구라바치": {
+    "ko": "카구라바치",
+    "ja": "カグラバチ",
+    "en": "Kagurabachi"
+  },
+  "약사의 혼잣말 3기 제2쿨": {
+    "ko": "약사의 혼잣말 3기 제2쿨",
+    "ja": "薬屋のひとりごと 第3期 第2クール",
+    "en": "The Apothecary Diaries Season 3 — Part 2"
+  },
+  "尚善 (쇼젠)": {
+    "ko": "쇼젠",
+    "ja": "尚善",
+    "en": "Shōzen"
+  },
+  "스킵과 로퍼 2nd season": {
+    "ko": "스킵과 로퍼 2nd season",
+    "ja": "スキップとローファー 2nd season",
+    "en": "Skip and Loafer Season 2"
+  },
+  "텐카이치 일본 최강 무예자 결정전": {
+    "ko": "텐카이치 일본 최강 무예자 결정전",
+    "ja": "テンカイチ 日本最強武芸者決定戦",
+    "en": "Tenkaichi: The Greatest Warrior Under the Rising Sun"
+  },
+  "장송의 프리렌 3기 — 황금향편": {
+    "ko": "장송의 프리렌 3기 — 황금향편",
+    "ja": "葬送のフリーレン 第3期 ― 黄金郷編",
+    "en": "Frieren: Beyond Journey's End Season 3 — Golden Land Arc"
+  },
+  "던전밥 Season 2": {
+    "ko": "던전밥 Season 2",
+    "ja": "ダンジョン飯 Season 2",
+    "en": "Delicious in Dungeon Season 2"
+  },
+  "늑대와 향신료 MERCHANT MEETS THE WISE WOLF 2기": {
+    "ko": "늑대와 향신료 MERCHANT MEETS THE WISE WOLF 2기",
+    "ja": "狼と香辛料 MERCHANT MEETS THE WISE WOLF 第2期",
+    "en": "Spice and Wolf: MERCHANT MEETS THE WISE WOLF Season 2"
+  },
+  "단다단 3기": {
+    "ko": "단다단 3기",
+    "ja": "ダンダダン 第3期",
+    "en": "DAN DA DAN Season 3"
+  },
+  "이 멋진 세계에 축복을! 4기": {
+    "ko": "이 멋진 세계에 축복을! 4기",
+    "ja": "この素晴らしい世界に祝福を！4",
+    "en": "KONOSUBA: God's Blessing on This Wonderful World! Season 4"
+  },
+  "유루캠△ Season 4": {
+    "ko": "유루캠△ Season 4",
+    "ja": "ゆるキャン△ SEASON4",
+    "en": "Laid-Back Camp Season 4"
+  },
+  "내 마음의 위험한 녀석 3기": {
+    "ko": "내 마음의 위험한 녀석 3기",
+    "ja": "僕の心のヤバイやつ 第3期",
+    "en": "The Dangers in My Heart Season 3"
+  },
+  "망각 배터리 2기": {
+    "ko": "망각 배터리 2기",
+    "ja": "忘却バッテリー 第2期",
+    "en": "Oblivion Battery Season 2"
+  },
+  "옆자리 아랴 양 2기": {
+    "ko": "옆자리 아랴 양 2기",
+    "ja": "時々ボソッとロシア語でデレる隣のアーリャさん 第2期",
+    "en": "Alya Sometimes Hides Her Feelings in Russian Season 2"
+  },
+  "원펀맨 3기 제2쿨": {
+    "ko": "원펀맨 3기 제2쿨",
+    "ja": "ワンパンマン 第3期 第2クール",
+    "en": "One-Punch Man Season 3 — Part 2"
+  },
+  "방패 용사 성공담 Season 5": {
+    "ko": "방패 용사 성공담 Season 5",
+    "ja": "盾の勇者の成り上がり Season 5",
+    "en": "The Rising of the Shield Hero Season 5"
+  },
+  "악역영애 안의 사람": {
+    "ko": "악역 영애 안의 사람",
+    "ja": "悪役令嬢の中の人",
+    "en": "The One Within the Villainess"
+  },
+  "비블리아 고서당 사건수첩": {
+    "ko": "비블리아 고서당 사건수첩",
+    "ja": "ビブリア古書堂の事件手帖",
+    "en": "The Case Records of the Biblia Secondhand Bookstore"
+  },
+  "戦奏教室 (전주교실)": {
+    "ko": "전주교실",
+    "ja": "戦奏教室",
+    "en": "War Music Classroom"
+  },
+  "블레스": {
+    "ko": "블레스",
+    "ja": "ブレス",
+    "en": "Bless"
+  },
+  "마녀와 용병": {
+    "ko": "마녀와 용병",
+    "ja": "魔女と傭兵",
+    "en": "The Witch and the Mercenary"
+  },
+  "Fate/kaleid liner プリズマ☆イリヤ FINALE (페이트/칼레이드 라이너 프리즈마☆이리야 피날레)": {
+    "ko": "페이트/칼레이드 라이너 프리즈마☆이리야 피날레",
+    "ja": "Fate/kaleid liner プリズマ☆イリヤ FINALE",
+    "en": "Fate/kaleid liner Prisma☆Illya FINALE"
+  },
+  "DEATH STRANDING ISOLATIONS — Working Title (데스 스트랜딩 아이솔레이션즈 · 가제)": {
+    "ko": "데스 스트랜딩 아이솔레이션즈 (가제)",
+    "ja": "DEATH STRANDING ISOLATIONS — Working Title",
+    "en": "DEATH STRANDING ISOLATIONS — Working Title"
+  },
+  "Ghost of Tsushima: Legends (고스트 오브 쓰시마: 레전드)": {
+    "ko": "고스트 오브 쓰시마: 레전드",
+    "ja": "Ghost of Tsushima: Legends",
+    "en": "Ghost of Tsushima: Legends"
+  },
+  "SEKIRO: NO DEFEAT": {
+    "ko": "SEKIRO: NO DEFEAT",
+    "ja": "SEKIRO: NO DEFEAT",
+    "en": "SEKIRO: NO DEFEAT"
+  },
+  "最終楽章 響け！ユーフォニアム 後編": {
+    "ko": "최종악장 울려라! 유포니엄 후편",
+    "ja": "最終楽章 響け！ユーフォニアム 後編",
+    "en": "Sound! Euphonium: The Final Movement — Part 2"
+  },
+  "どこよりも遠い場所にいる君へ": {
+    "ko": "어디보다 먼 곳에 있는 너에게",
+    "ja": "どこよりも遠い場所にいる君へ",
+    "en": "To You in the Beyond"
+  },
+  "ガールズ＆パンツァー 最終章 第5話": {
+    "ko": "걸즈 앤 판처 최종장 제5화",
+    "ja": "ガールズ＆パンツァー 最終章 第5話",
+    "en": "Girls und Panzer das Finale: Part 5"
+  },
+  "BanG Dream! Ave Mujica prima aurora": {
+    "ko": "BanG Dream! Ave Mujica prima aurora",
+    "ja": "BanG Dream! Ave Mujica prima aurora",
+    "en": "BanG Dream! Ave Mujica prima aurora"
+  },
+  "劇場シリーズ【第一部】メイドインアビス 目覚める神秘": {
+    "ko": "극장 시리즈 제1부 메이드 인 어비스: 깨어나는 신비",
+    "ja": "劇場シリーズ【第一部】メイドインアビス 目覚める神秘",
+    "en": "Made in Abyss Theatrical Series Part 1: The Awakening Mystery"
+  },
+  "ヤマトよ永遠に REBEL3199 第七章 虹色の輪廻": {
+    "ko": "야마토여 영원히 REBEL3199 제7장 무지갯빛 윤회",
+    "ja": "ヤマトよ永遠に REBEL3199 第七章 虹色の輪廻",
+    "en": "Be Forever Yamato: REBEL3199 Chapter 7 — Rainbow Reincarnation"
+  },
+  "GROTESQQQUE-グロテスク-": {
+    "ko": "GROTESQQQUE -그로테스크-",
+    "ja": "GROTESQQQUE-グロテスク-",
+    "en": "GROTESQQQUE"
+  },
+  "楽園追放 心のレゾナンス": {
+    "ko": "낙원추방: 마음의 레조넌스",
+    "ja": "楽園追放 心のレゾナンス",
+    "en": "Expelled from Paradise: Resonance of the Heart"
+  },
+  "装甲騎兵ボトムズ 灰色の魔女 第1作": {
+    "ko": "장갑기병 보톰즈 회색 마녀 제1작",
+    "ja": "装甲騎兵ボトムズ 灰色の魔女 第1作",
+    "en": "Armored Trooper VOTOMS: The Gray Witch — Part 1"
+  },
+  "魔法使いの夜": {
+    "ko": "마법사의 밤",
+    "ja": "魔法使いの夜",
+    "en": "Witch on the Holy Night"
+  },
+  "劇場版 薬屋のひとりごと 亡妃の秘宝": {
+    "ko": "극장판 약사의 혼잣말: 망비의 비보",
+    "ja": "劇場版 薬屋のひとりごと 亡妃の秘宝",
+    "en": "The Apothecary Diaries: The Late Consort's Secret Treasure"
+  },
+  "ghost／夜の果て": {
+    "ko": "ghost／밤의 끝",
+    "ja": "ghost／夜の果て",
+    "en": "ghost / The End of Night"
+  },
+  "劇場版 メダリスト": {
+    "ko": "극장판 메달리스트",
+    "ja": "劇場版 メダリスト",
+    "en": "Medalist: The Movie"
+  },
+  "機動警察パトレイバー EZY File 3": {
+    "ko": "기동경찰 패트레이버 EZY File 3",
+    "ja": "機動警察パトレイバー EZY File 3",
+    "en": "Mobile Police Patlabor EZY File 3"
+  },
+  "劇場版ハイキュー!! VS 小さな巨人": {
+    "ko": "극장판 하이큐!! VS 작은 거인",
+    "ja": "劇場版ハイキュー!! VS 小さな巨人",
+    "en": "HAIKYU!! The Movie: VS The Little Giant"
+  },
+  "劇場版 陰の実力者になりたくて！ 残響編": {
+    "ko": "극장판 어둠의 실력자가 되고 싶어서! 잔향편",
+    "ja": "劇場版 陰の実力者になりたくて！ 残響編",
+    "en": "The Eminence in Shadow: Lost Echoes"
+  },
+  "ONE PIECE FILM GOD VALLEY": {
+    "ko": "원피스 필름 갓 밸리",
+    "ja": "ONE PIECE FILM GOD VALLEY",
+    "en": "ONE PIECE FILM GOD VALLEY"
+  },
+  "海が走るエンドロール": {
+    "ko": "바다가 달리는 엔드롤",
+    "ja": "海が走るエンドロール",
+    "en": "The End Roll Runs Across the Sea"
+  }
+};
+
+const uiLocales = {
+  "ko": {
+    "title": "방영 예정 애니메이션",
+    "tabTitle": "방영 예정 애니메이션 | Anime Schedule 2026–2027",
+    "hero": "",
+    "search": "작품명 검색...",
+    "reset": "필터 초기화",
+    "year": "연도",
+    "month": "월",
+    "category": "카테고리",
+    "all": "전체",
+    "major": "주요 기대작",
+    "new": "신작",
+    "series": "시리즈",
+    "comic": "코믹스 원작",
+    "ln": "라이트 노벨 원작",
+    "original": "오리지널",
+    "movie": "극장판",
+    "pv": "PV",
+    "official": "공식 사이트",
+    "officialShort": "공식",
+    "streaming": "스트리밍",
+    "noItems": "현재 검색·필터 조건에 맞는 작품 없음",
+    "noConfirmed": "현재 확정된 주요 작품 없음",
+    "undated": "2027년 방영 예정 · 월 미정",
+    "updated": "업데이트",
+    "streamKicker": "스트리밍",
+    "streamDesc": "스트리밍 서비스를 선택하세요.",
+    "open": "열기 ↗",
+    "yearSuffix": "년",
+    "monthSuffix": "월",
+    "allMonths": "전체 월",
+    "collapse": "카테고리 접기",
+    "expand": "카테고리 펼치기",
+    "searchFilters": "검색 · 필터",
+    "showFilters": "검색 UI 펼치기",
+    "hideFilters": "검색 UI 접기"
+  },
+  "ja": {
+    "title": "放送予定アニメ",
+    "tabTitle": "放送予定アニメ | Anime Schedule 2026–2027",
+    "hero": "",
+    "search": "作品名を検索...",
+    "reset": "フィルターをリセット",
+    "year": "年",
+    "month": "月",
+    "category": "カテゴリー",
+    "all": "すべて",
+    "major": "注目作",
+    "new": "新作",
+    "series": "シリーズ",
+    "comic": "漫画原作",
+    "ln": "ライトノベル原作",
+    "original": "オリジナル",
+    "movie": "劇場版",
+    "pv": "PV",
+    "official": "公式サイト",
+    "officialShort": "公式",
+    "streaming": "配信",
+    "noItems": "検索・フィルター条件に一致する作品はありません",
+    "noConfirmed": "現時点で主要作品の確定情報はありません",
+    "undated": "2027年放送予定・月未定",
+    "updated": "更新",
+    "streamKicker": "配信サービス",
+    "streamDesc": "配信サービスを選択してください。",
+    "open": "開く ↗",
+    "yearSuffix": "年",
+    "monthSuffix": "月",
+    "allMonths": "全月",
+    "collapse": "カテゴリーを閉じる",
+    "expand": "カテゴリーを開く",
+    "searchFilters": "検索・フィルター",
+    "showFilters": "検索UIを開く",
+    "hideFilters": "検索UIを閉じる"
+  },
+  "en": {
+    "title": "Upcoming Anime",
+    "tabTitle": "Upcoming Anime | Anime Schedule 2026–2027",
+    "hero": "",
+    "search": "Search titles...",
+    "reset": "Reset filters",
+    "year": "Year",
+    "month": "Month",
+    "category": "Category",
+    "all": "All",
+    "major": "Highlights",
+    "new": "New",
+    "series": "Series",
+    "comic": "Manga",
+    "ln": "Light Novel",
+    "original": "Original",
+    "movie": "Movie",
+    "pv": "PV",
+    "official": "Official Site",
+    "officialShort": "Official",
+    "streaming": "Streaming",
+    "noItems": "No titles match the current search or filters",
+    "noConfirmed": "No major titles confirmed yet",
+    "undated": "Scheduled for 2027 · Month TBA",
+    "updated": "Updated",
+    "streamKicker": "Streaming",
+    "streamDesc": "Choose a streaming service.",
+    "open": "Open ↗",
+    "yearSuffix": "",
+    "monthSuffix": "",
+    "allMonths": "All months",
+    "collapse": "Collapse categories",
+    "expand": "Expand categories",
+    "searchFilters": "Search · Filters",
+    "showFilters": "Expand search UI",
+    "hideFilters": "Collapse search UI"
+  }
+};
+
+const seasonLocales = {
+  "2026 가을 진입": {ko:"2026 가을 진입", ja:"2026年 秋シーズン前", en:"Entering Fall 2026"},
+  "2026 가을": {ko:"2026 가을", ja:"2026年 秋", en:"Fall 2026"},
+  "2026 겨울 진입": {ko:"2026 겨울 진입", ja:"2026年 冬シーズン前", en:"Entering Winter 2026"},
+  "2027 겨울": {ko:"2027 겨울", ja:"2027年 冬", en:"Winter 2027"},
+  "2027 봄": {ko:"2027 봄", ja:"2027年 春", en:"Spring 2027"},
+  "2027 여름": {ko:"2027 여름", ja:"2027年 夏", en:"Summer 2027"},
+  "2027 가을": {ko:"2027 가을", ja:"2027年 秋", en:"Fall 2027"}
+};
+
+const filterNames = {
+  major: "major",
+  new: "new",
+  series: "series",
+  comic: "comic",
+  ln: "ln",
+  original: "original",
+  movie: "movie"
+};
+
+
+function safeStorageGet(key) {
+  try { return window.localStorage.getItem(key); } catch (_) { return null; }
+}
+
+function safeStorageSet(key, value) {
+  try { window.localStorage.setItem(key, value); } catch (_) {}
+}
+
+let activeLang = safeStorageGet("animeScheduleLang") || "ko";
+if (!["ko","ja","en"].includes(activeLang)) activeLang = "ko";
+
+function t(key) {
+  return uiLocales[activeLang]?.[key] ?? uiLocales.ko[key] ?? key;
+}
+
+function localTitle(title) {
+  return titleLocales[title]?.[activeLang] || titleLocales[title]?.ko || title;
+}
+
+function localSeason(season) {
+  return seasonLocales[season]?.[activeLang] || season;
+}
+
+function localMonthName(year, month) {
+  if (activeLang === "ko") return `${year}년 ${month}월`;
+  if (activeLang === "ja") return `${year}年${month}月`;
+  return new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" })
+    .format(new Date(year, month - 1, 1));
+}
+
+function localDateLabel(date) {
+  if (/^\d+\/\d+$/.test(date)) return date;
+  const monthMatch = date.match(/^(\d+)월$/);
+  if (monthMatch) {
+    const m = Number(monthMatch[1]);
+    if (activeLang === "ko") return `${m}월`;
+    if (activeLang === "ja") return `${m}月`;
+    return new Intl.DateTimeFormat("en-US", { month: "short" }).format(new Date(2027, m - 1, 1));
+  }
+  if (date === "연말") return activeLang === "ko" ? "연말" : activeLang === "ja" ? "年末" : "Year-end";
+  if (date === "가을") return activeLang === "ko" ? "가을" : activeLang === "ja" ? "秋" : "Fall";
+  return date;
+}
+
+function categoryLabel(tag) {
+  const key = filterNames[tag] || tag;
+  return t(key) || tag;
+}
+
+function updateStaticLanguage() {
+  document.documentElement.lang = activeLang === "ko" ? "ko" : activeLang === "ja" ? "ja" : "en";
+
+  const heroTitle = document.getElementById("heroTitle");
+  const search = document.getElementById("search");
+  const reset = document.getElementById("resetBtn");
+  const yearLabel = document.getElementById("yearLabel");
+  const monthLabel = document.getElementById("monthLabel");
+  const categoryLabelEl = document.getElementById("categoryLabel");
+  const updatedLabel = document.getElementById("updatedLabel");
+  const streamKicker = document.getElementById("streamKicker");
+  const streamDesc = document.getElementById("streamDesc");
+  const mobileToolbarTitle = document.getElementById("mobileToolbarTitle");
+
+  if (heroTitle) heroTitle.textContent = t("title");
+  if (mobileToolbarTitle) mobileToolbarTitle.textContent = t("searchFilters");
+  document.title = t("tabTitle");
+  if (search) search.placeholder = t("search");
+  if (reset) reset.textContent = t("reset");
+  if (yearLabel) yearLabel.textContent = t("year");
+  if (monthLabel) monthLabel.textContent = t("month");
+  if (categoryLabelEl) categoryLabelEl.textContent = t("category");
+  if (updatedLabel) updatedLabel.textContent = t("updated");
+  if (streamKicker) streamKicker.textContent = t("streamKicker");
+  if (streamDesc) streamDesc.textContent = t("streamDesc");
+
+  document.getElementById("categoryToggle")?.addEventListener("click", () => {
+  categoryCollapsed = !categoryCollapsed;
+  safeStorageSet("animeScheduleCategoryCollapsed", categoryCollapsed ? "1" : "0");
+  updateCategoryCollapse();
+  updateTitleScrolls();
+});
+
+
+mobileToolbarToggle?.addEventListener("click", () => {
+  toolbarCollapsed = !toolbarCollapsed;
+  safeStorageSet("animeScheduleToolbarCollapsed", toolbarCollapsed ? "1" : "0");
+  updateToolbarCollapse();
+});
+
+if (mobileToolbarQuery.addEventListener) {
+  mobileToolbarQuery.addEventListener("change", () => {
+    updateToolbarCollapse();
+  });
+}
+
+document.querySelectorAll("#languageSwitcher .language-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.lang === activeLang);
+  });
+
+  document.querySelectorAll("#filters .chip").forEach(btn => {
+    const filter = btn.dataset.filter;
+    btn.textContent = filter === "all" ? t("all") : categoryLabel(filter);
+  });
+
+  const undatedLabel = document.querySelector("#undatedToggle > span:first-child");
+  if (undatedLabel) undatedLabel.textContent = t("undated");
+  updateCategoryCollapse();
+  updateToolbarCollapse();
+}
+
+let activeFilter = "all";
+let activeYear = 2026;
+let activeMonth = "all";
+let categoryCollapsed = safeStorageGet("animeScheduleCategoryCollapsed") === "1";
+const mobileToolbarQuery = window.matchMedia("(max-width: 720px)");
+const toolbarCollapsedSaved = safeStorageGet("animeScheduleToolbarCollapsed");
+let toolbarCollapsed = toolbarCollapsedSaved === null ? mobileToolbarQuery.matches : toolbarCollapsedSaved === "1";
+
+const scheduleEl = document.getElementById("schedule");
+const searchEl = document.getElementById("search");
+const monthNavEl = document.getElementById("monthNav");
+const undatedSection = document.querySelector(".undated");
+const toolbarEl = document.getElementById("toolbar");
+const mobileToolbarToggle = document.getElementById("mobileToolbarToggle");
+
+
+function updateToolbarCollapse() {
+  if (!toolbarEl || !mobileToolbarToggle) return;
+
+  const effectiveCollapsed = mobileToolbarQuery.matches ? toolbarCollapsed : false;
+  toolbarEl.classList.toggle("is-mobile-collapsed", effectiveCollapsed);
+  mobileToolbarToggle.setAttribute("aria-expanded", String(!effectiveCollapsed));
+  mobileToolbarToggle.setAttribute("aria-label", t(effectiveCollapsed ? "showFilters" : "hideFilters"));
+  mobileToolbarToggle.title = t(effectiveCollapsed ? "showFilters" : "hideFilters");
+
+  const titleEl = document.getElementById("mobileToolbarTitle");
+  const iconEl = document.getElementById("mobileToolbarIcon");
+  if (titleEl) titleEl.textContent = t("searchFilters");
+  if (iconEl) iconEl.textContent = effectiveCollapsed ? "＋" : "－";
+}
+
+function updateCategoryCollapse() {
+  const group = document.getElementById("categoryGroup");
+  const toggle = document.getElementById("categoryToggle");
+  const icon = document.getElementById("categoryToggleIcon");
+  if (!group || !toggle) return;
+
+  group.classList.toggle("is-collapsed", categoryCollapsed);
+  toggle.setAttribute("aria-expanded", String(!categoryCollapsed));
+  toggle.setAttribute("aria-label", t(categoryCollapsed ? "expand" : "collapse"));
+  toggle.title = t(categoryCollapsed ? "expand" : "collapse");
+  if (icon) icon.textContent = "⌃";
+}
+
+
+function posterMarkup(title) {
+  const url = posterLinks[title];
+
+  if (!url) {
+    return `
+      <div class="poster-frame" aria-label="${localTitle(title)}">
+        <div class="poster-fallback" aria-hidden="true">?</div>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="poster-frame has-image" aria-label="${localTitle(title)}">
+      <img
+        src="${url}"
+        alt="${localTitle(title)}"
+        loading="lazy"
+        decoding="async"
+        referrerpolicy="no-referrer"
+        onerror="this.closest('.poster-frame').classList.add('poster-error')"
+      >
+      <div class="poster-fallback" aria-hidden="true">?</div>
+    </div>
+  `;
+}
+
+function getLinks(title) {
+  return resourceLinks[title] || { pv: null, official: null, streaming: null };
+}
+
+function getOttLinks(title) {
+  return ottLinks[title] || {};
+}
+
+function hasOttLink(title) {
+  return Object.values(getOttLinks(title)).some(Boolean);
+}
+
+function resourceButton(url, label, shortLabel = null) {
+  const labelMarkup = shortLabel
+    ? `<span class="resource-label-long">${label}</span><span class="resource-label-short">${shortLabel}</span>`
+    : `<span>${label}</span>`;
+
+  if (!url) {
+    return `<span class="resource-btn disabled" aria-disabled="true">${labelMarkup}</span>`;
+  }
+
+  return `<a class="resource-btn" href="${url}" target="_blank" rel="noopener noreferrer">${labelMarkup}<span class="external">↗</span></a>`;
+}
+
+function streamingButton(title) {
+  if (!hasOttLink(title)) {
+    return `<button class="stream-trigger disabled" type="button" disabled >${t("streaming")}</button>`;
+  }
+
+  return `<button class="stream-trigger" type="button" data-stream-title="${encodeURIComponent(title)}">${t("streaming")} <span class="external">▾</span></button>`;
+}
+
+function isXLink(url) {
+  if (!url) return false;
+  try {
+    const host = new URL(url, window.location.href).hostname.toLowerCase();
+    return host === "x.com" || host.endsWith(".x.com") ||
+           host === "twitter.com" || host.endsWith(".twitter.com");
+  } catch (_) {
+    return false;
+  }
+}
+
+function resourceActions(title) {
+  const links = getLinks(title);
+  const officialIsX = isXLink(links.official);
+  const officialLabel = officialIsX ? "X" : t("official");
+  const officialShortLabel = officialIsX ? "X" : t("officialShort");
+
+  return `
+    <div class="resource-actions">
+      ${resourceButton(links.pv, t("pv"))}
+      ${resourceButton(links.official, officialLabel, officialShortLabel)}
+      ${streamingButton(title)}
+    </div>
+  `;
+}
+
+
+const streamModal = document.getElementById("streamModal");
+const streamModalTitle = document.getElementById("streamModalTitle");
+const ottGrid = document.getElementById("ottGrid");
+let lastStreamTrigger = null;
+
+function openStreamingModal(title, trigger = null) {
+  const links = getOttLinks(title);
+  lastStreamTrigger = trigger;
+
+  streamModalTitle.textContent = localTitle(title);
+  const availablePlatforms = ottPlatforms.filter(platform => links[platform.id]);
+
+  ottGrid.innerHTML = availablePlatforms.map(platform => {
+    const url = links[platform.id];
+    return `
+      <a class="ott-option" href="${url}" target="_blank" rel="noopener noreferrer">
+        <span class="ott-option-name">${platform.name}</span>
+        <span class="ott-option-state">${t("open")}</span>
+      </a>
+    `;
+  }).join("");
+
+  streamModal.classList.remove("hidden");
+  document.body.classList.add("modal-open");
+
+  const closeButton = streamModal.querySelector(".stream-close");
+  requestAnimationFrame(() => closeButton?.focus());
+}
+
+function closeStreamingModal() {
+  if (streamModal.classList.contains("hidden")) return;
+
+  streamModal.classList.add("hidden");
+  document.body.classList.remove("modal-open");
+
+  if (lastStreamTrigger) {
+    lastStreamTrigger.focus();
+    lastStreamTrigger = null;
+  }
+}
+
+document.addEventListener("click", event => {
+  const trigger = event.target.closest("[data-stream-title]");
+  if (trigger) {
+    const title = decodeURIComponent(trigger.dataset.streamTitle);
+    openStreamingModal(title, trigger);
+    return;
+  }
+
+  if (event.target.closest("[data-stream-close]")) {
+    closeStreamingModal();
+  }
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeStreamingModal();
+});
+
+function renderMonthNav() {
+  const months = data.filter(m => Number(m.month.slice(0, 4)) === activeYear);
+  monthNavEl.innerHTML = [
+    `<button class="${activeMonth === "all" ? "active" : ""}" data-month="all">${t("all")}</button>`,
+    ...months.map(m => {
+      const monthNum = Number(m.month.slice(5, 7));
+      return `<button class="${activeMonth === m.month ? "active" : ""}" data-month="${m.month}">${activeLang === "en" ? new Intl.DateTimeFormat("en-US",{month:"short"}).format(new Date(activeYear, monthNum-1, 1)) : monthNum + t("monthSuffix")}</button>`;
+    })
+  ].join("");
+
+  monthNavEl.querySelectorAll("button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      activeMonth = btn.dataset.month;
+      renderMonthNav();
+      render();
+    });
+  });
+}
+
+function renderUndated() {
+  document.getElementById("undatedList").innerHTML = undated.map(([title, tags]) => `
+    <div class="undated-item">
+      <div class="undated-layout">
+        ${posterMarkup(title)}
+        <div class="undated-content-main">
+          <div class="undated-title-scroll"><div class="undated-title undated-title-scroll-inner">${localTitle(title)}</div></div>
+          <div class="meta">
+            ${tags.map(tag => `<span class="badge ${tag}">${categoryLabel(tag)}</span>`).join("")}
+          </div>
+          ${resourceActions(title)}
+        </div>
+      </div>
+    </div>
+  `).join("");
+
+  undatedSection.classList.toggle("hidden", activeYear !== 2027);
+}
+
+
+function updateTitleScrolls() {
+  requestAnimationFrame(() => {
+    document.querySelectorAll(".title-scroll, .undated-title-scroll").forEach(wrapper => {
+      const inner = wrapper.firstElementChild;
+      if (!inner || wrapper.clientWidth <= 0) return;
+
+      wrapper.classList.remove("is-overflowing", "has-scrolled");
+      wrapper.style.removeProperty("--scroll-distance");
+      wrapper.style.removeProperty("--scroll-duration");
+      inner.style.removeProperty("transform");
+
+      // Measure the natural wrapped title height before deciding to marquee.
+      inner.classList.add("measure-title");
+      const style = getComputedStyle(inner);
+      const lineHeight = parseFloat(style.lineHeight) || parseFloat(style.fontSize) * 1.2;
+      const naturalHeight = inner.scrollHeight;
+      inner.classList.remove("measure-title");
+
+      const exceedsTwoLines = naturalHeight > (lineHeight * 2 + 2);
+      if (!exceedsTwoLines) return;
+
+      wrapper.classList.add("is-overflowing");
+
+      // Now that it is single-line, measure the horizontal travel distance.
+      const overflow = Math.max(0, Math.ceil(inner.scrollWidth - wrapper.clientWidth));
+      wrapper.style.setProperty("--scroll-distance", `${overflow + 8}px`);
+
+      const duration = Math.max(8, Math.min(22, 6 + overflow / 28));
+      wrapper.style.setProperty("--scroll-duration", `${duration}s`);
+
+      const markScrolled = () => wrapper.classList.add("has-scrolled");
+      inner.addEventListener("animationiteration", markScrolled, { once: true });
+    });
+  });
+}
+
+let titleResizeTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(titleResizeTimer);
+  titleResizeTimer = setTimeout(updateTitleScrolls, 120);
+});
+
+function render() {
+  const q = searchEl.value.trim().toLowerCase();
+  let previousSeason = "";
+
+  const visibleMonths = data.filter(month => {
+    const yearOk = Number(month.month.slice(0, 4)) === activeYear;
+    const monthOk = activeMonth === "all" || month.month === activeMonth;
+    return yearOk && monthOk;
+  });
+
+  scheduleEl.innerHTML = `
+    <div class="year-summary">${activeLang === "ko" ? activeYear + "년" : activeLang === "ja" ? activeYear + "年" : activeYear} · ${activeMonth === "all" ? t("allMonths") : (activeLang === "en" ? new Intl.DateTimeFormat("en-US",{month:"long"}).format(new Date(activeYear, Number(activeMonth.slice(5,7))-1, 1)) : Number(activeMonth.slice(5,7)) + t("monthSuffix"))}</div>
+  ` + visibleMonths.map(month => {
+    const items = month.items.filter(([title, date, tags]) => {
+      const searchPool = [title, ...Object.values(titleLocales[title] || {})].join(" ").toLowerCase();
+      const searchOk = !q || searchPool.includes(q);
+      const filterOk = activeFilter === "all" || tags.includes(activeFilter);
+      return searchOk && filterOk;
+    });
+
+    const seasonHeader = month.season !== previousSeason
+      ? `<div class="season-divider"><h2>${localSeason(month.season)}</h2></div>`
+      : "";
+
+    previousSeason = month.season;
+
+    const cards = items.length
+      ? items.map(([title, date, tags]) => `
+          <article class="card">
+            <div class="card-layout">
+              ${posterMarkup(title)}
+              <div class="card-content">
+                <div class="card-top">
+                  <div class="title-scroll"><div class="title title-scroll-inner">${localTitle(title)}</div></div>
+                  <div class="date">${localDateLabel(date)}</div>
+                </div>
+                <div class="meta">
+                  ${tags.map(tag => `<span class="badge ${tag}">${categoryLabel(tag)}</span>`).join("")}
+                </div>
+                ${resourceActions(title)}
+              </div>
+            </div>
+          </article>
+        `).join("")
+      : `<div class="empty">${
+          month.items.length === 0
+            ? t("noConfirmed")
+            : t("noItems")
+        }</div>`;
+
+    return `
+      ${seasonHeader}
+      <section class="month" id="m-${month.month}">
+        <div class="month-head">
+          <div>
+            <h3>${localMonthName(Number(month.month.slice(0,4)), Number(month.month.slice(5,7)))}</h3>
+            <small>${localSeason(month.season)}</small>
+          </div>
+          <span class="month-count">${activeLang === "ja" ? items.length + "作品" : activeLang === "en" ? items.length + " titles" : items.length + "작품"}</span>
+        </div>
+        <div class="cards">${cards}</div>
+      </section>
+    `;
+  }).join("");
+
+  renderUndated();
+  updateTitleScrolls();
+}
+
+document.querySelectorAll("#languageSwitcher .language-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    activeLang = btn.dataset.lang;
+    safeStorageSet("animeScheduleLang", activeLang);
+    updateStaticLanguage();
+    renderMonthNav();
+    render();
+  });
+});
+
+document.querySelectorAll("#filters .chip").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#filters .chip").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    activeFilter = btn.dataset.filter;
+    render();
+  });
+});
+
+document.querySelectorAll("#yearFilters .year-chip").forEach(btn => {
+  btn.addEventListener("click", () => {
+    activeYear = Number(btn.dataset.year);
+    activeMonth = "all";
+    document.querySelectorAll("#yearFilters .year-chip").forEach(b => {
+      b.classList.toggle("active", Number(b.dataset.year) === activeYear);
+    });
+    renderMonthNav();
+    render();
+  });
+});
+
+searchEl.addEventListener("input", render);
+
+document.getElementById("resetBtn").addEventListener("click", () => {
+  searchEl.value = "";
+  activeFilter = "all";
+  activeYear = 2026;
+  activeMonth = "all";
+
+  document.querySelectorAll("#filters .chip").forEach(b => {
+    b.classList.toggle("active", b.dataset.filter === "all");
+  });
+  document.querySelectorAll("#yearFilters .year-chip").forEach(b => {
+    b.classList.toggle("active", Number(b.dataset.year) === activeYear);
+  });
+
+  renderMonthNav();
+  render();
+});
+
+document.getElementById("undatedToggle").addEventListener("click", () => {
+  const content = document.getElementById("undatedContent");
+  const arrow = document.getElementById("undatedArrow");
+  content.classList.toggle("hidden");
+  arrow.textContent = content.classList.contains("hidden") ? "＋" : "−";
+});
+
+updateStaticLanguage();
+renderMonthNav();
+render();
+
+if (document.fonts?.ready) {
+  document.fonts.ready.then(updateTitleScrolls).catch(() => {});
+}
+
+
+</script>
 </body>
 </html>
