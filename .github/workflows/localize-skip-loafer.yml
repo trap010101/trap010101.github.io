@@ -1,0 +1,72 @@
+name: Localize Skip and Loafer poster
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/localize-skip-loafer.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  localize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download and optimize poster
+        shell: bash
+        run: |
+          python -m pip install --disable-pip-version-check pillow requests
+          python <<'PY'
+          import io
+          from pathlib import Path
+
+          import requests
+          from PIL import Image, ImageOps
+
+          source = "https://img2.animatetimes.com/2025/03/baea00724eeecee26795b1243e6f09b567c54adb4ba164_40446878_c7f5bb6bcce645428fdd10df208e0aa6daecab23.jpg"
+          target = Path("assets/posters/skip-and-loafer-s2.webp")
+          response = requests.get(
+              source,
+              headers={
+                  "User-Agent": "Mozilla/5.0 (compatible; NewAnimeImageCache/1.0; +https://newani.me/)",
+                  "Referer": "https://www.animatetimes.com/",
+                  "Accept": "image/avif,image/webp,image/*,*/*;q=0.8",
+              },
+              timeout=(12, 40),
+          )
+          response.raise_for_status()
+
+          with Image.open(io.BytesIO(response.content)) as opened:
+              image = ImageOps.exif_transpose(opened).convert("RGB")
+              image.thumbnail((1000, 1500), Image.Resampling.LANCZOS)
+              image.save(target, "WEBP", quality=82, method=6, optimize=True)
+
+          index = Path("index.html")
+          html = index.read_text(encoding="utf-8")
+          old = '"스킵과 로퍼 2nd season": "https://weebe.net/wp-content/uploads/2025/03/vis-h12.jpg"'
+          new = '"스킵과 로퍼 2nd season": "assets/posters/skip-and-loafer-s2.webp"'
+          if html.count(old) != 1:
+              raise SystemExit(f"Expected one poster mapping, found {html.count(old)}")
+          index.write_text(html.replace(old, new), encoding="utf-8")
+          print(f"Saved {target} ({target.stat().st_size} bytes)")
+          PY
+
+      - name: Commit localized poster
+        shell: bash
+        run: |
+          rm .github/workflows/localize-skip-loafer.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html assets/posters/skip-and-loafer-s2.webp .github/workflows/localize-skip-loafer.yml
+          git commit -m "Localize Skip and Loafer poster"
+          git push origin HEAD:main
