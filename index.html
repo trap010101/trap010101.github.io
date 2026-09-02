@@ -5,21 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
   <title>NewAnime - 방영 예정 애니메이션</title>
-  <meta name="description" content="2026~2027년 방영 예정 애니메이션과 극장판의 방영일, PV, 공식 사이트, 스트리밍 정보를 한눈에 확인하세요." />
-  <link rel="canonical" href="https://newani.me/" />
+  <meta name="description" id="metaDescription" content="2026~2027년 방영 예정 애니메이션과 극장판의 방영일, PV, 공식 사이트, 스트리밍 정보를 한눈에 확인하세요." />
+  <link rel="canonical" id="canonicalLink" href="https://newani.me/?lang=ko" />
+  <link rel="alternate" hreflang="ko" href="https://newani.me/?lang=ko" />
+  <link rel="alternate" hreflang="ja" href="https://newani.me/?lang=ja" />
+  <link rel="alternate" hreflang="en" href="https://newani.me/?lang=en" />
+  <link rel="alternate" hreflang="x-default" href="https://newani.me/?lang=en" />
+  <meta http-equiv="content-language" id="contentLanguageMeta" content="ko" />
 
-  <meta property="og:title" content="NewAnime - 방영 예정 애니메이션" />
-  <meta property="og:description" content="2026~2027년 방영 예정 애니메이션과 극장판의 방영일, PV, 공식 사이트, 스트리밍 정보를 한눈에 확인하세요." />
-  <meta property="og:url" content="https://newani.me/" />
+  <meta property="og:title" id="ogTitle" content="NewAnime - 방영 예정 애니메이션" />
+  <meta property="og:description" id="ogDescription" content="2026~2027년 방영 예정 애니메이션과 극장판의 방영일, PV, 공식 사이트, 스트리밍 정보를 한눈에 확인하세요." />
+  <meta property="og:url" id="ogUrl" content="https://newani.me/?lang=ko" />
   <meta property="og:type" content="website" />
+  <meta property="og:locale" id="ogLocale" content="ko_KR" />
   <meta property="og:image" content="https://newani.me/og-image.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="NewAnime - 방영 예정 애니메이션" />
-  <meta name="twitter:description" content="2026~2027년 방영 예정 애니메이션과 극장판의 방영일, PV, 공식 사이트, 스트리밍 정보를 한눈에 확인하세요." />
+  <meta name="twitter:title" id="twitterTitle" content="NewAnime - 방영 예정 애니메이션" />
+  <meta name="twitter:description" id="twitterDescription" content="2026~2027년 방영 예정 애니메이션과 극장판의 방영일, PV, 공식 사이트, 스트리밍 정보를 한눈에 확인하세요." />
   <meta name="twitter:image" content="https://newani.me/og-image.png" />
 
-  <script type="application/ld+json">
+  <script type="application/ld+json" id="websiteStructuredData">
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -28,6 +34,7 @@
     "description": "2026~2027년 방영 예정 애니메이션과 극장판의 방영일, PV, 공식 사이트, 스트리밍 정보를 한눈에 확인하세요."
   }
   </script>
+  <link rel="preload" as="image" href="assets/newanime-logo.webp" type="image/webp" fetchpriority="high" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-jp.css" />
@@ -1366,7 +1373,7 @@
 
 
     .brand-slot { position: relative; z-index: 2; display: flex; align-items: center; min-width: 0; flex: 1 1 auto; }
-    .brand-logo { display: block; width: min(430px, 48vw); height: auto; max-height: 126px; object-fit: contain; object-position: left center; mix-blend-mode: screen; }
+    .brand-logo { display: block; width: min(430px, 48vw); height: auto; max-height: 126px; aspect-ratio: 500 / 167; object-fit: contain; object-position: left center; mix-blend-mode: normal; isolation: isolate; }
     @media (max-width: 520px) { .hero-topline { gap: 10px; } .brand-logo { width: min(200px, 46vw); max-height: 78px; } .language-row { width: auto; flex: 0 0 auto; } .language-btn { flex: 0 0 auto; } }
 
   </style>
@@ -1376,9 +1383,9 @@
     <section class="hero">
       <div class="hero-topline">
         <div class="brand-slot">
-            <img class="brand-logo" src="assets/newanime-logo.webp" alt="NewAnime" />
+            <img class="brand-logo" src="assets/newanime-logo.webp" alt="NewAnime" width="500" height="167" decoding="async" fetchpriority="high" />
           </div>
-        <div class="language-row" id="languageSwitcher" aria-label="Language">
+        <div class="language-row" id="languageSwitcher" aria-label="언어 선택">
           <button class="language-btn active" type="button" data-lang="ko">KR</button>
           <button class="language-btn" type="button" data-lang="ja">JP</button>
           <button class="language-btn" type="button" data-lang="en">EN</button>
@@ -1465,8 +1472,8 @@
     </div>
 
     <footer>
-  <div>방영 예정 애니메이션과 극장판의 일정, PV, 공식 사이트, 스트리밍 정보를 한눈에 정리합니다.</div>
-  <div>© 2026 NewAnime</div>
+  <div id="footerDescription">방영 예정 애니메이션과 극장판의 일정, PV, 공식 사이트, 스트리밍 정보를 한눈에 정리합니다.</div>
+  <div id="footerCopyright">© 2026 NewAnime</div>
 </footer>
   </main>
 
@@ -4249,6 +4256,10 @@ const uiLocales = {
   "ko": {
     "title": "방영 예정 애니메이션",
     "tabTitle": "NewAnime - 방영 예정 애니메이션",
+    "description": "2026~2027년 방영 예정 애니메이션과 극장판의 방영일, PV, 공식 사이트, 스트리밍 정보를 한눈에 확인하세요.",
+    "footerDescription": "방영 예정 애니메이션과 극장판의 일정, PV, 공식 사이트, 스트리밍 정보를 한눈에 정리합니다.",
+    "languageLabel": "언어 선택",
+    "close": "닫기",
     "hero": "",
     "search": "작품명 검색...",
     "reset": "필터 초기화",
@@ -4288,6 +4299,10 @@ const uiLocales = {
   "ja": {
     "title": "放送予定アニメ",
     "tabTitle": "NewAnime - 放送予定アニメ",
+    "description": "2026～2027年放送予定のアニメ・劇場版について、放送日、PV、公式サイト、配信情報をまとめて確認できます。",
+    "footerDescription": "放送予定のアニメと劇場版について、放送日、PV、公式サイト、配信情報をまとめています。",
+    "languageLabel": "言語を選択",
+    "close": "閉じる",
     "hero": "",
     "search": "作品名を検索...",
     "reset": "フィルターをリセット",
@@ -4327,6 +4342,10 @@ const uiLocales = {
   "en": {
     "title": "Upcoming Anime",
     "tabTitle": "NewAnime - Upcoming Anime",
+    "description": "Browse broadcast dates, PVs, official sites, and streaming information for upcoming anime and films in 2026–2027.",
+    "footerDescription": "Browse broadcast dates, PVs, official sites, and streaming information for upcoming anime and films.",
+    "languageLabel": "Select language",
+    "close": "Close",
     "hero": "",
     "search": "Search titles...",
     "reset": "Reset filters",
@@ -4394,8 +4413,28 @@ function safeStorageSet(key, value) {
   try { window.localStorage.setItem(key, value); } catch (_) {}
 }
 
-let activeLang = safeStorageGet("animeScheduleLang") || "ko";
-if (!["ko","ja","en"].includes(activeLang)) activeLang = "ko";
+const supportedLanguages = ["ko", "ja", "en"];
+
+function detectPreferredLanguage() {
+  const preferences = Array.isArray(navigator.languages) && navigator.languages.length
+    ? navigator.languages
+    : [navigator.language];
+
+  for (const language of preferences) {
+    const normalized = String(language || "").toLowerCase();
+    if (normalized === "ko" || normalized.startsWith("ko-")) return "ko";
+    if (normalized === "ja" || normalized.startsWith("ja-")) return "ja";
+  }
+  return "en";
+}
+
+const requestedLang = new URLSearchParams(window.location.search).get("lang");
+const savedLang = safeStorageGet("animeScheduleLang");
+let activeLang = supportedLanguages.includes(requestedLang)
+  ? requestedLang
+  : supportedLanguages.includes(savedLang)
+    ? savedLang
+    : detectPreferredLanguage();
 
 function t(key) {
   return uiLocales[activeLang]?.[key] ?? uiLocales.ko[key] ?? key;
@@ -4448,10 +4487,39 @@ function updateStaticLanguage() {
   const streamKicker = document.getElementById("streamKicker");
   const streamDesc = document.getElementById("streamDesc");
   const mobileToolbarTitle = document.getElementById("mobileToolbarTitle");
+  const languageSwitcher = document.getElementById("languageSwitcher");
+  const footerDescription = document.getElementById("footerDescription");
+  const closeButton = document.querySelector(".stream-close");
+  const pageUrl = `https://newani.me/?lang=${activeLang}`;
+  const locale = activeLang === "ko" ? "ko_KR" : activeLang === "ja" ? "ja_JP" : "en_US";
 
   if (heroTitle) heroTitle.textContent = t("title");
   if (mobileToolbarTitle) mobileToolbarTitle.textContent = t("searchFilters");
   document.title = t("tabTitle");
+  document.getElementById("metaDescription")?.setAttribute("content", t("description"));
+  document.getElementById("contentLanguageMeta")?.setAttribute("content", activeLang);
+  document.getElementById("canonicalLink")?.setAttribute("href", pageUrl);
+  document.getElementById("ogTitle")?.setAttribute("content", t("tabTitle"));
+  document.getElementById("ogDescription")?.setAttribute("content", t("description"));
+  document.getElementById("ogUrl")?.setAttribute("content", pageUrl);
+  document.getElementById("ogLocale")?.setAttribute("content", locale);
+  document.getElementById("twitterTitle")?.setAttribute("content", t("tabTitle"));
+  document.getElementById("twitterDescription")?.setAttribute("content", t("description"));
+  if (languageSwitcher) languageSwitcher.setAttribute("aria-label", t("languageLabel"));
+  if (footerDescription) footerDescription.textContent = t("footerDescription");
+  if (closeButton) closeButton.setAttribute("aria-label", t("close"));
+
+  const structuredData = document.getElementById("websiteStructuredData");
+  if (structuredData) {
+    try {
+      const schema = JSON.parse(structuredData.textContent);
+      schema.description = t("description");
+      schema.inLanguage = activeLang;
+      schema.url = pageUrl;
+      structuredData.textContent = JSON.stringify(schema);
+    } catch (_) {}
+  }
+
   if (search) search.placeholder = t("search");
   if (reset) reset.textContent = t("reset");
   if (yearLabel) yearLabel.textContent = t("year");
@@ -4460,26 +4528,6 @@ function updateStaticLanguage() {
   if (updatedLabel) updatedLabel.textContent = t("updated");
   if (streamKicker) streamKicker.textContent = t("streamKicker");
   if (streamDesc) streamDesc.textContent = t("streamDesc");
-
-  document.getElementById("categoryToggle")?.addEventListener("click", () => {
-  categoryCollapsed = !categoryCollapsed;
-  safeStorageSet("animeScheduleCategoryCollapsed", categoryCollapsed ? "1" : "0");
-  updateCategoryCollapse();
-  updateTitleScrolls();
-});
-
-
-mobileToolbarToggle?.addEventListener("click", () => {
-  toolbarCollapsed = !toolbarCollapsed;
-  safeStorageSet("animeScheduleToolbarCollapsed", toolbarCollapsed ? "1" : "0");
-  updateToolbarCollapse();
-});
-
-if (mobileToolbarQuery.addEventListener) {
-  mobileToolbarQuery.addEventListener("change", () => {
-    updateToolbarCollapse();
-  });
-}
 
 document.querySelectorAll("#languageSwitcher .language-btn").forEach(btn => {
     btn.classList.toggle("active", btn.dataset.lang === activeLang);
@@ -4511,6 +4559,25 @@ const undatedSection = document.querySelector(".undated");
 const toolbarEl = document.getElementById("toolbar");
 const mobileToolbarToggle = document.getElementById("mobileToolbarToggle");
 
+document.getElementById("categoryToggle")?.addEventListener("click", () => {
+  categoryCollapsed = !categoryCollapsed;
+  safeStorageSet("animeScheduleCategoryCollapsed", categoryCollapsed ? "1" : "0");
+  updateCategoryCollapse();
+  updateTitleScrolls();
+});
+
+mobileToolbarToggle?.addEventListener("click", () => {
+  toolbarCollapsed = !toolbarCollapsed;
+  safeStorageSet("animeScheduleToolbarCollapsed", toolbarCollapsed ? "1" : "0");
+  updateToolbarCollapse();
+});
+
+const handleToolbarViewportChange = () => updateToolbarCollapse();
+if (mobileToolbarQuery.addEventListener) {
+  mobileToolbarQuery.addEventListener("change", handleToolbarViewportChange);
+} else if (mobileToolbarQuery.addListener) {
+  mobileToolbarQuery.addListener(handleToolbarViewportChange);
+}
 
 function updateToolbarCollapse() {
   if (!toolbarEl || !mobileToolbarToggle) return;
@@ -4560,6 +4627,7 @@ function posterMarkup(title) {
         data-poster-title="${encodeURIComponent(title)}"
         loading="lazy"
         decoding="async"
+        fetchpriority="low"
         referrerpolicy="no-referrer"
         onerror="this.closest('.poster-frame').classList.add('poster-error')"
       >
@@ -4847,6 +4915,9 @@ document.querySelectorAll("#languageSwitcher .language-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     activeLang = btn.dataset.lang;
     safeStorageSet("animeScheduleLang", activeLang);
+    const nextUrl = new URL(window.location.href);
+    nextUrl.searchParams.set("lang", activeLang);
+    history.replaceState(null, "", nextUrl);
     updateStaticLanguage();
     renderMonthNav();
     render();
