@@ -1,0 +1,216 @@
+name: Localize and optimize site images
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/localize-site-images.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install image tools
+        run: python -m pip install --disable-pip-version-check pillow requests
+
+      - name: Convert logo and localize poster images
+        shell: bash
+        run: |
+          python <<'PY'
+          from __future__ import annotations
+
+          import hashlib
+          import io
+          import json
+          import re
+          from concurrent.futures import ThreadPoolExecutor, as_completed
+          from pathlib import Path
+          from urllib.parse import urlsplit
+
+          import requests
+          from PIL import Image, ImageOps
+          from requests.adapters import HTTPAdapter
+          from urllib3.util.retry import Retry
+
+          ROOT = Path(".")
+          INDEX = ROOT / "index.html"
+          POSTER_DIR = ROOT / "assets" / "posters"
+          LOGO = ROOT / "assets" / "newanime-logo.webp"
+          POSTER_DIR.mkdir(parents=True, exist_ok=True)
+          Image.MAX_IMAGE_PIXELS = 60_000_000
+
+          def optimize_logo() -> None:
+              with Image.open(LOGO) as source:
+                  rgba = source.convert("RGBA")
+              if rgba.getextrema()[3] != (255, 255):
+                  rgba.save(LOGO, "WEBP", lossless=True, method=6, exact=True)
+                  print("Logo already had transparency; re-encoded losslessly.")
+                  return
+
+              converted = []
+              for red, green, blue, _ in rgba.getdata():
+                  alpha = max(red, green, blue)
+                  if alpha <= 12:
+                      converted.append((0, 0, 0, 0))
+                      continue
+                  converted.append((
+                      min(255, round(red * 255 / alpha)),
+                      min(255, round(green * 255 / alpha)),
+                      min(255, round(blue * 255 / alpha)),
+                      alpha,
+                  ))
+              rgba.putdata(converted)
+              rgba.save(LOGO, "WEBP", lossless=True, method=6, exact=True)
+              print("Converted logo background to real alpha transparency.")
+
+          def make_session() -> requests.Session:
+              session = requests.Session()
+              retry = Retry(
+                  total=3,
+                  connect=3,
+                  read=3,
+                  backoff_factor=0.8,
+                  status_forcelist=(429, 500, 502, 503, 504),
+                  allowed_methods=frozenset(("GET",)),
+              )
+              session.mount("https://", HTTPAdapter(max_retries=retry))
+              session.headers.update({
+                  "User-Agent": "Mozilla/5.0 (compatible; NewAnimeImageCache/1.0; +https://newani.me/)",
+                  "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+                  "Accept-Language": "ja,en-US;q=0.8,en;q=0.7",
+              })
+              return session
+
+          def download_and_convert(url: str) -> tuple[str, str | None, str | None]:
+              digest = hashlib.sha256(url.encode("utf-8")).hexdigest()[:18]
+              relative = f"assets/posters/remote-{digest}.webp"
+              target = ROOT / relative
+              if target.exists() and target.stat().st_size > 0:
+                  return url, relative, None
+
+              session = make_session()
+              try:
+                  origin = urlsplit(url)
+                  headers = {"Referer": f"{origin.scheme}://{origin.netloc}/"}
+                  with session.get(url, headers=headers, timeout=(12, 35), stream=True) as response:
+                      response.raise_for_status()
+                      buffer = io.BytesIO()
+                      for chunk in response.iter_content(1024 * 128):
+                          buffer.write(chunk)
+                          if buffer.tell() > 25 * 1024 * 1024:
+                              raise ValueError("image exceeds 25 MB")
+                  buffer.seek(0)
+                  with Image.open(buffer) as opened:
+                      image = ImageOps.exif_transpose(opened)
+                      if getattr(image, "is_animated", False):
+                          image.seek(0)
+                      image = image.convert("RGBA")
+                      image.thumbnail((1000, 1500), Image.Resampling.LANCZOS)
+                      canvas = Image.new("RGB", image.size, (16, 18, 26))
+                      canvas.paste(image, mask=image.getchannel("A"))
+                      canvas.save(target, "WEBP", quality=82, method=6, optimize=True)
+                  if target.stat().st_size == 0:
+                      raise ValueError("empty converted file")
+                  return url, relative, None
+              except Exception as exc:
+                  target.unlink(missing_ok=True)
+                  return url, None, f"{type(exc).__name__}: {exc}"
+              finally:
+                  session.close()
+
+          optimize_logo()
+
+          text = INDEX.read_text(encoding="utf-8")
+          match = re.search(
+              r"(const posterLinks\s*=\s*\{[\s\S]*?)(?=\nconst resourceLinks\s*=)",
+              text,
+          )
+          if not match:
+              raise RuntimeError("posterLinks section not found")
+
+          section = match.group(1)
+          pair_pattern = re.compile(
+              r'"((?:\\.|[^"\\])*)"\s*:\s*"(https?://(?:\\.|[^"\\])*)"'
+          )
+          urls = []
+          for item in pair_pattern.finditer(section):
+              url = json.loads(f'"{item.group(2)}"')
+              if url not in urls:
+                  urls.append(url)
+
+          localized = {}
+          failures = {}
+          with ThreadPoolExecutor(max_workers=8) as executor:
+              futures = {executor.submit(download_and_convert, url): url for url in urls}
+              for number, future in enumerate(as_completed(futures), 1):
+                  url, relative, error = future.result()
+                  if relative:
+                      localized[url] = relative
+                      print(f"[{number}/{len(urls)}] localized {url}")
+                  else:
+                      failures[url] = error or "unknown error"
+                      print(f"[{number}/{len(urls)}] kept external {url}: {failures[url]}")
+
+          for url, relative in localized.items():
+              section = section.replace(f'"{url}"', f'"{relative}"')
+
+          text = text[:match.start(1)] + section + text[match.end(1):]
+          INDEX.write_text(text, encoding="utf-8")
+
+          print(f"Localized {len(localized)} unique external poster URLs.")
+          print(f"Remaining external poster URLs: {len(failures)}.")
+          if failures:
+              print("External fallbacks retained for URLs that could not be downloaded.")
+          PY
+
+      - name: Validate optimized assets
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          from PIL import Image
+
+          logo = Path("assets/newanime-logo.webp")
+          with Image.open(logo) as image:
+              if image.mode not in ("RGBA", "LA") and "transparency" not in image.info:
+                  raise SystemExit("Logo still lacks an alpha channel")
+              if image.size != (500, 167):
+                  raise SystemExit(f"Unexpected logo dimensions: {image.size}")
+
+          html = Path("index.html").read_text(encoding="utf-8")
+          if 'mix-blend-mode: normal' not in html:
+              raise SystemExit("Stable logo CSS missing")
+          if 'fetchpriority="low"' not in html:
+              raise SystemExit("Poster priority hint missing")
+
+          posters = list(Path("assets/posters").glob("remote-*.webp"))
+          print(f"Validated {len(posters)} localized poster files.")
+          PY
+
+      - name: Commit optimized images
+        shell: bash
+        run: |
+          rm .github/workflows/localize-site-images.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html assets/newanime-logo.webp assets/posters .github/workflows/localize-site-images.yml
+          if git diff --cached --quiet; then
+            echo "No image changes to commit."
+          else
+            git commit -m "Localize and optimize site images"
+            git push origin HEAD:main
+          fi
