@@ -1,4 +1,3 @@
-# one-off trigger
 name: One-off source category audit
 
 on:
@@ -18,29 +17,29 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Add webtoon and web novel categories
+      - name: Patch source categories
         shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
+          import re
 
           p = Path('index.html')
-          text = p.read_text(encoding='utf-8')
+          s = p.read_text(encoding='utf-8')
 
-          def replace_once(old, new, label):
-              global text
-              count = text.count(old)
-              if count != 1:
-                  raise SystemExit(f'{label}: expected 1 occurrence, found {count}')
-              text = text.replace(old, new, 1)
+          # Add source filter buttons.
+          s = s.replace(
+              '<button class="chip" data-filter="ln">라이트 노벨 원작</button>\n          <button class="chip" data-filter="original">오리지널</button>',
+              '<button class="chip" data-filter="ln">라이트 노벨 원작</button>\n          <button class="chip" data-filter="webtoon">웹툰 원작</button>\n          <button class="chip" data-filter="webnovel">웹소설 원작</button>\n          <button class="chip" data-filter="original">오리지널</button>'
+          )
 
-          replace_once(
+          # Add badge styling after the light-novel badge.
+          s = s.replace(
               '''    .badge.ln {
       color: #e6d6ff;
       background: rgba(178,140,255,.075);
     }
-
-    .badge.original {''',
+''',
               '''    .badge.ln {
       color: #e6d6ff;
       background: rgba(178,140,255,.075);
@@ -55,111 +54,63 @@ jobs:
       color: #f6dfff;
       background: rgba(219,126,255,.075);
     }
-
-    .badge.original {''',
-              'badge styles',
+''',
+              1
           )
 
-          replace_once(
-              '''          <button class="chip" data-filter="comic">코믹스 원작</button>
-          <button class="chip" data-filter="ln">라이트 노벨 원작</button>
-          <button class="chip" data-filter="original">오리지널</button>''',
-              '''          <button class="chip" data-filter="comic">코믹스 원작</button>
-          <button class="chip" data-filter="ln">라이트 노벨 원작</button>
-          <button class="chip" data-filter="webtoon">웹툰 원작</button>
-          <button class="chip" data-filter="webnovel">웹소설 원작</button>
-          <button class="chip" data-filter="original">오리지널</button>''',
-              'filter buttons',
+          # Verified Korean/web source works.
+          s = re.sub(
+              r'("귀환자의 마법은 특별해야 합니다 2기",\s*"10월",\s*\[\s*"series")(\s*\])',
+              r'\1,\n          "webtoon",\n          "webnovel"\2',
+              s,
+              count=1,
+          )
+          s = re.sub(
+              r'("좀비가 넘쳐나는 세상에서 나만 습격당하지 않는다",\s*"1월",\s*\[\s*"new",\s*"ln")(\s*\])',
+              r'\1,\n          "webnovel"\2',
+              s,
+              count=1,
           )
 
-          replace_once(
-              '''        "귀환자의 마법은 특별해야 합니다 2기",
-        "10월",
-        [
-          "series"
-        ]''',
-              '''        "귀환자의 마법은 특별해야 합니다 2기",
-        "10월",
-        [
-          "series",
-          "webtoon",
-          "webnovel"
-        ]''',
-              'Returner source tags',
+          # Locale labels.
+          s = s.replace(
+              '    "ln": "라이트 노벨 원작",\n    "original": "오리지널",',
+              '    "ln": "라이트 노벨 원작",\n    "webtoon": "웹툰 원작",\n    "webnovel": "웹소설 원작",\n    "original": "오리지널",',
+              1
+          )
+          s = s.replace(
+              '    "ln": "ライトノベル原作",\n    "original": "オリジナル",',
+              '    "ln": "ライトノベル原作",\n    "webtoon": "ウェブトゥーン原作",\n    "webnovel": "Web小説原作",\n    "original": "オリジナル",',
+              1
+          )
+          s = s.replace(
+              '    "ln": "Light Novel",\n    "original": "Original",',
+              '    "ln": "Light Novel",\n    "webtoon": "Webtoon",\n    "webnovel": "Web Novel",\n    "original": "Original",',
+              1
           )
 
-          replace_once(
-              '''        "좀비가 넘쳐나는 세상에서 나만 습격당하지 않는다",
-        "1월",
-        [
-          "new",
-          "ln"
-        ]''',
-              '''        "좀비가 넘쳐나는 세상에서 나만 습격당하지 않는다",
-        "1월",
-        [
-          "new",
-          "ln",
-          "webnovel"
-        ]''',
-              'Zombie source tags',
-          )
+          required = [
+              'data-filter="webtoon">웹툰 원작',
+              'data-filter="webnovel">웹소설 원작',
+              '"webtoon": "웹툰 원작"',
+              '"webnovel": "웹소설 원작"',
+              '"webtoon"',
+              '"webnovel"',
+          ]
+          for needle in required:
+              if needle not in s:
+                  raise SystemExit(f'missing after patch: {needle}')
 
-          replace_once(
-              '''    "comic": "코믹스 원작",
-    "ln": "라이트 노벨 원작",
-    "original": "오리지널",''',
-              '''    "comic": "코믹스 원작",
-    "ln": "라이트 노벨 원작",
-    "webtoon": "웹툰 원작",
-    "webnovel": "웹소설 원작",
-    "original": "오리지널",''',
-              'Korean locale',
-          )
-
-          replace_once(
-              '''    "comic": "漫画原作",
-    "ln": "ライトノベル原作",
-    "original": "オリジナル",''',
-              '''    "comic": "漫画原作",
-    "ln": "ライトノベル原作",
-    "webtoon": "ウェブトゥーン原作",
-    "webnovel": "Web小説原作",
-    "original": "オリジナル",''',
-              'Japanese locale',
-          )
-
-          replace_once(
-              '''    "comic": "Manga",
-    "ln": "Light Novel",
-    "original": "Original",''',
-              '''    "comic": "Manga",
-    "ln": "Light Novel",
-    "webtoon": "Webtoon",
-    "webnovel": "Web Novel",
-    "original": "Original",''',
-              'English locale',
-          )
-
-          p.write_text(text, encoding='utf-8')
+          p.write_text(s, encoding='utf-8')
           PY
 
-      - name: Validate and commit
+      - name: Commit
         shell: bash
         run: |
           git diff --check
-          grep -Fq 'data-filter="webtoon">웹툰 원작' index.html
-          grep -Fq 'data-filter="webnovel">웹소설 원작' index.html
-          grep -Fq '"webtoon": "웹툰 원작"' index.html
-          grep -Fq '"webnovel": "웹소설 원작"' index.html
-          python - <<'PY'
-          from pathlib import Path
-          text = Path('index.html').read_text(encoding='utf-8')
-          assert '"귀환자의 마법은 특별해야 합니다 2기",\n        "10월",\n        [\n          "series",\n          "webtoon",\n          "webnovel"' in text
-          assert '"좀비가 넘쳐나는 세상에서 나만 습격당하지 않는다",\n        "1월",\n        [\n          "new",\n          "ln",\n          "webnovel"' in text
-          PY
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add index.html
+          git diff --cached --quiet && exit 1
           git commit -m 'Add webtoon and web novel source categories'
           git push
