@@ -5342,6 +5342,26 @@ window.addEventListener("resize", () => {
   titleResizeTimer = setTimeout(updateTitleScrolls, 120);
 });
 
+function scheduleDateSortKey(date) {
+  const exactMatch = /^(\d{1,2})\/(\d{1,2})$/.exec(date);
+  if (exactMatch) return [0, Number(exactMatch[1]), Number(exactMatch[2])];
+
+  const monthOnlyMatch = /^(\d{1,2})월$/.exec(date);
+  if (monthOnlyMatch) return [1, Number(monthOnlyMatch[1]), 0];
+
+  return [2, Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER];
+}
+
+function compareScheduleItems(a, b) {
+  const aKey = scheduleDateSortKey(a[1]);
+  const bKey = scheduleDateSortKey(b[1]);
+
+  for (let i = 0; i < aKey.length; i += 1) {
+    if (aKey[i] !== bKey[i]) return aKey[i] - bKey[i];
+  }
+  return 0;
+}
+
 function render() {
   const q = searchEl.value.trim().toLowerCase();
   let previousSeason = "";
@@ -5360,7 +5380,7 @@ function render() {
       const searchOk = !q || searchPool.includes(q);
       const filterOk = activeFilter === "all" || tags.includes(activeFilter);
       return searchOk && filterOk;
-    });
+    }).sort(compareScheduleItems);
 
     const seasonHeader = month.season !== previousSeason
       ? `<div class="season-divider"><h2>${localSeason(month.season)}</h2></div>`
