@@ -1363,13 +1363,21 @@
       }
     }
 
+
+
+    .brand-slot { position: relative; z-index: 2; display: flex; align-items: center; min-width: 0; flex: 1 1 auto; }
+    .brand-logo { display: block; width: min(430px, 48vw); height: auto; max-height: 126px; object-fit: contain; object-position: left center; mix-blend-mode: screen; }
+    @media (max-width: 520px) { .hero-topline { gap: 10px; } .brand-logo { width: min(200px, 46vw); max-height: 78px; } .language-row { width: auto; flex: 0 0 auto; } .language-btn { flex: 0 0 auto; } }
+
   </style>
 </head>
 <body>
   <main class="shell">
     <section class="hero">
       <div class="hero-topline">
-        <div class="brand-slot" aria-hidden="true"></div>
+        <div class="brand-slot">
+            <img class="brand-logo" src="assets/newanime-logo.webp" alt="NewAnime" />
+          </div>
         <div class="language-row" id="languageSwitcher" aria-label="Language">
           <button class="language-btn active" type="button" data-lang="ko">KR</button>
           <button class="language-btn" type="button" data-lang="ja">JP</button>
