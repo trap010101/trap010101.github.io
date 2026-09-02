@@ -1,3 +1,4 @@
+# one-off trigger
 name: One-off source category audit
 
 on:
@@ -33,7 +34,6 @@ jobs:
                   raise SystemExit(f'{label}: expected 1 occurrence, found {count}')
               text = text.replace(old, new, 1)
 
-          # Badge styles.
           replace_once(
               '''    .badge.ln {
       color: #e6d6ff;
@@ -60,7 +60,6 @@ jobs:
               'badge styles',
           )
 
-          # Filter buttons.
           replace_once(
               '''          <button class="chip" data-filter="comic">코믹스 원작</button>
           <button class="chip" data-filter="ln">라이트 노벨 원작</button>
@@ -73,7 +72,6 @@ jobs:
               'filter buttons',
           )
 
-          # Source tags for verified works.
           replace_once(
               '''        "귀환자의 마법은 특별해야 합니다 2기",
         "10월",
@@ -107,7 +105,6 @@ jobs:
               'Zombie source tags',
           )
 
-          # Localized category names.
           replace_once(
               '''    "comic": "코믹스 원작",
     "ln": "라이트 노벨 원작",
