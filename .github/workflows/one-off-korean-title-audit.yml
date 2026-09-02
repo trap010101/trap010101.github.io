@@ -1,0 +1,54 @@
+name: One-off Korean title audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-off-korean-title-audit.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply verified Korean titles
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path('index.html')
+          text = p.read_text(encoding='utf-8')
+          replacements = {
+              '"ko": "탱크 체어 -전차의자-"': '"ko": "TANK CHAIR -탱크체어-"',
+              '"ko": "저편에서"': '"ko": "바람의 저편"',
+              '"ko": "타누키와 키츠네"': '"ko": "너구리랑 여우랑"',
+              '"ko": "공주 기사님의 기둥서방"': '"ko": "공주 기사의 기둥서방"',
+          }
+          for old, new in replacements.items():
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'Expected exactly one occurrence of {old!r}, found {count}')
+              text = text.replace(old, new, 1)
+          p.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Validate and commit
+        shell: bash
+        run: |
+          git diff --check
+          grep -Fq '"ko": "TANK CHAIR -탱크체어-"' index.html
+          grep -Fq '"ko": "바람의 저편"' index.html
+          grep -Fq '"ko": "너구리랑 여우랑"' index.html
+          grep -Fq '"ko": "공주 기사의 기둥서방"' index.html
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Use official Korean titles for licensed works'
+          git push
