@@ -1,0 +1,95 @@
+name: One-off site cleanup
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-off-site-cleanup.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch web source categories
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+
+          s = s.replace(
+              '<button class="chip" data-filter="ln">라이트 노벨 원작</button>\n          <button class="chip" data-filter="original">오리지널</button>',
+              '<button class="chip" data-filter="ln">라이트 노벨 원작</button>\n          <button class="chip" data-filter="webtoon">웹툰 원작</button>\n          <button class="chip" data-filter="webnovel">웹소설 원작</button>\n          <button class="chip" data-filter="original">오리지널</button>'
+          )
+
+          if '.badge.webtoon {' not in s:
+              s = s.replace(
+                  '''    .badge.ln {
+      color: #e6d6ff;
+      background: rgba(178,140,255,.075);
+    }
+''',
+                  '''    .badge.ln {
+      color: #e6d6ff;
+      background: rgba(178,140,255,.075);
+    }
+
+    .badge.webtoon {
+      color: #d6f4ff;
+      background: rgba(88,196,255,.075);
+    }
+
+    .badge.webnovel {
+      color: #f6dfff;
+      background: rgba(219,126,255,.075);
+    }
+''', 1)
+
+          s = re.sub(
+              r'("귀환자의 마법은 특별해야 합니다 2기",\s*"10월",\s*\[\s*"series")(\s*\])',
+              r'\1,\n          "webtoon",\n          "webnovel"\2', s, count=1)
+          s = re.sub(
+              r'("좀비가 넘쳐나는 세상에서 나만 습격당하지 않는다",\s*"1월",\s*\[\s*"new",\s*"ln")(\s*\])',
+              r'\1,\n          "webnovel"\2', s, count=1)
+
+          s = s.replace(
+              '    "ln": "라이트 노벨 원작",\n    "original": "오리지널",',
+              '    "ln": "라이트 노벨 원작",\n    "webtoon": "웹툰 원작",\n    "webnovel": "웹소설 원작",\n    "original": "오리지널",', 1)
+          s = s.replace(
+              '    "ln": "ライトノベル原作",\n    "original": "オリジナル",',
+              '    "ln": "ライトノベル原作",\n    "webtoon": "ウェブトゥーン原作",\n    "webnovel": "Web小説原作",\n    "original": "オリジナル",', 1)
+          s = s.replace(
+              '    "ln": "Light Novel",\n    "original": "Original",',
+              '    "ln": "Light Novel",\n    "webtoon": "Webtoon",\n    "webnovel": "Web Novel",\n    "original": "Original",', 1)
+
+          for needle in [
+              'data-filter="webtoon">웹툰 원작',
+              'data-filter="webnovel">웹소설 원작',
+              '"webtoon": "웹툰 원작"',
+              '"webnovel": "웹소설 원작"',
+          ]:
+              assert needle in s, needle
+
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Commit changes
+        shell: bash
+        run: |
+          git diff --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git diff --cached --quiet && exit 1
+          git commit -m 'Add webtoon and web novel source categories'
+          git push
