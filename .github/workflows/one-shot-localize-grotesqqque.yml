@@ -1,0 +1,55 @@
+name: One-shot localize GROTESQQQUE poster
+
+on:
+  push:
+    paths:
+      - '.github/workflows/one-shot-localize-grotesqqque.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  localize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - run: pip install requests pillow
+      - name: Download official visual and convert to JPG
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from io import BytesIO
+          import requests
+          from PIL import Image
+
+          src = 'https://movie-gtq123.com/assets/img/top/visual_sp.avif'
+          headers = {
+              'User-Agent': 'Mozilla/5.0',
+              'Referer': 'https://movie-gtq123.com/'
+          }
+          r = requests.get(src, headers=headers, timeout=30)
+          r.raise_for_status()
+          im = Image.open(BytesIO(r.content)).convert('RGB')
+          out = Path('assets/posters/grotesqqque.jpg')
+          out.parent.mkdir(parents=True, exist_ok=True)
+          im.save(out, 'JPEG', quality=93, optimize=True, progressive=True)
+          print('saved', out, im.size, out.stat().st_size)
+
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          old = '"GROTESQQQUE-グロテスク-": "https://movie-gtq123.com/assets/img/top/visual_sp.avif"'
+          new = '"GROTESQQQUE-グロテスク-": "assets/posters/grotesqqque.jpg"'
+          if old not in s:
+              raise SystemExit('target URL not found in index.html')
+          p.write_text(s.replace(old, new, 1), encoding='utf-8')
+          PY
+      - name: Commit localized poster
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html assets/posters/grotesqqque.jpg
+          git commit -m "Localize GROTESQQQUE poster asset"
+          git push
