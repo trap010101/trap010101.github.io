@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   update-index:
-    if: github.event.head_commit.message == 'Prepare 2027 November and December sections'
+    if: github.event.head_commit.message == 'Retry 2027 November and December sections'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,38 +21,14 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-
           path = Path('index.html')
           text = path.read_text(encoding='utf-8')
-
           if '"month": "2027-11"' in text or '"month": "2027-12"' in text:
               raise SystemExit('2027-11 or 2027-12 already exists')
-
-          marker = '''  ]
-];
-
-const posterPositions = {'''
-          replacement = '''  ]
-  },
-  {
-    "season": "2027 가을",
-    "month": "2027-11",
-    "label": "2027년 11월",
-    "items": []
-  },
-  {
-    "season": "2027 겨울",
-    "month": "2027-12",
-    "label": "2027년 12월",
-    "items": []
-  }
-];
-
-const posterPositions = {'''
-
+          marker = '  ]\n];\n\nconst posterPositions = {'
+          replacement = '  ]\n  },\n  {\n    "season": "2027 가을",\n    "month": "2027-11",\n    "label": "2027년 11월",\n    "items": []\n  },\n  {\n    "season": "2027 겨울",\n    "month": "2027-12",\n    "label": "2027년 12월",\n    "items": []\n  }\n];\n\nconst posterPositions = {'
           if marker not in text:
               raise SystemExit('Could not locate end of data array')
-
           text = text.replace(marker, replacement, 1)
           path.write_text(text, encoding='utf-8')
           PY
