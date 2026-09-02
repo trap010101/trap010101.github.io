@@ -1,0 +1,67 @@
+name: Add 2027 November and December sections
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  update-index:
+    if: github.event.head_commit.message == 'Prepare 2027 November and December sections'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Add months
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          if '"month": "2027-11"' in text or '"month": "2027-12"' in text:
+              raise SystemExit('2027-11 or 2027-12 already exists')
+
+          marker = '''  ]
+];
+
+const posterPositions = {'''
+          replacement = '''  ]
+  },
+  {
+    "season": "2027 가을",
+    "month": "2027-11",
+    "label": "2027년 11월",
+    "items": []
+  },
+  {
+    "season": "2027 겨울",
+    "month": "2027-12",
+    "label": "2027년 12월",
+    "items": []
+  }
+];
+
+const posterPositions = {'''
+
+          if marker not in text:
+              raise SystemExit('Could not locate end of data array')
+
+          text = text.replace(marker, replacement, 1)
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit update and remove temporary workflow
+        run: |
+          rm .github/workflows/temp-add-2027-nov-dec.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/temp-add-2027-nov-dec.yml
+          git commit -m "Add November and December 2027 sections"
+          git push origin main
