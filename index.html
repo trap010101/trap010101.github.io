@@ -433,6 +433,16 @@
       background: rgba(178,140,255,.075);
     }
 
+    .badge.webtoon {
+      color: #d6f4ff;
+      background: rgba(88,196,255,.075);
+    }
+
+    .badge.webnovel {
+      color: #f6dfff;
+      background: rgba(219,126,255,.075);
+    }
+
     .badge.original {
       color: #cceee5;
       background: rgba(115,221,177,.07);
@@ -1410,6 +1420,8 @@
           <button class="chip" data-filter="series">시리즈</button>
           <button class="chip" data-filter="comic">코믹스 원작</button>
           <button class="chip" data-filter="ln">라이트 노벨 원작</button>
+          <button class="chip" data-filter="webtoon">웹툰 원작</button>
+          <button class="chip" data-filter="webnovel">웹소설 원작</button>
           <button class="chip" data-filter="original">오리지널</button>
           <button class="chip" data-filter="movie">극장판</button>
         </div>
@@ -1826,7 +1838,9 @@ const data = [
         "귀환자의 마법은 특별해야 합니다 2기",
         "10월",
         [
-          "series"
+          "series",
+          "webtoon",
+          "webnovel"
         ]
       ],
       [
@@ -2248,7 +2262,8 @@ const data = [
         "1월",
         [
           "new",
-          "ln"
+          "ln",
+          "webnovel"
         ]
       ],
       [
@@ -4238,6 +4253,8 @@ const uiLocales = {
     "series": "시리즈",
     "comic": "코믹스 원작",
     "ln": "라이트 노벨 원작",
+    "webtoon": "웹툰 원작",
+    "webnovel": "웹소설 원작",
     "original": "오리지널",
     "movie": "극장판",
     "pv": "PV",
@@ -4275,6 +4292,8 @@ const uiLocales = {
     "series": "シリーズ",
     "comic": "漫画原作",
     "ln": "ライトノベル原作",
+    "webtoon": "ウェブトゥーン原作",
+    "webnovel": "Web小説原作",
     "original": "オリジナル",
     "movie": "劇場版",
     "pv": "PV",
@@ -4312,6 +4331,8 @@ const uiLocales = {
     "series": "Series",
     "comic": "Manga",
     "ln": "Light Novel",
+    "webtoon": "Webtoon",
+    "webnovel": "Web Novel",
     "original": "Original",
     "movie": "Movie",
     "pv": "PV",
