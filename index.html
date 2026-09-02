@@ -1618,6 +1618,137 @@
     }
 
 
+
+    .menu-wrap {
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .menu-toggle {
+      cursor: pointer;
+      opacity: 1;
+      transition: background .18s ease, border-color .18s ease;
+    }
+
+    .menu-toggle:not(:disabled):hover,
+    .menu-toggle[aria-expanded="true"] {
+      transform: none;
+      color: #eef0ff;
+      background: rgba(142, 161, 255, .12);
+      border-color: rgba(142, 161, 255, .28);
+      opacity: 1;
+    }
+
+    .menu-toggle-line {
+      transition: transform .2s ease, opacity .16s ease;
+      transform-origin: center;
+    }
+
+    .menu-toggle[aria-expanded="true"] .menu-toggle-line:nth-child(1) {
+      transform: translateY(5.5px) rotate(45deg);
+    }
+
+    .menu-toggle[aria-expanded="true"] .menu-toggle-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle[aria-expanded="true"] .menu-toggle-line:nth-child(3) {
+      transform: translateY(-5.5px) rotate(-45deg);
+    }
+
+    .site-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      z-index: 80;
+      width: 178px;
+      padding: 6px;
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 14px;
+      background:
+        linear-gradient(145deg, rgba(142, 161, 255, .06), transparent 55%),
+        rgba(15, 18, 26, .97);
+      box-shadow: 0 18px 46px rgba(0, 0, 0, .42);
+      backdrop-filter: blur(20px);
+    }
+
+    .site-menu-item {
+      width: 100%;
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 11px;
+      border: 0;
+      border-radius: 10px;
+      color: #e6e9f2;
+      background: transparent;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      cursor: pointer;
+    }
+
+    .site-menu-item:hover,
+    .site-menu-item:focus-visible {
+      transform: none;
+      outline: none;
+      color: #fff;
+      background: rgba(142, 161, 255, .12);
+    }
+
+    .site-menu-icon {
+      width: 22px;
+      height: 22px;
+      display: inline-grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border: 1px solid rgba(142, 161, 255, .18);
+      border-radius: 7px;
+      color: #bdc7ff;
+      background: rgba(142, 161, 255, .07);
+      font-size: 12px;
+      letter-spacing: 0;
+    }
+
+    .share-status {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      z-index: 140;
+      transform: translateX(-50%);
+      width: max-content;
+      max-width: calc(100% - 28px);
+      padding: 10px 14px;
+      border: 1px solid rgba(142, 161, 255, .26);
+      border-radius: 999px;
+      color: #eef0ff;
+      background: rgba(17, 21, 30, .96);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, .4);
+      font-size: 12px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    @media (max-width: 520px) {
+      .site-menu {
+        top: calc(100% + 7px);
+        width: 164px;
+        border-radius: 13px;
+      }
+
+      .site-menu-item {
+        min-height: 40px;
+        padding: 8px 10px;
+      }
+
+      .share-status {
+        bottom: 16px;
+      }
+    }
+
+
   </style>
 </head>
 <body>
@@ -1632,15 +1763,28 @@
         <button class="language-btn" type="button" data-lang="ja">JP</button>
         <button class="language-btn" type="button" data-lang="en">EN</button>
       </div>
-      <button class="menu-toggle" id="menuToggle" type="button" aria-label="메뉴" disabled>
-        <span class="menu-toggle-line" aria-hidden="true"></span>
-        <span class="menu-toggle-line" aria-hidden="true"></span>
-        <span class="menu-toggle-line" aria-hidden="true"></span>
-      </button>
+      <div class="menu-wrap">
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="siteMenu">
+          <span class="menu-toggle-line" aria-hidden="true"></span>
+          <span class="menu-toggle-line" aria-hidden="true"></span>
+          <span class="menu-toggle-line" aria-hidden="true"></span>
+        </button>
+        <div class="site-menu hidden" id="siteMenu" role="menu">
+          <a class="site-menu-item" href="mailto:admin@newani.me" role="menuitem">
+            <span class="site-menu-icon" aria-hidden="true">@</span>
+            <span>CONTACT</span>
+          </a>
+          <button class="site-menu-item" id="shareButton" type="button" role="menuitem">
+            <span class="site-menu-icon" aria-hidden="true">↗</span>
+            <span>SHARE</span>
+          </button>
+        </div>
+      </div>
     </header>
+    <div class="share-status hidden" id="shareStatus" role="status" aria-live="polite"></div>
 
     <section class="hero">
-      <div class="hero-kicker">2026—2027 · RELEASE CALENDAR</div>
+      <div class="hero-kicker">newani.me</div>
       <h1 id="heroTitle">방영 예정 애니메이션</h1>
       <p id="heroSubtitle">방영일과 PV, 공식 사이트 및 스트리밍 정보를 한눈에 확인하세요.</p>
     </section>
@@ -4512,6 +4656,9 @@ const uiLocales = {
     "languageLabel": "언어 선택",
     "close": "닫기",
     "menu": "메뉴",
+    "shareCopied": "링크를 복사했습니다.",
+    "shareFailed": "공유 기능을 사용할 수 없습니다.",
+    "shareText": "NewAnime에서 방영 예정 애니메이션 일정을 확인하세요.",
     "hero": "방영일과 PV, 공식 사이트 및 스트리밍 정보를 한눈에 확인하세요.",
     "search": "작품명 검색...",
     "reset": "필터 초기화",
@@ -4556,6 +4703,9 @@ const uiLocales = {
     "languageLabel": "言語を選択",
     "close": "閉じる",
     "menu": "メニュー",
+    "shareCopied": "リンクをコピーしました。",
+    "shareFailed": "共有機能を利用できません。",
+    "shareText": "NewAnimeで放送予定アニメのスケジュールを確認できます。",
     "hero": "放送日、PV、公式サイト、配信情報をまとめて確認できます。",
     "search": "作品名を検索...",
     "reset": "フィルターをリセット",
@@ -4600,6 +4750,9 @@ const uiLocales = {
     "languageLabel": "Select language",
     "close": "Close",
     "menu": "Menu",
+    "shareCopied": "Link copied.",
+    "shareFailed": "Sharing is unavailable.",
+    "shareText": "Browse upcoming anime schedules on NewAnime.",
     "hero": "Browse release dates, PVs, official sites, and streaming information at a glance.",
     "search": "Search titles...",
     "reset": "Reset filters",
@@ -4817,6 +4970,89 @@ const monthNavEl = document.getElementById("monthNav");
 const undatedSection = document.querySelector(".undated");
 const toolbarEl = document.getElementById("toolbar");
 const mobileToolbarToggle = document.getElementById("mobileToolbarToggle");
+const siteMenuToggle = document.getElementById("menuToggle");
+const siteMenu = document.getElementById("siteMenu");
+const siteMenuWrap = document.querySelector(".menu-wrap");
+const shareButton = document.getElementById("shareButton");
+const shareStatus = document.getElementById("shareStatus");
+let shareStatusTimer;
+
+function closeSiteMenu({ restoreFocus = false } = {}) {
+  if (!siteMenu || !siteMenuToggle || siteMenu.classList.contains("hidden")) return;
+  siteMenu.classList.add("hidden");
+  siteMenuToggle.setAttribute("aria-expanded", "false");
+  if (restoreFocus) siteMenuToggle.focus();
+}
+
+function showShareStatus(message) {
+  if (!shareStatus) return;
+  clearTimeout(shareStatusTimer);
+  shareStatus.textContent = message;
+  shareStatus.classList.remove("hidden");
+  shareStatusTimer = setTimeout(() => {
+    shareStatus.classList.add("hidden");
+  }, 2200);
+}
+
+async function copyShareUrl(url) {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(url);
+    return;
+  }
+
+  const temporaryInput = document.createElement("textarea");
+  temporaryInput.value = url;
+  temporaryInput.setAttribute("readonly", "");
+  temporaryInput.style.position = "fixed";
+  temporaryInput.style.opacity = "0";
+  document.body.appendChild(temporaryInput);
+  temporaryInput.select();
+  const copied = document.execCommand("copy");
+  temporaryInput.remove();
+  if (!copied) throw new Error("Copy failed");
+}
+
+siteMenuToggle?.addEventListener("click", () => {
+  const willOpen = siteMenu?.classList.contains("hidden");
+  if (!siteMenu || !willOpen) {
+    closeSiteMenu();
+    return;
+  }
+
+  siteMenu.classList.remove("hidden");
+  siteMenuToggle.setAttribute("aria-expanded", "true");
+  requestAnimationFrame(() => siteMenu.querySelector("[role='menuitem']")?.focus());
+});
+
+shareButton?.addEventListener("click", async () => {
+  const shareData = {
+    title: t("tabTitle"),
+    text: t("shareText"),
+    url: window.location.href
+  };
+
+  closeSiteMenu();
+  try {
+    if (typeof navigator.share === "function") {
+      await navigator.share(shareData);
+    } else {
+      await copyShareUrl(shareData.url);
+      showShareStatus(t("shareCopied"));
+    }
+  } catch (error) {
+    if (error?.name !== "AbortError") showShareStatus(t("shareFailed"));
+  }
+});
+
+document.addEventListener("click", event => {
+  if (siteMenuWrap && !siteMenuWrap.contains(event.target)) closeSiteMenu();
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && siteMenu && !siteMenu.classList.contains("hidden")) {
+    closeSiteMenu({ restoreFocus: true });
+  }
+});
 
 document.getElementById("categoryToggle")?.addEventListener("click", () => {
   categoryCollapsed = !categoryCollapsed;
