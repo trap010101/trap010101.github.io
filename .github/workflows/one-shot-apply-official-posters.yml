@@ -1,0 +1,84 @@
+name: One-shot apply official poster assets
+
+on:
+  push:
+    paths:
+      - '.github/workflows/one-shot-apply-official-posters.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Apply official poster refresh
+        run: |
+          python - <<'PY'
+          import json
+          p='index.html'
+          text=open(p,encoding='utf-8').read()
+          posters={
+            "BanG Dream! Ave Mujica prima aurora": "https://avemujica-movie.bang-dream.com/wordpress/wp-content/themes/avemujica-movie/assets/webp/common/index/img_kv_01.webp",
+            "GROTESQQQUE-グロテスク-": "https://movie-gtq123.com/assets/img/top/visual_sp.avif",
+            "ghost／夜の果て": "https://www.ghost-yoruhate.com/images/top/img_main_sp.jpg",
+            "〈모노가타리〉 시리즈 Off & Monster Season — 業物語 かれんオウガ": "https://www.monogatari-series.com/oms/assets/img/top/kv/kv1.jpg",
+            "すだちの魔王城 (스다치의 마왕성)": "https://www.sudachi-anime.com/wordpress/wp-content/themes/sudachi-anime_v0/assets/images/img_kv.webp",
+            "ダークサモナーとデキている (다크 서머너와 사귀고 있다)": "https://darksummoner.deregula.com/wp-content/uploads/kv01_main.webp",
+            "俺と悠兄！ (나와 유우 형!)": "https://oretoyunii.com/assets/img/top/kv02.jpg",
+            "傷口と包帯 (상처와 붕대)": "https://houtaidoumei.com/wp-content/themes/houtaidoumei/assets/img/visual/vis1_01.webp",
+            "楽園追放 心のレゾナンス": "https://rakuen-tsuiho-r.com/assets/img/main_kv03_sp.jpg",
+            "欠けた月のメルセデス (이지러진 달의 메르세데스)": "https://mercedes-anime.com/assets/img/top/kv.jpg",
+            "転生ゴブリンだけど質問ある？ (전생 고블린인데 질문 있어?)": "https://tengobu-anime.com/core_sys/images/main/home/kv01.webp",
+            "魔法使いの夜": "https://mahoyo-movie.com/assets/img/kv/ph_4.webp",
+            "게임세계전생〈던활〉": "https://dankatsu.com/assets/images/top/kv.webp",
+            "데몬즈 크레스트": "https://demonscrest-anime.com/core_sys/images/main/home/kv01_sp.webp",
+            "러브라이브! 하스노소라 여학원 스쿨 아이돌 클럽 TV 시리즈": "https://www.lovelive-anime.jp/hasunosora/shared/img/top/main_kv.webp?v251207",
+            "마녀와 용병": "https://www.anime-witch-mercenary-official.com/assets/images/pages/top/hero/kv_sp.webp",
+            "망각 배터리 2기": "https://boukyaku-battery.com/core_sys/images/main/home/kv01.webp",
+            "비블리아 고서당 사건수첩": "https://biblia-anime.com/assets/images/sp/teaser/img_hero_visual.webp",
+            "스킵과 로퍼 2nd season": "https://skip-and-loafer.com/assets/top/vis-1.webp",
+            "장송의 프리렌 3기 — 황금향편": "https://frieren-anime.jp/wp-content/themes/frieren_2023/assets/img/top/top/11_visual.jpg",
+            "좀비가 넘쳐나는 세상에서 나만 습격당하지 않는다": "https://zom-ore.com/wp-content/themes/zom-ore/assets/img/fv_sp.webp?ver2",
+            "카리스마": "https://anime.charisma-house.com/wp-content/uploads/2026/03/visual.png",
+            "텐카이치 일본 최강 무예자 결정전": "https://tenkaichi-anime.com/wp/wp-content/themes/tenkaichi-theme/_assets/images/fv/vis_000_sp.webp",
+            "환상수호전": "https://www.suikoden-anime.com/assets/img/top/fv_visual4_sp.jpg",
+            "히스토리에": "https://www.historie.info/assets/special-visual/2.webp"
+          }
+          lines=['// BEGIN OFFICIAL POSTER REFRESH 2026-09-02','Object.assign(posterLinks, {']
+          items=list(posters.items())
+          for i,(title,url) in enumerate(items):
+              comma=',' if i < len(items)-1 else ''
+              lines.append('  '+json.dumps(title,ensure_ascii=False)+': '+json.dumps(url,ensure_ascii=False)+comma)
+          lines += ['});','// END OFFICIAL POSTER REFRESH 2026-09-02','']
+          block='\n'.join(lines)
+          start='// BEGIN OFFICIAL POSTER REFRESH 2026-09-02'
+          end='// END OFFICIAL POSTER REFRESH 2026-09-02'
+          if start in text:
+              a=text.index(start); b=text.index(end,a)+len(end)
+              text=text[:a]+block.rstrip()+text[b:]
+          else:
+              needle='const resourceLinks = {'
+              if needle not in text: raise SystemExit('resourceLinks marker missing')
+              text=text.replace(needle,block+'\n'+needle,1)
+          position_changes={
+            '  "BanG Dream! Ave Mujica prima aurora": "left center",':'  "BanG Dream! Ave Mujica prima aurora": "center center",',
+            '  "ダークサモナーとデキている (다크 서머너와 사귀고 있다)": "right center",':'  "ダークサモナーとデキている (다크 서머너와 사귀고 있다)": "center center",',
+            '  "환상수호전": "85% center",':'  "환상수호전": "center center",',
+            '  "망각 배터리 2기": "15% center"':'  "망각 배터리 2기": "center center"'
+          }
+          for old,new in position_changes.items():
+              text=text.replace(old,new,1)
+          open(p,'w',encoding='utf-8').write(text)
+          PY
+      - name: Commit changes
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add index.html
+          git diff --cached --check
+          git commit -m "Refresh posters from official site assets"
+          git push origin main
