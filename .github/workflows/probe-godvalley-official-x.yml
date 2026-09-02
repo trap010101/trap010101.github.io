@@ -1,0 +1,87 @@
+name: Probe God Valley official X media
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/probe-godvalley-official-x.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve official X post media
+        run: |
+          set -euxo pipefail
+          python -m pip install --quiet pillow requests
+          python - <<'PY'
+          import json, re, requests
+          from io import BytesIO
+          from PIL import Image
+
+          status_id = '2091460365003739602'
+          candidates = [
+              f'https://api.fxtwitter.com/status/{status_id}',
+              f'https://api.vxtwitter.com/status/{status_id}',
+          ]
+          session = requests.Session()
+          session.headers['User-Agent'] = 'Mozilla/5.0'
+          found = []
+          for api in candidates:
+              try:
+                  r = session.get(api, timeout=20)
+                  print('API', api, r.status_code, r.headers.get('content-type'))
+                  if not r.ok:
+                      continue
+                  data = r.json()
+                  # FxTwitter/VxTwitter schemas differ; recursively collect pbs image URLs.
+                  blob = json.dumps(data, ensure_ascii=False)
+                  urls = re.findall(r'https://pbs\.twimg\.com/media/[^"\\ ]+', blob)
+                  for u in urls:
+                      u = u.replace('\\u0026', '&').replace('\\/', '/')
+                      if u not in found:
+                          found.append(u)
+              except Exception as e:
+                  print('API ERROR', api, repr(e))
+
+          # Direct X HTML fallback.
+          try:
+              r = session.get(f'https://x.com/OP_FILMGV/status/{status_id}', timeout=20)
+              print('X HTML', r.status_code, len(r.text))
+              for u in re.findall(r'https://pbs\.twimg\.com/media/[^"\\ <]+', r.text):
+                  u = u.replace('&amp;', '&')
+                  if u not in found:
+                      found.append(u)
+          except Exception as e:
+              print('X HTML ERROR', repr(e))
+
+          print('FOUND', len(found))
+          for i, u in enumerate(found):
+              print(f'MEDIA[{i}]', u)
+              try:
+                  rr = session.get(u, timeout=20)
+                  print('HTTP', rr.status_code, rr.headers.get('content-type'), len(rr.content))
+                  if rr.ok:
+                      im = Image.open(BytesIO(rr.content))
+                      print('DIMENSIONS', im.size, 'FORMAT', im.format)
+              except Exception as e:
+                  print('MEDIA ERROR', repr(e))
+          PY
+
+      - name: Remove probe workflow
+        run: |
+          set -euxo pipefail
+          rm .github/workflows/probe-godvalley-official-x.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/workflows/probe-godvalley-official-x.yml
+          git commit -m 'chore: remove God Valley X media probe'
+          git push origin HEAD:main
