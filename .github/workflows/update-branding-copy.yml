@@ -33,14 +33,8 @@ jobs:
               raise SystemExit('Header schedule label not found')
           text = text.replace(old_header, new_header, 1)
 
-          old_footer = '''<footer>
-  2026–2027 Anime Schedule<br>
-  문의: <a href="mailto:admin@newani.me">admin@newani.me</a>
-</footer>'''
-          new_footer = '''<footer>
-  <div>방영 예정 애니메이션과 극장판의 일정, PV, 공식 사이트, 스트리밍 정보를 한눈에 정리합니다.</div>
-  <div>© 2026 NewAnime</div>
-</footer>'''
+          old_footer = '<footer>\n  2026–2027 Anime Schedule<br>\n  문의: <a href="mailto:admin@newani.me">admin@newani.me</a>\n</footer>'
+          new_footer = '<footer>\n  <div>방영 예정 애니메이션과 극장판의 일정, PV, 공식 사이트, 스트리밍 정보를 한눈에 정리합니다.</div>\n  <div>© 2026 NewAnime</div>\n</footer>'
           if old_footer not in text:
               raise SystemExit('Existing footer copy not found')
           text = text.replace(old_footer, new_footer, 1)
