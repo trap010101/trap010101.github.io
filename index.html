@@ -339,10 +339,6 @@
       letter-spacing: -.03em;
     }
 
-    .month-head small {
-      color: var(--muted);
-      font-weight: 700;
-    }
 
     .month-count {
       color: #cbd1df;
@@ -1875,7 +1871,7 @@
 <script>
 const data = [
   {
-    "season": "2026 가을 진입",
+    "season": "2026 가을",
     "month": "2026-09",
     "label": "2026년 9월",
     "items": [
@@ -2424,7 +2420,7 @@ const data = [
     ]
   },
   {
-    "season": "2026 겨울 진입",
+    "season": "2026 겨울",
     "month": "2026-12",
     "label": "2026년 12월",
     "items": [
@@ -2440,7 +2436,7 @@ const data = [
       ],
       [
         "〈모노가타리〉 시리즈 Off & Monster Season — 業物語 かれんオウガ",
-        "연말",
+        "12월",
         [
           "series",
           "ln"
@@ -4792,9 +4788,8 @@ const uiLocales = {
 };
 
 const seasonLocales = {
-  "2026 가을 진입": {ko:"2026 가을 진입", ja:"2026年 秋シーズン前", en:"Entering Fall 2026"},
   "2026 가을": {ko:"2026 가을", ja:"2026年 秋", en:"Fall 2026"},
-  "2026 겨울 진입": {ko:"2026 겨울 진입", ja:"2026年 冬シーズン前", en:"Entering Winter 2026"},
+  "2026 겨울": {ko:"2026 겨울", ja:"2026年 冬", en:"Winter 2026"},
   "2027 겨울": {ko:"2027 겨울", ja:"2027年 冬", en:"Winter 2027"},
   "2027 봄": {ko:"2027 봄", ja:"2027年 春", en:"Spring 2027"},
   "2027 여름": {ko:"2027 여름", ja:"2027年 夏", en:"Summer 2027"},
@@ -4869,7 +4864,6 @@ function localDateLabel(date) {
     if (activeLang === "ja") return `${m}月`;
     return new Intl.DateTimeFormat("en-US", { month: "short" }).format(new Date(2027, m - 1, 1));
   }
-  if (date === "연말") return activeLang === "ko" ? "연말" : activeLang === "ja" ? "年末" : "Year-end";
   if (date === "가을") return activeLang === "ko" ? "가을" : activeLang === "ja" ? "秋" : "Fall";
   return date;
 }
@@ -5392,7 +5386,6 @@ function render() {
         <div class="month-head">
           <div>
             <h3>${localMonthName(Number(month.month.slice(0,4)), Number(month.month.slice(5,7)))}</h3>
-            <small>${localSeason(month.season)}</small>
           </div>
           <span class="month-count">${activeLang === "ja" ? items.length + "作品" : activeLang === "en" ? items.length + " titles" : items.length + "작품"}</span>
         </div>
