@@ -4416,15 +4416,13 @@ function safeStorageSet(key, value) {
 const supportedLanguages = ["ko", "ja", "en"];
 
 function detectPreferredLanguage() {
-  const preferences = Array.isArray(navigator.languages) && navigator.languages.length
-    ? navigator.languages
-    : [navigator.language];
+  const language = Array.isArray(navigator.languages) && navigator.languages.length
+    ? navigator.languages[0]
+    : navigator.language;
+  const normalized = String(language || "").toLowerCase();
 
-  for (const language of preferences) {
-    const normalized = String(language || "").toLowerCase();
-    if (normalized === "ko" || normalized.startsWith("ko-")) return "ko";
-    if (normalized === "ja" || normalized.startsWith("ja-")) return "ja";
-  }
+  if (normalized === "ko" || normalized.startsWith("ko-")) return "ko";
+  if (normalized === "ja" || normalized.startsWith("ja-")) return "ja";
   return "en";
 }
 
