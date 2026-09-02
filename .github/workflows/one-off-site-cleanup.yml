@@ -1,0 +1,110 @@
+name: One-off site cleanup
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-off-site-cleanup.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch index.html
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+          original = text
+
+          def sub_once(pattern, replacement='', expected=1, flags=0, label='pattern'):
+              global text
+              text, count = re.subn(pattern, replacement, text, flags=flags)
+              if count != expected:
+                  raise SystemExit(f'{label}: expected {expected} replacements, got {count}')
+
+          # Remove the visible site update-date box entirely.
+          sub_once(
+              r'\n\s*<section class="source-box">\s*<strong id="updatedLabel">업데이트</strong>\s*<span>2026\.09\.01</span>\s*</section>\s*',
+              '\n',
+              label='update-date box',
+          )
+
+          duel = 'Duel Masters LOST ～断罪の少年～ (듀얼 마스터즈 LOST ~단죄의 소년~)'
+          duel_re = re.escape(duel)
+
+          # Remove both schedule entries (2026-10 and 2027-10).
+          sub_once(
+              rf'\n\s*\[\s*"{duel_re}"\s*,\s*"[^"]+"\s*,\s*\[(?:\s*"[^"]+"\s*,?)+\s*\]\s*\],?',
+              '',
+              expected=2,
+              label='Duel Masters schedule entries',
+          )
+
+          # Remove the poster mapping.
+          sub_once(
+              rf'\n\s*"{duel_re}"\s*:\s*"[^"]+"\s*,?',
+              '',
+              label='Duel Masters poster mapping',
+          )
+
+          # Remove the resourceLinks entry.
+          sub_once(
+              rf'\n\s*"{duel_re}"\s*:\s*\{{\s*"pv"\s*:\s*null\s*,\s*"official"\s*:\s*"https://www\.shopro\.co\.jp/anime/duelmasters_lost/"\s*,\s*"streaming"\s*:\s*null\s*\}}\s*,?',
+              '',
+              label='Duel Masters resource mapping',
+          )
+
+          # Remove the audited OTT/official-stream entry.
+          sub_once(
+              rf'\n\s*"{duel_re}"\s*:\s*\{{\s*"officialstream"\s*:\s*"https://www\.shopro\.co\.jp/anime/duelmasters_lost/"\s*\}}\s*,?',
+              '',
+              label='Duel Masters OTT mapping',
+          )
+
+          # Remove the localization entry.
+          sub_once(
+              rf'\n\s*"{duel_re}"\s*:\s*\{{\s*"ko"\s*:\s*"듀얼 마스터즈 LOST ~단죄의 소년~"\s*,\s*"ja"\s*:\s*"Duel Masters LOST ～断罪の少年～"\s*,\s*"en"\s*:\s*"Duel Masters LOST: The Condemned Boy"\s*\}}\s*,?',
+              '',
+              label='Duel Masters locale mapping',
+          )
+
+          if duel in text:
+              raise SystemExit('Duel Masters title still remains after cleanup')
+
+          # Prefer the existing official Korean publication title when available.
+          old_ko = '"ko": "마계학교! 이루마군 if Episode of 마피아"'
+          new_ko = '"ko": "악마에 입문했습니다! 이루마 군 : if Episode of 마피아"'
+          if text.count(old_ko) != 1:
+              raise SystemExit(f'Iruma Korean title: expected 1 old label, got {text.count(old_ko)}')
+          text = text.replace(old_ko, new_ko, 1)
+
+          if text == original:
+              raise SystemExit('No changes were made')
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Validate and commit
+        shell: bash
+        run: |
+          git diff --check
+          test "$(grep -c 'Duel Masters LOST' index.html || true)" -eq 0
+          test "$(grep -c '2026.09.01' index.html || true)" -eq 0
+          grep -Fq '악마에 입문했습니다! 이루마 군 : if Episode of 마피아' index.html
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Fix Korean titles and remove streaming-only listing'
+          git push
