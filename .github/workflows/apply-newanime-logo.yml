@@ -1,0 +1,99 @@
+name: Apply NewAnime logo
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/apply-newanime-logo.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Place logo in header
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          old = '<div class="brand-slot" aria-hidden="true"></div>'
+          new = '''<div class="brand-slot">
+            <img class="brand-logo" src="assets/newanime-logo.webp" alt="NewAnime" />
+          </div>'''
+          if old not in text:
+              raise SystemExit('brand slot not found')
+          text = text.replace(old, new, 1)
+
+          css = r'''
+
+    .brand-slot {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .brand-logo {
+      display: block;
+      width: min(430px, 48vw);
+      height: auto;
+      max-height: 126px;
+      object-fit: contain;
+      object-position: left center;
+      mix-blend-mode: screen;
+    }
+
+    @media (max-width: 520px) {
+      .hero-topline {
+        gap: 10px;
+      }
+
+      .brand-logo {
+        width: min(200px, 46vw);
+        max-height: 78px;
+      }
+
+      .language-row {
+        width: auto;
+        flex: 0 0 auto;
+      }
+
+      .language-btn {
+        flex: 0 0 auto;
+      }
+    }
+'''
+          if '.brand-logo {' not in text:
+              marker = '  </style>'
+              if marker not in text:
+                  raise SystemExit('style closing tag not found')
+              text = text.replace(marker, css + '\n' + marker, 1)
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+          grep -Fq 'assets/newanime-logo.webp' index.html
+          grep -Fq 'class="brand-logo"' index.html
+
+      - name: Commit changes and remove workflow
+        shell: bash
+        run: |
+          rm .github/workflows/apply-newanime-logo.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html .github/workflows/apply-newanime-logo.yml
+          git commit -m 'Place NewAnime logo in header'
+          git push origin HEAD:main
