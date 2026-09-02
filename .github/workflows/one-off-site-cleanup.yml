@@ -101,7 +101,7 @@ jobs:
         run: |
           git diff --check
           test "$(grep -c 'Duel Masters LOST' index.html || true)" -eq 0
-          test "$(grep -c '2026.09.01' index.html || true)" -eq 0
+          test "$(grep -c '<strong id="updatedLabel">업데이트</strong>' index.html || true)" -eq 0
           grep -Fq '악마에 입문했습니다! 이루마 군 : if Episode of 마피아' index.html
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
