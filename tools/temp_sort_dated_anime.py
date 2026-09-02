@@ -55,5 +55,6 @@ elif '}).sort(compareScheduleItems);' not in text:
 path.write_text(text, encoding='utf-8')
 
 scripts = re.findall(r'<script(?:\s[^>]*)?>(.*?)</script>', text, flags=re.S)
-inline = '\n'.join(s for s in scripts if s.strip() and 'application/ld+json' not in s[:100])
-Path('tools/temp_inline_script.js').write_text(inline, encoding='utf-8')
+if not scripts:
+    raise SystemExit('No script blocks found')
+Path('tools/temp_inline_script.js').write_text(scripts[-1], encoding='utf-8')
