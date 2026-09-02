@@ -23,63 +23,35 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           import re
-
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
-
-          s = s.replace(
-              '<button class="chip" data-filter="ln">라이트 노벨 원작</button>\n          <button class="chip" data-filter="original">오리지널</button>',
-              '<button class="chip" data-filter="ln">라이트 노벨 원작</button>\n          <button class="chip" data-filter="webtoon">웹툰 원작</button>\n          <button class="chip" data-filter="webnovel">웹소설 원작</button>\n          <button class="chip" data-filter="original">오리지널</button>'
-          )
-
-          if '.badge.webtoon {' not in s:
-              s = s.replace(
-                  '''    .badge.ln {
-      color: #e6d6ff;
-      background: rgba(178,140,255,.075);
-    }
-''',
-                  '''    .badge.ln {
-      color: #e6d6ff;
-      background: rgba(178,140,255,.075);
-    }
-
-    .badge.webtoon {
-      color: #d6f4ff;
-      background: rgba(88,196,255,.075);
-    }
-
-    .badge.webnovel {
-      color: #f6dfff;
-      background: rgba(219,126,255,.075);
-    }
-''', 1)
-
-          s = re.sub(
-              r'("귀환자의 마법은 특별해야 합니다 2기",\s*"10월",\s*\[\s*"series")(\s*\])',
-              r'\1,\n          "webtoon",\n          "webnovel"\2', s, count=1)
-          s = re.sub(
-              r'("좀비가 넘쳐나는 세상에서 나만 습격당하지 않는다",\s*"1월",\s*\[\s*"new",\s*"ln")(\s*\])',
-              r'\1,\n          "webnovel"\2', s, count=1)
-
-          s = s.replace(
-              '    "ln": "라이트 노벨 원작",\n    "original": "오리지널",',
-              '    "ln": "라이트 노벨 원작",\n    "webtoon": "웹툰 원작",\n    "webnovel": "웹소설 원작",\n    "original": "오리지널",', 1)
-          s = s.replace(
-              '    "ln": "ライトノベル原作",\n    "original": "オリジナル",',
-              '    "ln": "ライトノベル原作",\n    "webtoon": "ウェブトゥーン原作",\n    "webnovel": "Web小説原作",\n    "original": "オリジナル",', 1)
-          s = s.replace(
-              '    "ln": "Light Novel",\n    "original": "Original",',
-              '    "ln": "Light Novel",\n    "webtoon": "Webtoon",\n    "webnovel": "Web Novel",\n    "original": "Original",', 1)
-
-          for needle in [
-              'data-filter="webtoon">웹툰 원작',
-              'data-filter="webnovel">웹소설 원작',
-              '"webtoon": "웹툰 원작"',
-              '"webnovel": "웹소설 원작"',
-          ]:
-              assert needle in s, needle
-
+          old_filters = '<button class="chip" data-filter="ln">라이트 노벨 원작</button>\n          <button class="chip" data-filter="original">오리지널</button>'
+          new_filters = '<button class="chip" data-filter="ln">라이트 노벨 원작</button>\n          <button class="chip" data-filter="webtoon">웹툰 원작</button>\n          <button class="chip" data-filter="webnovel">웹소설 원작</button>\n          <button class="chip" data-filter="original">오리지널</button>'
+          if old_filters not in s:
+              raise SystemExit('filter insertion point not found')
+          s = s.replace(old_filters, new_filters, 1)
+          css_old = '    .badge.ln {\n      color: #e6d6ff;\n      background: rgba(178,140,255,.075);\n    }\n'
+          css_new = css_old + '\n    .badge.webtoon {\n      color: #d6f4ff;\n      background: rgba(88,196,255,.075);\n    }\n\n    .badge.webnovel {\n      color: #f6dfff;\n      background: rgba(219,126,255,.075);\n    }\n'
+          if css_old not in s:
+              raise SystemExit('badge insertion point not found')
+          s = s.replace(css_old, css_new, 1)
+          s, n1 = re.subn(r'("귀환자의 마법은 특별해야 합니다 2기",\s*"10월",\s*\[\s*"series")(\s*\])', r'\1,\n          "webtoon",\n          "webnovel"\2', s, count=1)
+          s, n2 = re.subn(r'("좀비가 넘쳐나는 세상에서 나만 습격당하지 않는다",\s*"1월",\s*\[\s*"new",\s*"ln")(\s*\])', r'\1,\n          "webnovel"\2', s, count=1)
+          if n1 != 1 or n2 != 1:
+              raise SystemExit(f'source tag replacements failed: returner={n1}, zombie={n2}')
+          locale_pairs = [
+              ('    "ln": "라이트 노벨 원작",\n    "original": "오리지널",', '    "ln": "라이트 노벨 원작",\n    "webtoon": "웹툰 원작",\n    "webnovel": "웹소설 원작",\n    "original": "오리지널",'),
+              ('    "ln": "ライトノベル原作",\n    "original": "オリジナル",', '    "ln": "ライトノベル原作",\n    "webtoon": "ウェブトゥーン原作",\n    "webnovel": "Web小説原作",\n    "original": "オリジナル",'),
+              ('    "ln": "Light Novel",\n    "original": "Original",', '    "ln": "Light Novel",\n    "webtoon": "Webtoon",\n    "webnovel": "Web Novel",\n    "original": "Original",'),
+          ]
+          for old, new in locale_pairs:
+              if old not in s:
+                  raise SystemExit(f'locale insertion point not found: {old}')
+              s = s.replace(old, new, 1)
+          required = ['data-filter="webtoon">웹툰 원작', 'data-filter="webnovel">웹소설 원작', '"webtoon": "웹툰 원작"', '"webnovel": "웹소설 원작"']
+          for needle in required:
+              if needle not in s:
+                  raise SystemExit(f'missing after patch: {needle}')
           p.write_text(s, encoding='utf-8')
           PY
 
