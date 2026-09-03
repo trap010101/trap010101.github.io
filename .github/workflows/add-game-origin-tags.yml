@@ -28,40 +28,30 @@ jobs:
           path = Path('index.html')
           text = path.read_text(encoding='utf-8')
 
-          def replace_once(old, new, label):
-              global text
-              count = text.count(old)
-              if count != 1:
-                  raise SystemExit(f'{label}: expected 1 match, found {count}')
-              text = text.replace(old, new, 1)
+          def require_one(n, label):
+              if n != 1:
+                  raise SystemExit(f'{label}: expected 1 match, found {n}')
 
-          replace_once(
-          '''    .badge.webnovel {
-              color: #f6dfff;
-              background: rgba(219,126,255,.075);
-            }
+          if '.badge.game {' not in text:
+              pattern = re.compile(r'(\n\s*\.badge\.webnovel\s*\{.*?\n\s*\}\n)(\n\s*\.badge\.original\s*\{)', re.S)
+              replacement = (
+                  r'\1\n'
+                  '    .badge.game {\n'
+                  '      color: #d8e4ff;\n'
+                  '      background: rgba(104,143,255,.075);\n'
+                  '    }\n'
+                  r'\2'
+              )
+              text, n = pattern.subn(replacement, text, count=1)
+              require_one(n, 'game badge style')
 
-            .badge.original {''',
-          '''    .badge.webnovel {
-              color: #f6dfff;
-              background: rgba(219,126,255,.075);
-            }
-
-            .badge.game {
-              color: #d8e4ff;
-              background: rgba(104,143,255,.075);
-            }
-
-            .badge.original {''',
-          'game badge style')
-
-          replace_once(
-          '''          <button class="chip" data-filter="webnovel">웹소설 원작</button>
-                  <button class="chip" data-filter="original">오리지널</button>''',
-          '''          <button class="chip" data-filter="webnovel">웹소설 원작</button>
-                  <button class="chip" data-filter="game">게임 원작</button>
-                  <button class="chip" data-filter="original">오리지널</button>''',
-          'game filter button')
+          if 'data-filter="game"' not in text:
+              pattern = re.compile(r'(?m)^(?P<i>[ \t]*)<button class="chip" data-filter="webnovel">웹소설 원작</button>[ \t]*$')
+              def add_filter(m):
+                  i = m.group('i')
+                  return m.group(0) + f'\n{i}<button class="chip" data-filter="game">게임 원작</button>'
+              text, n = pattern.subn(add_filter, text, count=1)
+              require_one(n, 'game filter button')
 
           targets = [
               'SEKIRO: NO DEFEAT',
@@ -74,39 +64,33 @@ jobs:
           ]
 
           def add_game_tag(source, title):
-              title_pos = source.find(f'"{title}"')
-              if title_pos < 0:
-                  raise SystemExit(f'title not found: {title}')
-
-              # Locate the tag array immediately following the title (and optional date string).
               pattern = re.compile(
                   re.escape(f'"{title}"') +
-                  r'\s*,\s*(?:"[^"]*"\s*,\s*)?\[\s*' +
-                  r'(?P<body>(?:"[^"]+"\s*,?\s*)+)' +
-                  r'(?P<close>\])'
+                  r'\s*,\s*(?:"[^"]*"\s*,\s*)?' +
+                  r'(?P<open>\[\s*)' +
+                  r'(?P<body>"[^"]+"(?:\s*,\s*"[^"]+")*)' +
+                  r'\s*(?P<close>\])'
               )
-              match = pattern.search(source, title_pos)
+              match = pattern.search(source)
               if not match:
                   raise SystemExit(f'tag array not found: {title}')
 
-              body = match.group('body')
-              if '"game"' in body:
+              tags = re.findall(r'"([^"]+)"', match.group('body'))
+              if 'game' in tags:
                   return source
 
-              indent_match = re.search(r'\n([ \t]*)"', body)
-              if not indent_match:
-                  raise SystemExit(f'indent not found: {title}')
-              indent = indent_match.group(1)
-              trailing = re.search(r'(\s*)$', body).group(1)
-              core = body[:-len(trailing)] if trailing else body
-
-              if '"movie"' in core:
-                  movie_line = f'"movie"'
-                  core = core.replace(movie_line, f'"game",\n{indent}"movie"', 1)
+              if 'movie' in tags:
+                  tags.insert(tags.index('movie'), 'game')
               else:
-                  core = core.rstrip() + f',\n{indent}"game"'
+                  tags.append('game')
 
-              new_body = core + trailing
+              open_text = match.group('open')
+              if '\n' in open_text:
+                  indent = open_text.rsplit('\n', 1)[1]
+                  separator = ',\n' + indent
+              else:
+                  separator = ', '
+              new_body = separator.join(f'"{tag}"' for tag in tags)
               return source[:match.start('body')] + new_body + source[match.end('body'):]
 
           for title in targets:
@@ -115,37 +99,50 @@ jobs:
               if text == before:
                   raise SystemExit(f'game tag was not added: {title}')
 
-          replace_once(
-          '''    "webnovel": "웹소설 원작",
-              "original": "오리지널",''',
-          '''    "webnovel": "웹소설 원작",
-              "game": "게임 원작",
-              "original": "오리지널",''',
-          'ko game locale')
+          locale_pairs = [
+              ('웹소설 원작', '게임 원작', 'ko game locale'),
+              ('Web小説原作', 'ゲーム原作', 'ja game locale'),
+              ('Web Novel', 'Game', 'en game locale'),
+          ]
+          for webnovel_value, game_value, label in locale_pairs:
+              if f'"game": "{game_value}"' in text:
+                  continue
+              pattern = re.compile(rf'(?m)^(?P<i>[ \t]*)"webnovel": "{re.escape(webnovel_value)}",[ \t]*$')
+              def add_locale(m, game_value=game_value):
+                  i = m.group('i')
+                  return m.group(0) + f'\n{i}"game": "{game_value}",'
+              text, n = pattern.subn(add_locale, text, count=1)
+              require_one(n, label)
 
-          replace_once(
-          '''    "webnovel": "Web小説原作",
-              "original": "オリジナル",''',
-          '''    "webnovel": "Web小説原作",
-              "game": "ゲーム原作",
-              "original": "オリジナル",''',
-          'ja game locale')
+          if 'game: "game"' not in text:
+              pattern = re.compile(r'(?m)^(?P<i>[ \t]*)ln: "ln",[ \t]*$')
+              def add_filter_name(m):
+                  i = m.group('i')
+                  return m.group(0) + f'\n{i}game: "game",'
+              text, n = pattern.subn(add_filter_name, text, count=1)
+              require_one(n, 'filterNames game entry')
 
-          replace_once(
-          '''    "webnovel": "Web Novel",
-              "original": "Original",''',
-          '''    "webnovel": "Web Novel",
-              "game": "Game",
-              "original": "Original",''',
-          'en game locale')
+          checks = [
+              ('data-filter="game"', 'game filter missing'),
+              ('.badge.game {', 'game badge style missing'),
+              ('"game": "게임 원작"', 'ko game locale missing'),
+              ('"game": "ゲーム原作"', 'ja game locale missing'),
+              ('"game": "Game"', 'en game locale missing'),
+              ('game: "game"', 'filterNames game entry missing'),
+          ]
+          for needle, message in checks:
+              if needle not in text:
+                  raise SystemExit(message)
 
-          replace_once(
-          '''  ln: "ln",
-            original: "original",''',
-          '''  ln: "ln",
-            game: "game",
-            original: "original",''',
-          'filterNames game entry')
+          for title in targets:
+              pattern = re.compile(
+                  re.escape(f'"{title}"') +
+                  r'\s*,\s*(?:"[^"]*"\s*,\s*)?\[(?P<body>.*?)\]',
+                  re.S,
+              )
+              match = pattern.search(text)
+              if not match or '"game"' not in match.group('body'):
+                  raise SystemExit(f'validation failed for: {title}')
 
           path.write_text(text, encoding='utf-8')
           PY
