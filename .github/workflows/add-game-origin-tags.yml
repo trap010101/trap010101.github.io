@@ -1,0 +1,161 @@
+name: Add game-origin tags
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/add-game-origin-tags.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Update game-origin tags and filter
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          def replace_once(old, new, label):
+              global text
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'{label}: expected 1 match, found {count}')
+              text = text.replace(old, new, 1)
+
+          replace_once(
+          '''    .badge.webnovel {
+              color: #f6dfff;
+              background: rgba(219,126,255,.075);
+            }
+
+            .badge.original {''',
+          '''    .badge.webnovel {
+              color: #f6dfff;
+              background: rgba(219,126,255,.075);
+            }
+
+            .badge.game {
+              color: #d8e4ff;
+              background: rgba(104,143,255,.075);
+            }
+
+            .badge.original {''',
+          'game badge style')
+
+          replace_once(
+          '''          <button class="chip" data-filter="webnovel">웹소설 원작</button>
+                  <button class="chip" data-filter="original">오리지널</button>''',
+          '''          <button class="chip" data-filter="webnovel">웹소설 원작</button>
+                  <button class="chip" data-filter="game">게임 원작</button>
+                  <button class="chip" data-filter="original">오리지널</button>''',
+          'game filter button')
+
+          targets = [
+              'SEKIRO: NO DEFEAT',
+              '사이버펑크: 엣지러너 2',
+              'DARK MACHINE THE ANIMATION (다크 머신 더 애니메이션)',
+              '환상수호전',
+              '魔法使いの夜',
+              'DEATH STRANDING ISOLATIONS — Working Title (데스 스트랜딩 아이솔레이션즈 · 가제)',
+              'Ghost of Tsushima: Legends (고스트 오브 쓰시마: 레전드)',
+          ]
+
+          def add_game_tag(source, title):
+              title_pos = source.find(f'"{title}"')
+              if title_pos < 0:
+                  raise SystemExit(f'title not found: {title}')
+
+              # Locate the tag array immediately following the title (and optional date string).
+              pattern = re.compile(
+                  re.escape(f'"{title}"') +
+                  r'\s*,\s*(?:"[^"]*"\s*,\s*)?\[\s*' +
+                  r'(?P<body>(?:"[^"]+"\s*,?\s*)+)' +
+                  r'(?P<close>\])'
+              )
+              match = pattern.search(source, title_pos)
+              if not match:
+                  raise SystemExit(f'tag array not found: {title}')
+
+              body = match.group('body')
+              if '"game"' in body:
+                  return source
+
+              indent_match = re.search(r'\n([ \t]*)"', body)
+              if not indent_match:
+                  raise SystemExit(f'indent not found: {title}')
+              indent = indent_match.group(1)
+              trailing = re.search(r'(\s*)$', body).group(1)
+              core = body[:-len(trailing)] if trailing else body
+
+              if '"movie"' in core:
+                  movie_line = f'"movie"'
+                  core = core.replace(movie_line, f'"game",\n{indent}"movie"', 1)
+              else:
+                  core = core.rstrip() + f',\n{indent}"game"'
+
+              new_body = core + trailing
+              return source[:match.start('body')] + new_body + source[match.end('body'):]
+
+          for title in targets:
+              before = text
+              text = add_game_tag(text, title)
+              if text == before:
+                  raise SystemExit(f'game tag was not added: {title}')
+
+          replace_once(
+          '''    "webnovel": "웹소설 원작",
+              "original": "오리지널",''',
+          '''    "webnovel": "웹소설 원작",
+              "game": "게임 원작",
+              "original": "오리지널",''',
+          'ko game locale')
+
+          replace_once(
+          '''    "webnovel": "Web小説原作",
+              "original": "オリジナル",''',
+          '''    "webnovel": "Web小説原作",
+              "game": "ゲーム原作",
+              "original": "オリジナル",''',
+          'ja game locale')
+
+          replace_once(
+          '''    "webnovel": "Web Novel",
+              "original": "Original",''',
+          '''    "webnovel": "Web Novel",
+              "game": "Game",
+              "original": "Original",''',
+          'en game locale')
+
+          replace_once(
+          '''  ln: "ln",
+            original: "original",''',
+          '''  ln: "ln",
+            game: "game",
+            original: "original",''',
+          'filterNames game entry')
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit changes and remove migration workflow
+        shell: bash
+        run: |
+          rm .github/workflows/add-game-origin-tags.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/add-game-origin-tags.yml
+          git commit -m "Add game-origin tags and filter"
+          git push origin main
