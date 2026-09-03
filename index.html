@@ -446,6 +446,11 @@
       background: rgba(219,126,255,.075);
     }
 
+    .badge.game {
+      color: #d8e4ff;
+      background: rgba(104,143,255,.075);
+    }
+
     .badge.original {
       color: #cceee5;
       background: rgba(115,221,177,.07);
@@ -1828,6 +1833,7 @@
           <button class="chip" data-filter="ln">라이트 노벨 원작</button>
           <button class="chip" data-filter="webtoon">웹툰 원작</button>
           <button class="chip" data-filter="webnovel">웹소설 원작</button>
+          <button class="chip" data-filter="game">게임 원작</button>
           <button class="chip" data-filter="original">오리지널</button>
           <button class="chip" data-filter="movie">극장판</button>
         </div>
@@ -1881,6 +1887,7 @@ const data = [
         [
           "major",
           "new",
+          "game",
           "movie"
         ]
       ],
@@ -2000,7 +2007,8 @@ const data = [
         [
           "major",
           "series",
-          "original"
+          "original",
+          "game"
         ]
       ],
       [
@@ -2034,7 +2042,8 @@ const data = [
         "10월",
         [
           "new",
-          "original"
+          "original",
+          "game"
         ]
       ],
       [
@@ -2353,7 +2362,8 @@ const data = [
         "환상수호전",
         "10월",
         [
-          "new"
+          "new",
+          "game"
         ]
       ]
     ]
@@ -2405,6 +2415,7 @@ const data = [
         [
           "major",
           "new",
+          "game",
           "movie"
         ]
       ],
@@ -3002,13 +3013,15 @@ const undated = [
   [
     "DEATH STRANDING ISOLATIONS — Working Title (데스 스트랜딩 아이솔레이션즈 · 가제)",
     [
-      "new"
+      "new",
+      "game"
     ]
   ],
   [
     "Ghost of Tsushima: Legends (고스트 오브 쓰시마: 레전드)",
     [
-      "new"
+      "new",
+      "game"
     ]
   ],
   [
@@ -4707,6 +4720,7 @@ const uiLocales = {
     "ln": "라이트 노벨 원작",
     "webtoon": "웹툰 원작",
     "webnovel": "웹소설 원작",
+    "game": "게임 원작",
     "original": "오리지널",
     "movie": "극장판",
     "pv": "PV",
@@ -4754,6 +4768,7 @@ const uiLocales = {
     "ln": "ライトノベル原作",
     "webtoon": "ウェブトゥーン原作",
     "webnovel": "Web小説原作",
+    "game": "ゲーム原作",
     "original": "オリジナル",
     "movie": "劇場版",
     "pv": "PV",
@@ -4801,6 +4816,7 @@ const uiLocales = {
     "ln": "Light Novel",
     "webtoon": "Webtoon",
     "webnovel": "Web Novel",
+    "game": "Game",
     "original": "Original",
     "movie": "Movie",
     "pv": "PV",
@@ -4840,6 +4856,7 @@ const filterNames = {
   series: "series",
   comic: "comic",
   ln: "ln",
+  game: "game",
   original: "original",
   movie: "movie"
 };
