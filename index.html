@@ -2425,6 +2425,14 @@ const data = [
     "label": "2026년 12월",
     "items": [
       [
+      "호랑이 들어와요2",
+      "겨울",
+      [
+        "series",
+        "webtoon"
+      ]
+    ],
+      [
         "劇場版 薬屋のひとりごと 亡妃の秘宝",
         "12/11",
         [
@@ -3042,6 +3050,7 @@ const undated = [
 ];
 
 const posterPositions = {
+  "호랑이 들어와요2": "center center",
   "どこよりも遠い場所にいる君へ": "center center",
   "BanG Dream! Ave Mujica prima aurora": "center center",
   "劇場シリーズ【第一部】メイドインアビス 目覚める神秘": "center center",
@@ -3071,6 +3080,7 @@ const posterPositions = {
 };
 
 const posterLinks = {
+  "호랑이 들어와요2": "assets/posters/tiger-coming-in-s2.jpg",
   "죠죠의 기묘한 모험 스틸 볼 런 2nd & 3rd STAGE": "assets/posters/remote-b6cae90049c792aeb0.webp",
   "신 테니스의 왕자 U-17 WORLD CUP 결승 멤버 결정전": "assets/posters/remote-51d38831481cc0d628.webp",
   "약사의 혼잣말 3기 제1쿨": "assets/posters/remote-56607cad75bedd4f10.webp",
@@ -3238,6 +3248,11 @@ Object.assign(posterLinks, {
 // END 2027 POSTER REPAIR 2026-09-02
 
 const resourceLinks = {
+  "호랑이 들어와요2": {
+      "pv": "https://www.youtube.com/shorts/mxcKLfI3RR0",
+      "official": "https://x.com/Laftel_net/status/2095084014784901452",
+      "streaming": "https://laftel.net/"
+    },
   "약사의 혼잣말 3기 제1쿨": {
     "pv": "https://youtu.be/9rProUQlD-I",
     "official": "https://kusuriyanohitorigoto.jp/",
@@ -3837,6 +3852,9 @@ const ottPlatforms = [
 ];
 
 const ottLinks = {
+  "호랑이 들어와요2": {
+      "laftel": "https://laftel.net/"
+    },
   "약사의 혼잣말 3기 제1쿨": {
     "netflix": "https://www.netflix.com/kr/title/81712068",
     "laftel": "https://laftel.net/item/41714",
@@ -4008,6 +4026,11 @@ for (const [title, links] of Object.entries(auditedOttLinks20260901)) {
 // END LINK AUDIT 2026-09-01
 
 const titleLocales = {
+  "호랑이 들어와요2": {
+      "ko": "호랑이 들어와요2",
+      "ja": "호랑이 들어와요2",
+      "en": "Tiger Coming In 2"
+    },
   "죠죠의 기묘한 모험 스틸 볼 런 2nd & 3rd STAGE": {
     "ko": "죠죠의 기묘한 모험 스틸 볼 런 2nd & 3rd STAGE",
     "ja": "ジョジョの奇妙な冒険 スティール・ボール・ラン 2nd & 3rd STAGE",
@@ -4877,6 +4900,7 @@ function localDateLabel(date) {
     return new Intl.DateTimeFormat("en-US", { month: "short" }).format(new Date(2027, m - 1, 1));
   }
   if (date === "가을") return activeLang === "ko" ? "가을" : activeLang === "ja" ? "秋" : "Fall";
+  if (date === "겨울") return activeLang === "ko" ? "겨울" : activeLang === "ja" ? "冬" : "Winter";
   return date;
 }
 
