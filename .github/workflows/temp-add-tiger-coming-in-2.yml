@@ -1,0 +1,137 @@
+name: Temporary Tiger Coming In 2 update
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  update-index:
+    if: github.event.head_commit.message == 'Run Tiger Coming In 2 update'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Add Tiger Coming In 2 data
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+          title = '호랑이 들어와요2'
+
+          data_signature = '"호랑이 들어와요2",\n        "겨울",'
+          if data_signature not in text:
+              month_pos = text.find('"month": "2026-12"')
+              if month_pos < 0:
+                  raise SystemExit('Could not find 2026-12 schedule block')
+              items_pos = text.find('"items": [', month_pos)
+              if items_pos < 0:
+                  raise SystemExit('Could not find 2026-12 items array')
+              insert_pos = text.find('\n', items_pos) + 1
+              entry = '''      [
+                "호랑이 들어와요2",
+                "겨울",
+                [
+                  "series",
+                  "webtoon"
+                ]
+              ],
+          '''
+              text = text[:insert_pos] + entry + text[insert_pos:]
+
+          def insert_after(marker, entry, signature):
+              global text
+              if signature in text:
+                  return
+              if marker not in text:
+                  raise SystemExit(f'Could not find marker: {marker!r}')
+              text = text.replace(marker, marker + entry, 1)
+
+          insert_after(
+              'const posterPositions = {\n',
+              '  "호랑이 들어와요2": "center center",\n',
+              '"호랑이 들어와요2": "center center"'
+          )
+
+          insert_after(
+              'const posterLinks = {\n',
+              '  "호랑이 들어와요2": "assets/posters/tiger-coming-in-s2.jpg",\n',
+              '"호랑이 들어와요2": "assets/posters/tiger-coming-in-s2.jpg"'
+          )
+
+          insert_after(
+              'const resourceLinks = {\n',
+              '''  "호랑이 들어와요2": {
+                "pv": "https://www.youtube.com/shorts/mxcKLfI3RR0",
+                "official": "https://x.com/Laftel_net/status/2095084014784901452",
+                "streaming": "https://laftel.net/"
+              },
+          ''',
+              '"호랑이 들어와요2": {\n    "pv": "https://www.youtube.com/shorts/mxcKLfI3RR0"'
+          )
+
+          insert_after(
+              'const ottLinks = {\n',
+              '''  "호랑이 들어와요2": {
+                "laftel": "https://laftel.net/"
+              },
+          ''',
+              '"호랑이 들어와요2": {\n    "laftel": "https://laftel.net/"'
+          )
+
+          insert_after(
+              'const titleLocales = {\n',
+              '''  "호랑이 들어와요2": {
+                "ko": "호랑이 들어와요2",
+                "ja": "호랑이 들어와요2",
+                "en": "Tiger Coming In 2"
+              },
+          ''',
+              '"호랑이 들어와요2": {\n    "ko": "호랑이 들어와요2"'
+          )
+
+          winter_line = '  if (date === "겨울") return activeLang === "ko" ? "겨울" : activeLang === "ja" ? "冬" : "Winter";\n'
+          if winter_line not in text:
+              autumn_line = '  if (date === "가을") return activeLang === "ko" ? "가을" : activeLang === "ja" ? "秋" : "Fall";\n'
+              if autumn_line not in text:
+                  raise SystemExit('Could not find localDateLabel season marker')
+              text = text.replace(autumn_line, autumn_line + winter_line, 1)
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Localize official teaser thumbnail
+        run: |
+          mkdir -p assets/posters
+          curl -fL --retry 3 --retry-delay 2 "https://i.ytimg.com/vi/mxcKLfI3RR0/maxresdefault.jpg" -o assets/posters/tiger-coming-in-s2.jpg \
+            || curl -fL --retry 3 --retry-delay 2 "https://i.ytimg.com/vi/mxcKLfI3RR0/hqdefault.jpg" -o assets/posters/tiger-coming-in-s2.jpg
+          test -s assets/posters/tiger-coming-in-s2.jpg
+
+      - name: Validate JavaScript syntax
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          text = Path('index.html').read_text(encoding='utf-8')
+          scripts = re.findall(r'<script(?:\s[^>]*)?>(.*?)</script>', text, flags=re.S)
+          inline = '\n'.join(s for s in scripts if s.strip() and 'application/ld+json' not in s[:100])
+          Path('/tmp/newanime-inline.js').write_text(inline, encoding='utf-8')
+          PY
+          node --check /tmp/newanime-inline.js
+
+      - name: Commit update and remove temporary workflow
+        run: |
+          rm .github/workflows/temp-add-tiger-coming-in-2.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Add Tiger Coming In 2"
+          git push origin main
