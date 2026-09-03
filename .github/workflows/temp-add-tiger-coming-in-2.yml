@@ -24,7 +24,6 @@ jobs:
 
           path = Path('index.html')
           text = path.read_text(encoding='utf-8')
-          title = '호랑이 들어와요2'
 
           data_signature = '"호랑이 들어와요2",\n        "겨울",'
           if data_signature not in text:
@@ -121,8 +120,8 @@ jobs:
           import re
 
           text = Path('index.html').read_text(encoding='utf-8')
-          scripts = re.findall(r'<script(?:\s[^>]*)?>(.*?)</script>', text, flags=re.S)
-          inline = '\n'.join(s for s in scripts if s.strip() and 'application/ld+json' not in s[:100])
+          scripts = re.findall(r'<script([^>]*)>(.*?)</script>', text, flags=re.S | re.I)
+          inline = '\n'.join(body for attrs, body in scripts if body.strip() and 'application/ld+json' not in attrs.lower())
           Path('/tmp/newanime-inline.js').write_text(inline, encoding='utf-8')
           PY
           node --check /tmp/newanime-inline.js
