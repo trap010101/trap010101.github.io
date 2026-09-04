@@ -39,7 +39,7 @@
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-jp.css" />
 
-  <link rel="stylesheet" href="styles.css?v=20260904-ui2">
+  <link rel="stylesheet" href="styles.css?v=20260904-ui3">
 </head>
 <body>
   <main class="shell">
@@ -60,17 +60,23 @@
           <span class="menu-toggle-line" aria-hidden="true"></span>
         </button>
         <div class="site-menu hidden" id="siteMenu" role="menu">
-          <a class="site-menu-item" href="#recentUpdates" role="menuitem" id="updatesMenuLink">
-            <span class="site-menu-icon" aria-hidden="true">↻</span>
-            <span>UPDATES</span>
+          <a class="site-menu-item" href="/updates/" role="menuitem" id="updatesMenuLink">
+            <span class="site-menu-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 1 0 3-6.7"></path>
+                <path d="M3 4v5h5"></path>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+            </span>
+            <span id="updatesMenuLabel">UPDATES</span>
           </a>
           <a class="site-menu-item" href="mailto:admin@newani.me" role="menuitem">
             <span class="site-menu-icon" aria-hidden="true">@</span>
-            <span>CONTACT</span>
+            <span id="contactMenuLabel">CONTACT</span>
           </a>
           <button class="site-menu-item" id="shareButton" type="button" role="menuitem">
             <span class="site-menu-icon" aria-hidden="true">↗</span>
-            <span>SHARE</span>
+            <span id="shareMenuLabel">SHARE</span>
           </button>
         </div>
       </div>
@@ -81,20 +87,6 @@
       <div class="hero-kicker">newani.me</div>
       <h1 id="heroTitle">방영 예정 애니메이션</h1>
       <p id="heroSubtitle">방영일과 PV, 공식 사이트 및 스트리밍 정보를 한눈에 확인하세요.</p>
-    </section>
-
-    <section class="recent-updates hidden" id="recentUpdates" aria-labelledby="recentUpdatesTitle">
-      <div class="recent-updates-head">
-        <div>
-          <div class="section-kicker" id="recentUpdatesKicker">WHAT CHANGED</div>
-          <h2 id="recentUpdatesTitle">최근 업데이트</h2>
-        </div>
-        <button class="recent-updates-toggle" id="recentUpdatesToggle" type="button" aria-expanded="false" aria-controls="recentUpdatesList">
-          <span id="recentUpdatesToggleLabel">전체 보기</span>
-          <span aria-hidden="true">→</span>
-        </button>
-      </div>
-      <div class="recent-updates-list" id="recentUpdatesList"></div>
     </section>
 
     <section class="toolbar" id="toolbar">
@@ -207,9 +199,8 @@
 </footer>
   </main>
 
-<script src="data/anime.js?v=20260904-ui2"></script>
-<script src="data/platforms.js?v=20260904-ui2"></script>
-<script src="data/updates.js?v=20260904-ui2"></script>
-<script src="app.js?v=20260904-ui2"></script>
+<script src="data/anime.js?v=20260904-ui3"></script>
+<script src="data/platforms.js?v=20260904-ui3"></script>
+<script src="app.js?v=20260904-ui3"></script>
 </body>
 </html>

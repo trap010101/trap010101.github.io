@@ -1713,26 +1713,7 @@ a.ott-option:hover {
   }
 }
 
-/* Recent activity and verification surfaces */
-.recent-updates {
-  scroll-margin-top: 18px;
-  margin: 18px 0 20px;
-  padding: 18px 20px 8px;
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  background: rgba(18, 21, 30, .72);
-  box-shadow: 0 12px 38px rgba(0, 0, 0, .18);
-  backdrop-filter: blur(16px);
-}
-
-.recent-updates-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 0 2px 13px;
-}
-
+/* Update history and verification surfaces */
 .section-kicker {
   margin-bottom: 4px;
   color: #7f899c;
@@ -1741,28 +1722,7 @@ a.ott-option:hover {
   letter-spacing: .13em;
 }
 
-.recent-updates h2 {
-  margin: 0;
-  font-size: 19px;
-  line-height: 1.35;
-  letter-spacing: -.025em;
-}
-
-.recent-updates-toggle {
-  flex: 0 0 auto;
-  min-height: 42px;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 9px 11px;
-  border-color: rgba(142, 161, 255, .16);
-  color: #cbd2f5;
-  background: rgba(142, 161, 255, .055);
-  font-size: 12px;
-  font-weight: 850;
-}
-
-.recent-updates-list {
+.updates-list {
   border-top: 1px solid var(--line);
 }
 
@@ -1854,11 +1814,6 @@ a.ott-option:hover {
   line-clamp: 2;
 }
 
-.recent-updates.is-expanded .update-content p {
-  display: block;
-  overflow: visible;
-}
-
 .update-meta {
   display: flex;
   align-items: center;
@@ -1925,32 +1880,86 @@ a.ott-option:hover {
   background: rgba(255, 255, 255, .025);
 }
 
-.verification-freshness {
-  width: fit-content;
-  min-height: 40px;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  margin-top: 7px;
-  padding: 3px 0;
+.title-group {
+  min-width: 0;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.title-group .title-scroll,
+.title-group .undated-title-scroll {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.verification-trigger {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  min-height: 22px;
+  flex: 0 0 22px;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 0;
   border: 0;
   border-radius: 7px;
-  color: #747f93;
+  color: color-mix(in srgb, var(--accent) 74%, var(--muted));
   background: transparent;
-  font-size: 11px;
-  font-weight: 750;
-  line-height: 1.4;
-}
-
-button.verification-freshness {
   cursor: pointer;
+  transform: none;
 }
 
-button.verification-freshness:hover,
-button.verification-freshness:focus-visible {
+.verification-trigger svg {
+  width: 15px;
+  height: 15px;
+  overflow: visible;
+  fill: rgba(142, 161, 255, .045);
+  stroke: currentColor;
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.verification-trigger:hover,
+.verification-trigger:focus-visible {
   transform: none;
-  color: #aeb8d5;
-  background: transparent;
+  color: var(--accent);
+  background: rgba(142, 161, 255, .08);
+}
+
+@media (hover: hover) {
+  .verification-trigger::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: calc(100% + 7px);
+    left: 0;
+    z-index: 30;
+    width: max-content;
+    max-width: 210px;
+    padding: 6px 8px;
+    border: 1px solid rgba(142, 161, 255, .2);
+    border-radius: 8px;
+    color: #dfe3f2;
+    background: rgba(12, 15, 22, .97);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .32);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.35;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-2px);
+    transition: opacity .14s ease, transform .14s ease;
+  }
+
+  .verification-trigger:hover::after,
+  .verification-trigger:focus-visible::after {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .source-box p {
@@ -2014,26 +2023,6 @@ button.verification-freshness:focus-visible {
 }
 
 @media (max-width: 520px) {
-  .recent-updates {
-    margin: 13px 0 14px;
-    padding: 15px 14px 5px;
-    border-radius: 17px;
-  }
-
-  .recent-updates-head {
-    gap: 10px;
-    padding-bottom: 11px;
-  }
-
-  .recent-updates h2 {
-    font-size: 17px;
-  }
-
-  .recent-updates-toggle {
-    min-height: 40px;
-    padding-inline: 9px;
-  }
-
   .update-item {
     grid-template-columns: 46px minmax(0, 1fr);
     gap: 10px;
@@ -2066,27 +2055,22 @@ button.verification-freshness:focus-visible {
     font-size: 12px;
   }
 
-  .verification-freshness {
-    min-height: 40px;
-    font-size: 11px;
+  .title-group {
+    gap: 4px;
   }
 }
 
 @media (max-width: 380px) {
-  .recent-updates {
-    padding-inline: 12px;
-  }
-
-  .recent-updates-head {
-    align-items: flex-end;
-  }
-
   .section-kicker {
     display: none;
   }
 
-  .recent-updates-toggle {
-    font-size: 11px;
+  .verification-trigger {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    flex-basis: 20px;
   }
 }
 

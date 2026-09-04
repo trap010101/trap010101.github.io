@@ -23,4 +23,25 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://newani.me/?lang=en" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://newani.me/?lang=en" />
   </url>
+  <url>
+    <loc>https://newani.me/updates/?lang=ko</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://newani.me/updates/?lang=ko" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://newani.me/updates/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://newani.me/updates/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://newani.me/updates/?lang=en" />
+  </url>
+  <url>
+    <loc>https://newani.me/updates/?lang=ja</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://newani.me/updates/?lang=ko" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://newani.me/updates/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://newani.me/updates/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://newani.me/updates/?lang=en" />
+  </url>
+  <url>
+    <loc>https://newani.me/updates/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://newani.me/updates/?lang=ko" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://newani.me/updates/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://newani.me/updates/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://newani.me/updates/?lang=en" />
+  </url>
 </urlset>

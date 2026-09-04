@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>최근 업데이트 - NewAnime</title>
+  <meta name="description" id="metaDescription" content="NewAnime에 최근 반영된 방영일, PV, 공식 정보 및 스트리밍 변경 내역을 확인하세요." />
+  <link rel="canonical" id="canonicalLink" href="https://newani.me/updates/?lang=ko" />
+  <link rel="alternate" hreflang="ko" href="https://newani.me/updates/?lang=ko" />
+  <link rel="alternate" hreflang="ja" href="https://newani.me/updates/?lang=ja" />
+  <link rel="alternate" hreflang="en" href="https://newani.me/updates/?lang=en" />
+  <link rel="alternate" hreflang="x-default" href="https://newani.me/updates/?lang=en" />
+  <meta http-equiv="content-language" id="contentLanguageMeta" content="ko" />
+
+  <meta property="og:title" id="ogTitle" content="최근 업데이트 - NewAnime" />
+  <meta property="og:description" id="ogDescription" content="NewAnime에 최근 반영된 방영일, PV, 공식 정보 및 스트리밍 변경 내역을 확인하세요." />
+  <meta property="og:url" id="ogUrl" content="https://newani.me/updates/?lang=ko" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" id="ogLocale" content="ko_KR" />
+  <meta property="og:image" content="https://newani.me/og-image.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" id="twitterTitle" content="최근 업데이트 - NewAnime" />
+  <meta name="twitter:description" id="twitterDescription" content="NewAnime에 최근 반영된 방영일, PV, 공식 정보 및 스트리밍 변경 내역을 확인하세요." />
+  <meta name="twitter:image" content="https://newani.me/og-image.png" />
+
+  <script type="application/ld+json" id="updatesStructuredData">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "최근 업데이트 - NewAnime",
+    "url": "https://newani.me/updates/?lang=ko",
+    "description": "NewAnime에 최근 반영된 방영일, PV, 공식 정보 및 스트리밍 변경 내역을 확인하세요."
+  }
+  </script>
+  <link rel="preload" as="image" href="../assets/newanime-logo.webp" type="image/webp" fetchpriority="high" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-jp.css" />
+  <link rel="stylesheet" href="../styles.css?v=20260904-ui3" />
+  <link rel="stylesheet" href="updates.css?v=20260904-ui3" />
+</head>
+<body class="updates-page">
+  <main class="shell">
+    <header class="site-header">
+      <a class="site-brand" href="/" id="homeLink" aria-label="NewAnime">
+        <img class="brand-logo" src="../assets/newanime-logo.webp" alt="NewAnime" width="500" height="124" decoding="async" fetchpriority="high" />
+      </a>
+      <div class="site-header-spacer" aria-hidden="true"></div>
+      <div class="language-row" id="languageSwitcher" aria-label="언어 선택">
+        <button class="language-btn active" type="button" data-lang="ko">KR</button>
+        <button class="language-btn" type="button" data-lang="ja">JP</button>
+        <button class="language-btn" type="button" data-lang="en">EN</button>
+      </div>
+      <div class="menu-wrap">
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="siteMenu">
+          <span class="menu-toggle-line" aria-hidden="true"></span>
+          <span class="menu-toggle-line" aria-hidden="true"></span>
+          <span class="menu-toggle-line" aria-hidden="true"></span>
+        </button>
+        <div class="site-menu hidden" id="siteMenu" role="menu">
+          <a class="site-menu-item is-current" href="/updates/" role="menuitem" aria-current="page" id="updatesMenuLink">
+            <span class="site-menu-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 1 0 3-6.7"></path>
+                <path d="M3 4v5h5"></path>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+            </span>
+            <span id="updatesMenuLabel">UPDATES</span>
+          </a>
+          <a class="site-menu-item" href="mailto:admin@newani.me" role="menuitem">
+            <span class="site-menu-icon" aria-hidden="true">@</span>
+            <span id="contactMenuLabel">CONTACT</span>
+          </a>
+          <button class="site-menu-item" id="shareButton" type="button" role="menuitem">
+            <span class="site-menu-icon" aria-hidden="true">↗</span>
+            <span id="shareMenuLabel">SHARE</span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="share-status hidden" id="shareStatus" role="status" aria-live="polite"></div>
+
+    <section class="updates-hero" aria-labelledby="updatesTitle">
+      <div class="section-kicker" id="updatesKicker">WHAT CHANGED</div>
+      <h1 id="updatesTitle">최근 업데이트</h1>
+      <p id="updatesDescription">NewAnime에 반영된 주요 정보 변경 내역</p>
+    </section>
+
+    <nav class="updates-filters" id="updatesFilters" aria-label="업데이트 필터">
+      <button class="active" type="button" data-filter="all" aria-pressed="true">전체</button>
+      <button type="button" data-filter="added" aria-pressed="false">신규 등록</button>
+      <button type="button" data-filter="release" aria-pressed="false">방영일</button>
+      <button type="button" data-filter="pv" aria-pressed="false">PV</button>
+      <button type="button" data-filter="streaming" aria-pressed="false">스트리밍</button>
+      <button type="button" data-filter="other" aria-pressed="false">기타</button>
+    </nav>
+
+    <section class="updates-panel" aria-live="polite">
+      <div class="updates-list" id="updatesList"></div>
+      <p class="updates-empty hidden" id="updatesEmpty">이 유형의 업데이트가 없습니다.</p>
+    </section>
+
+    <footer>
+      <div id="footerDescription">방영 예정 애니메이션과 극장판의 일정, PV, 공식 사이트, 스트리밍 정보를 한눈에 정리합니다.</div>
+      <div>© 2026 NewAnime</div>
+    </footer>
+  </main>
+
+  <script src="../data/anime.js?v=20260904-ui3"></script>
+  <script src="../data/updates.js?v=20260904-ui3"></script>
+  <script src="updates.js?v=20260904-ui3"></script>
+</body>
+</html>
