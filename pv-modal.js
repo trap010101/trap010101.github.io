@@ -11,30 +11,21 @@
   const localeText = {
     ko: {
       kicker: "프로모션 영상",
-      description: "시청할 영상을 선택하세요.",
+      description: "시청할 PV를 선택하세요.",
       close: "닫기",
-      youtube: "YouTube ↗",
-      teaser: "티저",
-      pv: "PV",
-      trailer: "예고편"
+      youtube: "YouTube ↗"
     },
     ja: {
       kicker: "プロモーション映像",
-      description: "視聴する映像を選択してください。",
+      description: "視聴するPVを選択してください。",
       close: "閉じる",
-      youtube: "YouTube ↗",
-      teaser: "ティザー",
-      pv: "PV",
-      trailer: "予告編"
+      youtube: "YouTube ↗"
     },
     en: {
       kicker: "PROMOTIONAL VIDEOS",
-      description: "Choose a video to watch.",
+      description: "Choose a PV to watch.",
       close: "Close",
-      youtube: "YouTube ↗",
-      teaser: "Teaser",
-      pv: "PV",
-      trailer: "Trailer"
+      youtube: "YouTube ↗"
     }
   };
 
@@ -54,42 +45,10 @@
     return anime?.title?.[lang] || anime?.title?.ko || anime?.title?.ja || anime?.title?.en || "";
   }
 
-  function labelText(entry) {
-    const label = entry?.label;
-    if (!label) return "";
-    if (typeof label === "string") return label;
-    return [label.ko, label.ja, label.en].filter(Boolean).join(" ");
-  }
-
-  // Keep the popup taxonomy intentionally small. Source-specific wording such as
-  // Main PV, Ultra Teaser, announcement videos, season labels, etc. is normalized
-  // into one of three visitor-facing groups: Teaser, PV, or Trailer.
-  function videoCategory(entry) {
-    const raw = labelText(entry).toLowerCase();
-
-    if (
-      /티저|ティザー|teaser|특보|特報|제작\s*결정|制作決定|announcement/.test(raw)
-    ) return "teaser";
-
-    if (/예고|予告|trailer/.test(raw)) return "trailer";
-
-    return "pv";
-  }
-
-  function displayEntries(entries) {
-    const categories = entries.map(videoCategory);
-    const totals = categories.reduce((counts, category) => {
-      counts[category] = (counts[category] || 0) + 1;
-      return counts;
-    }, {});
-    const seen = {};
-
-    return entries.map((entry, index) => {
-      const category = categories[index];
-      seen[category] = (seen[category] || 0) + 1;
-      const number = totals[category] > 1 ? ` ${seen[category]}` : "";
-      return { entry, displayLabel: `${text(category)}${number}` };
-    });
+  // Deliberately keep one visitor-facing category only. Source-side wording such as
+  // teaser, main PV, announcement, special teaser, or trailer remains metadata only.
+  function pvDisplayLabel(index, total) {
+    return total > 1 ? `PV ${index + 1}` : "PV";
   }
 
   function entriesFor(anime) {
@@ -137,9 +96,9 @@
     lastTrigger = trigger;
     syncModalLanguage();
     modalTitle.textContent = localTitle(anime);
-    pvGrid.innerHTML = displayEntries(entries).map(({ entry, displayLabel }) => `
+    pvGrid.innerHTML = entries.map((entry, index) => `
       <a class="ott-option pv-option" href="${entry.url}" target="_blank" rel="noopener noreferrer">
-        <span class="ott-option-name">${displayLabel}</span>
+        <span class="ott-option-name">${pvDisplayLabel(index, entries.length)}</span>
         <span class="ott-option-state">${text("youtube")}</span>
       </a>
     `).join("");
