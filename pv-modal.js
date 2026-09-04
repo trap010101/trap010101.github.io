@@ -45,10 +45,8 @@
     return anime?.title?.[lang] || anime?.title?.ko || anime?.title?.ja || anime?.title?.en || "";
   }
 
-  function localPvLabel(entry) {
-    const lang = language();
-    if (typeof entry?.label === "string") return entry.label;
-    return entry?.label?.[lang] || entry?.label?.ko || entry?.label?.ja || entry?.label?.en || "PV";
+  function pvDisplayLabel(index, total) {
+    return total > 1 ? `PV ${index + 1}` : "PV";
   }
 
   function entriesFor(anime) {
@@ -96,9 +94,9 @@
     lastTrigger = trigger;
     syncModalLanguage();
     modalTitle.textContent = localTitle(anime);
-    pvGrid.innerHTML = entries.map(entry => `
+    pvGrid.innerHTML = entries.map((entry, index) => `
       <a class="ott-option pv-option" href="${entry.url}" target="_blank" rel="noopener noreferrer">
-        <span class="ott-option-name">${localPvLabel(entry)}</span>
+        <span class="ott-option-name">${pvDisplayLabel(index, entries.length)}</span>
         <span class="ott-option-state">${text("youtube")}</span>
       </a>
     `).join("");
