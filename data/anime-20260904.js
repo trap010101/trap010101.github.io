@@ -65,12 +65,7 @@
           status: "month",
           year: 2026,
           month: 10,
-          day: null,
-          display: {
-            ko: "2026년 가을",
-            ja: "2026年秋",
-            en: "Fall 2026"
-          }
+          day: null
         },
         korea: null,
         global: null
@@ -93,6 +88,12 @@
       verification: {
         verifiedAt: "2026-09-04",
         sources: [
+          {
+            type: "official-x",
+            url: "https://x.com/keroro_anime/status/2095784141308809403",
+            label: "Official X announcement",
+            supports: ["announcement", "release"]
+          },
           {
             type: "official-site",
             url: "https://www.bn-pictures.co.jp/keroro-anime/tv/",
