@@ -1,23 +1,48 @@
-// Meaningful updates added on 2026-09-04 after the initial verification pass.
+// Meaningful updates added after the initial verification pass, plus derived release-start history.
 (() => {
+  function primaryRelease(anime) {
+    return anime?.release?.japan || anime?.release?.global || anime?.release?.korea || null;
+  }
+
+  function isoReleaseDate(release) {
+    if (!release || release.status !== "date" || !release.year || !release.month || !release.day) return null;
+    return `${release.year}-${String(release.month).padStart(2, "0")}-${String(release.day).padStart(2, "0")}`;
+  }
+
+  function japanTodayIso() {
+    const parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Asia/Tokyo",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    }).formatToParts(new Date());
+    const value = type => parts.find(part => part.type === type)?.value || "";
+    return `${value("year")}-${value("month")}-${value("day")}`;
+  }
+
+  function releaseStartSummary(anime) {
+    if (anime.format === "movie") {
+      return {
+        ko: "일본 극장 상영이 시작되었습니다.",
+        ja: "日本での劇場公開が開始しました。",
+        en: "The theatrical release in Japan has started."
+      };
+    }
+    if (anime.format === "ona") {
+      return {
+        ko: "온라인 공개가 시작되었습니다.",
+        ja: "オンライン配信が開始しました。",
+        en: "The online release has started."
+      };
+    }
+    return {
+      ko: "일본 TV 방영이 시작되었습니다.",
+      ja: "日本でのTV放送が開始しました。",
+      en: "The TV broadcast in Japan has started."
+    };
+  }
+
   const additions = [
-    {
-      id: "2026-09-04-sekiro-no-defeat-release-start",
-      animeId: "sekiro-no-defeat",
-      changedAt: "2026-09-04",
-      type: "release-date",
-      fields: ["release.japan"],
-      summary: {
-        ko: "일본 극장 상영이 오늘 시작되었습니다.",
-        ja: "日本での劇場公開が本日開始しました。",
-        en: "The theatrical release in Japan starts today."
-      },
-      source: {
-        type: "official-site",
-        url: "https://sekiro-anime.jp/",
-        label: "Official website"
-      }
-    },
     {
       id: "2026-09-04-the-worlds-finest-assassin-season-2-added",
       animeId: "the-worlds-finest-assassin-season-2",
@@ -54,9 +79,26 @@
     }
   ];
 
+  const today = japanTodayIso();
+  const releaseStarts = (window.animeData || []).flatMap(anime => {
+    const changedAt = isoReleaseDate(primaryRelease(anime));
+    if (!changedAt || changedAt > today) return [];
+    const source = anime.verification?.sources?.[0] || null;
+    return [{
+      id: `${changedAt}-${anime.id}-release-start`,
+      animeId: anime.id,
+      changedAt,
+      type: "release-date",
+      fields: ["release"],
+      summary: releaseStartSummary(anime),
+      source
+    }];
+  });
+
   if (!Array.isArray(window.animeUpdates)) window.animeUpdates = [];
   const existingIds = new Set(window.animeUpdates.map(update => update.id));
   window.animeUpdates = [
+    ...releaseStarts.filter(update => !existingIds.has(update.id)),
     ...additions.filter(update => !existingIds.has(update.id)),
     ...window.animeUpdates
   ];
