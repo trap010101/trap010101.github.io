@@ -60,6 +60,10 @@
     "im-a-reincarnated-goblin-any-questions": [
       { label: { ko: "티저 PV", ja: "ティザーPV", en: "Teaser PV" }, url: "https://www.youtube.com/watch?v=V4K-kG3hEJc" }
     ],
+    "a-returners-magic-should-be-special-season-2": [
+      { label: { ko: "2기 제작 결정 PV", ja: "2期制作決定PV", en: "Season 2 Announcement PV" }, url: "https://www.youtube.com/watch?v=TlEAAp9EWio" },
+      { label: { ko: "2026 방영·공개 결정 PV", ja: "2026年放送・配信決定PV", en: "2026 Broadcast & Streaming PV" }, url: "https://www.youtube.com/watch?v=cqkwxupd80I" }
+    ],
     "sasaki-and-peeps-season-2": [
       { label: { ko: "Season 2 티저 PV", ja: "Season 2 ティザーPV", en: "Season 2 Teaser PV" }, url: "https://www.youtube.com/watch?v=oR4Luug1NRc" }
     ],
@@ -85,6 +89,13 @@
     "fool-night": [
       { label: { ko: "티저 PV", ja: "ティザーPV", en: "Teaser PV" }, url: "https://www.youtube.com/watch?v=HIHduZ8-Jx0" },
       { label: { ko: "티저 PV 2탄", ja: "ティザーPV第2弾", en: "Teaser PV #2" }, url: "https://www.youtube.com/watch?v=8E_SDmeOtVw" }
+    ],
+    "expelled-from-paradise-resonance-of-the-heart": [
+      { label: { ko: "티저 PV", ja: "ティザーPV", en: "Teaser PV" }, url: "https://www.youtube.com/watch?v=Pb9YLnX1OyY" },
+      { label: { ko: "티저 PV 2탄", ja: "第二弾ティザーPV", en: "Teaser PV #2" }, url: "https://www.youtube.com/watch?v=RxFirnw45yU" },
+      { label: { ko: "티저 PV 3탄", ja: "第三弾ティザーPV", en: "Teaser PV #3" }, url: "https://www.youtube.com/watch?v=Ivt_VwojQ0E" },
+      { label: { ko: "티저 PV 4탄", ja: "第四弾ティザーPV", en: "Teaser PV #4" }, url: "https://www.youtube.com/watch?v=9oK5_Z2zfKU" },
+      { label: { ko: "티저 PV 5탄", ja: "第五弾ティザーPV", en: "Teaser PV #5" }, url: "https://www.youtube.com/watch?v=EA_fCew3j4g" }
     ],
     "black-clover-2nd-season": [
       { label: { ko: "티저 PV", ja: "ティザーPV", en: "Teaser PV" }, url: "https://www.youtube.com/watch?v=b_hLnfMgltY" },
@@ -120,6 +131,10 @@
     ],
     "laid-back-camp-season-4": [
       { label: { ko: "특보 PV", ja: "特報PV", en: "Special Teaser PV" }, url: "https://www.youtube.com/watch?v=pNDkVOlaGBQ" }
+    ],
+    "the-rising-of-the-shield-hero-season-5": [
+      { label: { ko: "Season 5 제작 결정 특보", ja: "Season 5制作決定 特報映像", en: "Season 5 Announcement Trailer" }, url: "https://www.youtube.com/watch?v=wc5kV7GUgHI" },
+      { label: { ko: "Season 5 티저 트레일러", ja: "Season 5 ティザーPV", en: "Season 5 Teaser Trailer" }, url: "https://www.youtube.com/watch?v=S-lj8aA6kFc" }
     ],
     "the-witch-and-the-mercenary": [
       { label: { ko: "티저 PV", ja: "ティザーPV", en: "Teaser PV" }, url: "https://www.youtube.com/watch?v=Ma6twUC12To" }
