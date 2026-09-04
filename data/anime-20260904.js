@@ -29,7 +29,7 @@
       origin: "light-novel",
       tags: ["major", "series", "ln"],
       poster: {
-        src: "https://ansatsu-kizoku.jp/wp-content/uploads/2026/04/img.png",
+        src: "assets/posters/worlds-finest-assassin-s2.png",
         position: "center"
       },
       links: {
@@ -82,7 +82,7 @@
       origin: "manga",
       tags: ["major", "new", "comic"],
       poster: {
-        src: "https://www.bn-pictures.co.jp/keroro-anime/tv/images/KV/KV.webp",
+        src: "assets/posters/keroro-gunso-star.webp",
         position: "center"
       },
       links: {
