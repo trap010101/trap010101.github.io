@@ -2,6 +2,8 @@ const animeData = window.animeData || [];
 const animeScheduleMonths = window.animeScheduleMonths || [];
 const animeById = new Map(animeData.map(anime => [anime.id, anime]));
 const ottPlatforms = window.ottPlatforms || [];
+const animeUpdates = window.animeUpdates || [];
+const HOMEPAGE_UPDATE_LIMIT = 5;
 
 const uiLocales = {
   "ko": {
@@ -51,6 +53,39 @@ const uiLocales = {
     "searchFilters": "검색 · 필터",
     "showFilters": "검색 UI 펼치기",
     "hideFilters": "검색 UI 접기"
+    ,"recentUpdates": "최근 업데이트"
+    ,"recentUpdatesKicker": "최근 변경"
+    ,"viewAll": "전체 보기"
+    ,"showLess": "접기"
+    ,"updateSource": "공식 출처"
+    ,"checked": "정보 확인"
+    ,"informationSources": "정보 출처"
+    ,"lastChecked": "마지막 확인"
+    ,"sourceInfoTitle": "정보 확인 기준"
+    ,"sourceInfoDescription": "공식 사이트와 공식 발표를 우선 확인하며, 작품별 확인일과 출처를 함께 제공합니다."
+    ,"sourceTypeOfficialSite": "공식 사이트"
+    ,"sourceTypeOfficialX": "공식 X 발표"
+    ,"sourceTypeOfficialYoutube": "공식 YouTube"
+    ,"sourceTypeStreamingPlatform": "스트리밍 서비스"
+    ,"sourceTypePublisher": "출판사"
+    ,"sourceTypeStudio": "제작사"
+    ,"sourceTypeNews": "공식 뉴스"
+    ,"sourceTypeDistributor": "배급사"
+    ,"sourceTypeOther": "기타 출처"
+    ,"updateAnimeAdded": "신규 등록"
+    ,"updateReleaseWindow": "방영 시기"
+    ,"updateReleaseDate": "방영일"
+    ,"updateReleaseDelay": "연기"
+    ,"updateReleaseCancelled": "취소"
+    ,"updatePoster": "포스터"
+    ,"updatePv": "PV"
+    ,"updateOfficialLink": "공식 링크"
+    ,"updateStreaming": "스트리밍"
+    ,"updateTitle": "제목"
+    ,"updateFormat": "작품 유형"
+    ,"updateSourceType": "출처"
+    ,"updateOther": "기타"
+    ,"tba": "TBA"
   },
   "ja": {
     "title": "放送予定アニメ",
@@ -99,6 +134,39 @@ const uiLocales = {
     "searchFilters": "検索・フィルター",
     "showFilters": "検索UIを開く",
     "hideFilters": "検索UIを閉じる"
+    ,"recentUpdates": "最近の更新"
+    ,"recentUpdatesKicker": "最近の変更"
+    ,"viewAll": "すべて見る"
+    ,"showLess": "閉じる"
+    ,"updateSource": "公式情報"
+    ,"checked": "情報確認"
+    ,"informationSources": "情報源"
+    ,"lastChecked": "最終確認"
+    ,"sourceInfoTitle": "情報の確認方針"
+    ,"sourceInfoDescription": "公式サイトと公式発表を優先して確認し、作品ごとの確認日と情報源を掲載しています。"
+    ,"sourceTypeOfficialSite": "公式サイト"
+    ,"sourceTypeOfficialX": "公式X発表"
+    ,"sourceTypeOfficialYoutube": "公式YouTube"
+    ,"sourceTypeStreamingPlatform": "配信サービス"
+    ,"sourceTypePublisher": "出版社"
+    ,"sourceTypeStudio": "制作会社"
+    ,"sourceTypeNews": "公式ニュース"
+    ,"sourceTypeDistributor": "配給会社"
+    ,"sourceTypeOther": "その他の情報源"
+    ,"updateAnimeAdded": "新規登録"
+    ,"updateReleaseWindow": "放送時期"
+    ,"updateReleaseDate": "放送日"
+    ,"updateReleaseDelay": "延期"
+    ,"updateReleaseCancelled": "中止"
+    ,"updatePoster": "ポスター"
+    ,"updatePv": "PV"
+    ,"updateOfficialLink": "公式リンク"
+    ,"updateStreaming": "配信"
+    ,"updateTitle": "タイトル"
+    ,"updateFormat": "作品形式"
+    ,"updateSourceType": "情報源"
+    ,"updateOther": "その他"
+    ,"tba": "TBA"
   },
   "en": {
     "title": "Upcoming Anime",
@@ -147,6 +215,39 @@ const uiLocales = {
     "searchFilters": "Search · Filters",
     "showFilters": "Expand search UI",
     "hideFilters": "Collapse search UI"
+    ,"recentUpdates": "Recent Updates"
+    ,"recentUpdatesKicker": "WHAT CHANGED"
+    ,"viewAll": "View all"
+    ,"showLess": "Collapse"
+    ,"updateSource": "Official source"
+    ,"checked": "Checked"
+    ,"informationSources": "Information sources"
+    ,"lastChecked": "Last checked"
+    ,"sourceInfoTitle": "How information is checked"
+    ,"sourceInfoDescription": "Official websites and announcements are checked first, with the latest check date and sources shown for each title."
+    ,"sourceTypeOfficialSite": "Official website"
+    ,"sourceTypeOfficialX": "Official X announcement"
+    ,"sourceTypeOfficialYoutube": "Official YouTube"
+    ,"sourceTypeStreamingPlatform": "Streaming service"
+    ,"sourceTypePublisher": "Publisher"
+    ,"sourceTypeStudio": "Studio"
+    ,"sourceTypeNews": "Official news"
+    ,"sourceTypeDistributor": "Distributor"
+    ,"sourceTypeOther": "Other source"
+    ,"updateAnimeAdded": "New anime"
+    ,"updateReleaseWindow": "Release window"
+    ,"updateReleaseDate": "Release date"
+    ,"updateReleaseDelay": "Delayed"
+    ,"updateReleaseCancelled": "Cancelled"
+    ,"updatePoster": "Poster"
+    ,"updatePv": "PV"
+    ,"updateOfficialLink": "Official link"
+    ,"updateStreaming": "Streaming"
+    ,"updateTitle": "Title"
+    ,"updateFormat": "Format"
+    ,"updateSourceType": "Source"
+    ,"updateOther": "Other"
+    ,"tba": "TBA"
   }
 };
 
@@ -168,6 +269,36 @@ const filterNames = {
   game: "game",
   original: "original",
   movie: "movie"
+};
+
+const updateTypeKeys = {
+  "anime-added": "updateAnimeAdded",
+  "release-window": "updateReleaseWindow",
+  "release-date": "updateReleaseDate",
+  "release-delay": "updateReleaseDelay",
+  "release-cancelled": "updateReleaseCancelled",
+  "poster": "updatePoster",
+  "pv": "updatePv",
+  "official-link": "updateOfficialLink",
+  "streaming-added": "updateStreaming",
+  "streaming-removed": "updateStreaming",
+  "streaming-updated": "updateStreaming",
+  "title": "updateTitle",
+  "format": "updateFormat",
+  "source": "updateSourceType",
+  "other": "updateOther"
+};
+
+const sourceTypeKeys = {
+  "official-site": "sourceTypeOfficialSite",
+  "official-x": "sourceTypeOfficialX",
+  "official-youtube": "sourceTypeOfficialYoutube",
+  "streaming-platform": "sourceTypeStreamingPlatform",
+  "publisher": "sourceTypePublisher",
+  "studio": "sourceTypeStudio",
+  "news": "sourceTypeNews",
+  "distributor": "sourceTypeDistributor",
+  "other": "sourceTypeOther"
 };
 
 
@@ -238,7 +369,50 @@ function localDateLabel(anime) {
       .format(new Date(release.year, release.month - 1, 1));
   }
   if (release.status === "year") return String(release.year);
-  return "";
+  return t("tba");
+}
+
+function releasePrecisionClass(anime) {
+  return `precision-${getPrimaryScheduleRelease(anime)?.status || "tba"}`;
+}
+
+function localUpdateSummary(update) {
+  return update?.summary?.[activeLang] || update?.summary?.ko || "";
+}
+
+function getUpdateTypeLabel(type) {
+  return t(updateTypeKeys[type] || "updateOther");
+}
+
+function getSourceTypeLabel(source) {
+  return t(sourceTypeKeys[source?.type] || "sourceTypeOther");
+}
+
+function parseIsoDate(value) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value || "");
+  if (!match) return null;
+  return new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3]), 12));
+}
+
+function formatUpdateDate(value, { full = false } = {}) {
+  const date = parseIsoDate(value);
+  if (!date) return "";
+  const locales = { ko: "ko-KR", ja: "ja-JP", en: "en-US" };
+  const includeYear = full || date.getUTCFullYear() !== new Date().getUTCFullYear();
+  return new Intl.DateTimeFormat(locales[activeLang], {
+    year: includeYear ? "numeric" : undefined,
+    month: full ? "long" : "short",
+    day: "numeric",
+    timeZone: "UTC"
+  }).format(date);
+}
+
+function formatCheckedDate(value) {
+  const date = parseIsoDate(value);
+  if (!date) return "";
+  if (activeLang === "ko") return `${date.getUTCMonth() + 1}.${date.getUTCDate()}`;
+  if (activeLang === "ja") return `${date.getUTCMonth() + 1}/${date.getUTCDate()}`;
+  return formatUpdateDate(value);
 }
 
 function categoryLabel(tag) {
@@ -262,7 +436,7 @@ function updateStaticLanguage() {
   const mobileToolbarTitle = document.getElementById("mobileToolbarTitle");
   const languageSwitcher = document.getElementById("languageSwitcher");
   const footerDescription = document.getElementById("footerDescription");
-  const closeButton = document.querySelector(".stream-close");
+  const closeButtons = document.querySelectorAll(".stream-close");
   const menuToggle = document.getElementById("menuToggle");
   const pageUrl = `https://newani.me/?lang=${activeLang}`;
   const locale = activeLang === "ko" ? "ko_KR" : activeLang === "ja" ? "ja_JP" : "en_US";
@@ -282,7 +456,7 @@ function updateStaticLanguage() {
   document.getElementById("twitterDescription")?.setAttribute("content", t("description"));
   if (languageSwitcher) languageSwitcher.setAttribute("aria-label", t("languageLabel"));
   if (footerDescription) footerDescription.textContent = t("footerDescription");
-  if (closeButton) closeButton.setAttribute("aria-label", t("close"));
+  closeButtons.forEach(button => button.setAttribute("aria-label", t("close")));
   if (menuToggle) {
     menuToggle.setAttribute("aria-label", t("menu"));
     menuToggle.title = t("menu");
@@ -307,6 +481,19 @@ function updateStaticLanguage() {
   if (updatedLabel) updatedLabel.textContent = t("updated");
   if (streamKicker) streamKicker.textContent = t("streamKicker");
   if (streamDesc) streamDesc.textContent = t("streamDesc");
+
+  const recentUpdatesTitle = document.getElementById("recentUpdatesTitle");
+  const recentUpdatesKicker = document.getElementById("recentUpdatesKicker");
+  const sourceModalKicker = document.getElementById("sourceModalKicker");
+  const sourceCheckedLabel = document.getElementById("sourceCheckedLabel");
+  const sourceInfoTitle = document.getElementById("sourceInfoTitle");
+  const sourceInfoDescription = document.getElementById("sourceInfoDescription");
+  if (recentUpdatesTitle) recentUpdatesTitle.textContent = t("recentUpdates");
+  if (recentUpdatesKicker) recentUpdatesKicker.textContent = t("recentUpdatesKicker");
+  if (sourceModalKicker) sourceModalKicker.textContent = t("informationSources");
+  if (sourceCheckedLabel) sourceCheckedLabel.textContent = t("lastChecked");
+  if (sourceInfoTitle) sourceInfoTitle.textContent = t("sourceInfoTitle");
+  if (sourceInfoDescription) sourceInfoDescription.textContent = t("sourceInfoDescription");
 
 document.querySelectorAll("#languageSwitcher .language-btn").forEach(btn => {
     btn.classList.toggle("active", btn.dataset.lang === activeLang);
@@ -342,6 +529,10 @@ const siteMenu = document.getElementById("siteMenu");
 const siteMenuWrap = document.querySelector(".menu-wrap");
 const shareButton = document.getElementById("shareButton");
 const shareStatus = document.getElementById("shareStatus");
+const recentUpdatesSection = document.getElementById("recentUpdates");
+const recentUpdatesList = document.getElementById("recentUpdatesList");
+const recentUpdatesToggle = document.getElementById("recentUpdatesToggle");
+let recentUpdatesExpanded = false;
 let shareStatusTimer;
 
 function closeSiteMenu({ restoreFocus = false } = {}) {
@@ -469,6 +660,88 @@ function updateCategoryCollapse() {
   if (icon) icon.textContent = "⌃";
 }
 
+function updatePosterMarkup(anime) {
+  if (!anime.poster?.src) {
+    return `<div class="update-poster"><span aria-hidden="true">?</span></div>`;
+  }
+
+  return `
+    <div class="update-poster has-image">
+      <img
+        src="${anime.poster.src}"
+        alt=""
+        style="object-position: ${anime.poster.position || "center center"}"
+        loading="lazy"
+        decoding="async"
+        fetchpriority="low"
+        referrerpolicy="no-referrer"
+        onerror="this.closest('.update-poster').classList.add('poster-error')"
+      >
+      <span aria-hidden="true">?</span>
+    </div>
+  `;
+}
+
+function renderUpdateItem(update) {
+  const anime = animeById.get(update.animeId);
+  if (!anime) return "";
+
+  const sourceAction = update.source?.url
+    ? `<a class="update-source-link" href="${update.source.url}" target="_blank" rel="noopener noreferrer" aria-label="${t("updateSource")}: ${localTitle(anime)}">${t("updateSource")} <span aria-hidden="true">↗</span></a>`
+    : "";
+
+  return `
+    <article class="update-item update-${update.type}" data-anime-id="${anime.id}">
+      ${updatePosterMarkup(anime)}
+      <div class="update-content">
+        <div class="update-title-row">
+          <h3>${localTitle(anime)}</h3>
+          <time datetime="${update.changedAt}">${formatUpdateDate(update.changedAt)}</time>
+        </div>
+        <p>${localUpdateSummary(update)}</p>
+        <div class="update-meta">
+          <span class="update-type">${getUpdateTypeLabel(update.type)}</span>
+          ${sourceAction}
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function renderRecentUpdates() {
+  if (!recentUpdatesSection || !recentUpdatesList || !recentUpdatesToggle) return;
+
+  const updates = animeUpdates
+    .map((update, index) => ({ update, index }))
+    .filter(({ update }) => animeById.has(update.animeId))
+    .sort((a, b) => b.update.changedAt.localeCompare(a.update.changedAt) || a.index - b.index)
+    .map(({ update }) => update);
+
+  if (!updates.length) {
+    recentUpdatesSection.classList.add("hidden");
+    return;
+  }
+
+  const visibleUpdates = recentUpdatesExpanded ? updates : updates.slice(0, HOMEPAGE_UPDATE_LIMIT);
+  recentUpdatesSection.classList.remove("hidden");
+  recentUpdatesSection.classList.toggle("is-expanded", recentUpdatesExpanded);
+  recentUpdatesList.innerHTML = visibleUpdates.map(renderUpdateItem).join("");
+
+  const canExpand = updates.length > HOMEPAGE_UPDATE_LIMIT;
+  recentUpdatesToggle.classList.toggle("hidden", !canExpand);
+  recentUpdatesToggle.setAttribute("aria-expanded", String(recentUpdatesExpanded));
+  const label = recentUpdatesToggle.querySelector("#recentUpdatesToggleLabel");
+  if (label) label.textContent = t(recentUpdatesExpanded ? "showLess" : "viewAll");
+  const arrow = recentUpdatesToggle.querySelector("[aria-hidden='true']");
+  if (arrow) arrow.textContent = recentUpdatesExpanded ? "↑" : "→";
+}
+
+recentUpdatesToggle?.addEventListener("click", () => {
+  recentUpdatesExpanded = !recentUpdatesExpanded;
+  renderRecentUpdates();
+  if (!recentUpdatesExpanded) recentUpdatesSection.scrollIntoView({ block: "start" });
+});
+
 
 function posterMarkup(anime) {
   if (!anime.poster?.src) {
@@ -517,7 +790,18 @@ function streamingButton(anime) {
     return `<button class="stream-trigger disabled" type="button" disabled >${t("streaming")}</button>`;
   }
 
-  return `<button class="stream-trigger" type="button" data-anime-id="${anime.id}">${t("streaming")} <span class="external">▾</span></button>`;
+  return `<button class="stream-trigger" type="button" data-stream-anime-id="${anime.id}">${t("streaming")} <span class="external">▾</span></button>`;
+}
+
+function verificationMarkup(anime) {
+  const verifiedAt = anime.verification?.verifiedAt;
+  if (!verifiedAt) return "";
+
+  const label = `${t("checked")} · ${formatCheckedDate(verifiedAt)}`;
+  const sources = anime.verification?.sources || [];
+  if (!sources.length) return `<span class="verification-freshness">${label}</span>`;
+
+  return `<button class="verification-freshness verification-trigger" type="button" data-source-anime-id="${anime.id}" aria-label="${label} · ${t("informationSources")}">${label}<span aria-hidden="true">↗</span></button>`;
 }
 
 function isXLink(url) {
@@ -549,7 +833,45 @@ function resourceActions(anime) {
 const streamModal = document.getElementById("streamModal");
 const streamModalTitle = document.getElementById("streamModalTitle");
 const ottGrid = document.getElementById("ottGrid");
+const sourceModal = document.getElementById("sourceModal");
+const sourceModalTitle = document.getElementById("sourceModalTitle");
+const sourceCheckedDate = document.getElementById("sourceCheckedDate");
+const sourceList = document.getElementById("sourceList");
 let lastStreamTrigger = null;
+let lastSourceTrigger = null;
+
+const modalFocusableSelector = [
+  "a[href]",
+  "button:not([disabled])",
+  "input:not([disabled])",
+  "select:not([disabled])",
+  "textarea:not([disabled])",
+  "[tabindex]:not([tabindex='-1'])"
+].join(",");
+
+function visibleModal() {
+  return [sourceModal, streamModal].find(modal => modal && !modal.classList.contains("hidden"));
+}
+
+function trapModalFocus(event, modal) {
+  if (event.key !== "Tab") return;
+  const focusable = [...modal.querySelectorAll(modalFocusableSelector)]
+    .filter(element => !element.hasAttribute("hidden") && element.offsetParent !== null);
+  if (!focusable.length) {
+    event.preventDefault();
+    modal.querySelector(".stream-dialog")?.focus();
+    return;
+  }
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
+}
 
 function openStreamingModal(anime, trigger = null) {
   const links = anime.streaming || {};
@@ -587,21 +909,70 @@ function closeStreamingModal() {
   }
 }
 
+function openSourceModal(anime, trigger = null) {
+  const sources = anime.verification?.sources || [];
+  if (!anime.verification?.verifiedAt || !sources.length) return;
+
+  lastSourceTrigger = trigger;
+  sourceModalTitle.textContent = localTitle(anime);
+  sourceCheckedDate.textContent = formatUpdateDate(anime.verification.verifiedAt, { full: true });
+  sourceList.innerHTML = sources.map(source => `
+    <a class="source-option" href="${source.url}" target="_blank" rel="noopener noreferrer">
+      <span>${getSourceTypeLabel(source)}</span>
+      <span aria-hidden="true">↗</span>
+    </a>
+  `).join("");
+
+  sourceModal.classList.remove("hidden");
+  document.body.classList.add("modal-open");
+  requestAnimationFrame(() => sourceModal.querySelector(".source-close")?.focus());
+}
+
+function closeSourceModal() {
+  if (sourceModal.classList.contains("hidden")) return;
+  sourceModal.classList.add("hidden");
+  document.body.classList.remove("modal-open");
+  if (lastSourceTrigger) {
+    lastSourceTrigger.focus();
+    lastSourceTrigger = null;
+  }
+}
+
 document.addEventListener("click", event => {
-  const trigger = event.target.closest("[data-anime-id]");
-  if (trigger) {
-    const anime = animeById.get(trigger.dataset.animeId);
-    if (anime) openStreamingModal(anime, trigger);
+  const sourceTrigger = event.target.closest("[data-source-anime-id]");
+  if (sourceTrigger) {
+    const anime = animeById.get(sourceTrigger.dataset.sourceAnimeId);
+    if (anime) openSourceModal(anime, sourceTrigger);
+    return;
+  }
+
+  const streamTrigger = event.target.closest("[data-stream-anime-id]");
+  if (streamTrigger) {
+    const anime = animeById.get(streamTrigger.dataset.streamAnimeId);
+    if (anime) openStreamingModal(anime, streamTrigger);
     return;
   }
 
   if (event.target.closest("[data-stream-close]")) {
     closeStreamingModal();
+    return;
+  }
+
+  if (event.target.closest("[data-source-close]")) {
+    closeSourceModal();
   }
 });
 
 document.addEventListener("keydown", event => {
-  if (event.key === "Escape") closeStreamingModal();
+  const modal = visibleModal();
+  if (!modal) return;
+  if (event.key === "Escape") {
+    event.preventDefault();
+    if (modal === sourceModal) closeSourceModal();
+    else closeStreamingModal();
+    return;
+  }
+  trapModalFocus(event, modal);
 });
 
 function renderMonthNav() {
@@ -633,10 +1004,14 @@ function renderUndated() {
       <div class="undated-layout">
         ${posterMarkup(anime)}
         <div class="undated-content-main">
-          <div class="undated-title-scroll"><div class="undated-title undated-title-scroll-inner">${localTitle(anime)}</div></div>
+          <div class="card-top">
+            <div class="undated-title-scroll"><div class="undated-title undated-title-scroll-inner">${localTitle(anime)}</div></div>
+            <div class="date ${releasePrecisionClass(anime)}">${localDateLabel(anime)}</div>
+          </div>
           <div class="meta">
             ${anime.tags.map(tag => `<span class="badge ${tag}">${categoryLabel(tag)}</span>`).join("")}
           </div>
+          ${verificationMarkup(anime)}
           ${resourceActions(anime)}
         </div>
       </div>
@@ -707,6 +1082,7 @@ function compareScheduleItems(a, b) {
 }
 
 function render() {
+  renderRecentUpdates();
   const q = searchEl.value.trim().toLowerCase();
   let previousSeason = "";
 
@@ -745,11 +1121,12 @@ function render() {
               <div class="card-content">
                 <div class="card-top">
                   <div class="title-scroll"><div class="title title-scroll-inner">${localTitle(anime)}</div></div>
-                  <div class="date">${localDateLabel(anime)}</div>
+                  <div class="date ${releasePrecisionClass(anime)}">${localDateLabel(anime)}</div>
                 </div>
                 <div class="meta">
                   ${anime.tags.map(tag => `<span class="badge ${tag}">${categoryLabel(tag)}</span>`).join("")}
                 </div>
+                ${verificationMarkup(anime)}
                 ${resourceActions(anime)}
               </div>
             </div>
@@ -765,10 +1142,7 @@ function render() {
       ${seasonHeader}
       <section class="month" id="m-${month.id}">
         <div class="month-head">
-          <div>
-            <h3>${localMonthName(month.year, month.month)}</h3>
-          </div>
-          </div>
+          <h3>${localMonthName(month.year, month.month)}</h3>
           <span class="month-count">${activeLang === "ja" ? items.length + "作品" : activeLang === "en" ? items.length + " titles" : items.length + "작품"}</span>
         </div>
         <div class="cards">${cards}</div>

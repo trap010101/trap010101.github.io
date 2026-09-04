@@ -60,6 +60,10 @@
           <span class="menu-toggle-line" aria-hidden="true"></span>
         </button>
         <div class="site-menu hidden" id="siteMenu" role="menu">
+          <a class="site-menu-item" href="#recentUpdates" role="menuitem" id="updatesMenuLink">
+            <span class="site-menu-icon" aria-hidden="true">↻</span>
+            <span>UPDATES</span>
+          </a>
           <a class="site-menu-item" href="mailto:admin@newani.me" role="menuitem">
             <span class="site-menu-icon" aria-hidden="true">@</span>
             <span>CONTACT</span>
@@ -77,6 +81,20 @@
       <div class="hero-kicker">newani.me</div>
       <h1 id="heroTitle">방영 예정 애니메이션</h1>
       <p id="heroSubtitle">방영일과 PV, 공식 사이트 및 스트리밍 정보를 한눈에 확인하세요.</p>
+    </section>
+
+    <section class="recent-updates hidden" id="recentUpdates" aria-labelledby="recentUpdatesTitle">
+      <div class="recent-updates-head">
+        <div>
+          <div class="section-kicker" id="recentUpdatesKicker">WHAT CHANGED</div>
+          <h2 id="recentUpdatesTitle">최근 업데이트</h2>
+        </div>
+        <button class="recent-updates-toggle" id="recentUpdatesToggle" type="button" aria-expanded="false" aria-controls="recentUpdatesList">
+          <span id="recentUpdatesToggleLabel">전체 보기</span>
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
+      <div class="recent-updates-list" id="recentUpdatesList"></div>
     </section>
 
     <section class="toolbar" id="toolbar">
@@ -141,9 +159,15 @@
         <div class="undated-list" id="undatedList"></div>
       </div>
     </section>
-<div class="stream-modal hidden" id="streamModal" role="dialog" aria-modal="true" aria-labelledby="streamModalTitle">
+
+    <aside class="source-box" aria-labelledby="sourceInfoTitle">
+      <strong id="sourceInfoTitle">정보 확인 기준</strong>
+      <p id="sourceInfoDescription">공식 사이트와 공식 발표를 우선 확인하며, 작품별 확인일과 출처를 함께 제공합니다.</p>
+    </aside>
+
+    <div class="stream-modal hidden" id="streamModal" role="dialog" aria-modal="true" aria-labelledby="streamModalTitle">
       <div class="stream-modal-backdrop" data-stream-close></div>
-      <section class="stream-dialog">
+      <section class="stream-dialog" tabindex="-1">
         <div class="stream-dialog-head">
           <div>
             <div class="stream-dialog-kicker" id="streamKicker">Streaming Platforms</div>
@@ -157,6 +181,26 @@
       </section>
     </div>
 
+    <div class="stream-modal hidden" id="sourceModal" role="dialog" aria-modal="true" aria-labelledby="sourceModalTitle">
+      <div class="stream-modal-backdrop" data-source-close></div>
+      <section class="stream-dialog source-dialog" tabindex="-1">
+        <div class="stream-dialog-head">
+          <div>
+            <div class="stream-dialog-kicker" id="sourceModalKicker">정보 출처</div>
+            <h4 id="sourceModalTitle">정보 출처</h4>
+          </div>
+          <button class="stream-close source-close" type="button" aria-label="닫기" data-source-close>×</button>
+        </div>
+        <dl class="source-checked">
+          <div>
+            <dt id="sourceCheckedLabel">마지막 확인</dt>
+            <dd id="sourceCheckedDate"></dd>
+          </div>
+        </dl>
+        <div class="source-list" id="sourceList"></div>
+      </section>
+    </div>
+
     <footer>
   <div id="footerDescription">방영 예정 애니메이션과 극장판의 일정, PV, 공식 사이트, 스트리밍 정보를 한눈에 정리합니다.</div>
   <div id="footerCopyright">© 2026 NewAnime</div>
@@ -165,8 +209,8 @@
 
 <script src="data/anime.js"></script>
 <script src="data/platforms.js"></script>
+<script src="data/updates.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
-
 
