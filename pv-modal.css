@@ -1,0 +1,29 @@
+.pv-trigger {
+  width: 100%;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.pv-trigger:hover {
+  transform: translateY(-1px);
+  border-color: rgba(142,161,255,.4);
+  background: rgba(142,161,255,.14);
+}
+
+.pv-grid {
+  grid-template-columns: 1fr;
+}
+
+.pv-option {
+  min-height: 58px;
+}
+
+.pv-option .ott-option-name {
+  font-size: 13px;
+}
+
+@media (max-width: 520px) {
+  .pv-option {
+    min-height: 54px;
+  }
+}
