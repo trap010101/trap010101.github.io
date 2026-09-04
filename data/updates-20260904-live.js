@@ -67,14 +67,14 @@
       type: "anime-added",
       fields: ["title", "release.japan", "links.pv"],
       summary: {
-        ko: "완전 신작 TV 애니메이션을 신규 등록하고 2026년 가을 방영 예정으로 반영했습니다.",
-        ja: "完全新作TVアニメを新規登録し、2026年秋放送予定として反映しました。",
-        en: "Added the all-new TV anime with its confirmed Fall 2026 broadcast window."
+        ko: "완전 신작 TV 애니메이션을 신규 등록하고 2026년 10월 방영 예정으로 반영했습니다.",
+        ja: "完全新作TVアニメを新規登録し、2026年10月放送予定として反映しました。",
+        en: "Added the all-new TV anime with its confirmed October 2026 broadcast window."
       },
       source: {
-        type: "official-site",
-        url: "https://www.bn-pictures.co.jp/keroro-anime/tv/",
-        label: "Official website"
+        type: "official-x",
+        url: "https://x.com/keroro_anime/status/2095784141308809403",
+        label: "Official X announcement"
       }
     }
   ];
