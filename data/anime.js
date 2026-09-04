@@ -107,20 +107,21 @@ window.animeData = [
       "ja": "SEKIRO: NO DEFEAT",
       "en": "SEKIRO: NO DEFEAT"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 9,
-      "day": 4,
-      "label": {
-        "ko": "9/4",
-        "ja": "9/4",
-        "en": "9/4"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 9,
+        "day": 4
       },
-      "status": "date",
-      "rawLabel": "9/4"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "movie",
+    "origin": "game",
     "tags": [
       "major",
       "new",
@@ -137,7 +138,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "sound-euphonium-the-final-movement-part-2",
@@ -146,20 +152,21 @@ window.animeData = [
       "ja": "最終楽章 響け！ユーフォニアム 後編",
       "en": "Sound! Euphonium: The Final Movement — Part 2"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 9,
-      "day": 11,
-      "label": {
-        "ko": "9/11",
-        "ja": "9/11",
-        "en": "9/11"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 9,
+        "day": 11
       },
-      "status": "date",
-      "rawLabel": "9/11"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "movie",
+    "origin": "light-novel",
     "tags": [
       "major",
       "series",
@@ -176,7 +183,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "jojos-bizarre-adventure-steel-ball-run-2nd-and-3rd-stage",
@@ -185,20 +197,21 @@ window.animeData = [
       "ja": "ジョジョの奇妙な冒険 スティール・ボール・ラン 2nd & 3rd STAGE",
       "en": "JoJo's Bizarre Adventure: Steel Ball Run — 2nd & 3rd Stage"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 9,
-      "day": 25,
-      "label": {
-        "ko": "9/25",
-        "ja": "9/25",
-        "en": "9/25"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 9,
+        "day": 25
       },
-      "status": "date",
-      "rawLabel": "9/25"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "major",
       "series",
@@ -214,7 +227,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-new-prince-of-tennis-u-17-world-cup-final-roster-selection",
@@ -223,20 +241,21 @@ window.animeData = [
       "ja": "新テニスの王子様 U-17 WORLD CUP 決勝メンバー決定戦",
       "en": "The New Prince of Tennis U-17 WORLD CUP: Final Roster Selection"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 9,
-      "day": 30,
-      "label": {
-        "ko": "9/30",
-        "ja": "9/30",
-        "en": "9/30"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 9,
+        "day": 30
       },
-      "status": "date",
-      "rawLabel": "9/30"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "series",
       "comic"
@@ -251,7 +270,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-apothecary-diaries-season-3-part-1",
@@ -260,20 +284,21 @@ window.animeData = [
       "ja": "薬屋のひとりごと 第3期 第1クール",
       "en": "The Apothecary Diaries Season 3 — Part 1"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 2,
-      "label": {
-        "ko": "10/2",
-        "ja": "10/2",
-        "en": "10/2"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 2
       },
-      "status": "date",
-      "rawLabel": "10/2"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "major",
       "series",
@@ -294,7 +319,12 @@ window.animeData = [
       "prime": "https://www.primevideo.com/detail/0MIBSTLNZIMP6Z3EULUEJ0KS1U",
       "crunchyroll": "https://www.crunchyroll.com/ko/series/G3KHEVDJ7/the-apothecary-diaries"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "ranma-1-2-season-3",
@@ -303,20 +333,21 @@ window.animeData = [
       "ja": "らんま1/2 第3期",
       "en": "Ranma 1/2 Season 3"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 3,
-      "label": {
-        "ko": "10/3",
-        "ja": "10/3",
-        "en": "10/3"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 3
       },
-      "status": "date",
-      "rawLabel": "10/3"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "major",
       "series",
@@ -335,7 +366,12 @@ window.animeData = [
       "netflix": "https://www.netflix.com/kr/title/81171925",
       "watcha": "https://watcha.com/ko-KR/contents/tRW19vl"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "magic-knight-rayearth",
@@ -344,20 +380,21 @@ window.animeData = [
       "ja": "魔法騎士レイアース",
       "en": "Magic Knight Rayearth"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 7,
-      "label": {
-        "ko": "10/7",
-        "ja": "10/7",
-        "en": "10/7"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 7
       },
-      "status": "date",
-      "rawLabel": "10/7"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "major",
       "new",
@@ -374,7 +411,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "a-certain-dark-sides-shared-living",
@@ -383,20 +425,23 @@ window.animeData = [
       "ja": "とある暗部の少女共棲",
       "en": "A Certain Dark Side's Shared Living"
     },
+    "aliases": [
+      "とある暗部の少女共棲 (어떤 암부의 소녀공서)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 9,
-      "label": {
-        "ko": "10/9",
-        "ja": "10/9",
-        "en": "10/9"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 9
       },
-      "status": "date",
-      "rawLabel": "10/9"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "major",
       "new",
@@ -412,9 +457,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "とある暗部の少女共棲 (어떤 암부의 소녀공서)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "to-you-in-the-beyond",
@@ -423,20 +471,21 @@ window.animeData = [
       "ja": "どこよりも遠い場所にいる君へ",
       "en": "To You in the Beyond"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 9,
-      "label": {
-        "ko": "10/9",
-        "ja": "10/9",
-        "en": "10/9"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 9
       },
-      "status": "date",
-      "rawLabel": "10/9"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "movie",
+    "origin": "light-novel",
     "tags": [
       "new",
       "ln",
@@ -452,7 +501,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "girls-und-panzer-das-finale-part-5",
@@ -461,20 +515,21 @@ window.animeData = [
       "ja": "ガールズ＆パンツァー 最終章 第5話",
       "en": "Girls und Panzer das Finale: Part 5"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 9,
-      "label": {
-        "ko": "10/9",
-        "ja": "10/9",
-        "en": "10/9"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 9
       },
-      "status": "date",
-      "rawLabel": "10/9"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "movie",
+    "origin": "original",
     "tags": [
       "major",
       "series",
@@ -491,7 +546,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "bang-dream-ave-mujica-prima-aurora",
@@ -500,20 +560,21 @@ window.animeData = [
       "ja": "BanG Dream! Ave Mujica prima aurora",
       "en": "BanG Dream! Ave Mujica prima aurora"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 16,
-      "label": {
-        "ko": "10/16",
-        "ja": "10/16",
-        "en": "10/16"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 16
       },
-      "status": "date",
-      "rawLabel": "10/16"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "movie",
+    "origin": "original",
     "tags": [
       "major",
       "series",
@@ -530,7 +591,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "rascal-does-not-dream-of-a-dear-friend",
@@ -539,20 +605,21 @@ window.animeData = [
       "ja": "青春ブタ野郎はディアフレンドの夢を見ない",
       "en": "Rascal Does Not Dream of a Dear Friend"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 16,
-      "label": {
-        "ko": "10/16",
-        "ja": "10/16",
-        "en": "10/16"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 16
       },
-      "status": "date",
-      "rawLabel": "10/16"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "movie",
+    "origin": "light-novel",
     "tags": [
       "major",
       "series",
@@ -569,7 +636,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "cyberpunk-edgerunners-2",
@@ -578,20 +650,21 @@ window.animeData = [
       "ja": "サイバーパンク: エッジランナーズ2",
       "en": "Cyberpunk: Edgerunners 2"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 20,
-      "label": {
-        "ko": "10/20",
-        "ja": "10/20",
-        "en": "10/20"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 20
       },
-      "status": "date",
-      "rawLabel": "10/20"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "other",
     "tags": [
       "major",
       "series",
@@ -610,7 +683,12 @@ window.animeData = [
     "streaming": {
       "netflix": "https://www.netflix.com/kr-en/title/81054853"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "made-in-abyss-theatrical-series-part-1-the-awakening-mystery",
@@ -619,20 +697,21 @@ window.animeData = [
       "ja": "劇場シリーズ【第一部】メイドインアビス 目覚める神秘",
       "en": "Made in Abyss Theatrical Series Part 1: The Awakening Mystery"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 23,
-      "label": {
-        "ko": "10/23",
-        "ja": "10/23",
-        "en": "10/23"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 23
       },
-      "status": "date",
-      "rawLabel": "10/23"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "movie",
+    "origin": "comic",
     "tags": [
       "major",
       "series",
@@ -649,7 +728,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "be-forever-yamato-rebel3199-chapter-7-rainbow-reincarnation",
@@ -658,20 +742,21 @@ window.animeData = [
       "ja": "ヤマトよ永遠に REBEL3199 第七章 虹色の輪廻",
       "en": "Be Forever Yamato: REBEL3199 Chapter 7 — Rainbow Reincarnation"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 30,
-      "label": {
-        "ko": "10/30",
-        "ja": "10/30",
-        "en": "10/30"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 30
       },
-      "status": "date",
-      "rawLabel": "10/30"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "movie",
+    "origin": "original",
     "tags": [
       "series",
       "original",
@@ -687,7 +772,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "looking-for-zombies",
@@ -696,20 +786,23 @@ window.animeData = [
       "ja": "#ゾンビさがしてます",
       "en": "#Looking for Zombies"
     },
+    "aliases": [
+      "#ゾンビさがしてます (#좀비를 찾고 있습니다)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "unknown",
     "tags": [
       "new"
     ],
@@ -723,9 +816,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "#ゾンビさがしてます (#좀비를 찾고 있습니다)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "dark-machine-the-animation",
@@ -734,20 +830,23 @@ window.animeData = [
       "ja": "DARK MACHINE THE ANIMATION",
       "en": "DARK MACHINE THE ANIMATION"
     },
+    "aliases": [
+      "DARK MACHINE THE ANIMATION (다크 머신 더 애니메이션)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "other",
     "tags": [
       "new",
       "original",
@@ -763,9 +862,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "DARK MACHINE THE ANIMATION (다크 머신 더 애니메이션)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "fx-fighter-kurumi-chan",
@@ -774,20 +876,23 @@ window.animeData = [
       "ja": "FX戦士くるみちゃん",
       "en": "FX Fighter Kurumi-chan"
     },
+    "aliases": [
+      "FX戦士くるみちゃん (FX전사 쿠루미짱)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 1,
-      "label": {
-        "ko": "10/1",
-        "ja": "10/1",
-        "en": "10/1"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 1
       },
-      "status": "date",
-      "rawLabel": "10/1"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -804,9 +909,12 @@ window.animeData = [
     "streaming": {
       "officialstream": "https://fxkurumi-info.com/onair/"
     },
-    "aliases": [
-      "FX戦士くるみちゃん (FX전사 쿠루미짱)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "psyren",
@@ -815,20 +923,23 @@ window.animeData = [
       "ja": "PSYREN -サイレン-",
       "en": "PSYREN"
     },
+    "aliases": [
+      "PSYREN -サイレン- (사이렌)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "major",
       "new",
@@ -846,9 +957,12 @@ window.animeData = [
     "streaming": {
       "officialstream": "https://www.crunchyroll.com/pl/news/announcements/2026/7/12/psyren-the-eternal-fools-words-of-wisdom-dreamland-musketeer-nanako-stream-crunchyroll"
     },
-    "aliases": [
-      "PSYREN -サイレン- (사이렌)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "tank-chair",
@@ -857,20 +971,23 @@ window.animeData = [
       "ja": "TANK CHAIR-戦車椅子-",
       "en": "TANK CHAIR"
     },
+    "aliases": [
+      "TANK CHAIR-戦車椅子- (탱크 체어 -전차의자-)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 4,
-      "label": {
-        "ko": "10/4",
-        "ja": "10/4",
-        "en": "10/4"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 4
       },
-      "status": "date",
-      "rawLabel": "10/4"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -885,9 +1002,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "TANK CHAIR-戦車椅子- (탱크 체어 -전차의자-)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "dreamland",
@@ -896,20 +1016,23 @@ window.animeData = [
       "ja": "dreamland",
       "en": "dreamland"
     },
+    "aliases": [
+      "dreamland (드림랜드)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 17,
-      "label": {
-        "ko": "10/17",
-        "ja": "10/17",
-        "en": "10/17"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 17
       },
-      "status": "date",
-      "rawLabel": "10/17"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "unknown",
     "tags": [
       "new"
     ],
@@ -925,9 +1048,12 @@ window.animeData = [
     "streaming": {
       "officialstream": "https://www.crunchyroll.com/de/news/latest/2026/8/28/dreamland-release-date-trailer-japanische-synchro"
     },
-    "aliases": [
-      "dreamland (드림랜드)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "tetsuryo-meet-with-tetsudo-musume",
@@ -936,20 +1062,23 @@ window.animeData = [
       "ja": "てつりょー！meet with 鉄道むすめ",
       "en": "Tetsuryo! meet with Tetsudo Musume"
     },
+    "aliases": [
+      "てつりょー！meet with 鉄道むすめ (테츠료! meet with 철도무스메)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 8,
-      "label": {
-        "ko": "10/8",
-        "ja": "10/8",
-        "en": "10/8"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 8
       },
-      "status": "date",
-      "rawLabel": "10/8"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "unknown",
     "tags": [
       "new"
     ],
@@ -963,9 +1092,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "てつりょー！meet with 鉄道むすめ (테츠료! meet with 철도무스메)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "junket-bank",
@@ -974,20 +1106,23 @@ window.animeData = [
       "ja": "ジャンケットバンク",
       "en": "JUNKET BANK"
     },
+    "aliases": [
+      "ジャンケットバンク / JUNKET BANK (정켓 뱅크)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 5,
-      "label": {
-        "ko": "10/5",
-        "ja": "10/5",
-        "en": "10/5"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 5
       },
-      "status": "date",
-      "rawLabel": "10/5"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -1002,9 +1137,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "ジャンケットバンク / JUNKET BANK (정켓 뱅크)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "tanuki-and-kitsune",
@@ -1013,20 +1151,23 @@ window.animeData = [
       "ja": "タヌキとキツネ",
       "en": "Tanuki and Kitsune"
     },
+    "aliases": [
+      "タヌキとキツネ (타누키와 키츠네)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -1041,9 +1182,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "タヌキとキツネ (타누키와 키츠네)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "dating-a-dark-summoner",
@@ -1052,20 +1196,23 @@ window.animeData = [
       "ja": "ダークサモナーとデキている",
       "en": "Dating a Dark Summoner"
     },
+    "aliases": [
+      "ダークサモナーとデキている (다크 서머너와 사귀고 있다)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -1080,9 +1227,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "ダークサモナーとデキている (다크 서머너와 사귀고 있다)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "vertex-force",
@@ -1091,20 +1241,23 @@ window.animeData = [
       "ja": "バーテックスフォース",
       "en": "Vertex Force"
     },
+    "aliases": [
+      "バーテックスフォース (버텍스 포스)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 3,
-      "label": {
-        "ko": "10/3",
-        "ja": "10/3",
-        "en": "10/3"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 3
       },
-      "status": "date",
-      "rawLabel": "10/3"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "original",
     "tags": [
       "new",
       "original"
@@ -1121,9 +1274,12 @@ window.animeData = [
     "streaming": {
       "officialstream": "https://vertexforce.jp/onair/"
     },
-    "aliases": [
-      "バーテックスフォース (버텍스 포스)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "magical-explorer",
@@ -1132,20 +1288,23 @@ window.animeData = [
       "ja": "マジカル★エクスプローラー",
       "en": "Magical Explorer"
     },
+    "aliases": [
+      "マジカル★エクスプローラー (매지컬★익스플로러)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 3,
-      "label": {
-        "ko": "10/3",
-        "ja": "10/3",
-        "en": "10/3"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 3
       },
-      "status": "date",
-      "rawLabel": "10/3"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "new",
       "ln"
@@ -1160,9 +1319,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "マジカル★エクスプローラー (매지컬★익스플로러)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-seven-knights-of-the-marronnier-kingdom",
@@ -1171,20 +1333,23 @@ window.animeData = [
       "ja": "マロニエ王国の七人の騎士",
       "en": "The Seven Knights of the Marronnier Kingdom"
     },
+    "aliases": [
+      "マロニエ王国の七人の騎士 (마로니에 왕국의 일곱 기사)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -1199,9 +1364,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "マロニエ王国の七人の騎士 (마로니에 왕국의 일곱 기사)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-worlds-strongest-witch-has-begun",
@@ -1210,20 +1378,23 @@ window.animeData = [
       "ja": "世界最強の魔女、始めました",
       "en": "The World's Strongest Witch Has Begun"
     },
+    "aliases": [
+      "世界最強の魔女、始めました (세계 최강의 마녀, 시작했습니다)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 7,
-      "label": {
-        "ko": "10/7",
-        "ja": "10/7",
-        "en": "10/7"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 7
       },
-      "status": "date",
-      "rawLabel": "10/7"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "unknown",
     "tags": [
       "new"
     ],
@@ -1237,9 +1408,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "世界最強の魔女、始めました (세계 최강의 마녀, 시작했습니다)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "nia-liston-the-merciless-maiden",
@@ -1248,20 +1422,23 @@ window.animeData = [
       "ja": "凶乱令嬢ニア・リストン 病弱令嬢に転生した神殺しの武人の華麗なる無双録",
       "en": "Nia Liston: The Merciless Maiden"
     },
+    "aliases": [
+      "凶乱令嬢ニア・リストン 病弱令嬢に転生した神殺しの武人の華麗なる無双録 (흉란영애 니아 리스트온: 병약 영애로 전생한 신살의 무인의 화려한 무쌍록)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 6,
-      "label": {
-        "ko": "10/6",
-        "ja": "10/6",
-        "en": "10/6"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 6
       },
-      "status": "date",
-      "rawLabel": "10/6"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "new",
       "ln"
@@ -1276,9 +1453,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "凶乱令嬢ニア・リストン 病弱令嬢に転生した神殺しの武人の華麗なる無双録 (흉란영애 니아 리스트온: 병약 영애로 전생한 신살의 무인의 화려한 무쌍록)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-salty-koharu-has-a-soft-spot-for-me",
@@ -1287,20 +1467,23 @@ window.animeData = [
       "ja": "塩対応の佐藤さんが俺にだけ甘い",
       "en": "The Salty Koharu Has a Soft Spot for Me"
     },
+    "aliases": [
+      "塩対応の佐藤さんが俺にだけ甘い (쌀쌀맞은 사토 씨가 나한테만 달콤하다)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "new",
       "ln"
@@ -1315,9 +1498,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "塩対応の佐藤さんが俺にだけ甘い (쌀쌀맞은 사토 씨가 나한테만 달콤하다)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-timid-max-lady-took-her-shrewd-fiance-s-bet",
@@ -1326,20 +1512,23 @@ window.animeData = [
       "ja": "弱気MAX令嬢なのに、辣腕婚約者様の賭けに乗ってしまった",
       "en": "The Timid MAX Lady Took Her Shrewd Fiancé's Bet"
     },
+    "aliases": [
+      "弱気MAX令嬢なのに、辣腕婚約者様の賭けに乗ってしまった (소심 MAX 영애인데 수완 좋은 약혼자의 내기에 올라타 버렸다)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "new",
       "ln"
@@ -1354,9 +1543,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "弱気MAX令嬢なのに、辣腕婚約者様の賭けに乗ってしまった (소심 MAX 영애인데 수완 좋은 약혼자의 내기에 올라타 버렸다)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "her-friend",
@@ -1365,20 +1557,23 @@ window.animeData = [
       "ja": "彼女の友達",
       "en": "Her Friend"
     },
+    "aliases": [
+      "彼女の友達 (그녀의 친구)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -1393,9 +1588,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "彼女の友達 (그녀의 친구)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "from-far-away",
@@ -1404,20 +1602,23 @@ window.animeData = [
       "ja": "彼方から",
       "en": "From Far Away"
     },
+    "aliases": [
+      "彼方から (저편에서)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 4,
-      "label": {
-        "ko": "10/4",
-        "ja": "10/4",
-        "en": "10/4"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 4
       },
-      "status": "date",
-      "rawLabel": "10/4"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -1432,9 +1633,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "彼方から (저편에서)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-vermilion-mask",
@@ -1443,20 +1647,23 @@ window.animeData = [
       "ja": "朱色の仮面",
       "en": "The Vermilion Mask"
     },
+    "aliases": [
+      "朱色の仮面 (주홍빛 가면)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "unknown",
     "tags": [
       "new"
     ],
@@ -1472,9 +1679,12 @@ window.animeData = [
     "streaming": {
       "officialstream": "https://www.crunchyroll.com/news/latest/2026/7/3/the-vermilion-mask-anime-trailer-2"
     },
-    "aliases": [
-      "朱色の仮面 (주홍빛 가면)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "beast-king-war-god-dandevine",
@@ -1483,20 +1693,23 @@ window.animeData = [
       "ja": "獣王武神ダンデヴァイン",
       "en": "Beast King War God Dandevine"
     },
+    "aliases": [
+      "獣王武神ダンデヴァイン (수왕무신 단데바인)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 7,
-      "label": {
-        "ko": "10/7",
-        "ja": "10/7",
-        "en": "10/7"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 7
       },
-      "status": "date",
-      "rawLabel": "10/7"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "unknown",
     "tags": [
       "new"
     ],
@@ -1510,9 +1723,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "獣王武神ダンデヴァイン (수왕무신 단데바인)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "there-are-holes-in-the-student-council",
@@ -1521,20 +1737,23 @@ window.animeData = [
       "ja": "生徒会にも穴はある！",
       "en": "There Are Holes in the Student Council!"
     },
+    "aliases": [
+      "生徒会にも穴はある！ (학생회에도 구멍은 있다!)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 3,
-      "label": {
-        "ko": "10/3",
-        "ja": "10/3",
-        "en": "10/3"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 3
       },
-      "status": "date",
-      "rawLabel": "10/3"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -1549,9 +1768,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "生徒会にも穴はある！ (학생회에도 구멍은 있다!)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "i-woke-up-with-the-strongest-gear-and-a-spaceship-so-ill-live-freely-as-a-mercenary",
@@ -1560,20 +1782,23 @@ window.animeData = [
       "ja": "目覚めたら最強装備と宇宙船持ちだったので、一戸建て目指して傭兵として自由に生きたい",
       "en": "I Woke Up With the Strongest Gear and a Spaceship, So I'll Live Freely as a Mercenary"
     },
+    "aliases": [
+      "目覚めたら最強装備と宇宙船持ちだったので、一戸建て目指して傭兵として自由に生きたい (눈을 떠보니 최강 장비와 우주선을 가지고 있어서, 단독주택을 목표로 용병으로 자유롭게 살고 싶다)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "new",
       "ln"
@@ -1588,9 +1813,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "目覚めたら最強装備と宇宙船持ちだったので、一戸建て目指して傭兵として自由に生きたい (눈을 떠보니 최강 장비와 우주선을 가지고 있어서, 단독주택을 목표로 용병으로 자유롭게 살고 싶다)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "forbidden-city-cat-guard-room",
@@ -1599,20 +1827,23 @@ window.animeData = [
       "ja": "紫禁・御猫房〜紫禁城猫警備室〜",
       "en": "Forbidden City Cat Guard Room"
     },
+    "aliases": [
+      "紫禁・御猫房〜紫禁城猫警備室〜 (자금·어묘방 ~자금성 고양이 경비실~)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "unknown",
     "tags": [
       "new"
     ],
@@ -1626,9 +1857,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "紫禁・御猫房〜紫禁城猫警備室〜 (자금·어묘방 ~자금성 고양이 경비실~)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "super-psychic-policeman-chojo",
@@ -1637,20 +1871,23 @@ window.animeData = [
       "ja": "超巡！超条先輩",
       "en": "Super Psychic Policeman Chojo"
     },
+    "aliases": [
+      "超巡！超条先輩 (초순! 초조 선배)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -1665,9 +1902,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "超巡！超条先輩 (초순! 초조 선배)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "a-tale-of-the-secret-saint",
@@ -1676,20 +1916,23 @@ window.animeData = [
       "ja": "転生した大聖女は、聖女であることをひた隠す",
       "en": "A Tale of the Secret Saint"
     },
+    "aliases": [
+      "転生した大聖女は、聖女であることをひた隠す (전생한 대성녀는 성녀임을 숨긴다)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "new",
       "ln"
@@ -1704,9 +1947,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "転生した大聖女は、聖女であることをひた隠す (전생한 대성녀는 성녀임을 숨긴다)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "im-a-reincarnated-goblin-any-questions",
@@ -1715,20 +1961,23 @@ window.animeData = [
       "ja": "転生ゴブリンだけど質問ある？",
       "en": "I'm a Reincarnated Goblin, Any Questions?"
     },
+    "aliases": [
+      "転生ゴブリンだけど質問ある？ (전생 고블린인데 질문 있어?)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -1743,9 +1992,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "転生ゴブリンだけど質問ある？ (전생 고블린인데 질문 있어?)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "magical-sisters-lulutto-lilly-part-2",
@@ -1754,20 +2006,23 @@ window.animeData = [
       "ja": "魔法の姉妹ルルットリリィ 第2クール",
       "en": "Magical Sisters Lulutto Lilly — Part 2"
     },
+    "aliases": [
+      "魔法の姉妹ルルットリリィ 第2クール (마법의 자매 루룻토릴리 제2쿨)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "original",
     "tags": [
       "series",
       "original"
@@ -1782,9 +2037,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "魔法の姉妹ルルットリリィ 第2クール (마법의 자매 루룻토릴리 제2쿨)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "a-returners-magic-should-be-special-season-2",
@@ -1793,20 +2051,21 @@ window.animeData = [
       "ja": "帰還者の魔法は特別です 第2期",
       "en": "A Returner's Magic Should Be Special Season 2"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "other",
     "tags": [
       "series",
       "webtoon",
@@ -1826,7 +2085,12 @@ window.animeData = [
       "crunchyroll": "https://www.crunchyroll.com/ko/series/GEXH3W207/a-returners-magic-should-be-special",
       "tving": "https://www.tving.com/contents/E004115538"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "tougen-anki-nikko-and-kegon-falls-arc",
@@ -1835,20 +2099,21 @@ window.animeData = [
       "ja": "桃源暗鬼 日光・華厳の滝編",
       "en": "Tougen Anki: Nikko & Kegon Falls Arc"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "series",
       "comic"
@@ -1863,7 +2128,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "tokyo-revengers-three-deities-war-arc",
@@ -1872,20 +2142,21 @@ window.animeData = [
       "ja": "東京リベンジャーズ 三天戦争編",
       "en": "Tokyo Revengers: Three Deities War Arc"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 2,
-      "label": {
-        "ko": "10/2",
-        "ja": "10/2",
-        "en": "10/2"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 2
       },
-      "status": "date",
-      "rawLabel": "10/2"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "major",
       "series",
@@ -1903,7 +2174,12 @@ window.animeData = [
     "streaming": {
       "watcha": "https://watcha.com/ko/contents/tRMxXK0"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "magical-girl-raising-project-restart",
@@ -1912,20 +2188,21 @@ window.animeData = [
       "ja": "魔法少女育成計画 restart",
       "en": "Magical Girl Raising Project restart"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 5,
-      "label": {
-        "ko": "10/5",
-        "ja": "10/5",
-        "en": "10/5"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 5
       },
-      "status": "date",
-      "rawLabel": "10/5"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "series",
       "ln"
@@ -1940,7 +2217,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "black-clover-2nd-season",
@@ -1949,20 +2231,21 @@ window.animeData = [
       "ja": "ブラッククローバー 2nd Season",
       "en": "Black Clover 2nd Season"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "major",
       "series",
@@ -1980,7 +2263,12 @@ window.animeData = [
     "streaming": {
       "crunchyroll": "https://www.crunchyroll.com/ko/series/GRE50KV36/black-clover"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-iceblade-sorcerer-shall-rule-the-world-ii",
@@ -1989,20 +2277,21 @@ window.animeData = [
       "ja": "冰剣の魔術師が世界を統べる II",
       "en": "The Iceblade Sorcerer Shall Rule the World II"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 8,
-      "label": {
-        "ko": "10/8",
-        "ja": "10/8",
-        "en": "10/8"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 8
       },
-      "status": "date",
-      "rawLabel": "10/8"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "series",
       "ln"
@@ -2017,7 +2306,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "sasaki-and-peeps-season-2",
@@ -2026,20 +2320,21 @@ window.animeData = [
       "ja": "佐々木とピーちゃん Season 2",
       "en": "Sasaki and Peeps Season 2"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "series",
       "ln"
@@ -2058,7 +2353,12 @@ window.animeData = [
       "crunchyroll": "https://www.crunchyroll.com/series/G5PHNM935/sasaki-and-peeps",
       "tving": "https://www.tving.com/contents/P001756336"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "aoashi-season-2",
@@ -2067,20 +2367,21 @@ window.animeData = [
       "ja": "アオアシ Season 2",
       "en": "Aoashi Season 2"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "major",
       "series",
@@ -2098,7 +2399,12 @@ window.animeData = [
     "streaming": {
       "crunchyroll": "https://www.crunchyroll.com/ko/series/G4PH0WX5J/aoashi"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "reincarnated-as-a-sword-ii",
@@ -2107,20 +2413,21 @@ window.animeData = [
       "ja": "転生したら剣でした II",
       "en": "Reincarnated as a Sword II"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 7,
-      "label": {
-        "ko": "10/7",
-        "ja": "10/7",
-        "en": "10/7"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 7
       },
-      "status": "date",
-      "rawLabel": "10/7"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "series",
       "ln"
@@ -2137,7 +2444,12 @@ window.animeData = [
     "streaming": {
       "prime": "https://www.primevideo.com/-/ko/detail/0SMRJS9YUTPHZO3CHCX2OX9AIX"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "chitose-is-in-the-ramune-bottle-part-2",
@@ -2146,20 +2458,21 @@ window.animeData = [
       "ja": "千歳くんはラムネ瓶のなか 第2クール",
       "en": "Chitose Is in the Ramune Bottle — Part 2"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "series",
       "ln"
@@ -2177,7 +2490,12 @@ window.animeData = [
       "tving": "https://www.tving.com/contents/P001781694",
       "watcha": "https://watcha.com/ko/contents/tR2eraW"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-detective-is-already-dead-season-2",
@@ -2186,20 +2504,21 @@ window.animeData = [
       "ja": "探偵はもう、死んでいる。Season 2",
       "en": "The Detective Is Already Dead Season 2"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "series",
       "ln"
@@ -2216,7 +2535,12 @@ window.animeData = [
     "streaming": {
       "crunchyroll": "https://www.crunchyroll.com/series/G24H1N334/the-detective-is-already-dead"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "blue-box-season-2",
@@ -2225,20 +2549,21 @@ window.animeData = [
       "ja": "アオのハコ Season 2",
       "en": "Blue Box Season 2"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 4,
-      "label": {
-        "ko": "10/4",
-        "ja": "10/4",
-        "en": "10/4"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 4
       },
-      "status": "date",
-      "rawLabel": "10/4"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "major",
       "series",
@@ -2256,7 +2581,12 @@ window.animeData = [
     "streaming": {
       "netflix": "https://www.netflix.com/kr/title/81663323"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "firefly-wedding",
@@ -2265,20 +2595,23 @@ window.animeData = [
       "ja": "ホタルの嫁入り",
       "en": "Firefly Wedding"
     },
+    "aliases": [
+      "호타루의 시집가기"
+    ],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": 9,
-      "label": {
-        "ko": "10/9",
-        "ja": "10/9",
-        "en": "10/9"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 10,
+        "day": 9
       },
-      "status": "date",
-      "rawLabel": "10/9"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -2293,9 +2626,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "호타루의 시집가기"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "suikoden",
@@ -2304,20 +2640,21 @@ window.animeData = [
       "ja": "幻想水滸伝",
       "en": "Suikoden"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "game",
     "tags": [
       "new",
       "game"
@@ -2332,7 +2669,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "grotesqqque",
@@ -2341,20 +2683,21 @@ window.animeData = [
       "ja": "GROTESQQQUE-グロテスク-",
       "en": "GROTESQQQUE"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 11,
-      "day": 6,
-      "label": {
-        "ko": "11/6",
-        "ja": "11/6",
-        "en": "11/6"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 11,
+        "day": 6
       },
-      "status": "date",
-      "rawLabel": "11/6"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "movie",
+    "origin": "original",
     "tags": [
       "new",
       "original",
@@ -2370,7 +2713,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "demons-crest",
@@ -2379,20 +2727,21 @@ window.animeData = [
       "ja": "デモンズ・クレスト",
       "en": "Demon's Crest"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 11,
-      "day": 6,
-      "label": {
-        "ko": "11/6",
-        "ja": "11/6",
-        "en": "11/6"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 11,
+        "day": 6
       },
-      "status": "date",
-      "rawLabel": "11/6"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "new",
       "ln"
@@ -2407,7 +2756,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "expelled-from-paradise-resonance-of-the-heart",
@@ -2416,20 +2770,21 @@ window.animeData = [
       "ja": "楽園追放 心のレゾナンス",
       "en": "Expelled from Paradise: Resonance of the Heart"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 11,
-      "day": 13,
-      "label": {
-        "ko": "11/13",
-        "ja": "11/13",
-        "en": "11/13"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 11,
+        "day": 13
       },
-      "status": "date",
-      "rawLabel": "11/13"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "movie",
+    "origin": "original",
     "tags": [
       "major",
       "series",
@@ -2446,7 +2801,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "armored-trooper-votoms-the-gray-witch-part-1",
@@ -2455,20 +2815,21 @@ window.animeData = [
       "ja": "装甲騎兵ボトムズ 灰色の魔女 第1作",
       "en": "Armored Trooper VOTOMS: The Gray Witch — Part 1"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 11,
-      "day": 20,
-      "label": {
-        "ko": "11/20",
-        "ja": "11/20",
-        "en": "11/20"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 11,
+        "day": 20
       },
-      "status": "date",
-      "rawLabel": "11/20"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "movie",
+    "origin": "original",
     "tags": [
       "series",
       "original",
@@ -2484,7 +2845,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "witch-on-the-holy-night",
@@ -2493,20 +2859,21 @@ window.animeData = [
       "ja": "魔法使いの夜",
       "en": "Witch on the Holy Night"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 11,
-      "day": 20,
-      "label": {
-        "ko": "11/20",
-        "ja": "11/20",
-        "en": "11/20"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 11,
+        "day": 20
       },
-      "status": "date",
-      "rawLabel": "11/20"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "movie",
+    "origin": "game",
     "tags": [
       "major",
       "new",
@@ -2523,7 +2890,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "fool-night",
@@ -2532,20 +2904,23 @@ window.animeData = [
       "ja": "フールナイト",
       "en": "FOOL NIGHT"
     },
+    "aliases": [
+      "フールナイト / FOOL NIGHT (풀 나이트)"
+    ],
     "release": {
-      "year": 2026,
-      "month": 11,
-      "day": 26,
-      "label": {
-        "ko": "11/26",
-        "ja": "11/26",
-        "en": "11/26"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 11,
+        "day": 26
       },
-      "status": "date",
-      "rawLabel": "11/26"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "major",
       "new",
@@ -2561,9 +2936,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "フールナイト / FOOL NIGHT (풀 나이트)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "tiger-coming-in-2",
@@ -2572,20 +2950,26 @@ window.animeData = [
       "ja": "호랑이 들어와요2",
       "en": "Tiger Coming In 2"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 12,
-      "day": null,
-      "label": {
-        "ko": "겨울",
-        "ja": "冬",
-        "en": "Winter"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 12,
+        "day": null,
+        "display": {
+          "ko": "겨울",
+          "ja": "冬",
+          "en": "Winter"
+        }
       },
-      "status": "month",
-      "rawLabel": "겨울"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-winter",
     "format": "tv",
+    "origin": "webtoon",
     "tags": [
       "series",
       "webtoon"
@@ -2602,7 +2986,12 @@ window.animeData = [
     "streaming": {
       "laftel": "https://laftel.net/item/42320"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-apothecary-diaries-the-late-consorts-secret-treasure",
@@ -2611,20 +3000,21 @@ window.animeData = [
       "ja": "劇場版 薬屋のひとりごと 亡妃の秘宝",
       "en": "The Apothecary Diaries: The Late Consort's Secret Treasure"
     },
+    "aliases": [],
     "release": {
-      "year": 2026,
-      "month": 12,
-      "day": 11,
-      "label": {
-        "ko": "12/11",
-        "ja": "12/11",
-        "en": "12/11"
+      "japan": {
+        "status": "date",
+        "year": 2026,
+        "month": 12,
+        "day": 11
       },
-      "status": "date",
-      "rawLabel": "12/11"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-winter",
     "format": "movie",
+    "origin": "light-novel",
     "tags": [
       "major",
       "series",
@@ -2641,7 +3031,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "monogatari-series-off-and-monster-season-wazamonogatari-karen-ogre",
@@ -2650,20 +3045,23 @@ window.animeData = [
       "ja": "〈物語〉シリーズ オフ＆モンスターシーズン ― 業物語 かれんオウガ",
       "en": "Monogatari Series: Off & Monster Season — Wazamonogatari: Karen Ogre"
     },
+    "aliases": [
+      "〈모노가타리〉 시리즈 Off & Monster Season — 業物語 かれんオウガ"
+    ],
     "release": {
-      "year": 2026,
-      "month": 12,
-      "day": null,
-      "label": {
-        "ko": "12월",
-        "ja": "12月",
-        "en": "Dec"
+      "japan": {
+        "status": "month",
+        "year": 2026,
+        "month": 12,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "12월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2026-winter",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "series",
       "ln"
@@ -2680,9 +3078,12 @@ window.animeData = [
     "streaming": {
       "crunchyroll": "https://www.crunchyroll.com/series/GNVHKN9W2/monogatari-series-off--monster-season"
     },
-    "aliases": [
-      "〈모노가타리〉 시리즈 Off & Monster Season — 業物語 かれんオウガ"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "bang-dream-its-mygo-ave-mujica-sequel-series",
@@ -2691,20 +3092,23 @@ window.animeData = [
       "ja": "BanG Dream! It's MyGO!!!!! / Ave Mujica 続編シリーズ",
       "en": "BanG Dream! It's MyGO!!!!! / Ave Mujica — Sequel Series"
     },
+    "aliases": [
+      "BanG Dream! It's MyGO!!!!! / Ave Mujica 후속 시리즈 (뱅드림! 잇츠 마이고!!!!! / 아베 무지카 후속 시리즈)"
+    ],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "original",
     "tags": [
       "major",
       "series",
@@ -2722,9 +3126,12 @@ window.animeData = [
     "streaming": {
       "crunchyroll": "https://www.crunchyroll.com/series/G0XHWM11X/ave-mujica---the-die-is-cast"
     },
-    "aliases": [
-      "BanG Dream! It's MyGO!!!!! / Ave Mujica 후속 시리즈 (뱅드림! 잇츠 마이고!!!!! / 아베 무지카 후속 시리즈)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "sakamoto-days-season-2",
@@ -2733,20 +3140,23 @@ window.animeData = [
       "ja": "SAKAMOTO DAYS 第2期",
       "en": "SAKAMOTO DAYS Season 2"
     },
+    "aliases": [
+      "SAKAMOTO DAYS 2기 (사카모토 데이즈 2기)"
+    ],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "major",
       "series",
@@ -2764,9 +3174,12 @@ window.animeData = [
     "streaming": {
       "netflix": "https://www.netflix.com/kr-en/title/81663325"
     },
-    "aliases": [
-      "SAKAMOTO DAYS 2기 (사카모토 데이즈 2기)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "everyday-host-new-series",
@@ -2775,20 +3188,23 @@ window.animeData = [
       "ja": "えぶりでいホスト 新シリーズ",
       "en": "Everyday Host — New Series"
     },
+    "aliases": [
+      "えぶりでいホスト 新シリーズ (에브리데이 호스트 신시리즈)"
+    ],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "series",
       "comic"
@@ -2803,9 +3219,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "えぶりでいホスト 新シリーズ (에브리데이 호스트 신시리즈)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "sudachis-demon-kings-castle",
@@ -2814,20 +3233,23 @@ window.animeData = [
       "ja": "すだちの魔王城",
       "en": "Sudachi's Demon King's Castle"
     },
+    "aliases": [
+      "すだちの魔王城 (스다치의 마왕성)"
+    ],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -2842,9 +3264,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "すだちの魔王城 (스다치의 마왕성)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "mashle-season-3-divine-visionary-final-exam-arc",
@@ -2853,20 +3278,23 @@ window.animeData = [
       "ja": "マッシュル-MASHLE- 第3期「三魔対争神覚者最終試験編」",
       "en": "MASHLE Season 3: Divine Visionary Final Exam Arc"
     },
+    "aliases": [
+      "マッシュル-MASHLE- 第3期「三魔対争神覚者最終試験編」 (마슐-MASHLE- 3기 「삼마대쟁 신각자 최종시험편」)"
+    ],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "major",
       "series",
@@ -2887,9 +3315,12 @@ window.animeData = [
       "tving": "https://www.tving.com/contents/P001751824",
       "watcha": "https://watcha.com/ko/contents/tlLrq1W"
     },
-    "aliases": [
-      "マッシュル-MASHLE- 第3期「三魔対争神覚者最終試験編」 (마슐-MASHLE- 3기 「삼마대쟁 신각자 최종시험편」)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "murcie-lago",
@@ -2898,20 +3329,23 @@ window.animeData = [
       "ja": "ムルシエラゴ",
       "en": "MURCIÉLAGO"
     },
+    "aliases": [
+      "ムルシエラゴ / MURCIÉLAGO (무르시엘라고)"
+    ],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -2926,9 +3360,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "ムルシエラゴ / MURCIÉLAGO (무르시엘라고)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "ramen-akaneko-part-two",
@@ -2937,20 +3374,23 @@ window.animeData = [
       "ja": "ラーメン赤猫 其の二",
       "en": "Ramen Akaneko — Part Two"
     },
+    "aliases": [
+      "ラーメン赤猫 其の二 (라멘 아카네코 두 번째)"
+    ],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "series",
       "comic"
@@ -2967,9 +3407,12 @@ window.animeData = [
     "streaming": {
       "crunchyroll": "https://www.crunchyroll.com/ko/series/GVDHX85ZN/ramen-akaneko"
     },
-    "aliases": [
-      "ラーメン赤猫 其の二 (라멘 아카네코 두 번째)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "isshiki-san-wants-to-know-love",
@@ -2978,20 +3421,23 @@ window.animeData = [
       "ja": "一式さんは恋を知りたい。",
       "en": "Isshiki-san Wants to Know Love."
     },
+    "aliases": [
+      "一式さんは恋を知りたい。 (잇시키 씨는 사랑을 알고 싶어.)"
+    ],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -3006,9 +3452,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "一式さんは恋を知りたい。 (잇시키 씨는 사랑을 알고 싶어.)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "me-and-big-bro-yuu",
@@ -3017,20 +3466,23 @@ window.animeData = [
       "ja": "俺と悠兄！",
       "en": "Me and Big Bro Yuu!"
     },
+    "aliases": [
+      "俺と悠兄！ (나와 유우 형!)"
+    ],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "unknown",
     "tags": [
       "new"
     ],
@@ -3044,9 +3496,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "俺と悠兄！ (나와 유우 형!)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "wound-and-bandage",
@@ -3055,20 +3510,23 @@ window.animeData = [
       "ja": "傷口と包帯",
       "en": "Wound and Bandage"
     },
+    "aliases": [
+      "傷口と包帯 (상처와 붕대)"
+    ],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -3083,9 +3541,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "傷口と包帯 (상처와 붕대)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "mercedes-and-the-waning-moon",
@@ -3094,20 +3555,23 @@ window.animeData = [
       "ja": "欠けた月のメルセデス",
       "en": "Mercedes and the Waning Moon"
     },
+    "aliases": [
+      "欠けた月のメルセデス (이지러진 달의 메르세데스)"
+    ],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "new",
       "ln"
@@ -3122,9 +3586,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "欠けた月のメルセデス (이지러진 달의 메르세데스)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "matsurika-kanriden",
@@ -3133,20 +3600,23 @@ window.animeData = [
       "ja": "茉莉花官吏伝",
       "en": "Matsurika Kanriden"
     },
+    "aliases": [
+      "茉莉花官吏伝 (말리화 관리전)"
+    ],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "new",
       "ln"
@@ -3161,9 +3631,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "茉莉花官吏伝 (말리화 관리전)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "those-who-inherit-the-wind",
@@ -3172,20 +3645,23 @@ window.animeData = [
       "ja": "風を継ぐもの",
       "en": "Those Who Inherit the Wind"
     },
+    "aliases": [
+      "風を継ぐもの (바람을 잇는 이들)"
+    ],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "original",
     "tags": [
       "new",
       "original"
@@ -3200,9 +3676,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "風を継ぐもの (바람을 잇는 이들)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "welcome-to-demon-school-iruma-kun-if-episode-of-mafia",
@@ -3211,20 +3690,23 @@ window.animeData = [
       "ja": "魔入りました！入間くん if Episode of 魔フィア",
       "en": "Welcome to Demon School! Iruma-kun if — Episode of Mafia"
     },
+    "aliases": [
+      "魔入りました！入間くん if Episode of 魔フィア (마계학교! 이루마군 if Episode of 마피아)"
+    ],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -3239,9 +3721,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "魔入りました！入間くん if Episode of 魔フィア (마계학교! 이루마군 if Episode of 마피아)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "gacha-to-build-the-strongest-beautiful-girl-army",
@@ -3250,20 +3735,21 @@ window.animeData = [
       "ja": "ガチャを回して仲間を増やす 最強の美少女軍団を作り上げろ",
       "en": "Gacha to Build the Strongest Beautiful-Girl Army"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "new",
       "ln"
@@ -3278,7 +3764,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "reincarnated-in-a-game-world-dungeon-activity",
@@ -3287,20 +3778,21 @@ window.animeData = [
       "ja": "ゲーム世界転生〈ダン活〉",
       "en": "Reincarnated in a Game World: Dungeon Activity"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "new",
       "ln"
@@ -3315,7 +3807,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "bride-of-the-barrier-master",
@@ -3324,20 +3821,21 @@ window.animeData = [
       "ja": "結界師の一輪華",
       "en": "Bride of the Barrier Master"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "new",
       "ln"
@@ -3352,7 +3850,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "golden-kamuy-final-chapter-runaway-train-arc",
@@ -3361,20 +3864,21 @@ window.animeData = [
       "ja": "ゴールデンカムイ 最終章 暴走列車編",
       "en": "Golden Kamuy Final Chapter: Runaway Train Arc"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "major",
       "series",
@@ -3394,7 +3898,12 @@ window.animeData = [
       "tving": "https://www.tving.com/contents/P001788312",
       "watcha": "https://watcha.com/ko/contents/tR2Z3DR"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-kept-man-of-the-princess-knight",
@@ -3403,20 +3912,23 @@ window.animeData = [
       "ja": "姫騎士様のヒモ",
       "en": "The Kept Man of the Princess Knight"
     },
+    "aliases": [
+      "공주기사님의 기둥서방"
+    ],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "new",
       "ln"
@@ -3431,9 +3943,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "공주기사님의 기둥서방"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "love-live-hasunosora-girls-high-school-idol-club-tv-series",
@@ -3442,20 +3957,21 @@ window.animeData = [
       "ja": "ラブライブ！蓮ノ空女学院スクールアイドルクラブ TVシリーズ",
       "en": "Love Live! Hasunosora Girls' High School Idol Club TV Series"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "original",
     "tags": [
       "major",
       "new",
@@ -3472,7 +3988,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "shangri-la-frontier-season-3",
@@ -3481,20 +4002,21 @@ window.animeData = [
       "ja": "シャングリラ・フロンティア 3rd Season",
       "en": "Shangri-La Frontier Season 3"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "unknown",
     "tags": [
       "major",
       "series"
@@ -3514,7 +4036,12 @@ window.animeData = [
       "tving": "https://www.tving.com/contents/P001762706",
       "watcha": "https://watcha.com/ko/contents/tPrzvGO"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "akane-banashi-season-2",
@@ -3523,20 +4050,21 @@ window.animeData = [
       "ja": "あかね噺 第2期",
       "en": "Akane-banashi Season 2"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "major",
       "series",
@@ -3552,7 +4080,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-principle-of-a-philosopher-by-eternal-fool-asley",
@@ -3561,20 +4094,21 @@ window.animeData = [
       "ja": "悠久の愚者アズリーの、賢者のすゝめ",
       "en": "The Principle of a Philosopher by Eternal Fool Asley"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "new",
       "ln"
@@ -3589,7 +4123,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "isekai-tensei-soudouki",
@@ -3598,20 +4137,21 @@ window.animeData = [
       "ja": "異世界転生騒動記",
       "en": "Isekai Tensei Soudouki"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "new",
       "ln"
@@ -3626,7 +4166,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "giant-ojou-sama",
@@ -3635,20 +4180,21 @@ window.animeData = [
       "ja": "ジャイアントお嬢様",
       "en": "Giant Ojou-sama"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -3663,7 +4209,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-jack-of-all-trades-support-mage-realizes-hes-the-strongest",
@@ -3672,20 +4223,21 @@ window.animeData = [
       "ja": "雑用付与術師が自分の最強に気付くまで",
       "en": "The Jack-of-All-Trades Support Mage Realizes He's the Strongest"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "new",
       "ln"
@@ -3702,7 +4254,12 @@ window.animeData = [
     "streaming": {
       "officialstream": "https://zatsuyofuyo-pr.com/"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "in-a-world-overrun-with-zombies-im-the-only-one-they-dont-attack",
@@ -3711,20 +4268,21 @@ window.animeData = [
       "ja": "ゾンビのあふれた世界で俺だけが襲われない",
       "en": "In a World Overrun With Zombies, I'm the Only One They Don't Attack"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "other",
     "tags": [
       "new",
       "ln",
@@ -3740,7 +4298,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "charisma",
@@ -3749,20 +4312,21 @@ window.animeData = [
       "ja": "カリスマ",
       "en": "Charisma"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "original",
     "tags": [
       "new",
       "original"
@@ -3777,7 +4341,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "medaka-kuroiwa-is-impervious-to-my-charms-season-2",
@@ -3786,20 +4355,21 @@ window.animeData = [
       "ja": "黒岩メダカに私の可愛いが通じない Season 2",
       "en": "Medaka Kuroiwa Is Impervious to My Charms Season 2"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "series",
       "comic"
@@ -3814,7 +4384,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "pen-handcuffs-and-de-facto-marriage",
@@ -3823,20 +4398,21 @@ window.animeData = [
       "ja": "ペンと手錠と事実婚",
       "en": "Pen, Handcuffs and De Facto Marriage"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -3851,7 +4427,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "hirayasumi",
@@ -3860,20 +4441,21 @@ window.animeData = [
       "ja": "ひらやすみ",
       "en": "Hirayasumi"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "major",
       "new",
@@ -3889,7 +4471,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "historie",
@@ -3898,20 +4485,21 @@ window.animeData = [
       "ja": "ヒストリエ",
       "en": "Historie"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "label": {
-        "ko": "1월",
-        "ja": "1月",
-        "en": "Jan"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 1,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "1월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "major",
       "new",
@@ -3927,7 +4515,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "ghost-the-end-of-night",
@@ -3936,20 +4529,21 @@ window.animeData = [
       "ja": "ghost／夜の果て",
       "en": "ghost / The End of Night"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 2,
-      "day": 11,
-      "label": {
-        "ko": "2/11",
-        "ja": "2/11",
-        "en": "2/11"
+      "japan": {
+        "status": "date",
+        "year": 2027,
+        "month": 2,
+        "day": 11
       },
-      "status": "date",
-      "rawLabel": "2/11"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "movie",
+    "origin": "original",
     "tags": [
       "new",
       "original",
@@ -3965,7 +4559,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "medalist-the-movie",
@@ -3974,20 +4573,21 @@ window.animeData = [
       "ja": "劇場版 メダリスト",
       "en": "Medalist: The Movie"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 2,
-      "day": 19,
-      "label": {
-        "ko": "2/19",
-        "ja": "2/19",
-        "en": "2/19"
+      "japan": {
+        "status": "date",
+        "year": 2027,
+        "month": 2,
+        "day": 19
       },
-      "status": "date",
-      "rawLabel": "2/19"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "movie",
+    "origin": "comic",
     "tags": [
       "major",
       "series",
@@ -4004,7 +4604,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-one-piece",
@@ -4013,20 +4618,23 @@ window.animeData = [
       "ja": "THE ONE PIECE",
       "en": "THE ONE PIECE"
     },
+    "aliases": [
+      "THE ONE PIECE (더 원피스)"
+    ],
     "release": {
-      "year": 2027,
-      "month": 2,
-      "day": null,
-      "label": {
-        "ko": "2월",
-        "ja": "2月",
-        "en": "Feb"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 2,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "2월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "major",
       "new",
@@ -4045,9 +4653,12 @@ window.animeData = [
     "streaming": {
       "netflix": "https://www.netflix.com/kr/title/81594316"
     },
-    "aliases": [
-      "THE ONE PIECE (더 원피스)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "mobile-police-patlabor-ezy-file-3",
@@ -4056,20 +4667,21 @@ window.animeData = [
       "ja": "機動警察パトレイバー EZY File 3",
       "en": "Mobile Police Patlabor EZY File 3"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 3,
-      "day": 5,
-      "label": {
-        "ko": "3/5",
-        "ja": "3/5",
-        "en": "3/5"
+      "japan": {
+        "status": "date",
+        "year": 2027,
+        "month": 3,
+        "day": 5
       },
-      "status": "date",
-      "rawLabel": "3/5"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-winter",
     "format": "movie",
+    "origin": "original",
     "tags": [
       "series",
       "original",
@@ -4085,7 +4697,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "sho-zen",
@@ -4094,20 +4711,23 @@ window.animeData = [
       "ja": "尚善",
       "en": "Shōzen"
     },
+    "aliases": [
+      "尚善 (쇼젠)"
+    ],
     "release": {
-      "year": 2027,
-      "month": 4,
-      "day": null,
-      "label": {
-        "ko": "4월",
-        "ja": "4月",
-        "en": "Apr"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 4,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "4월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-spring",
     "format": "tv",
+    "origin": "unknown",
     "tags": [
       "new"
     ],
@@ -4121,9 +4741,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "尚善 (쇼젠)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "skip-and-loafer-season-2",
@@ -4132,20 +4755,21 @@ window.animeData = [
       "ja": "スキップとローファー 2nd season",
       "en": "Skip and Loafer Season 2"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 4,
-      "day": null,
-      "label": {
-        "ko": "4월",
-        "ja": "4月",
-        "en": "Apr"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 4,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "4월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-spring",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "major",
       "series",
@@ -4165,7 +4789,12 @@ window.animeData = [
       "tving": "https://www.tving.com/contents/P001707310",
       "watcha": "https://watcha.com/ko-KR/contents/tRp4vN6"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-apothecary-diaries-season-3-part-2",
@@ -4174,20 +4803,21 @@ window.animeData = [
       "ja": "薬屋のひとりごと 第3期 第2クール",
       "en": "The Apothecary Diaries Season 3 — Part 2"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 4,
-      "day": null,
-      "label": {
-        "ko": "4월",
-        "ja": "4月",
-        "en": "Apr"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 4,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "4월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-spring",
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "major",
       "series",
@@ -4208,7 +4838,12 @@ window.animeData = [
       "prime": "https://www.primevideo.com/detail/0MIBSTLNZIMP6Z3EULUEJ0KS1U",
       "crunchyroll": "https://www.crunchyroll.com/ko/series/G3KHEVDJ7/the-apothecary-diaries"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "kagurabachi",
@@ -4217,20 +4852,21 @@ window.animeData = [
       "ja": "カグラバチ",
       "en": "Kagurabachi"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 4,
-      "day": null,
-      "label": {
-        "ko": "4월",
-        "ja": "4月",
-        "en": "Apr"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 4,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "4월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-spring",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "major",
       "new",
@@ -4246,7 +4882,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "tenkaichi-the-greatest-warrior-under-the-rising-sun",
@@ -4255,20 +4896,21 @@ window.animeData = [
       "ja": "テンカイチ 日本最強武芸者決定戦",
       "en": "Tenkaichi: The Greatest Warrior Under the Rising Sun"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 4,
-      "day": null,
-      "label": {
-        "ko": "4월",
-        "ja": "4月",
-        "en": "Apr"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 4,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "4월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-spring",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -4283,7 +4925,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "delicious-in-dungeon-season-2",
@@ -4292,20 +4939,21 @@ window.animeData = [
       "ja": "ダンジョン飯 Season 2",
       "en": "Delicious in Dungeon Season 2"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "major",
       "series",
@@ -4323,7 +4971,12 @@ window.animeData = [
     "streaming": {
       "netflix": "https://www.netflix.com/kr/title/81564899"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "frieren-beyond-journeys-end-season-3-golden-land-arc",
@@ -4332,20 +4985,21 @@ window.animeData = [
       "ja": "葬送のフリーレン 第3期 ― 黄金郷編",
       "en": "Frieren: Beyond Journey's End Season 3 — Golden Land Arc"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": 10,
-      "day": null,
-      "label": {
-        "ko": "10월",
-        "ja": "10月",
-        "en": "Oct"
+      "japan": {
+        "status": "month",
+        "year": 2027,
+        "month": 10,
+        "day": null
       },
-      "status": "month",
-      "rawLabel": "10월"
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": "2027-fall",
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "major",
       "series",
@@ -4368,7 +5022,12 @@ window.animeData = [
       "tving": "https://www.tving.com/contents/P001781702",
       "watcha": "https://watcha.com/ko/contents/tRN7gzz"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "spice-and-wolf-merchant-meets-the-wise-wolf-season-2",
@@ -4377,16 +5036,21 @@ window.animeData = [
       "ja": "狼と香辛料 MERCHANT MEETS THE WISE WOLF 第2期",
       "en": "Spice and Wolf: MERCHANT MEETS THE WISE WOLF Season 2"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": null,
-      "day": null,
-      "label": null,
-      "status": "year",
-      "rawLabel": null
+      "japan": {
+        "status": "year",
+        "year": 2027,
+        "month": null,
+        "day": null
+      },
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": null,
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "series",
       "ln"
@@ -4406,7 +5070,12 @@ window.animeData = [
       "tving": "https://www.tving.com/contents/P001755104",
       "watcha": "https://watcha.com/contents/tPd313d"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "dan-da-dan-season-3",
@@ -4415,16 +5084,21 @@ window.animeData = [
       "ja": "ダンダダン 第3期",
       "en": "DAN DA DAN Season 3"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": null,
-      "day": null,
-      "label": null,
-      "status": "year",
-      "rawLabel": null
+      "japan": {
+        "status": "year",
+        "year": 2027,
+        "month": null,
+        "day": null
+      },
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": null,
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "series",
       "comic"
@@ -4444,7 +5118,12 @@ window.animeData = [
       "tving": "https://www.tving.com/contents/P001766481",
       "watcha": "https://watcha.com/ko/contents/tlnN0K1"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "konosuba-gods-blessing-on-this-wonderful-world-season-4",
@@ -4453,16 +5132,21 @@ window.animeData = [
       "ja": "この素晴らしい世界に祝福を！4",
       "en": "KONOSUBA: God's Blessing on This Wonderful World! Season 4"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": null,
-      "day": null,
-      "label": null,
-      "status": "year",
-      "rawLabel": null
+      "japan": {
+        "status": "year",
+        "year": 2027,
+        "month": null,
+        "day": null
+      },
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": null,
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "series",
       "ln"
@@ -4477,7 +5161,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "laid-back-camp-season-4",
@@ -4486,16 +5175,21 @@ window.animeData = [
       "ja": "ゆるキャン△ SEASON4",
       "en": "Laid-Back Camp Season 4"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": null,
-      "day": null,
-      "label": null,
-      "status": "year",
-      "rawLabel": null
+      "japan": {
+        "status": "year",
+        "year": 2027,
+        "month": null,
+        "day": null
+      },
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": null,
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "series",
       "comic"
@@ -4513,7 +5207,12 @@ window.animeData = [
       "crunchyroll": "https://www.crunchyroll.com/series/GRWEW95KR/laid-back-camp",
       "watcha": "https://watcha.com/ko/contents/tRMZgbP"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-dangers-in-my-heart-season-3",
@@ -4522,16 +5221,21 @@ window.animeData = [
       "ja": "僕の心のヤバイやつ 第3期",
       "en": "The Dangers in My Heart Season 3"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": null,
-      "day": null,
-      "label": null,
-      "status": "year",
-      "rawLabel": null
+      "japan": {
+        "status": "year",
+        "year": 2027,
+        "month": null,
+        "day": null
+      },
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": null,
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "series",
       "comic"
@@ -4548,7 +5252,12 @@ window.animeData = [
     "streaming": {
       "watcha": "https://watcha.com/ko/contents/tPVdZdw"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "oblivion-battery-season-2",
@@ -4557,16 +5266,21 @@ window.animeData = [
       "ja": "忘却バッテリー 第2期",
       "en": "Oblivion Battery Season 2"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": null,
-      "day": null,
-      "label": null,
-      "status": "year",
-      "rawLabel": null
+      "japan": {
+        "status": "year",
+        "year": 2027,
+        "month": null,
+        "day": null
+      },
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": null,
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "series",
       "comic"
@@ -4581,7 +5295,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "alya-sometimes-hides-her-feelings-in-russian-season-2",
@@ -4590,16 +5309,21 @@ window.animeData = [
       "ja": "時々ボソッとロシア語でデレる隣のアーリャさん 第2期",
       "en": "Alya Sometimes Hides Her Feelings in Russian Season 2"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": null,
-      "day": null,
-      "label": null,
-      "status": "year",
-      "rawLabel": null
+      "japan": {
+        "status": "year",
+        "year": 2027,
+        "month": null,
+        "day": null
+      },
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": null,
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "series",
       "ln"
@@ -4617,7 +5341,12 @@ window.animeData = [
       "crunchyroll": "https://www.crunchyroll.com/ko/series/G1XHJV0XM/alya-sometimes-hides-her-feelings-in-russian",
       "prime": "https://www.primevideo.com/-/ko/detail/0FC1DV39B4OFTHOKXX91B1A6SB"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "one-punch-man-season-3-part-2",
@@ -4626,16 +5355,21 @@ window.animeData = [
       "ja": "ワンパンマン 第3期 第2クール",
       "en": "One-Punch Man Season 3 — Part 2"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": null,
-      "day": null,
-      "label": null,
-      "status": "year",
-      "rawLabel": null
+      "japan": {
+        "status": "year",
+        "year": 2027,
+        "month": null,
+        "day": null
+      },
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": null,
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "series",
       "comic"
@@ -4652,7 +5386,12 @@ window.animeData = [
     "streaming": {
       "tving": "https://www.tving.com/contents/P001778344"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-rising-of-the-shield-hero-season-5",
@@ -4661,16 +5400,21 @@ window.animeData = [
       "ja": "盾の勇者の成り上がり Season 5",
       "en": "The Rising of the Shield Hero Season 5"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": null,
-      "day": null,
-      "label": null,
-      "status": "year",
-      "rawLabel": null
+      "japan": {
+        "status": "year",
+        "year": 2027,
+        "month": null,
+        "day": null
+      },
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": null,
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "series",
       "ln"
@@ -4690,7 +5434,12 @@ window.animeData = [
       "tving": "https://www.tving.com/contents/P001773988",
       "watcha": "https://watcha.com/ko/contents/tlnN0bz"
     },
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-one-within-the-villainess",
@@ -4699,16 +5448,23 @@ window.animeData = [
       "ja": "悪役令嬢の中の人",
       "en": "The One Within the Villainess"
     },
+    "aliases": [
+      "악역영애 안의 사람"
+    ],
     "release": {
-      "year": 2027,
-      "month": null,
-      "day": null,
-      "label": null,
-      "status": "year",
-      "rawLabel": null
+      "japan": {
+        "status": "year",
+        "year": 2027,
+        "month": null,
+        "day": null
+      },
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": null,
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -4723,9 +5479,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "악역영애 안의 사람"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-case-records-of-the-biblia-secondhand-bookstore",
@@ -4734,16 +5493,21 @@ window.animeData = [
       "ja": "ビブリア古書堂の事件手帖",
       "en": "The Case Records of the Biblia Secondhand Bookstore"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": null,
-      "day": null,
-      "label": null,
-      "status": "year",
-      "rawLabel": null
+      "japan": {
+        "status": "year",
+        "year": 2027,
+        "month": null,
+        "day": null
+      },
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": null,
     "format": "tv",
+    "origin": "unknown",
     "tags": [
       "new"
     ],
@@ -4757,7 +5521,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "war-music-classroom",
@@ -4766,16 +5535,23 @@ window.animeData = [
       "ja": "戦奏教室",
       "en": "War Music Classroom"
     },
+    "aliases": [
+      "戦奏教室 (전주교실)"
+    ],
     "release": {
-      "year": 2027,
-      "month": null,
-      "day": null,
-      "label": null,
-      "status": "year",
-      "rawLabel": null
+      "japan": {
+        "status": "year",
+        "year": 2027,
+        "month": null,
+        "day": null
+      },
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": null,
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -4790,9 +5566,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "戦奏教室 (전주교실)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "bless",
@@ -4801,16 +5580,21 @@ window.animeData = [
       "ja": "ブレス",
       "en": "Bless"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": null,
-      "day": null,
-      "label": null,
-      "status": "year",
-      "rawLabel": null
+      "japan": {
+        "status": "year",
+        "year": 2027,
+        "month": null,
+        "day": null
+      },
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": null,
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "new",
       "comic"
@@ -4825,7 +5609,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-witch-and-the-mercenary",
@@ -4834,16 +5623,21 @@ window.animeData = [
       "ja": "魔女と傭兵",
       "en": "The Witch and the Mercenary"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": null,
-      "day": null,
-      "label": null,
-      "status": "year",
-      "rawLabel": null
+      "japan": {
+        "status": "year",
+        "year": 2027,
+        "month": null,
+        "day": null
+      },
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": null,
     "format": "tv",
+    "origin": "light-novel",
     "tags": [
       "new",
       "ln"
@@ -4858,7 +5652,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "fate-kaleid-liner-prisma-illya-finale",
@@ -4867,16 +5666,23 @@ window.animeData = [
       "ja": "Fate/kaleid liner プリズマ☆イリヤ FINALE",
       "en": "Fate/kaleid liner Prisma☆Illya FINALE"
     },
+    "aliases": [
+      "Fate/kaleid liner プリズマ☆イリヤ FINALE (페이트/칼레이드 라이너 프리즈마☆이리야 피날레)"
+    ],
     "release": {
-      "year": 2027,
-      "month": null,
-      "day": null,
-      "label": null,
-      "status": "year",
-      "rawLabel": null
+      "japan": {
+        "status": "year",
+        "year": 2027,
+        "month": null,
+        "day": null
+      },
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": null,
     "format": "tv",
+    "origin": "comic",
     "tags": [
       "series",
       "comic"
@@ -4891,9 +5697,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "Fate/kaleid liner プリズマ☆イリヤ FINALE (페이트/칼레이드 라이너 프리즈마☆이리야 피날레)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "death-stranding-isolations-working-title",
@@ -4902,16 +5711,23 @@ window.animeData = [
       "ja": "DEATH STRANDING ISOLATIONS — Working Title",
       "en": "DEATH STRANDING ISOLATIONS — Working Title"
     },
+    "aliases": [
+      "DEATH STRANDING ISOLATIONS — Working Title (데스 스트랜딩 아이솔레이션즈 · 가제)"
+    ],
     "release": {
-      "year": 2027,
-      "month": null,
-      "day": null,
-      "label": null,
-      "status": "year",
-      "rawLabel": null
+      "japan": {
+        "status": "year",
+        "year": 2027,
+        "month": null,
+        "day": null
+      },
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": null,
     "format": "tv",
+    "origin": "game",
     "tags": [
       "new",
       "game"
@@ -4928,9 +5744,12 @@ window.animeData = [
     "streaming": {
       "disney": "https://www.disneyplus.com/ja-jp/explore/articles/death_stranding_isolations_1113"
     },
-    "aliases": [
-      "DEATH STRANDING ISOLATIONS — Working Title (데스 스트랜딩 아이솔레이션즈 · 가제)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "ghost-of-tsushima-legends",
@@ -4939,16 +5758,23 @@ window.animeData = [
       "ja": "Ghost of Tsushima: Legends",
       "en": "Ghost of Tsushima: Legends"
     },
+    "aliases": [
+      "Ghost of Tsushima: Legends (고스트 오브 쓰시마: 레전드)"
+    ],
     "release": {
-      "year": 2027,
-      "month": null,
-      "day": null,
-      "label": null,
-      "status": "year",
-      "rawLabel": null
+      "japan": {
+        "status": "year",
+        "year": 2027,
+        "month": null,
+        "day": null
+      },
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": null,
     "format": "tv",
+    "origin": "game",
     "tags": [
       "new",
       "game"
@@ -4963,9 +5789,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": [
-      "Ghost of Tsushima: Legends (고스트 오브 쓰시마: 레전드)"
-    ]
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "haikyu-the-movie-vs-the-little-giant",
@@ -4974,16 +5803,21 @@ window.animeData = [
       "ja": "劇場版ハイキュー!! VS 小さな巨人",
       "en": "HAIKYU!! The Movie: VS The Little Giant"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": null,
-      "day": null,
-      "label": null,
-      "status": "year",
-      "rawLabel": null
+      "japan": {
+        "status": "year",
+        "year": 2027,
+        "month": null,
+        "day": null
+      },
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": null,
     "format": "movie",
+    "origin": "comic",
     "tags": [
       "major",
       "series",
@@ -5000,7 +5834,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-eminence-in-shadow-lost-echoes",
@@ -5009,16 +5848,21 @@ window.animeData = [
       "ja": "劇場版 陰の実力者になりたくて！ 残響編",
       "en": "The Eminence in Shadow: Lost Echoes"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": null,
-      "day": null,
-      "label": null,
-      "status": "year",
-      "rawLabel": null
+      "japan": {
+        "status": "year",
+        "year": 2027,
+        "month": null,
+        "day": null
+      },
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": null,
     "format": "movie",
+    "origin": "light-novel",
     "tags": [
       "major",
       "series",
@@ -5035,7 +5879,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "one-piece-film-god-valley",
@@ -5044,16 +5893,21 @@ window.animeData = [
       "ja": "ONE PIECE FILM GOD VALLEY",
       "en": "ONE PIECE FILM GOD VALLEY"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": null,
-      "day": null,
-      "label": null,
-      "status": "year",
-      "rawLabel": null
+      "japan": {
+        "status": "year",
+        "year": 2027,
+        "month": null,
+        "day": null
+      },
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": null,
     "format": "movie",
+    "origin": "comic",
     "tags": [
       "major",
       "series",
@@ -5070,7 +5924,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   },
   {
     "id": "the-end-roll-runs-across-the-sea",
@@ -5079,16 +5938,21 @@ window.animeData = [
       "ja": "海が走るエンドロール",
       "en": "The End Roll Runs Across the Sea"
     },
+    "aliases": [],
     "release": {
-      "year": 2027,
-      "month": null,
-      "day": null,
-      "label": null,
-      "status": "year",
-      "rawLabel": null
+      "japan": {
+        "status": "year",
+        "year": 2027,
+        "month": null,
+        "day": null
+      },
+      "korea": null,
+      "global": null
     },
+    "productionStatus": "scheduled",
     "season": null,
     "format": "movie",
+    "origin": "comic",
     "tags": [
       "major",
       "new",
@@ -5105,7 +5969,12 @@ window.animeData = [
       "streaming": null
     },
     "streaming": {},
-    "aliases": []
+    "verification": {
+      "verifiedAt": null,
+      "sources": []
+    },
+    "createdAt": null,
+    "updatedAt": null
   }
 ];
 

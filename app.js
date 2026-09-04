@@ -219,8 +219,26 @@ function localMonthName(year, month) {
     .format(new Date(year, month - 1, 1));
 }
 
+// The current schedule is based on Japanese broadcast/release information.
+function getPrimaryRelease(anime) {
+  return anime?.release?.japan || null;
+}
+
 function localDateLabel(anime) {
-  return anime.release.label?.[activeLang] || anime.release.label?.ko || "";
+  const release = getPrimaryRelease(anime);
+  if (!release) return "";
+
+  const displayOverride = release.display?.[activeLang] || release.display?.ko;
+  if (displayOverride) return displayOverride;
+  if (release.status === "date") return `${release.month}/${release.day}`;
+  if (release.status === "month") {
+    if (activeLang === "ko") return `${release.month}월`;
+    if (activeLang === "ja") return `${release.month}月`;
+    return new Intl.DateTimeFormat("en-US", { month: "short" })
+      .format(new Date(release.year, release.month - 1, 1));
+  }
+  if (release.status === "year") return String(release.year);
+  return "";
 }
 
 function categoryLabel(tag) {
@@ -607,7 +625,7 @@ function renderMonthNav() {
 
 function renderUndated() {
   const undatedAnime = animeData.filter(anime =>
-    anime.release.status === "year" || anime.release.status === "tba"
+    getPrimaryRelease(anime)?.status === "year" || getPrimaryRelease(anime)?.status === "tba"
   );
 
   document.getElementById("undatedList").innerHTML = undatedAnime.map(anime => `
@@ -671,12 +689,9 @@ window.addEventListener("resize", () => {
 });
 
 function scheduleDateSortKey(anime) {
-  const rawLabel = anime.release.rawLabel || "";
-  const exactMatch = /^(\d{1,2})\/(\d{1,2})$/.exec(rawLabel);
-  if (exactMatch) return [0, Number(exactMatch[1]), Number(exactMatch[2])];
-
-  const monthOnlyMatch = /^(\d{1,2})월$/.exec(rawLabel);
-  if (monthOnlyMatch) return [1, Number(monthOnlyMatch[1]), 0];
+  const release = getPrimaryRelease(anime);
+  if (release?.status === "date") return [0, release.month, release.day];
+  if (release?.status === "month" && !release.display) return [1, release.month, 0];
 
   return [2, Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER];
 }
@@ -705,9 +720,9 @@ function render() {
     <div class="year-summary">${activeLang === "ko" ? activeYear + "년" : activeLang === "ja" ? activeYear + "年" : activeYear} · ${activeMonth === "all" ? t("allMonths") : (activeLang === "en" ? new Intl.DateTimeFormat("en-US",{month:"long"}).format(new Date(activeYear, Number(activeMonth.slice(5,7))-1, 1)) : Number(activeMonth.slice(5,7)) + t("monthSuffix"))}</div>
   ` + visibleMonths.map(month => {
     const monthAnime = animeData.filter(anime =>
-      anime.release.year === month.year &&
-      anime.release.month === month.month &&
-      (anime.release.status === "date" || anime.release.status === "month")
+      getPrimaryRelease(anime)?.year === month.year &&
+      getPrimaryRelease(anime)?.month === month.month &&
+      (getPrimaryRelease(anime)?.status === "date" || getPrimaryRelease(anime)?.status === "month")
     );
     const items = monthAnime.filter(anime => {
       const searchPool = [...Object.values(anime.title), ...(anime.aliases || [])].join(" ").toLowerCase();
@@ -832,5 +847,4 @@ render();
 if (document.fonts?.ready) {
   document.fonts.ready.then(updateTitleScrolls).catch(() => {});
 }
-
 
