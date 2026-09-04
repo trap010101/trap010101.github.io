@@ -29,8 +29,8 @@
       origin: "light-novel",
       tags: ["major", "series", "ln"],
       poster: {
-        src: null,
-        position: null
+        src: "https://ansatsu-kizoku.jp/wp-content/uploads/2026/04/img.png",
+        position: "center"
       },
       links: {
         pv: "https://www.youtube.com/watch?v=DAXn92SSHIo",
@@ -41,6 +41,12 @@
       verification: {
         verifiedAt: "2026-09-04",
         sources: [
+          {
+            type: "official-site",
+            url: "https://ansatsu-kizoku.jp/news/post-37",
+            label: "Official website — Season 2 teaser visual",
+            supports: ["announcement", "release", "poster"]
+          },
           {
             type: "official-x",
             url: "https://x.com/ansatsu_kizoku/status/2095708679857213795",
@@ -76,8 +82,8 @@
       origin: "manga",
       tags: ["major", "new", "comic"],
       poster: {
-        src: null,
-        position: null
+        src: "https://www.bn-pictures.co.jp/keroro-anime/tv/images/KV/KV.webp",
+        position: "center"
       },
       links: {
         pv: "https://www.youtube.com/watch?v=S6KZXOfh-uk",
@@ -98,7 +104,7 @@
             type: "official-site",
             url: "https://www.bn-pictures.co.jp/keroro-anime/tv/",
             label: "Official website",
-            supports: ["announcement", "release", "format"]
+            supports: ["announcement", "release", "format", "poster"]
           },
           {
             type: "official-youtube",
