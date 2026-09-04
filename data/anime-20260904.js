@@ -29,7 +29,7 @@
       origin: "light-novel",
       tags: ["major", "series", "ln"],
       poster: {
-        src: "assets/posters/worlds-finest-assassin-s2.png",
+        src: "assets/posters/worlds-finest-assassin-s2.webp",
         position: "center"
       },
       links: {
