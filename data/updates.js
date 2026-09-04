@@ -228,8 +228,8 @@ window.animeUpdates = [
     type: "release-delay",
     fields: ["productionStatus"],
     summary: {
-      ko: "공식 연기 공지에 맞춰 제작 상태를 delayed로 갱신했습니다.",
-      ja: "公式の延期発表に合わせて制作状態をdelayedに更新しました。",
+      ko: "공식 발표에 따라 방영 연기 상태를 반영했습니다.",
+      ja: "公式発表に基づき、放送延期を反映しました。",
       en: "The production status was updated to delayed following the official postponement notice."
     },
     source: {
@@ -245,8 +245,8 @@ window.animeUpdates = [
     type: "release-delay",
     fields: ["productionStatus"],
     summary: {
-      ko: "공식 연기 공지에 맞춰 제작 상태를 delayed로 갱신했습니다.",
-      ja: "公式の延期発表に合わせて制作状態をdelayedに更新しました。",
+      ko: "공식 발표에 따라 방영 연기 상태를 반영했습니다.",
+      ja: "公式発表に基づき、放送延期を反映しました。",
       en: "The production status was updated to delayed following the official postponement notice."
     },
     source: {
@@ -262,8 +262,8 @@ window.animeUpdates = [
     type: "release-delay",
     fields: ["productionStatus"],
     summary: {
-      ko: "공식 연기 공지에 맞춰 제작 상태를 delayed로 갱신했습니다.",
-      ja: "公式の延期発表に合わせて制作状態をdelayedに更新しました。",
+      ko: "공식 발표에 따라 방영 연기 상태를 반영했습니다.",
+      ja: "公式発表に基づき、放送延期を反映しました。",
       en: "The production status was updated to delayed following the official postponement notice."
     },
     source: {
