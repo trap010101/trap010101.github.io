@@ -27,19 +27,51 @@ const SOURCE_TYPES = new Set([
   "publisher",
   "studio",
   "news",
+  "distributor",
+  "other"
+]);
+const SOURCE_SUPPORTS = new Set([
+  "announcement",
+  "release",
+  "release-japan",
+  "release-korea",
+  "release-global",
+  "pv",
+  "official-link",
+  "poster",
+  "streaming",
+  "format",
+  "title"
+]);
+const UPDATE_TYPES = new Set([
+  "anime-added",
+  "release-window",
+  "release-date",
+  "release-delay",
+  "release-cancelled",
+  "title",
+  "poster",
+  "pv",
+  "official-link",
+  "streaming-added",
+  "streaming-removed",
+  "streaming-updated",
+  "format",
+  "source",
   "other"
 ]);
 
 function loadProductionData() {
   const context = { window: {} };
   vm.createContext(context);
-  for (const file of ["data/anime.js", "data/platforms.js"]) {
+  for (const file of ["data/anime.js", "data/platforms.js", "data/updates.js"]) {
     vm.runInContext(fs.readFileSync(path.join(ROOT, file), "utf8"), context, { filename: file });
   }
   return {
     anime: context.window.animeData,
     months: context.window.animeScheduleMonths,
-    platforms: context.window.ottPlatforms
+    platforms: context.window.ottPlatforms,
+    updates: context.window.animeUpdates
   };
 }
 
@@ -55,6 +87,36 @@ function isHttpUrl(value) {
   } catch (_) {
     return false;
   }
+}
+
+function isIsoDate(value) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value || "")) return false;
+  const [year, month, day] = value.split("-").map(Number);
+  const candidate = new Date(Date.UTC(year, month - 1, day));
+  return candidate.getUTCFullYear() === year &&
+    candidate.getUTCMonth() === month - 1 &&
+    candidate.getUTCDate() === day;
+}
+
+function validateSource(source, location, errors) {
+  if (!source || typeof source !== "object" || Array.isArray(source)) {
+    errors.push(`${location} must be an object`);
+    return;
+  }
+  if (!SOURCE_TYPES.has(source.type)) errors.push(`${location}.type is invalid`);
+  if (!isHttpUrl(source.url)) errors.push(`${location}.url is invalid`);
+  if (!isNonEmptyString(source.label)) errors.push(`${location}.label is missing`);
+  if (source.supports !== undefined) {
+    if (!Array.isArray(source.supports) || source.supports.some(value => !SOURCE_SUPPORTS.has(value))) {
+      errors.push(`${location}.supports contains an invalid concept`);
+    } else if (new Set(source.supports).size !== source.supports.length) {
+      errors.push(`${location}.supports contains duplicates`);
+    }
+  }
+}
+
+function getPrimaryScheduleRelease(anime) {
+  return anime.release?.japan || anime.release?.global || anime.release?.korea || null;
 }
 
 function countBy(values) {
@@ -116,13 +178,14 @@ function validateRelease(release, location, errors) {
 }
 
 function validate() {
-  const { anime, months, platforms } = loadProductionData();
+  const { anime, months, platforms, updates } = loadProductionData();
   const errors = [];
   const warnings = [];
 
   if (!Array.isArray(anime)) errors.push("window.animeData must be an array");
   if (!Array.isArray(months)) errors.push("window.animeScheduleMonths must be an array");
   if (!Array.isArray(platforms)) errors.push("window.ottPlatforms must be an array");
+  if (!Array.isArray(updates)) errors.push("window.animeUpdates must be an array");
   if (errors.length) return { errors, warnings, report: null };
 
   const ids = new Set();
@@ -210,31 +273,92 @@ function validate() {
     if (!item?.verification || typeof item.verification !== "object") {
       errors.push(`${location}.verification is missing`);
     } else {
-      if (item.verification.verifiedAt !== null && Number.isNaN(Date.parse(item.verification.verifiedAt))) {
-        errors.push(`${location}.verification.verifiedAt is not null or a valid date`);
+      if (item.verification.verifiedAt !== null && !isIsoDate(item.verification.verifiedAt)) {
+        errors.push(`${location}.verification.verifiedAt is not null or a valid ISO date`);
+      } else if (item.verification.verifiedAt > new Date().toISOString().slice(0, 10)) {
+        errors.push(`${location}.verification.verifiedAt is in the future`);
       }
       if (!Array.isArray(item.verification.sources)) {
         errors.push(`${location}.verification.sources must be an array`);
       } else {
+        if (item.verification.verifiedAt !== null && item.verification.sources.length === 0) {
+          errors.push(`${location}.verification.verifiedAt requires at least one source`);
+        }
+        if (item.verification.verifiedAt === null && item.verification.sources.length > 0) {
+          errors.push(`${location}.verification.sources requires verifiedAt`);
+        }
+        const sourceUrls = new Set();
         for (const [sourceIndex, source] of item.verification.sources.entries()) {
           const sourceLocation = `${location}.verification.sources[${sourceIndex}]`;
-          if (!SOURCE_TYPES.has(source?.type)) errors.push(`${sourceLocation}.type is invalid`);
-          if (!isHttpUrl(source?.url)) errors.push(`${sourceLocation}.url is invalid`);
-          if (!isNonEmptyString(source?.label)) errors.push(`${sourceLocation}.label is missing`);
+          validateSource(source, sourceLocation, errors);
+          if (sourceUrls.has(source?.url)) errors.push(`${sourceLocation}.url is duplicated within the anime`);
+          sourceUrls.add(source?.url);
         }
       }
     }
 
     for (const field of ["createdAt", "updatedAt"]) {
-      if (item?.[field] !== null && Number.isNaN(Date.parse(item?.[field]))) {
-        errors.push(`${location}.${field} is not null or a valid date`);
+      if (item?.[field] !== null && !isIsoDate(item?.[field])) {
+        errors.push(`${location}.${field} is not null or a valid ISO date`);
       }
     }
   }
 
   for (const id of duplicateIds) errors.push(`duplicate anime ID: ${id}`);
 
-  const primaryReleases = anime.map(item => item.release?.japan).filter(Boolean);
+  const updateIds = new Set();
+  const duplicateUpdateIds = new Set();
+  for (const [index, update] of updates.entries()) {
+    const location = `updates[${index}]`;
+    if (!isNonEmptyString(update?.id)) {
+      errors.push(`${location}.id is missing`);
+    } else {
+      if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(update.id)) {
+        errors.push(`${location}.id is not a lowercase ASCII slug: ${update.id}`);
+      }
+      if (updateIds.has(update.id)) duplicateUpdateIds.add(update.id);
+      updateIds.add(update.id);
+    }
+    if (!ids.has(update?.animeId)) errors.push(`${location}.animeId does not reference an anime`);
+    if (!UPDATE_TYPES.has(update?.type)) errors.push(`${location}.type is invalid`);
+    if (!isIsoDate(update?.changedAt)) errors.push(`${location}.changedAt is not a valid ISO date`);
+    if (!Array.isArray(update?.fields) || update.fields.length === 0 || update.fields.some(field => !isNonEmptyString(field))) {
+      errors.push(`${location}.fields must contain at least one non-empty field path`);
+    } else if (new Set(update.fields).size !== update.fields.length) {
+      errors.push(`${location}.fields contains duplicates`);
+    }
+    if (update?.summary !== undefined) {
+      if (!update.summary || typeof update.summary !== "object" || Array.isArray(update.summary)) {
+        errors.push(`${location}.summary must be a localization object`);
+      } else if (!["ko", "ja", "en"].some(lang => isNonEmptyString(update.summary[lang]))) {
+        errors.push(`${location}.summary has no usable localized value`);
+      } else {
+        for (const lang of ["ko", "ja", "en"]) {
+          if (update.summary[lang] !== undefined && !isNonEmptyString(update.summary[lang])) {
+            errors.push(`${location}.summary.${lang} is invalid`);
+          }
+        }
+      }
+    }
+    if (update?.source !== undefined && update.source !== null) {
+      validateSource(update.source, `${location}.source`, errors);
+    }
+  }
+  for (const id of duplicateUpdateIds) errors.push(`duplicate update ID: ${id}`);
+
+  const primaryReleases = anime.map(getPrimaryScheduleRelease).filter(Boolean);
+  const verifiedAnime = anime.filter(item => item.verification?.verifiedAt !== null).length;
+  const regionReport = Object.fromEntries(["japan", "korea", "global"].map(region => {
+    const releases = anime.map(item => item.release?.[region]);
+    return [region, {
+      confirmed: releases.filter(Boolean).length,
+      null: releases.filter(release => release === null).length,
+      ...Object.fromEntries([...RELEASE_STATUSES].map(status => [
+        status,
+        releases.filter(release => release?.status === status).length
+      ]))
+    }];
+  }));
   const report = {
     totalAnime: anime.length,
     uniqueIds: ids.size,
@@ -256,6 +380,19 @@ function validate() {
         primaryReleases.filter(release => release.status === status).length
       ])
     ),
+    releaseByRegion: regionReport,
+    verifiedAnime,
+    unverifiedAnime: anime.length - verifiedAnime,
+    verificationCoveragePercent: Number(((verifiedAnime / anime.length) * 100).toFixed(1)),
+    sourceTypeDistribution: countBy(anime.flatMap(item =>
+      (item.verification?.sources || []).map(source => source.type)
+    )),
+    updateHistory: {
+      total: updates.length,
+      uniqueIds: updateIds.size,
+      duplicateIds: [...duplicateUpdateIds].sort(),
+      typeDistribution: countBy(updates.map(update => update.type))
+    },
     posterCoverage: anime.filter(item => isNonEmptyString(item.poster?.src)).length,
     posterPositionOverrides: anime.filter(item => isNonEmptyString(item.poster?.position)).length,
     pvCoverage: anime.filter(item => isHttpUrl(item.links?.pv)).length,

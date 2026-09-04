@@ -219,13 +219,13 @@ function localMonthName(year, month) {
     .format(new Date(year, month - 1, 1));
 }
 
-// The current schedule is based on Japanese broadcast/release information.
-function getPrimaryRelease(anime) {
-  return anime?.release?.japan || null;
+// Japanese dates drive the schedule; global originals fall back to their global release.
+function getPrimaryScheduleRelease(anime) {
+  return anime?.release?.japan || anime?.release?.global || anime?.release?.korea || null;
 }
 
 function localDateLabel(anime) {
-  const release = getPrimaryRelease(anime);
+  const release = getPrimaryScheduleRelease(anime);
   if (!release) return "";
 
   const displayOverride = release.display?.[activeLang] || release.display?.ko;
@@ -625,7 +625,7 @@ function renderMonthNav() {
 
 function renderUndated() {
   const undatedAnime = animeData.filter(anime =>
-    getPrimaryRelease(anime)?.status === "year" || getPrimaryRelease(anime)?.status === "tba"
+    getPrimaryScheduleRelease(anime)?.status === "year" || getPrimaryScheduleRelease(anime)?.status === "tba"
   );
 
   document.getElementById("undatedList").innerHTML = undatedAnime.map(anime => `
@@ -689,7 +689,7 @@ window.addEventListener("resize", () => {
 });
 
 function scheduleDateSortKey(anime) {
-  const release = getPrimaryRelease(anime);
+  const release = getPrimaryScheduleRelease(anime);
   if (release?.status === "date") return [0, release.month, release.day];
   if (release?.status === "month" && !release.display) return [1, release.month, 0];
 
@@ -720,9 +720,9 @@ function render() {
     <div class="year-summary">${activeLang === "ko" ? activeYear + "년" : activeLang === "ja" ? activeYear + "年" : activeYear} · ${activeMonth === "all" ? t("allMonths") : (activeLang === "en" ? new Intl.DateTimeFormat("en-US",{month:"long"}).format(new Date(activeYear, Number(activeMonth.slice(5,7))-1, 1)) : Number(activeMonth.slice(5,7)) + t("monthSuffix"))}</div>
   ` + visibleMonths.map(month => {
     const monthAnime = animeData.filter(anime =>
-      getPrimaryRelease(anime)?.year === month.year &&
-      getPrimaryRelease(anime)?.month === month.month &&
-      (getPrimaryRelease(anime)?.status === "date" || getPrimaryRelease(anime)?.status === "month")
+      getPrimaryScheduleRelease(anime)?.year === month.year &&
+      getPrimaryScheduleRelease(anime)?.month === month.month &&
+      (getPrimaryScheduleRelease(anime)?.status === "date" || getPrimaryScheduleRelease(anime)?.status === "month")
     );
     const items = monthAnime.filter(anime => {
       const searchPool = [...Object.values(anime.title), ...(anime.aliases || [])].join(" ").toLowerCase();
@@ -847,4 +847,3 @@ render();
 if (document.fonts?.ready) {
   document.fonts.ready.then(updateTitleScrolls).catch(() => {});
 }
-

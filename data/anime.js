@@ -98,7 +98,7 @@ window.animeScheduleMonths = [
   }
 ];
 
-// Canonical anime dataset. IDs are stable and independent of localized titles.
+// Canonical anime metadata. All cross-feature identity uses stable ASCII IDs.
 window.animeData = [
   {
     "id": "sekiro-no-defeat",
@@ -139,8 +139,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://sekiro-anime.jp/news.html",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -184,8 +195,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://anime-eupho.com/news/?id=691",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -320,8 +342,19 @@ window.animeData = [
       "crunchyroll": "https://www.crunchyroll.com/ko/series/G3KHEVDJ7/the-apothecary-diaries"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://kusuriyanohitorigoto.jp/news/2623/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -367,8 +400,20 @@ window.animeData = [
       "watcha": "https://watcha.com/ko-KR/contents/tRW19vl"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://ranma-pr.com/news/2467/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format",
+            "streaming"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -412,8 +457,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://rayearth-anime.com/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -502,8 +558,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://sh-anime.shochiku.co.jp/dokokimi-movie/news/10",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -547,8 +614,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://girls-und-panzer-finale.jp/202603-article-finale5/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -592,8 +670,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://avemujica-movie.bang-dream.com/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -637,8 +726,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://ao-buta.com/dearfriend/news/?id=70084",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -652,18 +752,18 @@ window.animeData = [
     },
     "aliases": [],
     "release": {
-      "japan": {
+      "japan": null,
+      "korea": null,
+      "global": {
         "status": "date",
         "year": 2026,
         "month": 10,
         "day": 20
-      },
-      "korea": null,
-      "global": null
+      }
     },
     "productionStatus": "scheduled",
     "season": "2026-fall",
-    "format": "tv",
+    "format": "ona",
     "origin": "other",
     "tags": [
       "major",
@@ -684,11 +784,23 @@ window.animeData = [
       "netflix": "https://www.netflix.com/kr-en/title/81054853"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://www.cyberpunk.net/en/edgerunners2",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release-global",
+            "format",
+            "streaming"
+          ]
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-09-04"
   },
   {
     "id": "made-in-abyss-theatrical-series-part-1-the-awakening-mystery",
@@ -863,8 +975,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://www.fujitv.co.jp/darkmachine_anime/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -910,8 +1033,19 @@ window.animeData = [
       "officialstream": "https://fxkurumi-info.com/onair/"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://fxkurumi-info.com/news/?id=20260831_01",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -1003,8 +1137,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://www.tankchair-anime.com/en/news-single.php?id=24061&offset=0",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -1049,8 +1194,19 @@ window.animeData = [
       "officialstream": "https://www.crunchyroll.com/de/news/latest/2026/8/28/dreamland-release-date-trailer-japanische-synchro"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://www.dreamland-anime.com/2026%E5%B410%E6%9C%8817%E6%97%A5%E3%82%88%E3%82%8A%E6%94%BE%E9%80%81%E9%96%8B%E5%A7%8B%EF%BC%81/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -1183,8 +1339,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://www.fwinc.co.jp/tanukitsu/wp/?post_type=notice",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -1228,8 +1395,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://darksummoner.deregula.com/news/491/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -1275,8 +1453,19 @@ window.animeData = [
       "officialstream": "https://vertexforce.jp/onair/"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://vertexforce.jp/onair/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -1320,8 +1509,20 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://majieku.com/news/?id=71078",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format",
+            "pv"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -1365,8 +1566,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://www.nhk-character.com/chara/marronnier/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -1409,8 +1621,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://sekamajo-anime.com/news/information/82/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -1454,8 +1677,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://kyoranreijo-pr.com/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -1589,8 +1823,20 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://kanojo-no-tomodachi.deregula.com/news/%E3%83%86%E3%82%A3%E3%82%B6%E3%83%BCpv%E3%82%92%E5%85%AC%E9%96%8B%EF%BC%81%EF%BC%81/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format",
+            "pv"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -1680,8 +1926,19 @@ window.animeData = [
       "officialstream": "https://www.crunchyroll.com/news/latest/2026/7/3/the-vermilion-mask-anime-trailer-2"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://the-vermilion-mask.com/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -1724,8 +1981,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://gattaishin.com/dandivine/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -1832,10 +2100,10 @@ window.animeData = [
     ],
     "release": {
       "japan": {
-        "status": "month",
+        "status": "date",
         "year": 2026,
         "month": 10,
-        "day": null
+        "day": 10
       },
       "korea": null,
       "global": null
@@ -1858,11 +2126,22 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://nekokeibishitsu-anime.com/news/post-2/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-09-04"
   },
   {
     "id": "super-psychic-policeman-chojo",
@@ -1903,8 +2182,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://chojun-anime.com/archives/33",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -1929,7 +2219,7 @@ window.animeData = [
       "korea": null,
       "global": null
     },
-    "productionStatus": "scheduled",
+    "productionStatus": "delayed",
     "season": "2026-fall",
     "format": "tv",
     "origin": "light-novel",
@@ -1948,11 +2238,22 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://daiseijo-anime.com/news/index00210000.html",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-09-04"
   },
   {
     "id": "im-a-reincarnated-goblin-any-questions",
@@ -1993,8 +2294,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://tengobu-anime.com/news/index00060000.html",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -2129,8 +2441,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://tougenanki-anime.com/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -2264,8 +2587,19 @@ window.animeData = [
       "crunchyroll": "https://www.crunchyroll.com/ko/series/GRE50KV36/black-clover"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://bclover.jp/news/detail.php?id=1133984",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -2354,8 +2688,19 @@ window.animeData = [
       "tving": "https://www.tving.com/contents/P001756336"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://sasapi-anime.com/news/article_043.html",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -2515,7 +2860,7 @@ window.animeData = [
       "korea": null,
       "global": null
     },
-    "productionStatus": "scheduled",
+    "productionStatus": "delayed",
     "season": "2026-fall",
     "format": "tv",
     "origin": "light-novel",
@@ -2536,11 +2881,22 @@ window.animeData = [
       "crunchyroll": "https://www.crunchyroll.com/series/G24H1N334/the-detective-is-already-dead"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://tanmoshi-anime.jp/Season2/news/index00030000.html",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-09-04"
   },
   {
     "id": "blue-box-season-2",
@@ -2582,8 +2938,19 @@ window.animeData = [
       "netflix": "https://www.netflix.com/kr/title/81663323"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://aonohako-anime.com/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -2670,8 +3037,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://suikoden-anime.com/news/detail.html?d=20260305_1",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -2714,8 +3092,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://movie-gtq123.com/news/?id=70747",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -2729,18 +3118,18 @@ window.animeData = [
     },
     "aliases": [],
     "release": {
-      "japan": {
+      "japan": null,
+      "korea": null,
+      "global": {
         "status": "date",
         "year": 2026,
         "month": 11,
         "day": 6
-      },
-      "korea": null,
-      "global": null
+      }
     },
     "productionStatus": "scheduled",
     "season": "2026-fall",
-    "format": "tv",
+    "format": "ona",
     "origin": "light-novel",
     "tags": [
       "new",
@@ -2755,13 +3144,27 @@ window.animeData = [
       "official": "https://demonscrest-anime.com/",
       "streaming": null
     },
-    "streaming": {},
+    "streaming": {
+      "officialstream": "https://demonscrest-anime.com/news/index00050000.html"
+    },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://demonscrest-anime.com/news/index00050000.html",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release-global",
+            "format",
+            "streaming"
+          ]
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-09-04"
   },
   {
     "id": "expelled-from-paradise-resonance-of-the-heart",
@@ -2802,8 +3205,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://rakuen-tsuiho-r.com/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -2846,8 +3260,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://www.votoms-gh.com/news/detail.php?id=23579",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -2891,8 +3316,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://mahoyo-movie.com/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -2908,18 +3344,18 @@ window.animeData = [
       "フールナイト / FOOL NIGHT (풀 나이트)"
     ],
     "release": {
-      "japan": {
+      "japan": null,
+      "korea": null,
+      "global": {
         "status": "date",
         "year": 2026,
         "month": 11,
         "day": 26
-      },
-      "korea": null,
-      "global": null
+      }
     },
     "productionStatus": "scheduled",
     "season": "2026-fall",
-    "format": "tv",
+    "format": "ona",
     "origin": "comic",
     "tags": [
       "major",
@@ -2935,13 +3371,27 @@ window.animeData = [
       "official": "https://www.foolnight.com/",
       "streaming": null
     },
-    "streaming": {},
+    "streaming": {
+      "officialstream": "https://www.foolnight.com/"
+    },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://www.foolnight.com/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release-global",
+            "format",
+            "streaming"
+          ]
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-09-04"
   },
   {
     "id": "tiger-coming-in-2",
@@ -3032,8 +3482,20 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://kusuriyanohitorigoto.jp/news/2520/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format",
+            "pv"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -3127,8 +3589,19 @@ window.animeData = [
       "crunchyroll": "https://www.crunchyroll.com/series/G0XHWM11X/ave-mujica---the-die-is-cast"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://anime.bang-dream.com/mygo-avemujica/news/post-1/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -3175,8 +3648,19 @@ window.animeData = [
       "netflix": "https://www.netflix.com/kr-en/title/81663325"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://sakamotodays.jp/onair/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -3265,8 +3749,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://www.sudachi-anime.com/news/post-2",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -3316,8 +3811,19 @@ window.animeData = [
       "watcha": "https://watcha.com/ko/contents/tlLrq1W"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://mashle.pw/news/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -3361,8 +3867,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://murcielago-anime.com/news/index00060000.html",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -3408,8 +3925,19 @@ window.animeData = [
       "crunchyroll": "https://www.crunchyroll.com/ko/series/GVDHX85ZN/ramen-akaneko"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://ramenakaneko.com/season/2/news/611/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -3453,8 +3981,20 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://isshikisan-anime.com/news/index00080000.html",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format",
+            "pv"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -3542,8 +4082,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://houtaidoumei.com/news/11/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -3587,8 +4138,20 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://mercedes-anime.com/news/post-27",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format",
+            "pv"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -3677,8 +4240,20 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://kaze-tsugu.com/news/?id=70068",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format",
+            "pv"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -3765,8 +4340,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://gachanime.jp/news/post-1/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -3808,8 +4394,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://dankatsu.com/news/detail.php?id=ve83-xx1hj",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -3851,8 +4448,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://kekkaishi-ichirinka-anime.com/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -3944,8 +4552,20 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "publisher",
+          "url": "https://www.kadokawa.co.jp/topics/17198/",
+          "label": "KADOKAWA announcement",
+          "supports": [
+            "announcement",
+            "release",
+            "format",
+            "pv"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -3989,8 +4609,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://www.lovelive-anime.jp/hasunosora/2nd/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -4037,8 +4668,19 @@ window.animeData = [
       "watcha": "https://watcha.com/ko/contents/tPrzvGO"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://anime.shangrilafrontier.com/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -4081,8 +4723,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://akane-banashi.com/news",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -4167,8 +4820,20 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://www.soudouki.com/news/index00070000.html",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format",
+            "pv"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -4210,8 +4875,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://giant-ojosama-anime.com/news/13/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -4255,8 +4931,20 @@ window.animeData = [
       "officialstream": "https://zatsuyofuyo-pr.com/"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://zatsuyofuyo-pr.com/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format",
+            "streaming"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -4279,7 +4967,7 @@ window.animeData = [
       "korea": null,
       "global": null
     },
-    "productionStatus": "scheduled",
+    "productionStatus": "delayed",
     "season": "2027-winter",
     "format": "tv",
     "origin": "other",
@@ -4299,11 +4987,22 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://zom-ore.com/37/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-09-04"
   },
   {
     "id": "charisma",
@@ -4342,8 +5041,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://anime.charisma-house.com/news/28/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -4428,8 +5138,20 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://pentowappa-anime.com/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format",
+            "pv"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -4516,8 +5238,20 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://www.historie.info/news.html",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format",
+            "pv"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -4560,8 +5294,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://www.ghost-yoruhate.com/news.html",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -4605,8 +5350,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://medalist-pr.com/news.html",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -4622,18 +5378,18 @@ window.animeData = [
       "THE ONE PIECE (더 원피스)"
     ],
     "release": {
-      "japan": {
+      "japan": null,
+      "korea": null,
+      "global": {
         "status": "month",
         "year": 2027,
         "month": 2,
         "day": null
-      },
-      "korea": null,
-      "global": null
+      }
     },
     "productionStatus": "scheduled",
     "season": "2027-winter",
-    "format": "tv",
+    "format": "ona",
     "origin": "comic",
     "tags": [
       "major",
@@ -4654,11 +5410,23 @@ window.animeData = [
       "netflix": "https://www.netflix.com/kr/title/81594316"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "streaming-platform",
+          "url": "https://www.netflix.com/tudum/articles/the-one-piece-release-date",
+          "label": "Netflix announcement",
+          "supports": [
+            "announcement",
+            "release-global",
+            "format",
+            "streaming"
+          ]
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-09-04"
   },
   {
     "id": "mobile-police-patlabor-ezy-file-3",
@@ -4698,8 +5466,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://ezy.patlabor.tokyo/news/443/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -4742,8 +5521,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://www.fujitv.co.jp/shozen/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -4790,8 +5580,19 @@ window.animeData = [
       "watcha": "https://watcha.com/ko-KR/contents/tRp4vN6"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://skip-and-loafer.com/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -4839,8 +5640,19 @@ window.animeData = [
       "crunchyroll": "https://www.crunchyroll.com/ko/series/G3KHEVDJ7/the-apothecary-diaries"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://kusuriyanohitorigoto.jp/news/1998/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -4861,7 +5673,12 @@ window.animeData = [
         "day": null
       },
       "korea": null,
-      "global": null
+      "global": {
+        "status": "month",
+        "year": 2027,
+        "month": 4,
+        "day": null
+      }
     },
     "productionStatus": "scheduled",
     "season": "2027-spring",
@@ -4881,13 +5698,28 @@ window.animeData = [
       "official": "https://anime.kagurabachi.jp/",
       "streaming": null
     },
-    "streaming": {},
+    "streaming": {
+      "officialstream": "https://anime.kagurabachi.jp/en/news/crunchyroll-simulcast/"
+    },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://anime.kagurabachi.jp/en/news/crunchyroll-simulcast/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "release-global",
+            "format",
+            "streaming"
+          ]
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-09-04"
   },
   {
     "id": "tenkaichi-the-greatest-warrior-under-the-rising-sun",
@@ -4926,8 +5758,20 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://tenkaichi-anime.com/news/36/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format",
+            "pv"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -4972,8 +5816,20 @@ window.animeData = [
       "netflix": "https://www.netflix.com/kr/title/81564899"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://delicious-in-dungeon.com/news.html",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format",
+            "streaming"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -5023,8 +5879,19 @@ window.animeData = [
       "watcha": "https://watcha.com/ko/contents/tRN7gzz"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://frieren-anime.jp/news/5417/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -5071,8 +5938,19 @@ window.animeData = [
       "watcha": "https://watcha.com/contents/tPd313d"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://spice-and-wolf.com/news/detail_260831_01.html",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -5119,8 +5997,19 @@ window.animeData = [
       "watcha": "https://watcha.com/ko/contents/tlnN0K1"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://anime-dandadan.com/news/2673/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -5162,8 +6051,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://konosuba.com/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -5208,8 +6108,19 @@ window.animeData = [
       "watcha": "https://watcha.com/ko/contents/tRMZgbP"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://yurucamp.jp/news/information/9703",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -5296,8 +6207,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://boukyaku-battery.com/news/index00150000.html",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -5387,8 +6309,19 @@ window.animeData = [
       "tving": "https://www.tving.com/contents/P001778344"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://onepunchman-anime.net/news/archives/7285",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -5480,8 +6413,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://nakanohito-pr.com/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -5522,8 +6466,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://biblia-anime.com/news/?id=70413",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -5610,8 +6565,19 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-04",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://bless-anime.com/",
+          "label": "Official website",
+          "supports": [
+            "announcement",
+            "release",
+            "format"
+          ]
+        }
+      ]
     },
     "createdAt": null,
     "updatedAt": null
@@ -5977,4 +6943,3 @@ window.animeData = [
     "updatedAt": null
   }
 ];
-
