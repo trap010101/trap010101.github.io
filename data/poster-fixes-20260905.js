@@ -7,7 +7,7 @@
 
   anime.poster = {
     ...anime.poster,
-    src: "assets/posters/me-and-big-bro-yuu.webp"
+    src: "assets/posters/me-and-big-bro-yuu-v2.webp"
   };
   anime.updatedAt = "2026-09-05";
 })();
