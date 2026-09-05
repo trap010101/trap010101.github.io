@@ -124,26 +124,4 @@
   additions.forEach(anime => {
     if (!existingIds.has(anime.id)) window.animeData.push(anime);
   });
-
-  // Ensure the official Death Stranding animation project page is always exposed,
-  // including for clients that may still have an older canonical anime.js cached.
-  const deathStranding = window.animeData.find(
-    anime => anime.id === "death-stranding-isolations-working-title"
-  );
-  if (deathStranding) {
-    deathStranding.links = deathStranding.links || {};
-    deathStranding.links.official = "https://www.kojimaproductions.jp/ja/ds_animation_project";
-    deathStranding.verification = {
-      verifiedAt: "2026-09-05",
-      sources: [
-        {
-          type: "official-site",
-          url: "https://www.kojimaproductions.jp/ja/ds_animation_project",
-          label: "Kojima Productions — DEATH STRANDING Animation Project",
-          supports: ["announcement", "release", "format", "streaming"]
-        }
-      ]
-    };
-    deathStranding.updatedAt = "2026-09-05";
-  }
 })();
