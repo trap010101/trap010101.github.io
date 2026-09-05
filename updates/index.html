@@ -39,7 +39,7 @@
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-jp.css" />
   <link rel="stylesheet" href="../styles.css?v=20260905-resource-icons1" />
-  <link rel="stylesheet" href="updates.css?v=20260905-ui-sync1" />
+  <link rel="stylesheet" href="updates.css?v=20260905-ui-sync2" />
 </head>
 <body class="updates-page">
   <main class="shell">
@@ -89,16 +89,16 @@
       <p id="updatesDescription">업데이트 내역에 대한 상세 정보입니다.</p>
     </section>
 
-    <nav class="updates-filters" id="updatesFilters" aria-label="업데이트 필터">
-      <button class="active" type="button" data-filter="all" aria-pressed="true">전체</button>
-      <button type="button" data-filter="added" aria-pressed="false">신규 등록</button>
-      <button type="button" data-filter="release" aria-pressed="false">방영일</button>
-      <button type="button" data-filter="pv" aria-pressed="false">PV</button>
-      <button type="button" data-filter="streaming" aria-pressed="false">스트리밍</button>
-      <button type="button" data-filter="other" aria-pressed="false">기타</button>
+    <nav class="toolbar updates-filters" id="updatesFilters" aria-label="업데이트 필터">
+      <button class="chip active" type="button" data-filter="all" aria-pressed="true">전체</button>
+      <button class="chip" type="button" data-filter="added" aria-pressed="false">신규 등록</button>
+      <button class="chip" type="button" data-filter="release" aria-pressed="false">방영일</button>
+      <button class="chip" type="button" data-filter="pv" aria-pressed="false">PV</button>
+      <button class="chip" type="button" data-filter="streaming" aria-pressed="false">스트리밍</button>
+      <button class="chip" type="button" data-filter="other" aria-pressed="false">기타</button>
     </nav>
 
-    <section class="updates-panel" aria-live="polite">
+    <section class="month updates-panel" aria-live="polite">
       <div class="updates-list" id="updatesList"></div>
       <p class="updates-empty hidden" id="updatesEmpty">이 유형의 업데이트가 없습니다.</p>
     </section>
