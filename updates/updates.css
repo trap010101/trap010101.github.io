@@ -1,21 +1,7 @@
-.updates-page .shell {
-  width: min(1180px, calc(100% - 28px));
-}
-
 .updates-filters {
-  position: sticky;
-  top: 10px;
-  z-index: 20;
   display: flex;
   gap: 8px;
-  margin: 20px 0;
-  padding: 12px;
   overflow-x: auto;
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  background: rgba(11, 13, 18, .82);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, .22);
-  backdrop-filter: blur(18px);
   scrollbar-width: none;
 }
 
@@ -23,30 +9,9 @@
   display: none;
 }
 
-.updates-filters button {
+.updates-filters .chip {
   flex: 0 0 auto;
-  min-height: 38px;
-  padding: 9px 13px;
-  border-radius: 12px;
-  color: var(--muted);
-  background: rgba(255, 255, 255, .035);
-  font-size: 12px;
-  font-weight: 850;
   white-space: nowrap;
-}
-
-.updates-filters button.active {
-  color: #fff;
-  border-color: rgba(142, 161, 255, .42);
-  background: linear-gradient(135deg, rgba(142, 161, 255, .24), rgba(178, 140, 255, .18));
-}
-
-.updates-panel {
-  padding: 20px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--panel);
-  box-shadow: 0 10px 35px rgba(0, 0, 0, .18);
 }
 
 .updates-list {
@@ -96,38 +61,7 @@
   background: rgba(142, 161, 255, .09);
 }
 
-@media (max-width: 760px) {
-  .updates-page .shell {
-    width: min(100% - 18px, 1180px);
-  }
-
-  .updates-filters {
-    top: 6px;
-    border-radius: 17px;
-  }
-
-  .updates-panel {
-    padding: 16px;
-  }
-}
-
 @media (max-width: 520px) {
-  .updates-filters {
-    margin: 13px 0;
-    padding: 7px;
-    border-radius: 14px;
-  }
-
-  .updates-filters button {
-    min-height: 40px;
-    padding-inline: 11px;
-  }
-
-  .updates-panel {
-    padding: 13px;
-    border-radius: 17px;
-  }
-
   .updates-page .update-item {
     min-height: 0;
     padding: 12px 1px;
