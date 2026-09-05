@@ -22,8 +22,74 @@
   font-size: 13px;
 }
 
+/* Keep resource-button arrows visually consistent without relying on font glyphs. */
+.resource-btn .external,
+.stream-trigger .external {
+  position: relative;
+  display: inline-block;
+  flex: 0 0 10px;
+  width: 10px;
+  height: 10px;
+  margin-left: 2px;
+  font-size: 0;
+  line-height: 1;
+  opacity: .68;
+  vertical-align: middle;
+}
+
+.resource-btn .external::before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 5px;
+  height: 5px;
+  border-top: 1.5px solid currentColor;
+  border-right: 1.5px solid currentColor;
+  border-radius: 1px;
+}
+
+.resource-btn .external::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  right: 2px;
+  width: 7px;
+  height: 1.5px;
+  border-radius: 999px;
+  background: currentColor;
+  transform: rotate(-45deg);
+  transform-origin: right center;
+}
+
+.stream-trigger .external::before,
+.stream-trigger .external::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  width: 6px;
+  height: 1.5px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.stream-trigger .external::before {
+  left: 0;
+  transform: rotate(45deg);
+}
+
+.stream-trigger .external::after {
+  right: 0;
+  transform: rotate(-45deg);
+}
+
 @media (max-width: 520px) {
   .pv-option {
     min-height: 54px;
+  }
+
+  .resource-btn .external,
+  .stream-trigger .external {
+    margin-left: 3px;
   }
 }
