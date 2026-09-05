@@ -1,0 +1,99 @@
+/* Category palette
+   Keep category identity consistent between filter chips and card badges. */
+.badge.major,
+#filters .chip[data-filter="major"] {
+  --category-rgb: 255, 117, 161;
+  --category-text: #ffd6e3;
+}
+
+.badge.new,
+#filters .chip[data-filter="new"] {
+  --category-rgb: 91, 200, 255;
+  --category-text: #d4f2ff;
+}
+
+.badge.series,
+#filters .chip[data-filter="series"] {
+  --category-rgb: 145, 151, 255;
+  --category-text: #dedfff;
+}
+
+.badge.comic,
+#filters .chip[data-filter="comic"] {
+  --category-rgb: 255, 158, 96;
+  --category-text: #ffe1cc;
+}
+
+.badge.ln,
+#filters .chip[data-filter="ln"] {
+  --category-rgb: 190, 138, 255;
+  --category-text: #ead9ff;
+}
+
+.badge.webtoon,
+#filters .chip[data-filter="webtoon"] {
+  --category-rgb: 72, 218, 192;
+  --category-text: #d4fff6;
+}
+
+.badge.webnovel,
+#filters .chip[data-filter="webnovel"] {
+  --category-rgb: 225, 119, 255;
+  --category-text: #f5dcff;
+}
+
+.badge.game,
+#filters .chip[data-filter="game"] {
+  --category-rgb: 101, 151, 255;
+  --category-text: #dce7ff;
+}
+
+.badge.original,
+#filters .chip[data-filter="original"] {
+  --category-rgb: 93, 220, 156;
+  --category-text: #d6f8e6;
+}
+
+.badge.movie,
+#filters .chip[data-filter="movie"] {
+  --category-rgb: 255, 199, 91;
+  --category-text: #ffebc2;
+}
+
+.meta .badge {
+  color: var(--category-text, var(--muted));
+  background: rgba(var(--category-rgb, 255, 255, 255), .10);
+  border-color: rgba(var(--category-rgb, 255, 255, 255), .22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .025);
+}
+
+#filters .chip[data-filter]:not([data-filter="all"]) {
+  color: #adb5c5;
+  border-color: rgba(var(--category-rgb), .12);
+  background: rgba(var(--category-rgb), .025);
+}
+
+#filters .chip[data-filter]:not([data-filter="all"]):hover {
+  color: var(--category-text);
+  border-color: rgba(var(--category-rgb), .26);
+  background: rgba(var(--category-rgb), .075);
+}
+
+#filters .chip.active:not([data-filter="all"]) {
+  color: var(--category-text);
+  border-color: rgba(var(--category-rgb), .38);
+  background: linear-gradient(
+    135deg,
+    rgba(var(--category-rgb), .19),
+    rgba(var(--category-rgb), .10)
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .045),
+    0 5px 16px rgba(var(--category-rgb), .06);
+}
+
+#filters .chip[data-filter="all"].active {
+  color: #edf0ff;
+  border-color: rgba(156, 166, 255, .34);
+  background: linear-gradient(135deg, rgba(142, 161, 255, .19), rgba(178, 140, 255, .12));
+}
