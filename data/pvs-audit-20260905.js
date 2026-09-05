@@ -101,6 +101,12 @@
         url: "https://www.youtube.com/watch?v=765qxY2Tbm4"
       }
     ],
+    "konosuba-gods-blessing-on-this-wonderful-world-season-4": [
+      {
+        label: { ko: "10주년 기념 PV (4기 발표 포함)", ja: "10周年記念PV（第4期発表含む）", en: "10th Anniversary PV (Season 4 Announcement)" },
+        url: "https://www.youtube.com/watch?v=8XpGThBki3Y"
+      }
+    ],
     "ghost-of-tsushima-legends": [
       {
         label: { ko: "티저", ja: "ティザー", en: "Teaser" },
