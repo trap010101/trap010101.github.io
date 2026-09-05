@@ -578,7 +578,7 @@ button:hover, .chip:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 4px;
   padding: 7px 8px;
   border-radius: 10px;
   border: 1px solid rgba(142,161,255,.18);
@@ -596,9 +596,24 @@ a.resource-btn:hover {
   background: rgba(142,161,255,.14);
 }
 
-.resource-btn .external {
-  opacity: .65;
-  font-size: 9px;
+.resource-icon {
+  display: block;
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: .62;
+  overflow: visible;
+}
+
+.resource-icon-external {
+  width: 10px;
+  height: 10px;
+  opacity: .56;
 }
 
 .resource-btn.disabled {
@@ -633,7 +648,7 @@ a.resource-btn:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 4px;
   padding: 7px 8px;
   border-radius: 10px;
   border: 1px solid rgba(142,161,255,.18);
@@ -1282,9 +1297,14 @@ a.ott-option:hover {
     display: inline;
   }
 
-  .resource-btn .external,
-  .stream-trigger .external {
-    margin-left: 3px;
+  .resource-icon-chevron {
+    width: 8px;
+    height: 8px;
+  }
+
+  .resource-icon-external {
+    width: 9px;
+    height: 9px;
   }
 }
 

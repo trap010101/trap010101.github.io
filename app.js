@@ -608,7 +608,20 @@ function posterMarkup(anime) {
   `;
 }
 
-function resourceButton(url, label, shortLabel = null) {
+function resourceIconMarkup(type) {
+  if (type === "chevron") {
+    return `<svg class="resource-icon resource-icon-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false">
+      <path d="M3 4.5 L6 7.5 L9 4.5"></path>
+    </svg>`;
+  }
+
+  return `<svg class="resource-icon resource-icon-external" viewBox="0 0 12 12" aria-hidden="true" focusable="false">
+    <path d="M4 8 L8.5 3.5"></path>
+    <path d="M5.5 3.5 H8.5 V6.5"></path>
+  </svg>`;
+}
+
+function resourceButton(url, label, shortLabel = null, iconType = "external") {
   const labelMarkup = shortLabel
     ? `<span class="resource-label-long">${label}</span><span class="resource-label-short">${shortLabel}</span>`
     : `<span>${label}</span>`;
@@ -617,7 +630,7 @@ function resourceButton(url, label, shortLabel = null) {
     return `<span class="resource-btn disabled" aria-disabled="true">${labelMarkup}</span>`;
   }
 
-  return `<a class="resource-btn" href="${url}" target="_blank" rel="noopener noreferrer">${labelMarkup}<span class="external">↗</span></a>`;
+  return `<a class="resource-btn" href="${url}" target="_blank" rel="noopener noreferrer">${labelMarkup}${resourceIconMarkup(iconType)}</a>`;
 }
 
 function hasOttLink(anime) {
@@ -629,7 +642,7 @@ function streamingButton(anime) {
     return `<button class="stream-trigger disabled" type="button" disabled >${t("streaming")}</button>`;
   }
 
-  return `<button class="stream-trigger" type="button" data-stream-anime-id="${anime.id}">${t("streaming")} <span class="external">▾</span></button>`;
+  return `<button class="stream-trigger" type="button" data-stream-anime-id="${anime.id}"><span>${t("streaming")}</span>${resourceIconMarkup("chevron")}</button>`;
 }
 
 function verificationIconMarkup(anime) {
@@ -664,7 +677,7 @@ function resourceActions(anime) {
 
   return `
     <div class="resource-actions">
-      ${resourceButton(links.pv, t("pv"))}
+      ${resourceButton(links.pv, t("pv"), null, "chevron")}
       ${resourceButton(links.official, officialLabel, officialShortLabel)}
       ${streamingButton(anime)}
     </div>

@@ -138,7 +138,7 @@
       replacement.type = "button";
       replacement.className = "resource-btn pv-trigger";
       replacement.dataset.pvAnimeId = anime.id;
-      replacement.innerHTML = `<span>PV</span><span class="external" aria-hidden="true">▾</span>`;
+      replacement.innerHTML = `<span>PV</span>${resourceIconMarkup("chevron")}`;
     } else {
       replacement = document.createElement("span");
       replacement.className = "resource-btn disabled";

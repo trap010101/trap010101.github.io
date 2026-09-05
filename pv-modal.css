@@ -22,18 +22,6 @@
   font-size: 13px;
 }
 
-/* PV and streaming are both picker controls: keep their down arrows identical. */
-.pv-trigger .external,
-.stream-trigger .external {
-  display: inline-block;
-  margin-left: 3px;
-  font-size: 10px;
-  line-height: 1;
-  opacity: .65;
-  vertical-align: middle;
-  transform: translateY(-.5px);
-}
-
 @media (max-width: 520px) {
   .pv-option {
     min-height: 54px;
