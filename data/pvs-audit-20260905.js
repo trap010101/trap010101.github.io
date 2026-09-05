@@ -149,3 +149,21 @@
     anime.updatedAt = verifiedAt;
   });
 })();
+
+// Schedule correction: keep Golden Kamuy's Runaway Train Arc in January 2027.
+// This runs after the official-site audit and restores the canonical January 2027 slot.
+(() => {
+  if (!Array.isArray(window.animeData)) return;
+  const anime = window.animeData.find(item => item.id === "golden-kamuy-final-chapter-runaway-train-arc");
+  if (!anime) return;
+
+  anime.release = anime.release || {};
+  anime.release.japan = {
+    status: "month",
+    year: 2027,
+    month: 1,
+    day: null
+  };
+  anime.season = "2027-winter";
+  anime.updatedAt = "2026-09-05";
+})();
