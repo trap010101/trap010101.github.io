@@ -77,6 +77,36 @@
   border-top: 0;
 }
 
+/* The updates page is intentionally text-only. Poster markup is kept hidden as a
+   fallback for older cached scripts, while current page data has poster fields
+   stripped before the list renderer runs so no poster requests are made. */
+.updates-page .update-item {
+  display: block;
+  min-height: 0;
+  padding: 14px 4px;
+}
+
+.updates-page .update-poster {
+  display: none;
+}
+
+.updates-page .update-content {
+  align-self: auto;
+}
+
+.updates-page .update-content p {
+  display: block;
+  overflow: visible;
+  margin: 4px 0 6px;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+}
+
+.updates-page .update-source-link {
+  min-height: 24px;
+  padding: 2px 0;
+}
+
 .updates-empty {
   margin: 0;
   padding: 34px 12px;
@@ -119,5 +149,18 @@
   .updates-panel {
     padding: 2px 13px;
     border-radius: 17px;
+  }
+
+  .updates-page .update-item {
+    min-height: 0;
+    padding: 12px 1px;
+  }
+
+  .updates-page .update-title-row {
+    gap: 2px 9px;
+  }
+
+  .updates-page .update-content p {
+    margin-bottom: 5px;
   }
 }
