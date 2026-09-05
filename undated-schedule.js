@@ -8,6 +8,7 @@
       release.status = "year";
       release.month = null;
       release.day = null;
+      release.display = null;
     }
   });
 
@@ -26,7 +27,11 @@
     const undatedLabel = document.querySelector("#undatedToggle > span:first-child");
     if (undatedLabel) undatedLabel.textContent = undatedYearLabel(activeYear);
 
-    document.getElementById("undatedList").innerHTML = undatedAnime.map(anime => `
+    document.getElementById("undatedList").innerHTML = undatedAnime.map(anime => {
+      const release = getPrimaryScheduleRelease(anime);
+      const yearLabel = release?.year ? String(release.year) : t("tba");
+
+      return `
       <div class="undated-item">
         <div class="undated-layout">
           ${posterMarkup(anime)}
@@ -36,7 +41,7 @@
                 ${verificationIconMarkup(anime)}
                 <div class="undated-title-scroll"><div class="undated-title undated-title-scroll-inner">${localTitle(anime)}</div></div>
               </div>
-              <div class="date ${releasePrecisionClass(anime)}">${localDateLabel(anime)}</div>
+              <div class="date precision-year">${yearLabel}</div>
             </div>
             <div class="meta">
               ${anime.tags.map(tag => `<span class="badge ${tag}">${categoryLabel(tag)}</span>`).join("")}
@@ -45,7 +50,8 @@
           </div>
         </div>
       </div>
-    `).join("");
+    `;
+    }).join("");
 
     undatedSection.classList.toggle("hidden", undatedAnime.length === 0);
   };
