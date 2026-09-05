@@ -62,9 +62,20 @@ const UPDATE_TYPES = new Set([
 ]);
 
 function loadProductionData() {
-  const context = { window: {} };
+  const context = {
+    URL,
+    window: {},
+    document: {
+      readyState: "loading",
+      addEventListener() {}
+    }
+  };
   vm.createContext(context);
-  for (const file of ["data/anime.js", "data/platforms.js", "data/updates.js"]) {
+  for (const file of [
+    "data/anime.js",
+    "data/platforms.js",
+    "data/updates.js"
+  ]) {
     vm.runInContext(fs.readFileSync(path.join(ROOT, file), "utf8"), context, { filename: file });
   }
   return {
@@ -84,6 +95,15 @@ function isHttpUrl(value) {
   try {
     const url = new URL(value);
     return url.protocol === "http:" || url.protocol === "https:";
+  } catch (_) {
+    return false;
+  }
+}
+
+function isHttpsUrl(value) {
+  if (!isNonEmptyString(value)) return false;
+  try {
+    return new URL(value).protocol === "https:";
   } catch (_) {
     return false;
   }
@@ -267,6 +287,34 @@ function validate() {
       for (const [platform, value] of Object.entries(item.streaming)) {
         if (!platformIds.has(platform)) errors.push(`${location}.streaming uses unknown platform: ${platform}`);
         if (!isHttpUrl(value)) errors.push(`${location}.streaming.${platform} is not a valid HTTP(S) URL`);
+      }
+    }
+
+    if (!item?.previousStreaming || typeof item.previousStreaming !== "object" || Array.isArray(item.previousStreaming)) {
+      errors.push(`${location}.previousStreaming must be an object`);
+    } else {
+      const previousUrls = new Set();
+      for (const [platform, value] of Object.entries(item.previousStreaming)) {
+        const previousLocation = `${location}.previousStreaming.${platform}`;
+        if (!platformIds.has(platform)) errors.push(`${previousLocation} uses an unknown platform`);
+        if (!isHttpsUrl(value)) errors.push(`${previousLocation} must be a non-empty HTTPS URL`);
+
+        let hostname = "";
+        try {
+          hostname = new URL(value).hostname.toLowerCase();
+        } catch (_) {}
+        if (
+          hostname === "x.com" || hostname.endsWith(".x.com") ||
+          hostname === "twitter.com" || hostname.endsWith(".twitter.com") ||
+          hostname === "justwatch.com" || hostname.endsWith(".justwatch.com") ||
+          hostname === "myanimelist.net" || hostname.endsWith(".myanimelist.net") ||
+          hostname === "anilist.co" || hostname.endsWith(".anilist.co") ||
+          hostname === "wikipedia.org" || hostname.endsWith(".wikipedia.org")
+        ) {
+          errors.push(`${previousLocation} points to a prohibited non-streaming destination`);
+        }
+        if (previousUrls.has(value)) errors.push(`${previousLocation} duplicates another previous-series URL`);
+        previousUrls.add(value);
       }
     }
 

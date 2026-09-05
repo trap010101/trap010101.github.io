@@ -8,7 +8,11 @@
     prime: url => url.hostname.endsWith("primevideo.com") && url.pathname.includes("/detail/"),
     crunchyroll: url => url.hostname.endsWith("crunchyroll.com") && url.pathname.includes("/series/"),
     tving: url => url.hostname.endsWith("tving.com") && url.pathname.includes("/contents/"),
-    watcha: url => url.hostname.endsWith("watcha.com") && url.pathname.includes("/contents/")
+    watcha: url => url.hostname.endsWith("watcha.com") && url.pathname.includes("/contents/"),
+    youtube: url =>
+      (url.hostname === "youtube.com" || url.hostname.endsWith(".youtube.com")) &&
+      url.pathname === "/playlist" &&
+      url.searchParams.has("list")
   };
 
   const isDirectServiceUrl = (platformId, value) => {
@@ -38,11 +42,196 @@
     }
   };
 
-  // Explicit catch-up destinations for an earlier installment in the same series.
-  // These must never be exposed as confirmation for the upcoming installment itself.
+  // Explicit catch-up destinations for earlier installments, audited for 2026-09-05.
+  // These must never be inferred from, or exposed as confirmation for, the upcoming installment.
   const previousSeriesOverrides = {
+    "sound-euphonium-the-final-movement-part-2": {
+      laftel: "https://laftel.net/item/42050"
+    },
+    "jojos-bizarre-adventure-steel-ball-run-2nd-and-3rd-stage": {
+      netflix: "https://www.netflix.com/kr/title/82116553"
+    },
+    "the-new-prince-of-tennis-u-17-world-cup-final-roster-selection": {
+      laftel: "https://laftel.net/item/42413"
+    },
+    "the-apothecary-diaries-season-3-part-1": {
+      netflix: "https://www.netflix.com/kr/title/81712068"
+    },
+    "ranma-1-2-season-3": {
+      netflix: "https://www.netflix.com/kr/title/81171925"
+    },
+    "girls-und-panzer-das-finale-part-5": {
+      laftel: "https://laftel.net/item/41941"
+    },
+    "bang-dream-ave-mujica-prima-aurora": {
+      laftel: "https://laftel.net/item/42656",
+      tving: "https://www.tving.com/contents/P001766479",
+      watcha: "https://watcha.com/ko/contents/tPVdbX4"
+    },
+    "rascal-does-not-dream-of-a-dear-friend": {
+      laftel: "https://laftel.net/item/42927"
+    },
+    "cyberpunk-edgerunners-2": {
+      netflix: "https://www.netflix.com/kr/title/81054853"
+    },
+    "made-in-abyss-theatrical-series-part-1-the-awakening-mystery": {
+      tving: "https://www.tving.com/contents/P001668113"
+    },
+    "a-returners-magic-should-be-special-season-2": {
+      netflix: "https://www.netflix.com/kr/title/81726466",
+      tving: "https://www.tving.com/contents/E004115538"
+    },
+    "tougen-anki-nikko-and-kegon-falls-arc": {
+      tving: "https://www.tving.com/contents/P001773985"
+    },
+    "tokyo-revengers-three-deities-war-arc": {
+      disney: "https://www.disneyplus.com/ko-kr/browse/entity-be391742-6617-42ad-b53a-be368ee73335",
+      watcha: "https://watcha.com/ko/contents/tRMxXK0"
+    },
+    "black-clover-2nd-season": {
+      netflix: "https://www.netflix.com/kr/title/80238012"
+    },
+    "the-iceblade-sorcerer-shall-rule-the-world-ii": {
+      prime: "https://www.primevideo.com/-/ko/detail/0PSZZ48DV17ZKGJ3NBESJHAF85"
+    },
+    "sasaki-and-peeps-season-2": {
+      netflix: "https://www.netflix.com/kr/title/81768306",
+      tving: "https://www.tving.com/contents/P001756336"
+    },
+    "aoashi-season-2": {
+      disney: "https://www.disneyplus.com/ko-kr/browse/entity-f94bf091-b30d-43ca-ba1e-548ccb28e19b"
+    },
+    "reincarnated-as-a-sword-ii": {
+      prime: "https://www.primevideo.com/-/ko/detail/0SMRJS9YUTPHZO3CHCX2OX9AIX"
+    },
+    "chitose-is-in-the-ramune-bottle-part-2": {
+      tving: "https://www.tving.com/contents/P001781694",
+      watcha: "https://watcha.com/ko/contents/tR2eraW"
+    },
+    "the-detective-is-already-dead-season-2": {
+      laftel: "https://laftel.net/item/40387",
+      tving: "https://www.tving.com/contents/P001518955",
+      watcha: "https://watcha.com/ko/contents/tPvbdn5"
+    },
+    "blue-box-season-2": {
+      netflix: "https://www.netflix.com/kr/title/81663323"
+    },
+    "expelled-from-paradise-resonance-of-the-heart": {
+      laftel: "https://laftel.net/item/23251"
+    },
     "tiger-coming-in-2": {
       laftel: "https://laftel.net/item/42320"
+    },
+    "the-apothecary-diaries-the-late-consorts-secret-treasure": {
+      netflix: "https://www.netflix.com/kr/title/81712068"
+    },
+    "monogatari-series-off-and-monster-season-wazamonogatari-karen-ogre": {
+      laftel: "https://laftel.net/item/42250",
+      tving: "https://www.tving.com/contents/P001758881"
+    },
+    "bang-dream-its-mygo-ave-mujica-sequel-series": {
+      laftel: "https://laftel.net/item/42656",
+      tving: "https://www.tving.com/contents/P001766479",
+      watcha: "https://watcha.com/ko/contents/tPVdbX4"
+    },
+    "sakamoto-days-season-2": {
+      netflix: "https://www.netflix.com/kr/title/81663325"
+    },
+    "everyday-host-new-series": {
+      youtube: "https://www.youtube.com/playlist?list=PLdG_RubOZ595dlvlqnACqPvod-f34uTkM"
+    },
+    "mashle-season-3-divine-visionary-final-exam-arc": {
+      laftel: "https://laftel.net/item/41854",
+      prime: "https://www.primevideo.com/-/ko/detail/0FJ5I56FI21X9QOLAPPBFIBO8U",
+      tving: "https://www.tving.com/contents/P001751824",
+      watcha: "https://watcha.com/ko/contents/tlLrq1W"
+    },
+    "ramen-akaneko-part-two": {
+      laftel: "https://laftel.net/item/42261",
+      watcha: "https://watcha.com/ko/contents/tPeWv55"
+    },
+    "golden-kamuy-final-chapter-runaway-train-arc": {
+      tving: "https://www.tving.com/contents/P001788312",
+      watcha: "https://watcha.com/ko/contents/tR2Z3DR"
+    },
+    "shangri-la-frontier-season-3": {
+      laftel: "https://laftel.net/item/42411",
+      tving: "https://www.tving.com/contents/P001762706",
+      watcha: "https://watcha.com/ko/contents/tPrzvGO"
+    },
+    "akane-banashi-season-2": {
+      laftel: "https://laftel.net/item/45436"
+    },
+    "medaka-kuroiwa-is-impervious-to-my-charms-season-2": {
+      laftel: "https://laftel.net/item/42651"
+    },
+    "medalist-the-movie": {
+      disney: "https://www.disneyplus.com/ko-kr/browse/entity-bb33d0c2-b077-4bc0-a549-d2ca27d4afa8"
+    },
+    "skip-and-loafer-season-2": {
+      tving: "https://www.tving.com/contents/P001707310",
+      watcha: "https://watcha.com/ko/contents/tRp4vN6"
+    },
+    "the-apothecary-diaries-season-3-part-2": {
+      netflix: "https://www.netflix.com/kr/title/81712068"
+    },
+    "delicious-in-dungeon-season-2": {
+      netflix: "https://www.netflix.com/kr/title/81564899"
+    },
+    "frieren-beyond-journeys-end-season-3-golden-land-arc": {
+      netflix: "https://www.netflix.com/kr/title/81726714",
+      laftel: "https://laftel.net/item/44281",
+      prime: "https://www.primevideo.com/-/ko/detail/0FCJEHY4FXTDVCLZ5NR9A0N42N",
+      tving: "https://www.tving.com/contents/P001781702",
+      watcha: "https://watcha.com/ko/contents/tRN7gzz"
+    },
+    "spice-and-wolf-merchant-meets-the-wise-wolf-season-2": {
+      tving: "https://www.tving.com/contents/P001755104",
+      watcha: "https://watcha.com/ko/contents/tPd313d"
+    },
+    "dan-da-dan-season-3": {
+      prime: "https://www.primevideo.com/-/ko/detail/0OFFTSH522NN0TQ2QJC1R2J590",
+      tving: "https://www.tving.com/contents/P001766481",
+      watcha: "https://watcha.com/ko/contents/tlnN0K1"
+    },
+    "konosuba-gods-blessing-on-this-wonderful-world-season-4": {
+      laftel: "https://laftel.net/item/42053"
+    },
+    "laid-back-camp-season-4": {
+      watcha: "https://watcha.com/ko/contents/tRMZgbP"
+    },
+    "the-dangers-in-my-heart-season-3": {
+      watcha: "https://watcha.com/ko/contents/tPVdZdw"
+    },
+    "oblivion-battery-season-2": {
+      laftel: "https://laftel.net/item/42086"
+    },
+    "alya-sometimes-hides-her-feelings-in-russian-season-2": {
+      laftel: "https://laftel.net/item/42278",
+      tving: "https://www.tving.com/contents/P001758957",
+      watcha: "https://watcha.com/ko/contents/tRWm84a"
+    },
+    "one-punch-man-season-3-part-2": {
+      tving: "https://www.tving.com/contents/P001778344"
+    },
+    "the-rising-of-the-shield-hero-season-5": {
+      tving: "https://www.tving.com/contents/P001773988",
+      watcha: "https://watcha.com/ko/contents/tlnN0bz"
+    },
+    "fate-kaleid-liner-prisma-illya-finale": {
+      laftel: "https://laftel.net/item/33300"
+    },
+    "haikyu-the-movie-vs-the-little-giant": {
+      netflix: "https://www.netflix.com/kr/title/80090673"
+    },
+    "the-eminence-in-shadow-lost-echoes": {
+      laftel: "https://laftel.net/item/41643"
+    },
+    "one-piece-film-god-valley": {
+      netflix: "https://www.netflix.com/kr/title/80107103"
+    },
+    "the-worlds-finest-assassin-season-2": {
+      laftel: "https://laftel.net/item/40533"
     }
   };
 
@@ -69,18 +258,7 @@
         currentStreaming = directOriginalLinks;
       }
 
-      let previousStreaming = {};
-      if (isSeriesTitle(anime) && !hasStreamingVerification(anime)) {
-        previousStreaming = { ...directOriginalLinks };
-      }
-      if (Object.keys(previousOverride).length) {
-        previousStreaming = { ...previousStreaming, ...previousOverride };
-      }
-
-      // Avoid showing the exact same destination in both sections.
-      Object.entries(previousStreaming).forEach(([platformId, url]) => {
-        if (currentStreaming[platformId] === url) delete previousStreaming[platformId];
-      });
+      const previousStreaming = isSeriesTitle(anime) ? previousOverride : {};
 
       anime.currentStreaming = currentStreaming;
       anime.previousStreaming = previousStreaming;
@@ -248,5 +426,9 @@ window.ottPlatforms = [
   {
     "id": "watcha",
     "name": "WATCHA"
+  },
+  {
+    "id": "youtube",
+    "name": "YouTube"
   }
 ];
