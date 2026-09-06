@@ -86,8 +86,8 @@
     requestAnimationFrame(updateScheduleArchiveLink);
   });
 
-  // Load regional streaming audits after the base data layer, then install the region UI.
-  // This keeps the homepage HTML stable while preserving deterministic load order.
+  // Load regional streaming audits after the base data layer, detect a default country,
+  // then install the region UI. User-selected regions remain persistent.
   const loadScript = src => new Promise((resolve, reject) => {
     const existing = document.querySelector(`script[src^="${src.split('?')[0]}"]`);
     if (existing) {
@@ -105,6 +105,7 @@
   Promise.resolve()
     .then(() => loadScript('/data/streaming-jp-20260906.js?v=20260906-region1'))
     .then(() => loadScript('/data/streaming-us-20260906.js?v=20260906-region1'))
+    .then(() => loadScript('/streaming-region-country-default.js?v=20260906-country1'))
     .then(() => loadScript('/streaming-region-ui.js?v=20260906-region1'))
     .then(() => loadScript('/streaming-region-compact.js?v=20260906-region4'))
     .catch(error => console.warn('Regional streaming UI could not be loaded.', error));
