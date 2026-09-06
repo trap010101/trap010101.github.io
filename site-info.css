@@ -1,3 +1,5 @@
+@import url("/title-wrap-refine.css?v=20260906-title2");
+
 .info-page .hero {
   margin-bottom: 20px;
 }
@@ -12,6 +14,7 @@
 }
 
 .info-panel {
+  min-width: 0;
   padding: clamp(22px, 4vw, 34px);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -58,7 +61,9 @@
 }
 
 .info-panel a {
+  max-width: 100%;
   color: #c5ceff;
+  overflow-wrap: anywhere;
   text-decoration-color: rgba(197,206,255,.38);
   text-underline-offset: 3px;
 }
@@ -76,6 +81,7 @@
 }
 
 .info-callout {
+  min-width: 0;
   margin: 18px 0;
   padding: 15px 16px;
   border: 1px solid rgba(142,161,255,.18);
