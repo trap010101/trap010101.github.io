@@ -1,0 +1,18 @@
+/* Prefer clean, space-aware line wrapping for anime titles across the site. */
+.title-scroll-inner,
+.undated-title-scroll-inner,
+.archive-card h3,
+.anime-localized h1 {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  hyphens: none;
+  line-break: strict;
+  text-wrap: pretty;
+}
+
+/* Preserve the existing single-line marquee once a homepage title exceeds two lines. */
+.title-scroll.is-overflowing .title-scroll-inner,
+.undated-title-scroll.is-overflowing .undated-title-scroll-inner {
+  word-break: normal;
+  overflow-wrap: normal;
+}
