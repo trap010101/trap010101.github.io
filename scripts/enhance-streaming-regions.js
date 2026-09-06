@@ -86,6 +86,24 @@ for (const [animeId, anime] of animeById) {
 
   html = html.replace(match[0], `<script>window.ANIME_DETAIL=${safeJson(detail)};</script>`);
 
+  // Country detection must execute before the detail region UI reads its default.
+  if (!html.includes('/streaming-region-country-default.js')) {
+    const countryScript = '  <script src="/streaming-region-country-default.js?v=20260906-country1"></script>\n';
+    if (html.includes('/detail-streaming-region.js')) {
+      html = html.replace(
+        /\s*<script src="\/detail-streaming-region\.js\?v=[^"]+"><\/script>/,
+        `\n${countryScript}  <script src="/detail-streaming-region.js?v=20260906-region1"></script>`
+      );
+    } else {
+      html = html.replace('</body>', `${countryScript}  <script src="/detail-streaming-region.js?v=20260906-region1"></script>\n</body>`);
+    }
+  } else {
+    html = html.replace(
+      /<script src="\/streaming-region-country-default\.js\?v=[^"]+"><\/script>/g,
+      '<script src="/streaming-region-country-default.js?v=20260906-country1"></script>'
+    );
+  }
+
   if (!html.includes('/detail-streaming-region.js')) {
     html = html.replace(
       '</body>',
