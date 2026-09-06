@@ -28,6 +28,7 @@ on:
       - "anime-detail.css"
       - "anime-breadcrumb.css"
       - "detail-streaming-region.js"
+      - "streaming-region-country-default.js"
       - "streaming-region-ui.js"
       - "streaming-region-compact.js"
       - "schedule-archive.css"
