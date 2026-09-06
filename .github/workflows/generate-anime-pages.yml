@@ -13,15 +13,21 @@ on:
       - "data/pvs.js"
       - "data/pvs-audit-20260905.js"
       - "data/platforms.js"
+      - "data/streaming-regions.js"
+      - "data/streaming-jp-20260906.js"
+      - "data/streaming-us-20260906.js"
       - "data/streaming-policy-20260905.js"
       - "data/updates*.js"
       - "scripts/generate-anime-pages.js"
+      - "scripts/enhance-streaming-regions.js"
       - "scripts/generate-schedule-pages.js"
       - "scripts/generate-updates-page.js"
       - "scripts/enhance-anime-seo.js"
       - "scripts/normalize-seo-defaults.js"
       - "anime-detail.css"
       - "anime-breadcrumb.css"
+      - "detail-streaming-region.js"
+      - "streaming-region-ui.js"
       - "schedule-archive.css"
       - "updates/index.html"
       - "updates/updates.css"
@@ -46,6 +52,9 @@ jobs:
 
       - name: Add anime SEO breadcrumbs
         run: node scripts/enhance-anime-seo.js
+
+      - name: Add regional streaming data to anime pages
+        run: node scripts/enhance-streaming-regions.js
 
       - name: Generate schedule archive pages
         run: node scripts/generate-schedule-pages.js
