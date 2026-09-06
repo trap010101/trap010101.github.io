@@ -244,12 +244,13 @@
       label: "Official website",
       supports: ["announcement", "release", "format"],
       releaseJapan: {
-        status: "month",
+        status: "year",
         year: 2026,
-        month: 12,
+        month: null,
         day: null,
-        display: { ko: "2026년 겨울", ja: "2026年冬", en: "Winter 2026" }
-      }
+        display: { ko: "2026년 겨울 · 월 미정", ja: "2026年冬・月未定", en: "Winter 2026 · Month TBA" }
+      },
+      season: "2026-winter"
     },
     "me-and-big-bro-yuu": {
       official: "https://oretoyunii.com/",
