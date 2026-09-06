@@ -106,6 +106,6 @@
     .then(() => loadScript('/data/streaming-jp-20260906.js?v=20260906-region1'))
     .then(() => loadScript('/data/streaming-us-20260906.js?v=20260906-region1'))
     .then(() => loadScript('/streaming-region-ui.js?v=20260906-region1'))
-    .then(() => loadScript('/streaming-region-compact.js?v=20260906-region3'))
+    .then(() => loadScript('/streaming-region-compact.js?v=20260906-region4'))
     .catch(error => console.warn('Regional streaming UI could not be loaded.', error));
 })();
