@@ -122,7 +122,8 @@
 
   if (Array.isArray(window.animeData)) {
     for (const anime of window.animeData) {
-      const krCurrent = { ...(anime.currentStreaming || {}) };
+      // Upcoming installments are intentionally not treated as currently streamable.
+      const krCurrent = {};
       const krPrevious = { ...(anime.previousStreaming || {}) };
 
       anime.streamingByRegion = {
@@ -164,7 +165,11 @@
       : null;
     if (!anime) throw new Error(`Unknown anime ID: ${animeId}`);
 
-    const current = validateLinkMap(regionId, payload.current || {});
+    if (Object.keys(payload.current || {}).length) {
+      throw new Error("Current-installment streaming is disabled by NewAnime policy.");
+    }
+
+    const current = {};
     const previous = validateLinkMap(regionId, payload.previous || {});
 
     anime.streamingByRegion ||= {};
@@ -176,10 +181,10 @@
 
     // Keep the existing homepage/runtime contract Korean-first until the region selector ships.
     if (regionId === "kr") {
-      anime.currentStreaming = current;
+      anime.currentStreaming = {};
       anime.previousStreaming = previous;
-      anime.streaming = { ...previous, ...current };
-      if (anime.links) anime.links.streaming = Object.values(current)[0] || null;
+      anime.streaming = { ...previous };
+      if (anime.links) anime.links.streaming = null;
     }
 
     return getAnimeStreamingForRegion(anime, regionId);
