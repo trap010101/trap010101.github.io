@@ -72,7 +72,7 @@ function esc(value) {
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
+    .replace(/\"/g, '&quot;')
     .replace(/'/g, '&#39;');
 }
 
@@ -410,7 +410,7 @@ function makePage({ year, type, month = null }) {
     <nav class="archive-nav" aria-label="Schedule archive">${navMarkup(year, type, month, availableMonths, undated.length > 0)}</nav>
     <div class="archive-content">${sectionHtml || '<div class="archive-empty">등록된 작품이 없습니다.</div>'}</div>
     <footer class="archive-footer">
-      <a href="/">HOME</a><a href="/2026/">2026</a><a href="/2027/">2027</a><a href="/updates/">UPDATES</a><a href="/about/">ABOUT</a><a href="/privacy/">PRIVACY</a><a href="/policy/">POLICY</a>
+      <a href="/">HOME</a><a href="/${year}/">ARCHIVE</a><a href="/updates/">UPDATES</a><a href="/about/">ABOUT</a><a href="/privacy/">PRIVACY</a><a href="/policy/">POLICY</a>
     </footer>
   </main>
   <script>window.ARCHIVE_PAGE_DATA=${safeJson(archiveData)};</script>
