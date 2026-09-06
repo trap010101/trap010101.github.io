@@ -121,7 +121,7 @@ html = html.replace(/<meta property="og:description" id="ogDescription" content=
 html = html.replace(/<meta name="twitter:title" id="twitterTitle" content="[^"]*" \/>/, `<meta name="twitter:title" id="twitterTitle" content="${title}" />`);
 html = html.replace(/<meta name="twitter:description" id="twitterDescription" content="[^"]*" \/>/, `<meta name="twitter:description" id="twitterDescription" content="${esc(description)}" />`);
 html = html.replace(/<script type="application\/ld\+json" id="updatesStructuredData">[\s\S]*?<\/script>/, `<script type="application/ld+json" id="updatesStructuredData">\n  ${safeJson(structuredData)}\n  </script>`);
-html = html.replace(/<p id="updatesDescription">[\s\S]*?<\/p>/, '<p id="updatesDescription">사이트 공개 이후의 주요 변경 사항을 작업 기록과 최종 결과를 대조해 날짜별로 정리합니다.</p>');
+html = html.replace(/<p id="updatesDescription">[\s\S]*?<\/p>/, '<p id="updatesDescription">NewAnime에 반영된 주요 기능 개선과 작품 정보 갱신 내역을 선별해 날짜별로 기록합니다.</p>');
 html = html.replace(/<div class="updates-list" id="updatesList">[\s\S]*?<\/div>\s*<p class="updates-empty hidden" id="updatesEmpty">[^<]*<\/p>/, `<div class="updates-list" id="updatesList">\n${staticMarkup}\n      </div>\n      <p class="updates-empty hidden" id="updatesEmpty">표시할 업데이트 기록이 없습니다.</p>`);
 
 // The public changelog is self-contained. Remove the legacy anime/update history payloads
