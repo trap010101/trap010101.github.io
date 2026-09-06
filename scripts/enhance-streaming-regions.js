@@ -86,6 +86,19 @@ for (const [animeId, anime] of animeById) {
 
   html = html.replace(match[0], `<script>window.ANIME_DETAIL=${safeJson(detail)};</script>`);
 
+  // Apply the shared compact language selector after the detail page's inline language handlers are installed.
+  if (html.includes('/language-switcher-compact.js')) {
+    html = html.replace(
+      /<script src="\/language-switcher-compact\.js\?v=[^"]+"><\/script>/g,
+      '<script src="/language-switcher-compact.js?v=20260906-lang1"></script>'
+    );
+  } else {
+    html = html.replace(
+      '</body>',
+      '  <script src="/language-switcher-compact.js?v=20260906-lang1"></script>\n</body>'
+    );
+  }
+
   // Country detection must execute before the detail region UI reads its default.
   if (!html.includes('/streaming-region-country-default.js')) {
     const countryScript = '  <script src="/streaming-region-country-default.js?v=20260906-country1"></script>\n';
@@ -127,4 +140,4 @@ for (const [animeId, anime] of animeById) {
   updated += 1;
 }
 
-console.log(`Enhanced ${updated} anime detail pages with regional streaming data.`);
+console.log(`Enhanced ${updated} anime detail pages with regional streaming data and compact controls.`);
