@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const STYLE_HREF = '/title-wrap-refine.css?v=20260906-title1';
+const STYLE_HREF = '/title-wrap-refine.css?v=20260906-title2';
 const STYLE_LINK = `  <link rel="stylesheet" href="${STYLE_HREF}" />\n`;
 const TARGET_ROOTS = ['anime', '2026', '2027'];
 
@@ -42,4 +42,4 @@ function walk(dir) {
 let changed = updateFile(path.join(ROOT, 'index.html')) ? 1 : 0;
 for (const target of TARGET_ROOTS) changed += walk(path.join(ROOT, target));
 
-console.log(`Applied anime title wrapping stylesheet to ${changed} pages.`);
+console.log(`Applied site text wrapping stylesheet to ${changed} pages.`);
