@@ -23,6 +23,11 @@
     return 'ko';
   };
 
+  const activeYear = () => {
+    const value = document.querySelector('.year-chip.active[data-year]')?.dataset.year;
+    return value === '2027' ? '2027' : '2026';
+  };
+
   function linkCards(root = document) {
     root.querySelectorAll('.card, .undated-item').forEach(card => {
       const titleEl = card.querySelector('.title, .undated-title');
@@ -43,25 +48,10 @@
     });
   }
 
-  function addScheduleArchiveLinks() {
-    const footerNav = document.querySelector('.site-footer-links');
-    if (!footerNav || footerNav.querySelector('[data-schedule-archive-link]')) return;
-
-    const reference = footerNav.querySelector('a[href="/about/"]') || footerNav.firstElementChild;
-    [2027, 2026].forEach(year => {
-      const link = document.createElement('a');
-      link.href = `/${year}/?lang=${activeLanguage()}`;
-      link.textContent = String(year);
-      link.dataset.scheduleArchiveLink = String(year);
-      footerNav.insertBefore(link, reference || null);
-    });
-  }
-
-  function updateScheduleArchiveLanguage() {
-    document.querySelectorAll('[data-schedule-archive-link]').forEach(link => {
-      const year = link.dataset.scheduleArchiveLink;
-      link.href = `/${year}/?lang=${activeLanguage()}`;
-    });
+  function updateScheduleArchiveLink() {
+    const link = document.getElementById('archiveFooterLink');
+    if (!link) return;
+    link.href = `/${activeYear()}/?lang=${activeLanguage()}`;
   }
 
   const style = document.createElement('style');
@@ -80,7 +70,7 @@
   document.head.appendChild(style);
 
   linkCards();
-  addScheduleArchiveLinks();
+  updateScheduleArchiveLink();
 
   ['schedule', 'undatedList'].forEach(id => {
     const target = document.getElementById(id);
@@ -89,6 +79,10 @@
   });
 
   document.getElementById('languageSwitcher')?.addEventListener('click', () => {
-    requestAnimationFrame(updateScheduleArchiveLanguage);
+    requestAnimationFrame(updateScheduleArchiveLink);
+  });
+
+  document.getElementById('yearFilters')?.addEventListener('click', () => {
+    requestAnimationFrame(updateScheduleArchiveLink);
   });
 })();
