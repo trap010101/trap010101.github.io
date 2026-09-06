@@ -32,9 +32,13 @@ function safeJson(value) {
   return JSON.stringify(value).replace(/</g, '\\u003c');
 }
 
+function normalizeText(value) {
+  return String(value ?? '').replace(/компакт한/g, '컴팩트한');
+}
+
 function local(value, lang = 'ko') {
-  if (typeof value === 'string') return value;
-  return value?.[lang] || value?.ko || value?.ja || value?.en || '';
+  if (typeof value === 'string') return normalizeText(value);
+  return normalizeText(value?.[lang] || value?.ko || value?.ja || value?.en || '');
 }
 
 function validDate(value) {
@@ -118,12 +122,16 @@ html = html.replace(/<meta name="twitter:title" id="twitterTitle" content="[^"]*
 html = html.replace(/<meta name="twitter:description" id="twitterDescription" content="[^"]*" \/>/, `<meta name="twitter:description" id="twitterDescription" content="${esc(description)}" />`);
 html = html.replace(/<script type="application\/ld\+json" id="updatesStructuredData">[\s\S]*?<\/script>/, `<script type="application/ld+json" id="updatesStructuredData">\n  ${safeJson(structuredData)}\n  </script>`);
 html = html.replace(/<p id="updatesDescription">[\s\S]*?<\/p>/, '<p id="updatesDescription">사이트 공개 이후의 주요 변경 사항을 작업 기록과 최종 결과를 대조해 날짜별로 정리합니다.</p>');
-html = html.replace(/<div class="updates-list" id="updatesList">[\s\S]*?<\/div>\s*<p class="updates-empty hidden" id="updatesEmpty">/, `<div class="updates-list" id="updatesList">\n${staticMarkup}\n      </div>\n      <p class="updates-empty hidden" id="updatesEmpty">`);
+html = html.replace(/<div class="updates-list" id="updatesList">[\s\S]*?<\/div>\s*<p class="updates-empty hidden" id="updatesEmpty">[^<]*<\/p>/, `<div class="updates-list" id="updatesList">\n${staticMarkup}\n      </div>\n      <p class="updates-empty hidden" id="updatesEmpty">표시할 업데이트 기록이 없습니다.</p>`);
 
-if (!html.includes('../data/changelog.js')) {
-  html = html.replace(/(<script src="updates\.js\?[^\"]*"><\/script>)/, '<script src="../data/changelog.js?v=20260906-history1"></script>\n  $1');
-}
-html = html.replace(/updates\.js\?v=[^\"]+/, 'updates.js?v=20260906-history1');
+// The public changelog is self-contained. Remove the legacy anime/update history payloads
+// so the page cannot regress to the old per-field audit log after static regeneration.
+html = html.replace(/\n\s*<script src="\.\.\/data\/anime\.js\?[^\"]*"><\/script>/g, '');
+html = html.replace(/\n\s*<script src="\.\.\/data\/anime-20260904\.js\?[^\"]*"><\/script>/g, '');
+html = html.replace(/\n\s*<script src="\.\.\/data\/updates(?:-[^\"]+)?\.js\?[^\"]*"><\/script>/g, '');
+html = html.replace(/\n\s*<script src="\.\.\/data\/changelog\.js\?[^\"]*"><\/script>/g, '');
+html = html.replace(/\n\s*<script src="updates\.js\?[^\"]*"><\/script>/g, '');
+html = html.replace(/\s*<\/body>/, '\n  <script src="../data/changelog.js?v=20260906-history2"></script>\n  <script src="updates.js?v=20260906-history2"></script>\n</body>');
 
 fs.writeFileSync(UPDATES_PATH, html);
 
