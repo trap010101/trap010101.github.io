@@ -151,9 +151,12 @@
   const selectorQuery = '.stream-region-wrap, .detail-stream-region';
 
   const enhanceSelector = wrap => {
-    if (!wrap) return;
+    if (!wrap?.matches?.(selectorQuery)) return;
+
     const active = wrap.querySelector('.stream-region-btn.active small, .detail-stream-region-btn.active small');
     const code = active?.textContent?.trim() || 'KR';
+    const options = wrap.querySelector(':scope > .stream-region-options, :scope > .detail-stream-region-options');
+    if (!options) return;
 
     let toggle = wrap.querySelector(':scope > .stream-region-current');
     if (!toggle) {
@@ -162,15 +165,19 @@
       toggle.className = 'stream-region-current';
       toggle.setAttribute('aria-haspopup', 'listbox');
       toggle.setAttribute('aria-expanded', 'false');
-      wrap.insertBefore(toggle, wrap.querySelector('.stream-region-options, .detail-stream-region-options'));
+      wrap.insertBefore(toggle, options);
     }
-    toggle.textContent = code;
-    toggle.setAttribute('aria-label', `Streaming region: ${code}`);
+
+    // Avoid mutating the DOM when nothing changed. This prevents observer feedback loops.
+    if (toggle.textContent !== code) toggle.textContent = code;
+    const ariaLabel = `Streaming region: ${code}`;
+    if (toggle.getAttribute('aria-label') !== ariaLabel) toggle.setAttribute('aria-label', ariaLabel);
   };
 
   const enhanceAll = root => {
-    if (root?.matches?.(selectorQuery)) enhanceSelector(root);
-    root?.querySelectorAll?.(selectorQuery).forEach(enhanceSelector);
+    if (!root) return;
+    if (root.matches?.(selectorQuery)) enhanceSelector(root);
+    root.querySelectorAll?.(selectorQuery).forEach(enhanceSelector);
   };
 
   const closeAll = except => {
@@ -200,7 +207,11 @@
       const wrap = regionButton.closest(selectorQuery);
       wrap?.classList.remove('is-open');
       wrap?.querySelector(':scope > .stream-region-current')?.setAttribute('aria-expanded', 'false');
-      requestAnimationFrame(() => enhanceAll(document));
+      requestAnimationFrame(() => {
+        const currentWrap = document.querySelector(selectorQuery);
+        if (currentWrap) enhanceSelector(currentWrap);
+        document.querySelectorAll(selectorQuery).forEach(enhanceSelector);
+      });
       return;
     }
 
@@ -218,12 +229,21 @@
   });
 
   const observer = new MutationObserver(records => {
+    const selectorsToRefresh = new Set();
+
     for (const record of records) {
+      const target = record.target?.nodeType === Node.ELEMENT_NODE ? record.target : record.target?.parentElement;
+      const parentSelector = target?.matches?.(selectorQuery) ? target : target?.closest?.(selectorQuery);
+      if (parentSelector) selectorsToRefresh.add(parentSelector);
+
       record.addedNodes.forEach(node => {
-        if (node.nodeType === Node.ELEMENT_NODE) enhanceAll(node);
+        if (node.nodeType !== Node.ELEMENT_NODE) return;
+        if (node.matches?.(selectorQuery)) selectorsToRefresh.add(node);
+        node.querySelectorAll?.(selectorQuery).forEach(selector => selectorsToRefresh.add(selector));
       });
     }
-    enhanceAll(document);
+
+    selectorsToRefresh.forEach(enhanceSelector);
   });
 
   const start = () => {
