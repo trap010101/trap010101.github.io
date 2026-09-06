@@ -93,6 +93,13 @@ for (const [animeId, anime] of animeById) {
     );
   }
 
+  if (!html.includes('/streaming-region-compact.js')) {
+    html = html.replace(
+      '</body>',
+      '  <script src="/streaming-region-compact.js?v=20260906-region2"></script>\n</body>'
+    );
+  }
+
   fs.writeFileSync(filename, html);
   updated += 1;
 }
