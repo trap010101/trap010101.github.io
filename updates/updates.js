@@ -87,9 +87,13 @@ function t(key) {
   return locales[activeLang]?.[key] ?? locales.ko[key] ?? key;
 }
 
+function normalizeText(value) {
+  return String(value ?? "").replace(/компакт한/g, "컴팩트한");
+}
+
 function local(value) {
-  if (typeof value === "string") return value;
-  return value?.[activeLang] || value?.ko || value?.ja || value?.en || "";
+  if (typeof value === "string") return normalizeText(value);
+  return normalizeText(value?.[activeLang] || value?.ko || value?.ja || value?.en || "");
 }
 
 function escapeHtml(value) {
