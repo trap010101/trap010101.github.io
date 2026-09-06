@@ -1,18 +1,211 @@
-/* Prefer clean, space-aware line wrapping for anime titles across the site. */
-.title-scroll-inner,
-.undated-title-scroll-inner,
-.archive-card h3,
-.anime-localized h1 {
-  word-break: keep-all;
+/*
+ * Shared text wrapping rules for NewAnime.
+ *
+ * Goals:
+ * - keep Korean phrases together when space allows;
+ * - allow natural Japanese line breaking;
+ * - prevent long English titles, URLs, and labels from overflowing;
+ * - let flex/grid children shrink instead of forcing horizontal overflow;
+ * - preserve the intentional single-line title marquee once it activates.
+ */
+
+body {
   overflow-wrap: anywhere;
   hyphens: none;
+}
+
+html[lang^="ko"] body {
+  word-break: keep-all;
   line-break: strict;
+}
+
+html[lang^="ja"] body {
+  word-break: normal;
+  line-break: strict;
+}
+
+html[lang^="en"] body {
+  word-break: normal;
+  line-break: auto;
+}
+
+/* Prefer readable line endings for all substantial copy and labels. */
+:where(
+  h1, h2, h3, h4,
+  p, li, dt, dd,
+  .hero-kicker,
+  .eyebrow,
+  .season-divider h2,
+  .month-head h3,
+  .title-scroll-inner,
+  .undated-title-scroll-inner,
+  .source-box,
+  .source-list,
+  .stream-dialog h4,
+  .stream-dialog-desc,
+  .stream-dialog-kicker,
+  .streaming-region-heading,
+  .streaming-region-note,
+  .streaming-region-empty,
+  .archive-hero h1,
+  .archive-description,
+  .archive-section-head h2,
+  .archive-card h3,
+  .archive-alt-title,
+  .anime-localized h1,
+  .alternate-titles,
+  .detail-kicker,
+  .panel-heading h2,
+  .panel-note,
+  .release-value,
+  .changelog-group > h3,
+  .changelog-entry-title,
+  .changelog-entry p,
+  .info-panel,
+  .info-meta,
+  .site-footer-links
+) {
   text-wrap: pretty;
 }
 
-/* Preserve the existing single-line marquee once a homepage title exceeds two lines. */
+/* Grid/flex text columns must be allowed to shrink before their text can wrap. */
+:where(
+  .card,
+  .card-top,
+  .title-scroll,
+  .undated-item,
+  .undated-title-scroll,
+  .month-head,
+  .stream-dialog-head,
+  .stream-dialog-head > div,
+  .ott-option,
+  .source-item,
+  .source-link,
+  .source-link > span:first-child,
+  .site-menu-item,
+  .detail-main,
+  .anime-localized,
+  .detail-panel,
+  .panel-heading,
+  .source-heading,
+  .detail-actions,
+  .detail-action,
+  .streaming-list,
+  .streaming-link,
+  .streaming-link > span:first-child,
+  .archive-section-head,
+  .archive-card,
+  .archive-card-body,
+  .archive-nav,
+  .archive-nav a,
+  .changelog-day,
+  .changelog-group,
+  .changelog-entries,
+  .changelog-entry,
+  .info-panel,
+  .site-footer-links
+) {
+  min-width: 0;
+}
+
+/* Controls with localized labels should wrap instead of clipping or widening the page. */
+:where(
+  .chip,
+  .year-chip,
+  .filter-toggle,
+  #mobileToolbarToggle,
+  #resetBtn,
+  #undatedToggle,
+  .site-menu-item,
+  .detail-back,
+  .detail-share,
+  .detail-action,
+  .streaming-link,
+  .source-link,
+  .archive-back,
+  .archive-nav a,
+  .changelog-source,
+  .site-footer-links a
+) {
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* Keep the icon/arrow side stable while the label is allowed to wrap. */
+:where(
+  .site-menu-icon,
+  .filter-toggle-icon,
+  #mobileToolbarIcon,
+  #undatedArrow,
+  .detail-action > span[aria-hidden="true"],
+  .streaming-link > span:last-child,
+  .source-link > span:last-child,
+  .changelog-source > span[aria-hidden="true"]
+) {
+  flex: 0 0 auto;
+}
+
+#undatedToggle > span:first-child,
+.site-menu-item > span:last-child,
+.ott-option-name,
+.ott-option-state,
+.streaming-link > span:first-child,
+.source-link > span:first-child,
+.changelog-source {
+  min-width: 0;
+}
+
+/* Compact metadata is intentionally kept on one line when possible. */
+:where(
+  .date,
+  .month-count,
+  .archive-card-date,
+  .archive-count,
+  .panel-label,
+  .source-checked dt,
+  .source-checked dd
+) {
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
+
+/* Long alternate titles and source labels may contain unbroken Latin tokens. */
+:where(
+  .alternate-titles,
+  .archive-alt-title,
+  .source-link small,
+  .source-link strong,
+  .changelog-entry-title,
+  .changelog-entry p,
+  .info-panel a
+) {
+  overflow-wrap: anywhere;
+}
+
+/* Preserve the homepage's deliberate single-line marquee after overflow detection. */
 .title-scroll.is-overflowing .title-scroll-inner,
 .undated-title-scroll.is-overflowing .undated-title-scroll-inner {
+  white-space: nowrap;
   word-break: normal;
   overflow-wrap: normal;
+  text-wrap: nowrap;
+}
+
+@media (max-width: 620px) {
+  #mobileToolbarTitle,
+  #undatedToggle > span:first-child,
+  .panel-heading h2,
+  .source-heading h2,
+  .changelog-entry-title {
+    min-width: 0;
+    white-space: normal;
+  }
+
+  .month-head,
+  .archive-section-head,
+  .panel-heading,
+  .source-heading {
+    align-items: flex-start;
+  }
 }
