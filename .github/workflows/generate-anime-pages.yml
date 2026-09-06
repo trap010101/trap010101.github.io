@@ -18,7 +18,10 @@ on:
       - "scripts/generate-anime-pages.js"
       - "scripts/generate-schedule-pages.js"
       - "scripts/generate-updates-page.js"
+      - "scripts/enhance-anime-seo.js"
+      - "scripts/normalize-seo-defaults.js"
       - "anime-detail.css"
+      - "anime-breadcrumb.css"
       - "schedule-archive.css"
       - "updates/index.html"
       - "updates/updates.css"
@@ -41,15 +44,21 @@ jobs:
       - name: Generate anime detail pages
         run: node scripts/generate-anime-pages.js
 
+      - name: Add anime SEO breadcrumbs
+        run: node scripts/enhance-anime-seo.js
+
       - name: Generate schedule archive pages
         run: node scripts/generate-schedule-pages.js
 
       - name: Generate static updates content
         run: node scripts/generate-updates-page.js
 
+      - name: Normalize site SEO defaults
+        run: node scripts/normalize-seo-defaults.js
+
       - name: Commit generated pages
         run: |
-          git add anime 2026 2027 updates/index.html sitemap.xml
+          git add anime 2026 2027 updates/index.html sitemap.xml index.html about/index.html privacy/index.html policy/index.html
           if git diff --cached --quiet; then
             echo "No generated changes."
             exit 0
