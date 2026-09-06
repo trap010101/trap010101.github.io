@@ -20,6 +20,7 @@ on:
       - "data/updates*.js"
       - "scripts/generate-anime-pages.js"
       - "scripts/enhance-streaming-regions.js"
+      - "scripts/validate-streaming-regions.js"
       - "scripts/generate-schedule-pages.js"
       - "scripts/generate-updates-page.js"
       - "scripts/enhance-anime-seo.js"
@@ -46,6 +47,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Validate regional streaming data
+        run: node scripts/validate-streaming-regions.js
 
       - name: Generate anime detail pages
         run: node scripts/generate-anime-pages.js
