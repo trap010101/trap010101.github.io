@@ -20,7 +20,7 @@ on:
       - "data/updates*.js"
       - "scripts/generate-anime-pages.js"
       - "scripts/enhance-streaming-regions.js"
-      - "scripts/validate-streaming-regions.js"
+      - "scripts/validate-regional-streaming.js"
       - "scripts/generate-schedule-pages.js"
       - "scripts/generate-updates-page.js"
       - "scripts/enhance-anime-seo.js"
@@ -29,6 +29,7 @@ on:
       - "anime-breadcrumb.css"
       - "detail-streaming-region.js"
       - "streaming-region-ui.js"
+      - "streaming-region-compact.js"
       - "schedule-archive.css"
       - "updates/index.html"
       - "updates/updates.css"
@@ -49,7 +50,7 @@ jobs:
           fetch-depth: 0
 
       - name: Validate regional streaming data
-        run: node scripts/validate-streaming-regions.js
+        run: node scripts/validate-regional-streaming.js
 
       - name: Generate anime detail pages
         run: node scripts/generate-anime-pages.js
