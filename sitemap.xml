@@ -44,4 +44,70 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://newani.me/updates/?lang=en" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://newani.me/updates/?lang=en" />
   </url>
+
+  <url>
+    <loc>https://newani.me/about/?lang=ko</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://newani.me/about/?lang=ko" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://newani.me/about/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://newani.me/about/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://newani.me/about/?lang=en" />
+  </url>
+  <url>
+    <loc>https://newani.me/about/?lang=ja</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://newani.me/about/?lang=ko" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://newani.me/about/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://newani.me/about/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://newani.me/about/?lang=en" />
+  </url>
+  <url>
+    <loc>https://newani.me/about/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://newani.me/about/?lang=ko" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://newani.me/about/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://newani.me/about/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://newani.me/about/?lang=en" />
+  </url>
+
+  <url>
+    <loc>https://newani.me/privacy/?lang=ko</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://newani.me/privacy/?lang=ko" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://newani.me/privacy/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://newani.me/privacy/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://newani.me/privacy/?lang=en" />
+  </url>
+  <url>
+    <loc>https://newani.me/privacy/?lang=ja</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://newani.me/privacy/?lang=ko" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://newani.me/privacy/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://newani.me/privacy/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://newani.me/privacy/?lang=en" />
+  </url>
+  <url>
+    <loc>https://newani.me/privacy/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://newani.me/privacy/?lang=ko" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://newani.me/privacy/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://newani.me/privacy/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://newani.me/privacy/?lang=en" />
+  </url>
+
+  <url>
+    <loc>https://newani.me/policy/?lang=ko</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://newani.me/policy/?lang=ko" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://newani.me/policy/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://newani.me/policy/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://newani.me/policy/?lang=en" />
+  </url>
+  <url>
+    <loc>https://newani.me/policy/?lang=ja</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://newani.me/policy/?lang=ko" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://newani.me/policy/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://newani.me/policy/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://newani.me/policy/?lang=en" />
+  </url>
+  <url>
+    <loc>https://newani.me/policy/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://newani.me/policy/?lang=ko" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://newani.me/policy/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://newani.me/policy/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://newani.me/policy/?lang=en" />
+  </url>
 </urlset>
