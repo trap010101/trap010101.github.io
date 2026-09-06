@@ -1,0 +1,47 @@
+name: Generate anime detail pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "data/anime.js"
+      - "data/anime-20260904.js"
+      - "data/title-fixes-20260905.js"
+      - "data/poster-fixes-20260905.js"
+      - "data/official-sites-20260905.js"
+      - "data/pvs.js"
+      - "data/pvs-audit-20260905.js"
+      - "data/platforms.js"
+      - "data/streaming-policy-20260905.js"
+      - "scripts/generate-anime-pages.js"
+      - "anime-detail.css"
+      - ".github/workflows/generate-anime-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate detail pages
+        run: node scripts/generate-anime-pages.js
+
+      - name: Commit generated pages
+        run: |
+          git add anime sitemap.xml
+          if git diff --cached --quiet; then
+            echo "No generated changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Generate anime detail pages [skip ci]"
+          git push
