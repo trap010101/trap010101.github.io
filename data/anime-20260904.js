@@ -124,4 +124,64 @@
   additions.forEach(anime => {
     if (!existingIds.has(anime.id)) window.animeData.push(anime);
   });
+
+  // Winter-only announcements do not identify an exact calendar month.
+  // Keep the season label for display while classifying these titles as month-TBA.
+  const winterOnlyReleaseFixes = {
+    "tiger-coming-in-2": {
+      release: {
+        status: "year",
+        year: 2026,
+        month: null,
+        day: null,
+        display: {
+          ko: "2026년 겨울 · 월 미정",
+          ja: "2026年冬・月未定",
+          en: "Winter 2026 · Month TBA"
+        }
+      },
+      source: {
+        type: "official-x",
+        url: "https://x.com/Laftel_net/status/2095084014784901452",
+        label: "LAFTEL official X — Winter 2026",
+        supports: ["announcement", "release"]
+      }
+    },
+    "monogatari-series-off-and-monster-season-wazamonogatari-karen-ogre": {
+      release: {
+        status: "year",
+        year: 2026,
+        month: null,
+        day: null,
+        display: {
+          ko: "2026년 겨울 · 월 미정",
+          ja: "2026年冬・月未定",
+          en: "Winter 2026 · Month TBA"
+        }
+      },
+      source: {
+        type: "official-site",
+        url: "https://www.monogatari-series.com/oms/news/",
+        label: "Official website — Winter 2026",
+        supports: ["announcement", "release"]
+      }
+    }
+  };
+
+  Object.entries(winterOnlyReleaseFixes).forEach(([id, fix]) => {
+    const anime = window.animeData.find(item => item.id === id);
+    if (!anime) return;
+
+    anime.release = anime.release || {};
+    anime.release.japan = fix.release;
+    anime.season = "2026-winter";
+    anime.updatedAt = "2026-09-06";
+
+    anime.verification = anime.verification || { verifiedAt: null, sources: [] };
+    anime.verification.verifiedAt = "2026-09-06";
+    anime.verification.sources = Array.isArray(anime.verification.sources) ? anime.verification.sources : [];
+    if (!anime.verification.sources.some(source => source.url === fix.source.url)) {
+      anime.verification.sources.push(fix.source);
+    }
+  });
 })();
