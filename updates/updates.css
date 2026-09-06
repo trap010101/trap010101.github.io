@@ -1,3 +1,5 @@
+@import url("../title-wrap-refine.css?v=20260906-title2");
+
 .updates-hero {
   padding-bottom: 14px;
 }
@@ -72,6 +74,7 @@
 
 .changelog-entry-title {
   display: inline-block;
+  max-width: 100%;
   margin-bottom: 4px;
   color: inherit;
   font-size: 14px;
@@ -106,6 +109,7 @@
   color: var(--muted, #aeb4c0);
   font-size: 11px;
   font-weight: 650;
+  line-height: 1.35;
   text-decoration: none;
 }
 
