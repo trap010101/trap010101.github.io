@@ -21,6 +21,13 @@
   grid-template-columns: 22px minmax(0, 1fr);
   align-items: center;
   column-gap: 10px;
+  text-align: left;
+}
+
+.site-menu-item > :last-child {
+  min-width: 0;
+  text-align: left;
+  justify-self: stretch;
 }
 
 .site-menu-icon {
