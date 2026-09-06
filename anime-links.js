@@ -43,6 +43,27 @@
     });
   }
 
+  function addScheduleArchiveLinks() {
+    const footerNav = document.querySelector('.site-footer-links');
+    if (!footerNav || footerNav.querySelector('[data-schedule-archive-link]')) return;
+
+    const reference = footerNav.querySelector('a[href="/about/"]') || footerNav.firstElementChild;
+    [2027, 2026].forEach(year => {
+      const link = document.createElement('a');
+      link.href = `/${year}/?lang=${activeLanguage()}`;
+      link.textContent = String(year);
+      link.dataset.scheduleArchiveLink = String(year);
+      footerNav.insertBefore(link, reference || null);
+    });
+  }
+
+  function updateScheduleArchiveLanguage() {
+    document.querySelectorAll('[data-schedule-archive-link]').forEach(link => {
+      const year = link.dataset.scheduleArchiveLink;
+      link.href = `/${year}/?lang=${activeLanguage()}`;
+    });
+  }
+
   const style = document.createElement('style');
   style.textContent = `
     .anime-detail-title-link {
@@ -59,10 +80,15 @@
   document.head.appendChild(style);
 
   linkCards();
+  addScheduleArchiveLinks();
 
   ['schedule', 'undatedList'].forEach(id => {
     const target = document.getElementById(id);
     if (!target) return;
     new MutationObserver(() => linkCards(target)).observe(target, { childList: true, subtree: true });
+  });
+
+  document.getElementById('languageSwitcher')?.addEventListener('click', () => {
+    requestAnimationFrame(updateScheduleArchiveLanguage);
   });
 })();
