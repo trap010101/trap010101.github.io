@@ -85,4 +85,26 @@
   document.getElementById('yearFilters')?.addEventListener('click', () => {
     requestAnimationFrame(updateScheduleArchiveLink);
   });
+
+  // Load regional streaming audits after the base data layer, then install the region UI.
+  // This keeps the homepage HTML stable while preserving deterministic load order.
+  const loadScript = src => new Promise((resolve, reject) => {
+    const existing = document.querySelector(`script[src^="${src.split('?')[0]}"]`);
+    if (existing) {
+      resolve();
+      return;
+    }
+    const script = document.createElement('script');
+    script.src = src;
+    script.async = false;
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+
+  Promise.resolve()
+    .then(() => loadScript('/data/streaming-jp-20260906.js?v=20260906-region1'))
+    .then(() => loadScript('/data/streaming-us-20260906.js?v=20260906-region1'))
+    .then(() => loadScript('/streaming-region-ui.js?v=20260906-region1'))
+    .catch(error => console.warn('Regional streaming UI could not be loaded.', error));
 })();
