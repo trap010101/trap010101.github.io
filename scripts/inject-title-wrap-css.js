@@ -5,6 +5,13 @@ const ROOT = path.resolve(__dirname, '..');
 const STYLE_HREF = '/title-wrap-refine.css?v=20260906-title2';
 const STYLE_LINK = `  <link rel="stylesheet" href="${STYLE_HREF}" />\n`;
 const TARGET_ROOTS = ['anime', '2026', '2027'];
+const TARGET_FILES = [
+  'index.html',
+  'updates/index.html',
+  'about/index.html',
+  'privacy/index.html',
+  'policy/index.html'
+];
 
 function updateFile(filename) {
   if (!fs.existsSync(filename)) return false;
@@ -39,7 +46,10 @@ function walk(dir) {
   return changed;
 }
 
-let changed = updateFile(path.join(ROOT, 'index.html')) ? 1 : 0;
+let changed = 0;
+for (const relative of TARGET_FILES) {
+  changed += updateFile(path.join(ROOT, relative)) ? 1 : 0;
+}
 for (const target of TARGET_ROOTS) changed += walk(path.join(ROOT, target));
 
 console.log(`Applied site text wrapping stylesheet to ${changed} pages.`);
