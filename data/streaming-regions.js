@@ -37,8 +37,8 @@
     { id: "unext", name: "U-NEXT", regions: ["jp"], directUrlPolicy: "verified" },
     { id: "abema", name: "ABEMA", regions: ["jp"], directUrlPolicy: "verified" },
     { id: "hulu_jp", name: "Hulu Japan", regions: ["jp"], directUrlPolicy: "verified" },
-    { id: "hidive", name: "HIDIVE", regions: ["us"], directUrlPolicy: "audit-pending" },
-    { id: "hulu_us", name: "Hulu", regions: ["us"], directUrlPolicy: "audit-pending" }
+    { id: "hidive", name: "HIDIVE", regions: ["us"], directUrlPolicy: "verified" },
+    { id: "hulu_us", name: "Hulu", regions: ["us"], directUrlPolicy: "verified" }
   ];
 
   const directServiceMatchers = {
@@ -46,7 +46,9 @@
     laftel: url => url.hostname.endsWith("laftel.net") && url.pathname.includes("/item/"),
     disney: url => url.hostname.endsWith("disneyplus.com") && url.pathname.includes("/browse/entity-"),
     prime: url => url.hostname.endsWith("primevideo.com") && url.pathname.includes("/detail/"),
-    crunchyroll: url => url.hostname.endsWith("crunchyroll.com") && url.pathname.includes("/series/"),
+    crunchyroll: url =>
+      url.hostname.endsWith("crunchyroll.com") &&
+      (url.pathname.includes("/series/") || url.pathname.includes("/watch/")),
     tving: url => url.hostname.endsWith("tving.com") && url.pathname.includes("/contents/"),
     watcha: url => url.hostname.endsWith("watcha.com") && url.pathname.includes("/contents/"),
     youtube: url =>
@@ -71,7 +73,15 @@
       return !["/display/", "/comic/", "/features/", "/search", "/categories/"].some(prefix =>
         path === prefix.replace(/\/$/, "") || path.startsWith(prefix)
       );
-    }
+    },
+    hidive: url =>
+      (url.hostname === "hidive.com" || url.hostname === "www.hidive.com") &&
+      (/^\/tv\/[^/]+\/?$/i.test(url.pathname) ||
+       /^\/season\/\d+\/?$/i.test(url.pathname) ||
+       /^\/movies?\/[^/]+\/?$/i.test(url.pathname)),
+    hulu_us: url =>
+      (url.hostname === "hulu.com" || url.hostname === "www.hulu.com") &&
+      /^\/series\/.+-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\/?$/i.test(url.pathname)
   };
 
   const platformById = new Map((window.ottPlatforms || []).map(platform => [platform.id, platform]));
