@@ -43,6 +43,18 @@
   line-clamp: unset;
 }
 
+.updates-page .update-anime-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.updates-page .update-anime-link:hover,
+.updates-page .update-anime-link:focus-visible {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
 .updates-page .update-source-link {
   min-height: 24px;
   padding: 2px 0;
