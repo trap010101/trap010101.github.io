@@ -1,4 +1,4 @@
-name: Generate anime detail pages
+name: Generate anime and schedule pages
 
 on:
   push:
@@ -15,7 +15,9 @@ on:
       - "data/platforms.js"
       - "data/streaming-policy-20260905.js"
       - "scripts/generate-anime-pages.js"
+      - "scripts/generate-schedule-pages.js"
       - "anime-detail.css"
+      - "schedule-archive.css"
       - ".github/workflows/generate-anime-pages.yml"
   workflow_dispatch:
 
@@ -31,17 +33,20 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Generate detail pages
+      - name: Generate anime detail pages
         run: node scripts/generate-anime-pages.js
+
+      - name: Generate schedule archive pages
+        run: node scripts/generate-schedule-pages.js
 
       - name: Commit generated pages
         run: |
-          git add anime sitemap.xml
+          git add anime 2026 2027 sitemap.xml
           if git diff --cached --quiet; then
             echo "No generated changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Generate anime detail pages [skip ci]"
+          git commit -m "Generate anime and schedule pages [skip ci]"
           git push
