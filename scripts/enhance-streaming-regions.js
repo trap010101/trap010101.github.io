@@ -96,7 +96,12 @@ for (const [animeId, anime] of animeById) {
   if (!html.includes('/streaming-region-compact.js')) {
     html = html.replace(
       '</body>',
-      '  <script src="/streaming-region-compact.js?v=20260906-region2"></script>\n</body>'
+      '  <script src="/streaming-region-compact.js?v=20260906-region3"></script>\n</body>'
+    );
+  } else {
+    html = html.replace(
+      /\/streaming-region-compact\.js\?v=[^"']+/g,
+      '/streaming-region-compact.js?v=20260906-region3'
     );
   }
 
