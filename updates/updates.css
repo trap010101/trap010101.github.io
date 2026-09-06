@@ -1,69 +1,127 @@
-.updates-filters {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  scrollbar-width: none;
+.updates-hero {
+  padding-bottom: 14px;
 }
 
-.updates-filters::-webkit-scrollbar {
-  display: none;
+.updates-hero p {
+  max-width: 660px;
 }
 
-.updates-filters .chip {
-  flex: 0 0 auto;
-  white-space: nowrap;
+.updates-panel {
+  padding-top: 4px;
 }
 
 .updates-list {
   border-top: 0;
 }
 
-/* The updates page is intentionally text-only. Poster markup is kept hidden as a
-   fallback for older cached scripts, while current page data has poster fields
-   stripped before the list renderer runs so no poster requests are made. */
-.updates-page .update-item {
-  display: block;
-  min-height: 0;
-  padding: 14px 4px;
+.changelog-day {
+  padding: 24px 0 28px;
+  border-top: 1px solid var(--line, rgba(255, 255, 255, .09));
 }
 
-.updates-page .update-poster {
-  display: none;
+.changelog-day:first-child {
+  padding-top: 8px;
+  border-top: 0;
 }
 
-.updates-page .update-content {
-  align-self: auto;
+.changelog-day-header {
+  margin-bottom: 20px;
 }
 
-.updates-page .update-content p {
-  display: block;
-  overflow: visible;
-  margin: 4px 0 6px;
-  -webkit-line-clamp: unset;
-  line-clamp: unset;
+.changelog-day-header h2 {
+  margin: 0;
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 760;
+  letter-spacing: -.025em;
 }
 
-.updates-page .update-anime-link {
+.changelog-groups {
+  display: grid;
+  gap: 20px;
+}
+
+.changelog-group {
+  display: grid;
+  grid-template-columns: minmax(116px, 160px) minmax(0, 1fr);
+  gap: 18px 28px;
+  align-items: start;
+}
+
+.changelog-group > h3 {
+  position: sticky;
+  top: 82px;
+  margin: 2px 0 0;
+  color: var(--muted, #9ea4b1);
+  font-size: 12px;
+  font-weight: 760;
+  letter-spacing: .02em;
+}
+
+.changelog-entries {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line, rgba(255, 255, 255, .09));
+}
+
+.changelog-entry {
+  padding: 14px 0 15px;
+  border-bottom: 1px solid var(--line, rgba(255, 255, 255, .09));
+}
+
+.changelog-entry-title {
+  display: inline-block;
+  margin-bottom: 4px;
   color: inherit;
+  font-size: 14px;
+  font-weight: 720;
+  line-height: 1.45;
   text-decoration: none;
 }
 
-.updates-page .update-anime-link:hover,
-.updates-page .update-anime-link:focus-visible {
+.changelog-anime-link:hover,
+.changelog-anime-link:focus-visible {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
 
-.updates-page .update-source-link {
+.changelog-entry p {
+  margin: 0;
+  color: var(--muted, #aeb4c0);
+  font-size: 13px;
+  line-height: 1.68;
+}
+
+.changelog-entry-meta {
+  margin-top: 7px;
+}
+
+.changelog-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   min-height: 24px;
-  padding: 2px 0;
+  color: var(--muted, #aeb4c0);
+  font-size: 11px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.changelog-source:hover,
+.changelog-source:focus-visible {
+  color: var(--text, #fff);
+}
+
+.changelog-source span {
+  font-size: 10px;
 }
 
 .updates-empty {
   margin: 0;
   padding: 34px 12px;
-  color: var(--muted);
+  color: var(--muted, #aeb4c0);
   font-size: 13px;
   text-align: center;
 }
@@ -73,17 +131,49 @@
   background: rgba(142, 161, 255, .09);
 }
 
+@media (max-width: 700px) {
+  .changelog-day {
+    padding: 20px 0 24px;
+  }
+
+  .changelog-day-header {
+    margin-bottom: 16px;
+  }
+
+  .changelog-groups {
+    gap: 18px;
+  }
+
+  .changelog-group {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+  .changelog-group > h3 {
+    position: static;
+    margin: 0;
+  }
+
+  .changelog-entry {
+    padding: 12px 0 13px;
+  }
+}
+
 @media (max-width: 520px) {
-  .updates-page .update-item {
-    min-height: 0;
-    padding: 12px 1px;
+  .updates-hero p {
+    font-size: 13px;
+    line-height: 1.6;
   }
 
-  .updates-page .update-title-row {
-    gap: 2px 9px;
+  .changelog-day-header h2 {
+    font-size: 20px;
   }
 
-  .updates-page .update-content p {
-    margin-bottom: 5px;
+  .changelog-entry-title {
+    font-size: 13px;
+  }
+
+  .changelog-entry p {
+    font-size: 12.5px;
   }
 }
