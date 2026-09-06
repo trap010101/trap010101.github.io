@@ -25,6 +25,7 @@ on:
       - "scripts/generate-updates-page.js"
       - "scripts/enhance-anime-seo.js"
       - "scripts/normalize-seo-defaults.js"
+      - "scripts/inject-title-wrap-css.js"
       - "anime-detail.css"
       - "anime-breadcrumb.css"
       - "detail-streaming-region.js"
@@ -32,6 +33,7 @@ on:
       - "streaming-region-ui.js"
       - "streaming-region-compact.js"
       - "language-switcher-compact.js"
+      - "title-wrap-refine.css"
       - "schedule-archive.css"
       - "updates/index.html"
       - "updates/updates.css"
@@ -71,6 +73,9 @@ jobs:
 
       - name: Normalize site SEO defaults
         run: node scripts/normalize-seo-defaults.js
+
+      - name: Apply anime title wrapping styles
+        run: node scripts/inject-title-wrap-css.js
 
       - name: Commit generated pages
         run: |
