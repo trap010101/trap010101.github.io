@@ -25,6 +25,7 @@
   </url>
   <url>
     <loc>https://newani.me/updates/?lang=ko</loc>
+    <lastmod>2026-09-06</lastmod>
     <xhtml:link rel="alternate" hreflang="ko" href="https://newani.me/updates/?lang=ko" />
     <xhtml:link rel="alternate" hreflang="ja" href="https://newani.me/updates/?lang=ja" />
     <xhtml:link rel="alternate" hreflang="en" href="https://newani.me/updates/?lang=en" />
@@ -32,6 +33,7 @@
   </url>
   <url>
     <loc>https://newani.me/updates/?lang=ja</loc>
+    <lastmod>2026-09-06</lastmod>
     <xhtml:link rel="alternate" hreflang="ko" href="https://newani.me/updates/?lang=ko" />
     <xhtml:link rel="alternate" hreflang="ja" href="https://newani.me/updates/?lang=ja" />
     <xhtml:link rel="alternate" hreflang="en" href="https://newani.me/updates/?lang=en" />
@@ -39,6 +41,7 @@
   </url>
   <url>
     <loc>https://newani.me/updates/?lang=en</loc>
+    <lastmod>2026-09-06</lastmod>
     <xhtml:link rel="alternate" hreflang="ko" href="https://newani.me/updates/?lang=ko" />
     <xhtml:link rel="alternate" hreflang="ja" href="https://newani.me/updates/?lang=ja" />
     <xhtml:link rel="alternate" hreflang="en" href="https://newani.me/updates/?lang=en" />
