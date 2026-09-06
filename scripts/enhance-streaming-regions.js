@@ -93,15 +93,15 @@ for (const [animeId, anime] of animeById) {
     );
   }
 
-  if (!html.includes('/streaming-region-compact.js')) {
+  if (html.includes('/streaming-region-compact.js')) {
     html = html.replace(
-      '</body>',
-      '  <script src="/streaming-region-compact.js?v=20260906-region3"></script>\n</body>'
+      /<script src="\/streaming-region-compact\.js\?v=[^"]+"><\/script>/g,
+      '<script src="/streaming-region-compact.js?v=20260906-region4"></script>'
     );
   } else {
     html = html.replace(
-      /\/streaming-region-compact\.js\?v=[^"']+/g,
-      '/streaming-region-compact.js?v=20260906-region3'
+      '</body>',
+      '  <script src="/streaming-region-compact.js?v=20260906-region4"></script>\n</body>'
     );
   }
 
