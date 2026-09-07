@@ -78,9 +78,27 @@ for (const total of [0,1,2,3,22]) test(`unique cover-flow slots and looping with
   }
   if(total) {assert.equal(S.wrapIndex(total,total),0);assert.equal(S.wrapIndex(-1,total),total-1);}
 });
-test('localized date preserves the official calendar day',()=>{
+test('source date label preserves the official calendar day',()=>{
   for(const lang of ['ko','ja','en']) {
     const label=S.dateLabel(p('2026-10-03','25:30'),lang);
     assert.ok(label.includes('2026')); assert.ok(label.includes('3'));
+  }
+});
+test('localized presentation keeps Japanese source notation only in Japanese',()=>{
+  const source={...p('2026-10-02','25:23'),displayTime:'深夜1時23分'};
+  const timing=S.normalizePremiere(source);
+  assert.deepEqual(S.presentation(timing,'ja'),{date:'2026年10月2日',time:'深夜1時23分',timezone:'日本標準時'});
+  assert.deepEqual(S.presentation(timing,'ko'),{date:'2026년 10월 3일',time:'01:23',timezone:'일본 표준시'});
+  assert.deepEqual(S.presentation(timing,'en'),{date:'Oct 3, 2026',time:'01:23',timezone:'JST'});
+});
+test('Korean and English presentation normalize 24+ clocks to the following civil day',()=>{
+  for(const [date,time,koDate,clock] of [
+    ['2026-09-30','24:00','2026년 10월 1일','00:00'],
+    ['2026-10-03','24:55','2026년 10월 4일','00:55'],
+    ['2026-10-17','26:00','2026년 10월 18일','02:00']
+  ]) {
+    const timing=S.normalizePremiere(p(date,time));
+    assert.deepEqual(S.presentation(timing,'ko'),{date:koDate,time:clock,timezone:'일본 표준시'});
+    assert.equal(S.presentation(timing,'en').time,clock);
   }
 });
