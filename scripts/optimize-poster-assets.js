@@ -25,7 +25,7 @@ const ASSET_DIR = path.join(ROOT, 'assets', 'posters');
   let optimizedBytes = 0;
 
   for (const poster of audit.posters) {
-    if (poster.optimized && poster.localPath?.endsWith('-v2.webp')) continue;
+    if (poster.optimized && poster.localPath?.endsWith('.webp')) continue;
 
     const oldLocalPath = poster.localPath;
     const inputPath = path.join(ROOT, oldLocalPath);

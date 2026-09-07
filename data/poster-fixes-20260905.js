@@ -27,7 +27,7 @@
       updatedAt: "2026-09-07"
     },
     "uncle-likes-cute-things": {
-      src: "assets/posters/uncle-likes-cute-things-v2.webp",
+      src: "assets/posters/uncle-likes-cute-things-v3.webp",
       updatedAt: "2026-09-07"
     },
     "mission-yozakura-family-season-2-part-2": {
@@ -50,12 +50,8 @@
       src: "assets/posters/hotel-inhumans-season-2-v2.webp",
       updatedAt: "2026-09-07"
     },
-    "a-wild-last-boss-appeared-season-2": {
-      src: "assets/posters/a-wild-last-boss-appeared-season-2-v2.webp",
-      updatedAt: "2026-09-07"
-    },
     "the-witch-was-asked-for-a-love-potion": {
-      src: "assets/posters/the-witch-was-asked-for-a-love-potion-v2.webp",
+      src: "assets/posters/the-witch-was-asked-for-a-love-potion-v3.webp",
       updatedAt: "2026-09-07"
     },
     "with-vengeance-sincerely-your-broken-saintess-season-2": {
@@ -123,15 +119,11 @@
       updatedAt: "2026-09-07"
     },
     "new-kochikame": {
-      src: "assets/posters/new-kochikame-v2.webp",
+      src: "assets/posters/new-kochikame-v3.webp",
       updatedAt: "2026-09-07"
     },
     "haikyu-monsters-go-where": {
-      src: "assets/posters/haikyu-monsters-go-where-v2.webp",
-      updatedAt: "2026-09-07"
-    },
-    "red-riding-hood-detective-story": {
-      src: "assets/posters/red-riding-hood-detective-story-v2.webp",
+      src: "assets/posters/haikyu-monsters-go-where-v3.webp",
       updatedAt: "2026-09-07"
     },
     "seven-sleeping-beauties": {
@@ -143,11 +135,11 @@
       updatedAt: "2026-09-07"
     },
     "the-strongest-magicmasters-retirement-plan": {
-      src: "assets/posters/the-strongest-magicmasters-retirement-plan-v2.webp",
+      src: "assets/posters/the-strongest-magicmasters-retirement-plan-v3.webp",
       updatedAt: "2026-09-07"
     },
     "nabe-ni-dangan": {
-      src: "assets/posters/nabe-ni-dangan-v2.webp",
+      src: "assets/posters/nabe-ni-dangan-v3.webp",
       updatedAt: "2026-09-07"
     },
     "namidaame-to-serenade": {
@@ -155,7 +147,7 @@
       updatedAt: "2026-09-07"
     },
     "true-saint-banished-country-done-for": {
-      src: "assets/posters/true-saint-banished-country-done-for-v2.webp",
+      src: "assets/posters/true-saint-banished-country-done-for-v3.webp",
       updatedAt: "2026-09-07"
     },
     "studio-cabana": {
@@ -171,11 +163,11 @@
       updatedAt: "2026-09-07"
     },
     "magic-to-the-limit-reincarnated-elf": {
-      src: "assets/posters/magic-to-the-limit-reincarnated-elf-v2.webp",
+      src: "assets/posters/magic-to-the-limit-reincarnated-elf-v3.webp",
       updatedAt: "2026-09-07"
     },
     "demons-are-plotting": {
-      src: "assets/posters/demons-are-plotting-v2.webp",
+      src: "assets/posters/demons-are-plotting-v3.webp",
       updatedAt: "2026-09-07"
     },
     "rebel-robotica": {
@@ -199,7 +191,7 @@
       updatedAt: "2026-09-07"
     },
     "unrewarded-villager-a": {
-      src: "assets/posters/unrewarded-villager-a-v2.webp",
+      src: "assets/posters/unrewarded-villager-a-v3.webp",
       updatedAt: "2026-09-07"
     },
     "glasses-sometimes-yankee-kun": {
