@@ -3,8 +3,8 @@ const assert=require('node:assert/strict');
 const {loadAnime,validate}=require('../scripts/validate-schedules');
 const S=require('../schedule-utils');
 test('all production schedule records have valid fields and traceable verification',()=>{
- const result=validate(loadAnime());assert.deepEqual(result.errors,[]);assert.equal(result.counts.total,148);
- assert.equal(result.counts.premiereDates,61);assert.equal(result.counts.exactTimes,41);
+ const result=validate(loadAnime());assert.deepEqual(result.errors,[]);assert.equal(result.counts.total,147);
+ assert.equal(result.counts.premiereDates,60);assert.equal(result.counts.exactTimes,40);
  assert.equal(result.counts.dateOnly,4);assert.equal(result.counts.theatricalMidnight,16);
 });
 test('September 7 selection includes verified late-September and early-October premieres',()=>{
@@ -12,7 +12,7 @@ test('September 7 selection includes verified late-September and early-October p
  const fx=anime.find(a=>a.id==='fx-fighter-kurumi-chan');const tanuki=anime.find(a=>a.id==='tanuki-and-kitsune');
  const chiifuyo=anime.find(a=>a.id==='banished-cheat-granting-mage-second-life');
  const appraisal=anime.find(a=>a.id==='appraisal-skill-season-3');
- const tenipri=anime.find(a=>a.id==='prince-of-tennis-u17-world-cup-final-members-selection');
+ const tenipri=anime.find(a=>a.id==='the-new-prince-of-tennis-u-17-world-cup-final-roster-selection');
  const iceWall=anime.find(a=>a.id==='ice-wall-season-2');
  const tempal=anime.find(a=>a.id==='overgeared-the-power-of-items');
  const revolving=anime.find(a=>a.id==='lent-magic-revolving-collection');
@@ -27,6 +27,7 @@ test('September 7 selection includes verified late-September and early-October p
  assert.equal(revolving.schedule.premiere.time,'25:30');assert.equal(ojikawa.schedule.premiere.time,'22:00');
  assert.equal(saintess.schedule.premiere.time,'24:00');
  assert.equal(chiifuyo.release.japan.status,'month');assert.equal(chiifuyo.release.japan.month,10);assert.equal(chiifuyo.schedule,undefined);
+ assert.equal(anime.some(a=>a.id==='prince-of-tennis-u17-world-cup-final-members-selection'),false);
  const entries=S.upcoming(anime,Date.parse('2026-09-07T00:00Z'));
  assert.equal(entries[0].anime.id,'sound-euphonium-the-final-movement-part-2');
  [sword,fx,tanuki,appraisal,tenipri,iceWall,tempal,revolving,ojikawa,saintess].forEach(item=>assert.ok(entries.some(e=>e.anime.id===item.id),item.id));
