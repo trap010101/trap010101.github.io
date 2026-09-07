@@ -185,9 +185,9 @@
     });
   });
 
-  // Fill official-site gaps discovered during the October recheck.
+  // Preserve canonical anime official sites; broadcaster pages remain verification sources.
   const officialLinks = {
-    "looking-for-zombies": "https://www.tv-asahi.co.jp/imanimation/",
+    "looking-for-zombies": "https://zommasu.com/",
     "i-woke-up-with-the-strongest-gear-and-a-spaceship-so-ill-live-freely-as-a-mercenary": "https://saikyosoubi.com/",
     "a-returners-magic-should-be-special-season-2": "https://returners-magic.com/",
     "chitose-is-in-the-ramune-bottle-part-2": "https://chiramune.com/"
