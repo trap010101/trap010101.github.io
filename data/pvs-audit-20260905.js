@@ -326,7 +326,7 @@
   });
 
   const additions = [];
-  const add = ({ id, ko, ja, en, aliases = [], release, season = "2026-fall", format, origin, tags, official, pv = null, sources, schedule: timing }) => {
+  const add = ({ id, ko, ja, en, aliases = [], release, season = "2026-fall", format, origin, tags, poster = null, official, pv = null, sources, schedule: timing }) => {
     additions.push({
       id,
       title: { ko, ja, en },
@@ -337,7 +337,7 @@
       format,
       origin,
       tags,
-      poster: null,
+      poster,
       links: { pv, official, streaming: null },
       streaming: {},
       ...(timing ? { schedule: timing } : {}),
@@ -374,6 +374,7 @@
     id: "we-are-aliens",
     ko: "우리는 외계인", ja: "我々は宇宙人", en: "We Are Aliens",
     release: date(9, 25), format: "movie", origin: "original", tags: ["new", "original", "movie"],
+    poster: { src: "assets/posters/we-are-aliens.webp", position: "center" },
     official: "https://nothingnew.ltd/ja/films/wearealiens",
     sources: [src("https://nothingnew.ltd/ja/news", "NOTHING NEW official news — nationwide release September 25")],
     schedule: schedule(event("theatrical", "2026-09-25", "00:00"), "https://nothingnew.ltd/ja/news")
