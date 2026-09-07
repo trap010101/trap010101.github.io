@@ -368,27 +368,7 @@
     schedule: schedule(event("tv", "2026-09-05", "08:00"), "https://cf-vanguard.com/anime-ghost_meets_gal/")
   });
 
-  add({
-    id: "mouse-cursor-click-girls",
-    ko: "마우스 커서로 현실을 조작할 수 있게 되어서, 여자아이를 잔뜩 클릭합니다",
-    ja: "マウスカーソルで現実を操作できるようになったので、女の子をいっぱいクリックしまーす",
-    en: "I Can Control Reality With a Mouse Cursor, So I'll Click Lots of Girls",
-    release: date(9, 11), format: "tv", origin: "manga", tags: ["new", "comic"],
-    official: "https://maukuri.af-original.com/",
-    sources: [src("https://maukuri.af-original.com/onair/", "Official ON AIR — AnimeFesta advance streaming September 11; TV October 4")],
-    schedule: schedule(event("streaming", "2026-09-11"), "https://maukuri.af-original.com/onair/", event("tv", "2026-10-04"))
-  });
 
-  add({
-    id: "widowed-snow-woman-cursed-ring",
-    ko: "사람 사귀기가 서툰 미망인 설녀 씨와 저주의 반지",
-    ja: "人付き合いが苦手な未亡人の雪女さんと呪いの指輪",
-    en: "The Widowed Snow Woman Who Struggles With People and the Cursed Ring",
-    release: date(9, 11), format: "tv", origin: "manga", tags: ["new", "comic"],
-    official: "https://anime-yukionna.af-original.com/",
-    sources: [src("https://anime-yukionna.af-original.com/onair/", "Official ON AIR — AnimeFesta advance streaming September 11; BS11 October 4")],
-    schedule: schedule(event("streaming", "2026-09-11"), "https://anime-yukionna.af-original.com/onair/", event("tv", "2026-10-04"))
-  });
 
   add({
     id: "we-are-aliens",
