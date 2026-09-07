@@ -58,6 +58,9 @@ jobs:
       - name: Rebuild Lulutto Lilly poster asset
         run: node scripts/repair-lulutto-poster.js
 
+      - name: Bust Lulutto poster data cache
+        run: sed -i 's/poster-fixes-20260905.js?v=20260907-poster3/poster-fixes-20260905.js?v=20260907-poster4/' index.html
+
       - name: Validate regional streaming data
         run: node scripts/validate-regional-streaming.js
 
