@@ -1,5 +1,5 @@
 // Japan previous-series streaming audit.
-// Verified against direct streaming title/work pages on 2026-09-06.
+// Verified against direct streaming title/work pages on 2026-09-06, with targeted re-checks on 2026-09-07.
 // Upcoming installments remain intentionally excluded by NewAnime policy.
 (() => {
   if (typeof window.setAnimeStreamingForRegion !== "function") return;
@@ -28,6 +28,11 @@
     "chitose-is-in-the-ramune-bottle-part-2": { danime: dAnime("28352") },
     "the-detective-is-already-dead-season-2": { danime: dAnime("24809") },
     "blue-box-season-2": { danime: dAnime("27358") },
+    "magical-sisters-lulutto-lilly-part-2": {
+      danime: dAnime("28824"),
+      unext: "https://video.unext.jp/title/SID0285890",
+      abema: "https://abema.tv/video/title/420-76"
+    },
     "expelled-from-paradise-resonance-of-the-heart": { danime: dAnime("22718") },
     "the-apothecary-diaries-the-late-consorts-secret-treasure": { danime: dAnime("26610") },
     "monogatari-series-off-and-monster-season-wazamonogatari-karen-ogre": { danime: dAnime("27567") },
@@ -67,8 +72,8 @@
 
   window.streamingRegionalAuditMeta ||= {};
   window.streamingRegionalAuditMeta.jp = {
-    verifiedAt: "2026-09-06",
-    auditedTitles: 53,
+    verifiedAt: "2026-09-07",
+    auditedTitles: 54,
     linkedTitles: Object.keys(audit).length,
     unresolvedAnimeIds: ["tiger-coming-in-2"]
   };
