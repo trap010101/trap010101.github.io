@@ -167,3 +167,137 @@
   anime.season = "2027-winter";
   anime.updatedAt = "2026-09-05";
 })();
+
+// October 2026 schedule refresh verified on 2026-09-07.
+// Exact countdowns are never inferred from a recurring weekday alone.
+(() => {
+  "use strict";
+
+  if (!Array.isArray(window.animeData)) return;
+
+  const verifiedAt = "2026-09-07";
+  const byId = new Map(window.animeData.map(anime => [anime.id, anime]));
+
+  function ensureVerification(anime, source) {
+    if (!anime || !source?.url) return;
+    anime.verification = anime.verification || { verifiedAt: null, sources: [] };
+    anime.verification.verifiedAt = verifiedAt;
+    anime.verification.sources = Array.isArray(anime.verification.sources) ? anime.verification.sources : [];
+    const existing = anime.verification.sources.find(item => item.url === source.url);
+    if (existing) {
+      existing.verifiedAt = verifiedAt;
+      if (source.label) existing.label = source.label;
+      if (source.supports) existing.supports = source.supports;
+      if (source.type) existing.type = source.type;
+      return;
+    }
+    anime.verification.sources.push({ ...source, verifiedAt });
+  }
+
+  function applyExactPremiere(id, { premiere, source, release }) {
+    const anime = byId.get(id);
+    if (!anime) return;
+
+    if (release) {
+      anime.release = anime.release || {};
+      anime.release.japan = release;
+    }
+
+    anime.schedule = anime.schedule || {};
+    anime.schedule.premiere = premiere;
+    anime.schedule.source = source.url;
+    anime.schedule.verifiedAt = verifiedAt;
+    anime.updatedAt = verifiedAt;
+    ensureVerification(anime, source);
+  }
+
+  // AT-X is the earliest explicitly confirmed first broadcast.
+  applyExactPremiere("fx-fighter-kurumi-chan", {
+    premiere: {
+      type: "tv",
+      date: "2026-10-01",
+      time: "21:30",
+      timezone: "Asia/Tokyo",
+      displayTime: "21:30"
+    },
+    source: {
+      type: "official-site",
+      url: "https://fxkurumi-info.com/onair/",
+      label: "Official ON AIR — October 1, 21:30 (AT-X)",
+      supports: ["release"]
+    }
+  });
+
+  // Frontier Works announced the exact first-air slot on September 4.
+  applyExactPremiere("tanuki-and-kitsune", {
+    release: {
+      status: "date",
+      year: 2026,
+      month: 10,
+      day: 4
+    },
+    premiere: {
+      type: "tv",
+      date: "2026-10-04",
+      time: "07:00",
+      timezone: "Asia/Tokyo",
+      displayTime: "07:00"
+    },
+    source: {
+      type: "official-site",
+      url: "https://www.fwinc.co.jp/news/113937/",
+      label: "Frontier Works official — October 4, 07:00",
+      supports: ["release", "format", "pv"]
+    }
+  });
+
+  // The official ON AIR table supplies the previously missing first-air time.
+  applyExactPremiere("the-worlds-strongest-witch-has-begun", {
+    premiere: {
+      type: "tv",
+      date: "2026-10-07",
+      time: "22:00",
+      timezone: "Asia/Tokyo",
+      displayTime: "22:00"
+    },
+    source: {
+      type: "official-site",
+      url: "https://sekamajo-anime.com/",
+      label: "Official ON AIR — October 7, 22:00 (TOKYO MX)",
+      supports: ["release"]
+    }
+  });
+
+  // Rechecked October titles whose official sources still do not state an
+  // exact first broadcast date. Recurring slots are retained as evidence only.
+  const rechecked = {
+    "looking-for-zombies": ["https://www.tv-asahi.co.jp/imanimation/", "TV Asahi IMAnimation — October 2026 start"],
+    "dark-machine-the-animation": ["https://www.fujitv.co.jp/darkmachine_anime/", "Fuji TV official — October 2026 · Tuesdays 25:45"],
+    "psyren": ["https://psyren-anime.com/", "Official website — October 2026 start"],
+    "the-seven-knights-of-the-marronnier-kingdom": ["https://www.nhk-character.com/chara/marronnier/", "NHK official — October 2026 start"],
+    "the-salty-koharu-has-a-soft-spot-for-me": ["https://shioama-anime.com/newsList.html", "Official news — October 2026 start"],
+    "the-vermilion-mask": ["https://the-vermilion-mask.com/", "Official website — October 2026 · Saturdays 17:30"],
+    "i-woke-up-with-the-strongest-gear-and-a-spaceship-so-ill-live-freely-as-a-mercenary": ["https://saikyosoubi.com/", "Official website — October 2026 start"],
+    "super-psychic-policeman-chojo": ["https://chojun-anime.com/", "Official website — October 2026 · Tuesdays 23:00"],
+    "a-tale-of-the-secret-saint": ["https://daiseijo-anime.com/news/index00210000.html", "Official delay notice — moved to October 2026"],
+    "im-a-reincarnated-goblin-any-questions": ["https://tengobu-anime.com/news/", "Official news — October 2026 start"],
+    "a-returners-magic-should-be-special-season-2": ["https://returners-magic.com/", "Official website — October 2026 on Fuji TV +Ultra"],
+    "tougen-anki-nikko-and-kegon-falls-arc": ["https://www.tougenanki-anime.com/", "Official website — October 2026 on FRIDAY ANIME NIGHT"],
+    "black-clover-2nd-season": ["https://www.bclover.jp/", "Official website — October 2026 start"],
+    "sasaki-and-peeps-season-2": ["https://sasapi-anime.com/news/article_045.html", "Official news — October 2026 · episode 1 one-hour special"],
+    "chitose-is-in-the-ramune-bottle-part-2": ["https://chiramune.com/news/", "Official news — Part 2 starts October 2026"],
+    "suikoden": ["https://suikoden-anime.com/", "Official website — October 2026 · episode 1 one-hour special"],
+    "keroro-gunso-star": ["https://www.bn-pictures.co.jp/keroro-anime/tv/", "Official website — Fall 2026; exact date/time not announced"]
+  };
+
+  Object.entries(rechecked).forEach(([id, [url, label]]) => {
+    const anime = byId.get(id);
+    if (!anime) return;
+    ensureVerification(anime, {
+      type: "official-site",
+      url,
+      label,
+      supports: ["release"]
+    });
+  });
+})();
