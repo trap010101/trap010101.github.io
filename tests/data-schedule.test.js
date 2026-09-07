@@ -3,9 +3,9 @@ const assert=require('node:assert/strict');
 const {loadAnime,validate}=require('../scripts/validate-schedules');
 const S=require('../schedule-utils');
 test('all production schedule records have valid fields and traceable verification',()=>{
- const result=validate(loadAnime());assert.deepEqual(result.errors,[]);assert.equal(result.counts.total,180);
- assert.equal(result.counts.premiereDates,60);assert.equal(result.counts.exactTimes,40);
- assert.equal(result.counts.dateOnly,4);assert.equal(result.counts.theatricalMidnight,16);
+ const result=validate(loadAnime());assert.deepEqual(result.errors,[]);assert.equal(result.counts.total,197);
+ assert.equal(result.counts.premiereDates,75);assert.equal(result.counts.exactTimes,48);
+ assert.equal(result.counts.dateOnly,6);assert.equal(result.counts.theatricalMidnight,21);
 });
 test('September 7 selection includes verified late-September and early-October premieres',()=>{
  const anime=loadAnime();const sword=anime.find(a=>a.id==='reincarnated-as-a-sword-ii');
@@ -45,4 +45,20 @@ test('2027 audit preserves the precision of official release announcements',()=>
  assert.equal(eleceed.release.japan.status,'year');assert.equal(eleceed.release.japan.month,null);assert.match(eleceed.release.japan.display.ko,/2027년 초/);assert.equal(eleceed.schedule,undefined);
  [lona,kindergarten].forEach(item=>{assert.equal(item.release.japan.status,'year');assert.equal(item.release.japan.month,null);assert.equal(item.season,'2027-spring');assert.match(item.release.japan.display.ko,/2027년 봄/);assert.equal(item.schedule,undefined);});
  assert.equal(midnight.release.japan.status,'year');assert.equal(midnight.release.japan.month,null);assert.match(midnight.release.japan.display.ko,/월 미정/);assert.equal(midnight.schedule,undefined);
+});
+test('full remaining 2026 audit keeps streaming, theatrical and month-TBA precision separate',()=>{
+ const anime=loadAnime();
+ const narumi=anime.find(a=>a.id==='kaiju-no-8-narumis-weekday');
+ const mouse=anime.find(a=>a.id==='mouse-cursor-click-girls');
+ const snow=anime.find(a=>a.id==='widowed-snow-woman-cursed-ring');
+ const aliens=anime.find(a=>a.id==='we-are-aliens');
+ const cardfight=anime.find(a=>a.id==='cardfight-vanguard-divinez-fate-star-war-arc');
+ const yusanchi=anime.find(a=>a.id==='yusanchi-from-yuhachi');
+ const hinagiku=anime.find(a=>a.id==='hinagikus-life');
+ assert.equal(narumi.schedule.premiere.type,'streaming');assert.equal(narumi.schedule.premiere.date,'2026-09-05');assert.equal(narumi.schedule.premiere.time,'20:00');
+ [mouse,snow].forEach(item=>{assert.equal(item.schedule.premiere.type,'streaming');assert.equal(item.schedule.premiere.date,'2026-09-11');assert.equal(item.schedule.premiere.time,null);assert.equal(item.schedule.broadcast.type,'tv');});
+ assert.equal(aliens.schedule.premiere.type,'theatrical');assert.equal(aliens.schedule.premiere.time,'00:00');
+ assert.equal(cardfight.schedule.premiere.type,'theatrical');assert.equal(cardfight.schedule.premiere.date,'2026-10-02');assert.equal(cardfight.schedule.broadcast.date,'2026-11-07');assert.equal(cardfight.schedule.broadcast.time,'08:00');
+ assert.equal(yusanchi.release.japan.status,'month');assert.equal(yusanchi.release.japan.month,10);assert.equal(yusanchi.schedule,undefined);
+ assert.equal(hinagiku.release.japan.status,'year');assert.equal(hinagiku.release.japan.month,null);assert.equal(hinagiku.schedule,undefined);
 });
