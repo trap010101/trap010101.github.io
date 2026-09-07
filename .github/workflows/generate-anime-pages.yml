@@ -28,6 +28,7 @@ on:
       - "scripts/inject-title-wrap-css.js"
       - "scripts/normalize-external-poster-urls.js"
       - "scripts/localize-external-posters.js"
+      - "scripts/optimize-poster-assets.js"
       - "anime-detail.css"
       - "anime-breadcrumb.css"
       - "detail-streaming-region.js"
@@ -57,6 +58,12 @@ jobs:
 
       - name: Localize and validate external poster assets
         run: node scripts/localize-external-posters.js
+
+      - name: Install poster optimizer
+        run: npm install --no-save --package-lock=false sharp
+
+      - name: Optimize localized poster assets
+        run: node scripts/optimize-poster-assets.js
 
       - name: Validate regional streaming data
         run: node scripts/validate-regional-streaming.js
@@ -94,5 +101,5 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Generate static anime pages and localize posters [skip ci]"
+          git commit -m "Generate static anime pages and optimize posters [skip ci]"
           git push
