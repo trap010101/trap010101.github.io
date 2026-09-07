@@ -1,4 +1,4 @@
-// Additions verified on 2026-09-04. Kept separate from the large canonical file to make this update auditable.
+// Additions verified through 2026-09-07. Kept separate from the large canonical file to make this update auditable.
 (() => {
   const additions = [
     {
