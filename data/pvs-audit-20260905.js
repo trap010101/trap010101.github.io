@@ -301,3 +301,215 @@
     });
   });
 })();
+
+// Full remaining 2026 audit verified on 2026-09-07.
+// Candidate lists were used only for discovery; every entry below is backed by a first-party release source.
+(() => {
+  "use strict";
+  if (!Array.isArray(window.animeData)) return;
+
+  const V = "2026-09-07";
+  const date = (month, day) => ({ status: "date", year: 2026, month, day });
+  const month = month => ({ status: "month", year: 2026, month, day: null });
+  const year = () => ({ status: "year", year: 2026, month: null, day: null });
+  const src = (url, label, type = "official-site", supports = ["announcement", "release", "format"]) => ({
+    type, url, label, supports, verifiedAt: V
+  });
+  const event = (type, date, time = null) => ({
+    type, date, time, timezone: "Asia/Tokyo", displayTime: time
+  });
+  const schedule = (premiere, source, broadcast = null) => ({
+    premiere,
+    ...(broadcast ? { broadcast } : {}),
+    source,
+    verifiedAt: V
+  });
+
+  const additions = [];
+  const add = ({ id, ko, ja, en, aliases = [], release, season = "2026-fall", format, origin, tags, official, pv = null, sources, schedule: timing }) => {
+    additions.push({
+      id,
+      title: { ko, ja, en },
+      aliases,
+      release: { japan: release, korea: null, global: null },
+      productionStatus: "scheduled",
+      season,
+      format,
+      origin,
+      tags,
+      poster: null,
+      links: { pv, official, streaming: null },
+      streaming: {},
+      ...(timing ? { schedule: timing } : {}),
+      verification: { verifiedAt: V, sources },
+      createdAt: V,
+      updatedAt: V
+    });
+  };
+
+  add({
+    id: "kaiju-no-8-narumis-weekday",
+    ko: "괴수 8호 오리지널 쇼트 애니메이션 「나루미의 평일」",
+    ja: "怪獣8号 オリジナルショートアニメ「鳴海の平日」",
+    en: "Kaiju No. 8 Original Short Anime: Narumi's Weekday",
+    aliases: ["鳴海の平日", "Narumi's Weekday"],
+    release: date(9, 5), format: "special", origin: "manga", tags: ["series", "comic"],
+    official: "https://www.kaiju-no8.net/",
+    sources: [src("https://kaiju-no8.net/news/detail_260805_02.html", "Official news — September 5, 20:00 streaming start")],
+    schedule: schedule(event("streaming", "2026-09-05", "20:00"), "https://kaiju-no8.net/news/detail_260805_02.html")
+  });
+
+  add({
+    id: "ghost-meets-gal",
+    ko: "고스트 미츠 갸루!", ja: "ごーすと・みーつ・ぎゃる！", en: "Ghost Meets Gal!",
+    release: date(9, 5), format: "tv", origin: "manga", tags: ["series", "comic"],
+    official: "https://cf-vanguard.com/anime-ghost_meets_gal/",
+    sources: [src("https://cf-vanguard.com/anime-ghost_meets_gal/", "Official website — September 5, 08:00 TV premiere")],
+    schedule: schedule(event("tv", "2026-09-05", "08:00"), "https://cf-vanguard.com/anime-ghost_meets_gal/")
+  });
+
+  add({
+    id: "mouse-cursor-click-girls",
+    ko: "마우스 커서로 현실을 조작할 수 있게 되어서, 여자아이를 잔뜩 클릭합니다",
+    ja: "マウスカーソルで現実を操作できるようになったので、女の子をいっぱいクリックしまーす",
+    en: "I Can Control Reality With a Mouse Cursor, So I'll Click Lots of Girls",
+    release: date(9, 11), format: "tv", origin: "manga", tags: ["new", "comic"],
+    official: "https://maukuri.af-original.com/",
+    sources: [src("https://maukuri.af-original.com/onair/", "Official ON AIR — AnimeFesta advance streaming September 11; TV October 4")],
+    schedule: schedule(event("streaming", "2026-09-11"), "https://maukuri.af-original.com/onair/", event("tv", "2026-10-04"))
+  });
+
+  add({
+    id: "widowed-snow-woman-cursed-ring",
+    ko: "사람 사귀기가 서툰 미망인 설녀 씨와 저주의 반지",
+    ja: "人付き合いが苦手な未亡人の雪女さんと呪いの指輪",
+    en: "The Widowed Snow Woman Who Struggles With People and the Cursed Ring",
+    release: date(9, 11), format: "tv", origin: "manga", tags: ["new", "comic"],
+    official: "https://anime-yukionna.af-original.com/",
+    sources: [src("https://anime-yukionna.af-original.com/onair/", "Official ON AIR — AnimeFesta advance streaming September 11; BS11 October 4")],
+    schedule: schedule(event("streaming", "2026-09-11"), "https://anime-yukionna.af-original.com/onair/", event("tv", "2026-10-04"))
+  });
+
+  add({
+    id: "we-are-aliens",
+    ko: "우리는 우주인", ja: "我々は宇宙人", en: "We Are Aliens",
+    release: date(9, 25), format: "movie", origin: "original", tags: ["new", "original", "movie"],
+    official: "https://nothingnew.ltd/ja/films/wearealiens",
+    sources: [src("https://nothingnew.ltd/ja/news", "NOTHING NEW official news — nationwide release September 25")],
+    schedule: schedule(event("theatrical", "2026-09-25", "00:00"), "https://nothingnew.ltd/ja/news")
+  });
+
+  add({
+    id: "battle-spirits-re-zekkai-no-ku",
+    ko: "Battle Spirits [Re] 절계의 하늘", ja: "Battle Spirits [Re] 絶界の空", en: "Battle Spirits [Re]: Zekkai no Ku",
+    release: date(10, 6), format: "tv", origin: "game", tags: ["new", "game"],
+    official: "https://www.bn-pictures.co.jp/battlespirits/", pv: "https://youtu.be/cXd4pKTx2pI",
+    sources: [src("https://www.bn-pictures.co.jp/battlespirits/news/detail/?id=24181", "BN Pictures official — October 6, 23:00 TV premiere", "official-site", ["announcement", "release", "format", "pv"])],
+    schedule: schedule(event("tv", "2026-10-06", "23:00"), "https://www.bn-pictures.co.jp/battlespirits/news/detail/?id=24181")
+  });
+
+  add({
+    id: "fairies-albums-season-3-capital-chapter",
+    ko: "백요보 3기 경사편", ja: "百妖譜 第3期 京師篇", en: "Fairies Albums Season 3: Capital Chapter",
+    release: date(10, 7), format: "tv", origin: "novel", tags: ["series"],
+    official: "https://b8station.tv/hyakuyoufu/",
+    sources: [src("https://b8station.tv/hyakuyoufu/", "Fuji TV B8station official — October 7, 25:15")],
+    schedule: schedule(event("tv", "2026-10-07", "25:15"), "https://b8station.tv/hyakuyoufu/")
+  });
+
+  add({
+    id: "girls-und-panzer-motto-love-love-operation",
+    ko: "걸즈 앤 판처 좀 더 러브러브 작전입니다!", ja: "ガールズ＆パンツァー もっとらぶらぶ作戦です！", en: "Girls und Panzer: Motto Love Love Sakusen desu!",
+    release: date(10, 8), format: "tv", origin: "manga", tags: ["series", "comic"],
+    official: "https://gup-mottolovelove.jp/", pv: "https://youtu.be/AVIDW2dT2AM",
+    sources: [src("https://gup-mottolovelove.jp/article-tv/", "Official TV announcement — October 8, 23:30", "official-site", ["announcement", "release", "format", "pv"])],
+    schedule: schedule(event("tv", "2026-10-08", "23:30"), "https://gup-mottolovelove.jp/article-tv/")
+  });
+
+  add({
+    id: "duel-masters-lost-condemned-boy",
+    ko: "Duel Masters LOST ~단죄의 소년~", ja: "Duel Masters LOST ～断罪の少年～", en: "Duel Masters LOST: The Condemned Boy",
+    release: date(10, 9), format: "special", origin: "manga", tags: ["series", "comic"],
+    official: "https://www.shopro.co.jp/anime/duelmasters_lost/index.html",
+    sources: [src("https://www.shopro.co.jp/anime/duelmasters_lost/index.html", "ShoPro official — October 9, 21:00 streaming start")],
+    schedule: schedule(event("streaming", "2026-10-09", "21:00"), "https://www.shopro.co.jp/anime/duelmasters_lost/index.html")
+  });
+
+  add({
+    id: "pop-pap-polters",
+    ko: "팝 팝 폴터즈", ja: "ポップパップポルターズ", en: "Pop Pap Polters",
+    release: date(10, 4), format: "tv", origin: "original", tags: ["new", "original"],
+    official: "https://ppp-anime.jp/",
+    sources: [src("https://ppp-anime.jp/", "Official website — October 4, 10:00 TV premiere")],
+    schedule: schedule(event("tv", "2026-10-04", "10:00"), "https://ppp-anime.jp/")
+  });
+
+  add({
+    id: "yusanchi-from-yuhachi",
+    ko: "유우네 집! from 유하치", ja: "ゆうさんち！from 遊ハち", en: "Yu's House! from Yuhachi",
+    release: month(10), format: "tv", origin: "original", tags: ["new", "original"],
+    official: "https://yusanchi-anime.jp/",
+    sources: [src("https://yusanchi-anime.jp/", "Official website — October 2026 TV start; exact first date not announced")]
+  });
+
+  add({
+    id: "cardfight-vanguard-divinez-fate-star-war-arc",
+    ko: "카드파이트!! 뱅가드 Divinez 운명성전편", ja: "カードファイト!! ヴァンガード Divinez 運命星戦編", en: "Cardfight!! Vanguard Divinez: Parallactic Fate",
+    release: date(10, 2), format: "tv", origin: "game", tags: ["series", "game"],
+    official: "https://anime.cf-vanguard.com/vgd/",
+    sources: [src("https://anime.cf-vanguard.com/vgd/", "Official website — theatrical advance October 2; TV November 7 at 08:00")],
+    schedule: schedule(event("theatrical", "2026-10-02", "00:00"), "https://anime.cf-vanguard.com/vgd/", event("tv", "2026-11-07", "08:00"))
+  });
+
+  add({
+    id: "maebashi-witches-emoemories",
+    ko: "극장판 마에바시 위치스 ~마녀 견습생의 에모에모리즈~", ja: "劇場版 前橋ウィッチーズ ～魔女見習いのエモエモリーズ～", en: "Maebashi Witches: Witch Apprentice Emoemories",
+    release: date(10, 23), format: "movie", origin: "original", tags: ["series", "original", "movie"],
+    official: "https://www.maebashi-witches.com/",
+    sources: [src("https://www.maebashi-witches.com/", "Official website — October 23 theatrical release")],
+    schedule: schedule(event("theatrical", "2026-10-23", "00:00"), "https://www.maebashi-witches.com/")
+  });
+
+  add({
+    id: "my-happy-marriage-special-2026",
+    ko: "나의 행복한 결혼 특별편", ja: "わたしの幸せな結婚 特別篇", en: "My Happy Marriage Special",
+    release: date(10, 25), format: "special", origin: "light-novel", tags: ["series", "ln"],
+    official: "https://watakon-anime.com/",
+    sources: [src("https://watakon-anime.com/onair/", "Official ON AIR — October 25, 19:00 TV premiere")],
+    schedule: schedule(event("tv", "2026-10-25", "19:00"), "https://watakon-anime.com/onair/")
+  });
+
+  add({
+    id: "inherit-the-winds-the-beginning",
+    ko: "극장 선행판 바람을 잇는 이들 -시작-", ja: "劇場先行版 風を継ぐもの -はじまり-", en: "Inherit the Winds: The Beginning — Theatrical Advance Edition",
+    release: date(11, 13), format: "movie", origin: "original", tags: ["series", "original", "movie"],
+    official: "https://kaze-tsugu.com/",
+    sources: [src("https://news.aniplex.co.jp/detail.html?id=71138", "Aniplex official — November 13 two-week theatrical advance run")],
+    schedule: schedule(event("theatrical", "2026-11-13", "00:00"), "https://news.aniplex.co.jp/detail.html?id=71138")
+  });
+
+  add({
+    id: "takopis-original-sin-thank-you-see-you-tomorrow",
+    ko: "타코피의 원죄 -고마워, 또 내일-", ja: "映画『タコピーの原罪 -ありがとう、また明日-』", en: "Takopi's Original Sin: Thank You, See You Tomorrow",
+    release: date(11, 27), format: "movie", origin: "manga", tags: ["series", "comic", "movie"],
+    official: "https://www.tbs.co.jp/anime/takopi_project/",
+    sources: [src("https://www.tbs.co.jp/anime/takopi_project/news/news20260817.html", "TBS official — November 27 theatrical release")],
+    schedule: schedule(event("theatrical", "2026-11-27", "00:00"), "https://www.tbs.co.jp/anime/takopi_project/news/news20260817.html")
+  });
+
+  add({
+    id: "hinagikus-life",
+    ko: "히나기쿠의 인생", ja: "ひな菊の人生", en: "Daisy's Life",
+    release: year(), season: "2026-tba", format: "movie", origin: "novel", tags: ["new", "movie"],
+    official: "https://www.asmik-ace.co.jp/works/lineup/18118/",
+    sources: [
+      src("https://www.asmik-ace.co.jp/works/lineup/?series_category=movie", "Asmik Ace official lineup — nationwide release in 2026", "official-site", ["release"]),
+      src("https://www.asmik-ace.co.jp/works/lineup/18118/", "Asmik Ace official title page — theatrical anime adaptation", "official-site", ["announcement", "format"])
+    ]
+  });
+
+  const existingIds = new Set(window.animeData.map(anime => anime.id));
+  additions.forEach(anime => {
+    if (!existingIds.has(anime.id)) window.animeData.push(anime);
+  });
+})();
