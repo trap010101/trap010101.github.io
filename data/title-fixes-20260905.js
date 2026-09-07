@@ -1,4 +1,4 @@
-// Korean title corrections applied after the canonical schedule data loads.
+// Title corrections applied after the canonical schedule data loads.
 (() => {
   if (!Array.isArray(window.animeData)) return;
 
@@ -36,5 +36,14 @@
     }
 
     luluttoLilly.updatedAt = "2026-09-07";
+  }
+
+  const cheatGrantingMage = window.animeData.find(item => item.id === "banished-cheat-granting-mage-second-life");
+  if (cheatGrantingMage) {
+    cheatGrantingMage.title = {
+      ...cheatGrantingMage.title,
+      en: "The Laid-Off Cheat-Granting Mage Enjoys a Second Lease on Life"
+    };
+    cheatGrantingMage.updatedAt = "2026-09-07";
   }
 })();
