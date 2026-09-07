@@ -6,623 +6,1191 @@
       "id": "ice-wall-season-2",
       "sourceUrl": "https://spice.eplus.jp/images/qtx4Y66xNOJJ4Q1M1BA9hNseNoqVEj2wDWMNd1Qj3A26D1BMpCPtJ0u29NGOTmeS",
       "originalUrl": null,
-      "localPath": "assets/posters/ice-wall-season-2.jpg",
-      "mime": "image/jpeg",
-      "bytes": 629857,
+      "localPath": "assets/posters/ice-wall-season-2-v2.webp",
+      "mime": "image/webp",
+      "bytes": 420782,
       "width": 1400,
       "height": 1979,
       "aspectRatio": 0.707,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/ice-wall-season-2.jpg",
+      "originalBytes": 629857,
+      "originalWidth": 1400,
+      "originalHeight": 1979,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "lent-magic-revolving-collection",
       "sourceUrl": "https://www.booklive.co.jp/media/3XcFBQBBEioNeucsGiSf4I62VWq62NYEI6syr9Gs.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/lent-magic-revolving-collection.webp",
+      "localPath": "assets/posters/lent-magic-revolving-collection-v2.webp",
       "mime": "image/webp",
-      "bytes": 335458,
-      "width": 2160,
-      "height": 3053,
+      "bytes": 350034,
+      "width": 1557,
+      "height": 2200,
       "aspectRatio": 0.708,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/lent-magic-revolving-collection.webp",
+      "originalBytes": 335458,
+      "originalWidth": 2160,
+      "originalHeight": 3053,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "overgeared-the-power-of-items",
       "sourceUrl": "https://a.storyblok.com/f/178900/849x1200/78ea70222f/overgeared-key-visual.jpeg/m/filters%3Aquality%2895%29format%28webp%29",
       "originalUrl": null,
-      "localPath": "assets/posters/overgeared-the-power-of-items.webp",
+      "localPath": "assets/posters/overgeared-the-power-of-items-v2.webp",
       "mime": "image/webp",
-      "bytes": 224122,
+      "bytes": 134974,
       "width": 849,
       "height": 1200,
       "aspectRatio": 0.708,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/overgeared-the-power-of-items.webp",
+      "originalBytes": 224122,
+      "originalWidth": 849,
+      "originalHeight": 1200,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "uncle-likes-cute-things",
       "sourceUrl": "https://ojikawa.com/assets/img/ogp.jpg?ver=1.00",
       "originalUrl": null,
-      "localPath": "assets/posters/uncle-likes-cute-things.jpg",
-      "mime": "image/jpeg",
-      "bytes": 110367,
+      "localPath": "assets/posters/uncle-likes-cute-things-v2.webp",
+      "mime": "image/webp",
+      "bytes": 96032,
       "width": 1200,
       "height": 630,
       "aspectRatio": 1.905,
       "notes": [
         "landscape visual; card crop should be visually reviewed"
-      ]
+      ],
+      "originalLocalPath": "assets/posters/uncle-likes-cute-things.jpg",
+      "originalBytes": 110367,
+      "originalWidth": 1200,
+      "originalHeight": 630,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "mission-yozakura-family-season-2-part-2",
       "sourceUrl": "https://img.anmosugoi.com/file/media-sugoi/2023/03/z7Yz7Q64-Yozakura-san-Chi-no-Daisakusen-visual.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/mission-yozakura-family-season-2-part-2.jpg",
-      "mime": "image/jpeg",
-      "bytes": 393328,
+      "localPath": "assets/posters/mission-yozakura-family-season-2-part-2-v2.webp",
+      "mime": "image/webp",
+      "bytes": 390468,
       "width": 1200,
       "height": 1542,
       "aspectRatio": 0.778,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/mission-yozakura-family-season-2-part-2.jpg",
+      "originalBytes": 393328,
+      "originalWidth": 1200,
+      "originalHeight": 1542,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "dragon-ball-super-beerus",
       "sourceUrl": "https://unicornfantasian.com/ja/posts/anime-dragon-ball-super-beerus-hadir-sebagai-versi-disempurnakan/1000077468.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/dragon-ball-super-beerus.jpg",
-      "mime": "image/jpeg",
-      "bytes": 1158337,
-      "width": 2896,
-      "height": 4096,
+      "localPath": "assets/posters/dragon-ball-super-beerus-v2.webp",
+      "mime": "image/webp",
+      "bytes": 345658,
+      "width": 1555,
+      "height": 2200,
       "aspectRatio": 0.707,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/dragon-ball-super-beerus.jpg",
+      "originalBytes": 1158337,
+      "originalWidth": 2896,
+      "originalHeight": 4096,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "zero-believers-goddess-isekai-strategy",
       "sourceUrl": "https://ogre.natalie.mu/media/news/comic/2020/0424/shinjazeromegami_key.jpg?imdensity=1&imwidth=750",
       "originalUrl": null,
-      "localPath": "assets/posters/zero-believers-goddess-isekai-strategy.webp",
+      "localPath": "assets/posters/zero-believers-goddess-isekai-strategy-v2.webp",
       "mime": "image/webp",
-      "bytes": 101186,
+      "bytes": 111780,
       "width": 750,
       "height": 1061,
       "aspectRatio": 0.707,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/zero-believers-goddess-isekai-strategy.webp",
+      "originalBytes": 101186,
+      "originalWidth": 750,
+      "originalHeight": 1061,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "romelia-war-chronicle",
       "sourceUrl": "https://media.eiga.com/images/anime/news/126175/photo/4f858b3b142da5e6/640.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/romelia-war-chronicle.jpg",
-      "mime": "image/jpeg",
-      "bytes": 59204,
+      "localPath": "assets/posters/romelia-war-chronicle-v2.webp",
+      "mime": "image/webp",
+      "bytes": 54912,
       "width": 452,
       "height": 640,
       "aspectRatio": 0.706,
-      "notes": [
-        "moderate source resolution"
-      ]
+      "notes": [],
+      "originalLocalPath": "assets/posters/romelia-war-chronicle.jpg",
+      "originalBytes": 59204,
+      "originalWidth": 452,
+      "originalHeight": 640,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "hotel-inhumans-season-2",
       "sourceUrl": "https://static.animecorner.me/2026/03/1773067607-f968d699022dd5c7c9c5b8885cb421e8.jpg",
       "originalUrl": "https://hotel-inhumans.com/images/news/news-260306-1.jpg",
-      "localPath": "assets/posters/hotel-inhumans-season-2.jpg",
-      "mime": "image/jpeg",
-      "bytes": 1009154,
-      "width": 2898,
-      "height": 4096,
+      "localPath": "assets/posters/hotel-inhumans-season-2-v2.webp",
+      "mime": "image/webp",
+      "bytes": 282318,
+      "width": 1557,
+      "height": 2200,
       "aspectRatio": 0.708,
       "notes": [
         "original host was unreachable from GitHub runner; stable mirror source used for archiving"
-      ]
+      ],
+      "originalLocalPath": "assets/posters/hotel-inhumans-season-2.jpg",
+      "originalBytes": 1009154,
+      "originalWidth": 2898,
+      "originalHeight": 4096,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "a-wild-last-boss-appeared-season-2",
       "sourceUrl": "https://cimg.kgl-systems.io/camion/files/61321/ogp_dNFP.jpg?x=1280",
       "originalUrl": null,
-      "localPath": "assets/posters/a-wild-last-boss-appeared-season-2.jpg",
-      "mime": "image/jpeg",
-      "bytes": 86744,
+      "localPath": "assets/posters/a-wild-last-boss-appeared-season-2-v2.webp",
+      "mime": "image/webp",
+      "bytes": 88176,
       "width": 804,
       "height": 452,
       "aspectRatio": 1.779,
       "notes": [
-        "landscape visual; card crop should be visually reviewed",
-        "moderate source resolution"
-      ]
+        "landscape visual; card crop should be visually reviewed"
+      ],
+      "originalLocalPath": "assets/posters/a-wild-last-boss-appeared-season-2.jpg",
+      "originalBytes": 86744,
+      "originalWidth": 804,
+      "originalHeight": 452,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "the-witch-was-asked-for-a-love-potion",
       "sourceUrl": "https://horemajo-anime.com/core_sys/images/others/ogp.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/the-witch-was-asked-for-a-love-potion.jpg",
-      "mime": "image/jpeg",
-      "bytes": 323680,
+      "localPath": "assets/posters/the-witch-was-asked-for-a-love-potion-v2.webp",
+      "mime": "image/webp",
+      "bytes": 187240,
       "width": 1200,
       "height": 630,
       "aspectRatio": 1.905,
       "notes": [
         "landscape visual; card crop should be visually reviewed"
-      ]
+      ],
+      "originalLocalPath": "assets/posters/the-witch-was-asked-for-a-love-potion.jpg",
+      "originalBytes": 323680,
+      "originalWidth": 1200,
+      "originalHeight": 630,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "with-vengeance-sincerely-your-broken-saintess-season-2",
       "sourceUrl": "https://shikimori.io/uploads/poster/animes/64180/main_alt_2x-2faf91acf694c97dbf81143989410106.jpeg",
       "originalUrl": null,
-      "localPath": "assets/posters/with-vengeance-sincerely-your-broken-saintess-season-2.jpg",
-      "mime": "image/jpeg",
-      "bytes": 119523,
+      "localPath": "assets/posters/with-vengeance-sincerely-your-broken-saintess-season-2-v2.webp",
+      "mime": "image/webp",
+      "bytes": 62594,
       "width": 450,
       "height": 638,
       "aspectRatio": 0.705,
-      "notes": [
-        "moderate source resolution"
-      ]
+      "notes": [],
+      "originalLocalPath": "assets/posters/with-vengeance-sincerely-your-broken-saintess-season-2.jpg",
+      "originalBytes": 119523,
+      "originalWidth": 450,
+      "originalHeight": 638,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "ace-of-diamond-act-ii-second-season-part-2",
       "sourceUrl": "https://berita.jepang.org/s/common/uploaded_files/1782655300-99607ddffafc1c8619a6281358ec5c19.jpeg",
       "originalUrl": null,
-      "localPath": "assets/posters/ace-of-diamond-act-ii-second-season-part-2.jpg",
-      "mime": "image/jpeg",
-      "bytes": 505983,
+      "localPath": "assets/posters/ace-of-diamond-act-ii-second-season-part-2-v2.webp",
+      "mime": "image/webp",
+      "bytes": 248504,
       "width": 1460,
       "height": 2063,
       "aspectRatio": 0.708,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/ace-of-diamond-act-ii-second-season-part-2.jpg",
+      "originalBytes": 505983,
+      "originalWidth": 1460,
+      "originalHeight": 2063,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "prince-of-tennis-u17-world-cup-final-members-selection",
       "sourceUrl": "https://img2.animatetimes.com/2025/09/d542bf8cff95fc16d77fcbd9ec8ca4036a5ed2f7b02477_62376358_512a62fe3953852ebeee0e76d6763e6e811977bc.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/prince-of-tennis-u17-world-cup-final-members-selection.webp",
+      "localPath": "assets/posters/prince-of-tennis-u17-world-cup-final-members-selection-v2.webp",
       "mime": "image/webp",
-      "bytes": 97654,
+      "bytes": 82626,
       "width": 449,
       "height": 640,
       "aspectRatio": 0.702,
-      "notes": [
-        "moderate source resolution"
-      ]
+      "notes": [],
+      "originalLocalPath": "assets/posters/prince-of-tennis-u17-world-cup-final-members-selection.webp",
+      "originalBytes": 97654,
+      "originalWidth": 449,
+      "originalHeight": 640,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "appraisal-skill-season-3",
       "sourceUrl": "https://pbs.twimg.com/media/HFXx06_aAAE0E-_.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/appraisal-skill-season-3.jpg",
-      "mime": "image/jpeg",
-      "bytes": 250234,
+      "localPath": "assets/posters/appraisal-skill-season-3-v2.webp",
+      "mime": "image/webp",
+      "bytes": 200328,
       "width": 960,
       "height": 1200,
       "aspectRatio": 0.8,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/appraisal-skill-season-3.jpg",
+      "originalBytes": 250234,
+      "originalWidth": 960,
+      "originalHeight": 1200,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "the-guy-she-was-interested-in-wasnt-a-guy-at-all",
       "sourceUrl": "https://pbs.twimg.com/profile_banners/2058852828152729600/1783114799",
       "originalUrl": null,
-      "localPath": "assets/posters/the-guy-she-was-interested-in-wasnt-a-guy-at-all.jpg",
-      "mime": "image/jpeg",
-      "bytes": 166533,
+      "localPath": "assets/posters/the-guy-she-was-interested-in-wasnt-a-guy-at-all-v2.webp",
+      "mime": "image/webp",
+      "bytes": 144518,
       "width": 1500,
       "height": 500,
       "aspectRatio": 3,
       "notes": [
-        "landscape visual; card crop should be visually reviewed",
-        "moderate source resolution"
-      ]
+        "landscape visual; card crop should be visually reviewed"
+      ],
+      "originalLocalPath": "assets/posters/the-guy-she-was-interested-in-wasnt-a-guy-at-all.jpg",
+      "originalBytes": 166533,
+      "originalWidth": 1500,
+      "originalHeight": 500,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "chihara-san-is-she-a-landmine",
       "sourceUrl": "https://berita.jepang.org/s/common/uploaded_files/1766655595-41d293aa0dc0b1ccb687e9fe185a9dbd.jpeg",
       "originalUrl": null,
-      "localPath": "assets/posters/chihara-san-is-she-a-landmine.jpg",
-      "mime": "image/jpeg",
-      "bytes": 542891,
+      "localPath": "assets/posters/chihara-san-is-she-a-landmine-v2.webp",
+      "mime": "image/webp",
+      "bytes": 191116,
       "width": 1412,
       "height": 2000,
       "aspectRatio": 0.706,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/chihara-san-is-she-a-landmine.jpg",
+      "originalBytes": 542891,
+      "originalWidth": 1412,
+      "originalHeight": 2000,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "arcanadea",
       "sourceUrl": "https://static.animecorner.me/2025/03/1741946625-7c8a33fcd369d2647f31dbf8dfea4d9d.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/arcanadea.jpg",
-      "mime": "image/jpeg",
-      "bytes": 1286257,
+      "localPath": "assets/posters/arcanadea-v2.webp",
+      "mime": "image/webp",
+      "bytes": 571778,
       "width": 1415,
       "height": 2000,
       "aspectRatio": 0.708,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/arcanadea.jpg",
+      "originalBytes": 1286257,
+      "originalWidth": 1415,
+      "originalHeight": 2000,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "marriage-toxin-season-2",
       "sourceUrl": "https://static.animecorner.me/2026/06/1782826469-6873d9f2d5cec82832a7ba3a43d3242f.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/marriage-toxin-season-2.jpg",
-      "mime": "image/jpeg",
-      "bytes": 3782318,
-      "width": 5099,
-      "height": 7180,
+      "localPath": "assets/posters/marriage-toxin-season-2-v2.webp",
+      "mime": "image/webp",
+      "bytes": 605022,
+      "width": 1562,
+      "height": 2200,
       "aspectRatio": 0.71,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/marriage-toxin-season-2.jpg",
+      "originalBytes": 3782318,
+      "originalWidth": 5099,
+      "originalHeight": 7180,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "eleceed",
       "sourceUrl": "https://amuse-creative-studio.jp/wp-content/uploads/2025/06/ELECEED_KV_JPN%E8%BB%BD.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/eleceed.jpg",
-      "mime": "image/jpeg",
-      "bytes": 1592731,
-      "width": 5887,
-      "height": 8300,
+      "localPath": "assets/posters/eleceed-v2.webp",
+      "mime": "image/webp",
+      "bytes": 295894,
+      "width": 1560,
+      "height": 2200,
       "aspectRatio": 0.709,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/eleceed.jpg",
+      "originalBytes": 1592731,
+      "originalWidth": 5887,
+      "originalHeight": 8300,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "lona",
       "sourceUrl": "https://static.animecorner.me/2026/06/1782631833-28f2e398a102215f81d4f728306e614e.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/lona.jpg",
-      "mime": "image/jpeg",
-      "bytes": 1178249,
-      "width": 2898,
-      "height": 4096,
+      "localPath": "assets/posters/lona-v2.webp",
+      "mime": "image/webp",
+      "bytes": 334444,
+      "width": 1557,
+      "height": 2200,
       "aspectRatio": 0.708,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/lona.jpg",
+      "originalBytes": 1178249,
+      "originalWidth": 2898,
+      "originalHeight": 4096,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "kindergarten-wars",
       "sourceUrl": "https://static.animecorner.me/2026/03/1774748874-7358216b3d54d2da9966ab4851776292.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/kindergarten-wars.jpg",
-      "mime": "image/jpeg",
-      "bytes": 1515781,
-      "width": 2897,
-      "height": 4096,
+      "localPath": "assets/posters/kindergarten-wars-v2.webp",
+      "mime": "image/webp",
+      "bytes": 484166,
+      "width": 1556,
+      "height": 2200,
       "aspectRatio": 0.707,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/kindergarten-wars.jpg",
+      "originalBytes": 1515781,
+      "originalWidth": 2897,
+      "originalHeight": 4096,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "free-fire-daybreak",
       "sourceUrl": "https://dl.dir.freefiremobile.com/common/web_event/official2.ff.garena.all/20267/5b972bb62fa5e7f8da7832cf008667b0.jpeg",
       "originalUrl": null,
-      "localPath": "assets/posters/free-fire-daybreak.jpg",
-      "mime": "image/jpeg",
-      "bytes": 539942,
-      "width": 2048,
-      "height": 1446,
+      "localPath": "assets/posters/free-fire-daybreak-v2.webp",
+      "mime": "image/webp",
+      "bytes": 258822,
+      "width": 1600,
+      "height": 1130,
       "aspectRatio": 1.416,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/free-fire-daybreak.jpg",
+      "originalBytes": 539942,
+      "originalWidth": 2048,
+      "originalHeight": 1446,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "midnight-heart-tune-season-2",
       "sourceUrl": "https://static.animecorner.me/2026/07/1784388279-ebfc119ee109ba96c50e750ea5072ca1.png",
       "originalUrl": null,
-      "localPath": "assets/posters/midnight-heart-tune-season-2.webp",
+      "localPath": "assets/posters/midnight-heart-tune-season-2-v2.webp",
       "mime": "image/webp",
-      "bytes": 1633052,
+      "bytes": 321702,
       "width": 1220,
       "height": 1716,
       "aspectRatio": 0.711,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/midnight-heart-tune-season-2.webp",
+      "originalBytes": 1633052,
+      "originalWidth": 1220,
+      "originalHeight": 1716,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "gate-season-2",
       "sourceUrl": "https://www.gate2-alphapolis.com/img/anime_kv.png",
       "originalUrl": null,
-      "localPath": "assets/posters/gate-season-2.png",
-      "mime": "image/png",
-      "bytes": 32262608,
-      "width": 4547,
-      "height": 6201,
+      "localPath": "assets/posters/gate-season-2-v2.webp",
+      "mime": "image/webp",
+      "bytes": 487154,
+      "width": 1600,
+      "height": 2182,
       "aspectRatio": 0.733,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/gate-season-2.png",
+      "originalBytes": 32262608,
+      "originalWidth": 4547,
+      "originalHeight": 6201,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "dark-gathering-season-2",
       "sourceUrl": "https://img.league-funny.com/imgur/176164466332_o.png",
       "originalUrl": null,
-      "localPath": "assets/posters/dark-gathering-season-2.webp",
+      "localPath": "assets/posters/dark-gathering-season-2-v2.webp",
       "mime": "image/webp",
-      "bytes": 295588,
+      "bytes": 282324,
       "width": 1358,
       "height": 1920,
       "aspectRatio": 0.707,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/dark-gathering-season-2.webp",
+      "originalBytes": 295588,
+      "originalWidth": 1358,
+      "originalHeight": 1920,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "berserk-of-gluttony-season-2",
       "sourceUrl": "https://prcdn.freetls.fastly.net/release_image/48095/2813/48095-2813-f102eac672c87465b6ac1d57c54eb212-539x629.png?width=536&quality=85%2C75&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
       "originalUrl": null,
-      "localPath": "assets/posters/berserk-of-gluttony-season-2.webp",
+      "localPath": "assets/posters/berserk-of-gluttony-season-2-v2.webp",
       "mime": "image/webp",
-      "bytes": 33082,
+      "bytes": 39084,
       "width": 536,
       "height": 625,
       "aspectRatio": 0.858,
-      "notes": [
-        "moderate source resolution"
-      ]
+      "notes": [],
+      "originalLocalPath": "assets/posters/berserk-of-gluttony-season-2.webp",
+      "originalBytes": 33082,
+      "originalWidth": 536,
+      "originalHeight": 625,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "new-kochikame",
       "sourceUrl": "https://img.kai-you.net/storage/2025/12/10433e2e-5dbb-46f0-b783-ad7925fd7924/1040x643/kochikame_anime_new.webp",
       "originalUrl": null,
-      "localPath": "assets/posters/new-kochikame.webp",
+      "localPath": "assets/posters/new-kochikame-v2.webp",
       "mime": "image/webp",
-      "bytes": 834610,
+      "bytes": 149876,
       "width": 1040,
       "height": 643,
       "aspectRatio": 1.617,
       "notes": [
         "landscape visual; card crop should be visually reviewed"
-      ]
+      ],
+      "originalLocalPath": "assets/posters/new-kochikame.webp",
+      "originalBytes": 834610,
+      "originalWidth": 1040,
+      "originalHeight": 643,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "haikyu-monsters-go-where",
       "sourceUrl": "https://i.ytimg.com/vi/uEeZdVYu7AA/maxresdefault.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/haikyu-monsters-go-where.jpg",
-      "mime": "image/jpeg",
-      "bytes": 122071,
+      "localPath": "assets/posters/haikyu-monsters-go-where-v2.webp",
+      "mime": "image/webp",
+      "bytes": 50400,
       "width": 1280,
       "height": 720,
       "aspectRatio": 1.778,
       "notes": [
         "landscape visual; card crop should be visually reviewed"
-      ]
+      ],
+      "originalLocalPath": "assets/posters/haikyu-monsters-go-where.jpg",
+      "originalBytes": 122071,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "red-riding-hood-detective-story",
       "sourceUrl": "https://hermes.media.static.aol.com/media/2026/08/11/739299ed-cffe-3992-b413-9bea98cbea43/5b0eb0e2-d55e-4ab0-9734-c671285454b5.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/red-riding-hood-detective-story.jpg",
-      "mime": "image/jpeg",
-      "bytes": 39611,
+      "localPath": "assets/posters/red-riding-hood-detective-story-v2.webp",
+      "mime": "image/webp",
+      "bytes": 44144,
       "width": 800,
       "height": 450,
       "aspectRatio": 1.778,
       "notes": [
-        "landscape visual; card crop should be visually reviewed",
-        "moderate source resolution"
-      ]
+        "landscape visual; card crop should be visually reviewed"
+      ],
+      "originalLocalPath": "assets/posters/red-riding-hood-detective-story.jpg",
+      "originalBytes": 39611,
+      "originalWidth": 800,
+      "originalHeight": 450,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "seven-sleeping-beauties",
       "sourceUrl": "https://media.eiga.com/images/anime/program/113263/photo/6dad6ec9a24370c3.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/seven-sleeping-beauties.jpg",
-      "mime": "image/jpeg",
-      "bytes": 85186,
+      "localPath": "assets/posters/seven-sleeping-beauties-v2.webp",
+      "mime": "image/webp",
+      "bytes": 92224,
       "width": 448,
       "height": 640,
       "aspectRatio": 0.7,
-      "notes": [
-        "moderate source resolution"
-      ]
+      "notes": [],
+      "originalLocalPath": "assets/posters/seven-sleeping-beauties.jpg",
+      "originalBytes": 85186,
+      "originalWidth": 448,
+      "originalHeight": 640,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "fall-in-love-you-false-angels",
       "sourceUrl": "https://cimg.kgl-systems.io/camion/files/dengeki/78908/a4efdd2f969559e8b1c92e99f32ded48e.jpg?x=1280",
       "originalUrl": null,
-      "localPath": "assets/posters/fall-in-love-you-false-angels.jpg",
-      "mime": "image/jpeg",
-      "bytes": 415106,
+      "localPath": "assets/posters/fall-in-love-you-false-angels-v2.webp",
+      "mime": "image/webp",
+      "bytes": 378940,
       "width": 1280,
       "height": 1810,
       "aspectRatio": 0.707,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/fall-in-love-you-false-angels.jpg",
+      "originalBytes": 415106,
+      "originalWidth": 1280,
+      "originalHeight": 1810,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "the-strongest-magicmasters-retirement-plan",
       "sourceUrl": "https://us.oricon-group.com/upimg/detail/8000/8810/img660/The-Greatest-Magicmasters-Retirement-Plan-11.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/the-strongest-magicmasters-retirement-plan.jpg",
-      "mime": "image/jpeg",
-      "bytes": 98577,
+      "localPath": "assets/posters/the-strongest-magicmasters-retirement-plan-v2.webp",
+      "mime": "image/webp",
+      "bytes": 58474,
       "width": 660,
       "height": 660,
       "aspectRatio": 1,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/the-strongest-magicmasters-retirement-plan.jpg",
+      "originalBytes": 98577,
+      "originalWidth": 660,
+      "originalHeight": 660,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "nabe-ni-dangan",
       "sourceUrl": "https://a.storyblok.com/f/178900/800x450/37dbf101cf/nabe-ni-tama-o-ukenagara-manga.jpg/m/filters%3Aquality%2895%29format%28webp%29",
       "originalUrl": null,
-      "localPath": "assets/posters/nabe-ni-dangan.webp",
+      "localPath": "assets/posters/nabe-ni-dangan-v2.webp",
       "mime": "image/webp",
-      "bytes": 85490,
+      "bytes": 52072,
       "width": 800,
       "height": 450,
       "aspectRatio": 1.778,
       "notes": [
-        "landscape visual; card crop should be visually reviewed",
-        "moderate source resolution"
-      ]
+        "landscape visual; card crop should be visually reviewed"
+      ],
+      "originalLocalPath": "assets/posters/nabe-ni-dangan.webp",
+      "originalBytes": 85490,
+      "originalWidth": 800,
+      "originalHeight": 450,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "namidaame-to-serenade",
       "sourceUrl": "https://pbs.twimg.com/media/HBAr5LlbsAArH5O.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/namidaame-to-serenade.jpg",
-      "mime": "image/jpeg",
-      "bytes": 227128,
+      "localPath": "assets/posters/namidaame-to-serenade-v2.webp",
+      "mime": "image/webp",
+      "bytes": 194464,
       "width": 759,
       "height": 1200,
       "aspectRatio": 0.632,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/namidaame-to-serenade.jpg",
+      "originalBytes": 227128,
+      "originalWidth": 759,
+      "originalHeight": 1200,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "true-saint-banished-country-done-for",
       "sourceUrl": "https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2026/07/Because-I-the-True-Saint-was-Banished-that-Country-is-Done-For-teaser-visual-1-e1784804391961.jpg?resize=696%2C391&ssl=1",
       "originalUrl": null,
-      "localPath": "assets/posters/true-saint-banished-country-done-for.webp",
+      "localPath": "assets/posters/true-saint-banished-country-done-for-v2.webp",
       "mime": "image/webp",
-      "bytes": 41248,
+      "bytes": 45030,
       "width": 696,
       "height": 391,
       "aspectRatio": 1.78,
       "notes": [
-        "landscape visual; card crop should be visually reviewed",
-        "moderate source resolution"
-      ]
+        "landscape visual; card crop should be visually reviewed"
+      ],
+      "originalLocalPath": "assets/posters/true-saint-banished-country-done-for.webp",
+      "originalBytes": 41248,
+      "originalWidth": 696,
+      "originalHeight": 391,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "studio-cabana",
       "sourceUrl": "https://a.storyblok.com/f/178900/1064x1505/f9dbb45439/studio-cabana-teaser-visual.jpg/m/filters%3Aquality%2895%29format%28webp%29",
       "originalUrl": null,
-      "localPath": "assets/posters/studio-cabana.webp",
+      "localPath": "assets/posters/studio-cabana-v2.webp",
       "mime": "image/webp",
-      "bytes": 219992,
+      "bytes": 121304,
       "width": 1064,
       "height": 1505,
       "aspectRatio": 0.707,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/studio-cabana.webp",
+      "originalBytes": 219992,
+      "originalWidth": 1064,
+      "originalHeight": 1505,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "soara-and-the-house-of-monsters",
       "sourceUrl": "https://img2.animatetimes.com/2026/07/b84d1f9cc9ee36c2b2a8ed919e540ff56a45be43896649_22166543_dcebe6e8c0dec40c76ac2986832ca5e0f7a6179d.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/soara-and-the-house-of-monsters.webp",
+      "localPath": "assets/posters/soara-and-the-house-of-monsters-v2.webp",
       "mime": "image/webp",
-      "bytes": 77408,
+      "bytes": 64306,
       "width": 453,
       "height": 640,
       "aspectRatio": 0.708,
-      "notes": [
-        "moderate source resolution"
-      ]
+      "notes": [],
+      "originalLocalPath": "assets/posters/soara-and-the-house-of-monsters.webp",
+      "originalBytes": 77408,
+      "originalWidth": 453,
+      "originalHeight": 640,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "dengeki-daisy",
       "sourceUrl": "https://cimg.kgl-systems.io/camion/files/77669/thumbnail_FBMS.jpg?x=1280",
       "originalUrl": null,
-      "localPath": "assets/posters/dengeki-daisy.jpg",
-      "mime": "image/jpeg",
-      "bytes": 107461,
+      "localPath": "assets/posters/dengeki-daisy-v2.webp",
+      "mime": "image/webp",
+      "bytes": 85246,
       "width": 1280,
       "height": 720,
       "aspectRatio": 1.778,
       "notes": [
         "landscape visual; card crop should be visually reviewed"
-      ]
+      ],
+      "originalLocalPath": "assets/posters/dengeki-daisy.jpg",
+      "originalBytes": 107461,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "magic-to-the-limit-reincarnated-elf",
       "sourceUrl": "https://www.anitrendz.com/_next/image?q=75&url=https%3A%2F%2Fi0.wp.com%2Fanitrendz.net%2Fnews%2Fwp-content%2Fuploads%2F2026%2F06%2FMajutsu-o-Kiwamete-Tabi-ni-Deta-Tensei-Elf-teaser-visual-1-e1781777410350.jpg%3Ffit%3D1375%252C775%26ssl%3D1&w=1920",
       "originalUrl": null,
-      "localPath": "assets/posters/magic-to-the-limit-reincarnated-elf.webp",
+      "localPath": "assets/posters/magic-to-the-limit-reincarnated-elf-v2.webp",
       "mime": "image/webp",
-      "bytes": 237446,
+      "bytes": 272800,
       "width": 1375,
       "height": 775,
       "aspectRatio": 1.774,
       "notes": [
         "landscape visual; card crop should be visually reviewed"
-      ]
+      ],
+      "originalLocalPath": "assets/posters/magic-to-the-limit-reincarnated-elf.webp",
+      "originalBytes": 237446,
+      "originalWidth": 1375,
+      "originalHeight": 775,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "demons-are-plotting",
       "sourceUrl": "https://a.storyblok.com/f/178900/800x450/74ba1e42ac/the-demons-are-planning-something-good-header.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/demons-are-plotting.jpg",
-      "mime": "image/jpeg",
-      "bytes": 74255,
+      "localPath": "assets/posters/demons-are-plotting-v2.webp",
+      "mime": "image/webp",
+      "bytes": 81610,
       "width": 800,
       "height": 450,
       "aspectRatio": 1.778,
       "notes": [
-        "landscape visual; card crop should be visually reviewed",
-        "moderate source resolution"
-      ]
+        "landscape visual; card crop should be visually reviewed"
+      ],
+      "originalLocalPath": "assets/posters/demons-are-plotting.jpg",
+      "originalBytes": 74255,
+      "originalWidth": 800,
+      "originalHeight": 450,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "rebel-robotica",
       "sourceUrl": "https://a.storyblok.com/f/178900/849x1200/c041d9a70b/re-bel-robotica-teaser-visual.jpg/m/filters%3Aquality%2895%29format%28webp%29",
       "originalUrl": null,
-      "localPath": "assets/posters/rebel-robotica.webp",
+      "localPath": "assets/posters/rebel-robotica-v2.webp",
       "mime": "image/webp",
-      "bytes": 261948,
+      "bytes": 147656,
       "width": 849,
       "height": 1200,
       "aspectRatio": 0.708,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/rebel-robotica.webp",
+      "originalBytes": 261948,
+      "originalWidth": 849,
+      "originalHeight": 1200,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "beat-and-motion",
       "sourceUrl": "https://cimg.kgl-systems.io/camion/files/dengeki/78968/a51494b66b20eaec11fe501f5bdf797f4.jpg?x=1280",
       "originalUrl": null,
-      "localPath": "assets/posters/beat-and-motion.jpg",
-      "mime": "image/jpeg",
-      "bytes": 366003,
+      "localPath": "assets/posters/beat-and-motion-v2.webp",
+      "mime": "image/webp",
+      "bytes": 398856,
       "width": 906,
       "height": 1280,
       "aspectRatio": 0.708,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/beat-and-motion.jpg",
+      "originalBytes": 366003,
+      "originalWidth": 906,
+      "originalHeight": 1280,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "unlucky-to-strongest-man",
       "sourceUrl": "https://cimg.kgl-systems.io/camion/files/dengeki/79110/af647fc8454b907cab3e695005e0c02b2.jpg?x=1280",
       "originalUrl": null,
-      "localPath": "assets/posters/unlucky-to-strongest-man.jpg",
-      "mime": "image/jpeg",
-      "bytes": 84145,
+      "localPath": "assets/posters/unlucky-to-strongest-man-v2.webp",
+      "mime": "image/webp",
+      "bytes": 85226,
       "width": 506,
       "height": 720,
       "aspectRatio": 0.703,
-      "notes": [
-        "moderate source resolution"
-      ]
+      "notes": [],
+      "originalLocalPath": "assets/posters/unlucky-to-strongest-man.jpg",
+      "originalBytes": 84145,
+      "originalWidth": 506,
+      "originalHeight": 720,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "maiden-blood",
       "sourceUrl": "https://static.animecorner.me/2026/08/1787312176-864f9f0721cff3d73eeb79f589cb3f1f.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/maiden-blood.jpg",
-      "mime": "image/jpeg",
-      "bytes": 1638857,
+      "localPath": "assets/posters/maiden-blood-v2.webp",
+      "mime": "image/webp",
+      "bytes": 879070,
       "width": 1414,
       "height": 2000,
       "aspectRatio": 0.707,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/maiden-blood.jpg",
+      "originalBytes": 1638857,
+      "originalWidth": 1414,
+      "originalHeight": 2000,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "hokuto-no-ken-fist-of-the-north-star-part-2",
       "sourceUrl": "https://www.crank-in.net/img/db/232091129215404_650.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/hokuto-no-ken-fist-of-the-north-star-part-2.jpg",
-      "mime": "image/jpeg",
-      "bytes": 179485,
+      "localPath": "assets/posters/hokuto-no-ken-fist-of-the-north-star-part-2-v2.webp",
+      "mime": "image/webp",
+      "bytes": 120720,
       "width": 650,
       "height": 846,
       "aspectRatio": 0.768,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/hokuto-no-ken-fist-of-the-north-star-part-2.jpg",
+      "originalBytes": 179485,
+      "originalWidth": 650,
+      "originalHeight": 846,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "unrewarded-villager-a",
       "sourceUrl": "https://ogre.natalie.mu/media/news/comic/2025/0425/muabitoa_teaservisual.jpg?imdensity=1&impolicy=m&imwidth=750",
       "originalUrl": null,
-      "localPath": "assets/posters/unrewarded-villager-a.avif",
-      "mime": "image/avif",
-      "bytes": 13933,
-      "width": null,
-      "height": null,
-      "aspectRatio": null,
-      "notes": []
+      "localPath": "assets/posters/unrewarded-villager-a-v2.webp",
+      "mime": "image/webp",
+      "bytes": 37260,
+      "width": 750,
+      "height": 437,
+      "aspectRatio": 1.716,
+      "notes": [
+        "landscape visual; card crop should be visually reviewed"
+      ],
+      "originalLocalPath": "assets/posters/unrewarded-villager-a.avif",
+      "originalBytes": 13933,
+      "originalWidth": null,
+      "originalHeight": null,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     },
     {
       "id": "glasses-sometimes-yankee-kun",
       "sourceUrl": "https://static.animecorner.me/2026/08/1786408148-d067d587f0824651b71859ca772d44ce-724x1024.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/glasses-sometimes-yankee-kun.jpg",
-      "mime": "image/jpeg",
-      "bytes": 223915,
+      "localPath": "assets/posters/glasses-sometimes-yankee-kun-v2.webp",
+      "mime": "image/webp",
+      "bytes": 169188,
       "width": 724,
       "height": 1024,
       "aspectRatio": 0.707,
-      "notes": []
+      "notes": [],
+      "originalLocalPath": "assets/posters/glasses-sometimes-yankee-kun.jpg",
+      "originalBytes": 223915,
+      "originalWidth": 724,
+      "originalHeight": 1024,
+      "optimized": true,
+      "optimization": {
+        "format": "webp",
+        "quality": 86,
+        "maxWidth": 1600,
+        "maxHeight": 2200,
+        "withoutEnlargement": true
+      }
     }
-  ]
+  ],
+  "optimization": {
+    "format": "webp",
+    "quality": 86,
+    "maxWidth": 1600,
+    "maxHeight": 2200,
+    "optimizedCount": 48,
+    "sourceBytes": 55667738,
+    "optimizedBytes": 10601316,
+    "savedBytes": 45066422
+  }
 }
