@@ -39,14 +39,12 @@
   }
   function showRevealFocus(id) {
     requestAnimationFrame(() => {
+      document.querySelectorAll("#schedule .card.carousel-reveal-focus")
+        .forEach(card => card.classList.remove("carousel-reveal-focus"));
       const card = document.getElementById(`anime-${id}`);
       if (!card) return;
-      card.style.outline = "2px solid var(--accent)";
-      card.style.outlineOffset = "4px";
-      card.addEventListener("blur", () => {
-        card.style.removeProperty("outline");
-        card.style.removeProperty("outline-offset");
-      }, { once: true });
+      card.classList.add("carousel-reveal-focus");
+      card.addEventListener("blur", () => card.classList.remove("carousel-reveal-focus"), { once: true });
     });
   }
   function createCard(entry) {
