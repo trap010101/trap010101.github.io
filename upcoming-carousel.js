@@ -172,11 +172,16 @@
   }
   previous.addEventListener("click", () => move(-1));
   next.addEventListener("click", () => move(1));
+  document.addEventListener("keydown", event => {
+    if (event.key === "Tab") section.classList.add("is-keyboard-nav");
+  }, true);
   section.addEventListener("keydown", event => {
     if (event.altKey || event.ctrlKey || event.metaKey || !["ArrowLeft", "ArrowRight"].includes(event.key) || entries.length < 2) return;
+    section.classList.add("is-keyboard-nav");
     event.preventDefault(); move(event.key === "ArrowRight" ? 1 : -1);
   });
   stage.addEventListener("pointerdown", event => {
+    section.classList.remove("is-keyboard-nav");
     if (!event.isPrimary || event.button !== 0) return;
     gesture = { id: event.pointerId, x: event.clientX, y: event.clientY };
   });
