@@ -116,6 +116,75 @@
       },
       createdAt: "2026-09-04",
       updatedAt: "2026-09-04"
+    },
+    {
+      id: "banished-cheat-granting-mage-second-life",
+      title: {
+        ko: "추방된 치트 부여 마술사는 제멋대로 세컨드 라이프를 구가한다. ~나는 무기뿐만 아니라, 모든 것에 『강화 포인트』를 부여할 수 있고, 언제든지 효과를 해제할 수 있는데, 남은 사람들은 괜찮아?~",
+        ja: "追放されたチート付与魔術師は気ままなセカンドライフを謳歌する。 ～俺は武器だけじゃなく、あらゆるものに『強化ポイント』を付与できるし、俺の意思でいつでも効果を解除できるけど、残った人たち大丈夫？～",
+        en: "The Banished Cheat-Granting Mage Enjoys a Carefree Second Life"
+      },
+      aliases: [
+        "치트 부여",
+        "チー付与",
+        "Chii Fuyo"
+      ],
+      release: {
+        japan: {
+          status: "month",
+          year: 2026,
+          month: 10,
+          day: null
+        },
+        korea: null,
+        global: null
+      },
+      productionStatus: "scheduled",
+      season: "2026-fall",
+      format: "tv",
+      origin: "comic",
+      tags: ["new", "comic"],
+      poster: {
+        src: "https://sh-anime.shochiku.co.jp/chiifuyo-anime/common/images/top_fv_kv01.jpg",
+        position: "center top"
+      },
+      links: {
+        pv: "https://youtu.be/LBvebquURiU",
+        official: "https://sh-anime.shochiku.co.jp/chiifuyo-anime/",
+        streaming: null
+      },
+      streaming: {},
+      verification: {
+        verifiedAt: "2026-09-07",
+        sources: [
+          {
+            type: "official-site",
+            url: "https://sh-anime.shochiku.co.jp/chiifuyo-anime/onair",
+            label: "Official ON AIR — October 2026 on TV Tokyo network",
+            supports: ["release", "format"]
+          },
+          {
+            type: "official-site",
+            url: "https://sh-anime.shochiku.co.jp/chiifuyo-anime/",
+            label: "Official website",
+            supports: ["announcement", "release", "format", "poster"]
+          },
+          {
+            type: "official-site",
+            url: "https://sh-anime.shochiku.co.jp/chiifuyo-anime/news/29",
+            label: "Official news — Action PV",
+            supports: ["pv"]
+          },
+          {
+            type: "official-youtube",
+            url: "https://youtu.be/LBvebquURiU",
+            label: "SHOCHIKU anime Channel — Action PV",
+            supports: ["pv"]
+          }
+        ]
+      },
+      createdAt: "2026-09-07",
+      updatedAt: "2026-09-07"
     }
   ];
 
