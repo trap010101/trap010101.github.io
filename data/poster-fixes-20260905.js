@@ -71,7 +71,11 @@
       updatedAt: "2026-09-07"
     },
     "the-guy-she-was-interested-in-wasnt-a-guy-at-all": {
-      src: "assets/posters/the-guy-she-was-interested-in-wasnt-a-guy-at-all-v2.webp",
+      src: "assets/posters/the-guy-she-was-interested-in-wasnt-a-guy-at-all-user-20260907.webp",
+      updatedAt: "2026-09-07"
+    },
+    "im-a-reincarnated-goblin-any-questions": {
+      src: "assets/posters/im-a-reincarnated-goblin-any-questions-user-20260907.webp",
       updatedAt: "2026-09-07"
     },
     "chihara-san-is-she-a-landmine": {
