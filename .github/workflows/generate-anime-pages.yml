@@ -29,6 +29,7 @@ on:
       - "scripts/normalize-external-poster-urls.js"
       - "scripts/localize-external-posters.js"
       - "scripts/optimize-poster-assets.js"
+      - "scripts/bump-poster-fix-cache.js"
       - "anime-detail.css"
       - "anime-breadcrumb.css"
       - "detail-streaming-region.js"
@@ -59,11 +60,26 @@ jobs:
       - name: Localize and validate external poster assets
         run: node scripts/localize-external-posters.js
 
+      - name: Check whether poster optimization is needed
+        id: poster_opt
+        shell: bash
+        run: |
+          if node -e "const fs=require('fs');const p='data/poster-asset-audit.json';if(!fs.existsSync(p))process.exit(1);const a=JSON.parse(fs.readFileSync(p,'utf8'));process.exit(Array.isArray(a.posters)&&a.posters.some(x=>!x.optimized)?0:1)"; then
+            echo "needed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "needed=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Install poster optimizer
+        if: steps.poster_opt.outputs.needed == 'true'
         run: npm install --no-save --package-lock=false sharp
 
       - name: Optimize localized poster assets
+        if: steps.poster_opt.outputs.needed == 'true'
         run: node scripts/optimize-poster-assets.js
+
+      - name: Bump poster-fixes cache version
+        run: node scripts/bump-poster-fix-cache.js
 
       - name: Validate regional streaming data
         run: node scripts/validate-regional-streaming.js
@@ -101,5 +117,5 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Generate static anime pages and optimize posters [skip ci]"
+          git commit -m "Generate static anime pages and maintain poster assets [skip ci]"
           git push
