@@ -9,6 +9,12 @@
   const UPCOMING_WINDOW_DAYS = 30;
   const TYPES = new Set(["tv", "streaming", "theatrical", "ova", "special"]);
   const formatters = new Map();
+  const localeCodes = { ko: "ko-KR", ja: "ja-JP", en: "en-US" };
+  const zoneLabels = {
+    "Asia/Tokyo": { ko: "일본 표준시", ja: "日本標準時", en: "JST" },
+    "Asia/Seoul": { ko: "한국 표준시", ja: "韓国標準時", en: "KST" },
+    "UTC": { ko: "UTC", ja: "UTC", en: "UTC" }
+  };
   function dateParts(date) {
     if (typeof date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return null;
     const [y, m, d] = date.split("-").map(Number);
@@ -85,9 +91,35 @@
   function dateLabel(p, lang = "ko") {
     const date = dateParts(p.date);
     if (!date) return "";
-    return new Intl.DateTimeFormat({ ko: "ko-KR", ja: "ja-JP", en: "en-US" }[lang] || "en-US", {
+    return new Intl.DateTimeFormat(localeCodes[lang] || localeCodes.en, {
       timeZone: "UTC", year: "numeric", month: "short", day: "numeric"
     }).format(date.ms);
+  }
+  function timezoneLabel(timezone, lang = "ko") {
+    return zoneLabels[timezone]?.[lang] || timezone;
+  }
+  function presentation(timing, lang = "ko") {
+    if (!timing?.premiere) return { date: "", time: "", timezone: "" };
+    const p = timing.premiere;
+    if (!timing.exactTime) return { date: dateLabel(p, lang), time: "", timezone: "" };
+    if (lang === "ja") {
+      return {
+        date: dateLabel(p, lang),
+        time: p.displayTime || p.time || "",
+        timezone: timezoneLabel(p.timezone, lang)
+      };
+    }
+    const locale = localeCodes[lang] || localeCodes.en;
+    const instant = new Date(timing.timestamp);
+    return {
+      date: new Intl.DateTimeFormat(locale, {
+        timeZone: p.timezone, year: "numeric", month: "short", day: "numeric"
+      }).format(instant),
+      time: new Intl.DateTimeFormat(locale, {
+        timeZone: p.timezone, hour: "2-digit", minute: "2-digit", hourCycle: "h23"
+      }).format(instant),
+      timezone: timezoneLabel(p.timezone, lang)
+    };
   }
   function wrapIndex(index, total) { return total > 0 ? (index % total + total) % total : 0; }
   function slots(index, total) {
@@ -97,5 +129,5 @@
     if (total === 2) return [{ index: center, position: "center" }, { index: wrapIndex(center + 1, total), position: "right" }];
     return [{ index: wrapIndex(center - 1, total), position: "left" }, { index: center, position: "center" }, { index: wrapIndex(center + 1, total), position: "right" }];
   }
-  return { DAY, UPCOMING_WINDOW_DAYS, dateParts, civilDay, normalizePremiere, upcoming, countdown, dateLabel, wrapIndex, slots };
+  return { DAY, UPCOMING_WINDOW_DAYS, dateParts, civilDay, normalizePremiere, upcoming, countdown, dateLabel, timezoneLabel, presentation, wrapIndex, slots };
 });
