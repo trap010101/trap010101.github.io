@@ -1,0 +1,628 @@
+{
+  "auditedAt": "2026-09-07",
+  "count": 48,
+  "posters": [
+    {
+      "id": "ice-wall-season-2",
+      "sourceUrl": "https://spice.eplus.jp/images/qtx4Y66xNOJJ4Q1M1BA9hNseNoqVEj2wDWMNd1Qj3A26D1BMpCPtJ0u29NGOTmeS",
+      "originalUrl": null,
+      "localPath": "assets/posters/ice-wall-season-2.jpg",
+      "mime": "image/jpeg",
+      "bytes": 629857,
+      "width": 1400,
+      "height": 1979,
+      "aspectRatio": 0.707,
+      "notes": []
+    },
+    {
+      "id": "lent-magic-revolving-collection",
+      "sourceUrl": "https://www.booklive.co.jp/media/3XcFBQBBEioNeucsGiSf4I62VWq62NYEI6syr9Gs.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/lent-magic-revolving-collection.webp",
+      "mime": "image/webp",
+      "bytes": 335458,
+      "width": 2160,
+      "height": 3053,
+      "aspectRatio": 0.708,
+      "notes": []
+    },
+    {
+      "id": "overgeared-the-power-of-items",
+      "sourceUrl": "https://a.storyblok.com/f/178900/849x1200/78ea70222f/overgeared-key-visual.jpeg/m/filters%3Aquality%2895%29format%28webp%29",
+      "originalUrl": null,
+      "localPath": "assets/posters/overgeared-the-power-of-items.webp",
+      "mime": "image/webp",
+      "bytes": 224122,
+      "width": 849,
+      "height": 1200,
+      "aspectRatio": 0.708,
+      "notes": []
+    },
+    {
+      "id": "uncle-likes-cute-things",
+      "sourceUrl": "https://ojikawa.com/assets/img/ogp.jpg?ver=1.00",
+      "originalUrl": null,
+      "localPath": "assets/posters/uncle-likes-cute-things.jpg",
+      "mime": "image/jpeg",
+      "bytes": 110367,
+      "width": 1200,
+      "height": 630,
+      "aspectRatio": 1.905,
+      "notes": [
+        "landscape visual; card crop should be visually reviewed"
+      ]
+    },
+    {
+      "id": "mission-yozakura-family-season-2-part-2",
+      "sourceUrl": "https://img.anmosugoi.com/file/media-sugoi/2023/03/z7Yz7Q64-Yozakura-san-Chi-no-Daisakusen-visual.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/mission-yozakura-family-season-2-part-2.jpg",
+      "mime": "image/jpeg",
+      "bytes": 393328,
+      "width": 1200,
+      "height": 1542,
+      "aspectRatio": 0.778,
+      "notes": []
+    },
+    {
+      "id": "dragon-ball-super-beerus",
+      "sourceUrl": "https://unicornfantasian.com/ja/posts/anime-dragon-ball-super-beerus-hadir-sebagai-versi-disempurnakan/1000077468.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/dragon-ball-super-beerus.jpg",
+      "mime": "image/jpeg",
+      "bytes": 1158337,
+      "width": 2896,
+      "height": 4096,
+      "aspectRatio": 0.707,
+      "notes": []
+    },
+    {
+      "id": "zero-believers-goddess-isekai-strategy",
+      "sourceUrl": "https://ogre.natalie.mu/media/news/comic/2020/0424/shinjazeromegami_key.jpg?imdensity=1&imwidth=750",
+      "originalUrl": null,
+      "localPath": "assets/posters/zero-believers-goddess-isekai-strategy.webp",
+      "mime": "image/webp",
+      "bytes": 101186,
+      "width": 750,
+      "height": 1061,
+      "aspectRatio": 0.707,
+      "notes": []
+    },
+    {
+      "id": "romelia-war-chronicle",
+      "sourceUrl": "https://media.eiga.com/images/anime/news/126175/photo/4f858b3b142da5e6/640.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/romelia-war-chronicle.jpg",
+      "mime": "image/jpeg",
+      "bytes": 59204,
+      "width": 452,
+      "height": 640,
+      "aspectRatio": 0.706,
+      "notes": [
+        "moderate source resolution"
+      ]
+    },
+    {
+      "id": "hotel-inhumans-season-2",
+      "sourceUrl": "https://static.animecorner.me/2026/03/1773067607-f968d699022dd5c7c9c5b8885cb421e8.jpg",
+      "originalUrl": "https://hotel-inhumans.com/images/news/news-260306-1.jpg",
+      "localPath": "assets/posters/hotel-inhumans-season-2.jpg",
+      "mime": "image/jpeg",
+      "bytes": 1009154,
+      "width": 2898,
+      "height": 4096,
+      "aspectRatio": 0.708,
+      "notes": [
+        "original host was unreachable from GitHub runner; stable mirror source used for archiving"
+      ]
+    },
+    {
+      "id": "a-wild-last-boss-appeared-season-2",
+      "sourceUrl": "https://cimg.kgl-systems.io/camion/files/61321/ogp_dNFP.jpg?x=1280",
+      "originalUrl": null,
+      "localPath": "assets/posters/a-wild-last-boss-appeared-season-2.jpg",
+      "mime": "image/jpeg",
+      "bytes": 86744,
+      "width": 804,
+      "height": 452,
+      "aspectRatio": 1.779,
+      "notes": [
+        "landscape visual; card crop should be visually reviewed",
+        "moderate source resolution"
+      ]
+    },
+    {
+      "id": "the-witch-was-asked-for-a-love-potion",
+      "sourceUrl": "https://horemajo-anime.com/core_sys/images/others/ogp.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/the-witch-was-asked-for-a-love-potion.jpg",
+      "mime": "image/jpeg",
+      "bytes": 323680,
+      "width": 1200,
+      "height": 630,
+      "aspectRatio": 1.905,
+      "notes": [
+        "landscape visual; card crop should be visually reviewed"
+      ]
+    },
+    {
+      "id": "with-vengeance-sincerely-your-broken-saintess-season-2",
+      "sourceUrl": "https://shikimori.io/uploads/poster/animes/64180/main_alt_2x-2faf91acf694c97dbf81143989410106.jpeg",
+      "originalUrl": null,
+      "localPath": "assets/posters/with-vengeance-sincerely-your-broken-saintess-season-2.jpg",
+      "mime": "image/jpeg",
+      "bytes": 119523,
+      "width": 450,
+      "height": 638,
+      "aspectRatio": 0.705,
+      "notes": [
+        "moderate source resolution"
+      ]
+    },
+    {
+      "id": "ace-of-diamond-act-ii-second-season-part-2",
+      "sourceUrl": "https://berita.jepang.org/s/common/uploaded_files/1782655300-99607ddffafc1c8619a6281358ec5c19.jpeg",
+      "originalUrl": null,
+      "localPath": "assets/posters/ace-of-diamond-act-ii-second-season-part-2.jpg",
+      "mime": "image/jpeg",
+      "bytes": 505983,
+      "width": 1460,
+      "height": 2063,
+      "aspectRatio": 0.708,
+      "notes": []
+    },
+    {
+      "id": "prince-of-tennis-u17-world-cup-final-members-selection",
+      "sourceUrl": "https://img2.animatetimes.com/2025/09/d542bf8cff95fc16d77fcbd9ec8ca4036a5ed2f7b02477_62376358_512a62fe3953852ebeee0e76d6763e6e811977bc.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/prince-of-tennis-u17-world-cup-final-members-selection.webp",
+      "mime": "image/webp",
+      "bytes": 97654,
+      "width": 449,
+      "height": 640,
+      "aspectRatio": 0.702,
+      "notes": [
+        "moderate source resolution"
+      ]
+    },
+    {
+      "id": "appraisal-skill-season-3",
+      "sourceUrl": "https://pbs.twimg.com/media/HFXx06_aAAE0E-_.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/appraisal-skill-season-3.jpg",
+      "mime": "image/jpeg",
+      "bytes": 250234,
+      "width": 960,
+      "height": 1200,
+      "aspectRatio": 0.8,
+      "notes": []
+    },
+    {
+      "id": "the-guy-she-was-interested-in-wasnt-a-guy-at-all",
+      "sourceUrl": "https://pbs.twimg.com/profile_banners/2058852828152729600/1783114799",
+      "originalUrl": null,
+      "localPath": "assets/posters/the-guy-she-was-interested-in-wasnt-a-guy-at-all.jpg",
+      "mime": "image/jpeg",
+      "bytes": 166533,
+      "width": 1500,
+      "height": 500,
+      "aspectRatio": 3,
+      "notes": [
+        "landscape visual; card crop should be visually reviewed",
+        "moderate source resolution"
+      ]
+    },
+    {
+      "id": "chihara-san-is-she-a-landmine",
+      "sourceUrl": "https://berita.jepang.org/s/common/uploaded_files/1766655595-41d293aa0dc0b1ccb687e9fe185a9dbd.jpeg",
+      "originalUrl": null,
+      "localPath": "assets/posters/chihara-san-is-she-a-landmine.jpg",
+      "mime": "image/jpeg",
+      "bytes": 542891,
+      "width": 1412,
+      "height": 2000,
+      "aspectRatio": 0.706,
+      "notes": []
+    },
+    {
+      "id": "arcanadea",
+      "sourceUrl": "https://static.animecorner.me/2025/03/1741946625-7c8a33fcd369d2647f31dbf8dfea4d9d.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/arcanadea.jpg",
+      "mime": "image/jpeg",
+      "bytes": 1286257,
+      "width": 1415,
+      "height": 2000,
+      "aspectRatio": 0.708,
+      "notes": []
+    },
+    {
+      "id": "marriage-toxin-season-2",
+      "sourceUrl": "https://static.animecorner.me/2026/06/1782826469-6873d9f2d5cec82832a7ba3a43d3242f.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/marriage-toxin-season-2.jpg",
+      "mime": "image/jpeg",
+      "bytes": 3782318,
+      "width": 5099,
+      "height": 7180,
+      "aspectRatio": 0.71,
+      "notes": []
+    },
+    {
+      "id": "eleceed",
+      "sourceUrl": "https://amuse-creative-studio.jp/wp-content/uploads/2025/06/ELECEED_KV_JPN%E8%BB%BD.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/eleceed.jpg",
+      "mime": "image/jpeg",
+      "bytes": 1592731,
+      "width": 5887,
+      "height": 8300,
+      "aspectRatio": 0.709,
+      "notes": []
+    },
+    {
+      "id": "lona",
+      "sourceUrl": "https://static.animecorner.me/2026/06/1782631833-28f2e398a102215f81d4f728306e614e.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/lona.jpg",
+      "mime": "image/jpeg",
+      "bytes": 1178249,
+      "width": 2898,
+      "height": 4096,
+      "aspectRatio": 0.708,
+      "notes": []
+    },
+    {
+      "id": "kindergarten-wars",
+      "sourceUrl": "https://static.animecorner.me/2026/03/1774748874-7358216b3d54d2da9966ab4851776292.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/kindergarten-wars.jpg",
+      "mime": "image/jpeg",
+      "bytes": 1515781,
+      "width": 2897,
+      "height": 4096,
+      "aspectRatio": 0.707,
+      "notes": []
+    },
+    {
+      "id": "free-fire-daybreak",
+      "sourceUrl": "https://dl.dir.freefiremobile.com/common/web_event/official2.ff.garena.all/20267/5b972bb62fa5e7f8da7832cf008667b0.jpeg",
+      "originalUrl": null,
+      "localPath": "assets/posters/free-fire-daybreak.jpg",
+      "mime": "image/jpeg",
+      "bytes": 539942,
+      "width": 2048,
+      "height": 1446,
+      "aspectRatio": 1.416,
+      "notes": []
+    },
+    {
+      "id": "midnight-heart-tune-season-2",
+      "sourceUrl": "https://static.animecorner.me/2026/07/1784388279-ebfc119ee109ba96c50e750ea5072ca1.png",
+      "originalUrl": null,
+      "localPath": "assets/posters/midnight-heart-tune-season-2.webp",
+      "mime": "image/webp",
+      "bytes": 1633052,
+      "width": 1220,
+      "height": 1716,
+      "aspectRatio": 0.711,
+      "notes": []
+    },
+    {
+      "id": "gate-season-2",
+      "sourceUrl": "https://www.gate2-alphapolis.com/img/anime_kv.png",
+      "originalUrl": null,
+      "localPath": "assets/posters/gate-season-2.png",
+      "mime": "image/png",
+      "bytes": 32262608,
+      "width": 4547,
+      "height": 6201,
+      "aspectRatio": 0.733,
+      "notes": []
+    },
+    {
+      "id": "dark-gathering-season-2",
+      "sourceUrl": "https://img.league-funny.com/imgur/176164466332_o.png",
+      "originalUrl": null,
+      "localPath": "assets/posters/dark-gathering-season-2.webp",
+      "mime": "image/webp",
+      "bytes": 295588,
+      "width": 1358,
+      "height": 1920,
+      "aspectRatio": 0.707,
+      "notes": []
+    },
+    {
+      "id": "berserk-of-gluttony-season-2",
+      "sourceUrl": "https://prcdn.freetls.fastly.net/release_image/48095/2813/48095-2813-f102eac672c87465b6ac1d57c54eb212-539x629.png?width=536&quality=85%2C75&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+      "originalUrl": null,
+      "localPath": "assets/posters/berserk-of-gluttony-season-2.webp",
+      "mime": "image/webp",
+      "bytes": 33082,
+      "width": 536,
+      "height": 625,
+      "aspectRatio": 0.858,
+      "notes": [
+        "moderate source resolution"
+      ]
+    },
+    {
+      "id": "new-kochikame",
+      "sourceUrl": "https://img.kai-you.net/storage/2025/12/10433e2e-5dbb-46f0-b783-ad7925fd7924/1040x643/kochikame_anime_new.webp",
+      "originalUrl": null,
+      "localPath": "assets/posters/new-kochikame.webp",
+      "mime": "image/webp",
+      "bytes": 834610,
+      "width": 1040,
+      "height": 643,
+      "aspectRatio": 1.617,
+      "notes": [
+        "landscape visual; card crop should be visually reviewed"
+      ]
+    },
+    {
+      "id": "haikyu-monsters-go-where",
+      "sourceUrl": "https://i.ytimg.com/vi/uEeZdVYu7AA/maxresdefault.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/haikyu-monsters-go-where.jpg",
+      "mime": "image/jpeg",
+      "bytes": 122071,
+      "width": 1280,
+      "height": 720,
+      "aspectRatio": 1.778,
+      "notes": [
+        "landscape visual; card crop should be visually reviewed"
+      ]
+    },
+    {
+      "id": "red-riding-hood-detective-story",
+      "sourceUrl": "https://hermes.media.static.aol.com/media/2026/08/11/739299ed-cffe-3992-b413-9bea98cbea43/5b0eb0e2-d55e-4ab0-9734-c671285454b5.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/red-riding-hood-detective-story.jpg",
+      "mime": "image/jpeg",
+      "bytes": 39611,
+      "width": 800,
+      "height": 450,
+      "aspectRatio": 1.778,
+      "notes": [
+        "landscape visual; card crop should be visually reviewed",
+        "moderate source resolution"
+      ]
+    },
+    {
+      "id": "seven-sleeping-beauties",
+      "sourceUrl": "https://media.eiga.com/images/anime/program/113263/photo/6dad6ec9a24370c3.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/seven-sleeping-beauties.jpg",
+      "mime": "image/jpeg",
+      "bytes": 85186,
+      "width": 448,
+      "height": 640,
+      "aspectRatio": 0.7,
+      "notes": [
+        "moderate source resolution"
+      ]
+    },
+    {
+      "id": "fall-in-love-you-false-angels",
+      "sourceUrl": "https://cimg.kgl-systems.io/camion/files/dengeki/78908/a4efdd2f969559e8b1c92e99f32ded48e.jpg?x=1280",
+      "originalUrl": null,
+      "localPath": "assets/posters/fall-in-love-you-false-angels.jpg",
+      "mime": "image/jpeg",
+      "bytes": 415106,
+      "width": 1280,
+      "height": 1810,
+      "aspectRatio": 0.707,
+      "notes": []
+    },
+    {
+      "id": "the-strongest-magicmasters-retirement-plan",
+      "sourceUrl": "https://us.oricon-group.com/upimg/detail/8000/8810/img660/The-Greatest-Magicmasters-Retirement-Plan-11.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/the-strongest-magicmasters-retirement-plan.jpg",
+      "mime": "image/jpeg",
+      "bytes": 98577,
+      "width": 660,
+      "height": 660,
+      "aspectRatio": 1,
+      "notes": []
+    },
+    {
+      "id": "nabe-ni-dangan",
+      "sourceUrl": "https://a.storyblok.com/f/178900/800x450/37dbf101cf/nabe-ni-tama-o-ukenagara-manga.jpg/m/filters%3Aquality%2895%29format%28webp%29",
+      "originalUrl": null,
+      "localPath": "assets/posters/nabe-ni-dangan.webp",
+      "mime": "image/webp",
+      "bytes": 85490,
+      "width": 800,
+      "height": 450,
+      "aspectRatio": 1.778,
+      "notes": [
+        "landscape visual; card crop should be visually reviewed",
+        "moderate source resolution"
+      ]
+    },
+    {
+      "id": "namidaame-to-serenade",
+      "sourceUrl": "https://pbs.twimg.com/media/HBAr5LlbsAArH5O.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/namidaame-to-serenade.jpg",
+      "mime": "image/jpeg",
+      "bytes": 227128,
+      "width": 759,
+      "height": 1200,
+      "aspectRatio": 0.632,
+      "notes": []
+    },
+    {
+      "id": "true-saint-banished-country-done-for",
+      "sourceUrl": "https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2026/07/Because-I-the-True-Saint-was-Banished-that-Country-is-Done-For-teaser-visual-1-e1784804391961.jpg?resize=696%2C391&ssl=1",
+      "originalUrl": null,
+      "localPath": "assets/posters/true-saint-banished-country-done-for.webp",
+      "mime": "image/webp",
+      "bytes": 41248,
+      "width": 696,
+      "height": 391,
+      "aspectRatio": 1.78,
+      "notes": [
+        "landscape visual; card crop should be visually reviewed",
+        "moderate source resolution"
+      ]
+    },
+    {
+      "id": "studio-cabana",
+      "sourceUrl": "https://a.storyblok.com/f/178900/1064x1505/f9dbb45439/studio-cabana-teaser-visual.jpg/m/filters%3Aquality%2895%29format%28webp%29",
+      "originalUrl": null,
+      "localPath": "assets/posters/studio-cabana.webp",
+      "mime": "image/webp",
+      "bytes": 219992,
+      "width": 1064,
+      "height": 1505,
+      "aspectRatio": 0.707,
+      "notes": []
+    },
+    {
+      "id": "soara-and-the-house-of-monsters",
+      "sourceUrl": "https://img2.animatetimes.com/2026/07/b84d1f9cc9ee36c2b2a8ed919e540ff56a45be43896649_22166543_dcebe6e8c0dec40c76ac2986832ca5e0f7a6179d.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/soara-and-the-house-of-monsters.webp",
+      "mime": "image/webp",
+      "bytes": 77408,
+      "width": 453,
+      "height": 640,
+      "aspectRatio": 0.708,
+      "notes": [
+        "moderate source resolution"
+      ]
+    },
+    {
+      "id": "dengeki-daisy",
+      "sourceUrl": "https://cimg.kgl-systems.io/camion/files/77669/thumbnail_FBMS.jpg?x=1280",
+      "originalUrl": null,
+      "localPath": "assets/posters/dengeki-daisy.jpg",
+      "mime": "image/jpeg",
+      "bytes": 107461,
+      "width": 1280,
+      "height": 720,
+      "aspectRatio": 1.778,
+      "notes": [
+        "landscape visual; card crop should be visually reviewed"
+      ]
+    },
+    {
+      "id": "magic-to-the-limit-reincarnated-elf",
+      "sourceUrl": "https://www.anitrendz.com/_next/image?q=75&url=https%3A%2F%2Fi0.wp.com%2Fanitrendz.net%2Fnews%2Fwp-content%2Fuploads%2F2026%2F06%2FMajutsu-o-Kiwamete-Tabi-ni-Deta-Tensei-Elf-teaser-visual-1-e1781777410350.jpg%3Ffit%3D1375%252C775%26ssl%3D1&w=1920",
+      "originalUrl": null,
+      "localPath": "assets/posters/magic-to-the-limit-reincarnated-elf.webp",
+      "mime": "image/webp",
+      "bytes": 237446,
+      "width": 1375,
+      "height": 775,
+      "aspectRatio": 1.774,
+      "notes": [
+        "landscape visual; card crop should be visually reviewed"
+      ]
+    },
+    {
+      "id": "demons-are-plotting",
+      "sourceUrl": "https://a.storyblok.com/f/178900/800x450/74ba1e42ac/the-demons-are-planning-something-good-header.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/demons-are-plotting.jpg",
+      "mime": "image/jpeg",
+      "bytes": 74255,
+      "width": 800,
+      "height": 450,
+      "aspectRatio": 1.778,
+      "notes": [
+        "landscape visual; card crop should be visually reviewed",
+        "moderate source resolution"
+      ]
+    },
+    {
+      "id": "rebel-robotica",
+      "sourceUrl": "https://a.storyblok.com/f/178900/849x1200/c041d9a70b/re-bel-robotica-teaser-visual.jpg/m/filters%3Aquality%2895%29format%28webp%29",
+      "originalUrl": null,
+      "localPath": "assets/posters/rebel-robotica.webp",
+      "mime": "image/webp",
+      "bytes": 261948,
+      "width": 849,
+      "height": 1200,
+      "aspectRatio": 0.708,
+      "notes": []
+    },
+    {
+      "id": "beat-and-motion",
+      "sourceUrl": "https://cimg.kgl-systems.io/camion/files/dengeki/78968/a51494b66b20eaec11fe501f5bdf797f4.jpg?x=1280",
+      "originalUrl": null,
+      "localPath": "assets/posters/beat-and-motion.jpg",
+      "mime": "image/jpeg",
+      "bytes": 366003,
+      "width": 906,
+      "height": 1280,
+      "aspectRatio": 0.708,
+      "notes": []
+    },
+    {
+      "id": "unlucky-to-strongest-man",
+      "sourceUrl": "https://cimg.kgl-systems.io/camion/files/dengeki/79110/af647fc8454b907cab3e695005e0c02b2.jpg?x=1280",
+      "originalUrl": null,
+      "localPath": "assets/posters/unlucky-to-strongest-man.jpg",
+      "mime": "image/jpeg",
+      "bytes": 84145,
+      "width": 506,
+      "height": 720,
+      "aspectRatio": 0.703,
+      "notes": [
+        "moderate source resolution"
+      ]
+    },
+    {
+      "id": "maiden-blood",
+      "sourceUrl": "https://static.animecorner.me/2026/08/1787312176-864f9f0721cff3d73eeb79f589cb3f1f.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/maiden-blood.jpg",
+      "mime": "image/jpeg",
+      "bytes": 1638857,
+      "width": 1414,
+      "height": 2000,
+      "aspectRatio": 0.707,
+      "notes": []
+    },
+    {
+      "id": "hokuto-no-ken-fist-of-the-north-star-part-2",
+      "sourceUrl": "https://www.crank-in.net/img/db/232091129215404_650.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/hokuto-no-ken-fist-of-the-north-star-part-2.jpg",
+      "mime": "image/jpeg",
+      "bytes": 179485,
+      "width": 650,
+      "height": 846,
+      "aspectRatio": 0.768,
+      "notes": []
+    },
+    {
+      "id": "unrewarded-villager-a",
+      "sourceUrl": "https://ogre.natalie.mu/media/news/comic/2025/0425/muabitoa_teaservisual.jpg?imdensity=1&impolicy=m&imwidth=750",
+      "originalUrl": null,
+      "localPath": "assets/posters/unrewarded-villager-a.avif",
+      "mime": "image/avif",
+      "bytes": 13933,
+      "width": null,
+      "height": null,
+      "aspectRatio": null,
+      "notes": []
+    },
+    {
+      "id": "glasses-sometimes-yankee-kun",
+      "sourceUrl": "https://static.animecorner.me/2026/08/1786408148-d067d587f0824651b71859ca772d44ce-724x1024.jpg",
+      "originalUrl": null,
+      "localPath": "assets/posters/glasses-sometimes-yankee-kun.jpg",
+      "mime": "image/jpeg",
+      "bytes": 223915,
+      "width": 724,
+      "height": 1024,
+      "aspectRatio": 0.707,
+      "notes": []
+    }
+  ]
+}
