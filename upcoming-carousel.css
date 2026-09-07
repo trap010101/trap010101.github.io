@@ -8,16 +8,17 @@
 .upcoming-controls svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .upcoming-position { color: var(--muted); font-size: .875rem; font-variant-numeric: tabular-nums; min-width: 4em; text-align: center; }
 .upcoming-stage { position: relative; height: 440px; overflow: hidden; perspective: 1000px; touch-action: pan-y pinch-zoom; isolation: isolate; }
-.upcoming-slide { position: absolute; top: 18px; left: 50%; width: 250px; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: #151923; color: var(--text); text-align: left; font: inherit; cursor: pointer; overflow: hidden; box-shadow: 0 16px 32px #0006; transform: translateX(-50%) scale(.75); opacity: 0; visibility: hidden; transition: transform 320ms ease, opacity 320ms ease; -webkit-tap-highlight-color: transparent; appearance: none; }
-/* Isolate carousel cards from the site's generic button hover/focus treatment. Pointer/touch interaction should not visually restyle the card. */
-.upcoming-slide:hover,
-.upcoming-slide:active,
-.upcoming-slide:focus { background: #151923; }
-.upcoming-slide:focus { outline: none; }
-.upcoming-slide:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.upcoming-slide { position: absolute; top: 18px; left: 50%; width: 250px; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: #151923; color: var(--text); text-align: left; font: inherit; cursor: pointer; overflow: hidden; box-shadow: 0 16px 32px #0006; transform: translateX(-50%) scale(.75); opacity: 0; visibility: hidden; transition: transform 320ms ease, opacity 320ms ease; -webkit-tap-highlight-color: transparent; appearance: none; outline: none; }
+/* Carousel cards keep exactly the same visual state for mouse/touch press, focus and emulated mobile hover. */
+.upcoming-slide:is(:hover, :active, :focus, :focus-visible) { background: #151923; outline: none; }
 .upcoming-slide[data-position="center"] { transform: translateX(-50%); opacity: 1; visibility: visible; z-index: 3; border-color: #8ea1ff66; box-shadow: 0 18px 38px #0008; }
+.upcoming-slide[data-position="center"]:is(:hover, :active, :focus, :focus-visible) { transform: translateX(-50%); }
 .upcoming-slide[data-position="left"] { transform: translateX(calc(-50% - 230px)) translateZ(-70px) rotateY(16deg) scale(.85); opacity: .72; visibility: visible; z-index: 1; }
+.upcoming-slide[data-position="left"]:is(:hover, :active, :focus, :focus-visible) { transform: translateX(calc(-50% - 230px)) translateZ(-70px) rotateY(16deg) scale(.85); }
 .upcoming-slide[data-position="right"] { transform: translateX(calc(-50% + 230px)) translateZ(-70px) rotateY(-16deg) scale(.85); opacity: .72; visibility: visible; z-index: 1; }
+.upcoming-slide[data-position="right"]:is(:hover, :active, :focus, :focus-visible) { transform: translateX(calc(-50% + 230px)) translateZ(-70px) rotateY(-16deg) scale(.85); }
+/* Focus indication is opt-in only when the carousel has detected keyboard navigation. */
+.upcoming.is-keyboard-nav .upcoming-slide:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .upcoming-slide[data-position="offstage"] { pointer-events: none; }
 .upcoming-poster { display: block; position: relative; height: 220px; background: #202637; overflow: hidden; }
 .upcoming-poster img { display: block; position: relative; width: 100%; height: 100%; object-fit: cover; user-select: none; }
@@ -42,8 +43,10 @@
   .upcoming-stage { height: 420px; }
   .upcoming-slide { width: min(230px, 72%); }
   .upcoming-poster { height: 200px; }
-  .upcoming-slide[data-position="left"] { transform: translateX(calc(-50% - 155px)) translateZ(-50px) rotateY(12deg) scale(.84); }
-  .upcoming-slide[data-position="right"] { transform: translateX(calc(-50% + 155px)) translateZ(-50px) rotateY(-12deg) scale(.84); }
+  .upcoming-slide[data-position="left"],
+  .upcoming-slide[data-position="left"]:is(:hover, :active, :focus, :focus-visible) { transform: translateX(calc(-50% - 155px)) translateZ(-50px) rotateY(12deg) scale(.84); }
+  .upcoming-slide[data-position="right"],
+  .upcoming-slide[data-position="right"]:is(:hover, :active, :focus, :focus-visible) { transform: translateX(calc(-50% + 155px)) translateZ(-50px) rotateY(-12deg) scale(.84); }
   .upcoming-slide:is([data-position="left"], [data-position="right"]) .upcoming-poster { filter: blur(.6px) brightness(.8); }
   .upcoming-countdown { font-size: 1.375rem; }
 }
