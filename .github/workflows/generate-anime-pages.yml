@@ -26,6 +26,7 @@ on:
       - "scripts/enhance-anime-seo.js"
       - "scripts/normalize-seo-defaults.js"
       - "scripts/inject-title-wrap-css.js"
+      - "scripts/normalize-external-poster-urls.js"
       - "anime-detail.css"
       - "anime-breadcrumb.css"
       - "detail-streaming-region.js"
@@ -76,6 +77,9 @@ jobs:
 
       - name: Apply anime title wrapping styles
         run: node scripts/inject-title-wrap-css.js
+
+      - name: Normalize external poster URLs
+        run: node scripts/normalize-external-poster-urls.js
 
       - name: Commit generated pages
         run: |
