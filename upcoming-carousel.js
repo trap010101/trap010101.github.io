@@ -30,12 +30,12 @@
   }
   function dateText(entry) {
     const p = entry.timing.premiere;
-    // Official notation is independent of the normalized instant; films never show midnight.
-    const clock = p.type !== "theatrical" && p.time !== null ? ` ${p.displayTime || p.time}` : "";
-    const zone = clock ? ` (${p.timezone === "Asia/Tokyo" ? "JST" : p.timezone})` : "";
+    const shown = S.presentation(entry.timing, lang());
+    const clock = shown.time ? ` ${shown.time}` : "";
+    const zone = shown.time && shown.timezone ? ` (${shown.timezone})` : "";
     const today = S.countdown(entry.timing, Date.now(), true).kind === "today";
     const release = today ? text(`upcomingToday${p.type === "tv" ? "Air" : p.type === "theatrical" ? "Open" : "Release"}`) : action(p.type);
-    return `${S.dateLabel(p, lang())}${clock}${zone} · ${release}`;
+    return `${shown.date}${clock}${zone} · ${release}`;
   }
   function createCard(entry) {
     const button = document.createElement("button");
