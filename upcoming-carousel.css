@@ -8,7 +8,13 @@
 .upcoming-controls svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .upcoming-position { color: var(--muted); font-size: .875rem; font-variant-numeric: tabular-nums; min-width: 4em; text-align: center; }
 .upcoming-stage { position: relative; height: 440px; overflow: hidden; perspective: 1000px; touch-action: pan-y pinch-zoom; isolation: isolate; }
-.upcoming-slide { position: absolute; top: 18px; left: 50%; width: 250px; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: #151923; color: var(--text); text-align: left; font: inherit; cursor: pointer; overflow: hidden; box-shadow: 0 16px 32px #0006; transform: translateX(-50%) scale(.75); opacity: 0; visibility: hidden; transition: transform 320ms ease, opacity 320ms ease; -webkit-tap-highlight-color: transparent; }
+.upcoming-slide { position: absolute; top: 18px; left: 50%; width: 250px; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: #151923; color: var(--text); text-align: left; font: inherit; cursor: pointer; overflow: hidden; box-shadow: 0 16px 32px #0006; transform: translateX(-50%) scale(.75); opacity: 0; visibility: hidden; transition: transform 320ms ease, opacity 320ms ease; -webkit-tap-highlight-color: transparent; appearance: none; }
+/* Isolate carousel cards from the site's generic button hover/focus treatment. Pointer/touch interaction should not visually restyle the card. */
+.upcoming-slide:hover,
+.upcoming-slide:active,
+.upcoming-slide:focus { background: #151923; }
+.upcoming-slide:focus { outline: none; }
+.upcoming-slide:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .upcoming-slide[data-position="center"] { transform: translateX(-50%); opacity: 1; visibility: visible; z-index: 3; border-color: #8ea1ff66; box-shadow: 0 18px 38px #0008; }
 .upcoming-slide[data-position="left"] { transform: translateX(calc(-50% - 230px)) translateZ(-70px) rotateY(16deg) scale(.85); opacity: .72; visibility: visible; z-index: 1; }
 .upcoming-slide[data-position="right"] { transform: translateX(calc(-50% + 230px)) translateZ(-70px) rotateY(-16deg) scale(.85); opacity: .72; visibility: visible; z-index: 1; }
