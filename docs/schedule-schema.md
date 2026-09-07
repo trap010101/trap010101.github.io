@@ -9,7 +9,7 @@ schedule: {
     date: "2026-09-30",      // official published calendar day, strict YYYY-MM-DD
     time: "24:30",           // HH:mm, or null if unconfirmed; supported 00:00–49:59
     timezone: "Asia/Tokyo",  // required IANA zone, never the viewer's local zone
-    displayTime: "24:30"     // official notation, or null for unknown/theatrical
+    displayTime: "24:30"     // official/source notation, or null for unknown/theatrical
   },
   broadcast: {              // optional, only for a distinct later event
     type: "tv",
@@ -27,13 +27,14 @@ schedule: {
 
 If the earliest regular public premiere cannot be identified, omit `schedule`, or use `premiere: null` with a separately verified `broadcast` event. A known later TV date must not masquerade as a first premiere. Omit optional events rather than duplicating the same TV schedule in both fields.
 
-## Precision and clock normalization
+## Precision, clock normalization, and localization
 
 - TV/streaming date only: `time: null`, `displayTime: null`. No precise timestamp is fabricated. Eligible through the end of its source-calendar release date; display D-N / today's localized release wording.
 - Theatrical: confirmed opening date, internal `time: "00:00"`, `displayTime: null`. The countdown expires at the opening-day boundary. No clock is displayed and no claim of a midnight screening is made. Consequently films are removed at the start of opening day, as requested by the passed-premiere rule.
-- Exact TV/streaming: `schedule-utils.js` converts official wall-clock values to UTC numerically. `2026-10-03 25:30 JST` becomes `2026-10-03T16:30:00Z` (October 4, 01:30 JST); the UI keeps October 3, 25:30.
-- Published “深夜1時23分” can be stored as `time: "25:23"`, `displayTime: "深夜1時23分"` on the officially named date. Calculation and presentation never parse each other.
-- Japan/Korea use their explicit UTC+9 offset for current scheduling. Other IANA zones use `Intl` offsets; ambiguous DST folds and nonexistent times are rejected. A future DST-fold schema should add an explicit offset before using ambiguous local schedules.
+- Exact TV/streaming: `schedule-utils.js` converts official wall-clock values to UTC numerically. `2026-10-03 25:30 JST` becomes `2026-10-03T16:30:00Z` (October 4, 01:30 JST). The canonical source date/time remains unchanged for calculation and traceability.
+- `displayTime` preserves official/source notation such as `深夜1時23分`; presentation never parses that string to calculate an instant.
+- Japanese UI may show the official source-calendar date and `displayTime`. Korean and English UI instead render the normalized civil date/time in the event timezone using a conventional 00–23 hour clock. Thus a source value of October 3, 25:30 is shown as October 4, 01:30 outside Japanese UI, and raw Japanese strings do not leak into Korean/English presentation.
+- Timezone labels are localized independently from the canonical IANA timezone. Japan/Korea use their explicit UTC+9 offset for current scheduling. Other IANA zones use `Intl` offsets; ambiguous DST folds and nonexistent times are rejected. A future DST-fold schema should add an explicit offset before using ambiguous local schedules.
 
 A date-only record has an unknown within-day ordering. The selector uses the start of that source-calendar day as a **sort boundary only**, not a claimed premiere instant. Exact records are sorted by their normalized timestamp, with stable ID tie-breaking.
 
@@ -51,7 +52,7 @@ The focused card opens the existing listing via stable `anime-<id>` anchors. The
 
 ## Checks and browser fixtures
 
-- `node --test tests/*.test.js`: time normalization, source-day behavior, timestamp expiry, 30-day boundaries, viewer timezone independence, distinct slots/looping, and production source references.
+- `node --test tests/*.test.js`: time normalization, source-day behavior, timestamp expiry, 30-day boundaries, viewer timezone independence, localized schedule presentation, distinct slots/looping, and production source references.
 - `node scripts/validate-schedules.js`: effective production records, valid schedules, matching source and verification date, paired-event chronology, counts.
 - `node scripts/validate-data.js`: existing full data validator.
 - `npm run dev -- --host 0.0.0.0 --port 4173`: dependency-free static preview.
