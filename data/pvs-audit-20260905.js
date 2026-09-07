@@ -316,7 +316,7 @@
     type, url, label, supports, verifiedAt: V
   });
   const event = (type, date, time = null) => ({
-    type, date, time, timezone: "Asia/Tokyo", displayTime: time
+    type, date, time, timezone: "Asia/Tokyo", displayTime: type === "theatrical" ? null : time
   });
   const schedule = (premiere, source, broadcast = null) => ({
     premiere,
