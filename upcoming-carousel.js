@@ -37,6 +37,18 @@
     const release = today ? text(`upcomingToday${p.type === "tv" ? "Air" : p.type === "theatrical" ? "Open" : "Release"}`) : action(p.type);
     return `${shown.date}${clock}${zone} · ${release}`;
   }
+  function showRevealFocus(id) {
+    requestAnimationFrame(() => {
+      const card = document.getElementById(`anime-${id}`);
+      if (!card) return;
+      card.style.outline = "2px solid var(--accent)";
+      card.style.outlineOffset = "4px";
+      card.addEventListener("blur", () => {
+        card.style.removeProperty("outline");
+        card.style.removeProperty("outline-offset");
+      }, { once: true });
+    });
+  }
   function createCard(entry) {
     const button = document.createElement("button");
     button.type = "button";
@@ -78,7 +90,7 @@
       if (Date.now() < suppressClickUntil) { event.preventDefault(); return; }
       const index = entries.findIndex(e => e.anime.id === entry.anime.id);
       if (index !== current) { current = index; render(true); return; }
-      window.newAnimeHomepage.revealAnime(entry.anime.id);
+      if (window.newAnimeHomepage.revealAnime(entry.anime.id)) showRevealFocus(entry.anime.id);
     });
     stage.append(button);
     return button;
