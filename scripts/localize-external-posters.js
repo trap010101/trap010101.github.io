@@ -8,6 +8,10 @@ const ASSET_DIR = path.join(ROOT, 'assets', 'posters');
 const AUDIT_PATH = path.join(ROOT, 'data', 'poster-asset-audit.json');
 const AUDITED_AT = '2026-09-07';
 
+const SOURCE_OVERRIDES = {
+  'hotel-inhumans-season-2': 'https://static.animecorner.me/2026/03/1773067607-f968d699022dd5c7c9c5b8885cb421e8.jpg'
+};
+
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 function detectImage(buffer) {
@@ -80,21 +84,21 @@ async function fetchBytes(url, id) {
   let lastError = null;
   for (let attempt = 1; attempt <= 3; attempt++) {
     try {
-      const response = await fetch(url, { headers, redirect: 'follow', signal: AbortSignal.timeout(45000) });
+      const response = await fetch(url, { headers, redirect: 'follow', signal: AbortSignal.timeout(20000) });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const buffer = Buffer.from(await response.arrayBuffer());
       if (buffer.length < 4096) throw new Error(`response too small (${buffer.length} bytes)`);
       return buffer;
     } catch (error) {
       lastError = error;
-      if (attempt < 3) await sleep(1000 * attempt);
+      if (attempt < 3) await sleep(750 * attempt);
     }
   }
 
   const tempPath = path.join(ROOT, `.poster-${id}.download`);
   const result = spawnSync('curl', [
-    '--fail', '--location', '--retry', '2', '--retry-delay', '1',
-    '--connect-timeout', '20', '--max-time', '60',
+    '--fail', '--location', '--retry', '1', '--retry-delay', '1',
+    '--connect-timeout', '10', '--max-time', '30',
     '--user-agent', headers['user-agent'], '--referer', headers.referer,
     '--output', tempPath, url
   ], { encoding: 'utf8' });
@@ -136,9 +140,10 @@ function externalEntries(text) {
   const failures = [];
 
   for (const { id, url } of entries) {
+    const sourceUrl = SOURCE_OVERRIDES[id] || url;
     process.stdout.write(`Localizing ${id} ... `);
     try {
-      const buffer = await fetchBytes(url, id);
+      const buffer = await fetchBytes(sourceUrl, id);
       const meta = detectImage(buffer);
       if (!meta) throw new Error('response is not a supported raster image');
       if (meta.width && meta.height && (meta.width < 320 || meta.height < 320)) {
@@ -154,10 +159,12 @@ function externalEntries(text) {
       const notes = [];
       if (ratio !== null && ratio > 1.5) notes.push('landscape visual; card crop should be visually reviewed');
       if (meta.width && meta.height && Math.min(meta.width, meta.height) < 600) notes.push('moderate source resolution');
+      if (SOURCE_OVERRIDES[id]) notes.push('original host was unreachable from GitHub runner; stable mirror source used for archiving');
 
       audit.push({
         id,
-        sourceUrl: url,
+        sourceUrl,
+        originalUrl: sourceUrl === url ? null : url,
         localPath,
         mime: meta.mime,
         bytes: buffer.length,
@@ -168,7 +175,7 @@ function externalEntries(text) {
       });
       console.log(`${meta.mime} ${meta.width || '?'}x${meta.height || '?'} ${(buffer.length / 1024).toFixed(1)} KiB`);
     } catch (error) {
-      failures.push({ id, url, error: error.message });
+      failures.push({ id, sourceUrl, error: error.message });
       console.log(`FAILED: ${error.message}`);
     }
   }
