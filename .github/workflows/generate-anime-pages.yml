@@ -26,6 +26,8 @@ on:
       - "scripts/enhance-anime-seo.js"
       - "scripts/normalize-seo-defaults.js"
       - "scripts/inject-title-wrap-css.js"
+      - "scripts/repair-lulutto-poster.js"
+      - "scripts/poster-upload/lulutto-part-*.txt"
       - "anime-detail.css"
       - "anime-breadcrumb.css"
       - "detail-streaming-region.js"
@@ -53,6 +55,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Rebuild Lulutto Lilly poster asset
+        run: node scripts/repair-lulutto-poster.js
+
       - name: Validate regional streaming data
         run: node scripts/validate-regional-streaming.js
 
@@ -79,7 +84,7 @@ jobs:
 
       - name: Commit generated pages
         run: |
-          git add anime 2026 2027 updates/index.html sitemap.xml index.html about/index.html privacy/index.html policy/index.html
+          git add anime 2026 2027 updates/index.html sitemap.xml index.html about/index.html privacy/index.html policy/index.html assets/posters/magical-sisters-lulutto-lilly-part-2-cropped-v2.webp
           if git diff --cached --quiet; then
             echo "No generated changes."
             exit 0

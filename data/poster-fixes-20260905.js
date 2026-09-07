@@ -8,7 +8,7 @@
       updatedAt: "2026-09-05"
     },
     "magical-sisters-lulutto-lilly-part-2": {
-      src: "assets/posters/magical-sisters-lulutto-lilly-part-2-cropped.webp",
+      src: "assets/posters/magical-sisters-lulutto-lilly-part-2-cropped-v2.webp",
       updatedAt: "2026-09-07"
     }
   };
