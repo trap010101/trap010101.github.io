@@ -27,6 +27,7 @@ on:
       - "scripts/normalize-seo-defaults.js"
       - "scripts/inject-title-wrap-css.js"
       - "scripts/normalize-external-poster-urls.js"
+      - "scripts/localize-external-posters.js"
       - "anime-detail.css"
       - "anime-breadcrumb.css"
       - "detail-streaming-region.js"
@@ -53,6 +54,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Localize and validate external poster assets
+        run: node scripts/localize-external-posters.js
 
       - name: Validate regional streaming data
         run: node scripts/validate-regional-streaming.js
@@ -81,14 +85,14 @@ jobs:
       - name: Normalize external poster URLs
         run: node scripts/normalize-external-poster-urls.js
 
-      - name: Commit generated pages
+      - name: Commit generated pages and localized posters
         run: |
-          git add anime 2026 2027 updates/index.html sitemap.xml index.html about/index.html privacy/index.html policy/index.html
+          git add assets/posters data/poster-fixes-20260905.js data/poster-asset-audit.json anime 2026 2027 updates/index.html sitemap.xml index.html about/index.html privacy/index.html policy/index.html
           if git diff --cached --quiet; then
             echo "No generated changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Generate static anime pages [skip ci]"
+          git commit -m "Generate static anime pages and localize posters [skip ci]"
           git push
