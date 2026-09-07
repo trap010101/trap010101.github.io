@@ -1,4 +1,4 @@
-// Title corrections applied after the canonical schedule data loads.
+// Title and identity corrections applied after the canonical schedule data loads.
 (() => {
   if (!Array.isArray(window.animeData)) return;
 
@@ -46,4 +46,11 @@
     };
     cheatGrantingMage.updatedAt = "2026-09-07";
   }
+
+  // This title already exists in the canonical dataset with its verified September 30 schedule.
+  // Drop the audit-time duplicate while preserving the original ID, poster, PV and prior-series links.
+  const duplicateTenipriIndex = window.animeData.findIndex(
+    item => item.id === "prince-of-tennis-u17-world-cup-final-members-selection"
+  );
+  if (duplicateTenipriIndex !== -1) window.animeData.splice(duplicateTenipriIndex, 1);
 })();
