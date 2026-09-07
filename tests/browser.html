@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>NewAnime browser QA</title>
+<style>body{background:#262a34;color:white;font:14px system-ui;margin:12px}label{margin-right:18px}button,select{font:inherit;margin:6px;padding:8px}iframe{display:block;height:850px;max-width:none;border:1px solid #888;margin-top:12px}</style>
+<label>Viewport <select id="width"><option>320</option><option>390</option><option>768</option><option selected>1280</option></select></label>
+<label>Scenario <select id="scenario"><option value="production">Production data</option><option value="baseline">Production without carousel</option><option value="0">0 items</option><option value="1">1 item</option><option value="2">2 items</option><option value="3">3 items</option><option value="8">8 items</option><option value="near">Near release</option><option value="date">Date only today</option></select></label>
+<button id="advance">Advance fixture clock 1 hour</button><button id="day">Advance fixture clock 1 day</button><span id="clock"></span>
+<button id="measure">Measure layout</button><output id="metrics"></output>
+<iframe title="Homepage test viewport" id="preview"></iframe>
+<script>
+const frame=document.getElementById('preview'),width=document.getElementById('width'),scenario=document.getElementById('scenario');
+const source=fetch('/').then(r=>r.text());
+function fixture(kind){
+ const now=Date.parse('2026-09-07T12:00:00Z');
+ window.fixtureNow=now;
+ const NativeDate=Date,realStart=Date.now();
+ window.Date=class extends NativeDate{constructor(...args){super(...(args.length?args:[window.fixtureNow+NativeDate.now()-realStart]));}static now(){return window.fixtureNow+NativeDate.now()-realStart;}};
+ const count=kind==='near'||kind==='date'?3:Number(kind);
+ window.animeData=window.animeData.slice(0,count).map((a,i)=>{
+   const instant=now+(kind==='near'?120000:3600000)+i*86400000;
+   const local=new NativeDate(instant+9*3600000).toISOString();
+   const date=local.slice(0,10),time=kind==='date'?null:local.slice(11,16);
+   a.schedule={premiere:{type:i===1?'streaming':'tv',date,time,displayTime:time,timezone:'Asia/Tokyo'}};
+   a.release.japan={status:'date',year:2026,month:9,day:Number(date.slice(-2))};
+   return a;
+ });
+}
+async function load(){
+ frame.style.width=width.value+'px';
+ if(scenario.value==='production'){frame.removeAttribute('srcdoc');frame.src='/';return;}
+ let html=await source;
+ html=html.replace('<head>','<head><base href="/">');
+ const injection='<script>('+fixture.toString()+')('+JSON.stringify(scenario.value)+');<\/script>';
+ if(scenario.value==='baseline')html=html.replace(/<section class="upcoming"[\s\S]*?<\/section>/,'');
+ else html=html.replace('<script src="schedule-utils.js',injection+'<script src="schedule-utils.js');
+ frame.srcdoc=html;
+ document.getElementById('clock').textContent='Fixture time: 2026-09-07 21:00 JST';
+}
+width.onchange=()=>{frame.style.width=width.value+'px';};scenario.onchange=load;
+document.getElementById('measure').onclick=()=>{
+ const d=frame.contentDocument,root=d.documentElement;
+ const overflow=Array.from(d.querySelectorAll('body *')).filter(e=>{
+  const r=e.getBoundingClientRect();if(r.right<=root.clientWidth+1||r.width===0)return false;
+  for(let p=e.parentElement;p&&p!==root;p=p.parentElement)if(['hidden','clip','auto','scroll'].includes(frame.contentWindow.getComputedStyle(p).overflowX))return false;
+  return true;
+ }).map(e=>e.tagName+'.'+e.className);
+ document.getElementById('metrics').textContent=JSON.stringify({width:root.clientWidth,scrollWidth:root.scrollWidth,unclippedOverflow:overflow});
+};
+function advance(ms){if(frame.contentWindow.fixtureNow){frame.contentWindow.fixtureNow+=ms;frame.contentWindow.dispatchEvent(new Event('pageshow'));document.getElementById('clock').textContent='Fixture UTC: '+new Date(frame.contentWindow.fixtureNow).toISOString();}}
+document.getElementById('advance').onclick=()=>advance(3600000);document.getElementById('day').onclick=()=>advance(86400000);load();
+</script></html>

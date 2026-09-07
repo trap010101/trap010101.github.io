@@ -32,7 +32,7 @@
       const yearLabel = release?.year ? String(release.year) : t("tba");
 
       return `
-      <div class="undated-item">
+      <div class="undated-item" id="anime-${anime.id}" data-anime-id="${anime.id}" tabindex="-1">
         <div class="undated-layout">
           ${posterMarkup(anime)}
           <div class="undated-content-main">

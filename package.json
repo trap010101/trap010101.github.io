@@ -1,0 +1,9 @@
+{
+  "name": "newanime",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/serve-preview.js",
+    "test": "node --test tests/*.test.js",
+    "validate:schedules": "node scripts/validate-schedules.js"
+  }
+}

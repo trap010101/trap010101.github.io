@@ -53,6 +53,7 @@
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-jp.css" />
 
   <link rel="stylesheet" href="styles.css?v=20260905-resource-icons1">
+  <link rel="stylesheet" href="upcoming-carousel.css?v=20260907-upcoming1">
   <link rel="stylesheet" href="category-colors.css?v=20260905-category2">
   <link rel="stylesheet" href="pv-modal.css?v=20260905-resource-icons1">
   <link rel="stylesheet" href="site-info.css?v=20260906-info1">
@@ -105,6 +106,19 @@
       <div class="hero-kicker">newani.me</div>
       <h1 id="heroTitle">방영 예정 애니메이션</h1>
       <p id="heroSubtitle">방영일과 PV, 공식 사이트 및 스트리밍 정보를 한눈에 확인하세요.</p>
+    </section>
+
+    <section class="upcoming" id="upcoming" aria-labelledby="upcomingTitle" hidden>
+      <div class="upcoming-head">
+        <h2 id="upcomingTitle" tabindex="-1">곧 공개</h2>
+        <div class="upcoming-controls">
+          <button type="button" data-upcoming-prev aria-label="이전 작품" aria-controls="upcomingStage"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m10 3-5 5 5 5"/></svg></button>
+          <span class="upcoming-position" aria-hidden="true"></span>
+          <button type="button" data-upcoming-next aria-label="다음 작품" aria-controls="upcomingStage"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg></button>
+        </div>
+      </div>
+      <div class="upcoming-stage" id="upcomingStage"></div>
+      <p class="upcoming-announcement" role="status" aria-live="polite" aria-atomic="true"></p>
     </section>
 
     <section class="toolbar" id="toolbar">
@@ -225,20 +239,22 @@
     </footer>
   </main>
 
-<script src="data/anime.js?v=20260905-data2"></script>
+<script src="data/anime.js?v=20260907-schedule1"></script>
 <script src="data/anime-20260904.js?v=20260905-data2"></script>
 <script src="data/title-fixes-20260905.js?v=20260905-title1"></script>
 <script src="data/poster-fixes-20260905.js?v=20260905-poster2"></script>
 <script src="data/official-sites-20260905.js?v=20260905-official2"></script>
 <script src="data/pvs.js?v=20260904-pv3"></script>
 <script src="data/pvs-audit-20260905.js?v=20260905-pv-audit2"></script>
-<script src="schedule-lifecycle.js?v=20260904-ui4"></script>
+<script src="schedule-utils.js?v=20260907-upcoming1"></script>
+<script src="schedule-lifecycle.js?v=20260907-upcoming1"></script>
 <script src="data/platforms.js?v=20260905-streaming3"></script>
 <script src="data/streaming-regions.js?v=20260906-regions1"></script>
 <script src="data/streaming-policy-20260905.js?v=20260905-previous-only1"></script>
-<script src="app.js?v=20260905-resource-icons1"></script>
+<script src="app.js?v=20260907-upcoming1"></script>
+<script src="upcoming-carousel.js?v=20260907-upcoming1"></script>
 <script src="language-switcher-compact.js?v=20260906-lang1"></script>
-<script src="undated-schedule.js?v=20260905-undated1"></script>
+<script src="undated-schedule.js?v=20260907-upcoming1"></script>
 <script src="pv-modal.js?v=20260905-resource-icons1"></script>
 <script src="anime-links.js?v=20260906-archive1"></script>
 </body>

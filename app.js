@@ -5,6 +5,19 @@ const ottPlatforms = window.ottPlatforms || [];
 
 const uiLocales = {
   "ko": {
+    "upcomingTitle": "곧 공개",
+    "upcomingPrevious": "이전 작품",
+    "upcomingNext": "다음 작품",
+    "upcomingCarousel": "캐러셀",
+    "upcomingAir": "방영",
+    "upcomingOpen": "극장 개봉",
+    "upcomingRelease": "공개",
+    "upcomingTodayAir": "오늘 방영",
+    "upcomingTodayOpen": "오늘 개봉",
+    "upcomingTodayRelease": "오늘 공개",
+    "upcomingHours": "{h}시간 {m}분 후",
+    "upcomingView": "작품 카드로 이동",
+    "upcomingSelect": "이 작품 선택",
     "title": "방영 예정 애니메이션",
     "tabTitle": "NewAnime - 방영 예정 애니메이션",
     "description": "2026~2027년 방영 예정 애니메이션과 극장판의 방영일, PV, 공식 사이트, 스트리밍 정보를 한눈에 확인하세요.",
@@ -72,6 +85,19 @@ const uiLocales = {
     ,"tba": "TBA"
   },
   "ja": {
+    "upcomingTitle": "まもなく公開",
+    "upcomingPrevious": "前の作品",
+    "upcomingNext": "次の作品",
+    "upcomingCarousel": "カルーセル",
+    "upcomingAir": "放送",
+    "upcomingOpen": "劇場公開",
+    "upcomingRelease": "配信",
+    "upcomingTodayAir": "本日放送",
+    "upcomingTodayOpen": "本日公開",
+    "upcomingTodayRelease": "本日配信",
+    "upcomingHours": "あと{h}時間{m}分",
+    "upcomingView": "作品カードへ移動",
+    "upcomingSelect": "この作品を選択",
     "title": "放送予定アニメ",
     "tabTitle": "NewAnime - 放送予定アニメ",
     "description": "2026～2027年放送予定のアニメ・劇場版について、放送日、PV、公式サイト、配信情報をまとめて確認できます。",
@@ -139,6 +165,19 @@ const uiLocales = {
     ,"tba": "TBA"
   },
   "en": {
+    "upcomingTitle": "Coming soon",
+    "upcomingPrevious": "Previous title",
+    "upcomingNext": "Next title",
+    "upcomingCarousel": "carousel",
+    "upcomingAir": "Broadcast",
+    "upcomingOpen": "In theaters",
+    "upcomingRelease": "Streaming premiere",
+    "upcomingTodayAir": "Airs today",
+    "upcomingTodayOpen": "Opens today",
+    "upcomingTodayRelease": "Streams today",
+    "upcomingHours": "In {h}h {m}m",
+    "upcomingView": "Go to title card",
+    "upcomingSelect": "Select this title",
     "title": "Upcoming Anime",
     "tabTitle": "NewAnime - Upcoming Anime",
     "description": "Browse broadcast dates, PVs, official sites, and streaming information for upcoming anime and films in 2026–2027.",
@@ -854,7 +893,7 @@ function renderUndated() {
   );
 
   document.getElementById("undatedList").innerHTML = undatedAnime.map(anime => `
-    <div class="undated-item">
+    <div class="undated-item" id="anime-${anime.id}" data-anime-id="${anime.id}" tabindex="-1">
       <div class="undated-layout">
         ${posterMarkup(anime)}
         <div class="undated-content-main">
@@ -970,7 +1009,7 @@ function render() {
 
     const cards = items.length
       ? items.map(anime => `
-          <article class="card">
+          <article class="card" id="anime-${anime.id}" data-anime-id="${anime.id}" tabindex="-1">
             <div class="card-layout">
               ${posterMarkup(anime)}
               <div class="card-content">
@@ -1019,6 +1058,7 @@ document.querySelectorAll("#languageSwitcher .language-btn").forEach(btn => {
     nextUrl.searchParams.set("lang", activeLang);
     history.replaceState(null, "", nextUrl);
     updateStaticLanguage();
+    document.dispatchEvent(new CustomEvent("newanime:language"));
     renderMonthNav();
     render();
   });
@@ -1078,3 +1118,36 @@ render();
 if (document.fonts?.ready) {
   document.fonts.ready.then(updateTitleScrolls).catch(() => {});
 }
+
+// Stable bridge for homepage features; no DOM title matching or separate filter state.
+window.newAnimeHomepage = {
+  translate: t,
+  revealAnime(id) {
+    const anime = animeById.get(id);
+    if (!anime) return false;
+    const release = getPrimaryScheduleRelease(anime);
+    searchEl.value = "";
+    activeFilter = "all";
+    activeYear = release.year;
+    activeMonth = "all";
+    document.querySelectorAll("#filters .chip").forEach(button => button.classList.toggle("active", button.dataset.filter === "all"));
+    document.querySelectorAll("#yearFilters .year-chip").forEach(button => button.classList.toggle("active", Number(button.dataset.year) === activeYear));
+    renderMonthNav();
+    render();
+    requestAnimationFrame(() => {
+      const card = document.getElementById(`anime-${id}`);
+      if (!card) return;
+      if (card.closest(".undated")) {
+        card.closest(".undated").classList.remove("hidden");
+        card.closest(".undated-content")?.classList.remove("hidden");
+        document.getElementById("undatedArrow").textContent = "−";
+      }
+      card.focus({ preventScroll: true });
+      card.scrollIntoView({ block: "center", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+      const url = new URL(location.href);
+      url.hash = `anime-${id}`;
+      history.replaceState(null, "", url);
+    });
+    return true;
+  }
+};

@@ -149,12 +149,24 @@ window.animeData = [
             "announcement",
             "release",
             "format"
-          ]
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "theatrical",
+        "date": "2026-09-04",
+        "time": "00:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": null
+      },
+      "source": "https://sekiro-anime.jp/news.html",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "sound-euphonium-the-final-movement-part-2",
@@ -205,12 +217,24 @@ window.animeData = [
             "announcement",
             "release",
             "format"
-          ]
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "theatrical",
+        "date": "2026-09-11",
+        "time": "00:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": null
+      },
+      "source": "https://anime-eupho.com/news/?id=691",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "jojos-bizarre-adventure-steel-ball-run-2nd-and-3rd-stage",
@@ -250,11 +274,32 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-07",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://jojo-portal.com/news/anime/598/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "streaming",
+        "date": "2026-09-25",
+        "time": null,
+        "timezone": "Asia/Tokyo",
+        "displayTime": null
+      },
+      "source": "https://jojo-portal.com/news/anime/598/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "the-new-prince-of-tennis-u-17-world-cup-final-roster-selection",
@@ -293,11 +338,32 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-07",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://www.tv-tokyo.co.jp/anime/tenipri-u17/news/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-09-30",
+        "time": "24:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "24:00"
+      },
+      "source": "https://www.tv-tokyo.co.jp/anime/tenipri-u17/news/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "the-apothecary-diaries-season-3-part-1",
@@ -352,12 +418,24 @@ window.animeData = [
             "announcement",
             "release",
             "format"
-          ]
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-02",
+        "time": "23:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "23:00"
+      },
+      "source": "https://kusuriyanohitorigoto.jp/news/2623/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "ranma-1-2-season-3",
@@ -411,12 +489,24 @@ window.animeData = [
             "release",
             "format",
             "streaming"
-          ]
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-03",
+        "time": "24:55",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "24:55"
+      },
+      "source": "https://ranma-pr.com/news/2467/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "magic-knight-rayearth",
@@ -467,12 +557,24 @@ window.animeData = [
             "announcement",
             "release",
             "format"
-          ]
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-07",
+        "time": "23:45",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "23:45"
+      },
+      "source": "https://rayearth-anime.com/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "a-certain-dark-sides-shared-living",
@@ -514,11 +616,32 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-07",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://toaru-project.com/item/onair/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-09",
+        "time": "22:30",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "22:30"
+      },
+      "source": "https://toaru-project.com/item/onair/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "to-you-in-the-beyond",
@@ -568,12 +691,24 @@ window.animeData = [
             "announcement",
             "release",
             "format"
-          ]
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "theatrical",
+        "date": "2026-10-09",
+        "time": "00:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": null
+      },
+      "source": "https://sh-anime.shochiku.co.jp/dokokimi-movie/news/10",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "girls-und-panzer-das-finale-part-5",
@@ -624,12 +759,24 @@ window.animeData = [
             "announcement",
             "release",
             "format"
-          ]
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "theatrical",
+        "date": "2026-10-09",
+        "time": "00:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": null
+      },
+      "source": "https://girls-und-panzer-finale.jp/202603-article-finale5/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "bang-dream-ave-mujica-prima-aurora",
@@ -680,12 +827,24 @@ window.animeData = [
             "announcement",
             "release",
             "format"
-          ]
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "theatrical",
+        "date": "2026-10-16",
+        "time": "00:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": null
+      },
+      "source": "https://avemujica-movie.bang-dream.com/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "rascal-does-not-dream-of-a-dear-friend",
@@ -736,12 +895,24 @@ window.animeData = [
             "announcement",
             "release",
             "format"
-          ]
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "theatrical",
+        "date": "2026-10-16",
+        "time": "00:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": null
+      },
+      "source": "https://ao-buta.com/dearfriend/news/?id=70084",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "cyberpunk-edgerunners-2",
@@ -795,12 +966,24 @@ window.animeData = [
             "release-global",
             "format",
             "streaming"
-          ]
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": "2026-09-04"
+    "updatedAt": "2026-09-04",
+    "schedule": {
+      "premiere": {
+        "type": "streaming",
+        "date": "2026-10-20",
+        "time": null,
+        "timezone": "Asia/Tokyo",
+        "displayTime": null
+      },
+      "source": "https://www.cyberpunk.net/en/edgerunners2",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "made-in-abyss-theatrical-series-part-1-the-awakening-mystery",
@@ -841,11 +1024,32 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-07",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://miabyss.com/news_movie/article015.html",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "theatrical",
+        "date": "2026-10-23",
+        "time": "00:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": null
+      },
+      "source": "https://miabyss.com/news_movie/article015.html",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "be-forever-yamato-rebel3199-chapter-7-rainbow-reincarnation",
@@ -885,11 +1089,32 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-07",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://starblazers-yamato.net/news/1782301824.html",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "theatrical",
+        "date": "2026-10-30",
+        "time": "00:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": null
+      },
+      "source": "https://starblazers-yamato.net/news/1782301824.html",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "looking-for-zombies",
@@ -1044,11 +1269,32 @@ window.animeData = [
             "release",
             "format"
           ]
+        },
+        {
+          "type": "official-site",
+          "url": "https://fxkurumi-info.com/onair/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": null,
+      "broadcast": {
+        "type": "tv",
+        "date": "2026-10-01",
+        "time": "21:30",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "21:30"
+      },
+      "source": "https://fxkurumi-info.com/onair/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "psyren",
@@ -1148,11 +1394,31 @@ window.animeData = [
             "release",
             "format"
           ]
+        },
+        {
+          "type": "official-site",
+          "url": "https://www.tankchair-anime.com/en/onair.php",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-04",
+        "time": "23:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "23:00"
+      },
+      "source": "https://www.tankchair-anime.com/en/onair.php",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "dreamland",
@@ -1205,11 +1471,31 @@ window.animeData = [
             "release",
             "format"
           ]
+        },
+        {
+          "type": "official-site",
+          "url": "https://www.dreamland-anime.com/2026年10月17日より放送開始！/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-17",
+        "time": "26:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "26:00"
+      },
+      "source": "https://www.dreamland-anime.com/2026年10月17日より放送開始！/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "tetsuryo-meet-with-tetsudo-musume",
@@ -1249,11 +1535,32 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-07",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://tetsuryo-anime.com/onair/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-08",
+        "time": "24:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "24:00"
+      },
+      "source": "https://tetsuryo-anime.com/onair/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "junket-bank",
@@ -1294,11 +1601,32 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-07",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://junketbank-anime.com/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-05",
+        "time": "24:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "24:00"
+      },
+      "source": "https://junketbank-anime.com/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "tanuki-and-kitsune",
@@ -1406,11 +1734,31 @@ window.animeData = [
             "release",
             "format"
           ]
+        },
+        {
+          "type": "official-site",
+          "url": "https://darksummoner.deregula.com/onair/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-04",
+        "time": "25:20",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "25:20"
+      },
+      "source": "https://darksummoner.deregula.com/onair/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "vertex-force",
@@ -1463,12 +1811,24 @@ window.animeData = [
             "announcement",
             "release",
             "format"
-          ]
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-03",
+        "time": "23:30",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "23:30"
+      },
+      "source": "https://vertexforce.jp/onair/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "magical-explorer",
@@ -1520,12 +1880,24 @@ window.animeData = [
             "release",
             "format",
             "pv"
-          ]
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-03",
+        "time": "24:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "24:00"
+      },
+      "source": "https://majieku.com/news/?id=71078",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "the-seven-knights-of-the-marronnier-kingdom",
@@ -1631,12 +2003,24 @@ window.animeData = [
             "announcement",
             "release",
             "format"
-          ]
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-07",
+        "time": null,
+        "timezone": "Asia/Tokyo",
+        "displayTime": null
+      },
+      "source": "https://sekamajo-anime.com/news/information/82/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "nia-liston-the-merciless-maiden",
@@ -1687,12 +2071,24 @@ window.animeData = [
             "announcement",
             "release",
             "format"
-          ]
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-06",
+        "time": "21:25",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "21:25"
+      },
+      "source": "https://kyoranreijo-pr.com/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "the-salty-koharu-has-a-soft-spot-for-me",
@@ -1778,11 +2174,32 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-07",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://yowaki-max-anime.com/onair/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-04",
+        "time": "23:30",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "23:30"
+      },
+      "source": "https://yowaki-max-anime.com/onair/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "her-friend",
@@ -1835,11 +2252,31 @@ window.animeData = [
             "format",
             "pv"
           ]
+        },
+        {
+          "type": "official-site",
+          "url": "https://kanojo-no-tomodachi.deregula.com/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-04",
+        "time": "25:05",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "25:05"
+      },
+      "source": "https://kanojo-no-tomodachi.deregula.com/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "from-far-away",
@@ -1880,11 +2317,32 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-07",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://kanatakara-anime.com/onair/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-04",
+        "time": "24:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "24:00"
+      },
+      "source": "https://kanatakara-anime.com/onair/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "the-vermilion-mask",
@@ -1992,11 +2450,31 @@ window.animeData = [
             "release",
             "format"
           ]
+        },
+        {
+          "type": "official-site",
+          "url": "https://gattaishin.com/dandivine/zh/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-07",
+        "time": "24:30",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "24:30"
+      },
+      "source": "https://gattaishin.com/dandivine/zh/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "there-are-holes-in-the-student-council",
@@ -2037,11 +2515,32 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-07",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://nama-anaru.com/onair/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-03",
+        "time": "24:30",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "24:30"
+      },
+      "source": "https://nama-anaru.com/onair/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "i-woke-up-with-the-strongest-gear-and-a-spaceship-so-ill-live-freely-as-a-mercenary",
@@ -2136,12 +2635,24 @@ window.animeData = [
             "announcement",
             "release",
             "format"
-          ]
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": "2026-09-04"
+    "updatedAt": "2026-09-04",
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-10",
+        "time": "20:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "20:00"
+      },
+      "source": "https://nekokeibishitsu-anime.com/news/post-2/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "super-psychic-policeman-chojo",
@@ -2350,11 +2861,32 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-07",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://www.luluttolilly.com/news/detail.php?id=24130",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-04",
+        "time": "22:30",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "22:30"
+      },
+      "source": "https://www.luluttolilly.com/news/detail.php?id=24130",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "a-returners-magic-should-be-special-season-2",
@@ -2498,11 +3030,32 @@ window.animeData = [
       "watcha": "https://watcha.com/ko/contents/tRMxXK0"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-07",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://tokyo-revengers-anime.com/news/archives/4935",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-02",
+        "time": "25:23",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "深夜1時23分"
+      },
+      "source": "https://tokyo-revengers-anime.com/news/archives/4935",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "magical-girl-raising-project-restart",
@@ -2541,11 +3094,32 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-07",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://www.tv-tokyo.co.jp/anime/mahoiku-restart/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-05",
+        "time": "26:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "深夜2時00分"
+      },
+      "source": "https://www.tv-tokyo.co.jp/anime/mahoiku-restart/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "black-clover-2nd-season",
@@ -2641,11 +3215,32 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-07",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://hyouken-anime.com/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-08",
+        "time": "25:28",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "深夜1:28"
+      },
+      "source": "https://hyouken-anime.com/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "sasaki-and-peeps-season-2",
@@ -2745,11 +3340,32 @@ window.animeData = [
       "crunchyroll": "https://www.crunchyroll.com/ko/series/G4PH0WX5J/aoashi"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-07",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://aoashi-pr.com/news/572/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-04",
+        "time": "17:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "17:00"
+      },
+      "source": "https://aoashi-pr.com/news/572/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "reincarnated-as-a-sword-ii",
@@ -2790,11 +3406,39 @@ window.animeData = [
       "prime": "https://www.primevideo.com/-/ko/detail/0SMRJS9YUTPHZO3CHCX2OX9AIX"
     },
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-07",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://www.tenken-anime.com/onair.html",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "streaming",
+        "date": "2026-09-30",
+        "time": "24:30",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "24:30"
+      },
+      "source": "https://www.tenken-anime.com/onair.html",
+      "verifiedAt": "2026-09-07",
+      "broadcast": {
+        "type": "tv",
+        "date": "2026-10-07",
+        "time": "24:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "24:00"
+      }
+    }
   },
   {
     "id": "chitose-is-in-the-ramune-bottle-part-2",
@@ -2892,11 +3536,31 @@ window.animeData = [
             "release",
             "format"
           ]
+        },
+        {
+          "type": "official-site",
+          "url": "https://tanmoshi-anime.jp/Season2/onair/index.html",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": "2026-09-04"
+    "updatedAt": "2026-09-04",
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-07",
+        "time": "21:30",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "21:30"
+      },
+      "source": "https://tanmoshi-anime.jp/Season2/onair/index.html",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "blue-box-season-2",
@@ -2948,12 +3612,24 @@ window.animeData = [
             "announcement",
             "release",
             "format"
-          ]
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-04",
+        "time": "16:30",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "16:30"
+      },
+      "source": "https://aonohako-anime.com/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "firefly-wedding",
@@ -2994,11 +3670,32 @@ window.animeData = [
     },
     "streaming": {},
     "verification": {
-      "verifiedAt": null,
-      "sources": []
+      "verifiedAt": "2026-09-07",
+      "sources": [
+        {
+          "type": "official-site",
+          "url": "https://hotaru-anime.com/news/70/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
+        }
+      ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "tv",
+        "date": "2026-10-09",
+        "time": "23:30",
+        "timezone": "Asia/Tokyo",
+        "displayTime": "23:30"
+      },
+      "source": "https://hotaru-anime.com/news/70/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "suikoden",
@@ -3103,11 +3800,31 @@ window.animeData = [
             "release",
             "format"
           ]
+        },
+        {
+          "type": "official-site",
+          "url": "https://movie-gtq123.com/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "theatrical",
+        "date": "2026-11-06",
+        "time": "00:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": null
+      },
+      "source": "https://movie-gtq123.com/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "demons-crest",
@@ -3160,11 +3877,31 @@ window.animeData = [
             "format",
             "streaming"
           ]
+        },
+        {
+          "type": "official-site",
+          "url": "https://demonscrest-anime.com/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": "2026-09-04"
+    "updatedAt": "2026-09-04",
+    "schedule": {
+      "premiere": {
+        "type": "streaming",
+        "date": "2026-11-06",
+        "time": null,
+        "timezone": "Asia/Tokyo",
+        "displayTime": null
+      },
+      "source": "https://demonscrest-anime.com/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "expelled-from-paradise-resonance-of-the-heart",
@@ -3215,12 +3952,24 @@ window.animeData = [
             "announcement",
             "release",
             "format"
-          ]
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "theatrical",
+        "date": "2026-11-13",
+        "time": "00:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": null
+      },
+      "source": "https://rakuen-tsuiho-r.com/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "armored-trooper-votoms-the-gray-witch-part-1",
@@ -3270,12 +4019,24 @@ window.animeData = [
             "announcement",
             "release",
             "format"
-          ]
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "theatrical",
+        "date": "2026-11-20",
+        "time": "00:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": null
+      },
+      "source": "https://www.votoms-gh.com/news/detail.php?id=23579",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "witch-on-the-holy-night",
@@ -3326,12 +4087,24 @@ window.animeData = [
             "announcement",
             "release",
             "format"
-          ]
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "theatrical",
+        "date": "2026-11-20",
+        "time": "00:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": null
+      },
+      "source": "https://mahoyo-movie.com/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "fool-night",
@@ -3386,12 +4159,24 @@ window.animeData = [
             "release-global",
             "format",
             "streaming"
-          ]
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": "2026-09-04"
+    "updatedAt": "2026-09-04",
+    "schedule": {
+      "premiere": {
+        "type": "streaming",
+        "date": "2026-11-26",
+        "time": null,
+        "timezone": "Asia/Tokyo",
+        "displayTime": null
+      },
+      "source": "https://www.foolnight.com/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "tiger-coming-in-2",
@@ -3493,12 +4278,24 @@ window.animeData = [
             "release",
             "format",
             "pv"
-          ]
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "theatrical",
+        "date": "2026-12-11",
+        "time": "00:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": null
+      },
+      "source": "https://kusuriyanohitorigoto.jp/news/2520/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "monogatari-series-off-and-monster-season-wazamonogatari-karen-ogre",
@@ -5305,11 +6102,31 @@ window.animeData = [
             "release",
             "format"
           ]
+        },
+        {
+          "type": "official-site",
+          "url": "https://www.ghost-yoruhate.com/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "theatrical",
+        "date": "2027-02-11",
+        "time": "00:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": null
+      },
+      "source": "https://www.ghost-yoruhate.com/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "medalist-the-movie",
@@ -5361,11 +6178,31 @@ window.animeData = [
             "release",
             "format"
           ]
+        },
+        {
+          "type": "official-site",
+          "url": "https://medalist-pr.com/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "theatrical",
+        "date": "2027-02-19",
+        "time": "00:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": null
+      },
+      "source": "https://medalist-pr.com/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "the-one-piece",
@@ -5477,11 +6314,31 @@ window.animeData = [
             "release",
             "format"
           ]
+        },
+        {
+          "type": "official-site",
+          "url": "https://ezy.patlabor.tokyo/",
+          "label": "Official premiere / broadcast schedule",
+          "supports": [
+            "release"
+          ],
+          "verifiedAt": "2026-09-07"
         }
       ]
     },
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": null,
+    "schedule": {
+      "premiere": {
+        "type": "theatrical",
+        "date": "2027-03-05",
+        "time": "00:00",
+        "timezone": "Asia/Tokyo",
+        "displayTime": null
+      },
+      "source": "https://ezy.patlabor.tokyo/",
+      "verifiedAt": "2026-09-07"
+    }
   },
   {
     "id": "sho-zen",

@@ -32,6 +32,9 @@
   // Exact-date titles remain visible throughout their start date and disappear from the
   // upcoming homepage from the next Japan-calendar day. The source data itself is preserved.
   window.animeData = completeAnimeData.filter(anime => {
+    // A 24+ hour premiere can still be ahead after the official notation's date ended.
+    const premiere = window.AnimeSchedule?.normalizePremiere(anime.schedule?.premiere);
+    if (premiere && premiere.expiresAt > Date.now()) return true;
     const key = exactDateKey(primaryRelease(anime));
     return key === null || key >= todayKey;
   });
@@ -55,7 +58,7 @@
       const meta = card.querySelector(".meta");
       if (!titleElement || !meta) return;
 
-      const anime = findTodayAnimeByRenderedTitle(titleElement.textContent.trim());
+      const anime = startsToday.find(anime => anime.id === card.dataset.animeId) || findTodayAnimeByRenderedTitle(titleElement.textContent.trim());
       if (!anime) return;
 
       const movie = anime.format === "movie";
