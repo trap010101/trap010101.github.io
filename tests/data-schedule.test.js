@@ -3,7 +3,7 @@ const assert=require('node:assert/strict');
 const {loadAnime,validate}=require('../scripts/validate-schedules');
 const S=require('../schedule-utils');
 test('all production schedule records have valid fields and traceable verification',()=>{
- const result=validate(loadAnime());assert.deepEqual(result.errors,[]);assert.equal(result.counts.total,147);
+ const result=validate(loadAnime());assert.deepEqual(result.errors,[]);assert.equal(result.counts.total,180);
  assert.equal(result.counts.premiereDates,60);assert.equal(result.counts.exactTimes,40);
  assert.equal(result.counts.dateOnly,4);assert.equal(result.counts.theatricalMidnight,16);
 });
@@ -32,4 +32,17 @@ test('September 7 selection includes verified late-September and early-October p
  assert.equal(entries[0].anime.id,'sound-euphonium-the-final-movement-part-2');
  [sword,fx,tanuki,appraisal,tenipri,iceWall,tempal,revolving,ojikawa,saintess].forEach(item=>assert.ok(entries.some(e=>e.anime.id===item.id),item.id));
  assert.ok(!entries.some(e=>e.anime.id===chiifuyo.id));
+});
+test('2027 audit preserves the precision of official release announcements',()=>{
+ const anime=loadAnime();
+ const kinioto=anime.find(a=>a.id==='the-guy-she-was-interested-in-wasnt-a-guy-at-all');
+ const chihara=anime.find(a=>a.id==='chihara-san-is-she-a-landmine');
+ const eleceed=anime.find(a=>a.id==='eleceed');
+ const lona=anime.find(a=>a.id==='lona');
+ const kindergarten=anime.find(a=>a.id==='kindergarten-wars');
+ const midnight=anime.find(a=>a.id==='midnight-heart-tune-season-2');
+ [kinioto,chihara].forEach(item=>{assert.equal(item.release.japan.status,'month');assert.equal(item.release.japan.month,1);assert.equal(item.schedule,undefined);});
+ assert.equal(eleceed.release.japan.status,'year');assert.equal(eleceed.release.japan.month,null);assert.match(eleceed.release.japan.display.ko,/2027년 초/);assert.equal(eleceed.schedule,undefined);
+ [lona,kindergarten].forEach(item=>{assert.equal(item.release.japan.status,'year');assert.equal(item.release.japan.month,null);assert.equal(item.season,'2027-spring');assert.match(item.release.japan.display.ko,/2027년 봄/);assert.equal(item.schedule,undefined);});
+ assert.equal(midnight.release.japan.status,'year');assert.equal(midnight.release.japan.month,null);assert.match(midnight.release.japan.display.ko,/월 미정/);assert.equal(midnight.schedule,undefined);
 });
