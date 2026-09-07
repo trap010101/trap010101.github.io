@@ -372,7 +372,7 @@
 
   add({
     id: "we-are-aliens",
-    ko: "우리는 우주인", ja: "我々は宇宙人", en: "We Are Aliens",
+    ko: "우리는 외계인", ja: "我々は宇宙人", en: "We Are Aliens",
     release: date(9, 25), format: "movie", origin: "original", tags: ["new", "original", "movie"],
     official: "https://nothingnew.ltd/ja/films/wearealiens",
     sources: [src("https://nothingnew.ltd/ja/news", "NOTHING NEW official news — nationwide release September 25")],
