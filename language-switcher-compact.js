@@ -223,3 +223,46 @@
     if (open) close(open, { restoreFocus: true });
   });
 })();
+
+// Detail pages share the homepage account session and cloud wishlist without
+// duplicating those controls into every generated anime HTML file.
+(() => {
+  if (!document.querySelector('.detail-shell') || !window.ANIME_DETAIL) return;
+
+  const script = src => new Promise((resolve, reject) => {
+    const target = new URL(src, location.href);
+    const existing = [...document.scripts].find(node => {
+      if (!node.src) return false;
+      const url = new URL(node.src, location.href);
+      return url.origin === target.origin && url.pathname === target.pathname;
+    });
+    if (existing) return resolve();
+    const node = document.createElement('script');
+    node.src = src;
+    node.async = false;
+    node.onload = resolve;
+    node.onerror = reject;
+    document.head.appendChild(node);
+  });
+
+  const stylesheet = href => {
+    const target = new URL(href, location.href);
+    if ([...document.querySelectorAll('link[rel="stylesheet"]')].some(node => {
+      const url = new URL(node.href, location.href);
+      return url.origin === target.origin && url.pathname === target.pathname;
+    })) return;
+    const node = document.createElement('link');
+    node.rel = 'stylesheet';
+    node.href = href;
+    document.head.appendChild(node);
+  };
+
+  stylesheet('/wishlist.css?v=20260908-wishlist4');
+  script('/auth-config.js?v=20260908-auth6')
+    .then(() => script('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0'))
+    .then(() => script('https://accounts.google.com/gsi/client'))
+    .then(() => script('/wishlist.js?v=20260908-wishlist3'))
+    .then(() => script('/detail-account.js?v=20260908-detail1'))
+    .then(() => script('/wishlist-sync.js?v=20260908-sync1'))
+    .catch(error => console.warn('Detail account UI could not be loaded.', error));
+})();
