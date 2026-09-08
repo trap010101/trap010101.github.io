@@ -167,6 +167,15 @@
     "gate-season-2": {
       crunchyroll: "https://www.crunchyroll.com/series/GRGG9PN7R/gate"
     },
+    "berserk-of-gluttony-season-2": {
+      crunchyroll: "https://www.crunchyroll.com/series/G1XHJV05V/berserk-of-gluttony"
+    },
+    "haikyu-monsters-go-where": {
+      crunchyroll: "https://www.crunchyroll.com/series/GY8VM8MWY/haikyu"
+    },
+    "kaiju-no-8-narumis-weekday": {
+      crunchyroll: "https://www.crunchyroll.com/series/GG5H5XQ7D/kaiju-no-8"
+    },
     "hotel-inhumans-season-2": {
       crunchyroll: "https://www.crunchyroll.com/series/GXJHM3G08/hotel-inhumans"
     },
