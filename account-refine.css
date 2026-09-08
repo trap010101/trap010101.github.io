@@ -1,6 +1,6 @@
 .auth-backdrop,
 .detail-account-backdrop {
-  background: rgba(3, 5, 10, .72) !important;
+  background: rgba(3,5,10,.72) !important;
   backdrop-filter: blur(18px) saturate(112%) !important;
   -webkit-backdrop-filter: blur(18px) saturate(112%) !important;
 }
@@ -20,9 +20,7 @@
   overflow: hidden;
   border: 1px solid rgba(255,255,255,.09) !important;
   border-radius: 24px !important;
-  background:
-    radial-gradient(circle at 18% -12%, rgba(126,143,255,.18), transparent 38%),
-    linear-gradient(180deg, rgba(21,24,34,.985), rgba(12,14,20,.99)) !important;
+  background: radial-gradient(circle at 18% -12%, rgba(126,143,255,.18), transparent 38%), linear-gradient(180deg, rgba(21,24,34,.985), rgba(12,14,20,.99)) !important;
   box-shadow: 0 26px 76px rgba(0,0,0,.52), inset 0 1px rgba(255,255,255,.03) !important;
 }
 
@@ -39,10 +37,7 @@
 }
 
 .auth-dialog::after,
-.detail-account-dialog::after {
-  content: none !important;
-  display: none !important;
-}
+.detail-account-dialog::after { content: none !important; display: none !important; }
 
 .auth-dialog-head,
 .detail-account-head {
@@ -90,7 +85,6 @@
   color: #a8b0c0 !important;
   background: rgba(255,255,255,.028) !important;
   font-size: 17px !important;
-  transition: color .16s ease, background .16s ease, border-color .16s ease;
 }
 
 .auth-close:hover,
@@ -101,19 +95,16 @@
 }
 
 .auth-body,
-.detail-account-body {
-  margin-top: 20px !important;
-}
+.detail-account-body { margin-top: 20px !important; }
 
-/* Google renders the button inside a cross-origin iframe. The inner document
-   stays untouched; only the iframe viewport is fixed to the exact size we ask
-   Google to render so it cannot expand and expose a blank white canvas. */
+/* Medium + <200px are intentional: Google's documented personalized button
+   cannot appear with these settings. Keep the generated iframe at its own
+   native height and only constrain the requested width. */
 .auth-google-host,
 .detail-google-slot {
-  width: 280px !important;
+  width: 190px !important;
   max-width: 100% !important;
-  height: 44px !important;
-  min-height: 44px !important;
+  min-height: 32px !important;
   margin: 0 auto !important;
   padding: 0 !important;
   display: flex !important;
@@ -127,27 +118,15 @@
 }
 
 .auth-google-host > div,
-.detail-google-slot > div {
-  width: 280px !important;
-  max-width: 100% !important;
-  height: 44px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-}
-
+.detail-google-slot > div,
 .auth-google-host iframe,
 .detail-google-slot iframe {
-  display: block !important;
-  width: 280px !important;
-  max-width: 100% !important;
-  height: 44px !important;
-  min-height: 44px !important;
+  width: 190px !important;
+  max-width: 190px !important;
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;
   border-radius: 999px !important;
-  transform: none !important;
 }
 
 .auth-account,
@@ -176,21 +155,11 @@
   box-shadow: 0 0 0 4px rgba(142,161,255,.045), 0 10px 24px rgba(0,0,0,.22);
 }
 
-.detail-account-profile-fallback {
-  display: grid !important;
-  place-items: center !important;
-}
-
-.detail-account-profile-fallback svg {
-  width: 25px !important;
-  height: 25px !important;
-}
+.detail-account-profile-fallback { display: grid !important; place-items: center !important; }
+.detail-account-profile-fallback svg { width: 25px !important; height: 25px !important; }
 
 .auth-account-copy,
-.detail-account-profile div {
-  width: 100%;
-  min-width: 0;
-}
+.detail-account-profile div { width: 100%; min-width: 0; }
 
 .auth-account-copy strong,
 .detail-account-profile strong {
@@ -241,9 +210,7 @@
 }
 
 .auth-status:empty,
-.detail-account-status:empty {
-  display: none !important;
-}
+.detail-account-status:empty { display: none !important; }
 
 .auth-menu-avatar {
   width: 20px !important;
@@ -264,44 +231,14 @@
   height: 21px !important;
   border: 1px solid rgba(155,173,255,.26);
 }
-
-.detail-account-label {
-  max-width: 110px;
-}
+.detail-account-label { max-width: 110px; }
 
 @media (max-width: 520px) {
   .auth-modal,
-  .detail-account-modal {
-    place-items: center !important;
-    align-items: center !important;
-    padding: 16px !important;
-  }
-
+  .detail-account-modal { place-items:center !important; align-items:center !important; padding:16px !important; }
   .auth-dialog,
-  .detail-account-dialog {
-    width: min(340px, calc(100vw - 32px)) !important;
-    padding: 21px !important;
-    border-radius: 23px !important;
-  }
-
+  .detail-account-dialog { width:min(340px, calc(100vw - 32px)) !important; padding:21px !important; border-radius:23px !important; }
   .auth-description,
-  .detail-account-description {
-    max-width: 260px;
-  }
-
-  .auth-google-host,
-  .detail-google-slot,
-  .auth-google-host > div,
-  .detail-google-slot > div,
-  .auth-google-host iframe,
-  .detail-google-slot iframe {
-    width: min(280px, calc(100vw - 74px)) !important;
-  }
-
-  .detail-account-button {
-    width: 34px !important;
-    max-width: 34px !important;
-    padding: 0 !important;
-    justify-content: center !important;
-  }
+  .detail-account-description { max-width:260px; }
+  .detail-account-button { width:34px !important; max-width:34px !important; padding:0 !important; justify-content:center !important; }
 }
