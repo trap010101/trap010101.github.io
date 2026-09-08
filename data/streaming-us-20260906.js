@@ -155,6 +155,18 @@
     "the-worlds-finest-assassin-season-2": {
       crunchyroll: "https://www.crunchyroll.com/series/GMEHME55K/the-worlds-finest-assassin-gets-reincarnated-in-another-world-as-an-aristocrat"
     },
+    "ice-wall-season-2": {
+      netflix: "https://www.netflix.com/title/82031882"
+    },
+    "mission-yozakura-family-season-2-part-2": {
+      hulu_us: "https://www.hulu.com/series/mission-yozakura-family-ac689bea-f955-4d95-8693-7b87b5a309cb"
+    },
+    "with-vengeance-sincerely-your-broken-saintess-season-2": {
+      prime: "https://www.primevideo.com/detail/0OUPW1VINFZH941AW52V1U5WFO"
+    },
+    "gate-season-2": {
+      crunchyroll: "https://www.crunchyroll.com/series/GRGG9PN7R/gate"
+    },
     "hotel-inhumans-season-2": {
       crunchyroll: "https://www.crunchyroll.com/series/GXJHM3G08/hotel-inhumans"
     },
