@@ -136,7 +136,7 @@
       if (!config.supabaseUrl || !config.supabaseAnonKey) return null;
       loadStylesheet('/auth.css?v=20260908-auth1');
       return loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2')
-        .then(() => loadScript('/auth.js?v=20260908-auth1'));
+        .then(() => loadScript('/auth.js?v=20260908-auth2'));
     })
     .catch(error => console.warn('Authentication UI could not be loaded.', error));
 
