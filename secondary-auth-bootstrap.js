@@ -41,7 +41,7 @@
   stylesheet('/google-login-button-fit.css?v=20260908-1');
 
   Promise.resolve()
-    .then(() => script('/language-switcher-compact.js?v=20260908-detail13'))
+    .then(() => script('/language-switcher-compact.js?v=20260908-detail14'))
     .then(() => Array.isArray(window.animeData) ? null : script('/data/anime.js?v=20260907-schedule1'))
     .then(() => script('/data/anime-20260904.js?v=20260905-data2'))
     .then(() => script('/data/title-fixes-20260905.js?v=20260905-title1'))
@@ -51,7 +51,7 @@
     .then(() => script('/auth-config.js?v=20260908-auth6'))
     .then(() => script('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0'))
     .then(() => script('https://accounts.google.com/gsi/client'))
-    .then(() => script('/auth.js?v=20260908-auth10'))
+    .then(() => script('/auth.js?v=20260908-auth11'))
     .then(() => script('/wishlist-sync.js?v=20260908-sync1'))
     .catch(error => console.warn('Archive account / wishlist UI could not be loaded.', error));
 })();
