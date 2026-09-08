@@ -21,23 +21,23 @@
 
   const copy = {
     ko: {
-      login: '로그인', account: '계정', titleLogin: '위시리스트 동기화', titleAccount: '내 계정',
-      description: 'Google 계정으로 로그인하고 저장한 작품을 다른 기기에서도 이어서 확인하세요.',
-      google: 'Google 계정', googleAction: '로그인하여 계속',
+      login: '로그인', account: '계정', titleLogin: '간편 로그인', titleAccount: '내 계정',
+      description: 'Google 계정으로 간편하게 로그인할 수 있습니다. 로그인하면 위시리스트가 기기 간에 동기화됩니다.',
+      google: 'Google로 계속', googleAction: '계정 선택',
       logout: '로그아웃', close: '닫기', signingOut: '로그아웃 중…',
       error: '로그인 처리 중 문제가 발생했습니다.'
     },
     ja: {
-      login: 'ログイン', account: 'アカウント', titleLogin: 'ウィッシュリストを同期', titleAccount: 'アカウント',
-      description: 'Googleでログインすると、保存した作品をほかの端末でも確認できます。',
-      google: 'Google アカウント', googleAction: 'ログインして続行',
+      login: 'ログイン', account: 'アカウント', titleLogin: 'かんたんログイン', titleAccount: 'アカウント',
+      description: 'Googleアカウントで簡単にログインできます。ログインするとウィッシュリストが端末間で同期されます。',
+      google: 'Googleで続行', googleAction: 'アカウントを選択',
       logout: 'ログアウト', close: '閉じる', signingOut: 'ログアウト中…',
       error: 'ログイン処理中に問題が発生しました。'
     },
     en: {
-      login: 'LOGIN', account: 'ACCOUNT', titleLogin: 'Sync your wishlist', titleAccount: 'Account',
-      description: 'Sign in with Google to keep your saved titles available across devices.',
-      google: 'Google account', googleAction: 'Sign in to continue',
+      login: 'LOGIN', account: 'ACCOUNT', titleLogin: 'Quick login', titleAccount: 'Account',
+      description: 'Sign in quickly with Google. Your wishlist will stay synced across devices.',
+      google: 'Continue with Google', googleAction: 'Choose an account',
       logout: 'Sign out', close: 'Close', signingOut: 'Signing out…',
       error: 'Something went wrong while processing sign-in.'
     }
@@ -55,7 +55,7 @@
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
+    .replace(/\"/g, '&quot;')
     .replace(/'/g, '&#39;');
 
   const userName = user => user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email || '';
@@ -144,8 +144,8 @@
     try {
       window.google.accounts.id.renderButton(host, {
         type: 'icon',
-        theme: 'outline',
-        size: 'large',
+        theme: 'filled_black',
+        size: 'medium',
         shape: 'circle'
       });
       status.textContent = '';
