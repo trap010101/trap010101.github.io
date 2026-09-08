@@ -26,41 +26,51 @@
   <link rel="stylesheet" href="/anime-breadcrumb.css?v=20260906-seo3" />
   <link rel="stylesheet" href="/title-wrap-refine.css?v=20260906-title2" />
   <link rel="stylesheet" href="/google-login-button-fit.css?v=20260908-1" />
-  <link rel="stylesheet" href="/secondary-header.css?v=20260908-1" />
+  <link rel="stylesheet" href="/site-chrome.css?v=20260908-1" />
+  <link rel="stylesheet" href="/menu-mobile-refine.css?v=20260906-menu1" />
   <link rel="stylesheet" href="/secondary-scale.css?v=20260908-2" />
-  <link rel="stylesheet" href="/secondary-menu-integrations.css?v=20260908-1" />
 </head>
 <body>
   <main class="detail-shell">
-    <header class="secondary-site-header">
-      <a class="secondary-site-brand" data-secondary-brand href="/" aria-label="NewAnime"><img src="/assets/newanime-logo.webp" alt="NewAnime" width="500" height="124"></a>
-      <div class="secondary-header-spacer" aria-hidden="true"></div>
-      <div class="detail-language secondary-language" id="languageSwitcher" aria-label="Language">
-        <button type="button" class="active" data-lang="ko">KR</button>
-        <button type="button" data-lang="ja">JP</button>
-        <button type="button" data-lang="en">EN</button>
+    <header class="site-header">
+      <a class="site-brand" href="/" aria-label="NewAnime">
+        <img class="brand-logo" src="/assets/newanime-logo.webp" alt="NewAnime" width="500" height="124" decoding="async" fetchpriority="high" />
+      </a>
+      <div class="site-header-spacer" aria-hidden="true"></div>
+      <div class="language-row detail-language" id="languageSwitcher" aria-label="언어 선택">
+        <button class="language-btn active" type="button" data-lang="ko">KR</button>
+        <button class="language-btn" type="button" data-lang="ja">JP</button>
+        <button class="language-btn" type="button" data-lang="en">EN</button>
       </div>
-      <div class="secondary-menu-wrap">
-        <button class="secondary-menu-toggle" id="menuToggle" type="button" data-secondary-menu-toggle aria-label="메뉴" aria-expanded="false" aria-controls="siteMenu">
-          <span class="secondary-menu-line" aria-hidden="true"></span>
-          <span class="secondary-menu-line" aria-hidden="true"></span>
-          <span class="secondary-menu-line" aria-hidden="true"></span>
+      <div class="menu-wrap">
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="siteMenu">
+          <span class="menu-toggle-line" aria-hidden="true"></span>
+          <span class="menu-toggle-line" aria-hidden="true"></span>
+          <span class="menu-toggle-line" aria-hidden="true"></span>
         </button>
-        <div class="secondary-site-menu detail-header-actions hidden" id="siteMenu" data-secondary-menu role="menu">
-          <a class="secondary-menu-item" data-secondary-updates href="/updates/" role="menuitem">
-            <span class="secondary-menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"></path><path d="M3 4v5h5"></path><path d="M12 7v5l3 2"></path></svg></span>
-            <span data-secondary-menu-label="updates">업데이트</span>
+        <div class="site-menu detail-header-actions hidden" id="siteMenu" data-secondary-menu role="menu">
+          <a class="site-menu-item" href="/updates/" role="menuitem" id="updatesMenuLink" data-secondary-updates>
+            <span class="site-menu-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 1 0 3-6.7"></path>
+                <path d="M3 4v5h5"></path>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+            </span>
+            <span id="updatesMenuLabel">UPDATES</span>
           </a>
-          <a class="secondary-menu-item" href="mailto:admin@newani.me" role="menuitem">
-            <span class="secondary-menu-icon" aria-hidden="true">@</span>
-            <span data-secondary-menu-label="contact">문의</span>
+          <a class="site-menu-item" href="mailto:admin@newani.me" role="menuitem">
+            <span class="site-menu-icon" aria-hidden="true">@</span>
+            <span id="contactMenuLabel">CONTACT</span>
           </a>
-          <button class="secondary-menu-item secondary-share-item detail-share" type="button" role="menuitem" data-share>공유</button>
+          <button class="site-menu-item" id="shareButton" type="button" role="menuitem">
+            <span class="site-menu-icon" aria-hidden="true">↗</span>
+            <span id="shareMenuLabel">SHARE</span>
+          </button>
         </div>
       </div>
     </header>
-    <div class="secondary-share-status hidden" data-secondary-share-status role="status" aria-live="polite"></div>
-    <a class="detail-back" href="/">← <span data-back-label>전체 일정으로 돌아가기</span></a>
+    <div class="share-status hidden" id="shareStatus" role="status" aria-live="polite"></div><a class="detail-back" href="/">← <span data-back-label>전체 일정으로 돌아가기</span></a>
     <nav class="detail-breadcrumb" aria-label="Schedule navigation">
       <a href="/">HOME</a>
       <span class="detail-breadcrumb-separator" aria-hidden="true">›</span><a href="/2027/">2027</a><span class="detail-breadcrumb-separator" aria-hidden="true">›</span><a href="/2027/01/">01</a>
@@ -158,7 +168,18 @@
         </section>
       </section></div>
     </article>
-    <footer class="detail-footer"><a href="/about/">ABOUT</a><a href="/updates/">UPDATES</a><a href="/privacy/">PRIVACY</a><a href="/policy/">POLICY</a></footer>
+    <footer>
+      <div id="footerDescription">방영 예정 애니메이션과 극장판의 일정, PV, 공식 사이트, 스트리밍 정보를 한눈에 정리합니다.</div>
+      <nav class="site-footer-links" aria-label="Site information">
+        <a id="archiveFooterLink" href="/2027/">ARCHIVE</a>
+        <a href="/updates/">UPDATES</a>
+        <a href="/about/">ABOUT</a>
+        <a href="/privacy/">PRIVACY</a>
+        <a href="/policy/">POLICY</a>
+        <a href="mailto:admin@newani.me">CONTACT</a>
+      </nav>
+      <div id="footerCopyright">© 2026 NewAnime</div>
+    </footer>
   </main>
   <div class="detail-toast" data-toast hidden></div>
   <script>window.ANIME_DETAIL={"id":"murcie-lago","canonical":"https://newani.me/anime/murcie-lago/","titles":{"ko":"무르시엘라고","ja":"ムルシエラゴ","en":"MURCIÉLAGO"},"localized":{"ko":{"title":"무르시엘라고","release":"2027년 1월","description":"무르시엘라고의 방영·공개 일정, PV, 공식 사이트, 이전 시리즈 스트리밍 및 공식 출처를 확인하세요."},"ja":{"title":"ムルシエラゴ","release":"2027年1月","description":"ムルシエラゴの放送・公開予定、PV、公式サイト、過去シリーズの配信情報、公式情報源を確認できます。"},"en":{"title":"MURCIÉLAGO","release":"January 2027","description":"Check the release schedule, PV, official site, previous-series streaming, and official sources for MURCIÉLAGO."}},"copy":{"ko":{"siteTitle":"방영 예정 애니메이션","back":"전체 일정으로 돌아가기","release":"방영 · 공개 일정","resources":"공식 링크","pv":"PV","official":"공식 사이트","streaming":"이전 시리즈 정주행","streamingNote":"이전 시리즈를 시청할 수 있는 서비스입니다. 현재 작품의 스트리밍 확정 정보가 아닙니다.","sources":"정보 출처","checked":"마지막 확인","noStreaming":"등록된 이전 시리즈 스트리밍 링크가 없습니다.","noSources":"등록된 공식 출처가 없습니다.","share":"공유","copyDone":"링크를 복사했습니다."},"ja":{"siteTitle":"放送予定アニメ","back":"全体スケジュールに戻る","release":"放送・公開予定","resources":"公式リンク","pv":"PV","official":"公式サイト","streaming":"過去シリーズをまとめて視聴","streamingNote":"過去シリーズを視聴できるサービスです。今作の配信決定情報ではありません。","sources":"情報源","checked":"最終確認","noStreaming":"過去シリーズの配信リンクは登録されていません。","noSources":"公式情報源は登録されていません。","share":"共有","copyDone":"リンクをコピーしました。"},"en":{"siteTitle":"Upcoming Anime","back":"Back to full schedule","release":"Release schedule","resources":"Official links","pv":"PV","official":"Official site","streaming":"Catch up on previous series","streamingNote":"These services are for earlier installments and do not confirm streaming for the upcoming title.","sources":"Information sources","checked":"Last checked","noStreaming":"No previous-series streaming links are registered.","noSources":"No official sources are registered.","share":"Share","copyDone":"Link copied."}},"streamingByRegion":{"kr":{"current":{},"previous":{}},"jp":{"current":{},"previous":{}},"us":{"current":{},"previous":{}}},"streamingRegionOrder":["kr","jp","us"],"streamingRegions":{"kr":{"id":"kr","countryCode":"KR","locale":"ko-KR","label":{"ko":"대한민국","ja":"韓国","en":"South Korea"}},"jp":{"id":"jp","countryCode":"JP","locale":"ja-JP","label":{"ko":"일본","ja":"日本","en":"Japan"}},"us":{"id":"us","countryCode":"US","locale":"en-US","label":{"ko":"미국","ja":"アメリカ","en":"United States"}}},"streamingPlatformNames":{"netflix":"Netflix","laftel":"Laftel","disney":"Disney+","prime":"Prime Video","crunchyroll":"Crunchyroll","tving":"TVING","watcha":"WATCHA","youtube":"YouTube","danime":"dアニメストア","unext":"U-NEXT","abema":"ABEMA","hulu_jp":"Hulu Japan","hidive":"HIDIVE","hulu_us":"Hulu"},"streamingAuditMeta":{"jp":{"verifiedAt":"2026-09-07","auditedTitles":54,"linkedTitles":70,"unresolvedAnimeIds":["tiger-coming-in-2"]},"us":{"verifiedAt":"2026-09-06","auditedTitles":53,"linkedTitles":66,"unresolvedAnimeIds":["expelled-from-paradise-resonance-of-the-heart","tiger-coming-in-2","everyday-host-new-series"]}}};</script>
@@ -184,14 +205,14 @@
       document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', localized.title + ' | NewAnime');
       document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', localized.description);
       document.querySelector('[data-back-label]').textContent = data.copy[lang].back;
-      document.querySelector('[data-share]').textContent = data.copy[lang].share;
+      document.getElementById('shareMenuLabel').textContent = data.copy[lang].share;
       try { localStorage.setItem('animeScheduleLang', lang); } catch (_) {}
       const url = new URL(location.href);
       url.searchParams.set('lang', lang);
       history.replaceState(null, '', url);
     };
     document.querySelectorAll('[data-lang]').forEach(btn => btn.addEventListener('click', () => apply(btn.dataset.lang)));
-    document.querySelector('[data-share]')?.addEventListener('click', async () => {
+    document.getElementById('shareButton')?.addEventListener('click', async () => {
       const localized = data.localized[lang] || data.localized.ko;
       const shareData = { title: localized.title + ' | NewAnime', text: localized.description, url: data.canonical + '?lang=' + lang };
       try {
@@ -217,7 +238,7 @@
   <script src="/streaming-region-country-default.js?v=20260906-country1"></script>
   <script src="/detail-streaming-region.js?v=20260906-region1"></script>
   <script src="/streaming-region-compact.js?v=20260906-region4"></script>
-  <script src="/secondary-header.js?v=20260908-2"></script>
+  <script src="/secondary-header.js?v=20260908-3"></script>
   <script src="/secondary-menu-order.js?v=20260908-1"></script>
 </body>
 </html>

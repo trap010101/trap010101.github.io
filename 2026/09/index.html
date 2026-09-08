@@ -29,41 +29,51 @@
   <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-jp.css" />
   <link rel="stylesheet" href="/schedule-archive.css?v=20260908-ui1" />
   <link rel="stylesheet" href="/title-wrap-refine.css?v=20260906-title2" />
-  <link rel="stylesheet" href="/secondary-header.css?v=20260908-1" />
+  <link rel="stylesheet" href="/site-chrome.css?v=20260908-1" />
+  <link rel="stylesheet" href="/menu-mobile-refine.css?v=20260906-menu1" />
   <link rel="stylesheet" href="/secondary-scale.css?v=20260908-2" />
-  <link rel="stylesheet" href="/secondary-menu-integrations.css?v=20260908-1" />
 </head>
 <body>
   <main class="archive-shell">
-    <header class="secondary-site-header">
-      <a class="secondary-site-brand" data-secondary-brand href="/" aria-label="NewAnime"><img src="/assets/newanime-logo.webp" alt="NewAnime" width="500" height="124"></a>
-      <div class="secondary-header-spacer" aria-hidden="true"></div>
-      <div class="archive-language secondary-language" id="languageSwitcher" aria-label="Language">
-        <button type="button" class="active" data-lang="ko">KR</button>
-        <button type="button" data-lang="ja">JP</button>
-        <button type="button" data-lang="en">EN</button>
+    <header class="site-header">
+      <a class="site-brand" href="/" aria-label="NewAnime">
+        <img class="brand-logo" src="/assets/newanime-logo.webp" alt="NewAnime" width="500" height="124" decoding="async" fetchpriority="high" />
+      </a>
+      <div class="site-header-spacer" aria-hidden="true"></div>
+      <div class="language-row archive-language" id="languageSwitcher" aria-label="언어 선택">
+        <button class="language-btn active" type="button" data-lang="ko">KR</button>
+        <button class="language-btn" type="button" data-lang="ja">JP</button>
+        <button class="language-btn" type="button" data-lang="en">EN</button>
       </div>
-      <div class="secondary-menu-wrap">
-        <button class="secondary-menu-toggle" id="menuToggle" type="button" data-secondary-menu-toggle aria-label="메뉴" aria-expanded="false" aria-controls="siteMenu">
-          <span class="secondary-menu-line" aria-hidden="true"></span>
-          <span class="secondary-menu-line" aria-hidden="true"></span>
-          <span class="secondary-menu-line" aria-hidden="true"></span>
+      <div class="menu-wrap">
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="siteMenu">
+          <span class="menu-toggle-line" aria-hidden="true"></span>
+          <span class="menu-toggle-line" aria-hidden="true"></span>
+          <span class="menu-toggle-line" aria-hidden="true"></span>
         </button>
-        <div class="secondary-site-menu hidden" id="siteMenu" data-secondary-menu role="menu">
-          <a class="secondary-menu-item" data-secondary-updates href="/updates/" role="menuitem">
-            <span class="secondary-menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"></path><path d="M3 4v5h5"></path><path d="M12 7v5l3 2"></path></svg></span>
-            <span data-secondary-menu-label="updates">업데이트</span>
+        <div class="site-menu hidden" id="siteMenu" data-secondary-menu role="menu">
+          <a class="site-menu-item" href="/updates/" role="menuitem" id="updatesMenuLink" data-secondary-updates>
+            <span class="site-menu-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 1 0 3-6.7"></path>
+                <path d="M3 4v5h5"></path>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+            </span>
+            <span id="updatesMenuLabel">UPDATES</span>
           </a>
-          <a class="secondary-menu-item" href="mailto:admin@newani.me" role="menuitem">
-            <span class="secondary-menu-icon" aria-hidden="true">@</span>
-            <span data-secondary-menu-label="contact">문의</span>
+          <a class="site-menu-item" href="mailto:admin@newani.me" role="menuitem">
+            <span class="site-menu-icon" aria-hidden="true">@</span>
+            <span id="contactMenuLabel">CONTACT</span>
           </a>
-          <button class="secondary-menu-item secondary-share-item" type="button" role="menuitem" data-secondary-share data-secondary-menu-label="share">공유</button>
+          <button class="site-menu-item" id="shareButton" type="button" role="menuitem" data-secondary-share>
+            <span class="site-menu-icon" aria-hidden="true">↗</span>
+            <span id="shareMenuLabel">SHARE</span>
+          </button>
         </div>
       </div>
     </header>
-    <div class="secondary-share-status hidden" data-secondary-share-status role="status" aria-live="polite"></div>
-    <a class="archive-back" href="/">← <span data-back>전체 일정</span></a>
+    <div class="share-status hidden" id="shareStatus" role="status" aria-live="polite"></div><a class="archive-back" href="/">← <span data-back>전체 일정</span></a>
     <section class="archive-hero">
       <div class="archive-kicker" data-kicker>월별 방영 일정</div>
       <h1 data-page-title>2026년 9월 방영 예정 애니메이션</h1>
@@ -158,8 +168,17 @@
     </div>
   </article></div>
   </section></div>
-    <footer class="archive-footer">
-      <a href="/">HOME</a><a href="/2026/">ARCHIVE</a><a href="/updates/">UPDATES</a><a href="/about/">ABOUT</a><a href="/privacy/">PRIVACY</a><a href="/policy/">POLICY</a>
+    <footer>
+      <div id="footerDescription">방영 예정 애니메이션과 극장판의 일정, PV, 공식 사이트, 스트리밍 정보를 한눈에 정리합니다.</div>
+      <nav class="site-footer-links" aria-label="Site information">
+        <a id="archiveFooterLink" href="/2026/">ARCHIVE</a>
+        <a href="/updates/">UPDATES</a>
+        <a href="/about/">ABOUT</a>
+        <a href="/privacy/">PRIVACY</a>
+        <a href="/policy/">POLICY</a>
+        <a href="mailto:admin@newani.me">CONTACT</a>
+      </nav>
+      <div id="footerCopyright">© 2026 NewAnime</div>
     </footer>
   </main>
   <script>window.ARCHIVE_PAGE_DATA={"year":2026,"type":"month","month":9,"canonical":"https://newani.me/2026/09/","localized":{"ko":{"title":"2026년 9월 방영 예정 애니메이션","description":"2026년 9월 방영·공개 예정 애니메이션과 극장판의 일정, 작품 정보, PV 및 공식 링크를 확인하세요.","kicker":"월별 방영 일정"},"ja":{"title":"2026年9月 放送予定アニメ","description":"2026年9月に放送・公開予定のアニメと劇場版のスケジュール、作品情報、PV、公式リンクを確認できます。","kicker":"月別放送スケジュール"},"en":{"title":"Upcoming Anime in September 2026","description":"Browse anime and films scheduled for September 2026, including release dates, title information, PVs, and official links.","kicker":"Monthly anime schedule"}},"commonCopy":{"ko":{"back":"전체 일정","titles":"작품","monthTba":"월 미정","browse":"일정 둘러보기"},"ja":{"back":"全体スケジュール","titles":"作品","monthTba":"月未定","browse":"スケジュールを見る"},"en":{"back":"Full schedule","titles":"titles","monthTba":"Month TBA","browse":"Browse schedule"}},"items":[{"id":"sekiro-no-defeat","titles":{"ko":"SEKIRO: NO DEFEAT","ja":"SEKIRO: NO DEFEAT","en":"SEKIRO: NO DEFEAT"},"release":{"ko":"2026년 9월 4일","ja":"2026年9月4日","en":"Sep 4, 2026"},"tags":[{"key":"major","ko":"주요 기대작","ja":"注目作","en":"Highlight"},{"key":"new","ko":"신작","ja":"新作","en":"New"},{"key":"game","ko":"게임 원작","ja":"ゲーム原作","en":"Game"},{"key":"movie","ko":"극장판","ja":"劇場版","en":"Movie"}]},{"id":"ghost-meets-gal","titles":{"ko":"고스트 미츠 갸루!","ja":"ごーすと・みーつ・ぎゃる！","en":"Ghost Meets Gal!"},"release":{"ko":"2026년 9월 5일","ja":"2026年9月5日","en":"Sep 5, 2026"},"tags":[{"key":"series","ko":"시리즈","ja":"シリーズ","en":"Series"},{"key":"comic","ko":"코믹스 원작","ja":"漫画原作","en":"Manga"}]},{"id":"kaiju-no-8-narumis-weekday","titles":{"ko":"괴수 8호 오리지널 쇼트 애니메이션 「나루미의 평일」","ja":"怪獣8号 オリジナルショートアニメ「鳴海の平日」","en":"Kaiju No. 8 Original Short Anime: Narumi's Weekday"},"release":{"ko":"2026년 9월 5일","ja":"2026年9月5日","en":"Sep 5, 2026"},"tags":[{"key":"series","ko":"시리즈","ja":"シリーズ","en":"Series"},{"key":"comic","ko":"코믹스 원작","ja":"漫画原作","en":"Manga"}]},{"id":"sound-euphonium-the-final-movement-part-2","titles":{"ko":"최종악장 울려라! 유포니엄 후편","ja":"最終楽章 響け！ユーフォニアム 後編","en":"Sound! Euphonium: The Final Movement — Part 2"},"release":{"ko":"2026년 9월 11일","ja":"2026年9月11日","en":"Sep 11, 2026"},"tags":[{"key":"major","ko":"주요 기대작","ja":"注目作","en":"Highlight"},{"key":"series","ko":"시리즈","ja":"シリーズ","en":"Series"},{"key":"ln","ko":"라이트 노벨 원작","ja":"ライトノベル原作","en":"Light Novel"},{"key":"movie","ko":"극장판","ja":"劇場版","en":"Movie"}]},{"id":"we-are-aliens","titles":{"ko":"우리는 외계인","ja":"我々は宇宙人","en":"We Are Aliens"},"release":{"ko":"2026년 9월 25일","ja":"2026年9月25日","en":"Sep 25, 2026"},"tags":[{"key":"new","ko":"신작","ja":"新作","en":"New"},{"key":"original","ko":"오리지널","ja":"オリジナル","en":"Original"},{"key":"movie","ko":"극장판","ja":"劇場版","en":"Movie"}]},{"id":"jojos-bizarre-adventure-steel-ball-run-2nd-and-3rd-stage","titles":{"ko":"죠죠의 기묘한 모험 스틸 볼 런 2nd & 3rd STAGE","ja":"ジョジョの奇妙な冒険 スティール・ボール・ラン 2nd & 3rd STAGE","en":"JoJo's Bizarre Adventure: Steel Ball Run — 2nd & 3rd Stage"},"release":{"ko":"2026년 9월 25일","ja":"2026年9月25日","en":"Sep 25, 2026"},"tags":[{"key":"major","ko":"주요 기대작","ja":"注目作","en":"Highlight"},{"key":"series","ko":"시리즈","ja":"シリーズ","en":"Series"},{"key":"comic","ko":"코믹스 원작","ja":"漫画原作","en":"Manga"}]},{"id":"appraisal-skill-season-3","titles":{"ko":"전생 귀족, 감정 스킬로 성공하다 3기","ja":"転生貴族、鑑定スキルで成り上がる 第3期","en":"As a Reincarnated Aristocrat, I'll Use My Appraisal Skill to Rise in the World Season 3"},"release":{"ko":"2026년 9월 27일","ja":"2026年9月27日","en":"Sep 27, 2026"},"tags":[{"key":"series","ko":"시리즈","ja":"シリーズ","en":"Series"},{"key":"ln","ko":"라이트 노벨 원작","ja":"ライトノベル原作","en":"Light Novel"}]},{"id":"the-new-prince-of-tennis-u-17-world-cup-final-roster-selection","titles":{"ko":"신 테니스의 왕자 U-17 WORLD CUP 결승 멤버 결정전","ja":"新テニスの王子様 U-17 WORLD CUP 決勝メンバー決定戦","en":"The New Prince of Tennis U-17 WORLD CUP: Final Roster Selection"},"release":{"ko":"2026년 9월 30일","ja":"2026年9月30日","en":"Sep 30, 2026"},"tags":[{"key":"series","ko":"시리즈","ja":"シリーズ","en":"Series"},{"key":"comic","ko":"코믹스 원작","ja":"漫画原作","en":"Manga"}]}],"sections":[{"key":"m9","labels":{"ko":"9월","ja":"9月","en":"September"},"count":8}],"availableMonths":[9,10,11,12],"hasTba":true};</script>
@@ -248,7 +267,7 @@
     apply(lang);
   })();
   </script>
-  <script src="/secondary-header.js?v=20260908-2"></script>
+  <script src="/secondary-header.js?v=20260908-3"></script>
   <script src="/secondary-menu-order.js?v=20260908-1"></script>
   <script src="/secondary-auth-bootstrap.js?v=20260908-2"></script>
 </body>
