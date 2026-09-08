@@ -1,13 +1,12 @@
-// Compact collapsible language selector shared by the homepage and anime detail pages.
+// Compact collapsible language selector shared by the homepage, detail, and archive pages.
 (() => {
-  const ROOT_SELECTOR = '#languageSwitcher, .detail-language';
+  const ROOT_SELECTOR = '#languageSwitcher';
   const LABELS = { ko: 'KR', ja: 'JP', en: 'EN' };
 
   const style = document.createElement('style');
   style.id = 'compactLanguageSwitcherStyles';
   style.textContent = `
-    #languageSwitcher.language-dropdown,
-    .detail-language.language-dropdown {
+    #languageSwitcher.language-dropdown {
       position: relative !important;
       display: inline-flex !important;
       flex: 0 0 auto !important;
@@ -78,6 +77,7 @@
       background: rgba(15,18,26,.98);
       box-shadow: 0 14px 34px rgba(0,0,0,.4);
       backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
     }
 
     .language-dropdown.is-open > .language-options {
@@ -87,7 +87,7 @@
     }
 
     #languageSwitcher.language-dropdown .language-btn,
-    .detail-language.language-dropdown [data-lang] {
+    #languageSwitcher.language-dropdown [data-lang] {
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
@@ -110,15 +110,15 @@
 
     #languageSwitcher.language-dropdown .language-btn:hover,
     #languageSwitcher.language-dropdown .language-btn:focus-visible,
-    .detail-language.language-dropdown [data-lang]:hover,
-    .detail-language.language-dropdown [data-lang]:focus-visible {
+    #languageSwitcher.language-dropdown [data-lang]:hover,
+    #languageSwitcher.language-dropdown [data-lang]:focus-visible {
       outline: none !important;
       color: #fff !important;
       background: rgba(255,255,255,.055) !important;
     }
 
     #languageSwitcher.language-dropdown .language-btn.active,
-    .detail-language.language-dropdown [data-lang].active {
+    #languageSwitcher.language-dropdown [data-lang].active {
       color: #fff !important;
       background: rgba(142,161,255,.12) !important;
     }
@@ -129,10 +129,7 @@
         height: 32px;
         padding-inline: 7px;
       }
-
-      .language-options {
-        width: 48px;
-      }
+      .language-options { width: 48px; }
     }
   `;
   if (!document.getElementById(style.id)) document.head.appendChild(style);
@@ -224,8 +221,7 @@
   });
 })();
 
-// Detail pages share the homepage account session and cloud wishlist without
-// duplicating those controls into every generated anime HTML file.
+// Detail pages share the homepage account session and cloud wishlist.
 (() => {
   if (!document.querySelector('.detail-shell') || !window.ANIME_DETAIL) return;
 
@@ -258,12 +254,13 @@
   };
 
   stylesheet('/wishlist.css?v=20260908-wishlist4');
+  stylesheet('/auth.css?v=20260908-auth2');
   stylesheet('/account-refine.css?v=20260908-authui10');
   script('/auth-config.js?v=20260908-auth6')
     .then(() => script('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0'))
     .then(() => script('https://accounts.google.com/gsi/client'))
     .then(() => script('/wishlist.js?v=20260908-wishlist3'))
-    .then(() => script('/detail-account.js?v=20260908-detail7'))
+    .then(() => script('/detail-account.js?v=20260908-detail8'))
     .then(() => script('/wishlist-sync.js?v=20260908-sync1'))
     .catch(error => console.warn('Detail account UI could not be loaded.', error));
 })();
