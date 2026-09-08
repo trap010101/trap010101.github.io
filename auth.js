@@ -9,8 +9,7 @@
     auth: {
       persistSession: true,
       autoRefreshToken: true,
-      detectSessionInUrl: true,
-      flowType: 'pkce'
+      detectSessionInUrl: true
     }
   });
 
@@ -43,8 +42,24 @@
   };
   const text = key => copy[language()]?.[key] || copy.ko[key] || key;
 
+  const escapeHtml = value => String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
   const userName = user => user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email || '';
-  const avatarUrl = user => user?.user_metadata?.avatar_url || user?.user_metadata?.picture || '';
+  const avatarUrl = user => {
+    const value = user?.user_metadata?.avatar_url || user?.user_metadata?.picture || '';
+    if (!value) return '';
+    try {
+      const url = new URL(value, window.location.origin);
+      return ['http:', 'https:'].includes(url.protocol) ? url.href : '';
+    } catch (_) {
+      return '';
+    }
+  };
 
   const personSvg = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M5.5 19c.8-3.6 3-5.5 6.5-5.5s5.7 1.9 6.5 5.5"></path></svg>';
   const googleSvg = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.35 12.25c0-.72-.06-1.25-.2-1.8H12v3.28h5.37a4.6 4.6 0 0 1-1.99 2.93v2.43h3.22c1.88-1.73 2.75-4.3 2.75-6.84Z"/><path fill="#34A853" d="M12 21.5c2.62 0 4.82-.86 6.6-2.4l-3.22-2.44c-.9.6-2.04.95-3.38.95-2.53 0-4.68-1.7-5.45-4.01H3.23v2.5A9.97 9.97 0 0 0 12 21.5Z"/><path fill="#FBBC05" d="M6.55 13.6A5.97 5.97 0 0 1 6.23 12c0-.56.1-1.1.3-1.6V7.9H3.24A9.53 9.53 0 0 0 2.5 12c0 1.48.35 2.88.73 4.1l3.32-2.5Z"/><path fill="#EA4335" d="M12 6.39c1.45 0 2.74.5 3.76 1.47l2.82-2.82C16.8 3.4 14.62 2.5 12 2.5A9.97 9.97 0 0 0 3.23 7.9l3.32 2.5C7.32 8.08 9.47 6.39 12 6.39Z"/></svg>';
@@ -87,16 +102,16 @@
   const status = modal.querySelector('.auth-status');
   const closeButton = modal.querySelector('.auth-close');
   let currentUser = null;
-  let lastFocus = null;
 
   function render() {
     const menuContent = menuButton.querySelector('.auth-menu-content');
     if (currentUser) {
       const avatar = avatarUrl(currentUser);
+      const name = userName(currentUser);
       menuContent.innerHTML = avatar
-        ? `<span class="auth-menu-user"><img class="auth-menu-avatar" src="${avatar}" alt=""><span class="auth-menu-name">${userName(currentUser)}</span></span>`
+        ? `<span class="auth-menu-user"><img class="auth-menu-avatar" src="${escapeHtml(avatar)}" alt=""><span class="auth-menu-name">${escapeHtml(name)}</span></span>`
         : `<span class="auth-menu-name">${text('account')}</span>`;
-      menuButton.setAttribute('aria-label', `${text('account')} · ${userName(currentUser)}`);
+      menuButton.setAttribute('aria-label', `${text('account')} · ${name}`);
     } else {
       menuContent.textContent = text('login');
       menuButton.setAttribute('aria-label', text('login'));
@@ -109,10 +124,11 @@
 
     if (currentUser) {
       const avatar = avatarUrl(currentUser);
+      const name = userName(currentUser);
       body.innerHTML = `
         <div class="auth-account">
-          ${avatar ? `<img class="auth-account-avatar" src="${avatar}" alt="">` : '<div class="auth-account-avatar"></div>'}
-          <div class="auth-account-copy"><strong>${userName(currentUser)}</strong><span>${currentUser.email || ''}</span></div>
+          ${avatar ? `<img class="auth-account-avatar" src="${escapeHtml(avatar)}" alt="">` : '<div class="auth-account-avatar"></div>'}
+          <div class="auth-account-copy"><strong>${escapeHtml(name)}</strong><span>${escapeHtml(currentUser.email || '')}</span></div>
         </div>
         <button class="auth-signout" type="button" data-auth-signout>${text('logout')}</button>`;
     } else {
@@ -121,7 +137,6 @@
   }
 
   function openModal() {
-    lastFocus = document.activeElement;
     status.textContent = '';
     render();
     modal.classList.remove('hidden');
@@ -136,15 +151,13 @@
     modal.classList.add('hidden');
     document.body.classList.remove('auth-modal-open');
     document.getElementById('menuToggle')?.focus();
-    lastFocus = null;
   }
 
   async function signIn() {
     status.textContent = text('signingIn');
-    const redirectTo = `${window.location.origin}/`;
     const { error } = await client.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo }
+      options: { redirectTo: `${window.location.origin}/` }
     });
     if (error) status.textContent = text('error');
   }
