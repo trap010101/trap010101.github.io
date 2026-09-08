@@ -1,1 +1,17 @@
-// Korean previous-series streaming links verified against direct playable title pages.\n(() => {\n  if (typeof window.setAnimeStreamingForRegion !== "function") return;\n\n  const audit = {\n    "maebashi-witches-emoemories": {\n      laftel: "https://laftel.net/item/42780"\n    },\n    "takopis-original-sin-thank-you-see-you-tomorrow": {\n      laftel: "https://laftel.net/item/42947"\n    }\n  };\n\n  for (const [animeId, previous] of Object.entries(audit)) {\n    window.setAnimeStreamingForRegion(animeId, "kr", { previous });\n  }\n})();\n
+// Korean previous-series streaming links verified against direct playable title pages.
+(() => {
+  if (typeof window.setAnimeStreamingForRegion !== "function") return;
+
+  const audit = {
+    "maebashi-witches-emoemories": {
+      laftel: "https://laftel.net/item/42780"
+    },
+    "takopis-original-sin-thank-you-see-you-tomorrow": {
+      laftel: "https://laftel.net/item/42947"
+    }
+  };
+
+  for (const [animeId, previous] of Object.entries(audit)) {
+    window.setAnimeStreamingForRegion(animeId, "kr", { previous });
+  }
+})();
