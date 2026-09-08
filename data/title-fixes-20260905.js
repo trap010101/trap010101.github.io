@@ -130,7 +130,7 @@
     }),
     make2027({
       id: "marriage-toxin-season-2",
-      ko: "마리지가톡신 2기", ja: "マリッジトキシン 第2期", en: "Marriage Toxin Season 2",
+      ko: "매리지 톡신 2기", ja: "マリッジトキシン 第2期", en: "Marriage Toxin Season 2",
       release: monthRelease(1), season: "2027-winter", tags: ["series", "comic"],
       official: "https://www.marriagetoxin-anime.com/",
       sourceUrl: "https://www.ktv.jp/kaanival11/",
