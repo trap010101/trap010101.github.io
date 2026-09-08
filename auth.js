@@ -24,19 +24,19 @@
       login: '로그인', account: '계정', titleLogin: '간편 로그인', titleAccount: '내 계정',
       description: 'Google 계정으로 로그인하면 위시리스트를 기기 간에 동기화할 수 있습니다.',
       logout: '로그아웃', close: '닫기', signingOut: '로그아웃 중…',
-      error: '로그인 처리 중 문제가 발생했습니다.', ready: 'Google 계정을 선택해 로그인하세요.'
+      error: '로그인 처리 중 문제가 발생했습니다.'
     },
     ja: {
       login: 'ログイン', account: 'アカウント', titleLogin: 'かんたんログイン', titleAccount: 'アカウント',
       description: 'Googleでログインすると、ウィッシュリストを端末間で同期できます。',
       logout: 'ログアウト', close: '閉じる', signingOut: 'ログアウト中…',
-      error: 'ログイン処理中に問題が発生しました。', ready: 'Googleアカウントを選択してログインしてください。'
+      error: 'ログイン処理中に問題が発生しました。'
     },
     en: {
       login: 'LOGIN', account: 'ACCOUNT', titleLogin: 'Quick login', titleAccount: 'Account',
       description: 'Sign in with Google to sync your wishlist across devices.',
       logout: 'Sign out', close: 'Close', signingOut: 'Signing out…',
-      error: 'Something went wrong while processing sign-in.', ready: 'Choose a Google account to sign in.'
+      error: 'Something went wrong while processing sign-in.'
     }
   };
 
@@ -143,12 +143,12 @@
         type: 'standard',
         theme: 'filled_black',
         size: 'large',
-        shape: 'rectangular',
-        text: 'signin_with',
+        shape: 'pill',
+        text: 'continue_with',
         logo_alignment: 'left',
-        width: Math.min(380, Math.max(240, body.clientWidth || 340))
+        width: Math.min(330, Math.max(240, body.clientWidth || 320))
       });
-      status.textContent = text('ready');
+      status.textContent = '';
     } catch (error) {
       console.warn('Google Identity Services button could not be rendered.', error);
       status.textContent = text('error');
