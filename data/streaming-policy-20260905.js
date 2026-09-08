@@ -13,20 +13,11 @@
     "mission-yozakura-family-season-2-part-2": {
       laftel: "https://laftel.net/item/42049"
     },
-    "dragon-ball-super-beerus": {
-      laftel: "https://laftel.net/item/25044"
-    },
     "with-vengeance-sincerely-your-broken-saintess-season-2": {
       prime: "https://www.primevideo.com/detail/0OUPW1VINFZH941AW52V1U5WFO"
     },
-    "dark-gathering-season-2": {
-      laftel: "https://laftel.net/item/41524"
-    },
     "kaiju-no-8-narumis-weekday": {
       laftel: "https://laftel.net/item/42047"
-    },
-    "girls-und-panzer-motto-love-love-operation": {
-      laftel: "https://laftel.net/item/23062"
     },
     "my-happy-marriage-special-2026": {
       laftel: "https://laftel.net/item/41528"
