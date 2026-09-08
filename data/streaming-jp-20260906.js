@@ -68,6 +68,10 @@
     "magical-girl-raising-project-restart": { danime: dAnime("21178") },
     "armored-trooper-votoms-the-gray-witch-part-1": { danime: dAnime("20211") },
     "mobile-police-patlabor-ezy-file-3": { danime: dAnime("10363") },
+    "hokuto-no-ken-fist-of-the-north-star-part-2": { danime: dAnime("10480") },
+    "girls-und-panzer-motto-love-love-operation": { danime: dAnime("20431") },
+    "my-happy-marriage-special-2026": { danime: dAnime("26472") },
+    "takopis-original-sin-thank-you-see-you-tomorrow": { danime: dAnime("28000") },
     "ice-wall-season-2": { netflix: "https://www.netflix.com/title/82031882" },
     "with-vengeance-sincerely-your-broken-saintess-season-2": {
       prime: "https://www.primevideo.com/detail/0OUPW1VINFZH941AW52V1U5WFO"
