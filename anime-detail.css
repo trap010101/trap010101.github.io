@@ -207,33 +207,146 @@ button { font: inherit; }
 .detail-account-status { min-height: 15px; margin: 10px 0 0; color: #9ba3b4; font-size: 10px; line-height: 1.5; text-align: center; }
 body.detail-account-open { overflow: hidden; }
 
+/* Secondary pages use the same mobile content scale as the homepage from the
+   tablet breakpoint down. This avoids a shrunken two-column desktop layout on
+   wide mobile viewports. */
 @media (max-width: 760px) {
-  .detail-shell { width: min(100% - 22px, 680px); padding: 18px 0 54px; }
-  .detail-header { min-height: 50px; gap: 7px; margin-bottom: 13px; padding-bottom: 11px; }
-  .detail-brand { width: 116px; }
-  .detail-account-button { max-width: 40px; width: 36px; padding: 0; justify-content: center; }
-  .detail-account-label { display: none; }
-  .detail-share { padding: 0 9px; }
-  .detail-hero-card { grid-template-columns: 102px minmax(0, 1fr); gap: 16px; padding: 16px; border-radius: 22px; }
-  .detail-poster-wrap { position: static; }
-  .detail-poster { border-radius: 12px; }
-  .detail-wishlist-toggle { top: 6px; right: 6px; width: 28px; height: 28px; }
-  .detail-wishlist-toggle svg { width: 14px; height: 14px; }
-  .anime-localized h1 { margin-top: 7px; font-size: clamp(22px, 7vw, 35px); }
-  .alternate-titles { font-size: 10px; }
-  .detail-badges { margin: 12px 0 15px; gap: 5px; }
-  .detail-badge { padding: 5px 7px; font-size: 9px; }
-  .detail-panel { grid-column: 1 / -1; padding: 14px; border-radius: 15px; }
-  .detail-release-panel { display: block; }
-  .release-value { display: block; margin-top: 5px; text-align: left; }
-  .detail-actions, .streaming-list { grid-template-columns: 1fr; }
+  .detail-shell {
+    width: min(calc(100% - 18px), 1180px);
+    padding: 16px 0 58px;
+  }
+
+  .detail-back {
+    margin: 8px 2px 11px;
+    font-size: 12px;
+  }
+
+  .detail-breadcrumb {
+    margin: 0 2px 14px;
+    font-size: 10px;
+  }
+
+  .detail-hero-card {
+    display: block;
+    padding: 18px;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .detail-hero-card::after {
+    width: 200px;
+    height: 200px;
+    right: -68px;
+    top: -100px;
+  }
+
+  .detail-poster-wrap {
+    position: relative;
+    float: left;
+    width: clamp(122px, 25vw, 162px);
+    margin: 0 17px 13px 0;
+  }
+
+  .detail-poster { border-radius: 13px; }
+  .detail-wishlist-toggle {
+    top: 7px;
+    right: 7px;
+    width: 30px;
+    height: 30px;
+  }
+  .detail-wishlist-toggle svg { width: 15px; height: 15px; }
+
+  .detail-kicker {
+    padding-top: 1px;
+    font-size: 10px;
+  }
+
+  .anime-localized h1 {
+    margin: 8px 0 7px;
+    font-size: clamp(27px, 5.4vw, 40px);
+    line-height: 1.08;
+  }
+
+  .alternate-titles {
+    font-size: 11px;
+    line-height: 1.55;
+  }
+
+  .detail-badges {
+    gap: 6px;
+    margin: 13px 0 16px;
+  }
+  .detail-badge {
+    padding: 5px 8px;
+    font-size: 9px;
+  }
+
+  .anime-localized::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  .detail-panel {
+    clear: both;
+    margin-top: 12px;
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .detail-release-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+  }
+  .panel-label { font-size: 11px; }
+  .release-value {
+    margin: 0;
+    font-size: 17px;
+    text-align: right;
+  }
+  .panel-heading { margin-bottom: 11px; }
+  .panel-heading h2 { font-size: 14px; }
+  .panel-note { font-size: 10px; }
+  .detail-action,
+  .streaming-link,
+  .source-link {
+    min-height: 44px;
+    padding: 11px 13px;
+    font-size: 11px;
+  }
+
+  .detail-footer {
+    gap: 15px;
+    padding-top: 24px;
+    font-size: 10px;
+  }
 }
+
 @media (max-width: 520px) {
-  .detail-hero-card { display: block; }
-  .detail-poster-wrap { float: left; width: 94px; margin: 0 14px 11px 0; }
-  .anime-localized::after { content: ""; display: block; clear: both; }
-  .detail-panel { clear: both; }
-  .detail-header-actions { gap: 5px; }
-  .detail-share { font-size: 9px; }
+  .detail-hero-card {
+    padding: 17px;
+    border-radius: 19px;
+  }
+
+  .detail-poster-wrap {
+    width: clamp(108px, 34vw, 132px);
+    margin: 0 14px 11px 0;
+  }
+
+  .anime-localized h1 {
+    font-size: clamp(25px, 8vw, 32px);
+  }
+
+  .alternate-titles { font-size: 10px; }
+  .detail-release-panel { display: block; }
+  .release-value {
+    display: block;
+    margin-top: 5px;
+    text-align: left;
+  }
+  .detail-actions,
+  .streaming-list { grid-template-columns: 1fr; }
   .detail-account-dialog { padding: 17px; border-radius: 18px; }
 }
