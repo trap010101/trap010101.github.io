@@ -1,0 +1,95 @@
+/* Make dynamically injected login / wishlist entries match the shared secondary menu. */
+.secondary-site-menu .site-menu-item,
+.secondary-site-menu .auth-menu-item,
+.secondary-site-menu .wishlist-menu-item {
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 42px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 10px !important;
+  padding: 9px 11px !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  color: #e6e9f2 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+  letter-spacing: .05em !important;
+  line-height: 1.2 !important;
+  cursor: pointer !important;
+  transform: none !important;
+}
+
+.secondary-site-menu .site-menu-item:hover,
+.secondary-site-menu .site-menu-item:focus-visible,
+.secondary-site-menu .auth-menu-item:hover,
+.secondary-site-menu .wishlist-menu-item:hover {
+  outline: none !important;
+  color: #fff !important;
+  background: rgba(142,161,255,.12) !important;
+}
+
+.secondary-site-menu .site-menu-icon,
+.secondary-site-menu .auth-menu-icon,
+.secondary-site-menu .wishlist-menu-icon {
+  width: 22px !important;
+  height: 22px !important;
+  display: inline-grid !important;
+  place-items: center !important;
+  flex: 0 0 22px !important;
+  border: 1px solid rgba(142,161,255,.18) !important;
+  border-radius: 7px !important;
+  color: #bdc7ff !important;
+  background: rgba(142,161,255,.07) !important;
+}
+
+.secondary-site-menu .site-menu-icon svg,
+.secondary-site-menu .auth-menu-icon svg,
+.secondary-site-menu .wishlist-menu-icon svg {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.secondary-site-menu .wishlist-menu-item {
+  grid-template-columns: none !important;
+}
+
+.secondary-site-menu .wishlist-menu-count {
+  margin-left: auto !important;
+}
+
+.secondary-site-menu .auth-menu-content,
+.secondary-site-menu .auth-menu-name,
+.secondary-site-menu .wishlist-menu-label {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.secondary-site-menu .auth-menu-user {
+  min-width: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+}
+
+.secondary-site-menu .auth-menu-avatar {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+}
+
+@media (max-width: 520px) {
+  .secondary-site-menu .site-menu-item,
+  .secondary-site-menu .auth-menu-item,
+  .secondary-site-menu .wishlist-menu-item {
+    min-height: 40px !important;
+    padding: 8px 10px !important;
+  }
+}
