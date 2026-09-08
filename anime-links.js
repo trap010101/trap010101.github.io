@@ -133,7 +133,8 @@
       const config = window.NEWANIME_AUTH_CONFIG || {};
       if (!config.supabaseUrl || !config.supabaseAnonKey || config.googleEnabled !== true) return null;
       loadStylesheet('/auth.css?v=20260908-auth1');
-      return loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0')
+      return loadScript('/auth-callback-debug.js?v=20260908-authdebug1')
+        .then(() => loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0'))
         .then(() => loadScript('/auth.js?v=20260908-auth3'))
         .then(() => loadScript('/wishlist-sync.js?v=20260908-sync1'));
     })
