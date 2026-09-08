@@ -4,5 +4,5 @@
 window.NEWANIME_AUTH_CONFIG = Object.freeze({
   supabaseUrl: 'https://ojpgkxxojwkoczvwpcyy.supabase.co',
   supabaseAnonKey: 'sb_publishable_j9OgtJdmg4Q8B05ToOlnfQ_2OzPkzt2',
-  googleEnabled: false
+  googleEnabled: true
 });
