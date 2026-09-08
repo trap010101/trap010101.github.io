@@ -106,6 +106,22 @@
     document.head.appendChild(script);
   });
 
+  const loadStylesheet = href => {
+    const targetPath = new URL(href, window.location.href).pathname;
+    const existing = [...document.querySelectorAll('link[rel="stylesheet"]')].some(link =>
+      new URL(link.href, window.location.href).pathname === targetPath
+    );
+    if (existing) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    document.head.appendChild(link);
+  };
+
+  loadStylesheet('/wishlist.css?v=20260908-wishlist1');
+  loadScript('/wishlist.js?v=20260908-wishlist1')
+    .catch(error => console.warn('Wishlist UI could not be loaded.', error));
+
   Promise.resolve()
     .then(() => loadScript('/data/streaming-jp-20260906.js?v=20260906-region1'))
     .then(() => loadScript('/data/streaming-us-20260906.js?v=20260906-region1'))
