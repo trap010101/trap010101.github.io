@@ -943,8 +943,8 @@ window.animeData = [
       "game"
     ],
     "poster": {
-      "src": "assets/posters/remote-f7520df246b53d29f8.webp",
-      "position": "45% center"
+      "src": "assets/posters/cyberpunk-edgerunners-2-user-20260908.webp",
+      "position": "center"
     },
     "links": {
       "pv": "https://www.youtube.com/watch?v=mV7451mcw-E",
