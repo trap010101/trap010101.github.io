@@ -3855,7 +3855,7 @@ window.animeData = [
       "movie"
     ],
     "poster": {
-      "src": "assets/posters/remote-7b6cd57cd4a71c0426.webp",
+      "src": "assets/posters/expelled-from-paradise-resonance-of-the-heart-user-20260908.webp",
       "position": "center center"
     },
     "links": {
