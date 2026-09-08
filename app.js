@@ -1087,6 +1087,26 @@ document.querySelectorAll("#yearFilters .year-chip").forEach(btn => {
 
 searchEl.addEventListener("input", render);
 
+// The logo is a reliable recovery path when a browser is holding stale site assets.
+// Keep visitor preferences such as language intact; only origin Cache Storage is cleared.
+document.querySelector(".site-brand")?.addEventListener("click", async event => {
+  event.preventDefault();
+
+  try {
+    if ("caches" in window) {
+      const cacheNames = await caches.keys();
+      await Promise.all(cacheNames.map(cacheName => caches.delete(cacheName)));
+    }
+  } catch (_) {
+    // A normal cache-busting navigation still recovers from ordinary HTTP caches.
+  }
+
+  const nextUrl = new URL("/", window.location.origin);
+  nextUrl.searchParams.set("lang", activeLang);
+  nextUrl.searchParams.set("refresh", Date.now().toString(36));
+  window.location.replace(nextUrl);
+});
+
 document.getElementById("resetBtn").addEventListener("click", () => {
   searchEl.value = "";
   activeFilter = "all";
