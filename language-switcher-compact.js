@@ -258,11 +258,12 @@
   };
 
   stylesheet('/wishlist.css?v=20260908-wishlist4');
+  stylesheet('/account-refine.css?v=20260908-authui1');
   script('/auth-config.js?v=20260908-auth6')
     .then(() => script('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0'))
     .then(() => script('https://accounts.google.com/gsi/client'))
     .then(() => script('/wishlist.js?v=20260908-wishlist3'))
-    .then(() => script('/detail-account.js?v=20260908-detail1'))
+    .then(() => script('/detail-account.js?v=20260908-detail2'))
     .then(() => script('/wishlist-sync.js?v=20260908-sync1'))
     .catch(error => console.warn('Detail account UI could not be loaded.', error));
 })();
