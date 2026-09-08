@@ -86,8 +86,6 @@
     requestAnimationFrame(updateScheduleArchiveLink);
   });
 
-  // Load regional streaming audits after the base data layer, detect a default country,
-  // then install the region UI. User-selected regions remain persistent.
   const loadScript = src => new Promise((resolve, reject) => {
     const targetUrl = new URL(src, window.location.href);
     const existing = [...document.scripts].find(script => {
@@ -140,10 +138,10 @@
       const config = window.NEWANIME_AUTH_CONFIG || {};
       if (!config.supabaseUrl || !config.supabaseAnonKey || !config.googleClientId || config.googleEnabled !== true) return null;
       loadStylesheet('/auth.css?v=20260908-auth2');
-      loadStylesheet('/account-refine.css?v=20260908-authui3');
+      loadStylesheet('/account-refine.css?v=20260908-authui4');
       return loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0')
         .then(() => loadScript('https://accounts.google.com/gsi/client'))
-        .then(() => loadScript('/auth.js?v=20260908-auth6'))
+        .then(() => loadScript('/auth.js?v=20260908-auth7'))
         .then(() => loadScript('/wishlist-sync.js?v=20260908-sync1'));
     })
     .catch(error => console.warn('Authentication UI could not be loaded.', error));
