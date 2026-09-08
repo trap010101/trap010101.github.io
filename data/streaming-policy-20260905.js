@@ -6,6 +6,30 @@
   const verifiedPreviousStreaming = {
     "magical-sisters-lulutto-lilly-part-2": {
       watcha: "https://watcha.com/ko/contents/tEqZ5NY"
+    },
+    "hotel-inhumans-season-2": {
+      laftel: "https://laftel.net/item/42939"
+    },
+    "a-wild-last-boss-appeared-season-2": {
+      laftel: "https://laftel.net/item/43402"
+    },
+    "ace-of-diamond-act-ii-second-season-part-2": {
+      laftel: "https://laftel.net/item/45434"
+    },
+    "appraisal-skill-season-3": {
+      laftel: "https://laftel.net/item/42415"
+    },
+    "marriage-toxin-season-2": {
+      laftel: "https://laftel.net/item/45469"
+    },
+    "midnight-heart-tune-season-2": {
+      laftel: "https://laftel.net/item/44233"
+    },
+    "berserk-of-gluttony-season-2": {
+      laftel: "https://laftel.net/item/41720"
+    },
+    "haikyu-monsters-go-where": {
+      laftel: "https://laftel.net/item/23661"
     }
   };
 
