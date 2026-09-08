@@ -45,6 +45,50 @@ window.siteChangelog = [
     ]
   },
   {
+    date: "2026-09-07",
+    groups: [
+      {
+        id: "upcoming",
+        title: { ko: "곧 공개", ja: "まもなく公開", en: "Coming soon" },
+        entries: [{
+          id: "2026-09-07-upcoming-carousel",
+          title: { ko: "곧 공개 캐러셀·카운트다운", ja: "まもなく公開カルーセル・カウントダウン", en: "Coming-soon carousel and countdowns" },
+          summary: {
+            ko: "가까운 공개작을 좌·중·우 커버플로우 형태로 살펴보고, 작품별 공개까지 남은 시간을 확인할 수 있는 「곧 공개」 캐러셀을 추가했습니다.",
+            ja: "公開が近い作品を左右・中央のカバーフロー形式で見比べ、作品ごとの公開までの残り時間を確認できる「まもなく公開」カルーセルを追加しました。",
+            en: "Added a Coming Soon cover-flow carousel for nearby releases, with a per-title countdown to each premiere."
+          }
+        }]
+      },
+      {
+        id: "schedule",
+        title: { ko: "일정 정보", ja: "スケジュール情報", en: "Schedule information" },
+        entries: [{
+          id: "2026-09-07-schedule-audit",
+          title: { ko: "2026·2027 방영 일정 정비", ja: "2026・2027年放送スケジュールの整備", en: "2026–2027 schedule refresh" },
+          summary: {
+            ko: "공식 발표를 기준으로 2026년 가을 작품과 2027년 예정작의 누락·중복을 정리하고, 확인된 첫 공개 일시를 구조화해 일정과 카운트다운에 반영했습니다.",
+            ja: "公式発表に基づき、2026年秋作品と2027年予定作品の漏れ・重複を整理し、確認できた初回公開日時を構造化してスケジュールとカウントダウンに反映しました。",
+            en: "Cleaned up omissions and duplicates across Fall 2026 and planned 2027 titles, and structured confirmed first-release times for the schedule and countdowns."
+          }
+        }]
+      },
+      {
+        id: "content",
+        title: { ko: "작품 정보", ja: "作品情報", en: "Title information" },
+        entries: [{
+          id: "2026-09-07-content-and-poster-cleanup",
+          title: { ko: "작품 목록·제목·포스터 정비", ja: "作品一覧・タイトル・ポスターの整備", en: "Title list, name, and poster cleanup" },
+          summary: {
+            ko: "방영 예정 목록에 누락된 작품을 보완하고, 부적절한 성인성 작품은 제외했습니다. 제공된 공식 비주얼을 바탕으로 누락·오연결 포스터와 한국어 제목도 함께 바로잡았습니다.",
+            ja: "放送予定リストの不足作品を補完し、不適切な成人向け作品は除外しました。提供された公式ビジュアルをもとに、未設定・誤リンクのポスターと韓国語タイトルも修正しました。",
+            en: "Filled missing upcoming titles and removed unsuitable adult-oriented entries. Also corrected missing or mismatched posters and Korean titles using supplied official visuals."
+          }
+        }]
+      }
+    ]
+  },
+  {
     date: "2026-09-06",
     groups: [
       {
