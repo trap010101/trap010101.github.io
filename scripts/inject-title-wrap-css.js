@@ -4,6 +4,9 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const STYLE_HREF = '/title-wrap-refine.css?v=20260906-title2';
 const STYLE_LINK = `  <link rel="stylesheet" href="${STYLE_HREF}" />\n`;
+const DETAIL_STYLE_HREF = '/anime-detail.css?v=20260908-ui1';
+const ARCHIVE_STYLE_HREF = '/schedule-archive.css?v=20260908-ui1';
+const DETAIL_LANGUAGE_SCRIPT = '/language-switcher-compact.js?v=20260908-detail2';
 const TARGET_ROOTS = ['anime', '2026', '2027'];
 const TARGET_FILES = [
   'index.html',
@@ -25,6 +28,24 @@ function updateFile(filename) {
     );
   } else if (html.includes('</head>')) {
     html = html.replace('</head>', `${STYLE_LINK}</head>`);
+  }
+
+  if (html.includes('class="detail-shell"')) {
+    html = html.replace(
+      /href="\/anime-detail\.css\?v=[^"]+"/g,
+      `href="${DETAIL_STYLE_HREF}"`
+    );
+    html = html.replace(
+      /src="\/language-switcher-compact\.js\?v=[^"]+"/g,
+      `src="${DETAIL_LANGUAGE_SCRIPT}"`
+    );
+  }
+
+  if (html.includes('class="archive-shell"')) {
+    html = html.replace(
+      /href="\/schedule-archive\.css\?v=[^"]+"/g,
+      `href="${ARCHIVE_STYLE_HREF}"`
+    );
   }
 
   if (html === original) return false;
@@ -52,4 +73,4 @@ for (const relative of TARGET_FILES) {
 }
 for (const target of TARGET_ROOTS) changed += walk(path.join(ROOT, target));
 
-console.log(`Applied site text wrapping stylesheet to ${changed} pages.`);
+console.log(`Applied shared text wrapping and secondary UI cache versions to ${changed} pages.`);
