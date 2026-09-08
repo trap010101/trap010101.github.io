@@ -89,7 +89,11 @@
   // Load regional streaming audits after the base data layer, detect a default country,
   // then install the region UI. User-selected regions remain persistent.
   const loadScript = src => new Promise((resolve, reject) => {
-    const existing = document.querySelector(`script[src^="${src.split('?')[0]}"]`);
+    const targetPath = new URL(src, window.location.href).pathname;
+    const existing = [...document.scripts].find(script => {
+      if (!script.src) return false;
+      return new URL(script.src, window.location.href).pathname === targetPath;
+    });
     if (existing) {
       resolve();
       return;
