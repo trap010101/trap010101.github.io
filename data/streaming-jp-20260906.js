@@ -68,6 +68,10 @@
     "with-vengeance-sincerely-your-broken-saintess-season-2": {
       prime: "https://www.primevideo.com/detail/0OUPW1VINFZH941AW52V1U5WFO"
     },
+    "dark-gathering-season-2": { danime: dAnime("26513") },
+    "berserk-of-gluttony-season-2": { danime: dAnime("26620") },
+    "haikyu-monsters-go-where": { danime: dAnime("20140") },
+    "kaiju-no-8-narumis-weekday": { danime: dAnime("27039") },
     "a-wild-last-boss-appeared-season-2": { danime: dAnime("28660") },
     "ace-of-diamond-act-ii-second-season-part-2": { danime: dAnime("22678") },
     "appraisal-skill-season-3": { danime: dAnime("26979") }
