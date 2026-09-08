@@ -155,6 +155,18 @@
     "magical-girl-raising-project-restart": {
       crunchyroll: "https://www.crunchyroll.com/series/GRQ4MKN4Y/magical-girl-raising-project"
     },
+    "hokuto-no-ken-fist-of-the-north-star-part-2": {
+      crunchyroll: "https://www.crunchyroll.com/series/G6752ZK3R/fist-of-the-north-star"
+    },
+    "girls-und-panzer-motto-love-love-operation": {
+      hidive: "https://www.hidive.com/tv/girls-und-panzer"
+    },
+    "my-happy-marriage-special-2026": {
+      netflix: "https://www.netflix.com/title/81564905"
+    },
+    "takopis-original-sin-thank-you-see-you-tomorrow": {
+      crunchyroll: "https://www.crunchyroll.com/series/GKEH2G0X4/takopis-original-sin"
+    },
     "the-worlds-finest-assassin-season-2": {
       crunchyroll: "https://www.crunchyroll.com/series/GMEHME55K/the-worlds-finest-assassin-gets-reincarnated-in-another-world-as-an-aristocrat"
     },
