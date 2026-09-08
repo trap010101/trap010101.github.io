@@ -6,6 +6,7 @@
     ? window.allAnimeData
     : Array.isArray(window.animeData) ? window.animeData : [];
   const animeById = new Map(data.map(anime => [anime.id, anime]));
+  const dataOrder = new Map(data.map((anime, index) => [anime.id, index]));
 
   const copy = {
     ko: {
@@ -155,8 +156,34 @@
     return `<span class="wishlist-poster"><img src="${anime.poster.src}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" style="object-position:${anime.poster.position || 'center center'}" onerror="this.remove();this.parentElement.classList.add('wishlist-poster-fallback');this.parentElement.textContent='?'"></span>`;
   }
 
+  function releaseSortKey(anime) {
+    const premiereDate = anime?.schedule?.premiere?.date;
+    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(premiereDate || '');
+    if (match) {
+      return [Number(match[1]), Number(match[2]), Number(match[3]), 0];
+    }
+
+    const release = anime?.release?.japan || anime?.release?.global || anime?.release?.korea || null;
+    if (!release) return [Number.MAX_SAFE_INTEGER, 13, 32, 4];
+
+    const year = Number.isFinite(Number(release.year)) ? Number(release.year) : Number.MAX_SAFE_INTEGER;
+    const month = Number.isFinite(Number(release.month)) ? Number(release.month) : 13;
+    const day = release.status === 'date' && Number.isFinite(Number(release.day)) ? Number(release.day) : 32;
+    const precision = release.status === 'date' ? 0 : release.status === 'month' ? 1 : release.status === 'year' ? 2 : 3;
+    return [year, month, day, precision];
+  }
+
+  function compareByRelease(a, b) {
+    const aKey = releaseSortKey(a);
+    const bKey = releaseSortKey(b);
+    for (let i = 0; i < aKey.length; i += 1) {
+      if (aKey[i] !== bKey[i]) return aKey[i] - bKey[i];
+    }
+    return (dataOrder.get(a.id) ?? Number.MAX_SAFE_INTEGER) - (dataOrder.get(b.id) ?? Number.MAX_SAFE_INTEGER);
+  }
+
   function renderModal() {
-    const known = ids.map(id => animeById.get(id)).filter(Boolean).reverse();
+    const known = ids.map(id => animeById.get(id)).filter(Boolean).sort(compareByRelease);
     const missingCount = ids.length - known.length;
     modal.querySelector('#wishlistModalTitle').textContent = text('title');
     modal.querySelector('.wishlist-description').textContent = text('description');
