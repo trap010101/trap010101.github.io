@@ -646,7 +646,7 @@ window.animeData = [
   {
     "id": "to-you-in-the-beyond",
     "title": {
-      "ko": "어디보다 먼 곳에 있는 너에게",
+      "ko": "그 어디보다 먼 곳에 있는 너에게",
       "ja": "どこよりも遠い場所にいる君へ",
       "en": "To You in the Beyond"
     },
@@ -2327,7 +2327,7 @@ window.animeData = [
   {
     "id": "beast-king-war-god-dandevine",
     "title": {
-      "ko": "수왕무신 단데바인",
+      "ko": "수왕무신 댄디바인",
       "ja": "獣王武神ダンデヴァイン",
       "en": "Beast King War God Dandevine"
     },
@@ -5134,7 +5134,7 @@ window.animeData = [
   {
     "id": "bride-of-the-barrier-master",
     "title": {
-      "ko": "결계사의 일륜화",
+      "ko": "결계사의 꽃 한 송이",
       "ja": "結界師の一輪華",
       "en": "Bride of the Barrier Master"
     },
@@ -7398,7 +7398,7 @@ window.animeData = [
   {
     "id": "death-stranding-isolations-working-title",
     "title": {
-      "ko": "데스 스트랜딩 아이솔레이션즈 (가제)",
+      "ko": "데스 스트랜딩 아이솔레이션즈",
       "ja": "DEATH STRANDING ISOLATIONS — Working Title",
       "en": "DEATH STRANDING ISOLATIONS — Working Title"
     },
