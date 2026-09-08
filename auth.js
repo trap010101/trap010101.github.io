@@ -21,20 +21,23 @@
 
   const copy = {
     ko: {
-      login: '로그인', account: '계정', titleLogin: '간편 로그인', titleAccount: '내 계정',
-      description: 'Google 계정으로 로그인하면 위시리스트를 기기 간에 동기화할 수 있습니다.',
+      login: '로그인', account: '계정', titleLogin: '위시리스트 동기화', titleAccount: '내 계정',
+      description: 'Google 계정으로 로그인하고 저장한 작품을 다른 기기에서도 이어서 확인하세요.',
+      google: 'Google 계정', googleAction: '로그인하여 계속',
       logout: '로그아웃', close: '닫기', signingOut: '로그아웃 중…',
       error: '로그인 처리 중 문제가 발생했습니다.'
     },
     ja: {
-      login: 'ログイン', account: 'アカウント', titleLogin: 'かんたんログイン', titleAccount: 'アカウント',
-      description: 'Googleでログインすると、ウィッシュリストを端末間で同期できます。',
+      login: 'ログイン', account: 'アカウント', titleLogin: 'ウィッシュリストを同期', titleAccount: 'アカウント',
+      description: 'Googleでログインすると、保存した作品をほかの端末でも確認できます。',
+      google: 'Google アカウント', googleAction: 'ログインして続行',
       logout: 'ログアウト', close: '閉じる', signingOut: 'ログアウト中…',
       error: 'ログイン処理中に問題が発生しました。'
     },
     en: {
-      login: 'LOGIN', account: 'ACCOUNT', titleLogin: 'Quick login', titleAccount: 'Account',
-      description: 'Sign in with Google to sync your wishlist across devices.',
+      login: 'LOGIN', account: 'ACCOUNT', titleLogin: 'Sync your wishlist', titleAccount: 'Account',
+      description: 'Sign in with Google to keep your saved titles available across devices.',
+      google: 'Google account', googleAction: 'Sign in to continue',
       logout: 'Sign out', close: 'Close', signingOut: 'Signing out…',
       error: 'Something went wrong while processing sign-in.'
     }
@@ -140,19 +143,27 @@
     host.textContent = '';
     try {
       window.google.accounts.id.renderButton(host, {
-        type: 'standard',
-        theme: 'filled_black',
+        type: 'icon',
+        theme: 'outline',
         size: 'large',
-        shape: 'pill',
-        text: 'continue_with',
-        logo_alignment: 'left',
-        width: Math.min(330, Math.max(240, body.clientWidth || 320))
+        shape: 'circle'
       });
       status.textContent = '';
     } catch (error) {
       console.warn('Google Identity Services button could not be rendered.', error);
       status.textContent = text('error');
     }
+  }
+
+  function signedOutMarkup() {
+    return `
+      <div class="auth-provider-row">
+        <div class="auth-provider-copy">
+          <strong>${escapeHtml(text('google'))}</strong>
+          <span>${escapeHtml(text('googleAction'))}</span>
+        </div>
+        <div class="auth-google-host" data-auth-google-host></div>
+      </div>`;
   }
 
   function render() {
@@ -184,7 +195,7 @@
         </div>
         <button class="auth-signout" type="button" data-auth-signout>${text('logout')}</button>`;
     } else {
-      body.innerHTML = '<div class="auth-google-host" data-auth-google-host></div>';
+      body.innerHTML = signedOutMarkup();
       requestAnimationFrame(renderGoogleButton);
     }
   }
