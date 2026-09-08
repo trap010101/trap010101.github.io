@@ -28,7 +28,7 @@
     });
   }
 
-  function refreshLanguage() {
+  function refreshLanguage({ notify = false } = {}) {
     const current = lang();
     document.querySelectorAll('[data-secondary-menu-toggle]').forEach(toggle => {
       toggle.setAttribute('aria-label', t('menu'));
@@ -39,6 +39,7 @@
     document.querySelectorAll('[data-secondary-menu-label="share"]').forEach(el => { el.textContent = t('share'); });
     document.querySelectorAll('[data-secondary-updates]').forEach(link => { link.href = `/updates/?lang=${current}`; });
     document.querySelectorAll('[data-secondary-brand]').forEach(link => { link.href = `/?lang=${current}`; });
+    if (notify) document.dispatchEvent(new CustomEvent('newanime:language', { detail:{ lang:current } }));
   }
 
   let toastTimer = null;
@@ -120,7 +121,7 @@
     if (open) closeMenu(open, true);
   });
 
-  new MutationObserver(refreshLanguage).observe(document.documentElement, { attributes:true, attributeFilter:['lang'] });
+  new MutationObserver(() => refreshLanguage({ notify:true })).observe(document.documentElement, { attributes:true, attributeFilter:['lang'] });
   refreshLanguage();
 
   window.NewAnimeSecondaryHeader = Object.freeze({ refreshLanguage, closeAll });
