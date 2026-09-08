@@ -3,6 +3,72 @@
 (() => {
   const verifiedAt = "2026-09-05";
   const pvUpdates = {
+    // Recent-addition PV follow-up, verified on 2026-09-08.  Only direct videos
+    // published by the title's official channel are included here.
+    "mission-yozakura-family-season-2-part-2": [
+      {
+        label: { ko: "2기 제2쿨 PV", ja: "第2期 第2クールPV", en: "Season 2 Part 2 PV" },
+        url: "https://www.youtube.com/watch?v=059cJjeY19Y"
+      }
+    ],
+    "dragon-ball-super-beerus": [
+      {
+        label: { ko: "시작 트레일러", ja: "超始動トレーラー", en: "Super Surge Trailer" },
+        url: "https://www.youtube.com/watch?v=0ExAS1lmMJg"
+      }
+    ],
+    "a-wild-last-boss-appeared-season-2": [
+      {
+        label: { ko: "2기 PV 1탄", ja: "第2期PV第1弾", en: "Season 2 PV #1" },
+        url: "https://www.youtube.com/watch?v=h6NM7IuyxuU"
+      }
+    ],
+    "ace-of-diamond-act-ii-second-season-part-2": [
+      {
+        label: { ko: "제2쿨 티저 PV", ja: "第2クールティザーPV", en: "Part 2 Teaser PV" },
+        url: "https://www.youtube.com/watch?v=9705sc1udLo"
+      }
+    ],
+    "appraisal-skill-season-3": [
+      {
+        label: { ko: "3기 PV 1탄", ja: "第3期PV第1弾", en: "Season 3 PV #1" },
+        url: "https://www.youtube.com/watch?v=v6984NzFOis"
+      }
+    ],
+    "marriage-toxin-season-2": [
+      {
+        label: { ko: "2기 결정 PV", ja: "第2期決定PV", en: "Season 2 Announcement PV" },
+        url: "https://www.youtube.com/watch?v=v_4sJq7FtdI"
+      }
+    ],
+    "midnight-heart-tune-season-2": [
+      {
+        label: { ko: "2기 제작 결정 특보", ja: "第2期制作決定特別映像", en: "Season 2 Announcement Video" },
+        url: "https://www.youtube.com/watch?v=15e4EktHa9I"
+      }
+    ],
+    "dark-gathering-season-2": [
+      {
+        label: { ko: "2기 PV", ja: "第2期PV", en: "Season 2 PV" },
+        url: "https://www.youtube.com/watch?v=CmMCOThEhNk"
+      }
+    ],
+    "haikyu-monsters-go-where": [
+      {
+        label: { ko: "액션 PV", ja: "アクションPV", en: "Action PV" },
+        url: "https://www.youtube.com/watch?v=uEeZdVYu7AA"
+      },
+      {
+        label: { ko: "티저 PV", ja: "ティザーPV", en: "Teaser PV" },
+        url: "https://www.youtube.com/watch?v=Aj9mjeLT5Js"
+      }
+    ],
+    "kaiju-no-8-narumis-weekday": [
+      {
+        label: { ko: "PV", ja: "PV", en: "PV" },
+        url: "https://www.youtube.com/watch?v=TMdcTkYVVVk"
+      }
+    ],
     "looking-for-zombies": [
       {
         label: { ko: "티저 PV", ja: "ティザーPV", en: "Teaser PV" },
@@ -339,6 +405,7 @@
       tags,
       poster,
       links: { pv, official, streaming: null },
+      pvs: pv ? [{ label: { ko: "PV", ja: "PV", en: "PV" }, url: pv }] : [],
       streaming: {},
       ...(timing ? { schedule: timing } : {}),
       verification: { verifiedAt: V, sources },
@@ -355,7 +422,11 @@
     aliases: ["鳴海の平日", "Narumi's Weekday"],
     release: date(9, 5), format: "special", origin: "manga", tags: ["series", "comic"],
     official: "https://www.kaiju-no8.net/",
-    sources: [src("https://kaiju-no8.net/news/detail_260805_02.html", "Official news — September 5, 20:00 streaming start")],
+    pv: "https://www.youtube.com/watch?v=TMdcTkYVVVk",
+    sources: [
+      src("https://kaiju-no8.net/news/detail_260805_02.html", "Official news — September 5, 20:00 streaming start"),
+      src("https://www.youtube.com/watch?v=TMdcTkYVVVk", "TOHO animation — Narumi's Weekday PV", "official-youtube", ["pv"])
+    ],
     schedule: schedule(event("streaming", "2026-09-05", "20:00"), "https://kaiju-no8.net/news/detail_260805_02.html")
   });
 
