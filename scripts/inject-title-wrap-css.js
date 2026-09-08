@@ -6,6 +6,8 @@ const STYLE_HREF = '/title-wrap-refine.css?v=20260906-title2';
 const STYLE_LINK = `  <link rel="stylesheet" href="${STYLE_HREF}" />\n`;
 const DETAIL_STYLE_HREF = '/anime-detail.css?v=20260908-ui1';
 const ARCHIVE_STYLE_HREF = '/schedule-archive.css?v=20260908-ui1';
+const GOOGLE_BUTTON_STYLE_HREF = '/google-login-button-fit.css?v=20260908-1';
+const GOOGLE_BUTTON_STYLE_LINK = `  <link rel="stylesheet" href="${GOOGLE_BUTTON_STYLE_HREF}" />\n`;
 const DETAIL_LANGUAGE_SCRIPT = '/language-switcher-compact.js?v=20260908-detail12';
 const HOMEPAGE_LINKS_SCRIPT = 'anime-links.js?v=20260908-authui10';
 const TARGET_ROOTS = ['anime', '2026', '2027'];
@@ -16,6 +18,17 @@ const TARGET_FILES = [
   'privacy/index.html',
   'policy/index.html'
 ];
+
+function ensureGoogleButtonStyle(html) {
+  if (/href="\/google-login-button-fit\.css\?v=[^"]+"/.test(html)) {
+    return html.replace(
+      /href="\/google-login-button-fit\.css\?v=[^"]+"/g,
+      `href="${GOOGLE_BUTTON_STYLE_HREF}"`
+    );
+  }
+  if (html.includes('</head>')) return html.replace('</head>', `${GOOGLE_BUTTON_STYLE_LINK}</head>`);
+  return html;
+}
 
 function updateFile(filename) {
   if (!fs.existsSync(filename)) return false;
@@ -31,6 +44,7 @@ function updateFile(filename) {
   if (html.includes('class="detail-shell"')) {
     html = html.replace(/href="\/anime-detail\.css\?v=[^"]+"/g, `href="${DETAIL_STYLE_HREF}"`);
     html = html.replace(/src="\/language-switcher-compact\.js\?v=[^"]+"/g, `src="${DETAIL_LANGUAGE_SCRIPT}"`);
+    html = ensureGoogleButtonStyle(html);
   }
 
   if (html.includes('class="archive-shell"')) {
@@ -39,6 +53,7 @@ function updateFile(filename) {
 
   if (filename === path.join(ROOT, 'index.html')) {
     html = html.replace(/src="\/?anime-links\.js\?v=[^"]+"/g, `src="${HOMEPAGE_LINKS_SCRIPT}"`);
+    html = ensureGoogleButtonStyle(html);
   }
 
   if (html === original) return false;
