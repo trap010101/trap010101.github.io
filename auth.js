@@ -23,21 +23,18 @@
     ko: {
       login: '로그인', account: '계정', titleLogin: '간편 로그인', titleAccount: '내 계정',
       description: 'Google 계정으로 간편하게 로그인할 수 있습니다. 로그인하면 위시리스트가 기기 간에 동기화됩니다.',
-      google: 'Google로 계속', googleAction: '계정 선택',
       logout: '로그아웃', close: '닫기', signingOut: '로그아웃 중…',
       error: '로그인 처리 중 문제가 발생했습니다.'
     },
     ja: {
       login: 'ログイン', account: 'アカウント', titleLogin: 'かんたんログイン', titleAccount: 'アカウント',
       description: 'Googleアカウントで簡単にログインできます。ログインするとウィッシュリストが端末間で同期されます。',
-      google: 'Googleで続行', googleAction: 'アカウントを選択',
       logout: 'ログアウト', close: '閉じる', signingOut: 'ログアウト中…',
       error: 'ログイン処理中に問題が発生しました。'
     },
     en: {
       login: 'LOGIN', account: 'ACCOUNT', titleLogin: 'Quick login', titleAccount: 'Account',
       description: 'Sign in quickly with Google. Your wishlist will stay synced across devices.',
-      google: 'Continue with Google', googleAction: 'Choose an account',
       logout: 'Sign out', close: 'Close', signingOut: 'Signing out…',
       error: 'Something went wrong while processing sign-in.'
     }
@@ -143,27 +140,19 @@
     host.textContent = '';
     try {
       window.google.accounts.id.renderButton(host, {
-        type: 'icon',
+        type: 'standard',
         theme: 'filled_black',
-        size: 'medium',
-        shape: 'circle'
+        size: 'large',
+        shape: 'pill',
+        text: 'continue_with',
+        logo_alignment: 'left',
+        width: 280
       });
       status.textContent = '';
     } catch (error) {
       console.warn('Google Identity Services button could not be rendered.', error);
       status.textContent = text('error');
     }
-  }
-
-  function signedOutMarkup() {
-    return `
-      <div class="auth-provider-row">
-        <div class="auth-provider-copy">
-          <strong>${escapeHtml(text('google'))}</strong>
-          <span>${escapeHtml(text('googleAction'))}</span>
-        </div>
-        <div class="auth-google-host" data-auth-google-host></div>
-      </div>`;
   }
 
   function render() {
@@ -195,7 +184,7 @@
         </div>
         <button class="auth-signout" type="button" data-auth-signout>${text('logout')}</button>`;
     } else {
-      body.innerHTML = signedOutMarkup();
+      body.innerHTML = '<div class="auth-google-host" data-auth-google-host></div>';
       requestAnimationFrame(renderGoogleButton);
     }
   }
