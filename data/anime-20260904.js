@@ -392,7 +392,7 @@
     {
       id: "the-witch-was-asked-for-a-love-potion",
       title: {
-        ko: "아무래도 좋아하는 사람에게 사랑의 묘약을 의뢰받은 마녀입니다.",
+        ko: "안녕하세요. 반한 사람에게 사랑의 묘약을 의뢰받은 마녀입니다.",
         ja: "どうも、好きな人に惚れ薬を依頼された魔女です。",
         en: "Hello, I Am a Witch, and My Crush Wants Me to Make a Love Potion!"
       },

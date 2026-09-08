@@ -444,6 +444,7 @@
     id: "my-happy-marriage-special-2026",
     ko: "나의 행복한 결혼 특별편", ja: "わたしの幸せな結婚 特別篇", en: "My Happy Marriage Special",
     release: date(10, 25), format: "special", origin: "light-novel", tags: ["series", "ln"],
+    poster: { src: "assets/posters/my-happy-marriage-special-2026-user-20260908.webp", position: null },
     official: "https://watakon-anime.com/",
     sources: [src("https://watakon-anime.com/onair/", "Official ON AIR — October 25, 19:00 TV premiere")],
     schedule: schedule(event("tv", "2026-10-25", "19:00"), "https://watakon-anime.com/onair/")

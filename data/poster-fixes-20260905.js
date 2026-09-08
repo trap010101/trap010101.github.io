@@ -14,7 +14,7 @@
     "zero-believers-goddess-isekai-strategy": { src: "assets/posters/zero-believers-goddess-isekai-strategy-v2.webp", updatedAt: "2026-09-07" },
     "romelia-war-chronicle": { src: "assets/posters/romelia-war-chronicle-v2.webp", updatedAt: "2026-09-07" },
     "hotel-inhumans-season-2": { src: "assets/posters/hotel-inhumans-season-2-v2.webp", updatedAt: "2026-09-07" },
-    "the-witch-was-asked-for-a-love-potion": { src: "assets/posters/the-witch-was-asked-for-a-love-potion-v3.webp", updatedAt: "2026-09-07" },
+    "the-witch-was-asked-for-a-love-potion": { src: "assets/posters/the-witch-was-asked-for-a-love-potion-user-20260908.webp", updatedAt: "2026-09-08" },
     "with-vengeance-sincerely-your-broken-saintess-season-2": { src: "assets/posters/with-vengeance-sincerely-your-broken-saintess-season-2-v2.webp", updatedAt: "2026-09-07" },
     "ace-of-diamond-act-ii-second-season-part-2": { src: "assets/posters/ace-of-diamond-act-ii-second-season-part-2-v2.webp", updatedAt: "2026-09-07" },
     "prince-of-tennis-u17-world-cup-final-members-selection": { src: "assets/posters/prince-of-tennis-u17-world-cup-final-members-selection-v2.webp", updatedAt: "2026-09-07" },
