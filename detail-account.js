@@ -7,9 +7,9 @@
   if (!detail?.id || !config.supabaseUrl || !config.supabaseAnonKey || !window.supabase?.createClient || !wishlist) return;
 
   const copy = {
-    ko: { login: '로그인', account: '계정', title: '위시리스트 동기화', logout: '로그아웃', close: '닫기', add: '위시리스트에 추가', remove: '위시리스트에서 제거', description: 'Google 계정으로 로그인하고 저장한 작품을 다른 기기에서도 이어서 확인하세요.', google: 'Google 계정', googleAction: '로그인하여 계속', error: 'Google 로그인에 실패했습니다.' },
-    ja: { login: 'ログイン', account: 'アカウント', title: 'ウィッシュリストを同期', logout: 'ログアウト', close: '閉じる', add: 'ウィッシュリストに追加', remove: 'ウィッシュリストから削除', description: 'Googleでログインすると、保存した作品をほかの端末でも確認できます。', google: 'Google アカウント', googleAction: 'ログインして続行', error: 'Googleログインに失敗しました。' },
-    en: { login: 'LOGIN', account: 'ACCOUNT', title: 'Sync your wishlist', logout: 'Sign out', close: 'Close', add: 'Add to wishlist', remove: 'Remove from wishlist', description: 'Sign in with Google to keep your saved titles available across devices.', google: 'Google account', googleAction: 'Sign in to continue', error: 'Google sign-in failed.' }
+    ko: { login: '로그인', account: '계정', title: '간편 로그인', logout: '로그아웃', close: '닫기', add: '위시리스트에 추가', remove: '위시리스트에서 제거', description: 'Google 계정으로 간편하게 로그인할 수 있습니다. 로그인하면 위시리스트가 기기 간에 동기화됩니다.', google: 'Google로 계속', googleAction: '계정 선택', error: 'Google 로그인에 실패했습니다.' },
+    ja: { login: 'ログイン', account: 'アカウント', title: 'かんたんログイン', logout: 'ログアウト', close: '閉じる', add: 'ウィッシュリストに追加', remove: 'ウィッシュリストから削除', description: 'Googleアカウントで簡単にログインできます。ログインするとウィッシュリストが端末間で同期されます。', google: 'Googleで続行', googleAction: 'アカウントを選択', error: 'Googleログインに失敗しました。' },
+    en: { login: 'LOGIN', account: 'ACCOUNT', title: 'Quick login', logout: 'Sign out', close: 'Close', add: 'Add to wishlist', remove: 'Remove from wishlist', description: 'Sign in quickly with Google. Your wishlist will stay synced across devices.', google: 'Continue with Google', googleAction: 'Choose an account', error: 'Google sign-in failed.' }
   };
 
   const language = () => {
@@ -19,7 +19,7 @@
   const text = key => copy[language()]?.[key] || copy.ko[key] || key;
   const escapeHtml = value => String(value ?? '')
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    .replace(/\"/g, '&quot;').replace(/'/g, '&#39;');
   const userName = user => user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email || '';
   const avatarUrl = user => {
     const value = user?.user_metadata?.avatar_url || user?.user_metadata?.picture || '';
@@ -128,7 +128,7 @@
     slot.textContent = '';
     try {
       window.google.accounts.id.initialize({ client_id: config.googleClientId, callback: handleCredential, ux_mode: 'popup' });
-      window.google.accounts.id.renderButton(slot, { type: 'icon', theme: 'outline', size: 'large', shape: 'circle' });
+      window.google.accounts.id.renderButton(slot, { type: 'icon', theme: 'filled_black', size: 'medium', shape: 'circle' });
     } catch (_) {
       status.textContent = text('error');
     }
