@@ -154,6 +154,18 @@
     },
     "the-worlds-finest-assassin-season-2": {
       crunchyroll: "https://www.crunchyroll.com/series/GMEHME55K/the-worlds-finest-assassin-gets-reincarnated-in-another-world-as-an-aristocrat"
+    },
+    "hotel-inhumans-season-2": {
+      crunchyroll: "https://www.crunchyroll.com/series/GXJHM3G08/hotel-inhumans"
+    },
+    "a-wild-last-boss-appeared-season-2": {
+      crunchyroll: "https://www.crunchyroll.com/series/GT00361955/a-wild-last-boss-appeared"
+    },
+    "ace-of-diamond-act-ii-second-season-part-2": {
+      crunchyroll: "https://www.crunchyroll.com/series/GYX0MZ58R/ace-of-the-diamond"
+    },
+    "appraisal-skill-season-3": {
+      crunchyroll: "https://www.crunchyroll.com/series/GG5H5XQMD/as-a-reincarnated-aristocrat-ill-use-my-appraisal-skill-to-rise-in-the-world"
     }
   };
 
