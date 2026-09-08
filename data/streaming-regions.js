@@ -170,10 +170,14 @@
 
   const setAnimeStreamingForRegion = (animeId, regionId, payload = {}) => {
     if (!isKnownRegion(regionId)) throw new Error(`Unsupported streaming region: ${regionId}`);
-    const anime = Array.isArray(window.animeData)
-      ? window.animeData.find(item => item.id === animeId)
-      : null;
-    if (!anime) throw new Error(`Unknown anime ID: ${animeId}`);
+    // The homepage lifecycle removes already-premiered titles from animeData.
+    // Keep streaming audits attached to the preserved source list as well, so a
+    // past title cannot abort every later audit entry during page startup.
+    const activeAnime = Array.isArray(window.animeData) ? window.animeData : [];
+    const completeAnime = Array.isArray(window.allAnimeData) ? window.allAnimeData : [];
+    const anime = activeAnime.find(item => item.id === animeId) ||
+      completeAnime.find(item => item.id === animeId);
+    if (!anime) return null;
 
     if (Object.keys(payload.current || {}).length) {
       throw new Error("Current-installment streaming is disabled by NewAnime policy.");
