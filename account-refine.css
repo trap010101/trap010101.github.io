@@ -97,14 +97,10 @@
 .auth-body,
 .detail-account-body { margin-top: 20px !important; }
 
-/* Google owns the button's cross-origin document. The iframe itself can still
-   participate in CSS compositing, so multiply its canvas against an isolated
-   dark host. White canvas pixels collapse into the host color while the native
-   Google button stays dark. */
+/* Google owns the button's cross-origin document. Keep its native colors and
+   crop only the fixed white canvas padding around the medium pill button. */
 .auth-google-host,
 .detail-google-slot {
-  color-scheme: dark !important;
-  isolation: isolate !important;
   width: fit-content !important;
   max-width: 100% !important;
   margin: 0 auto !important;
@@ -112,37 +108,32 @@
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  overflow: hidden !important;
+  overflow: visible !important;
   border: 0 !important;
-  border-radius: 999px !important;
-  background: #131314 !important;
+  background: transparent !important;
   box-shadow: none !important;
 }
 
 .auth-google-host > div,
 .detail-google-slot > div {
-  color-scheme: dark !important;
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;
-  border-radius: 999px !important;
-  background: #131314 !important;
-  overflow: hidden !important;
+  background: transparent !important;
+  overflow: visible !important;
   max-width: none !important;
 }
 
 .auth-google-host iframe,
 .detail-google-slot iframe {
-  color-scheme: dark !important;
   display: block !important;
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;
-  border-radius: 999px !important;
   background: transparent !important;
-  overflow: hidden !important;
   max-width: none !important;
-  mix-blend-mode: multiply !important;
+  mix-blend-mode: normal !important;
+  clip-path: inset(10px 17px 10px 17px round 999px) !important;
 }
 
 .auth-account,
