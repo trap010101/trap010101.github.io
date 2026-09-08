@@ -97,12 +97,13 @@
 .auth-body,
 .detail-account-body { margin-top: 20px !important; }
 
-/* Google owns the cross-origin button iframe. Do not force dimensions on the
-   generated wrapper or iframe: width is only a minimum button width in GIS,
-   and localized text can make the actual control wider. The host only centers
-   the native Google control inside our modal. */
+/* Google owns the button's cross-origin document. We cannot restyle its DOM,
+   but the iframe's owner element can propagate a dark color scheme to the
+   embedded document. That keeps the native Google canvas from falling back to
+   the browser's white canvas around a dark button. */
 .auth-google-host,
 .detail-google-slot {
+  color-scheme: dark !important;
   width: fit-content !important;
   max-width: 100% !important;
   margin: 0 auto !important;
@@ -110,9 +111,10 @@
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  overflow: visible !important;
+  overflow: hidden !important;
   border: 0 !important;
-  background: transparent !important;
+  border-radius: 999px !important;
+  background: #131314 !important;
   box-shadow: none !important;
 }
 
@@ -120,9 +122,13 @@
 .detail-google-slot > div,
 .auth-google-host iframe,
 .detail-google-slot iframe {
+  color-scheme: dark !important;
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;
+  border-radius: 999px !important;
+  background: #131314 !important;
+  overflow: hidden !important;
   max-width: none !important;
 }
 
