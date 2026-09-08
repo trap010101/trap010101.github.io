@@ -78,7 +78,7 @@
     host.textContent = '';
     try {
       window.google.accounts.id.renderButton(host, {
-        type: 'standard', theme: 'filled_black', size: 'medium', shape: 'pill',
+        type: 'standard', theme: 'outline_dark', size: 'medium', shape: 'pill',
         text: 'continue_with', logo_alignment: 'left', width: 190
       });
       status.textContent = '';
