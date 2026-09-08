@@ -118,8 +118,12 @@
     document.head.appendChild(link);
   };
 
-  loadStylesheet('/wishlist.css?v=20260908-wishlist2');
+  loadStylesheet('/wishlist.css?v=20260908-wishlist4');
   loadScript('/wishlist.js?v=20260908-wishlist3')
+    .then(() => {
+      const kicker = document.querySelector('.wishlist-kicker');
+      if (kicker) kicker.textContent = 'newani.me';
+    })
     .catch(error => console.warn('Wishlist UI could not be loaded.', error));
 
   Promise.resolve()
