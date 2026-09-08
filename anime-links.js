@@ -92,7 +92,8 @@
     const targetPath = new URL(src, window.location.href).pathname;
     const existing = [...document.scripts].find(script => {
       if (!script.src) return false;
-      return new URL(script.src, window.location.href).pathname === targetPath;
+      const scriptUrl = new URL(script.src, window.location.href);
+      return scriptUrl.origin === new URL(src, window.location.href).origin && scriptUrl.pathname === targetPath;
     });
     if (existing) {
       resolve();
@@ -107,10 +108,11 @@
   });
 
   const loadStylesheet = href => {
-    const targetPath = new URL(href, window.location.href).pathname;
-    const existing = [...document.querySelectorAll('link[rel="stylesheet"]')].some(link =>
-      new URL(link.href, window.location.href).pathname === targetPath
-    );
+    const targetUrl = new URL(href, window.location.href);
+    const existing = [...document.querySelectorAll('link[rel="stylesheet"]')].some(link => {
+      const linkUrl = new URL(link.href, window.location.href);
+      return linkUrl.origin === targetUrl.origin && linkUrl.pathname === targetUrl.pathname;
+    });
     if (existing) return;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
@@ -125,6 +127,18 @@
       if (kicker) kicker.textContent = 'newani.me';
     })
     .catch(error => console.warn('Wishlist UI could not be loaded.', error));
+
+  // Authentication is deliberately opt-in. The live UI remains untouched until
+  // auth-config.js contains a public Supabase project URL and publishable/anon key.
+  loadScript('/auth-config.js?v=20260908-auth1')
+    .then(() => {
+      const config = window.NEWANIME_AUTH_CONFIG || {};
+      if (!config.supabaseUrl || !config.supabaseAnonKey) return null;
+      loadStylesheet('/auth.css?v=20260908-auth1');
+      return loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2')
+        .then(() => loadScript('/auth.js?v=20260908-auth1'));
+    })
+    .catch(error => console.warn('Authentication UI could not be loaded.', error));
 
   Promise.resolve()
     .then(() => loadScript('/data/streaming-jp-20260906.js?v=20260906-region1'))
