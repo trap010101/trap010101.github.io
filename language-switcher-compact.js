@@ -258,7 +258,7 @@
   };
 
   stylesheet('/wishlist.css?v=20260908-wishlist4');
-  stylesheet('/account-refine.css?v=20260908-authui9');
+  stylesheet('/account-refine.css?v=20260908-authui10');
   script('/auth-config.js?v=20260908-auth6')
     .then(() => script('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0'))
     .then(() => script('https://accounts.google.com/gsi/client'))
