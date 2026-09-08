@@ -64,6 +64,10 @@
     "the-eminence-in-shadow-lost-echoes": { danime: dAnime("25786") },
     "one-piece-film-god-valley": { unext: "https://video.unext.jp/title/SID0011124" },
     "the-worlds-finest-assassin-season-2": { danime: dAnime("25026") },
+    "ice-wall-season-2": { netflix: "https://www.netflix.com/title/82031882" },
+    "with-vengeance-sincerely-your-broken-saintess-season-2": {
+      prime: "https://www.primevideo.com/detail/0OUPW1VINFZH941AW52V1U5WFO"
+    },
     "a-wild-last-boss-appeared-season-2": { danime: dAnime("28660") },
     "ace-of-diamond-act-ii-second-season-part-2": { danime: dAnime("22678") },
     "appraisal-skill-season-3": { danime: dAnime("26979") }
