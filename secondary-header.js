@@ -2,9 +2,18 @@
   'use strict';
 
   const copy = {
-    ko: { menu:'메뉴', updates:'업데이트', contact:'문의', share:'공유', copied:'링크를 복사했습니다.', failed:'공유 기능을 사용할 수 없습니다.' },
-    ja: { menu:'メニュー', updates:'更新', contact:'お問い合わせ', share:'共有', copied:'リンクをコピーしました。', failed:'共有機能を利用できません。' },
-    en: { menu:'Menu', updates:'UPDATES', contact:'CONTACT', share:'SHARE', copied:'Link copied.', failed:'Sharing is unavailable.' }
+    ko: {
+      menu:'메뉴', updates:'업데이트', contact:'문의', share:'공유', copied:'링크를 복사했습니다.', failed:'공유 기능을 사용할 수 없습니다.',
+      footer:'방영 예정 애니메이션과 극장판의 일정, PV, 공식 사이트, 스트리밍 정보를 한눈에 정리합니다.'
+    },
+    ja: {
+      menu:'メニュー', updates:'更新', contact:'お問い合わせ', share:'共有', copied:'リンクをコピーしました。', failed:'共有機能を利用できません。',
+      footer:'放送予定のアニメと劇場版について、放送日、PV、公式サイト、配信情報をまとめています。'
+    },
+    en: {
+      menu:'Menu', updates:'UPDATES', contact:'CONTACT', share:'SHARE', copied:'Link copied.', failed:'Sharing is unavailable.',
+      footer:'Browse broadcast dates, PVs, official sites, and streaming information for upcoming anime and films.'
+    }
   };
 
   const lang = () => {
@@ -12,39 +21,59 @@
     return value.startsWith('ja') ? 'ja' : value.startsWith('en') ? 'en' : 'ko';
   };
   const t = key => copy[lang()]?.[key] || copy.ko[key] || key;
+  const menu = () => document.getElementById('siteMenu');
+  const toggle = () => document.getElementById('menuToggle');
 
-  function closeMenu(wrap, restoreFocus = false) {
-    const menu = wrap?.querySelector('[data-secondary-menu]');
-    const toggle = wrap?.querySelector('[data-secondary-menu-toggle]');
-    if (!menu || !toggle || menu.classList.contains('hidden')) return;
-    menu.classList.add('hidden');
-    toggle.setAttribute('aria-expanded', 'false');
-    if (restoreFocus) toggle.focus();
+  function closeMenu(restoreFocus = false) {
+    const target = menu();
+    const button = toggle();
+    if (!target || !button || target.classList.contains('hidden')) return;
+    target.classList.add('hidden');
+    button.setAttribute('aria-expanded', 'false');
+    if (restoreFocus) button.focus();
   }
 
-  function closeAll(except = null) {
-    document.querySelectorAll('.secondary-menu-wrap').forEach(wrap => {
-      if (wrap !== except) closeMenu(wrap);
-    });
+  function archiveYear() {
+    const pathMatch = location.pathname.match(/^\/(2026|2027)(?:\/|$)/);
+    if (pathMatch) return pathMatch[1];
+    const breadcrumb = [...document.querySelectorAll('.detail-breadcrumb a[href]')]
+      .map(link => link.getAttribute('href') || '')
+      .find(href => /^\/(2026|2027)\/$/.test(href));
+    return breadcrumb?.match(/(2026|2027)/)?.[1] || '2026';
   }
 
   function refreshLanguage({ notify = false } = {}) {
     const current = lang();
-    document.querySelectorAll('[data-secondary-menu-toggle]').forEach(toggle => {
-      toggle.setAttribute('aria-label', t('menu'));
-      toggle.title = t('menu');
+    const button = toggle();
+    if (button) {
+      button.setAttribute('aria-label', t('menu'));
+      button.title = t('menu');
+    }
+    const updates = document.getElementById('updatesMenuLabel');
+    const contact = document.getElementById('contactMenuLabel');
+    const share = document.getElementById('shareMenuLabel');
+    if (updates) updates.textContent = t('updates');
+    if (contact) contact.textContent = t('contact');
+    if (share) share.textContent = t('share');
+    const updatesLink = document.getElementById('updatesMenuLink');
+    if (updatesLink) updatesLink.href = `/updates/?lang=${current}`;
+    const brand = document.querySelector('.site-brand');
+    if (brand) brand.href = `/?lang=${current}`;
+    const footerDescription = document.getElementById('footerDescription');
+    if (footerDescription) footerDescription.textContent = t('footer');
+    const archive = document.getElementById('archiveFooterLink');
+    if (archive) archive.href = `/${archiveYear()}/?lang=${current}`;
+    document.querySelectorAll('footer a[href^="/updates/"], footer a[href^="/about/"], footer a[href^="/privacy/"], footer a[href^="/policy/"]').forEach(link => {
+      const url = new URL(link.href, location.origin);
+      url.searchParams.set('lang', current);
+      link.href = url.pathname + url.search;
     });
-    document.querySelectorAll('[data-secondary-menu-label="updates"]').forEach(el => { el.textContent = t('updates'); });
-    document.querySelectorAll('[data-secondary-menu-label="contact"]').forEach(el => { el.textContent = t('contact'); });
-    document.querySelectorAll('[data-secondary-menu-label="share"]').forEach(el => { el.textContent = t('share'); });
-    document.querySelectorAll('[data-secondary-updates]').forEach(link => { link.href = `/updates/?lang=${current}`; });
-    document.querySelectorAll('[data-secondary-brand]').forEach(link => { link.href = `/?lang=${current}`; });
     if (notify) document.dispatchEvent(new CustomEvent('newanime:language', { detail:{ lang:current } }));
   }
 
   let toastTimer = null;
   function showStatus(message) {
-    const status = document.querySelector('[data-secondary-share-status]');
+    const status = document.getElementById('shareStatus');
     if (!status) return;
     clearTimeout(toastTimer);
     status.textContent = message;
@@ -53,10 +82,7 @@
   }
 
   async function copyUrl(url) {
-    if (navigator.clipboard?.writeText) {
-      await navigator.clipboard.writeText(url);
-      return;
-    }
+    if (navigator.clipboard?.writeText) return navigator.clipboard.writeText(url);
     const textarea = document.createElement('textarea');
     textarea.value = url;
     textarea.setAttribute('readonly', '');
@@ -70,26 +96,22 @@
   }
 
   document.addEventListener('click', async event => {
-    const toggle = event.target.closest('[data-secondary-menu-toggle]');
-    if (toggle) {
-      const wrap = toggle.closest('.secondary-menu-wrap');
-      const menu = wrap?.querySelector('[data-secondary-menu]');
-      if (!wrap || !menu) return;
-      const willOpen = menu.classList.contains('hidden');
-      closeAll(wrap);
-      if (willOpen) {
-        menu.classList.remove('hidden');
-        toggle.setAttribute('aria-expanded', 'true');
-        requestAnimationFrame(() => menu.querySelector('[role="menuitem"], .detail-account-button')?.focus());
-      } else {
-        closeMenu(wrap);
-      }
+    const menuToggle = event.target.closest('#menuToggle');
+    if (menuToggle) {
+      const target = menu();
+      if (!target) return;
+      const open = target.classList.contains('hidden');
+      if (open) {
+        target.classList.remove('hidden');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        requestAnimationFrame(() => target.querySelector('[role="menuitem"]')?.focus());
+      } else closeMenu();
       return;
     }
 
-    const genericShare = event.target.closest('[data-secondary-share]');
-    if (genericShare) {
-      closeMenu(genericShare.closest('.secondary-menu-wrap'));
+    const shareButton = event.target.closest('#shareButton[data-secondary-share]');
+    if (shareButton) {
+      closeMenu();
       const description = document.querySelector('meta[name="description"]')?.content || '';
       const shareData = { title: document.title, text: description, url: location.href };
       try {
@@ -104,25 +126,19 @@
       return;
     }
 
-    const menuItem = event.target.closest('[data-secondary-menu] [role="menuitem"], [data-secondary-menu] .detail-account-button');
-    if (menuItem) {
-      closeMenu(menuItem.closest('.secondary-menu-wrap'));
+    if (event.target.closest('#siteMenu [role="menuitem"]')) {
+      closeMenu();
       return;
     }
-
-    document.querySelectorAll('.secondary-menu-wrap').forEach(wrap => {
-      if (!wrap.contains(event.target)) closeMenu(wrap);
-    });
+    if (!event.target.closest('.menu-wrap')) closeMenu();
   });
 
   document.addEventListener('keydown', event => {
-    if (event.key !== 'Escape') return;
-    const open = [...document.querySelectorAll('.secondary-menu-wrap')].find(wrap => !wrap.querySelector('[data-secondary-menu]')?.classList.contains('hidden'));
-    if (open) closeMenu(open, true);
+    if (event.key === 'Escape') closeMenu(true);
   });
 
   new MutationObserver(() => refreshLanguage({ notify:true })).observe(document.documentElement, { attributes:true, attributeFilter:['lang'] });
   refreshLanguage();
 
-  window.NewAnimeSecondaryHeader = Object.freeze({ refreshLanguage, closeAll });
+  window.NewAnimeSecondaryHeader = Object.freeze({ refreshLanguage, closeAll:closeMenu });
 })();
