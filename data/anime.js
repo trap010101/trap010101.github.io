@@ -4950,7 +4950,7 @@ window.animeData = [
       "original"
     ],
     "poster": {
-      "src": "assets/posters/remote-c63fa3c91537f55520.webp",
+      "src": "assets/posters/those-who-inherit-the-wind-user-20260908.webp",
       "position": null
     },
     "links": {
@@ -5158,7 +5158,7 @@ window.animeData = [
       "ln"
     ],
     "poster": {
-      "src": "assets/posters/remote-010c0c17ae8ea45a46.webp",
+      "src": "assets/posters/bride-of-the-barrier-master-user-20260908.webp",
       "position": null
     },
     "links": {

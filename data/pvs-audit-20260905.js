@@ -390,15 +390,6 @@
   });
 
   add({
-    id: "fairies-albums-season-3-capital-chapter",
-    ko: "백요보 3기 경사편", ja: "百妖譜 第3期 京師篇", en: "Fairies Albums Season 3: Capital Chapter",
-    release: date(10, 7), format: "tv", origin: "novel", tags: ["series"],
-    official: "https://b8station.tv/hyakuyoufu/",
-    sources: [src("https://b8station.tv/hyakuyoufu/", "Fuji TV B8station official — October 7, 25:15")],
-    schedule: schedule(event("tv", "2026-10-07", "25:15"), "https://b8station.tv/hyakuyoufu/")
-  });
-
-  add({
     id: "girls-und-panzer-motto-love-love-operation",
     ko: "걸즈 앤 판처 좀 더 러브러브 작전입니다!", ja: "ガールズ＆パンツァー もっとらぶらぶ作戦です！", en: "Girls und Panzer: Motto Love Love Sakusen desu!",
     release: date(10, 8), format: "tv", origin: "manga", tags: ["series", "comic"],
@@ -423,14 +414,6 @@
     official: "https://ppp-anime.jp/",
     sources: [src("https://ppp-anime.jp/", "Official website — October 4, 10:00 TV premiere")],
     schedule: schedule(event("tv", "2026-10-04", "10:00"), "https://ppp-anime.jp/")
-  });
-
-  add({
-    id: "yusanchi-from-yuhachi",
-    ko: "유우네 집! from 유하치", ja: "ゆうさんち！from 遊ハち", en: "Yu's House! from Yuhachi",
-    release: month(10), format: "tv", origin: "original", tags: ["new", "original"],
-    official: "https://yusanchi-anime.jp/",
-    sources: [src("https://yusanchi-anime.jp/", "Official website — October 2026 TV start; exact first date not announced")]
   });
 
   add({
@@ -476,17 +459,6 @@
     official: "https://www.tbs.co.jp/anime/takopi_project/",
     sources: [src("https://www.tbs.co.jp/anime/takopi_project/news/news20260817.html", "TBS official — November 27 theatrical release")],
     schedule: schedule(event("theatrical", "2026-11-27", "00:00"), "https://www.tbs.co.jp/anime/takopi_project/news/news20260817.html")
-  });
-
-  add({
-    id: "hinagikus-life",
-    ko: "히나기쿠의 인생", ja: "ひな菊の人生", en: "Daisy's Life",
-    release: year(), season: "2026-tba", format: "movie", origin: "novel", tags: ["new", "movie"],
-    official: "https://www.asmik-ace.co.jp/works/lineup/18118/",
-    sources: [
-      src("https://www.asmik-ace.co.jp/works/lineup/?series_category=movie", "Asmik Ace official lineup — nationwide release in 2026", "official-site", ["release"]),
-      src("https://www.asmik-ace.co.jp/works/lineup/18118/", "Asmik Ace official title page — theatrical anime adaptation", "official-site", ["announcement", "format"])
-    ]
   });
 
   const existingIds = new Set(window.animeData.map(anime => anime.id));
