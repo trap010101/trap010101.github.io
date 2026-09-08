@@ -119,7 +119,7 @@
   };
 
   loadStylesheet('/wishlist.css?v=20260908-wishlist2');
-  loadScript('/wishlist.js?v=20260908-wishlist1')
+  loadScript('/wishlist.js?v=20260908-wishlist3')
     .catch(error => console.warn('Wishlist UI could not be loaded.', error));
 
   Promise.resolve()
