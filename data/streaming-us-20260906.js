@@ -152,6 +152,9 @@
     "one-piece-film-god-valley": {
       crunchyroll: "https://www.crunchyroll.com/series/GRMG8ZQZR/one-piece"
     },
+    "magical-girl-raising-project-restart": {
+      crunchyroll: "https://www.crunchyroll.com/series/GRQ4MKN4Y/magical-girl-raising-project"
+    },
     "the-worlds-finest-assassin-season-2": {
       crunchyroll: "https://www.crunchyroll.com/series/GMEHME55K/the-worlds-finest-assassin-gets-reincarnated-in-another-world-as-an-aristocrat"
     },
