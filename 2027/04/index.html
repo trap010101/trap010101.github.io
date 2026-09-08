@@ -29,18 +29,38 @@
   <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-jp.css" />
   <link rel="stylesheet" href="/schedule-archive.css?v=20260908-ui1" />
   <link rel="stylesheet" href="/title-wrap-refine.css?v=20260906-title2" />
+  <link rel="stylesheet" href="/secondary-header.css?v=20260908-1" />
 </head>
 <body>
   <main class="archive-shell">
-    <header class="archive-header">
-      <a class="archive-brand" href="/" aria-label="NewAnime"><img src="/assets/newanime-logo.webp" alt="NewAnime" width="500" height="124"></a>
-      <div class="archive-header-spacer"></div>
-      <div class="archive-language" aria-label="Language">
+        <header class="secondary-site-header">
+      <a class="secondary-site-brand" data-secondary-brand href="/" aria-label="NewAnime"><img src="/assets/newanime-logo.webp" alt="NewAnime" width="500" height="124"></a>
+      <div class="secondary-header-spacer" aria-hidden="true"></div>
+      <div class="archive-language secondary-language" id="languageSwitcher" aria-label="Language">
         <button type="button" class="active" data-lang="ko">KR</button>
         <button type="button" data-lang="ja">JP</button>
         <button type="button" data-lang="en">EN</button>
       </div>
+      <div class="secondary-menu-wrap">
+        <button class="secondary-menu-toggle" type="button" data-secondary-menu-toggle aria-label="메뉴" aria-expanded="false" aria-controls="secondarySiteMenu">
+          <span class="secondary-menu-line" aria-hidden="true"></span>
+          <span class="secondary-menu-line" aria-hidden="true"></span>
+          <span class="secondary-menu-line" aria-hidden="true"></span>
+        </button>
+        <div class="secondary-site-menu hidden" id="secondarySiteMenu" data-secondary-menu role="menu">
+          <a class="secondary-menu-item" data-secondary-updates href="/updates/" role="menuitem">
+            <span class="secondary-menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"></path><path d="M3 4v5h5"></path><path d="M12 7v5l3 2"></path></svg></span>
+            <span data-secondary-menu-label="updates">업데이트</span>
+          </a>
+          <a class="secondary-menu-item" href="mailto:admin@newani.me" role="menuitem">
+            <span class="secondary-menu-icon" aria-hidden="true">@</span>
+            <span data-secondary-menu-label="contact">문의</span>
+          </a>
+          <button class="secondary-menu-item secondary-share-item" type="button" role="menuitem" data-secondary-share data-secondary-menu-label="share">공유</button>
+        </div>
+      </div>
     </header>
+    <div class="secondary-share-status hidden" data-secondary-share-status role="status" aria-live="polite"></div>
     <a class="archive-back" href="/">← <span data-back>전체 일정</span></a>
     <section class="archive-hero">
       <div class="archive-kicker" data-kicker>월별 방영 일정</div>
@@ -196,5 +216,7 @@
     apply(lang);
   })();
   </script>
+  <script src="/language-switcher-compact.js?v=20260908-detail13"></script>
+  <script src="/secondary-header.js?v=20260908-1"></script>
 </body>
 </html>

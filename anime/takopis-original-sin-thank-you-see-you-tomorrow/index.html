@@ -25,21 +25,39 @@
   <link rel="stylesheet" href="/anime-detail.css?v=20260908-ui1" />
   <link rel="stylesheet" href="/anime-breadcrumb.css?v=20260906-seo3" />
   <link rel="stylesheet" href="/title-wrap-refine.css?v=20260906-title2" />
+  <link rel="stylesheet" href="/secondary-header.css?v=20260908-1" />
   <link rel="stylesheet" href="/google-login-button-fit.css?v=20260908-1" />
 </head>
 <body>
   <main class="detail-shell">
-    <header class="detail-header">
-      <a class="detail-brand" href="/" aria-label="NewAnime"><img src="/assets/newanime-logo.webp" alt="NewAnime" width="500" height="124"></a>
-      <div class="detail-header-actions">
-        <div class="detail-language" aria-label="Language">
-          <button type="button" class="active" data-lang="ko">KR</button>
-          <button type="button" data-lang="ja">JP</button>
-          <button type="button" data-lang="en">EN</button>
+        <header class="secondary-site-header">
+      <a class="secondary-site-brand" data-secondary-brand href="/" aria-label="NewAnime"><img src="/assets/newanime-logo.webp" alt="NewAnime" width="500" height="124"></a>
+      <div class="secondary-header-spacer" aria-hidden="true"></div>
+      <div class="detail-language secondary-language" id="languageSwitcher" aria-label="Language">
+        <button type="button" class="active" data-lang="ko">KR</button>
+        <button type="button" data-lang="ja">JP</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <div class="secondary-menu-wrap">
+        <button class="secondary-menu-toggle" type="button" data-secondary-menu-toggle aria-label="메뉴" aria-expanded="false" aria-controls="secondarySiteMenu">
+          <span class="secondary-menu-line" aria-hidden="true"></span>
+          <span class="secondary-menu-line" aria-hidden="true"></span>
+          <span class="secondary-menu-line" aria-hidden="true"></span>
+        </button>
+        <div class="secondary-site-menu detail-header-actions hidden" id="secondarySiteMenu" data-secondary-menu role="menu">
+          <a class="secondary-menu-item" data-secondary-updates href="/updates/" role="menuitem">
+            <span class="secondary-menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"></path><path d="M3 4v5h5"></path><path d="M12 7v5l3 2"></path></svg></span>
+            <span data-secondary-menu-label="updates">업데이트</span>
+          </a>
+          <a class="secondary-menu-item" href="mailto:admin@newani.me" role="menuitem">
+            <span class="secondary-menu-icon" aria-hidden="true">@</span>
+            <span data-secondary-menu-label="contact">문의</span>
+          </a>
+          <button class="secondary-menu-item secondary-share-item detail-share" type="button" role="menuitem" data-share>공유</button>
         </div>
-        <button class="detail-share" type="button" data-share>공유</button>
       </div>
     </header>
+    <div class="secondary-share-status hidden" data-secondary-share-status role="status" aria-live="polite"></div>
     <a class="detail-back" href="/">← <span data-back-label>전체 일정으로 돌아가기</span></a>
     <nav class="detail-breadcrumb" aria-label="Schedule navigation">
       <a href="/">HOME</a>
@@ -188,9 +206,10 @@
     apply(lang);
   })();
   </script>
-  <script src="/language-switcher-compact.js?v=20260908-detail12"></script>
+  <script src="/language-switcher-compact.js?v=20260908-detail13"></script>
   <script src="/streaming-region-country-default.js?v=20260906-country1"></script>
   <script src="/detail-streaming-region.js?v=20260906-region1"></script>
   <script src="/streaming-region-compact.js?v=20260906-region4"></script>
+  <script src="/secondary-header.js?v=20260908-1"></script>
 </body>
 </html>
