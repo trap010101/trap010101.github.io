@@ -379,7 +379,7 @@
       format: "tv",
       origin: "light-novel",
       tags: ["series", "ln"],
-      poster: null,
+      poster: { src: "assets/posters/a-wild-last-boss-appeared-season-2-user-20260908.webp", position: null },
       links: { pv: null, official: "https://www.lastboss-anime.com/", streaming: null },
       streaming: {},
       verification: {

@@ -384,6 +384,7 @@
     id: "battle-spirits-re-zekkai-no-ku",
     ko: "Battle Spirits [Re] 절계의 하늘", ja: "Battle Spirits [Re] 絶界の空", en: "Battle Spirits [Re]: Zekkai no Ku",
     release: date(10, 6), format: "tv", origin: "game", tags: ["new", "game"],
+    poster: { src: "assets/posters/battle-spirits-re-zekkai-no-ku-user-20260908.webp", position: null },
     official: "https://www.bn-pictures.co.jp/battlespirits/", pv: "https://youtu.be/cXd4pKTx2pI",
     sources: [src("https://www.bn-pictures.co.jp/battlespirits/news/detail/?id=24181", "BN Pictures official — October 6, 23:00 TV premiere", "official-site", ["announcement", "release", "format", "pv"])],
     schedule: schedule(event("tv", "2026-10-06", "23:00"), "https://www.bn-pictures.co.jp/battlespirits/news/detail/?id=24181")
@@ -393,6 +394,7 @@
     id: "girls-und-panzer-motto-love-love-operation",
     ko: "걸즈 앤 판처 좀 더 러브러브 작전입니다!", ja: "ガールズ＆パンツァー もっとらぶらぶ作戦です！", en: "Girls und Panzer: Motto Love Love Sakusen desu!",
     release: date(10, 8), format: "tv", origin: "manga", tags: ["series", "comic"],
+    poster: { src: "assets/posters/girls-und-panzer-motto-love-love-operation-user-20260908.webp", position: null },
     official: "https://gup-mottolovelove.jp/", pv: "https://youtu.be/AVIDW2dT2AM",
     sources: [src("https://gup-mottolovelove.jp/article-tv/", "Official TV announcement — October 8, 23:30", "official-site", ["announcement", "release", "format", "pv"])],
     schedule: schedule(event("tv", "2026-10-08", "23:30"), "https://gup-mottolovelove.jp/article-tv/")
@@ -402,6 +404,7 @@
     id: "duel-masters-lost-condemned-boy",
     ko: "Duel Masters LOST ~단죄의 소년~", ja: "Duel Masters LOST ～断罪の少年～", en: "Duel Masters LOST: The Condemned Boy",
     release: date(10, 9), format: "special", origin: "manga", tags: ["series", "comic"],
+    poster: { src: "assets/posters/duel-masters-lost-condemned-boy-user-20260908.webp", position: null },
     official: "https://www.shopro.co.jp/anime/duelmasters_lost/index.html",
     sources: [src("https://www.shopro.co.jp/anime/duelmasters_lost/index.html", "ShoPro official — October 9, 21:00 streaming start")],
     schedule: schedule(event("streaming", "2026-10-09", "21:00"), "https://www.shopro.co.jp/anime/duelmasters_lost/index.html")
@@ -411,6 +414,7 @@
     id: "pop-pap-polters",
     ko: "팝 팝 폴터즈", ja: "ポップパップポルターズ", en: "Pop Pap Polters",
     release: date(10, 4), format: "tv", origin: "original", tags: ["new", "original"],
+    poster: { src: "assets/posters/pop-pap-polters-user-20260908.webp", position: null },
     official: "https://ppp-anime.jp/",
     sources: [src("https://ppp-anime.jp/", "Official website — October 4, 10:00 TV premiere")],
     schedule: schedule(event("tv", "2026-10-04", "10:00"), "https://ppp-anime.jp/")
@@ -420,6 +424,7 @@
     id: "cardfight-vanguard-divinez-fate-star-war-arc",
     ko: "카드파이트!! 뱅가드 Divinez 운명성전편", ja: "カードファイト!! ヴァンガード Divinez 運命星戦編", en: "Cardfight!! Vanguard Divinez: Parallactic Fate",
     release: date(10, 2), format: "tv", origin: "game", tags: ["series", "game"],
+    poster: { src: "assets/posters/cardfight-vanguard-divinez-fate-star-war-arc-user-20260908.webp", position: null },
     official: "https://anime.cf-vanguard.com/vgd/",
     sources: [src("https://anime.cf-vanguard.com/vgd/", "Official website — theatrical advance October 2; TV November 7 at 08:00")],
     schedule: schedule(event("theatrical", "2026-10-02", "00:00"), "https://anime.cf-vanguard.com/vgd/", event("tv", "2026-11-07", "08:00"))
@@ -429,6 +434,7 @@
     id: "maebashi-witches-emoemories",
     ko: "극장판 마에바시 위치스 ~마녀 견습생의 에모에모리즈~", ja: "劇場版 前橋ウィッチーズ ～魔女見習いのエモエモリーズ～", en: "Maebashi Witches: Witch Apprentice Emoemories",
     release: date(10, 23), format: "movie", origin: "original", tags: ["series", "original", "movie"],
+    poster: { src: "assets/posters/maebashi-witches-emoemories-user-20260908.webp", position: null },
     official: "https://www.maebashi-witches.com/",
     sources: [src("https://www.maebashi-witches.com/", "Official website — October 23 theatrical release")],
     schedule: schedule(event("theatrical", "2026-10-23", "00:00"), "https://www.maebashi-witches.com/")
@@ -447,6 +453,7 @@
     id: "inherit-the-winds-the-beginning",
     ko: "극장 선행판 바람을 잇는 이들 -시작-", ja: "劇場先行版 風を継ぐもの -はじまり-", en: "Inherit the Winds: The Beginning — Theatrical Advance Edition",
     release: date(11, 13), format: "movie", origin: "original", tags: ["series", "original", "movie"],
+    poster: { src: "assets/posters/inherit-the-winds-the-beginning-user-20260908.webp", position: null },
     official: "https://kaze-tsugu.com/",
     sources: [src("https://news.aniplex.co.jp/detail.html?id=71138", "Aniplex official — November 13 two-week theatrical advance run")],
     schedule: schedule(event("theatrical", "2026-11-13", "00:00"), "https://news.aniplex.co.jp/detail.html?id=71138")

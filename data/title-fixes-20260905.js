@@ -79,7 +79,7 @@
   const make2027 = ({
     id, ko, ja, en, aliases = [], release = yearRelease(), season = "2027-tba",
     format = "tv", origin = "manga", tags = ["new", "comic"], official,
-    sourceUrl = official, sourceLabel = "Official announcement — 2027", sourceType = "official-site", pv = null
+    sourceUrl = official, sourceLabel = "Official announcement — 2027", sourceType = "official-site", pv = null, poster = null
   }) => ({
     id,
     title: { ko, ja, en },
@@ -90,7 +90,7 @@
     format,
     origin,
     tags,
-    poster: null,
+    poster,
     links: { pv, official, streaming: null },
     streaming: {},
     verification: {
@@ -216,6 +216,7 @@
       id: "red-riding-hood-detective-story",
       ko: "빨간 모자, 여행 중 시체를 만나다.", ja: "赤ずきん、旅の途中で死体と出会う。", en: "Red Riding Hood: A Detective Story",
       origin: "novel", tags: ["new"],
+      poster: { src: "assets/posters/red-riding-hood-detective-story-user-20260908.webp", position: null },
       official: "https://akazukin-anime.com/",
       sourceLabel: "Official website — anime adaptation in 2027"
     }),
