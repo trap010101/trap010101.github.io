@@ -64,6 +64,10 @@
     "the-eminence-in-shadow-lost-echoes": { danime: dAnime("25786") },
     "one-piece-film-god-valley": { unext: "https://video.unext.jp/title/SID0011124" },
     "the-worlds-finest-assassin-season-2": { danime: dAnime("25026") },
+    "be-forever-yamato-rebel3199-chapter-7-rainbow-reincarnation": { danime: dAnime("27252") },
+    "magical-girl-raising-project-restart": { danime: dAnime("21178") },
+    "armored-trooper-votoms-the-gray-witch-part-1": { danime: dAnime("20211") },
+    "mobile-police-patlabor-ezy-file-3": { danime: dAnime("10363") },
     "ice-wall-season-2": { netflix: "https://www.netflix.com/title/82031882" },
     "with-vengeance-sincerely-your-broken-saintess-season-2": {
       prime: "https://www.primevideo.com/detail/0OUPW1VINFZH941AW52V1U5WFO"
