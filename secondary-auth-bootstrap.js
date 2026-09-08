@@ -41,6 +41,7 @@
   stylesheet('/google-login-button-fit.css?v=20260908-1');
 
   Promise.resolve()
+    .then(() => script('/language-switcher-compact.js?v=20260908-detail13'))
     .then(() => Array.isArray(window.animeData) ? null : script('/data/anime.js?v=20260907-schedule1'))
     .then(() => script('/data/anime-20260904.js?v=20260905-data2'))
     .then(() => script('/data/title-fixes-20260905.js?v=20260905-title1'))
