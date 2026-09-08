@@ -6,7 +6,8 @@ const STYLE_HREF = '/title-wrap-refine.css?v=20260906-title2';
 const STYLE_LINK = `  <link rel="stylesheet" href="${STYLE_HREF}" />\n`;
 const DETAIL_STYLE_HREF = '/anime-detail.css?v=20260908-ui1';
 const ARCHIVE_STYLE_HREF = '/schedule-archive.css?v=20260908-ui1';
-const DETAIL_LANGUAGE_SCRIPT = '/language-switcher-compact.js?v=20260908-detail2';
+const DETAIL_LANGUAGE_SCRIPT = '/language-switcher-compact.js?v=20260908-detail3';
+const HOMEPAGE_LINKS_SCRIPT = 'anime-links.js?v=20260908-authui1';
 const TARGET_ROOTS = ['anime', '2026', '2027'];
 const TARGET_FILES = [
   'index.html',
@@ -45,6 +46,13 @@ function updateFile(filename) {
     html = html.replace(
       /href="\/schedule-archive\.css\?v=[^"]+"/g,
       `href="${ARCHIVE_STYLE_HREF}"`
+    );
+  }
+
+  if (filename === path.join(ROOT, 'index.html')) {
+    html = html.replace(
+      /src="\/?anime-links\.js\?v=[^"]+"/g,
+      `src="${HOMEPAGE_LINKS_SCRIPT}"`
     );
   }
 
