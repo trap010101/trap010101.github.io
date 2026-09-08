@@ -6,7 +6,7 @@ const STYLE_HREF = '/title-wrap-refine.css?v=20260906-title2';
 const STYLE_LINK = `  <link rel="stylesheet" href="${STYLE_HREF}" />\n`;
 const DETAIL_STYLE_HREF = '/anime-detail.css?v=20260908-ui2';
 const ARCHIVE_STYLE_HREF = '/schedule-archive.css?v=20260908-ui1';
-const SITE_CHROME_STYLE_HREF = '/site-chrome.css?v=20260908-1';
+const SITE_CHROME_STYLE_HREF = '/site-chrome.css?v=20260909-2';
 const MENU_MOBILE_STYLE_HREF = '/menu-mobile-refine.css?v=20260906-menu1';
 const SECONDARY_HEADER_SCRIPT = '/secondary-header.js?v=20260908-4';
 const SECONDARY_SCALE_STYLE_HREF = '/secondary-scale.css?v=20260908-2';
