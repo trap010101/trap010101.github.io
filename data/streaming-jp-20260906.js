@@ -63,7 +63,10 @@
     "haikyu-the-movie-vs-the-little-giant": { danime: dAnime("20140") },
     "the-eminence-in-shadow-lost-echoes": { danime: dAnime("25786") },
     "one-piece-film-god-valley": { unext: "https://video.unext.jp/title/SID0011124" },
-    "the-worlds-finest-assassin-season-2": { danime: dAnime("25026") }
+    "the-worlds-finest-assassin-season-2": { danime: dAnime("25026") },
+    "a-wild-last-boss-appeared-season-2": { danime: dAnime("28660") },
+    "ace-of-diamond-act-ii-second-season-part-2": { danime: dAnime("22678") },
+    "appraisal-skill-season-3": { danime: dAnime("26979") }
   };
 
   for (const [animeId, previous] of Object.entries(audit)) {
