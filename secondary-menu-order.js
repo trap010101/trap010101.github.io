@@ -8,16 +8,14 @@
   function reorder(menu) {
     if (!menu) return;
     const desired = unique([
-      menu.querySelector('[data-secondary-updates]'),
-      menu.querySelector('#authMenuButton') || menu.querySelector('.detail-account-button'),
+      menu.querySelector('#updatesMenuLink') || menu.querySelector('[data-secondary-updates]'),
+      menu.querySelector('#authMenuButton'),
       menu.querySelector('#wishlistMenuButton'),
       menu.querySelector('a[href^="mailto:"]'),
-      menu.querySelector('[data-secondary-share]') || menu.querySelector('[data-share]')
+      menu.querySelector('#shareButton') || menu.querySelector('[data-secondary-share]') || menu.querySelector('[data-share]')
     ]);
     if (!desired.length) return;
 
-    const current = [...menu.children].filter(node => desired.includes(node));
-    if (current.length === desired.length && current.every((node, index) => node === desired[index])) return;
     desired.forEach(node => menu.appendChild(node));
   }
 
@@ -37,7 +35,7 @@
     schedule();
   }
 
-  const boot = () => document.querySelectorAll('#siteMenu[data-secondary-menu], .secondary-site-menu[data-secondary-menu]').forEach(init);
+  const boot = () => document.querySelectorAll('#siteMenu[data-secondary-menu], .site-menu[data-secondary-menu]').forEach(init);
   boot();
   new MutationObserver(boot).observe(document.body, { childList:true, subtree:true });
 })();
