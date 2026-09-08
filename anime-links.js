@@ -130,7 +130,7 @@
 
   // Authentication is deliberately opt-in. The live UI remains untouched until
   // auth-config.js contains a public Supabase project URL and publishable/anon key.
-  loadScript('/auth-config.js?v=20260908-auth1')
+  loadScript('/auth-config.js?v=20260908-auth2')
     .then(() => {
       const config = window.NEWANIME_AUTH_CONFIG || {};
       if (!config.supabaseUrl || !config.supabaseAnonKey) return null;
