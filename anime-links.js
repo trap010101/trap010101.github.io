@@ -140,7 +140,7 @@
       const config = window.NEWANIME_AUTH_CONFIG || {};
       if (!config.supabaseUrl || !config.supabaseAnonKey || !config.googleClientId || config.googleEnabled !== true) return null;
       loadStylesheet('/auth.css?v=20260908-auth2');
-      loadStylesheet('/account-refine.css?v=20260908-authui1');
+      loadStylesheet('/account-refine.css?v=20260908-authui2');
       return loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0')
         .then(() => loadScript('https://accounts.google.com/gsi/client'))
         .then(() => loadScript('/auth.js?v=20260908-auth5'))
