@@ -1,0 +1,30 @@
+/* Visual containment for the cross-origin Google Identity Services button.
+   Keep GIS on its non-personalized medium configuration, crop only the native
+   white canvas padding, and scale the complete control slightly for a fuller
+   mobile touch target without altering the iframe's internal DOM. */
+
+html body .auth-google-host,
+html body .detail-google-slot {
+  min-height: 46px !important;
+  padding: 4px 14px !important;
+  overflow: visible !important;
+}
+
+html body .auth-google-host > div,
+html body .detail-google-slot > div {
+  transform: scale(1.15) !important;
+  transform-origin: center center !important;
+}
+
+html body .auth-google-host iframe,
+html body .detail-google-slot iframe {
+  mix-blend-mode: normal !important;
+  clip-path: inset(10px 17px 10px 17px round 999px) !important;
+}
+
+@media (max-width: 360px) {
+  html body .auth-google-host > div,
+  html body .detail-google-slot > div {
+    transform: scale(1.1) !important;
+  }
+}
