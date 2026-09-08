@@ -97,22 +97,21 @@
 .auth-body,
 .detail-account-body { margin-top: 20px !important; }
 
-/* Medium + <200px are intentional: Google's documented personalized button
-   cannot appear with these settings. Keep the generated iframe at its own
-   native height and only constrain the requested width. */
+/* Google owns the cross-origin button iframe. Do not force dimensions on the
+   generated wrapper or iframe: width is only a minimum button width in GIS,
+   and localized text can make the actual control wider. The host only centers
+   the native Google control inside our modal. */
 .auth-google-host,
 .detail-google-slot {
-  width: 190px !important;
+  width: fit-content !important;
   max-width: 100% !important;
-  min-height: 32px !important;
   margin: 0 auto !important;
   padding: 0 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  overflow: hidden !important;
+  overflow: visible !important;
   border: 0 !important;
-  border-radius: 999px !important;
   background: transparent !important;
   box-shadow: none !important;
 }
@@ -121,12 +120,10 @@
 .detail-google-slot > div,
 .auth-google-host iframe,
 .detail-google-slot iframe {
-  width: 190px !important;
-  max-width: 190px !important;
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;
-  border-radius: 999px !important;
+  max-width: none !important;
 }
 
 .auth-account,
