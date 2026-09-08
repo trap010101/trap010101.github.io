@@ -89,20 +89,27 @@
   // Load regional streaming audits after the base data layer, detect a default country,
   // then install the region UI. User-selected regions remain persistent.
   const loadScript = src => new Promise((resolve, reject) => {
-    const targetPath = new URL(src, window.location.href).pathname;
+    const targetUrl = new URL(src, window.location.href);
     const existing = [...document.scripts].find(script => {
       if (!script.src) return false;
       const scriptUrl = new URL(script.src, window.location.href);
-      return scriptUrl.origin === new URL(src, window.location.href).origin && scriptUrl.pathname === targetPath;
+      return scriptUrl.origin === targetUrl.origin && scriptUrl.pathname === targetUrl.pathname;
     });
     if (existing) {
-      resolve();
+      if (existing.dataset.loaded === 'true' || existing.readyState === 'complete') resolve();
+      else {
+        existing.addEventListener('load', resolve, { once: true });
+        existing.addEventListener('error', reject, { once: true });
+      }
       return;
     }
     const script = document.createElement('script');
     script.src = src;
     script.async = false;
-    script.onload = resolve;
+    script.onload = () => {
+      script.dataset.loaded = 'true';
+      resolve();
+    };
     script.onerror = reject;
     document.head.appendChild(script);
   });
@@ -128,14 +135,14 @@
     })
     .catch(error => console.warn('Wishlist UI could not be loaded.', error));
 
-  loadScript('/auth-config.js?v=20260908-auth4')
+  loadScript('/auth-config.js?v=20260908-auth5')
     .then(() => {
       const config = window.NEWANIME_AUTH_CONFIG || {};
-      if (!config.supabaseUrl || !config.supabaseAnonKey || config.googleEnabled !== true) return null;
-      loadStylesheet('/auth.css?v=20260908-auth1');
-      return loadScript('/auth-callback-debug.js?v=20260908-authdebug1')
-        .then(() => loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0'))
-        .then(() => loadScript('/auth.js?v=20260908-auth3'))
+      if (!config.supabaseUrl || !config.supabaseAnonKey || !config.googleClientId || config.googleEnabled !== true) return null;
+      loadStylesheet('/auth.css?v=20260908-auth2');
+      return loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0')
+        .then(() => loadScript('https://accounts.google.com/gsi/client'))
+        .then(() => loadScript('/auth.js?v=20260908-auth4'))
         .then(() => loadScript('/wishlist-sync.js?v=20260908-sync1'));
     })
     .catch(error => console.warn('Authentication UI could not be loaded.', error));
