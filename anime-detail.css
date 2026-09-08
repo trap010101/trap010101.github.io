@@ -40,7 +40,7 @@ button { font: inherit; }
 .detail-poster { display: block; width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 15px; background: #151923; border: 1px solid var(--line); }
 .detail-poster-fallback { display: grid; place-items: center; color: #5e6678; font-size: 58px; font-weight: 900; }
 .detail-main { min-width: 0; }
-.detail-kicker { color: #757f94; font-size: 11px; font-weight: 900; letter-spacing: .11em; text-transform: uppercase; }
+.detail-kicker { color: #757f94; font-size: 11px; font-weight: 900; letter-spacing: .11em; text-transform: none; }
 .anime-localized h1 { margin: 9px 0 6px; font-size: clamp(28px, 5vw, 48px); line-height: 1.13; letter-spacing: -.035em; }
 .alternate-titles { display: flex; flex-direction: column; gap: 3px; color: var(--muted); font-size: 13px; line-height: 1.5; }
 .detail-badges { display: flex; flex-wrap: wrap; gap: 7px; margin: 17px 0 22px; }
