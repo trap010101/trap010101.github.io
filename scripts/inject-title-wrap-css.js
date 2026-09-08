@@ -6,8 +6,8 @@ const STYLE_HREF = '/title-wrap-refine.css?v=20260906-title2';
 const STYLE_LINK = `  <link rel="stylesheet" href="${STYLE_HREF}" />\n`;
 const DETAIL_STYLE_HREF = '/anime-detail.css?v=20260908-ui1';
 const ARCHIVE_STYLE_HREF = '/schedule-archive.css?v=20260908-ui1';
-const DETAIL_LANGUAGE_SCRIPT = '/language-switcher-compact.js?v=20260908-detail4';
-const HOMEPAGE_LINKS_SCRIPT = 'anime-links.js?v=20260908-authui2';
+const DETAIL_LANGUAGE_SCRIPT = '/language-switcher-compact.js?v=20260908-detail5';
+const HOMEPAGE_LINKS_SCRIPT = 'anime-links.js?v=20260908-authui3';
 const TARGET_ROOTS = ['anime', '2026', '2027'];
 const TARGET_FILES = [
   'index.html',
