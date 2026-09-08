@@ -3,6 +3,48 @@
 // and internal-only normalization steps are excluded after reviewing the repository history.
 window.siteChangelog = [
   {
+    date: "2026-09-08",
+    groups: [
+      {
+        id: "streaming",
+        title: { ko: "스트리밍", ja: "配信", en: "Streaming" },
+        entries: [{
+          id: "2026-09-08-regional-catch-up-links",
+          title: { ko: "이전 시리즈 정주행 링크 보완", ja: "過去シリーズ配信リンクの拡充", en: "Expanded previous-series streaming links" },
+          summary: {
+            ko: "시리즈 작품의 이전 애니메이션을 대상으로 대한민국·일본·미국에서 실제 재생 가능한 직접 스트리밍 링크를 추가·정비했습니다. 공개 전인 신작 자체는 스트리밍 가능 작품으로 표시하지 않습니다.",
+            ja: "シリーズ作品の過去アニメについて、韓国・日本・米国で実際に再生できる直接配信リンクを追加・整備しました。未公開の新作自体は配信中として表示しません。",
+            en: "Added and refined direct, playable streaming links for earlier anime installments in South Korea, Japan, and the United States. Upcoming titles themselves are not presented as currently streamable."
+          }
+        }]
+      },
+      {
+        id: "content",
+        title: { ko: "작품 정보", ja: "作品情報", en: "Title information" },
+        entries: [
+          {
+            id: "2026-09-08-fall-schedule-and-pv-refresh",
+            title: { ko: "2026년 가을 공개 작품 정보 보강", ja: "2026年秋公開作品の情報拡充", en: "Expanded Fall 2026 title information" },
+            summary: {
+              ko: "가을 공개 예정작의 일정·형식·공식 사이트·PV 정보를 추가 확인해 보강하고, 새로 확인된 작품도 일정에 반영했습니다.",
+              ja: "2026年秋公開予定作品のスケジュール、形式、公式サイト、PV情報を追加確認して補強し、新たに確認できた作品も予定表に反映しました。",
+              en: "Rechecked and expanded schedule, format, official-site, and PV details for Fall 2026 titles, and added newly confirmed works to the calendar."
+            }
+          },
+          {
+            id: "2026-09-08-poster-refresh",
+            title: { ko: "제공 포스터 이미지 정비", ja: "提供ポスター画像の整備", en: "Provided poster image refresh" },
+            summary: {
+              ko: "제공받은 공식 비주얼을 로컬 WebP 자산으로 반영해 포스터를 정비했습니다. 「사이버펑크: 엣지러너 2」, 「낙원추방: 마음의 레조넌스」 등에는 작품명이 포함된 비주얼을 우선 적용했습니다.",
+              ja: "提供された公式ビジュアルをローカルWebPアセットとして反映し、ポスターを整備しました。『サイバーパンク: エッジランナーズ2』『楽園追放 心のレゾナンス』などは、作品名入りのビジュアルを優先して採用しています。",
+              en: "Refreshed posters with supplied official visuals stored as local WebP assets. For Cyberpunk: Edgerunners 2, Expelled from Paradise: Resonance of the Heart, and others, title-bearing key visuals were prioritized."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
     date: "2026-09-06",
     groups: [
       {
