@@ -421,6 +421,7 @@
     en: "Kaiju No. 8 Original Short Anime: Narumi's Weekday",
     aliases: ["鳴海の平日", "Narumi's Weekday"],
     release: date(9, 5), format: "special", origin: "manga", tags: ["series", "comic"],
+    poster: { src: "assets/posters/kaiju-no-8-narumis-weekday-user-20260908.webp", position: null },
     official: "https://www.kaiju-no8.net/",
     pv: "https://www.youtube.com/watch?v=TMdcTkYVVVk",
     sources: [
@@ -434,6 +435,7 @@
     id: "ghost-meets-gal",
     ko: "고스트 미츠 갸루!", ja: "ごーすと・みーつ・ぎゃる！", en: "Ghost Meets Gal!",
     release: date(9, 5), format: "tv", origin: "manga", tags: ["series", "comic"],
+    poster: { src: "assets/posters/ghost-meets-gal-user-20260908.webp", position: null },
     official: "https://cf-vanguard.com/anime-ghost_meets_gal/",
     sources: [src("https://cf-vanguard.com/anime-ghost_meets_gal/", "Official website — September 5, 08:00 TV premiere")],
     schedule: schedule(event("tv", "2026-09-05", "08:00"), "https://cf-vanguard.com/anime-ghost_meets_gal/")
