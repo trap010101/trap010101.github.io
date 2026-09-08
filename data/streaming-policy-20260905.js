@@ -7,6 +7,18 @@
     "magical-sisters-lulutto-lilly-part-2": {
       watcha: "https://watcha.com/ko/contents/tEqZ5NY"
     },
+    "ice-wall-season-2": {
+      netflix: "https://www.netflix.com/title/82031882"
+    },
+    "mission-yozakura-family-season-2-part-2": {
+      laftel: "https://laftel.net/item/42049"
+    },
+    "dragon-ball-super-beerus": {
+      laftel: "https://laftel.net/item/25044"
+    },
+    "with-vengeance-sincerely-your-broken-saintess-season-2": {
+      prime: "https://www.primevideo.com/detail/0OUPW1VINFZH941AW52V1U5WFO"
+    },
     "hotel-inhumans-season-2": {
       laftel: "https://laftel.net/item/42939"
     },
