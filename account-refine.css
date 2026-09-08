@@ -105,82 +105,48 @@
   margin-top: 20px !important;
 }
 
-.auth-provider-row,
-.detail-account-provider-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 14px;
-  padding: 16px 0 0;
-  border: 0;
-  border-top: 1px solid rgba(255,255,255,.075);
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
-
-.auth-provider-copy,
-.detail-account-provider-copy {
-  min-width: 0;
-}
-
-.auth-provider-copy strong,
-.auth-provider-copy span,
-.detail-account-provider-copy strong,
-.detail-account-provider-copy span {
-  display: block;
-}
-
-.auth-provider-copy strong,
-.detail-account-provider-copy strong {
-  color: #eef1f8;
-  font-size: 12px;
-  font-weight: 850;
-  line-height: 1.35;
-  letter-spacing: -.01em;
-}
-
-.auth-provider-copy span,
-.detail-account-provider-copy span {
-  margin-top: 3px;
-  color: #7f899c;
-  font-size: 9px;
-  font-weight: 650;
-  line-height: 1.4;
-}
-
-/* Google renders this control inside a cross-origin iframe. Keep the iframe at
-   its native dimensions so the logo is never stretched or clipped. */
+/* Google renders the button inside a cross-origin iframe. The inner document
+   stays untouched; only the iframe viewport is fixed to the exact size we ask
+   Google to render so it cannot expand and expose a blank white canvas. */
 .auth-google-host,
 .detail-google-slot {
-  min-width: 36px !important;
-  min-height: 36px !important;
-  margin: 0 !important;
+  width: 280px !important;
+  max-width: 100% !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  margin: 0 auto !important;
   padding: 0 !important;
   display: flex !important;
   align-items: center !important;
-  justify-content: flex-end !important;
-  overflow: visible !important;
+  justify-content: center !important;
+  overflow: hidden !important;
   border: 0 !important;
-  border-radius: 0 !important;
+  border-radius: 999px !important;
   background: transparent !important;
   box-shadow: none !important;
 }
 
 .auth-google-host > div,
-.detail-google-slot > div,
+.detail-google-slot > div {
+  width: 280px !important;
+  max-width: 100% !important;
+  height: 44px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
 .auth-google-host iframe,
 .detail-google-slot iframe {
   display: block !important;
-  width: auto !important;
-  min-width: 0 !important;
-  max-width: none !important;
-  height: auto !important;
-  min-height: 0 !important;
-  max-height: none !important;
+  width: 280px !important;
+  max-width: 100% !important;
+  height: 44px !important;
+  min-height: 44px !important;
   margin: 0 !important;
   padding: 0 !important;
-  border-radius: 0 !important;
+  border: 0 !important;
+  border-radius: 999px !important;
   transform: none !important;
 }
 
@@ -323,10 +289,13 @@
     max-width: 260px;
   }
 
-  .auth-provider-row,
-  .detail-account-provider-row {
-    gap: 12px;
-    padding-top: 15px;
+  .auth-google-host,
+  .detail-google-slot,
+  .auth-google-host > div,
+  .detail-google-slot > div,
+  .auth-google-host iframe,
+  .detail-google-slot iframe {
+    width: min(280px, calc(100vw - 74px)) !important;
   }
 
   .detail-account-button {
