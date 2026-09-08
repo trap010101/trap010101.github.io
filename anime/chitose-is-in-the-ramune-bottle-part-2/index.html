@@ -27,7 +27,8 @@
   <link rel="stylesheet" href="/title-wrap-refine.css?v=20260906-title2" />
   <link rel="stylesheet" href="/google-login-button-fit.css?v=20260908-1" />
   <link rel="stylesheet" href="/secondary-header.css?v=20260908-1" />
-  <link rel="stylesheet" href="/secondary-scale.css?v=20260908-1" />
+  <link rel="stylesheet" href="/secondary-scale.css?v=20260908-2" />
+  <link rel="stylesheet" href="/secondary-menu-integrations.css?v=20260908-1" />
 </head>
 <body>
   <main class="detail-shell">
@@ -40,12 +41,12 @@
         <button type="button" data-lang="en">EN</button>
       </div>
       <div class="secondary-menu-wrap">
-        <button class="secondary-menu-toggle" type="button" data-secondary-menu-toggle aria-label="메뉴" aria-expanded="false" aria-controls="secondarySiteMenu">
+        <button class="secondary-menu-toggle" id="menuToggle" type="button" data-secondary-menu-toggle aria-label="메뉴" aria-expanded="false" aria-controls="siteMenu">
           <span class="secondary-menu-line" aria-hidden="true"></span>
           <span class="secondary-menu-line" aria-hidden="true"></span>
           <span class="secondary-menu-line" aria-hidden="true"></span>
         </button>
-        <div class="secondary-site-menu detail-header-actions hidden" id="secondarySiteMenu" data-secondary-menu role="menu">
+        <div class="secondary-site-menu detail-header-actions hidden" id="siteMenu" data-secondary-menu role="menu">
           <a class="secondary-menu-item" data-secondary-updates href="/updates/" role="menuitem">
             <span class="secondary-menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"></path><path d="M3 4v5h5"></path><path d="M12 7v5l3 2"></path></svg></span>
             <span data-secondary-menu-label="updates">업데이트</span>
@@ -207,10 +208,16 @@
     apply(lang);
   })();
   </script>
+  <script src="/data/anime.js?v=20260907-schedule1" data-secondary-wishlist-data></script>
+  <script src="/data/anime-20260904.js?v=20260905-data2" data-secondary-wishlist-data></script>
+  <script src="/data/title-fixes-20260905.js?v=20260905-title1" data-secondary-wishlist-data></script>
+  <script src="/data/poster-fixes-20260905.js?v=20260907-posters4" data-secondary-wishlist-data></script>
+  <script src="/data/schedule-updates-20260907.js?v=20260907-schedule2" data-secondary-wishlist-data></script>
   <script src="/language-switcher-compact.js?v=20260908-detail13"></script>
   <script src="/streaming-region-country-default.js?v=20260906-country1"></script>
   <script src="/detail-streaming-region.js?v=20260906-region1"></script>
   <script src="/streaming-region-compact.js?v=20260906-region4"></script>
   <script src="/secondary-header.js?v=20260908-1"></script>
+  <script src="/secondary-menu-order.js?v=20260908-1"></script>
 </body>
 </html>
