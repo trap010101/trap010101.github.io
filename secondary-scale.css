@@ -1,10 +1,44 @@
-/* Shared responsive scale for detail and archive pages.
-   Keep secondary pages visually consistent with the homepage on mobile and
-   wide-mobile viewports that report tablet-like CSS widths. */
+/* Shared responsive scale for detail and archive pages. */
+
+/* Restore the darker homepage-era background on secondary pages. */
+body {
+  background:
+    radial-gradient(circle at 14% 8%, rgba(89, 71, 176, .075), transparent 31rem),
+    radial-gradient(circle at 88% 18%, rgba(49, 99, 164, .045), transparent 35rem),
+    linear-gradient(180deg, #080a0f 0%, #0a0d13 48%, #080a0f 100%) !important;
+}
+
+/* Desktop and forced desktop-mode viewports: keep the whole page centered
+   instead of letting it visually cling to the upper-left edge. */
+@media (min-width: 761px) {
+  .detail-shell,
+  .archive-shell {
+    width: min(1100px, calc(100% - 88px)) !important;
+    margin-inline: auto !important;
+    padding-top: 52px !important;
+    padding-bottom: 88px !important;
+  }
+
+  .secondary-site-header {
+    margin-bottom: 18px !important;
+  }
+
+  .detail-back,
+  .archive-back {
+    margin-top: 11px !important;
+  }
+
+  .detail-hero-card,
+  .archive-hero {
+    margin-inline: auto !important;
+  }
+}
 
 @media (max-width: 760px) {
+  .detail-shell,
   .archive-shell {
     width: min(calc(100% - 18px), 1180px) !important;
+    margin-inline: auto !important;
     padding: 16px 0 58px !important;
   }
 
@@ -23,11 +57,10 @@
     height: 210px !important;
     right: -70px !important;
     top: -108px !important;
+    opacity: .62;
   }
 
-  .archive-kicker {
-    font-size: 10px !important;
-  }
+  .archive-kicker { font-size: 10px !important; }
 
   .archive-hero h1 {
     margin: 10px 0 8px !important;
@@ -40,14 +73,8 @@
     line-height: 1.65 !important;
   }
 
-  .archive-summary {
-    margin-top: 16px !important;
-  }
-
-  .archive-summary span {
-    padding: 6px 9px !important;
-    font-size: 10px !important;
-  }
+  .archive-summary { margin-top: 16px !important; }
+  .archive-summary span { padding: 6px 9px !important; font-size: 10px !important; }
 
   .archive-nav {
     top: 6px !important;
@@ -72,25 +99,11 @@
     white-space: nowrap !important;
   }
 
-  .archive-content {
-    padding: 26px 0 56px !important;
-  }
-
-  .archive-section + .archive-section {
-    margin-top: 34px !important;
-  }
-
-  .archive-section-head {
-    margin-bottom: 12px !important;
-  }
-
-  .archive-section-head h2 {
-    font-size: 19px !important;
-  }
-
-  .archive-count {
-    font-size: 10px !important;
-  }
+  .archive-content { padding: 26px 0 56px !important; }
+  .archive-section + .archive-section { margin-top: 34px !important; }
+  .archive-section-head { margin-bottom: 12px !important; }
+  .archive-section-head h2 { font-size: 19px !important; }
+  .archive-count { font-size: 10px !important; }
 
   .archive-grid {
     grid-template-columns: 1fr !important;
@@ -112,13 +125,8 @@
     border-radius: 10px !important;
   }
 
-  .archive-card-body {
-    padding: 2px 1px 2px 0 !important;
-  }
-
-  .archive-card-date {
-    font-size: 11px !important;
-  }
+  .archive-card-body { padding: 2px 1px 2px 0 !important; }
+  .archive-card-date { font-size: 11px !important; }
 
   .archive-card h3 {
     margin: 7px 0 6px !important;
@@ -126,26 +134,10 @@
     line-height: 1.42 !important;
   }
 
-  .archive-alt-title {
-    font-size: 10px !important;
-    line-height: 1.5 !important;
-  }
-
-  .archive-badges {
-    gap: 5px !important;
-    padding-top: 9px !important;
-  }
-
-  .archive-badge {
-    padding: 4px 7px !important;
-    font-size: 9px !important;
-  }
-
-  .archive-footer {
-    gap: 15px !important;
-    padding-top: 24px !important;
-    font-size: 10px !important;
-  }
+  .archive-alt-title { font-size: 10px !important; line-height: 1.5 !important; }
+  .archive-badges { gap: 5px !important; padding-top: 9px !important; }
+  .archive-badge { padding: 4px 7px !important; font-size: 9px !important; }
+  .archive-footer { gap: 15px !important; padding-top: 24px !important; font-size: 10px !important; }
 }
 
 @media (max-width: 520px) {
@@ -154,9 +146,7 @@
     border-radius: 19px !important;
   }
 
-  .archive-hero h1 {
-    font-size: clamp(27px, 8vw, 32px) !important;
-  }
+  .archive-hero h1 { font-size: clamp(27px, 8vw, 32px) !important; }
 
   .archive-card {
     grid-template-columns: 82px minmax(0, 1fr) !important;
@@ -164,11 +154,6 @@
     padding: 11px !important;
   }
 
-  .archive-card h3 {
-    font-size: 14px !important;
-  }
-
-  .archive-alt-title {
-    font-size: 9px !important;
-  }
+  .archive-card h3 { font-size: 14px !important; }
+  .archive-alt-title { font-size: 9px !important; }
 }
