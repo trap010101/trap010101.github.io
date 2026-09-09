@@ -141,7 +141,7 @@
       loadStylesheet('/account-refine.css?v=20260908-authui10');
       return loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0')
         .then(() => loadScript('https://accounts.google.com/gsi/client'))
-        .then(() => loadScript('/auth.js?v=20260909-auth13'))
+        .then(() => loadScript('/auth.js?v=20260909-auth14'))
         .then(() => loadScript('/wishlist-sync.js?v=20260909-sync2'));
     })
     .catch(error => console.warn('Authentication UI could not be loaded.', error));
