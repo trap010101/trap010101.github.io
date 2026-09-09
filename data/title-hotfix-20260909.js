@@ -1,4 +1,5 @@
 // Narrow title hotfixes that must apply regardless of historical ID drift.
+// Static-page regeneration trigger: 2026-09-09.
 (() => {
   if (!Array.isArray(window.animeData)) return;
 
