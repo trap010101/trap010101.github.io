@@ -82,7 +82,7 @@
   }
 
   stylesheet('/wishlist.css?v=20260908-wishlist4');
-  stylesheet('/auth.css?v=20260908-auth2');
+  stylesheet('/auth.css?v=20260909-auth3');
   stylesheet('/account-refine.css?v=20260908-authui10');
   stylesheet('/google-login-button-fit.css?v=20260908-1');
 
@@ -98,7 +98,7 @@
     .then(() => script('/auth-config.js?v=20260908-auth6'))
     .then(() => script('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0'))
     .then(() => script('https://accounts.google.com/gsi/client'))
-    .then(() => script('/auth.js?v=20260908-auth11'))
+    .then(() => script('/auth.js?v=20260909-auth12'))
     .then(() => script('/wishlist-sync.js?v=20260909-sync2'))
     .catch(error => console.warn('Secondary account / wishlist UI could not be loaded.', error));
 })();
