@@ -66,7 +66,11 @@
 
   const googleReady = ready
     .then(() => script('https://accounts.google.com/gsi/client'))
-    .then(() => window.NewAnimeAuth?.initGoogleIdentity?.())
+    .then(() => {
+      const initialized = window.NewAnimeAuth?.initGoogleIdentity?.();
+      document.dispatchEvent(new CustomEvent('newanime:google-ready', { detail:{ initialized:Boolean(initialized) } }));
+      return initialized;
+    })
     .catch(error => {
       console.warn('Google sign-in UI could not be loaded. Existing account sessions remain available.', error);
       return false;
