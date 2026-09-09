@@ -10,7 +10,8 @@
       return url.origin === target.origin && url.pathname === target.pathname;
     });
     if (existing) {
-      if (existing.dataset.loading !== 'true' || existing.dataset.loaded === 'true' || existing.readyState === 'complete') return resolve();
+      if (existing.dataset.loading !== 'true' && existing.dataset.newanimeLoading !== 'true') return resolve();
+      if (existing.dataset.loaded === 'true' || existing.dataset.newanimeLoaded === 'true' || existing.readyState === 'complete') return resolve();
       existing.addEventListener('load', resolve, { once:true });
       existing.addEventListener('error', reject, { once:true });
       return;
@@ -90,12 +91,6 @@
   }
 
   stylesheet('/wishlist.css?v=20260909-wishlist5');
-  stylesheet('/auth.css?v=20260909-auth4');
-  stylesheet('/account-refine.css?v=20260908-authui10');
-  stylesheet('/google-login-button-fit.css?v=20260908-1');
-
-  script('/auth-session-preview.js?v=20260909-preview2')
-    .catch(error => console.warn('Stored account preview could not be loaded.', error));
 
   const wishlistReady = Promise.resolve()
     .then(() => script('/language-switcher-compact.js?v=20260908-detail14'))
@@ -107,27 +102,13 @@
     .then(() => script('/wishlist.js?v=20260909-wishlist4'))
     .then(() => initDetailWishlist());
 
-  const authCoreReady = Promise.resolve()
-    .then(() => script('/auth-config.js?v=20260908-auth6'))
-    .then(() => {
-      const config = window.NEWANIME_AUTH_CONFIG || {};
-      if (!config.supabaseUrl || !config.supabaseAnonKey || !config.googleClientId || config.googleEnabled !== true) return null;
-      return script('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0')
-        .then(() => script('/auth.js?v=20260909-auth15'))
-        .then(() => script('/auth-profile-bridge.js?v=20260909-profile2'));
-    });
-
-  const googleReady = authCoreReady
-    .then(() => script('https://accounts.google.com/gsi/client'))
-    .then(() => window.NewAnimeAuth?.initGoogleIdentity?.())
-    .catch(error => console.warn('Google sign-in UI could not be loaded. Existing account session remains available.', error));
+  const authReady = script('/auth-bootstrap.js?v=20260909-authboot1')
+    .then(() => window.NewAnimeAuthBootstrap?.ready || null);
 
   wishlistReady.catch(error => console.warn('Secondary wishlist UI could not be loaded.', error));
-  authCoreReady.catch(error => console.warn('Secondary authentication UI could not be loaded.', error));
+  authReady.catch(error => console.warn('Secondary authentication UI could not be loaded.', error));
 
-  Promise.all([wishlistReady, authCoreReady])
+  Promise.all([wishlistReady, authReady])
     .then(() => script('/wishlist-sync.js?v=20260909-sync2'))
     .catch(error => console.warn('Secondary account / wishlist sync could not be loaded.', error));
-
-  void googleReady;
 })();
