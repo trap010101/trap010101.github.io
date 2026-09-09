@@ -51,9 +51,7 @@ jobs:
               print(item)
 
       - name: Regenerate anime detail and archive pages
-        run: |
-          node scripts/generate-anime-pages.js
-          node scripts/generate-sitemap.js
+        run: node scripts/generate-anime-pages.js
 
       - name: Verify requested titles
         shell: python
