@@ -5,17 +5,24 @@ const vm = require('vm');
 const ROOT = path.resolve(__dirname, '..');
 const SITE = 'https://newani.me';
 const UPDATES_PATH = path.join(ROOT, 'updates', 'index.html');
-const CHANGELOG_PATH = path.join(ROOT, 'data', 'changelog.js');
+const CHANGELOG_PATHS = [
+  path.join(ROOT, 'data', 'changelog.js'),
+  path.join(ROOT, 'data', 'changelog-20260909.js')
+];
 const SITEMAP_PATH = path.join(ROOT, 'sitemap.xml');
 
-if (!fs.existsSync(CHANGELOG_PATH)) throw new Error('data/changelog.js not found');
+for (const changelogPath of CHANGELOG_PATHS) {
+  if (!fs.existsSync(changelogPath)) throw new Error(`${path.relative(ROOT, changelogPath)} not found`);
+}
 if (!fs.existsSync(UPDATES_PATH)) throw new Error('updates/index.html not found');
 
 const runtime = { window: {}, console };
 runtime.window.window = runtime.window;
 runtime.globalThis = runtime;
 vm.createContext(runtime);
-vm.runInContext(fs.readFileSync(CHANGELOG_PATH, 'utf8'), runtime, { filename: 'data/changelog.js' });
+for (const changelogPath of CHANGELOG_PATHS) {
+  vm.runInContext(fs.readFileSync(changelogPath, 'utf8'), runtime, { filename: path.relative(ROOT, changelogPath) });
+}
 
 const changelog = Array.isArray(runtime.window.siteChangelog) ? runtime.window.siteChangelog : [];
 
@@ -124,14 +131,14 @@ html = html.replace(/<script type="application\/ld\+json" id="updatesStructuredD
 html = html.replace(/<p id="updatesDescription">[\s\S]*?<\/p>/, '<p id="updatesDescription">NewAnime에 반영된 주요 기능 개선과 작품 정보 갱신 내역을 선별해 날짜별로 기록합니다.</p>');
 html = html.replace(/<div class="updates-list" id="updatesList">[\s\S]*?<\/div>\s*<p class="updates-empty hidden" id="updatesEmpty">[^<]*<\/p>/, `<div class="updates-list" id="updatesList">\n${staticMarkup}\n      </div>\n      <p class="updates-empty hidden" id="updatesEmpty">표시할 업데이트 기록이 없습니다.</p>`);
 
-// The public changelog is self-contained. Remove the legacy anime/update history payloads
-// so the page cannot regress to the old per-field audit log after static regeneration.
+// The public changelog is self-contained. Remove legacy or previously generated
+// changelog payloads so regeneration always leaves one canonical loading order.
 html = html.replace(/\n\s*<script src="\.\.\/data\/anime\.js\?[^\"]*"><\/script>/g, '');
 html = html.replace(/\n\s*<script src="\.\.\/data\/anime-20260904\.js\?[^\"]*"><\/script>/g, '');
 html = html.replace(/\n\s*<script src="\.\.\/data\/updates(?:-[^\"]+)?\.js\?[^\"]*"><\/script>/g, '');
-html = html.replace(/\n\s*<script src="\.\.\/data\/changelog\.js\?[^\"]*"><\/script>/g, '');
+html = html.replace(/\n\s*<script src="\.\.\/data\/changelog(?:-[^\"]+)?\.js\?[^\"]*"><\/script>/g, '');
 html = html.replace(/\n\s*<script src="updates\.js\?[^\"]*"><\/script>/g, '');
-html = html.replace(/\s*<\/body>/, '\n  <script src="../data/changelog.js?v=20260906-history2"></script>\n  <script src="updates.js?v=20260906-history2"></script>\n</body>');
+html = html.replace(/\s*<\/body>/, '\n  <script src="../data/changelog.js?v=20260909-history3"></script>\n  <script src="../data/changelog-20260909.js?v=20260909-history3"></script>\n  <script src="updates.js?v=20260909-history3"></script>\n</body>');
 
 fs.writeFileSync(UPDATES_PATH, html);
 
