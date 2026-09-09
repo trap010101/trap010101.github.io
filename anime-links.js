@@ -137,11 +137,11 @@
     .then(() => {
       const config = window.NEWANIME_AUTH_CONFIG || {};
       if (!config.supabaseUrl || !config.supabaseAnonKey || !config.googleClientId || config.googleEnabled !== true) return null;
-      loadStylesheet('/auth.css?v=20260908-auth2');
+      loadStylesheet('/auth.css?v=20260909-auth3');
       loadStylesheet('/account-refine.css?v=20260908-authui10');
       return loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0')
         .then(() => loadScript('https://accounts.google.com/gsi/client'))
-        .then(() => loadScript('/auth.js?v=20260908-auth10'))
+        .then(() => loadScript('/auth.js?v=20260909-auth12'))
         .then(() => loadScript('/wishlist-sync.js?v=20260909-sync2'));
     })
     .catch(error => console.warn('Authentication UI could not be loaded.', error));
