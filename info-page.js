@@ -7,14 +7,14 @@
       en: { title: "About NewAnime", description: "Learn about NewAnime, its purpose, information scope, independence, and rights notice." }
     },
     privacy: {
-      ko: { title: "개인정보처리방침", description: "NewAnime의 Google Analytics, 쿠키, 로컬 저장소, 광고 및 문의 데이터 처리 방침입니다." },
-      ja: { title: "プライバシーポリシー", description: "NewAnimeにおけるGoogle Analytics、Cookie、ローカルストレージ、広告、お問い合わせデータの取り扱い方針です。" },
-      en: { title: "Privacy Policy", description: "How NewAnime handles Google Analytics, cookies, local storage, advertising, and contact data." }
+      ko: { title: "개인정보처리방침", description: "NewAnime의 Google 로그인, 계정·위시리스트, 분석, 브라우저 저장소, 광고 및 문의 데이터 처리 방침입니다." },
+      ja: { title: "プライバシーポリシー", description: "NewAnimeにおけるGoogleログイン、アカウント・ウィッシュリスト、解析、ブラウザストレージ、広告、お問い合わせデータの取り扱い方針です。" },
+      en: { title: "Privacy Policy", description: "How NewAnime handles Google sign-in, account and wishlist data, analytics, browser storage, advertising, and contact data." }
     },
     policy: {
-      ko: { title: "정보 검증 및 운영 정책", description: "NewAnime의 방영일, 제목, PV, 공식 사이트, 스트리밍 정보 검증 기준과 수정 원칙을 안내합니다." },
-      ja: { title: "情報検証・運営ポリシー", description: "NewAnimeの放送日、タイトル、PV、公式サイト、配信情報の検証基準と修正方針です。" },
-      en: { title: "Verification & Editorial Policy", description: "NewAnime's verification and correction standards for release dates, titles, PVs, official sites, and streaming information." }
+      ko: { title: "정보 검증 및 운영 정책", description: "NewAnime의 작품 정보 검증 기준, 수정 원칙 및 계정 인증 표시의 의미를 안내합니다." },
+      ja: { title: "情報検証・運営ポリシー", description: "NewAnimeの作品情報の検証基準、修正方針、アカウント認証表示の意味を案内します。" },
+      en: { title: "Verification & Editorial Policy", description: "NewAnime's standards for title verification and corrections, plus the meaning of account verification marks." }
     }
   };
 
