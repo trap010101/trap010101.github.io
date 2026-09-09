@@ -42,18 +42,20 @@ body {
     padding: 16px 0 58px !important;
   }
 
-  /* Keep the poster/title summary compact, but make every content panel begin
-     on a new full-width grid row. */
+  /* The poster and localized title metadata share one intrinsic-height row.
+     Release/content panels are auto-placed only after that row, so title
+     length, alternate-title wrapping and tag count cannot make them overlap. */
   .detail-hero-card {
     display: grid !important;
     grid-template-columns: clamp(122px, 25vw, 162px) minmax(0, 1fr) !important;
+    grid-auto-flow: row !important;
     column-gap: 17px !important;
     row-gap: 0 !important;
   }
 
   .detail-poster-wrap {
     grid-column: 1 !important;
-    grid-row: 1 / span 4 !important;
+    grid-row: 1 !important;
     width: auto !important;
     margin: 0 !important;
     float: none !important;
@@ -66,51 +68,29 @@ body {
     display: contents !important;
   }
 
-  .detail-kicker {
+  .detail-summary-copy {
     grid-column: 2 !important;
     grid-row: 1 !important;
-  }
-
-  .anime-localized h1 {
-    grid-column: 2 !important;
-    grid-row: 2 !important;
-  }
-
-  .alternate-titles {
-    grid-column: 2 !important;
-    grid-row: 3 !important;
-  }
-
-  .detail-badges {
-    grid-column: 2 !important;
-    grid-row: 4 !important;
+    min-width: 0 !important;
     align-self: start !important;
+    position: relative;
+    z-index: 2;
   }
 
   .detail-panel {
     grid-column: 1 / -1 !important;
+    grid-row: auto !important;
     clear: none !important;
+    position: relative;
+    z-index: 2;
   }
 
-  /* The release panel must start after the poster/title summary row, with a
-     visible safety gap. Explicit placement avoids the auto-placement edge case
-     that previously let its rounded corner touch/overlap the poster bottom. */
   .detail-release-panel {
-    grid-row: 5 !important;
     margin-top: 20px !important;
   }
 
   .detail-release-panel ~ .detail-panel {
     margin-top: 12px !important;
-  }
-
-  .detail-kicker,
-  .anime-localized h1,
-  .alternate-titles,
-  .detail-badges,
-  .detail-panel {
-    position: relative;
-    z-index: 2;
   }
 
   .anime-localized::after {
