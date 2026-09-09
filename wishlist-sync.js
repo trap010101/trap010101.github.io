@@ -152,12 +152,14 @@
       const user = detail?.user || null;
 
       if (!user) {
-        if (activeUserId) {
-          writeJsonIds(`${USER_CACHE_PREFIX}${activeUserId}`, wishlist.getAll());
+        const signedOutUserId = activeUserId;
+        if (signedOutUserId) {
+          writeJsonIds(`${USER_CACHE_PREFIX}${signedOutUserId}`, wishlist.getAll());
+          replaceLocal([]);
         }
         activeUserId = null;
-        lastSynced = new Set(wishlist.getAll());
-        publish('signed-out');
+        lastSynced = new Set();
+        publish('signed-out', { cleared: Boolean(signedOutUserId), count: 0 });
         return;
       }
 
@@ -177,10 +179,9 @@
       if (syncingLocal) return;
 
       const ids = normalizeIds(event.detail?.ids || wishlist.getAll());
-      const lastUserId = activeUserId || localStorage.getItem(LAST_USER_KEY) || '';
 
-      if (lastUserId) {
-        writeJsonIds(`${USER_CACHE_PREFIX}${lastUserId}`, ids);
+      if (activeUserId) {
+        writeJsonIds(`${USER_CACHE_PREFIX}${activeUserId}`, ids);
       }
 
       if (!activeUserId) return;
