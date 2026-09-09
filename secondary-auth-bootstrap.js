@@ -104,21 +104,27 @@
     .then(() => script('/wishlist.js?v=20260909-wishlist4'))
     .then(() => initDetailWishlist());
 
-  const authReady = Promise.resolve()
+  const authCoreReady = Promise.resolve()
     .then(() => script('/auth-config.js?v=20260908-auth6'))
     .then(() => {
       const config = window.NEWANIME_AUTH_CONFIG || {};
       if (!config.supabaseUrl || !config.supabaseAnonKey || !config.googleClientId || config.googleEnabled !== true) return null;
       return script('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0')
-        .then(() => script('https://accounts.google.com/gsi/client'))
-        .then(() => script('/auth.js?v=20260909-auth14'))
+        .then(() => script('/auth.js?v=20260909-auth15'))
         .then(() => script('/auth-profile-bridge.js?v=20260909-profile2'));
     });
 
-  wishlistReady.catch(error => console.warn('Secondary wishlist UI could not be loaded.', error));
-  authReady.catch(error => console.warn('Secondary authentication UI could not be loaded.', error));
+  const googleReady = authCoreReady
+    .then(() => script('https://accounts.google.com/gsi/client'))
+    .then(() => window.NewAnimeAuth?.initGoogleIdentity?.())
+    .catch(error => console.warn('Google sign-in UI could not be loaded. Existing account session remains available.', error));
 
-  Promise.all([wishlistReady, authReady])
+  wishlistReady.catch(error => console.warn('Secondary wishlist UI could not be loaded.', error));
+  authCoreReady.catch(error => console.warn('Secondary authentication UI could not be loaded.', error));
+
+  Promise.all([wishlistReady, authCoreReady])
     .then(() => script('/wishlist-sync.js?v=20260909-sync2'))
     .catch(error => console.warn('Secondary account / wishlist sync could not be loaded.', error));
+
+  void googleReady;
 })();
