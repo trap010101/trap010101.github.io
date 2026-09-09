@@ -132,7 +132,7 @@
       if (kicker) kicker.textContent = 'newani.me';
     });
 
-  const authReady = loadScript('/auth-bootstrap.js?v=20260909-authboot2')
+  const authReady = loadScript('/auth-bootstrap.js?v=20260909-authboot3')
     .then(() => window.NewAnimeAuthBootstrap?.ready || null);
 
   wishlistReady.catch(error => console.warn('Wishlist UI could not be loaded.', error));
