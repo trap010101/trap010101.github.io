@@ -94,6 +94,9 @@
   stylesheet('/account-refine.css?v=20260908-authui10');
   stylesheet('/google-login-button-fit.css?v=20260908-1');
 
+  script('/auth-session-preview.js?v=20260909-preview2')
+    .catch(error => console.warn('Stored account preview could not be loaded.', error));
+
   const wishlistReady = Promise.resolve()
     .then(() => script('/language-switcher-compact.js?v=20260908-detail14'))
     .then(() => Array.isArray(window.animeData) ? null : script('/data/anime.js?v=20260907-schedule1'))
