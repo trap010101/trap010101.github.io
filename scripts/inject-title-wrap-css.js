@@ -82,8 +82,6 @@ function normalizeSecondaryChrome(html, kind, filename) {
   const footerPattern = /\s*<footer(?: class="(?:detail-footer|archive-footer)")?>[\s\S]*?<\/footer>/;
   if (footerPattern.test(html)) html = html.replace(footerPattern, `\n${homepageFooterMarkup(pageYear(html, filename))}`);
 
-  html = html.replace(/\s*<link rel="stylesheet" href="\/secondary-header\.css\?v=[^"]+" \/>/g, '');
-  html = html.replace(/\s*<link rel="stylesheet" href="\/secondary-menu-integrations\.css\?v=[^"]+" \/>/g, '');
   html = ensureStyle(html, SITE_CHROME_STYLE_HREF, /href="\/site-chrome\.css\?v=[^"]+"/g);
   html = ensureStyle(html, MENU_MOBILE_STYLE_HREF, /href="\/menu-mobile-refine\.css\?v=[^"]+"/g);
   html = ensureStyle(html, SECONDARY_SCALE_STYLE_HREF, /href="\/secondary-scale\.css\?v=[^"]+"/g);
