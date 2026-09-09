@@ -8,10 +8,14 @@
     auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
   });
 
+  const VERIFIED_ACCOUNT_EMAILS = new Set([
+    'admin@newani.me'
+  ]);
+
   const copy = {
-    ko: { login:'로그인', account:'계정', titleLogin:'간편 로그인', titleAccount:'내 계정', description:'Google 계정으로 간편하게 로그인할 수 있습니다. 로그인하면 위시리스트가 기기 간에 동기화됩니다.', logout:'로그아웃', close:'닫기', signingOut:'로그아웃 중…', error:'로그인 처리 중 문제가 발생했습니다.' },
-    ja: { login:'ログイン', account:'アカウント', titleLogin:'かんたんログイン', titleAccount:'アカウント', description:'Googleアカウントで簡単にログインできます。ログインするとウィッシュリストが端末間で同期されます。', logout:'ログアウト', close:'閉じる', signingOut:'ログアウト中…', error:'ログイン処理中に問題が発生しました。' },
-    en: { login:'LOGIN', account:'ACCOUNT', titleLogin:'Quick login', titleAccount:'Account', description:'Sign in quickly with Google. Your wishlist will stay synced across devices.', logout:'Sign out', close:'Close', signingOut:'Signing out…', error:'Something went wrong while processing sign-in.' }
+    ko: { login:'로그인', account:'계정', titleLogin:'간편 로그인', titleAccount:'내 계정', description:'Google 계정으로 간편하게 로그인할 수 있습니다. 로그인하면 위시리스트가 기기 간에 동기화됩니다.', logout:'로그아웃', close:'닫기', signingOut:'로그아웃 중…', error:'로그인 처리 중 문제가 발생했습니다.', verified:'인증된 계정' },
+    ja: { login:'ログイン', account:'アカウント', titleLogin:'かんたんログイン', titleAccount:'アカウント', description:'Googleアカウントで簡単にログインできます。ログインするとウィッシュリストが端末間で同期されます。', logout:'ログアウト', close:'閉じる', signingOut:'ログアウト中…', error:'ログイン処理中に問題が発生しました。', verified:'認証済みアカウント' },
+    en: { login:'LOGIN', account:'ACCOUNT', titleLogin:'Quick login', titleAccount:'Account', description:'Sign in quickly with Google. Your wishlist will stay synced across devices.', logout:'Sign out', close:'Close', signingOut:'Signing out…', error:'Something went wrong while processing sign-in.', verified:'Verified account' }
   };
 
   const language = () => {
@@ -21,6 +25,8 @@
   const text = key => copy[language()]?.[key] || copy.ko[key] || key;
   const escapeHtml = value => String(value ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
   const userName = user => user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email || '';
+  const normalizedEmail = user => String(user?.email || '').trim().toLowerCase();
+  const isVerifiedUser = user => VERIFIED_ACCOUNT_EMAILS.has(normalizedEmail(user));
   const avatarUrl = user => {
     const value = user?.user_metadata?.avatar_url || user?.user_metadata?.picture || '';
     if (!value) return '';
@@ -31,6 +37,12 @@
   };
 
   const personSvg = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M5.5 19c.8-3.6 3-5.5 6.5-5.5s5.7 1.9 6.5 5.5"></path></svg>';
+  const verifiedSvg = '<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9"></circle><path d="m6.2 10.1 2.4 2.4 5.2-5.2"></path></svg>';
+  const verifiedMark = (extraClass = '') => {
+    const label = escapeHtml(text('verified'));
+    return `<span class="auth-verified-mark${extraClass ? ` ${extraClass}` : ''}" role="img" aria-label="${label}" title="${label}">${verifiedSvg}</span>`;
+  };
+
   const menu = document.getElementById('siteMenu');
   if (!menu) return;
 
@@ -101,14 +113,14 @@
   function render() {
     const menuContent = menuButton.querySelector('.auth-menu-content');
     if (currentUser) {
-      const avatar = avatarUrl(currentUser), name = userName(currentUser);
+      const avatar = avatarUrl(currentUser), name = userName(currentUser), verified = isVerifiedUser(currentUser);
       menuButton.classList.add('hidden');
       profileButton.classList.remove('hidden');
-      profileButton.innerHTML = avatar
+      profileButton.innerHTML = `${avatar
         ? `<img class="auth-header-profile-avatar" src="${escapeHtml(avatar)}" alt="">`
-        : `<span class="auth-header-profile-fallback" aria-hidden="true">${personSvg}</span>`;
-      profileButton.setAttribute('aria-label', `${text('account')} · ${name}`);
-      profileButton.title = name || text('account');
+        : `<span class="auth-header-profile-fallback" aria-hidden="true">${personSvg}</span>`}${verified ? verifiedMark('auth-header-verified') : ''}`;
+      profileButton.setAttribute('aria-label', `${text('account')} · ${name}${verified ? ` · ${text('verified')}` : ''}`);
+      profileButton.title = `${name || text('account')}${verified ? ` · ${text('verified')}` : ''}`;
       menuContent.innerHTML = avatar ? `<span class="auth-menu-user"><img class="auth-menu-avatar" src="${escapeHtml(avatar)}" alt=""><span class="auth-menu-name">${escapeHtml(name)}</span></span>` : `<span class="auth-menu-name">${text('account')}</span>`;
       menuButton.setAttribute('aria-label', `${text('account')} · ${name}`);
     } else {
@@ -126,8 +138,8 @@
     closeButton.title = text('close');
 
     if (currentUser) {
-      const avatar = avatarUrl(currentUser), name = userName(currentUser);
-      body.innerHTML = `<div class="auth-account">${avatar ? `<img class="auth-account-avatar" src="${escapeHtml(avatar)}" alt="">` : `<div class="auth-account-avatar auth-account-avatar-fallback" aria-hidden="true">${personSvg}</div>`}<div class="auth-account-copy"><strong>${escapeHtml(name)}</strong><span>${escapeHtml(currentUser.email || '')}</span></div></div><button class="auth-signout" type="button" data-auth-signout>${text('logout')}</button>`;
+      const avatar = avatarUrl(currentUser), name = userName(currentUser), verified = isVerifiedUser(currentUser);
+      body.innerHTML = `<div class="auth-account">${avatar ? `<img class="auth-account-avatar" src="${escapeHtml(avatar)}" alt="">` : `<div class="auth-account-avatar auth-account-avatar-fallback" aria-hidden="true">${personSvg}</div>`}<div class="auth-account-copy"><div class="auth-account-name-row"><strong>${escapeHtml(name)}</strong>${verified ? verifiedMark() : ''}</div><span class="auth-account-email">${escapeHtml(currentUser.email || '')}</span></div></div><button class="auth-signout" type="button" data-auth-signout>${text('logout')}</button>`;
     } else {
       body.innerHTML = '<div class="auth-google-host" data-auth-google-host></div>';
       requestAnimationFrame(renderGoogleButton);
@@ -158,7 +170,7 @@
   function publishAuth(event, session) {
     currentUser = session?.user || null;
     render();
-    document.dispatchEvent(new CustomEvent('newanime:auth',{ detail:{ event, user:currentUser, session:session || null } }));
+    document.dispatchEvent(new CustomEvent('newanime:auth',{ detail:{ event, user:currentUser, session:session || null, verified:isVerifiedUser(currentUser) } }));
   }
 
   menuButton.addEventListener('click', openModal);
@@ -172,6 +184,6 @@
   client.auth.onAuthStateChange((event, session) => publishAuth(event, session));
   client.auth.getSession().then(({ data, error }) => error ? render() : publishAuth('INITIAL_SESSION', data.session || null));
 
-  window.NewAnimeAuth = Object.freeze({ client, getUser:() => currentUser, signIn:openModal, signOut });
+  window.NewAnimeAuth = Object.freeze({ client, getUser:() => currentUser, isVerified:() => isVerifiedUser(currentUser), signIn:openModal, signOut });
   render();
 })();
