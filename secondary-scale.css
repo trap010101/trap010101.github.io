@@ -42,6 +42,71 @@ body {
     padding: 16px 0 58px !important;
   }
 
+  /* Keep the poster/title summary compact, but make every content panel begin
+     on a new full-width grid row. This prevents the release panel from ever
+     entering the poster's occupied area regardless of title length. */
+  .detail-hero-card {
+    display: grid !important;
+    grid-template-columns: clamp(122px, 25vw, 162px) minmax(0, 1fr) !important;
+    column-gap: 17px !important;
+    row-gap: 0 !important;
+  }
+
+  .detail-poster-wrap {
+    grid-column: 1 !important;
+    grid-row: 1 / span 4 !important;
+    width: auto !important;
+    margin: 0 !important;
+    float: none !important;
+    position: relative !important;
+    align-self: start !important;
+  }
+
+  .detail-main,
+  .anime-localized:not([hidden]) {
+    display: contents !important;
+  }
+
+  .detail-kicker {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+  }
+
+  .anime-localized h1 {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+  }
+
+  .alternate-titles {
+    grid-column: 2 !important;
+    grid-row: 3 !important;
+  }
+
+  .detail-badges {
+    grid-column: 2 !important;
+    grid-row: 4 !important;
+    align-self: start !important;
+  }
+
+  .detail-panel {
+    grid-column: 1 / -1 !important;
+    clear: none !important;
+  }
+
+  .detail-kicker,
+  .anime-localized h1,
+  .alternate-titles,
+  .detail-badges,
+  .detail-panel {
+    position: relative;
+    z-index: 2;
+  }
+
+  .anime-localized::after {
+    content: none !important;
+    display: none !important;
+  }
+
   .archive-back {
     margin: 8px 2px 11px !important;
     font-size: 12px !important;
@@ -141,6 +206,11 @@ body {
 }
 
 @media (max-width: 520px) {
+  .detail-hero-card {
+    grid-template-columns: clamp(108px, 34vw, 132px) minmax(0, 1fr) !important;
+    column-gap: 14px !important;
+  }
+
   .archive-hero {
     padding: 19px 18px 20px !important;
     border-radius: 19px !important;
