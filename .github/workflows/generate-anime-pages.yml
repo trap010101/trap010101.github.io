@@ -119,3 +119,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Generate static anime pages and maintain poster assets [skip ci]"
           git push
+
+# 2026-09-09: force canonical regeneration after detail-page hotfix
