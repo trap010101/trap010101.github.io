@@ -220,6 +220,12 @@
     handleUser(event.detail?.user || null, event.detail?.event || '');
   });
 
+  document.addEventListener('newanime:google-ready', () => {
+    const user = auth.getUser?.();
+    if (user && !avatarUrl(user)) requestGoogleProfile(false);
+    requestAnimationFrame(() => applyOperatorBadge(user || null));
+  });
+
   document.addEventListener('newanime:language', () => {
     requestAnimationFrame(() => applyOperatorBadge(auth.getUser?.()));
   });
