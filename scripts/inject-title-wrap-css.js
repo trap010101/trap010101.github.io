@@ -11,7 +11,7 @@ const MENU_MOBILE_STYLE_HREF = '/menu-mobile-refine.css?v=20260906-menu1';
 const SECONDARY_HEADER_SCRIPT = '/secondary-header.js?v=20260908-4';
 const SECONDARY_SCALE_STYLE_HREF = '/secondary-scale.css?v=20260908-2';
 const SECONDARY_MENU_ORDER_SCRIPT = '/secondary-menu-order.js?v=20260908-2';
-const SECONDARY_AUTH_BOOTSTRAP_SCRIPT = '/secondary-auth-bootstrap.js?v=20260909-5';
+const SECONDARY_AUTH_BOOTSTRAP_SCRIPT = '/secondary-auth-bootstrap.js?v=20260909-6';
 const GOOGLE_BUTTON_STYLE_HREF = '/google-login-button-fit.css?v=20260908-1';
 const GOOGLE_BUTTON_STYLE_LINK = `  <link rel="stylesheet" href="${GOOGLE_BUTTON_STYLE_HREF}" />\n`;
 const DETAIL_LANGUAGE_SCRIPT = '/language-switcher-compact.js?v=20260908-detail14';
@@ -65,15 +65,6 @@ function pageYear(html, filename) {
   return breadcrumb?.[1] || '2026';
 }
 
-function ensureDetailWishlistData(html) {
-  if (html.includes('data-secondary-wishlist-data')) return html;
-  const langPattern = /\s*<script src="\/language-switcher-compact\.js\?v=[^"]+"><\/script>/;
-  const match = html.match(langPattern);
-  if (!match) return html;
-  const block = `\n  <script src="/data/anime.js?v=20260907-schedule1" data-secondary-wishlist-data></script>\n  <script src="/data/anime-20260904.js?v=20260905-data2" data-secondary-wishlist-data></script>\n  <script src="/data/title-fixes-20260905.js?v=20260905-title1" data-secondary-wishlist-data></script>\n  <script src="/data/poster-fixes-20260905.js?v=20260907-posters4" data-secondary-wishlist-data></script>\n  <script src="/data/schedule-updates-20260907.js?v=20260907-schedule2" data-secondary-wishlist-data></script>\n  <script src="${DETAIL_LANGUAGE_SCRIPT}"></script>`;
-  return html.replace(langPattern, block);
-}
-
 function normalizeSecondaryChrome(html, kind, filename) {
   const header = homepageHeaderMarkup(kind);
   const headerPattern = /\s*<header class="(?:detail-header|archive-header|secondary-site-header|site-header)[^"]*">[\s\S]*?<\/header>\s*(?:<div class="(?:secondary-share-status|share-status)[^>]*>[\s\S]*?<\/div>)?/;
@@ -87,9 +78,7 @@ function normalizeSecondaryChrome(html, kind, filename) {
   html = ensureStyle(html, SECONDARY_SCALE_STYLE_HREF, /href="\/secondary-scale\.css\?v=[^"]+"/g);
   html = ensureScript(html, SECONDARY_HEADER_SCRIPT, /src="\/secondary-header\.js\?v=[^"]+"/g);
   html = ensureScript(html, SECONDARY_MENU_ORDER_SCRIPT, /src="\/secondary-menu-order\.js\?v=[^"]+"/g);
-  if (kind === 'archive') {
-    html = ensureScript(html, SECONDARY_AUTH_BOOTSTRAP_SCRIPT, /src="\/secondary-auth-bootstrap\.js\?v=[^"]+"/g);
-  }
+  html = ensureScript(html, SECONDARY_AUTH_BOOTSTRAP_SCRIPT, /src="\/secondary-auth-bootstrap\.js\?v=[^"]+"/g);
 
   if (kind === 'detail') {
     html = html.replace(
@@ -120,7 +109,6 @@ function updateFile(filename) {
     html = html.replace(/src="\/language-switcher-compact\.js\?v=[^"]+"/g, `src="${DETAIL_LANGUAGE_SCRIPT}"`);
     html = ensureGoogleButtonStyle(html);
     html = normalizeSecondaryChrome(html, 'detail', filename);
-    html = ensureDetailWishlistData(html);
   }
 
   if (html.includes('class="archive-shell"')) {
