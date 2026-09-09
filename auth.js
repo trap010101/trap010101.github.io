@@ -9,7 +9,9 @@
   });
 
   const VERIFIED_ACCOUNT_EMAILS = new Set([
-    'admin@newani.me'
+    'admin@newani.me',
+    'trap010101@gmail.com',
+    'mosubi.p@gmail.com'
   ]);
 
   const copy = {
