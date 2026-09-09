@@ -62,7 +62,7 @@
       return script('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0');
     })
     .then(() => script('/auth.js?v=20260909-auth16'))
-    .then(() => script('/auth-profile-bridge.js?v=20260909-profile3'));
+    .then(() => script('/auth-profile-bridge.js?v=20260909-profile4'));
 
   const googleReady = ready
     .then(() => script('https://accounts.google.com/gsi/client'))
