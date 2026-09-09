@@ -23,17 +23,36 @@
     return value.startsWith('ja') ? 'ja' : value.startsWith('en') ? 'en' : 'ko';
   };
   const text = key => copy[language()]?.[key] || copy.ko[key] || key;
-  const escapeHtml = value => String(value ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-  const userName = user => user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email || '';
+  const escapeHtml = value => String(value ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\"/g,'&quot;').replace(/'/g,'&#39;');
+  const userName = user => user?.user_metadata?.full_name || user?.user_metadata?.name || user?.identities?.find(identity => identity?.provider === 'google')?.identity_data?.full_name || user?.identities?.find(identity => identity?.provider === 'google')?.identity_data?.name || user?.email || '';
   const normalizedEmail = user => String(user?.email || '').trim().toLowerCase();
   const isVerifiedUser = user => VERIFIED_ACCOUNT_EMAILS.has(normalizedEmail(user));
-  const avatarUrl = user => {
-    const value = user?.user_metadata?.avatar_url || user?.user_metadata?.picture || '';
+  const normalizeAvatarUrl = value => {
     if (!value) return '';
     try {
-      const url = new URL(value, location.origin);
+      const url = new URL(String(value), location.origin);
       return ['http:','https:'].includes(url.protocol) ? url.href : '';
     } catch (_) { return ''; }
+  };
+  const googleIdentityData = user => user?.identities?.find(identity => identity?.provider === 'google')?.identity_data || {};
+  const avatarUrl = user => {
+    const identity = googleIdentityData(user);
+    return normalizeAvatarUrl(
+      user?.user_metadata?.avatar_url ||
+      user?.user_metadata?.picture ||
+      identity?.avatar_url ||
+      identity?.picture ||
+      ''
+    );
+  };
+  const credentialClaims = token => {
+    try {
+      const encoded = String(token || '').split('.')[1];
+      if (!encoded) return {};
+      const base64 = encoded.replace(/-/g, '+').replace(/_/g, '/').padEnd(Math.ceil(encoded.length / 4) * 4, '=');
+      const bytes = Uint8Array.from(atob(base64), character => character.charCodeAt(0));
+      return JSON.parse(new TextDecoder().decode(bytes));
+    } catch (_) { return {}; }
   };
 
   const personSvg = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M5.5 19c.8-3.6 3-5.5 6.5-5.5s5.7 1.9 6.5 5.5"></path></svg>';
@@ -82,8 +101,19 @@
   async function handleGoogleCredential(response) {
     if (!response?.credential) { status.textContent = text('error'); return; }
     status.textContent = '';
-    const { error } = await client.auth.signInWithIdToken({ provider:'google', token:response.credential });
-    if (error) status.textContent = `${text('error')} ${error.message || ''}`.trim();
+    const googlePicture = normalizeAvatarUrl(credentialClaims(response.credential)?.picture || '');
+    const { data, error } = await client.auth.signInWithIdToken({ provider:'google', token:response.credential });
+    if (error) {
+      status.textContent = `${text('error')} ${error.message || ''}`.trim();
+      return;
+    }
+
+    const user = data?.user || null;
+    const metadataPicture = normalizeAvatarUrl(user?.user_metadata?.avatar_url || user?.user_metadata?.picture || '');
+    if (googlePicture && googlePicture !== metadataPicture) {
+      const { error: updateError } = await client.auth.updateUser({ data: { avatar_url: googlePicture, picture: googlePicture } });
+      if (updateError) console.warn('Google profile photo could not be synchronized.', updateError);
+    }
   }
 
   window.google.accounts.id.initialize({
