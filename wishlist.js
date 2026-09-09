@@ -10,19 +10,19 @@
 
   const copy = {
     ko: {
-      menu: '위시리스트', title: '위시리스트', description: '이 브라우저에 저장된 작품입니다.',
+      menu: '위시리스트', title: '위시리스트', description: '위시리스트는 로그인한 계정에 저장됩니다.',
       add: '위시리스트에 추가', remove: '위시리스트에서 제거', close: '닫기',
       empty: '아직 저장한 작품이 없습니다.', detail: '상세 정보', saved: '{n}작품',
       unavailable: '현재 일정에서 확인할 수 없는 저장 항목 {n}개는 그대로 보존됩니다.'
     },
     ja: {
-      menu: 'ウィッシュリスト', title: 'ウィッシュリスト', description: 'このブラウザに保存された作品です。',
+      menu: 'ウィッシュリスト', title: 'ウィッシュリスト', description: 'ウィッシュリストはログイン中のアカウントに保存されます。',
       add: 'ウィッシュリストに追加', remove: 'ウィッシュリストから削除', close: '閉じる',
       empty: '保存した作品はまだありません。', detail: '詳細', saved: '{n}作品',
       unavailable: '現在の予定で表示できない保存項目 {n}件はそのまま保持されます。'
     },
     en: {
-      menu: 'WISHLIST', title: 'Wishlist', description: 'Titles saved in this browser.',
+      menu: 'WISHLIST', title: 'Wishlist', description: 'Your wishlist is saved to your signed-in account.',
       add: 'Add to wishlist', remove: 'Remove from wishlist', close: 'Close',
       empty: 'No saved titles yet.', detail: 'Details', saved: '{n} saved',
       unavailable: '{n} saved item(s) not in the current schedule are kept locally.'
