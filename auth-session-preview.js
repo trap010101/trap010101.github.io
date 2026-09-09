@@ -1,10 +1,21 @@
 (() => {
   'use strict';
 
-  const button = document.getElementById('authHeaderProfile');
-  if (!button) return;
+  const header = document.querySelector('.site-header');
+  const menuWrap = header?.querySelector('.menu-wrap');
+  if (!header || !menuWrap) return;
 
   const personSvg = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M5.5 19c.8-3.6 3-5.5 6.5-5.5s5.7 1.9 6.5 5.5"></path></svg>';
+
+  let button = document.getElementById('authSessionPreview');
+  if (!button) {
+    button = document.createElement('button');
+    button.id = 'authSessionPreview';
+    button.type = 'button';
+    button.className = 'auth-header-profile hidden';
+    button.setAttribute('aria-haspopup', 'dialog');
+    header.insertBefore(button, menuWrap);
+  }
 
   const safeUrl = value => {
     if (!value) return '';
@@ -18,7 +29,8 @@
 
   const readStoredUser = () => {
     try {
-      const keys = Object.keys(localStorage).filter(key => /^sb-[a-z0-9]+-auth-token$/i.test(key));
+      const preferredKey = 'sb-ojpgkxxojwkoczvwpcyy-auth-token';
+      const keys = [preferredKey, ...Object.keys(localStorage).filter(key => /^sb-[a-z0-9]+-auth-token$/i.test(key) && key !== preferredKey)];
       for (const key of keys) {
         const value = localStorage.getItem(key);
         if (!value) continue;
@@ -44,15 +56,22 @@
 
   const label = user => user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email || 'Account';
 
+  const showFallback = () => {
+    const fallback = document.createElement('span');
+    fallback.className = 'auth-header-profile-fallback';
+    fallback.setAttribute('aria-hidden', 'true');
+    fallback.innerHTML = personSvg;
+    button.prepend(fallback);
+  };
+
   const render = user => {
     if (!user) {
       button.classList.add('hidden');
-      button.removeAttribute('data-session-preview');
       return;
     }
 
-    const avatar = avatarUrl(user);
     button.textContent = '';
+    const avatar = avatarUrl(user);
     if (avatar) {
       const image = document.createElement('img');
       image.className = 'auth-header-profile-avatar';
@@ -61,19 +80,11 @@
       image.referrerPolicy = 'no-referrer';
       image.addEventListener('error', () => {
         image.remove();
-        const fallback = document.createElement('span');
-        fallback.className = 'auth-header-profile-fallback';
-        fallback.setAttribute('aria-hidden', 'true');
-        fallback.innerHTML = personSvg;
-        button.prepend(fallback);
+        showFallback();
       }, { once:true });
       button.appendChild(image);
     } else {
-      const fallback = document.createElement('span');
-      fallback.className = 'auth-header-profile-fallback';
-      fallback.setAttribute('aria-hidden', 'true');
-      fallback.innerHTML = personSvg;
-      button.appendChild(fallback);
+      showFallback();
     }
 
     button.classList.remove('hidden');
@@ -82,5 +93,19 @@
     button.title = label(user);
   };
 
+  const retirePreview = () => {
+    if (!document.getElementById('authHeaderProfile')) return false;
+    button.classList.add('hidden');
+    return true;
+  };
+
+  button.addEventListener('click', () => {
+    if (window.NewAnimeAuth?.signIn) window.NewAnimeAuth.signIn();
+  });
+
+  document.addEventListener('newanime:auth', retirePreview);
+  new MutationObserver(() => retirePreview()).observe(header, { childList:true });
+
   render(readStoredUser());
+  retirePreview();
 })();
