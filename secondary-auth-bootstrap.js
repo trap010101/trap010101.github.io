@@ -47,7 +47,7 @@
     .then(() => script('/data/title-fixes-20260905.js?v=20260905-title1'))
     .then(() => script('/data/poster-fixes-20260905.js?v=20260907-posters4'))
     .then(() => script('/data/schedule-updates-20260907.js?v=20260907-schedule2'))
-    .then(() => script('/wishlist.js?v=20260908-wishlist3'))
+    .then(() => script('/wishlist.js?v=20260909-wishlist4'))
     .then(() => script('/auth-config.js?v=20260908-auth6'))
     .then(() => script('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0'))
     .then(() => script('https://accounts.google.com/gsi/client'))
