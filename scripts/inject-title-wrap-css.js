@@ -10,9 +10,10 @@ const SITE_CHROME_STYLE_HREF = '/site-chrome.css?v=20260909-4';
 const MENU_MOBILE_STYLE_HREF = '/menu-mobile-refine.css?v=20260906-menu1';
 const SECONDARY_HEADER_SCRIPT = '/secondary-header.js?v=20260908-4';
 const SECONDARY_SCALE_STYLE_HREF = '/secondary-scale.css?v=20260909-6';
+const DETAIL_MOBILE_STYLE_HREF = '/detail-mobile-stable.css?v=20260909-1';
 const SECONDARY_MENU_ORDER_SCRIPT = '/secondary-menu-order.js?v=20260908-2';
 const SECONDARY_AUTH_BOOTSTRAP_SCRIPT = '/secondary-auth-bootstrap.js?v=20260909-18';
-const DETAIL_LAYOUT_SCRIPT = '/detail-layout-stable.js?v=20260909-1';
+const DETAIL_LAYOUT_SCRIPT = '/detail-layout-stable.js?v=20260909-2';
 const GOOGLE_BUTTON_STYLE_HREF = '/google-login-button-fit.css?v=20260908-1';
 const GOOGLE_BUTTON_STYLE_LINK = `  <link rel="stylesheet" href="${GOOGLE_BUTTON_STYLE_HREF}" />\n`;
 const DETAIL_LANGUAGE_SCRIPT = '/language-switcher-compact.js?v=20260908-detail14';
@@ -82,6 +83,7 @@ function normalizeSecondaryChrome(html, kind, filename) {
   html = ensureScript(html, SECONDARY_AUTH_BOOTSTRAP_SCRIPT, /src="\/secondary-auth-bootstrap\.js\?v=[^"]+"/g);
 
   if (kind === 'detail') {
+    html = ensureStyle(html, DETAIL_MOBILE_STYLE_HREF, /href="\/detail-mobile-stable\.css\?v=[^"]+"/g);
     html = ensureScript(html, DETAIL_LAYOUT_SCRIPT, /src="\/detail-layout-stable\.js\?v=[^"]+"/g);
     html = html.replace(
       /document\.querySelector\('\[data-share\]'\)\.textContent = data\.copy\[lang\]\.share;/g,
