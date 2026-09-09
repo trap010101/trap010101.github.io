@@ -61,8 +61,9 @@ jobs:
               Path('anime/takopis-original-sin-thank-you-see-you-tomorrow/index.html'),
               Path('2026/index.html'),
               Path('2026/11/index.html'),
-              Path('data/anime.js'),
               Path('data/title-fixes-20260905.js'),
+              Path('data/title-hotfix-20260909.js'),
+              Path('data/pvs-audit-20260905.js'),
           ]
 
           for path in targets:
