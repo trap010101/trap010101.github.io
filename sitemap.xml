@@ -114,58 +114,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://newani.me/policy/?lang=ko" />
   </url>
   <url>
-    <loc>https://newani.me/2026/</loc>
-    <lastmod>2026-09-08</lastmod>
-  </url>
-  <url>
-    <loc>https://newani.me/2026/09/</loc>
-    <lastmod>2026-09-07</lastmod>
-  </url>
-  <url>
-    <loc>https://newani.me/2026/10/</loc>
-    <lastmod>2026-09-08</lastmod>
-  </url>
-  <url>
-    <loc>https://newani.me/2026/11/</loc>
-    <lastmod>2026-09-07</lastmod>
-  </url>
-  <url>
-    <loc>https://newani.me/2026/12/</loc>
-    <lastmod>2026-09-04</lastmod>
-  </url>
-  <url>
-    <loc>https://newani.me/2026/tba/</loc>
-    <lastmod>2026-09-05</lastmod>
-  </url>
-  <url>
-    <loc>https://newani.me/2027/</loc>
-    <lastmod>2026-09-07</lastmod>
-  </url>
-  <url>
-    <loc>https://newani.me/2027/01/</loc>
-    <lastmod>2026-09-07</lastmod>
-  </url>
-  <url>
-    <loc>https://newani.me/2027/02/</loc>
-    <lastmod>2026-09-05</lastmod>
-  </url>
-  <url>
-    <loc>https://newani.me/2027/03/</loc>
-    <lastmod>2026-09-04</lastmod>
-  </url>
-  <url>
-    <loc>https://newani.me/2027/04/</loc>
-    <lastmod>2026-09-04</lastmod>
-  </url>
-  <url>
-    <loc>https://newani.me/2027/10/</loc>
-    <lastmod>2026-09-05</lastmod>
-  </url>
-  <url>
-    <loc>https://newani.me/2027/tba/</loc>
-    <lastmod>2026-09-07</lastmod>
-  </url>
-  <url>
     <loc>https://newani.me/anime/sekiro-no-defeat/</loc>
     <lastmod>2026-09-04</lastmod>
   </url>
@@ -923,6 +871,58 @@
   </url>
   <url>
     <loc>https://newani.me/anime/takopis-original-sin-thank-you-see-you-tomorrow/</loc>
+    <lastmod>2026-09-07</lastmod>
+  </url>
+  <url>
+    <loc>https://newani.me/2026/</loc>
+    <lastmod>2026-09-08</lastmod>
+  </url>
+  <url>
+    <loc>https://newani.me/2026/09/</loc>
+    <lastmod>2026-09-07</lastmod>
+  </url>
+  <url>
+    <loc>https://newani.me/2026/10/</loc>
+    <lastmod>2026-09-08</lastmod>
+  </url>
+  <url>
+    <loc>https://newani.me/2026/11/</loc>
+    <lastmod>2026-09-07</lastmod>
+  </url>
+  <url>
+    <loc>https://newani.me/2026/12/</loc>
+    <lastmod>2026-09-04</lastmod>
+  </url>
+  <url>
+    <loc>https://newani.me/2026/tba/</loc>
+    <lastmod>2026-09-05</lastmod>
+  </url>
+  <url>
+    <loc>https://newani.me/2027/</loc>
+    <lastmod>2026-09-07</lastmod>
+  </url>
+  <url>
+    <loc>https://newani.me/2027/01/</loc>
+    <lastmod>2026-09-07</lastmod>
+  </url>
+  <url>
+    <loc>https://newani.me/2027/02/</loc>
+    <lastmod>2026-09-05</lastmod>
+  </url>
+  <url>
+    <loc>https://newani.me/2027/03/</loc>
+    <lastmod>2026-09-04</lastmod>
+  </url>
+  <url>
+    <loc>https://newani.me/2027/04/</loc>
+    <lastmod>2026-09-04</lastmod>
+  </url>
+  <url>
+    <loc>https://newani.me/2027/10/</loc>
+    <lastmod>2026-09-05</lastmod>
+  </url>
+  <url>
+    <loc>https://newani.me/2027/tba/</loc>
     <lastmod>2026-09-07</lastmod>
   </url>
 </urlset>
