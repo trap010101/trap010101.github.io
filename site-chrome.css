@@ -92,8 +92,7 @@
   border-radius: 9px;
 }
 
-/* Secondary pages keep a static profile shell in the header so an existing
-   Supabase session can be shown before the full authentication bundle loads. */
+/* Secondary pages keep the same profile control geometry as the homepage. */
 .auth-header-profile {
   position: relative;
   width: 35px;
@@ -286,6 +285,13 @@
   font-size: 12px;
   font-weight: 800;
   text-align: center;
+}
+
+/* Unlike the homepage, secondary pages do not have a global .hidden helper.
+   Keep the share toast completely absent until it contains an actual message. */
+.share-status.hidden,
+.share-status:empty {
+  display: none !important;
 }
 
 footer {
