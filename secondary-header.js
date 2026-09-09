@@ -1,6 +1,9 @@
 (() => {
   'use strict';
 
+  const BRAND_LOGO_SRC = '/assets/newanime-logo.svg?v=20260909-logo2';
+  const FAVICON_SRC = '/favicon-32x32.png?v=20260909-icon1';
+
   const copy = {
     ko: {
       menu:'메뉴', updates:'업데이트', contact:'문의', share:'공유', copied:'링크를 복사했습니다.', failed:'공유 기능을 사용할 수 없습니다.',
@@ -23,6 +26,26 @@
   const t = key => copy[lang()]?.[key] || copy.ko[key] || key;
   const menu = () => document.getElementById('siteMenu');
   const toggle = () => document.getElementById('menuToggle');
+
+  function applyBrandAssets() {
+    const logo = document.querySelector('.brand-logo');
+    if (logo) {
+      logo.src = BRAND_LOGO_SRC;
+      logo.width = 1518;
+      logo.height = 300;
+    }
+
+    let icon = document.querySelector('link[rel~="icon"][data-newanime-icon]');
+    if (!icon) {
+      icon = document.createElement('link');
+      icon.rel = 'icon';
+      icon.type = 'image/png';
+      icon.sizes = '32x32';
+      icon.dataset.newanimeIcon = 'true';
+      document.head.appendChild(icon);
+    }
+    icon.href = FAVICON_SRC;
+  }
 
   function closeMenu(restoreFocus = false) {
     const target = menu();
@@ -138,7 +161,8 @@
   });
 
   new MutationObserver(() => refreshLanguage({ notify:true })).observe(document.documentElement, { attributes:true, attributeFilter:['lang'] });
+  applyBrandAssets();
   refreshLanguage();
 
-  window.NewAnimeSecondaryHeader = Object.freeze({ refreshLanguage, closeAll:closeMenu });
+  window.NewAnimeSecondaryHeader = Object.freeze({ refreshLanguage, closeAll:closeMenu, applyBrandAssets });
 })();
