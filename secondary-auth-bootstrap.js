@@ -52,6 +52,6 @@
     .then(() => script('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0'))
     .then(() => script('https://accounts.google.com/gsi/client'))
     .then(() => script('/auth.js?v=20260908-auth11'))
-    .then(() => script('/wishlist-sync.js?v=20260908-sync1'))
+    .then(() => script('/wishlist-sync.js?v=20260909-sync2'))
     .catch(error => console.warn('Archive account / wishlist UI could not be loaded.', error));
 })();
