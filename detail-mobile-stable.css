@@ -1,0 +1,80 @@
+.detail-mobile-top {
+  display: contents;
+}
+
+.detail-mobile-summary-host {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  /* Mobile detail pages use an explicit two-part flow:
+     1) poster + localized summary, 2) full-width content panels.
+     This deliberately avoids reusing the desktop grid through display:contents. */
+  .detail-hero-card {
+    display: block !important;
+  }
+
+  .detail-mobile-top {
+    display: grid !important;
+    grid-template-columns: clamp(122px, 25vw, 162px) minmax(0, 1fr) !important;
+    align-items: start !important;
+    column-gap: 17px !important;
+    margin: 0 0 12px !important;
+  }
+
+  .detail-mobile-summary-host {
+    display: block !important;
+    min-width: 0 !important;
+  }
+
+  .detail-mobile-summary-copy {
+    display: block;
+    min-width: 0;
+  }
+
+  .detail-mobile-summary-copy[hidden] {
+    display: none !important;
+  }
+
+  .detail-mobile-top .detail-poster-wrap {
+    width: auto !important;
+    margin: 0 !important;
+    float: none !important;
+    position: relative !important;
+    top: auto !important;
+    align-self: start !important;
+  }
+
+  .detail-main {
+    display: block !important;
+    min-width: 0 !important;
+  }
+
+  .anime-localized:not([hidden]) {
+    display: block !important;
+  }
+
+  /* The desktop copy stays in the document for desktop mode, but the mobile
+     clone in .detail-mobile-summary-host is the only summary shown on mobile. */
+  .anime-localized > .detail-summary-copy {
+    display: none !important;
+  }
+
+  .anime-localized > .detail-panel {
+    display: block;
+    width: 100% !important;
+    margin-top: 12px !important;
+    clear: none !important;
+  }
+
+  .anime-localized > .detail-release-panel {
+    margin-top: 0 !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .detail-mobile-top {
+    grid-template-columns: clamp(108px, 34vw, 132px) minmax(0, 1fr) !important;
+    column-gap: 14px !important;
+  }
+}
