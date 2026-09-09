@@ -35,42 +35,6 @@ button { font: inherit; }
   padding: 38px 0 72px;
 }
 
-.archive-header {
-  display: flex;
-  align-items: center;
-  min-height: 58px;
-  gap: 18px;
-  margin-bottom: 18px;
-  padding: 0 2px 14px;
-  border-bottom: 1px solid var(--line);
-}
-.archive-brand { display: inline-flex; align-items: center; width: 142px; }
-.archive-brand img { width: 100%; height: auto; display: block; }
-.archive-header-spacer { flex: 1; }
-.archive-language {
-  display: flex;
-  gap: 2px;
-  padding: 3px;
-  border: 1px solid var(--line);
-  border-radius: 11px;
-  background: rgba(255,255,255,.025);
-}
-.archive-language button {
-  min-width: 35px;
-  min-height: 28px;
-  border: 0;
-  border-radius: 8px;
-  padding: 0 7px;
-  background: transparent;
-  color: #7f899c;
-  cursor: pointer;
-  font-size: 9px;
-  font-weight: 900;
-  letter-spacing: .04em;
-}
-.archive-language button:hover { color: #fff; background: rgba(255,255,255,.045); }
-.archive-language button.active { background: var(--accent-soft); color: #fff; }
-
 .archive-back {
   display: inline-flex;
   margin: 8px 0 13px;
@@ -260,18 +224,12 @@ button { font: inherit; }
 }
 
 .archive-empty { padding: 34px; border: 1px dashed var(--line); border-radius: 17px; background: rgba(255,255,255,.02); color: var(--muted); text-align: center; font-size: 12px; }
-.archive-footer { display: flex; flex-wrap: wrap; gap: 17px; padding: 27px 2px 0; border-top: 1px solid var(--line); color: #737c90; font-size: 10px; font-weight: 850; }
-.archive-footer a { text-decoration: none; }
-.archive-footer a:hover { color: #fff; }
 
 @media (max-width: 920px) {
   .archive-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 620px) {
   .archive-shell { width: min(100% - 22px, 680px); padding: 18px 0 52px; }
-  .archive-header { min-height: 50px; margin-bottom: 13px; padding-bottom: 11px; }
-  .archive-brand { width: 116px; }
-  .archive-language button { min-width: 31px; min-height: 27px; padding: 0 5px; }
   .archive-hero { padding: 22px; border-radius: 22px; }
   .archive-hero h1 { font-size: clamp(29px, 10vw, 46px); }
   .archive-description { font-size: 12px; }
