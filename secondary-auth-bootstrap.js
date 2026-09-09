@@ -86,7 +86,7 @@
   stylesheet('/account-refine.css?v=20260908-authui10');
   stylesheet('/google-login-button-fit.css?v=20260908-1');
 
-  Promise.resolve()
+  const wishlistReady = Promise.resolve()
     .then(() => script('/language-switcher-compact.js?v=20260908-detail14'))
     .then(() => Array.isArray(window.animeData) ? null : script('/data/anime.js?v=20260907-schedule1'))
     .then(() => script('/data/anime-20260904.js?v=20260905-data2'))
@@ -94,11 +94,23 @@
     .then(() => script('/data/poster-fixes-20260905.js?v=20260907-posters4'))
     .then(() => script('/data/schedule-updates-20260907.js?v=20260907-schedule2'))
     .then(() => script('/wishlist.js?v=20260909-wishlist4'))
-    .then(() => initDetailWishlist())
+    .then(() => initDetailWishlist());
+
+  const authReady = Promise.resolve()
     .then(() => script('/auth-config.js?v=20260908-auth6'))
-    .then(() => script('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0'))
-    .then(() => script('https://accounts.google.com/gsi/client'))
-    .then(() => script('/auth.js?v=20260909-auth14'))
+    .then(() => {
+      const config = window.NEWANIME_AUTH_CONFIG || {};
+      if (!config.supabaseUrl || !config.supabaseAnonKey || !config.googleClientId || config.googleEnabled !== true) return null;
+      return script('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0')
+        .then(() => script('https://accounts.google.com/gsi/client'))
+        .then(() => script('/auth.js?v=20260909-auth14'))
+        .then(() => script('/auth-profile-bridge.js?v=20260909-profile1'));
+    });
+
+  wishlistReady.catch(error => console.warn('Secondary wishlist UI could not be loaded.', error));
+  authReady.catch(error => console.warn('Secondary authentication UI could not be loaded.', error));
+
+  Promise.all([wishlistReady, authReady])
     .then(() => script('/wishlist-sync.js?v=20260909-sync2'))
-    .catch(error => console.warn('Secondary account / wishlist UI could not be loaded.', error));
+    .catch(error => console.warn('Secondary account / wishlist sync could not be loaded.', error));
 })();
