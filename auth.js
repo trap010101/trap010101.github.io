@@ -43,6 +43,16 @@
   const wishlist = document.getElementById('wishlistMenuButton');
   menu.insertBefore(menuButton, wishlist || menu.firstChild);
 
+  const header = menu.closest('.site-header');
+  const menuWrap = menu.closest('.menu-wrap');
+  const profileButton = document.createElement('button');
+  profileButton.className = 'auth-header-profile hidden';
+  profileButton.id = 'authHeaderProfile';
+  profileButton.type = 'button';
+  profileButton.setAttribute('aria-haspopup','dialog');
+  profileButton.innerHTML = `<span class="auth-header-profile-fallback" aria-hidden="true">${personSvg}</span>`;
+  if (header && menuWrap) header.insertBefore(profileButton, menuWrap);
+
   const modal = document.createElement('div');
   modal.className = 'auth-modal hidden';
   modal.id = 'authModal';
@@ -92,9 +102,20 @@
     const menuContent = menuButton.querySelector('.auth-menu-content');
     if (currentUser) {
       const avatar = avatarUrl(currentUser), name = userName(currentUser);
+      menuButton.classList.add('hidden');
+      profileButton.classList.remove('hidden');
+      profileButton.innerHTML = avatar
+        ? `<img class="auth-header-profile-avatar" src="${escapeHtml(avatar)}" alt="">`
+        : `<span class="auth-header-profile-fallback" aria-hidden="true">${personSvg}</span>`;
+      profileButton.setAttribute('aria-label', `${text('account')} · ${name}`);
+      profileButton.title = name || text('account');
       menuContent.innerHTML = avatar ? `<span class="auth-menu-user"><img class="auth-menu-avatar" src="${escapeHtml(avatar)}" alt=""><span class="auth-menu-name">${escapeHtml(name)}</span></span>` : `<span class="auth-menu-name">${text('account')}</span>`;
       menuButton.setAttribute('aria-label', `${text('account')} · ${name}`);
     } else {
+      profileButton.classList.add('hidden');
+      profileButton.innerHTML = `<span class="auth-header-profile-fallback" aria-hidden="true">${personSvg}</span>`;
+      profileButton.removeAttribute('title');
+      menuButton.classList.remove('hidden');
       menuContent.textContent = text('login');
       menuButton.setAttribute('aria-label', text('login'));
     }
@@ -106,7 +127,7 @@
 
     if (currentUser) {
       const avatar = avatarUrl(currentUser), name = userName(currentUser);
-      body.innerHTML = `<div class="auth-account">${avatar ? `<img class="auth-account-avatar" src="${escapeHtml(avatar)}" alt="">` : '<div class="auth-account-avatar"></div>'}<div class="auth-account-copy"><strong>${escapeHtml(name)}</strong><span>${escapeHtml(currentUser.email || '')}</span></div></div><button class="auth-signout" type="button" data-auth-signout>${text('logout')}</button>`;
+      body.innerHTML = `<div class="auth-account">${avatar ? `<img class="auth-account-avatar" src="${escapeHtml(avatar)}" alt="">` : `<div class="auth-account-avatar auth-account-avatar-fallback" aria-hidden="true">${personSvg}</div>`}<div class="auth-account-copy"><strong>${escapeHtml(name)}</strong><span>${escapeHtml(currentUser.email || '')}</span></div></div><button class="auth-signout" type="button" data-auth-signout>${text('logout')}</button>`;
     } else {
       body.innerHTML = '<div class="auth-google-host" data-auth-google-host></div>';
       requestAnimationFrame(renderGoogleButton);
@@ -126,7 +147,7 @@
     if (modal.classList.contains('hidden')) return;
     modal.classList.add('hidden');
     document.body.classList.remove('auth-modal-open');
-    document.getElementById('menuToggle')?.focus();
+    (currentUser ? profileButton : document.getElementById('menuToggle'))?.focus();
   }
   async function signOut() {
     status.textContent = text('signingOut');
@@ -141,6 +162,7 @@
   }
 
   menuButton.addEventListener('click', openModal);
+  profileButton.addEventListener('click', openModal);
   modal.addEventListener('click', event => {
     if (event.target.closest('[data-auth-close]')) return closeModal();
     if (event.target.closest('[data-auth-signout]')) signOut();
