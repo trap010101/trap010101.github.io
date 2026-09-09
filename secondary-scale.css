@@ -43,14 +43,15 @@ body {
   }
 
   /* The poster and localized title metadata share one intrinsic-height row.
-     Release/content panels are auto-placed only after that row, so title
-     length, alternate-title wrapping and tag count cannot make them overlap. */
+     All following panels use the same grid row gap, so the poster-to-release
+     spacing always matches the spacing between the content panels themselves. */
   .detail-hero-card {
+    --detail-panel-gap: 12px;
     display: grid !important;
     grid-template-columns: clamp(122px, 25vw, 162px) minmax(0, 1fr) !important;
     grid-auto-flow: row !important;
     column-gap: 17px !important;
-    row-gap: 0 !important;
+    row-gap: var(--detail-panel-gap) !important;
   }
 
   .detail-poster-wrap {
@@ -83,14 +84,7 @@ body {
     clear: none !important;
     position: relative;
     z-index: 2;
-  }
-
-  .detail-release-panel {
-    margin-top: 20px !important;
-  }
-
-  .detail-release-panel ~ .detail-panel {
-    margin-top: 12px !important;
+    margin-top: 0 !important;
   }
 
   .anime-localized::after {
@@ -200,10 +194,6 @@ body {
   .detail-hero-card {
     grid-template-columns: clamp(108px, 34vw, 132px) minmax(0, 1fr) !important;
     column-gap: 14px !important;
-  }
-
-  .detail-release-panel {
-    margin-top: 18px !important;
   }
 
   .archive-hero {
