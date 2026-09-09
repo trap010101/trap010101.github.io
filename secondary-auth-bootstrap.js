@@ -112,7 +112,7 @@
       return script('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0')
         .then(() => script('https://accounts.google.com/gsi/client'))
         .then(() => script('/auth.js?v=20260909-auth14'))
-        .then(() => script('/auth-profile-bridge.js?v=20260909-profile1'));
+        .then(() => script('/auth-profile-bridge.js?v=20260909-profile2'));
     });
 
   wishlistReady.catch(error => console.warn('Secondary wishlist UI could not be loaded.', error));
