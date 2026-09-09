@@ -2,7 +2,7 @@
   'use strict';
 
   const config = window.NEWANIME_AUTH_CONFIG || {};
-  if (!config.supabaseUrl || !config.supabaseAnonKey || !config.googleClientId || !window.supabase?.createClient || !window.google?.accounts?.id) return;
+  if (!config.supabaseUrl || !config.supabaseAnonKey || !config.googleClientId || !window.supabase?.createClient) return;
 
   const client = window.supabase.createClient(config.supabaseUrl, config.supabaseAnonKey, {
     auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
@@ -97,6 +97,7 @@
   const status = modal.querySelector('.auth-status');
   const closeButton = modal.querySelector('.auth-close');
   let currentUser = null;
+  let googleInitialized = false;
 
   async function handleGoogleCredential(response) {
     if (!response?.credential) { status.textContent = text('error'); return; }
@@ -116,20 +117,33 @@
     }
   }
 
-  window.google.accounts.id.initialize({
-    client_id: config.googleClientId,
-    callback: handleGoogleCredential,
-    auto_select: false,
-    use_fedcm_for_button: false,
-    button_auto_select: false
-  });
+  function initGoogleIdentity() {
+    const googleId = window.google?.accounts?.id;
+    if (!googleId) return false;
+    if (!googleInitialized) {
+      googleId.initialize({
+        client_id: config.googleClientId,
+        callback: handleGoogleCredential,
+        auto_select: false,
+        use_fedcm_for_button: false,
+        button_auto_select: false
+      });
+      googleInitialized = true;
+    }
+    return true;
+  }
 
   function renderGoogleButton() {
     const host = body.querySelector('[data-auth-google-host]');
     if (!host || currentUser) return;
     host.textContent = '';
+    const googleId = window.google?.accounts?.id;
+    if (!googleId || !initGoogleIdentity()) {
+      status.textContent = '';
+      return;
+    }
     try {
-      window.google.accounts.id.renderButton(host, {
+      googleId.renderButton(host, {
         type: 'standard', theme: 'outline_dark', size: 'medium', shape: 'pill',
         text: 'continue_with', logo_alignment: 'left', width: 190
       });
@@ -195,7 +209,7 @@
     status.textContent = text('signingOut');
     const { error } = await client.auth.signOut();
     if (error) { status.textContent = text('error'); return; }
-    window.google.accounts.id.disableAutoSelect();
+    window.google?.accounts?.id?.disableAutoSelect?.();
   }
   function publishAuth(event, session) {
     currentUser = session?.user || null;
@@ -214,6 +228,19 @@
   client.auth.onAuthStateChange((event, session) => publishAuth(event, session));
   client.auth.getSession().then(({ data, error }) => error ? render() : publishAuth('INITIAL_SESSION', data.session || null));
 
-  window.NewAnimeAuth = Object.freeze({ client, getUser:() => currentUser, isVerified:() => isVerifiedUser(currentUser), signIn:openModal, signOut });
+  window.NewAnimeAuth = Object.freeze({
+    client,
+    getUser:() => currentUser,
+    isVerified:() => isVerifiedUser(currentUser),
+    signIn:openModal,
+    signOut,
+    initGoogleIdentity:() => {
+      const ready = initGoogleIdentity();
+      if (ready) renderGoogleButton();
+      return ready;
+    }
+  });
+
+  initGoogleIdentity();
   render();
 })();
