@@ -8,9 +8,20 @@
   if (takopisOriginalSin) {
     takopisOriginalSin.title = {
       ...takopisOriginalSin.title,
-      ko: "타코피의 원죄 -고마워, 또 만나-"
+      ko: "타코피의 원죄 -고마워, 또 만나"
     };
     takopisOriginalSin.updatedAt = "2026-09-09";
+  }
+
+  const alyaSeason2 = window.animeData.find(
+    item => item.id === "alya-sometimes-hides-her-feelings-in-russian-season-2"
+  );
+  if (alyaSeason2) {
+    alyaSeason2.title = {
+      ...alyaSeason2.title,
+      ko: "가끔씩 툭하고 러시아어로 부끄러워하는 옆자리의 아랴 양 Season 2"
+    };
+    alyaSeason2.updatedAt = "2026-09-09";
   }
 
   const darkSummoner = window.animeData.find(item => item.id === "dating-a-dark-summoner");
