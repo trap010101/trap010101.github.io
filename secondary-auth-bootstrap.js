@@ -81,7 +81,7 @@
     render();
   }
 
-  stylesheet('/wishlist.css?v=20260908-wishlist4');
+  stylesheet('/wishlist.css?v=20260909-wishlist5');
   stylesheet('/auth.css?v=20260909-auth4');
   stylesheet('/account-refine.css?v=20260908-authui10');
   stylesheet('/google-login-button-fit.css?v=20260908-1');
