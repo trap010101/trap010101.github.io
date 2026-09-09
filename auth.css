@@ -55,13 +55,14 @@
 }
 
 .auth-header-profile {
+  position: relative;
   width: 35px;
   height: 35px;
   flex: 0 0 35px;
   display: inline-grid;
   place-items: center;
   padding: 2px;
-  overflow: hidden;
+  overflow: visible;
   border: 1px solid rgba(255,255,255,.10);
   border-radius: 50%;
   color: #cbd2e4;
@@ -105,6 +106,51 @@
   stroke-width: 1.7;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.auth-verified-mark {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  display: inline-grid !important;
+  place-items: center;
+  margin: 0 !important;
+  overflow: visible !important;
+  color: #7f95ff !important;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.auth-verified-mark svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.auth-verified-mark circle {
+  fill: currentColor;
+  stroke: #10131b;
+  stroke-width: 1.4;
+}
+
+.auth-verified-mark path {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.auth-header-verified {
+  position: absolute;
+  right: -3px;
+  bottom: -3px;
+  z-index: 2;
+  width: 14px;
+  height: 14px;
+  flex-basis: 14px;
+  pointer-events: none;
 }
 
 .auth-modal {
@@ -262,6 +308,28 @@
 .auth-account-copy strong { font-size: 13px; }
 .auth-account-copy span { margin-top: 4px; color: #8e97a9; font-size: 10px; }
 
+.auth-account-copy .auth-account-name-row {
+  min-width: 0;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.auth-account-copy .auth-account-name-row > strong {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.auth-account-copy .auth-account-name-row > .auth-verified-mark {
+  display: inline-grid !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  color: #7f95ff !important;
+}
+
 .auth-status {
   min-height: 16px;
   margin: 10px 0 0;
@@ -285,5 +353,12 @@ body.auth-modal-open { overflow: hidden; }
   .auth-header-profile-fallback svg {
     width: 16px;
     height: 16px;
+  }
+  .auth-header-verified {
+    right: -3px;
+    bottom: -3px;
+    width: 13px;
+    height: 13px;
+    flex-basis: 13px;
   }
 }
