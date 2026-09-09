@@ -10,7 +10,7 @@
       return url.origin === target.origin && url.pathname === target.pathname;
     });
     if (existing) {
-      if (existing.dataset.loaded === 'true' || existing.readyState === 'complete') return resolve();
+      if (existing.dataset.loading !== 'true' || existing.dataset.loaded === 'true' || existing.readyState === 'complete') return resolve();
       existing.addEventListener('load', resolve, { once:true });
       existing.addEventListener('error', reject, { once:true });
       return;
@@ -18,8 +18,16 @@
     const node = document.createElement('script');
     node.src = src;
     node.async = false;
-    node.onload = () => { node.dataset.loaded = 'true'; resolve(); };
-    node.onerror = reject;
+    node.dataset.loading = 'true';
+    node.onload = () => {
+      node.dataset.loading = 'false';
+      node.dataset.loaded = 'true';
+      resolve();
+    };
+    node.onerror = error => {
+      node.dataset.loading = 'false';
+      reject(error);
+    };
     document.head.appendChild(node);
   });
 
