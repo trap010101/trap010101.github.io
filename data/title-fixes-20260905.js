@@ -8,7 +8,7 @@
   if (takopisOriginalSin) {
     takopisOriginalSin.title = {
       ...takopisOriginalSin.title,
-      ko: "타코피의 원죄 -고마워, 또 만나"
+      ko: "타코피의 원죄 -고마워, 또 만나-"
     };
     takopisOriginalSin.updatedAt = "2026-09-09";
   }

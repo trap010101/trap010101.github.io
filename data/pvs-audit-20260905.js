@@ -535,7 +535,7 @@
 
   add({
     id: "takopis-original-sin-thank-you-see-you-tomorrow",
-    ko: "타코피의 원죄 -고마워, 또 만나", ja: "映画『タコピーの原罪 -ありがとう、また明日-』", en: "Takopi's Original Sin: Thank You, See You Tomorrow",
+    ko: "타코피의 원죄 -고마워, 또 만나-", ja: "映画『タコピーの原罪 -ありがとう、また明日-』", en: "Takopi's Original Sin: Thank You, See You Tomorrow",
     release: date(11, 27), format: "movie", origin: "manga", tags: ["series", "comic", "movie"],
     official: "https://www.tbs.co.jp/anime/takopi_project/",
     sources: [src("https://www.tbs.co.jp/anime/takopi_project/news/news20260817.html", "TBS official — November 27 theatrical release")],
