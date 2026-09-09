@@ -102,7 +102,7 @@
     .then(() => script('/wishlist.js?v=20260909-wishlist4'))
     .then(() => initDetailWishlist());
 
-  const authReady = script('/auth-bootstrap.js?v=20260909-authboot2')
+  const authReady = script('/auth-bootstrap.js?v=20260909-authboot3')
     .then(() => window.NewAnimeAuthBootstrap?.ready || null);
 
   wishlistReady.catch(error => console.warn('Secondary wishlist UI could not be loaded.', error));
