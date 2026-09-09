@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  if (!document.querySelector('.archive-shell')) return;
+  if (!document.querySelector('.archive-shell, .detail-shell')) return;
 
   const script = src => new Promise((resolve, reject) => {
     const target = new URL(src, location.href);
@@ -35,6 +35,52 @@
     document.head.appendChild(node);
   };
 
+  const detailWishlistCopy = {
+    ko:{ add:'위시리스트에 추가', remove:'위시리스트에서 제거' },
+    ja:{ add:'ウィッシュリストに追加', remove:'ウィッシュリストから削除' },
+    en:{ add:'Add to wishlist', remove:'Remove from wishlist' }
+  };
+
+  const language = () => {
+    const value = (document.documentElement.lang || 'ko').toLowerCase();
+    return value.startsWith('ja') ? 'ja' : value.startsWith('en') ? 'en' : 'ko';
+  };
+
+  function initDetailWishlist() {
+    const detail = window.ANIME_DETAIL;
+    const wishlist = window.NewAnimeWishlist;
+    const posterWrap = document.querySelector('.detail-poster-wrap');
+    if (!detail?.id || !wishlist || !posterWrap) return;
+
+    let button = posterWrap.querySelector('[data-detail-wishlist]');
+    if (!button) {
+      button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'detail-wishlist-toggle';
+      button.dataset.detailWishlist = detail.id;
+      button.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.8a5.5 5.5 0 0 0-7.8 0L12 5.8l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.4 1-1a5.5 5.5 0 0 0 0-7.8Z"></path></svg>';
+      button.addEventListener('click', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        wishlist.toggle(detail.id);
+      });
+      posterWrap.appendChild(button);
+    }
+
+    const render = () => {
+      const active = wishlist.has(detail.id);
+      const copy = detailWishlistCopy[language()] || detailWishlistCopy.ko;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', String(active));
+      button.setAttribute('aria-label', active ? copy.remove : copy.add);
+      button.title = active ? copy.remove : copy.add;
+    };
+
+    document.addEventListener('newanime:wishlist', render);
+    document.addEventListener('newanime:language', render);
+    render();
+  }
+
   stylesheet('/wishlist.css?v=20260908-wishlist4');
   stylesheet('/auth.css?v=20260908-auth2');
   stylesheet('/account-refine.css?v=20260908-authui10');
@@ -48,10 +94,11 @@
     .then(() => script('/data/poster-fixes-20260905.js?v=20260907-posters4'))
     .then(() => script('/data/schedule-updates-20260907.js?v=20260907-schedule2'))
     .then(() => script('/wishlist.js?v=20260909-wishlist4'))
+    .then(() => initDetailWishlist())
     .then(() => script('/auth-config.js?v=20260908-auth6'))
     .then(() => script('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0'))
     .then(() => script('https://accounts.google.com/gsi/client'))
     .then(() => script('/auth.js?v=20260908-auth11'))
     .then(() => script('/wishlist-sync.js?v=20260909-sync2'))
-    .catch(error => console.warn('Archive account / wishlist UI could not be loaded.', error));
+    .catch(error => console.warn('Secondary account / wishlist UI could not be loaded.', error));
 })();
