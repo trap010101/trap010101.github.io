@@ -94,7 +94,7 @@
       return scriptUrl.origin === targetUrl.origin && scriptUrl.pathname === targetUrl.pathname;
     });
     if (existing) {
-      if (existing.dataset.loaded === 'true' || existing.readyState === 'complete') resolve();
+      if (existing.dataset.loaded === 'true' || existing.dataset.newanimeLoaded === 'true' || existing.readyState === 'complete') resolve();
       else {
         existing.addEventListener('load', resolve, { once: true });
         existing.addEventListener('error', reject, { once: true });
@@ -126,32 +126,21 @@
   };
 
   loadStylesheet('/wishlist.css?v=20260909-wishlist5');
-  loadScript('/wishlist.js?v=20260909-wishlist4')
+  const wishlistReady = loadScript('/wishlist.js?v=20260909-wishlist4')
     .then(() => {
       const kicker = document.querySelector('.wishlist-kicker');
       if (kicker) kicker.textContent = 'newani.me';
-    })
-    .catch(error => console.warn('Wishlist UI could not be loaded.', error));
-
-  const authCoreReady = loadScript('/auth-config.js?v=20260908-auth5')
-    .then(() => {
-      const config = window.NEWANIME_AUTH_CONFIG || {};
-      if (!config.supabaseUrl || !config.supabaseAnonKey || !config.googleClientId || config.googleEnabled !== true) return null;
-      loadStylesheet('/auth.css?v=20260909-auth4');
-      loadStylesheet('/account-refine.css?v=20260908-authui10');
-      return loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0')
-        .then(() => loadScript('/auth.js?v=20260909-auth15'))
-        .then(() => loadScript('/auth-profile-bridge.js?v=20260909-profile2'));
     });
 
-  authCoreReady
-    .then(() => loadScript('https://accounts.google.com/gsi/client'))
-    .then(() => window.NewAnimeAuth?.initGoogleIdentity?.())
-    .catch(error => console.warn('Google sign-in UI could not be loaded. Existing account session remains available.', error));
+  const authReady = loadScript('/auth-bootstrap.js?v=20260909-authboot1')
+    .then(() => window.NewAnimeAuthBootstrap?.ready || null);
 
-  authCoreReady
+  wishlistReady.catch(error => console.warn('Wishlist UI could not be loaded.', error));
+  authReady.catch(error => console.warn('Authentication UI could not be loaded.', error));
+
+  Promise.all([wishlistReady, authReady])
     .then(() => loadScript('/wishlist-sync.js?v=20260909-sync2'))
-    .catch(error => console.warn('Authentication UI could not be loaded.', error));
+    .catch(error => console.warn('Account / wishlist sync could not be loaded.', error));
 
   Promise.resolve()
     .then(() => loadScript('/data/streaming-jp-20260906.js?v=20260906-region1'))
