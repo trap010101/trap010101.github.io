@@ -61,7 +61,7 @@
       }
       return script('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0');
     })
-    .then(() => script('/auth.js?v=20260909-auth17'))
+    .then(() => script('/auth.js?v=20260909-auth18'))
     .then(() => script('/auth-profile-bridge.js?v=20260909-profile4'));
 
   const googleReady = ready
