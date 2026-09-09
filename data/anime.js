@@ -6952,7 +6952,7 @@ window.animeData = [
   {
     "id": "alya-sometimes-hides-her-feelings-in-russian-season-2",
     "title": {
-      "ko": "옆자리 아랴 양 2기",
+      "ko": "가끔씩 툭하고 러시아어로 부끄러워하는 옆자리의 아랴 양 Season 2",
       "ja": "時々ボソッとロシア語でデレる隣のアーリャさん 第2期",
       "en": "Alya Sometimes Hides Her Feelings in Russian Season 2"
     },

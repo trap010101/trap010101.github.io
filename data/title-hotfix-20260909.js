@@ -8,9 +8,9 @@
     const ja = item?.title?.ja || "";
     return (
       item?.id === "takopis-original-sin-thank-you-see-you-tomorrow" ||
-      ko === "타코피의 원죄 -고마워, 또 내일" ||
-      ko === "타코피의 원죄 -고마워, 또 내일-" ||
-      ko === "타코피의 원죄 -고마워, 또 만나-" ||
+      ko === "타코피의 원죄 -고마워, 또 만나" ||
+      ko === "타코피의 원죄 -고마워, 또 만나" ||
+      ko === "타코피의 원죄 -고마워, 또 만나" ||
       ja.includes("タコピーの原罪")
     );
   });
