@@ -2,6 +2,17 @@
 (() => {
   if (!Array.isArray(window.animeData)) return;
 
+  const takopisOriginalSin = window.animeData.find(
+    item => item.id === "takopis-original-sin-thank-you-see-you-tomorrow"
+  );
+  if (takopisOriginalSin) {
+    takopisOriginalSin.title = {
+      ...takopisOriginalSin.title,
+      ko: "타코피의 원죄 -고마워, 또 만나-"
+    };
+    takopisOriginalSin.updatedAt = "2026-09-09";
+  }
+
   const darkSummoner = window.animeData.find(item => item.id === "dating-a-dark-summoner");
   if (darkSummoner) {
     darkSummoner.title = {
