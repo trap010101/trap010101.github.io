@@ -98,7 +98,7 @@
     .then(() => script('/auth-config.js?v=20260908-auth6'))
     .then(() => script('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0'))
     .then(() => script('https://accounts.google.com/gsi/client'))
-    .then(() => script('/auth.js?v=20260909-auth13'))
+    .then(() => script('/auth.js?v=20260909-auth14'))
     .then(() => script('/wishlist-sync.js?v=20260909-sync2'))
     .catch(error => console.warn('Secondary account / wishlist UI could not be loaded.', error));
 })();
