@@ -142,7 +142,7 @@
       return loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0')
         .then(() => loadScript('https://accounts.google.com/gsi/client'))
         .then(() => loadScript('/auth.js?v=20260909-auth14'))
-        .then(() => loadScript('/auth-profile-bridge.js?v=20260909-profile1'))
+        .then(() => loadScript('/auth-profile-bridge.js?v=20260909-profile2'))
         .then(() => loadScript('/wishlist-sync.js?v=20260909-sync2'));
     })
     .catch(error => console.warn('Authentication UI could not be loaded.', error));
