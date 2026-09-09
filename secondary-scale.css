@@ -43,8 +43,7 @@ body {
   }
 
   /* Keep the poster/title summary compact, but make every content panel begin
-     on a new full-width grid row. This prevents the release panel from ever
-     entering the poster's occupied area regardless of title length. */
+     on a new full-width grid row. */
   .detail-hero-card {
     display: grid !important;
     grid-template-columns: clamp(122px, 25vw, 162px) minmax(0, 1fr) !important;
@@ -91,6 +90,18 @@ body {
   .detail-panel {
     grid-column: 1 / -1 !important;
     clear: none !important;
+  }
+
+  /* The release panel must start after the poster/title summary row, with a
+     visible safety gap. Explicit placement avoids the auto-placement edge case
+     that previously let its rounded corner touch/overlap the poster bottom. */
+  .detail-release-panel {
+    grid-row: 5 !important;
+    margin-top: 20px !important;
+  }
+
+  .detail-release-panel ~ .detail-panel {
+    margin-top: 12px !important;
   }
 
   .detail-kicker,
@@ -209,6 +220,10 @@ body {
   .detail-hero-card {
     grid-template-columns: clamp(108px, 34vw, 132px) minmax(0, 1fr) !important;
     column-gap: 14px !important;
+  }
+
+  .detail-release-panel {
+    margin-top: 18px !important;
   }
 
   .archive-hero {
