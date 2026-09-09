@@ -285,3 +285,61 @@ body.wishlist-modal-open { overflow: hidden; }
   .wishlist-remove { width: 29px; height: 29px; border-radius: 9px; }
   .wishlist-remove svg { width: 14px; height: 14px; }
 }
+
+/* Keep modal chrome visible while only the growing title list scrolls. */
+.wishlist-dialog {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  overflow: hidden;
+}
+
+.wishlist-list {
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+  padding-right: 2px;
+}
+
+.wishlist-unavailable {
+  margin-bottom: 0;
+}
+
+@supports (height: 100dvh) {
+  .wishlist-dialog {
+    max-height: min(780px, calc(100dvh - 36px));
+  }
+}
+
+@media (max-width: 520px) {
+  .wishlist-modal {
+    height: 100dvh;
+    min-height: 0;
+    padding-top: max(10px, env(safe-area-inset-top));
+    padding-right: max(10px, env(safe-area-inset-right));
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+    padding-left: max(10px, env(safe-area-inset-left));
+  }
+
+  .wishlist-dialog {
+    width: 100%;
+    max-height: 100%;
+    min-height: 0;
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .wishlist-head,
+  .wishlist-summary,
+  .wishlist-unavailable {
+    position: relative;
+    z-index: 2;
+  }
+
+  .wishlist-list {
+    margin-right: -4px;
+    padding-right: 4px;
+  }
+}
