@@ -126,7 +126,7 @@
   };
 
   loadStylesheet('/wishlist.css?v=20260908-wishlist4');
-  loadScript('/wishlist.js?v=20260908-wishlist3')
+  loadScript('/wishlist.js?v=20260909-wishlist4')
     .then(() => {
       const kicker = document.querySelector('.wishlist-kicker');
       if (kicker) kicker.textContent = 'newani.me';
