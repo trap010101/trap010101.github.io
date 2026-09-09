@@ -133,18 +133,24 @@
     })
     .catch(error => console.warn('Wishlist UI could not be loaded.', error));
 
-  loadScript('/auth-config.js?v=20260908-auth5')
+  const authCoreReady = loadScript('/auth-config.js?v=20260908-auth5')
     .then(() => {
       const config = window.NEWANIME_AUTH_CONFIG || {};
       if (!config.supabaseUrl || !config.supabaseAnonKey || !config.googleClientId || config.googleEnabled !== true) return null;
       loadStylesheet('/auth.css?v=20260909-auth4');
       loadStylesheet('/account-refine.css?v=20260908-authui10');
       return loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0')
-        .then(() => loadScript('https://accounts.google.com/gsi/client'))
-        .then(() => loadScript('/auth.js?v=20260909-auth14'))
-        .then(() => loadScript('/auth-profile-bridge.js?v=20260909-profile2'))
-        .then(() => loadScript('/wishlist-sync.js?v=20260909-sync2'));
-    })
+        .then(() => loadScript('/auth.js?v=20260909-auth15'))
+        .then(() => loadScript('/auth-profile-bridge.js?v=20260909-profile2'));
+    });
+
+  authCoreReady
+    .then(() => loadScript('https://accounts.google.com/gsi/client'))
+    .then(() => window.NewAnimeAuth?.initGoogleIdentity?.())
+    .catch(error => console.warn('Google sign-in UI could not be loaded. Existing account session remains available.', error));
+
+  authCoreReady
+    .then(() => loadScript('/wishlist-sync.js?v=20260909-sync2'))
     .catch(error => console.warn('Authentication UI could not be loaded.', error));
 
   Promise.resolve()
