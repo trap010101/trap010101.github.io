@@ -11,11 +11,11 @@ const MENU_MOBILE_STYLE_HREF = '/menu-mobile-refine.css?v=20260906-menu1';
 const SECONDARY_HEADER_SCRIPT = '/secondary-header.js?v=20260908-4';
 const SECONDARY_SCALE_STYLE_HREF = '/secondary-scale.css?v=20260908-2';
 const SECONDARY_MENU_ORDER_SCRIPT = '/secondary-menu-order.js?v=20260908-2';
-const SECONDARY_AUTH_BOOTSTRAP_SCRIPT = '/secondary-auth-bootstrap.js?v=20260909-17';
+const SECONDARY_AUTH_BOOTSTRAP_SCRIPT = '/secondary-auth-bootstrap.js?v=20260909-18';
 const GOOGLE_BUTTON_STYLE_HREF = '/google-login-button-fit.css?v=20260908-1';
 const GOOGLE_BUTTON_STYLE_LINK = `  <link rel="stylesheet" href="${GOOGLE_BUTTON_STYLE_HREF}" />\n`;
 const DETAIL_LANGUAGE_SCRIPT = '/language-switcher-compact.js?v=20260908-detail14';
-const HOMEPAGE_LINKS_SCRIPT = 'anime-links.js?v=20260909-authui21';
+const HOMEPAGE_LINKS_SCRIPT = 'anime-links.js?v=20260909-authui22';
 const TARGET_ROOTS = ['anime', '2026', '2027'];
 const TARGET_FILES = [
   'index.html',
