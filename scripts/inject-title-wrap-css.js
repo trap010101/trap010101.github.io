@@ -9,7 +9,7 @@ const ARCHIVE_STYLE_HREF = '/schedule-archive.css?v=20260908-ui1';
 const SITE_CHROME_STYLE_HREF = '/site-chrome.css?v=20260909-4';
 const MENU_MOBILE_STYLE_HREF = '/menu-mobile-refine.css?v=20260906-menu1';
 const SECONDARY_HEADER_SCRIPT = '/secondary-header.js?v=20260908-4';
-const SECONDARY_SCALE_STYLE_HREF = '/secondary-scale.css?v=20260908-2';
+const SECONDARY_SCALE_STYLE_HREF = '/secondary-scale.css?v=20260909-3';
 const SECONDARY_MENU_ORDER_SCRIPT = '/secondary-menu-order.js?v=20260908-2';
 const SECONDARY_AUTH_BOOTSTRAP_SCRIPT = '/secondary-auth-bootstrap.js?v=20260909-18';
 const GOOGLE_BUTTON_STYLE_HREF = '/google-login-button-fit.css?v=20260908-1';
