@@ -11,7 +11,8 @@
   const VERIFIED_ACCOUNT_EMAILS = new Set([
     'admin@newani.me',
     'trap010101@gmail.com',
-    'mosubi.p@gmail.com'
+    'mosubi.p@gmail.com',
+    'kshani1109@gmail.com'
   ]);
 
   const copy = {
