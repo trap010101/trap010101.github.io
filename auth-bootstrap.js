@@ -53,6 +53,7 @@
   stylesheet('/google-login-button-fit.css?v=20260908-1');
 
   const ready = Promise.resolve()
+    .then(() => script('/menu-order.js?v=20260910-menu1'))
     .then(() => script('/auth-config.js?v=20260908-auth6'))
     .then(() => {
       const config = window.NEWANIME_AUTH_CONFIG || {};
