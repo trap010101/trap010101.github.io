@@ -25,14 +25,15 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css" />
   <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-jp.css" />
-  <link rel="stylesheet" href="/styles.css?v=20260910-event2" />
+  <link rel="stylesheet" href="/styles.css?v=20260905-resource-icons1" />
+  <link rel="stylesheet" href="/menu-mobile-refine.css?v=20260906-menu1" />
   <link rel="stylesheet" href="/event/event.css?v=20260910-event2" />
   <link rel="stylesheet" href="/event/event-enhance.css?v=20260910-event3" />
 </head>
 <body class="event-page" data-event-view="list">
   <main class="shell">
     <header class="site-header">
-      <a class="site-brand" id="brandLink" href="/?lang=ko" aria-label="NewAnime">
+      <a class="site-brand" id="brandLink" href="/" aria-label="NewAnime">
         <img class="brand-logo" src="/assets/newanime-logo.svg?v=20260909-logo2" alt="NewAnime" width="1518" height="300" decoding="async" fetchpriority="high" />
       </a>
       <div class="site-header-spacer" aria-hidden="true"></div>
@@ -43,13 +44,40 @@
       </div>
       <div class="menu-wrap">
         <button class="menu-toggle" id="menuToggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="siteMenu">
-          <span class="menu-toggle-line" aria-hidden="true"></span><span class="menu-toggle-line" aria-hidden="true"></span><span class="menu-toggle-line" aria-hidden="true"></span>
+          <span class="menu-toggle-line" aria-hidden="true"></span>
+          <span class="menu-toggle-line" aria-hidden="true"></span>
+          <span class="menu-toggle-line" aria-hidden="true"></span>
         </button>
         <div class="site-menu hidden" id="siteMenu" role="menu">
-          <a class="site-menu-item" id="eventMenuLink" href="/event/?lang=ko" role="menuitem"><span class="site-menu-icon" aria-hidden="true">◇</span><span>EVENT</span></a>
-          <a class="site-menu-item" id="updatesMenuLink" href="/updates/?lang=ko" role="menuitem"><span class="site-menu-icon" aria-hidden="true">↻</span><span id="updatesMenuLabel">업데이트</span></a>
-          <a class="site-menu-item" href="mailto:admin@newani.me" role="menuitem"><span class="site-menu-icon" aria-hidden="true">@</span><span id="contactMenuLabel">문의</span></a>
-          <button class="site-menu-item" id="shareButton" type="button" role="menuitem"><span class="site-menu-icon" aria-hidden="true">↗</span><span id="shareMenuLabel">공유</span></button>
+          <a class="site-menu-item" id="eventMenuLink" href="/event/" role="menuitem">
+            <span class="site-menu-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 7.5h16v9H4z"></path>
+                <path d="M8 7.5v9"></path>
+                <path d="M16 7.5v9"></path>
+                <path d="M8 12h8"></path>
+              </svg>
+            </span>
+            <span id="eventMenuLabel">EVENT</span>
+          </a>
+          <a class="site-menu-item" id="updatesMenuLink" href="/updates/" role="menuitem">
+            <span class="site-menu-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 1 0 3-6.7"></path>
+                <path d="M3 4v5h5"></path>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+            </span>
+            <span id="updatesMenuLabel">UPDATES</span>
+          </a>
+          <a class="site-menu-item" href="mailto:admin@newani.me" role="menuitem">
+            <span class="site-menu-icon" aria-hidden="true">@</span>
+            <span id="contactMenuLabel">CONTACT</span>
+          </a>
+          <button class="site-menu-item" id="shareButton" type="button" role="menuitem">
+            <span class="site-menu-icon" aria-hidden="true">↗</span>
+            <span id="shareMenuLabel">SHARE</span>
+          </button>
         </div>
       </div>
     </header>
@@ -66,16 +94,16 @@
     </section>
 
     <footer>
-      <div>방영 예정 애니메이션과 극장판의 일정, PV, 공식 사이트, 스트리밍 정보를 한눈에 정리합니다.</div>
+      <div id="footerDescription">방영 예정 애니메이션과 극장판의 일정, PV, 공식 사이트, 스트리밍 정보를 한눈에 정리합니다.</div>
       <nav class="site-footer-links" aria-label="Site information">
-        <a href="/2026/?lang=ko">ARCHIVE</a>
-        <a href="/updates/?lang=ko">UPDATES</a>
-        <a id="aboutFooterLink" href="/about/?lang=ko">ABOUT</a>
-        <a id="privacyFooterLink" href="/privacy/?lang=ko">PRIVACY</a>
-        <a id="policyFooterLink" href="/policy/?lang=ko">POLICY</a>
+        <a id="archiveFooterLink" href="/2026/">ARCHIVE</a>
+        <a id="updatesFooterLink" href="/updates/">UPDATES</a>
+        <a id="aboutFooterLink" href="/about/">ABOUT</a>
+        <a id="privacyFooterLink" href="/privacy/">PRIVACY</a>
+        <a id="policyFooterLink" href="/policy/">POLICY</a>
         <a href="mailto:admin@newani.me">CONTACT</a>
       </nav>
-      <div>© 2026 NewAnime</div>
+      <div id="footerCopyright">© 2026 NewAnime</div>
     </footer>
   </main>
 
@@ -83,5 +111,6 @@
   <script src="/event/event.js?v=20260910-event2"></script>
   <script src="/event/event-enhance.js?v=20260910-event3"></script>
   <script src="/language-switcher-compact.js?v=20260910-event1"></script>
+  <script src="/event/event-chrome-sync.js?v=20260910-event1"></script>
 </body>
 </html>
