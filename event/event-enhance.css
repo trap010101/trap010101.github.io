@@ -69,6 +69,18 @@
   outline: none;
 }
 
+.event-condition {
+  white-space: pre-line;
+}
+
+.event-condition > strong {
+  display: inline-block;
+  margin-bottom: 7px;
+  color: #e4e8f7;
+  font-size: 12px;
+  letter-spacing: .01em;
+}
+
 .event-entry-locked {
   margin-top: 12px !important;
   padding-top: 11px;
