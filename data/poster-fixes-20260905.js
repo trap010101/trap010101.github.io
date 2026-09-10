@@ -53,8 +53,8 @@
     "unrewarded-villager-a": { src: "assets/posters/unrewarded-villager-a-v3.webp", updatedAt: "2026-09-07" },
     "glasses-sometimes-yankee-kun": { src: "assets/posters/glasses-sometimes-yankee-kun-v2.webp", updatedAt: "2026-09-07" },
     "we-are-aliens": { src: "assets/posters/we-are-aliens.webp", updatedAt: "2026-09-07" },
-    "a-certain-dark-sides-shared-living": { src: "assets/posters/a-certain-dark-sides-shared-living-user-20260910.webp", updatedAt: "2026-09-10" },
-    "nia-liston-the-merciless-maiden": { src: "assets/posters/nia-liston-the-merciless-maiden-user-20260910.webp", updatedAt: "2026-09-10" },
+    "a-certain-dark-sides-shared-living": { src: "assets/posters/a-certain-dark-sides-shared-living-user-20260910-v2.webp", updatedAt: "2026-09-10" },
+    "nia-liston-the-merciless-maiden": { src: "assets/posters/nia-liston-the-merciless-maiden-user-20260910-v2.webp", updatedAt: "2026-09-10" },
     "sss-class-revival-hunter": { src: "assets/posters/sss-class-revival-hunter.webp", updatedAt: "2026-09-10" }
   };
 
