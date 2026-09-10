@@ -18,20 +18,15 @@
     document.querySelectorAll('.wishlist-ranking-scope').forEach(node => node.remove());
 
     const foot = document.querySelector('.wishlist-ranking-foot');
-    if (foot) foot.textContent = copy[lang()] || copy.ko;
+    const nextFoot = copy[lang()] || copy.ko;
+    if (foot && foot.textContent !== nextFoot) foot.textContent = nextFoot;
 
     const rankingKicker = document.querySelector('.ranking-page .hero-kicker');
-    if (rankingKicker) rankingKicker.textContent = 'newani.me';
+    if (rankingKicker && rankingKicker.textContent !== 'newani.me') rankingKicker.textContent = 'newani.me';
   }
 
-  const mount = document.getElementById('wishlistRankingMount');
-  if (mount) {
-    new MutationObserver(() => queueMicrotask(apply)).observe(mount, {
-      childList: true,
-      subtree: true
-    });
-  }
-
+  // wishlist-ranking.js already owns rendering. Do not observe the ranking subtree here:
+  // changing text inside a MutationObserver callback can recursively enqueue itself.
   document.addEventListener('newanime:language', () => requestAnimationFrame(apply));
   apply();
 })();
