@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <title>NewAnime - 위시리스트 랭킹</title>
-  <meta name="description" content="NewAnime 이용자들의 방영 예정 애니메이션 위시리스트 전체 랭킹을 확인하세요. 집계는 매일 00:00(KST)에 공개 갱신됩니다." />
+  <title>NewAnime - 인기 순위</title>
+  <meta name="description" content="NewAnime 이용자들의 방영 예정 애니메이션 인기 순위를 확인하세요. 공개 집계는 매일 00:00(KST)에 갱신됩니다." />
   <link rel="canonical" href="https://newani.me/ranking/?lang=ko" />
   <link rel="alternate" hreflang="ko" href="https://newani.me/ranking/?lang=ko" />
   <link rel="alternate" hreflang="ja" href="https://newani.me/ranking/?lang=ja" />
@@ -18,7 +18,7 @@
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-jp.css" />
   <link rel="stylesheet" href="/styles.css?v=20260905-resource-icons1" />
   <link rel="stylesheet" href="/menu-mobile-refine.css?v=20260906-menu1" />
-  <link rel="stylesheet" href="/wishlist-ranking.css?v=20260910-ranking3" />
+  <link rel="stylesheet" href="/wishlist-ranking.css?v=20260910-ranking4" />
   <link rel="stylesheet" href="/google-login-button-fit.css?v=20260908-1" />
 </head>
 <body class="ranking-page">
@@ -58,9 +58,9 @@
     <div class="share-status hidden" id="shareStatus" role="status" aria-live="polite"></div>
 
     <section class="hero">
-      <div class="hero-kicker">newani.me</div>
-      <h1 id="rankingPageTitle">위시리스트 랭킹</h1>
-      <p id="rankingPageDescription">전날까지 누적된 위시리스트를 매일 00:00(KST)에 공개합니다.</p>
+      <div class="hero-kicker">newani.me · daily wishlist chart</div>
+      <h1 id="rankingPageTitle">인기 순위</h1>
+      <p id="rankingPageDescription">매일 00:00 KST 기준으로 갱신됩니다.</p>
     </section>
 
     <div id="wishlistRankingMount" data-ranking-mode="full"></div>
@@ -99,6 +99,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0"></script>
   <script src="/secondary-header.js?v=20260910-ranking1"></script>
   <script src="/secondary-auth-bootstrap.js?v=20260910-ranking1"></script>
-  <script src="/wishlist-ranking.js?v=20260910-ranking3"></script>
+  <script src="/wishlist-ranking.js?v=20260910-ranking4"></script>
 </body>
 </html>
