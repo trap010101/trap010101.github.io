@@ -14,21 +14,21 @@
     ko: {
       title: '인기 순위', scope: '전체', saved: '위시',
       empty: '아직 공개할 수 있는 인기 순위가 없습니다.', error: '랭킹 데이터를 불러오지 못했습니다.',
-      foot: '매일 00:00 KST 갱신 · 운영자 계정 제외', more: '전체 랭킹 보기',
+      foot: '랭킹에는 방영 예정인 작품만 표시 · 매일 00:00 KST 갱신', more: '전체 랭킹 보기',
       pageTitle: '인기 순위', pageDesc: '매일 00:00 KST 기준으로 갱신됩니다.',
       retiredTitle: '순위 외', retiredDesc: '공개가 완료된 작품', completed: '공개 완료'
     },
     ja: {
       title: '人気ランキング', scope: '全体', saved: '保存',
       empty: '公開できる人気ランキングはまだありません。', error: 'ランキングデータを読み込めませんでした。',
-      foot: '毎日00:00 KST更新 · 運営者アカウントを除外', more: '全ランキングを見る',
+      foot: 'ランキングには放送・公開予定作品のみ表示 · 毎日00:00 KST更新', more: '全ランキングを見る',
       pageTitle: '人気ランキング', pageDesc: '毎日00:00 KST時点で更新されます。',
       retiredTitle: 'ランキング対象外', retiredDesc: '公開・放送開始済みの作品', completed: '公開済み'
     },
     en: {
       title: 'Popularity Ranking', scope: 'All', saved: 'saved',
       empty: 'There is no publishable popularity ranking yet.', error: 'Could not load ranking data.',
-      foot: 'Updated daily at 00:00 KST · Operator account excluded', more: 'View full ranking',
+      foot: 'Ranking includes upcoming titles only · Updated daily at 00:00 KST', more: 'View full ranking',
       pageTitle: 'Popularity Ranking', pageDesc: 'Updated daily based on the 00:00 KST snapshot.',
       retiredTitle: 'Out of ranking', retiredDesc: 'Titles that have already premiered', completed: 'Released'
     }
@@ -110,7 +110,6 @@
     section.innerHTML = `
       <div class="wishlist-ranking-head">
         <h2 id="wishlistRankingTitle"></h2>
-        <span class="wishlist-ranking-scope"></span>
       </div>
       ${fullMode ? '<div class="wishlist-ranking-podium"></div>' : ''}
       <div class="wishlist-ranking-list"></div>

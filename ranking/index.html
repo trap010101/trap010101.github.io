@@ -19,14 +19,14 @@
   <link rel="stylesheet" href="/styles.css?v=20260905-resource-icons1" />
   <link rel="stylesheet" href="/menu-mobile-refine.css?v=20260906-menu1" />
   <link rel="stylesheet" href="/wishlist-ranking.css?v=20260910-ranking4" />
-  <link rel="stylesheet" href="/wishlist-ranking-refine.css?v=20260910-refine1" />
+  <link rel="stylesheet" href="/wishlist-ranking-refine.css?v=20260910-refine2" />
   <link rel="stylesheet" href="/google-login-button-fit.css?v=20260908-1" />
 </head>
-<body class="ranking-page">
+<body class="ranking-page" data-main-chrome-source="homepage">
   <main class="shell ranking-shell">
     <header class="site-header">
-      <a class="site-brand" href="/?lang=ko" aria-label="NewAnime">
-        <img class="brand-logo" src="/assets/newanime-logo.svg?v=20260909-logo2" alt="NewAnime" width="1518" height="300" decoding="async" fetchpriority="high" />
+      <a class="site-brand" href="/" aria-label="NewAnime">
+        <img class="brand-logo" src="assets/newanime-logo.svg?v=20260909-logo2" alt="NewAnime" width="1518" height="300" decoding="async" fetchpriority="high" />
       </a>
       <div class="site-header-spacer" aria-hidden="true"></div>
       <div class="language-row" id="languageSwitcher" aria-label="언어 선택">
@@ -41,15 +41,21 @@
           <span class="menu-toggle-line" aria-hidden="true"></span>
         </button>
         <div class="site-menu hidden" id="siteMenu" role="menu">
-          <a class="site-menu-item" href="/updates/?lang=ko" role="menuitem" id="updatesMenuLink">
-            <span class="site-menu-icon" aria-hidden="true">↻</span>
+          <a class="site-menu-item" href="/updates/" role="menuitem" id="updatesMenuLink">
+            <span class="site-menu-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 1 0 3-6.7"></path>
+                <path d="M3 4v5h5"></path>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+            </span>
             <span id="updatesMenuLabel">UPDATES</span>
           </a>
           <a class="site-menu-item" href="mailto:admin@newani.me" role="menuitem">
             <span class="site-menu-icon" aria-hidden="true">@</span>
             <span id="contactMenuLabel">CONTACT</span>
           </a>
-          <button class="site-menu-item" id="shareButton" data-secondary-share type="button" role="menuitem">
+          <button class="site-menu-item" id="shareButton" type="button" role="menuitem">
             <span class="site-menu-icon" aria-hidden="true">↗</span>
             <span id="shareMenuLabel">SHARE</span>
           </button>
@@ -69,11 +75,11 @@
     <footer>
       <div id="footerDescription">방영 예정 애니메이션과 극장판의 일정, PV, 공식 사이트, 스트리밍 정보를 한눈에 정리합니다.</div>
       <nav class="site-footer-links" aria-label="Site information">
-        <a id="archiveFooterLink" href="/2026/?lang=ko">ARCHIVE</a>
-        <a href="/updates/?lang=ko">UPDATES</a>
-        <a href="/about/?lang=ko">ABOUT</a>
-        <a href="/privacy/?lang=ko">PRIVACY</a>
-        <a href="/policy/?lang=ko">POLICY</a>
+        <a id="archiveFooterLink" href="/2026/">ARCHIVE</a>
+        <a href="/updates/">UPDATES</a>
+        <a href="/about/">ABOUT</a>
+        <a href="/privacy/">PRIVACY</a>
+        <a href="/policy/">POLICY</a>
         <a href="mailto:admin@newani.me">CONTACT</a>
       </nav>
       <div id="footerCopyright">© 2026 NewAnime</div>
@@ -98,10 +104,10 @@
   <script src="/data/schedule-updates-20260907.js?v=20260907-schedule2"></script>
   <script src="/auth-config.js?v=20260908-auth6"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0"></script>
-  <script src="/secondary-header.js?v=20260910-ranking1"></script>
+  <script src="/secondary-header.js?v=20260910-chrome2"></script>
   <script src="/secondary-auth-bootstrap.js?v=20260910-ranking1"></script>
-  <script src="/wishlist-ranking.js?v=20260910-ranking4"></script>
+  <script src="/wishlist-ranking.js?v=20260910-ranking5"></script>
   <script src="/wishlist-ranking-preview.js?v=20260910-preview1"></script>
-  <script src="/wishlist-ranking-refine.js?v=20260910-refine1"></script>
+  <script src="/wishlist-ranking-refine.js?v=20260910-refine2"></script>
 </body>
 </html>

@@ -132,7 +132,7 @@
       return;
     }
 
-    const shareButton = event.target.closest('#shareButton[data-secondary-share]');
+    const shareButton = event.target.closest('#shareButton');
     if (shareButton) {
       closeMenu();
       const description = document.querySelector('meta[name="description"]')?.content || '';
