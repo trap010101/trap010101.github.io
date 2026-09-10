@@ -76,6 +76,28 @@
   color: #7f899a !important;
 }
 
+.event-cancelled {
+  max-width: 560px;
+  padding: 18px;
+  border: 1px solid rgba(239,141,154,.18);
+  border-radius: 16px;
+  background: rgba(239,141,154,.045);
+}
+
+.event-cancelled h2 {
+  margin: 0 0 7px;
+  color: #f2dadd;
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+.event-cancelled p {
+  margin: 0 0 15px;
+  color: #9eaaae;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
 .event-page #authMenuButton {
   order: -1;
 }
@@ -87,5 +109,9 @@
 
   .event-browse-link {
     min-height: 34px;
+  }
+
+  .event-cancelled .event-secondary {
+    width: 100%;
   }
 }
