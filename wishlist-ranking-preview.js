@@ -37,19 +37,8 @@
     }
     .wishlist-rank-placeholder .wishlist-rank-poster,
     .wishlist-podium-placeholder .wishlist-podium-poster {
-      position: relative;
-      overflow: hidden;
       color: transparent;
       background: rgba(255,255,255,.045);
-    }
-    .wishlist-rank-placeholder .wishlist-rank-poster::after,
-    .wishlist-podium-placeholder .wishlist-podium-poster::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(105deg, transparent 25%, rgba(255,255,255,.055) 45%, transparent 65%);
-      transform: translateX(-100%);
-      animation: ranking-placeholder-sheen 2.4s ease-in-out infinite;
     }
     .wishlist-rank-placeholder .wishlist-rank-title,
     .wishlist-podium-placeholder .wishlist-podium-title {
@@ -59,14 +48,6 @@
     .wishlist-podium-placeholder .wishlist-podium-count {
       color: var(--muted);
       background: rgba(255,255,255,.035);
-    }
-    @keyframes ranking-placeholder-sheen {
-      0%, 45% { transform: translateX(-100%); }
-      75%, 100% { transform: translateX(100%); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .wishlist-rank-placeholder .wishlist-rank-poster::after,
-      .wishlist-podium-placeholder .wishlist-podium-poster::after { animation: none; }
     }
   `;
   document.head.appendChild(style);
@@ -111,9 +92,7 @@
 
     if (fullMode) {
       const podium = section.querySelector('.wishlist-ranking-podium');
-      if (podium) {
-        podium.replaceChildren(...[1, 2, 3].map(podiumPlaceholder));
-      }
+      if (podium) podium.replaceChildren(...[1, 2, 3].map(podiumPlaceholder));
       list.replaceChildren(...[4, 5, 6, 7, 8, 9, 10].map(listPlaceholder));
       list.hidden = false;
     } else {
@@ -126,5 +105,15 @@
   observer.observe(list, { childList: true });
   fillPreview();
 
-  document.addEventListener('newanime:language', () => requestAnimationFrame(fillPreview));
+  document.addEventListener('newanime:language', () => requestAnimationFrame(() => {
+    const hasPlaceholder = section.querySelector('.wishlist-rank-placeholder, .wishlist-podium-placeholder');
+    if (!hasPlaceholder) return;
+    if (fullMode) {
+      const podium = section.querySelector('.wishlist-ranking-podium');
+      if (podium) podium.replaceChildren(...[1, 2, 3].map(podiumPlaceholder));
+      list.replaceChildren(...[4, 5, 6, 7, 8, 9, 10].map(listPlaceholder));
+    } else {
+      list.replaceChildren(...[1, 2, 3, 4, 5].map(listPlaceholder));
+    }
+  }));
 })();
