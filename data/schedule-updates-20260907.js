@@ -1,4 +1,4 @@
-// October 2026 schedule refresh verified on 2026-09-07.
+// October 2026 schedule refresh. Base audit verified on 2026-09-07; latest exact announcements refreshed on 2026-09-10.
 // Keep exact premiere countdowns source-backed: never infer a first air date from a recurring weekday alone.
 (() => {
   "use strict";
@@ -99,10 +99,9 @@
     }
   });
 
-  // Rechecked October titles whose official sources still do not identify an
-  // exact first broadcast date. Record the fresh verification without inventing
-  // a countdown date. Where broadcasters publish a recurring slot, keep that
-  // detail in the source label only until the first-air date is explicitly stated.
+  // Rechecked October titles whose official sources still did not identify an
+  // exact first broadcast date at the 2026-09-07 audit. Later announcements
+  // are applied in the 2026-09-10 block below.
   const rechecked = {
     "looking-for-zombies": {
       url: "https://www.tv-asahi.co.jp/imanimation/",
@@ -198,5 +197,97 @@
     if (!anime) return;
     anime.links = anime.links || {};
     anime.links.official = url;
+  });
+
+  // Latest official announcements verified on September 10. These were either
+  // month-only on the site or had recurring slots without an explicit first-air date.
+  const LATEST_VERIFIED_AT = "2026-09-10";
+  const latestExact = {
+    "keroro-gunso-star": {
+      date: "2026-10-03",
+      time: "09:30",
+      url: "https://www.tv-tokyo.co.jp/anime/animetable/new_anime_list.html",
+      label: "TV Tokyo official — October 3, 09:30"
+    },
+    "a-tale-of-the-secret-saint": {
+      date: "2026-10-03",
+      time: "22:00",
+      url: "https://daiseijo-anime.com/",
+      label: "Official website — October 3, 22:00"
+    },
+    "black-clover-2nd-season": {
+      date: "2026-10-03",
+      time: "23:00",
+      url: "https://www.tv-tokyo.co.jp/anime/bclover/",
+      label: "TV Tokyo official — October 3, 23:00"
+    },
+    "hotel-inhumans-season-2": {
+      date: "2026-10-04",
+      time: "23:45",
+      url: "https://www.tv-tokyo.co.jp/anime/hotel-inhumans/",
+      label: "TV Tokyo official — Season 2 starts October 4, 23:45"
+    },
+    "banished-cheat-granting-mage-second-life": {
+      date: "2026-10-06",
+      time: "24:00",
+      url: "https://www.tv-tokyo.co.jp/anime/",
+      label: "TV Tokyo official — October 6, 24:00"
+    },
+    "ace-of-diamond-act-ii-second-season-part-2": {
+      date: "2026-10-11",
+      time: "17:30",
+      url: "https://www.tv-tokyo.co.jp/anime/diaace2_2nd/",
+      label: "TV Tokyo official — October 11, 17:30"
+    },
+    "dark-machine-the-animation": {
+      date: "2026-10-13",
+      time: "25:45",
+      url: "https://www.fujitv.co.jp/fujitv/news/20260949.html",
+      label: "Fuji TV official — October 13, 25:45"
+    }
+  };
+
+  Object.entries(latestExact).forEach(([id, update]) => {
+    const anime = byId.get(id);
+    if (!anime) return;
+
+    anime.release = anime.release || {};
+    anime.release.japan = {
+      status: "date",
+      year: Number(update.date.slice(0, 4)),
+      month: Number(update.date.slice(5, 7)),
+      day: Number(update.date.slice(8, 10))
+    };
+
+    anime.schedule = anime.schedule || {};
+    anime.schedule.premiere = {
+      type: "tv",
+      date: update.date,
+      time: update.time,
+      timezone: "Asia/Tokyo",
+      displayTime: update.time
+    };
+    anime.schedule.source = update.url;
+    anime.schedule.verifiedAt = LATEST_VERIFIED_AT;
+    anime.updatedAt = LATEST_VERIFIED_AT;
+
+    anime.verification = anime.verification || { verifiedAt: null, sources: [] };
+    anime.verification.verifiedAt = LATEST_VERIFIED_AT;
+    anime.verification.sources = Array.isArray(anime.verification.sources) ? anime.verification.sources : [];
+    const existing = anime.verification.sources.find(item => item.url === update.url);
+    if (existing) {
+      existing.type = "official-site";
+      existing.label = update.label;
+      existing.supports = ["release"];
+      existing.verifiedAt = LATEST_VERIFIED_AT;
+    } else {
+      anime.verification.sources.push({
+        type: "official-site",
+        url: update.url,
+        label: update.label,
+        supports: ["release"],
+        verifiedAt: LATEST_VERIFIED_AT
+      });
+    }
   });
 })();
