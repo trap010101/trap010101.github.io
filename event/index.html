@@ -5,149 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
   <title>이벤트 - NewAnime</title>
-  <meta name="description" content="NewAnime 이벤트 페이지입니다." />
-  <link rel="canonical" href="https://newani.me/event/?lang=ko" />
+  <meta name="description" content="NewAnime에서 진행 중이거나 공지된 이벤트를 확인하세요." />
+  <link rel="canonical" href="https://newani.me/event/" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=20260909-icon1" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css" />
-  <style>
-    :root { color-scheme: dark; }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: #0b0d13;
-      color: #f4f6fb;
-      font-family: Pretendard, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-    a { color: inherit; text-decoration: none; }
-    .shell { width: min(1080px, calc(100% - 32px)); margin: 0 auto; }
-    .header {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      border-bottom: 1px solid rgba(255,255,255,.07);
-    }
-    .brand { display: inline-flex; align-items: center; }
-    .brand img { width: 152px; height: auto; display: block; }
-    .spacer { flex: 1; }
-    .langs { display: flex; gap: 5px; }
-    .langs button {
-      height: 32px;
-      min-width: 40px;
-      border: 1px solid rgba(255,255,255,.09);
-      border-radius: 9px;
-      background: rgba(255,255,255,.035);
-      color: #8993a6;
-      font: inherit;
-      font-size: 10px;
-      font-weight: 900;
-      cursor: pointer;
-    }
-    .langs button.active { color: #fff; border-color: rgba(142,161,255,.3); background: rgba(142,161,255,.11); }
-    .main {
-      min-height: calc(100vh - 77px);
-      display: grid;
-      place-items: center;
-      padding: 72px 0 110px;
-    }
-    .card {
-      width: min(680px, 100%);
-      padding: clamp(32px, 7vw, 64px);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 24px;
-      background:
-        radial-gradient(circle at 20% 0%, rgba(127,145,255,.12), transparent 38%),
-        rgba(255,255,255,.025);
-      box-shadow: 0 28px 80px rgba(0,0,0,.28);
-      text-align: center;
-    }
-    .kicker { margin-bottom: 18px; color: #9aa6ff; font-size: 11px; font-weight: 900; letter-spacing: .16em; }
-    h1 { margin: 0; font-size: clamp(34px, 8vw, 58px); letter-spacing: -.045em; }
-    p { margin: 18px auto 0; max-width: 460px; color: #aeb6c6; font-size: 15px; line-height: 1.75; }
-    .home {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      margin-top: 30px;
-      padding: 0 18px;
-      border: 1px solid rgba(255,255,255,.11);
-      border-radius: 11px;
-      background: rgba(255,255,255,.05);
-      color: #eef1f8;
-      font-size: 13px;
-      font-weight: 800;
-    }
-    .home:hover, .home:focus-visible { background: rgba(255,255,255,.09); outline: none; }
-    @media (max-width: 560px) {
-      .shell { width: min(100% - 22px, 1080px); }
-      .header { min-height: 64px; }
-      .brand img { width: 132px; }
-      .main { min-height: calc(100vh - 65px); padding-block: 46px 80px; }
-      .card { border-radius: 19px; }
-    }
-  </style>
+  <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-jp.css" />
+  <link rel="stylesheet" href="/styles.css?v=20260910-event2" />
+  <link rel="stylesheet" href="/event/event.css?v=20260910-event2" />
 </head>
-<body>
-  <div class="shell">
-    <header class="header">
-      <a class="brand" href="/?lang=ko" id="brandLink" aria-label="NewAnime">
-        <img src="/assets/newanime-logo.svg?v=20260909-logo2" alt="NewAnime" />
+<body class="event-page" data-event-view="list">
+  <main class="shell">
+    <header class="site-header">
+      <a class="site-brand" id="brandLink" href="/?lang=ko" aria-label="NewAnime">
+        <img class="brand-logo" src="/assets/newanime-logo.svg?v=20260909-logo2" alt="NewAnime" width="1518" height="300" decoding="async" fetchpriority="high" />
       </a>
-      <div class="spacer"></div>
-      <div class="langs" aria-label="언어 선택">
-        <button type="button" data-lang="ko">KR</button>
-        <button type="button" data-lang="ja">JP</button>
-        <button type="button" data-lang="en">EN</button>
+      <div class="site-header-spacer" aria-hidden="true"></div>
+      <div class="language-row" id="languageSwitcher" aria-label="언어 선택">
+        <button class="language-btn active" type="button" data-lang="ko">KR</button>
+        <button class="language-btn" type="button" data-lang="ja">JP</button>
+        <button class="language-btn" type="button" data-lang="en">EN</button>
+      </div>
+      <div class="menu-wrap">
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="siteMenu">
+          <span class="menu-toggle-line" aria-hidden="true"></span><span class="menu-toggle-line" aria-hidden="true"></span><span class="menu-toggle-line" aria-hidden="true"></span>
+        </button>
+        <div class="site-menu hidden" id="siteMenu" role="menu">
+          <a class="site-menu-item" id="eventMenuLink" href="/event/?lang=ko" role="menuitem"><span class="site-menu-icon" aria-hidden="true">◇</span><span>EVENT</span></a>
+          <a class="site-menu-item" id="updatesMenuLink" href="/updates/?lang=ko" role="menuitem"><span class="site-menu-icon" aria-hidden="true">↻</span><span id="updatesMenuLabel">업데이트</span></a>
+          <a class="site-menu-item" href="mailto:admin@newani.me" role="menuitem"><span class="site-menu-icon" aria-hidden="true">@</span><span id="contactMenuLabel">문의</span></a>
+          <button class="site-menu-item" id="shareButton" type="button" role="menuitem"><span class="site-menu-icon" aria-hidden="true">↗</span><span id="shareMenuLabel">공유</span></button>
+        </div>
       </div>
     </header>
+    <div class="share-status hidden" id="shareStatus" role="status" aria-live="polite"></div>
 
-    <main class="main">
-      <section class="card" aria-labelledby="eventTitle">
-        <div class="kicker">NEWANI.ME · EVENT</div>
-        <h1 id="eventTitle">이벤트</h1>
-        <p id="eventDescription">이벤트 페이지를 준비하고 있습니다. 자세한 내용은 곧 이곳에서 안내합니다.</p>
-        <a class="home" id="homeLink" href="/?lang=ko">홈으로 돌아가기</a>
-      </section>
-    </main>
-  </div>
+    <section class="hero">
+      <div class="hero-kicker">NEWANI.ME · EVENT</div>
+      <h1 id="eventHeroTitle">이벤트</h1>
+      <p id="eventHeroDescription">NewAnime에서 진행 중이거나 공지된 이벤트를 확인할 수 있습니다.</p>
+    </section>
 
-  <script>
-    (() => {
-      const copy = {
-        ko: { title: '이벤트', description: '이벤트 페이지를 준비하고 있습니다. 자세한 내용은 곧 이곳에서 안내합니다.', home: '홈으로 돌아가기', pageTitle: '이벤트 - NewAnime', language: '언어 선택' },
-        ja: { title: 'イベント', description: 'イベントページを準備しています。詳細は近日こちらでお知らせします。', home: 'ホームへ戻る', pageTitle: 'イベント - NewAnime', language: '言語を選択' },
-        en: { title: 'Event', description: 'The event page is being prepared. Details will be announced here soon.', home: 'Back to home', pageTitle: 'Event - NewAnime', language: 'Select language' }
-      };
-      const params = new URLSearchParams(location.search);
-      let lang = params.get('lang');
-      if (!copy[lang]) {
-        try { lang = localStorage.getItem('animeScheduleLang'); } catch (_) {}
-      }
-      if (!copy[lang]) lang = navigator.language?.toLowerCase().startsWith('ja') ? 'ja' : navigator.language?.toLowerCase().startsWith('ko') ? 'ko' : 'en';
+    <section class="event-section" aria-live="polite">
+      <div class="event-list" id="eventList"></div>
+    </section>
 
-      const apply = next => {
-        lang = copy[next] ? next : 'ko';
-        try { localStorage.setItem('animeScheduleLang', lang); } catch (_) {}
-        document.documentElement.lang = lang;
-        document.title = copy[lang].pageTitle;
-        document.getElementById('eventTitle').textContent = copy[lang].title;
-        document.getElementById('eventDescription').textContent = copy[lang].description;
-        document.getElementById('homeLink').textContent = copy[lang].home;
-        document.getElementById('homeLink').href = `/?lang=${lang}`;
-        document.getElementById('brandLink').href = `/?lang=${lang}`;
-        document.querySelector('.langs').setAttribute('aria-label', copy[lang].language);
-        document.querySelectorAll('[data-lang]').forEach(button => button.classList.toggle('active', button.dataset.lang === lang));
-        const url = new URL(location.href);
-        url.searchParams.set('lang', lang);
-        history.replaceState(null, '', url);
-      };
+    <footer>
+      <div>방영 예정 애니메이션과 극장판의 일정, PV, 공식 사이트, 스트리밍 정보를 한눈에 정리합니다.</div>
+      <nav class="site-footer-links" aria-label="Site information">
+        <a href="/2026/?lang=ko">ARCHIVE</a>
+        <a href="/updates/?lang=ko">UPDATES</a>
+        <a id="aboutFooterLink" href="/about/?lang=ko">ABOUT</a>
+        <a id="privacyFooterLink" href="/privacy/?lang=ko">PRIVACY</a>
+        <a id="policyFooterLink" href="/policy/?lang=ko">POLICY</a>
+        <a href="mailto:admin@newani.me">CONTACT</a>
+      </nav>
+      <div>© 2026 NewAnime</div>
+    </footer>
+  </main>
 
-      document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => apply(button.dataset.lang)));
-      apply(lang);
-    })();
-  </script>
+  <script src="/auth-bootstrap.js?v=20260909-authboot4"></script>
+  <script src="/event/event.js?v=20260910-event2"></script>
+  <script src="/language-switcher-compact.js?v=20260910-event1"></script>
 </body>
 </html>
