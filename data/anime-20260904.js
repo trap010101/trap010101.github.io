@@ -580,3 +580,63 @@
     }
   });
 })();
+
+
+// 2026-09-10: SSS-Class Revival Hunter addition
+(() => {
+  if (!Array.isArray(window.animeData)) return;
+  if (window.animeData.some(anime => anime?.id === 'sss-class-revival-hunter')) return;
+
+  const verifiedAt = '2026-09-10';
+  window.animeData.push({
+    id: 'sss-class-revival-hunter',
+    title: {
+      ko: 'SSS급 죽어야 사는 헌터',
+      ja: '死して生きるSSS級ハンター',
+      en: 'SSS-Class Revival Hunter'
+    },
+    aliases: [
+      'SSS급 자살헌터',
+      'SSS-Class Suicide Hunter',
+      '死して生きるSSS級ハンター'
+    ],
+    release: {
+      japan: { status: 'month', year: 2027, month: 1, day: null },
+      korea: null,
+      global: null
+    },
+    productionStatus: 'scheduled',
+    season: '2027-winter',
+    format: 'tv',
+    origin: 'web-novel',
+    tags: ['new', 'webnovel', 'webtoon'],
+    poster: null,
+    links: {
+      pv: 'https://www.youtube.com/watch?v=3Jbetkscl7k',
+      official: 'https://sss-revival.com/',
+      streaming: null
+    },
+    streaming: {},
+    verification: {
+      verifiedAt,
+      sources: [
+        {
+          type: 'official-x',
+          url: 'https://x.com/SSShunter_anime/status/2097716912893694453',
+          label: 'Official X — TV anime announcement / January 2027',
+          supports: ['announcement', 'release', 'format', 'pv'],
+          verifiedAt
+        },
+        {
+          type: 'official-site',
+          url: 'https://sss-revival.com/',
+          label: 'Official website — January 2027 TV anime',
+          supports: ['announcement', 'release', 'format'],
+          verifiedAt
+        }
+      ]
+    },
+    createdAt: verifiedAt,
+    updatedAt: verifiedAt
+  });
+})();
