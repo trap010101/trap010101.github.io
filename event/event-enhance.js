@@ -11,7 +11,9 @@
       entryLocked: '이벤트 종료 후에는 응모 정보를 수정할 수 없습니다.',
       loginHint: 'Google 계정으로 로그인하면 참여 조건을 확인하고 응모할 수 있습니다.',
       cancelled: '위시리스트가 참여 조건보다 적어져 이벤트 참여가 취소되었습니다.',
-      cancelledDetail: '다시 3개 이상의 작품을 등록하면 이벤트에 다시 참여할 수 있습니다.'
+      cancelledDetail: '다시 3개 이상의 작품을 등록하면 이벤트에 다시 참여할 수 있습니다.',
+      notice: '유의사항',
+      completeEntry: '참여 완료'
     },
     ja: {
       loginParticipate: 'ログインして参加',
@@ -22,7 +24,9 @@
       entryLocked: 'イベント終了後は応募情報を変更できません。',
       loginHint: 'Googleアカウントでログインすると、参加条件を確認して応募できます。',
       cancelled: 'ウィッシュリストが参加条件を下回ったため、応募が取り消されました。',
-      cancelledDetail: '3作品以上を再登録すると、もう一度応募できます。'
+      cancelledDetail: '3作品以上を再登録すると、もう一度応募できます。',
+      notice: '注意事項',
+      completeEntry: '参加完了'
     },
     en: {
       loginParticipate: 'Sign in to participate',
@@ -33,7 +37,9 @@
       entryLocked: 'Entry details cannot be changed after the event ends.',
       loginHint: 'Sign in with Google to check eligibility and enter.',
       cancelled: 'Your event entry was cancelled because your wishlist fell below the requirement.',
-      cancelledDetail: 'Add at least three titles again to re-enter the event.'
+      cancelledDetail: 'Add at least three titles again to re-enter the event.',
+      notice: 'Notes',
+      completeEntry: 'Complete entry'
     }
   };
 
@@ -107,6 +113,11 @@
     if (ogUrl) ogUrl.content = canonical?.href || location.href;
   }
 
+  function decorateNotice() {
+    const heading = document.querySelector('.event-condition > strong');
+    if (heading && heading.textContent !== t('notice')) heading.textContent = t('notice');
+  }
+
   function renderProgress(panel) {
     if (!currentUser || definition?.eligibility_type !== 'wishlist_count' || wishlistCount === null || panel.querySelector('.event-complete')) {
       panel.querySelector('.event-eligibility-progress')?.remove();
@@ -143,6 +154,9 @@
     const submit = form.querySelector('button[type="submit"]');
     if (!email || !submit) return;
 
+    const initialText = submit.textContent.trim();
+    if (['완료하기', '完了する', 'Complete'].includes(initialText)) submit.textContent = t('completeEntry');
+
     const syncSubmit = () => {
       const hasValue = email.value.trim().length > 0;
       submit.disabled = !(hasValue && email.checkValidity());
@@ -177,6 +191,7 @@
   }
 
   function decorateActionPanel() {
+    decorateNotice();
     const panel = document.getElementById('eventActionPanel');
     if (!panel || !definition) return;
     const button = panel.querySelector('#participateButton');
