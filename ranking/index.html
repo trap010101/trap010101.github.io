@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>NewAnime - 위시리스트 랭킹</title>
+  <meta name="description" content="NewAnime 이용자들의 방영 예정 애니메이션 위시리스트 전체 랭킹을 확인하세요. 집계는 매일 00:00(KST)에 공개 갱신됩니다." />
+  <link rel="canonical" href="https://newani.me/ranking/?lang=ko" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=20260909-icon1" />
+  <link rel="preload" as="image" href="/assets/newanime-logo.svg?v=20260909-logo2" type="image/svg+xml" fetchpriority="high" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-jp.css" />
+  <link rel="stylesheet" href="/styles.css?v=20260905-resource-icons1" />
+  <link rel="stylesheet" href="/menu-mobile-refine.css?v=20260906-menu1" />
+  <link rel="stylesheet" href="/wishlist-ranking.css?v=20260910-ranking2" />
+  <link rel="stylesheet" href="/google-login-button-fit.css?v=20260908-1" />
+</head>
+<body class="ranking-page">
+  <main class="shell ranking-shell">
+    <header class="site-header">
+      <a class="site-brand" href="/?lang=ko" aria-label="NewAnime">
+        <img class="brand-logo" src="/assets/newanime-logo.svg?v=20260909-logo2" alt="NewAnime" width="1518" height="300" decoding="async" fetchpriority="high" />
+      </a>
+      <div class="site-header-spacer" aria-hidden="true"></div>
+      <div class="language-row" id="languageSwitcher" aria-label="언어 선택">
+        <button class="language-btn active" type="button" data-lang="ko">KR</button>
+        <button class="language-btn" type="button" data-lang="ja">JP</button>
+        <button class="language-btn" type="button" data-lang="en">EN</button>
+      </div>
+      <div class="menu-wrap">
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="siteMenu">
+          <span class="menu-toggle-line" aria-hidden="true"></span>
+          <span class="menu-toggle-line" aria-hidden="true"></span>
+          <span class="menu-toggle-line" aria-hidden="true"></span>
+        </button>
+        <div class="site-menu hidden" id="siteMenu" role="menu">
+          <a class="site-menu-item" href="/updates/?lang=ko" role="menuitem" id="updatesMenuLink">
+            <span class="site-menu-icon" aria-hidden="true">↻</span>
+            <span id="updatesMenuLabel">UPDATES</span>
+          </a>
+          <a class="site-menu-item" href="mailto:admin@newani.me" role="menuitem">
+            <span class="site-menu-icon" aria-hidden="true">@</span>
+            <span id="contactMenuLabel">CONTACT</span>
+          </a>
+          <button class="site-menu-item" id="shareButton" data-secondary-share type="button" role="menuitem">
+            <span class="site-menu-icon" aria-hidden="true">↗</span>
+            <span id="shareMenuLabel">SHARE</span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="share-status hidden" id="shareStatus" role="status" aria-live="polite"></div>
+
+    <section class="hero">
+      <div class="hero-kicker">newani.me</div>
+      <h1 id="rankingPageTitle">위시리스트 랭킹</h1>
+      <p id="rankingPageDescription">전날까지 누적된 위시리스트를 매일 00:00(KST)에 공개합니다.</p>
+    </section>
+
+    <div id="wishlistRankingMount" data-ranking-mode="full"></div>
+
+    <footer>
+      <div id="footerDescription">방영 예정 애니메이션과 극장판의 일정, PV, 공식 사이트, 스트리밍 정보를 한눈에 정리합니다.</div>
+      <nav class="site-footer-links" aria-label="Site information">
+        <a id="archiveFooterLink" href="/2026/?lang=ko">ARCHIVE</a>
+        <a href="/updates/?lang=ko">UPDATES</a>
+        <a href="/about/?lang=ko">ABOUT</a>
+        <a href="/privacy/?lang=ko">PRIVACY</a>
+        <a href="/policy/?lang=ko">POLICY</a>
+        <a href="mailto:admin@newani.me">CONTACT</a>
+      </nav>
+      <div id="footerCopyright">© 2026 NewAnime</div>
+    </footer>
+  </main>
+
+  <script src="/data/anime.js?v=20260907-schedule1"></script>
+  <script src="/data/anime-20260904.js?v=20260910-data3"></script>
+  <script src="/data/title-fixes-20260905.js?v=20260909-title2"></script>
+  <script src="/data/title-hotfix-20260909.js?v=20260909-1"></script>
+  <script src="/data/poster-fixes-20260905.js?v=20260907-posters4"></script>
+  <script src="/data/schedule-updates-20260907.js?v=20260907-schedule2"></script>
+  <script src="/auth-config.js?v=20260908-auth6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0"></script>
+  <script src="/secondary-header.js?v=20260910-ranking1"></script>
+  <script src="/secondary-auth-bootstrap.js?v=20260910-ranking1"></script>
+  <script src="/wishlist-ranking.js?v=20260910-ranking2"></script>
+</body>
+</html>
