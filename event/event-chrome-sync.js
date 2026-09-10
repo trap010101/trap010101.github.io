@@ -30,6 +30,46 @@
 
   const withLang = (path, lang) => `${path}?lang=${lang}`;
 
+  const loadStylesheet = href => {
+    const target = new URL(href, location.href);
+    const exists = [...document.querySelectorAll('link[rel="stylesheet"]')].some(link => {
+      const url = new URL(link.href, location.href);
+      return url.origin === target.origin && url.pathname === target.pathname;
+    });
+    if (exists) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    document.head.appendChild(link);
+  };
+
+  const loadScript = src => new Promise((resolve, reject) => {
+    const target = new URL(src, location.href);
+    const existing = [...document.scripts].find(script => {
+      if (!script.src) return false;
+      const url = new URL(script.src, location.href);
+      return url.origin === target.origin && url.pathname === target.pathname;
+    });
+    if (existing) {
+      if (existing.dataset.loaded === 'true' || existing.dataset.newanimeLoaded === 'true' || existing.readyState === 'complete') {
+        resolve(existing);
+        return;
+      }
+      existing.addEventListener('load', () => resolve(existing), { once: true });
+      existing.addEventListener('error', reject, { once: true });
+      return;
+    }
+    const script = document.createElement('script');
+    script.src = src;
+    script.async = false;
+    script.onload = () => {
+      script.dataset.loaded = 'true';
+      resolve(script);
+    };
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+
   function sync() {
     const lang = resolveLanguage();
     const text = COPY[lang];
@@ -57,6 +97,30 @@
     if (footerDescription) footerDescription.textContent = text.footer;
     if (menuToggle) menuToggle.setAttribute('aria-label', text.menu);
   }
+
+  loadStylesheet('/site-info.css?v=20260906-info1');
+  loadStylesheet('/wishlist.css?v=20260909-wishlist5');
+
+  const wishlistDataReady = Promise.resolve()
+    .then(() => loadScript('/data/anime.js?v=20260907-schedule1'))
+    .then(() => loadScript('/data/anime-20260904.js?v=20260910-data3'))
+    .then(() => loadScript('/data/title-fixes-20260905.js?v=20260909-title2'))
+    .then(() => loadScript('/data/title-hotfix-20260909.js?v=20260909-1'))
+    .then(() => loadScript('/data/poster-fixes-20260905.js?v=20260907-posters4'))
+    .then(() => loadScript('/data/schedule-updates-20260907.js?v=20260910-schedule3'));
+
+  const wishlistReady = wishlistDataReady
+    .then(() => loadScript('/wishlist.js?v=20260909-wishlist4'))
+    .then(() => {
+      const kicker = document.querySelector('.wishlist-kicker');
+      if (kicker) kicker.textContent = 'newani.me';
+    });
+
+  const authReady = Promise.resolve(window.NewAnimeAuthBootstrap?.ready || null);
+
+  Promise.all([wishlistReady, authReady])
+    .then(() => loadScript('/wishlist-sync.js?v=20260909-sync2'))
+    .catch(error => console.warn('Event wishlist UI could not be loaded.', error));
 
   const brand = document.getElementById('brandLink');
   brand?.addEventListener('click', async event => {
