@@ -24,6 +24,7 @@ on:
       - "scripts/enhance-streaming-regions.js"
       - "scripts/validate-regional-streaming.js"
       - "scripts/report-pv-streaming-gaps.js"
+      - "scripts/apply-pv-audit-20260910.js"
       - "scripts/generate-schedule-pages.js"
       - "scripts/generate-updates-page.js"
       - "scripts/normalize-updates-chrome.js"
@@ -87,6 +88,9 @@ jobs:
       - name: Bump poster-fixes cache version
         run: node scripts/bump-poster-fix-cache.js
 
+      - name: Apply follow-up official PV audit
+        run: node scripts/apply-pv-audit-20260910.js
+
       - name: Report PV and previous-series coverage gaps
         run: node scripts/report-pv-streaming-gaps.js
 
@@ -122,7 +126,7 @@ jobs:
 
       - name: Commit generated pages and localized posters
         run: |
-          git add assets/posters data/poster-fixes-20260905.js data/poster-asset-audit.json anime 2026 2027 updates/index.html sitemap.xml index.html about/index.html privacy/index.html policy/index.html
+          git add assets/posters data/poster-fixes-20260905.js data/poster-asset-audit.json data/streaming-policy-20260905.js anime 2026 2027 updates/index.html sitemap.xml index.html about/index.html privacy/index.html policy/index.html
           if git diff --cached --quiet; then
             echo "No generated changes."
             exit 0
@@ -132,4 +136,4 @@ jobs:
           git commit -m "Generate static anime pages and maintain poster assets [skip ci]"
           git push
 
-# 2026-09-10: keep updates page chrome and account features aligned with homepage
+# 2026-09-10: keep updates page chrome, account features, PVs, and catch-up links aligned
