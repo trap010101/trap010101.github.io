@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  if (!document.querySelector('.archive-shell, .detail-shell')) return;
+  if (!document.querySelector('.archive-shell, .detail-shell, .ranking-shell')) return;
 
   const script = src => new Promise((resolve, reject) => {
     const target = new URL(src, location.href);
@@ -93,10 +93,11 @@
   stylesheet('/wishlist.css?v=20260909-wishlist5');
 
   const wishlistReady = Promise.resolve()
-    .then(() => script('/language-switcher-compact.js?v=20260908-detail14'))
+    .then(() => script('/language-switcher-compact.js?v=20260910-ranking1'))
     .then(() => Array.isArray(window.animeData) ? null : script('/data/anime.js?v=20260907-schedule1'))
-    .then(() => script('/data/anime-20260904.js?v=20260905-data2'))
+    .then(() => script('/data/anime-20260904.js?v=20260910-data3'))
     .then(() => script('/data/title-fixes-20260905.js?v=20260909-title2'))
+    .then(() => script('/data/title-hotfix-20260909.js?v=20260909-1'))
     .then(() => script('/data/poster-fixes-20260905.js?v=20260907-posters4'))
     .then(() => script('/data/schedule-updates-20260907.js?v=20260907-schedule2'))
     .then(() => script('/wishlist.js?v=20260909-wishlist4'))
