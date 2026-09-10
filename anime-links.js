@@ -143,7 +143,7 @@
   authReady
     .then(() => loadScript('/wishlist-ranking.js?v=20260910-ranking5'))
     .then(() => loadScript('/wishlist-ranking-preview.js?v=20260910-preview1'))
-    .then(() => loadScript('/wishlist-ranking-refine.js?v=20260910-refine2'))
+    .then(() => loadScript('/wishlist-ranking-refine.js?v=20260910-refine4'))
     .catch(error => console.warn('Wishlist ranking could not be loaded.', error));
 
   Promise.all([wishlistReady, authReady])
