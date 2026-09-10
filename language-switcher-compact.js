@@ -1,3 +1,12 @@
+// Remove the one-time cache-busting token from the visible URL after navigation.
+(() => {
+  const url = new URL(window.location.href);
+  if (!url.searchParams.has('refresh')) return;
+  url.searchParams.delete('refresh');
+  const cleanUrl = `${url.pathname}${url.search}${url.hash}`;
+  window.history.replaceState(window.history.state, '', cleanUrl);
+})();
+
 // Compact collapsible language selector shared by the homepage, detail, and archive pages.
 (() => {
   const ROOT_SELECTOR = '#languageSwitcher';
