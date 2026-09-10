@@ -58,6 +58,22 @@
     if (menuToggle) menuToggle.setAttribute('aria-label', text.menu);
   }
 
+  const brand = document.getElementById('brandLink');
+  brand?.addEventListener('click', async event => {
+    event.preventDefault();
+    try {
+      if ('caches' in window) {
+        const cacheNames = await caches.keys();
+        await Promise.all(cacheNames.map(cacheName => caches.delete(cacheName)));
+      }
+    } catch (_) {}
+
+    const nextUrl = new URL('/', location.origin);
+    nextUrl.searchParams.set('lang', resolveLanguage());
+    nextUrl.searchParams.set('refresh', Date.now().toString(36));
+    location.replace(nextUrl);
+  });
+
   sync();
   document.addEventListener('newanime:language', () => requestAnimationFrame(sync));
   window.addEventListener('popstate', sync);
