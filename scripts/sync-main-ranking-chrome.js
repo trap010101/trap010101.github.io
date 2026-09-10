@@ -47,7 +47,7 @@ function syncRankingChrome() {
     .replace(/\/wishlist-ranking-refine\.css\?v=[^"']+/, '/wishlist-ranking-refine.css?v=20260910-refine2')
     .replace(/\/secondary-header\.js\?v=[^"']+/, '/secondary-header.js?v=20260910-chrome2')
     .replace(/\/wishlist-ranking\.js\?v=[^"']+/, '/wishlist-ranking.js?v=20260910-ranking5')
-    .replace(/\/wishlist-ranking-refine\.js\?v=[^"']+/, '/wishlist-ranking-refine.js?v=20260910-refine2');
+    .replace(/\/wishlist-ranking-refine\.js\?v=[^"']+/, '/wishlist-ranking-refine.js?v=20260910-refine4');
 
   if (!/href="\/site-info\.css\?v=[^"]+"/.test(ranking)) {
     ranking = ranking.replace(
@@ -79,7 +79,7 @@ function refineHomepageLoader() {
     .replace(/\/wishlist-ranking\.css\?v=[^"']+/, '/wishlist-ranking.css?v=20260910-ranking5')
     .replace(/\/wishlist-ranking-refine\.css\?v=[^"']+/, '/wishlist-ranking-refine.css?v=20260910-refine2')
     .replace(/\/wishlist-ranking\.js\?v=[^"']+/, '/wishlist-ranking.js?v=20260910-ranking5')
-    .replace(/\/wishlist-ranking-refine\.js\?v=[^"']+/, '/wishlist-ranking-refine.js?v=20260910-refine2');
+    .replace(/\/wishlist-ranking-refine\.js\?v=[^"']+/, '/wishlist-ranking-refine.js?v=20260910-refine4');
   return writeIfChanged(file, source);
 }
 
