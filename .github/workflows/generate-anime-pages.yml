@@ -17,6 +17,7 @@ on:
       - "data/title-fixes-20260905.js"
       - "data/poster-fixes-20260905.js"
       - "data/official-sites-20260905.js"
+      - "data/schedule-updates-20260907.js"
       - "data/pvs.js"
       - "data/pvs-audit-20260905.js"
       - "data/platforms.js"
@@ -28,12 +29,13 @@ on:
       - "data/updates*.js"
       - "data/changelog*.js"
       - "scripts/generate-anime-pages.js"
+      - "scripts/generate-schedule-pages.js"
+      - "scripts/sync-schedule-source-generators.js"
       - "scripts/enhance-streaming-regions.js"
       - "scripts/validate-regional-streaming.js"
       - "scripts/report-pv-streaming-gaps.js"
       - "scripts/apply-pv-audit-20260910.js"
       - "scripts/apply-anime-addition-20260910.js"
-      - "scripts/generate-schedule-pages.js"
       - "scripts/generate-updates-page.js"
       - "scripts/normalize-updates-chrome.js"
       - "scripts/sync-main-ranking-chrome.js"
@@ -109,6 +111,9 @@ jobs:
       - name: Validate regional streaming data
         run: node scripts/validate-regional-streaming.js
 
+      - name: Sync schedule overrides into static generators
+        run: node scripts/sync-schedule-source-generators.js
+
       - name: Generate anime detail pages
         run: node scripts/generate-anime-pages.js
 
@@ -141,7 +146,7 @@ jobs:
 
       - name: Commit generated pages and localized posters
         run: |
-          git add assets/posters data/anime-20260904.js data/poster-fixes-20260905.js data/poster-asset-audit.json data/streaming-policy-20260905.js anime 2026 2027 updates/index.html ranking/index.html sitemap.xml index.html about/index.html privacy/index.html policy/index.html wishlist-ranking.js wishlist-ranking-refine.js anime-links.js secondary-header.js
+          git add assets/posters data/anime-20260904.js data/poster-fixes-20260905.js data/poster-asset-audit.json data/streaming-policy-20260905.js anime 2026 2027 updates/index.html ranking/index.html sitemap.xml index.html about/index.html privacy/index.html policy/index.html wishlist-ranking.js wishlist-ranking-refine.js anime-links.js secondary-header.js scripts/generate-anime-pages.js scripts/generate-schedule-pages.js
           if git diff --cached --quiet; then
             echo "No generated changes."
             exit 0
