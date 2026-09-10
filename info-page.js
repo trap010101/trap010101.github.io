@@ -319,4 +319,5 @@
 
   applyLanguage(activeLang, !supportedLanguages.includes(requestedLang));
   loadScript("/language-switcher-compact.js?v=20260910-event1");
+  loadScript("/auth-bootstrap.js?v=20260909-authboot4");
 })();
