@@ -33,11 +33,11 @@ const sourceFiles = [
   'data/title-fixes-20260905.js',
   'data/poster-fixes-20260905.js',
   'data/official-sites-20260905.js',
-  'data/schedule-updates-20260907.js',
   'data/pvs.js',
   'data/pvs-audit-20260905.js',
   'data/platforms.js',
-  'data/streaming-policy-20260905.js'
+  'data/streaming-policy-20260905.js',
+  'data/schedule-updates-20260907.js'
 ];
 
 for (const relative of sourceFiles) {
