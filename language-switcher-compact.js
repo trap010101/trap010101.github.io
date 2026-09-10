@@ -230,6 +230,59 @@
   });
 })();
 
+// Shared EVENT entry for pages that use the standard hamburger menu.
+(() => {
+  const siteMenu = document.getElementById('siteMenu');
+  if (!siteMenu || document.getElementById('eventMenuLink')) return;
+
+  const labels = { ko: '이벤트', ja: 'イベント', en: 'EVENT' };
+  const resolveLanguage = () => {
+    const requested = new URLSearchParams(window.location.search).get('lang');
+    if (labels[requested]) return requested;
+
+    try {
+      const saved = window.localStorage.getItem('animeScheduleLang');
+      if (labels[saved]) return saved;
+    } catch (_) {}
+
+    const pageLanguage = String(document.documentElement.lang || '').toLowerCase().slice(0, 2);
+    return labels[pageLanguage] ? pageLanguage : 'ko';
+  };
+
+  const link = document.createElement('a');
+  link.className = 'site-menu-item';
+  link.id = 'eventMenuLink';
+  link.setAttribute('role', 'menuitem');
+  link.innerHTML = `
+    <span class="site-menu-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 7.5h16v9H4z"></path>
+        <path d="M8 7.5v9"></path>
+        <path d="M16 7.5v9"></path>
+        <path d="M8 12h8"></path>
+      </svg>
+    </span>
+    <span id="eventMenuLabel">EVENT</span>
+  `;
+
+  const updatesLink = document.getElementById('updatesMenuLink');
+  siteMenu.insertBefore(link, updatesLink || siteMenu.firstChild);
+
+  const sync = () => {
+    const language = resolveLanguage();
+    link.href = `/event/?lang=${language}`;
+    const label = document.getElementById('eventMenuLabel');
+    if (label) label.textContent = labels[language];
+  };
+
+  sync();
+  document.addEventListener('newanime:language', sync);
+  window.addEventListener('popstate', sync);
+  document.querySelectorAll('#languageSwitcher [data-lang]').forEach(button => {
+    button.addEventListener('click', () => requestAnimationFrame(sync));
+  });
+})();
+
 // Detail pages share the homepage account session and cloud wishlist.
 (() => {
   if (!document.querySelector('.detail-shell') || !window.ANIME_DETAIL) return;
