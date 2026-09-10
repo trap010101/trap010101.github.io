@@ -8,15 +8,20 @@
   function reorder(menu) {
     if (!menu) return;
     const desired = unique([
-      menu.querySelector('#updatesMenuLink') || menu.querySelector('[data-secondary-updates]'),
       menu.querySelector('#authMenuButton'),
       menu.querySelector('#wishlistMenuButton'),
+      menu.querySelector('#eventMenuLink'),
+      menu.querySelector('#updatesMenuLink') || menu.querySelector('[data-secondary-updates]'),
       menu.querySelector('a[href^="mailto:"]'),
       menu.querySelector('#shareButton') || menu.querySelector('[data-secondary-share]') || menu.querySelector('[data-share]')
     ]);
     if (!desired.length) return;
 
-    desired.forEach(node => menu.appendChild(node));
+    const children = [...menu.children];
+    const remainder = children.filter(node => !desired.includes(node));
+    const expected = [...desired, ...remainder];
+    if (children.length === expected.length && children.every((node, index) => node === expected[index])) return;
+    menu.replaceChildren(...expected);
   }
 
   function init(menu) {
