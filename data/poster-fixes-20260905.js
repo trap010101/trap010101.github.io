@@ -54,11 +54,11 @@
     "glasses-sometimes-yankee-kun": { src: "assets/posters/glasses-sometimes-yankee-kun-v2.webp", updatedAt: "2026-09-07" },
     "we-are-aliens": { src: "assets/posters/we-are-aliens.webp", updatedAt: "2026-09-07" },
     "a-certain-dark-sides-shared-living": {
-      src: "https://ogre.natalie.mu/media/news/comic/2026/0222/toaruitem_teaser.jpg?imdensity=1&impolicy=hq&imwidth=1460",
+      src: "assets/posters/a-certain-dark-sides-shared-living-v2.webp",
       updatedAt: "2026-09-10"
     },
     "nia-liston-the-merciless-maiden": {
-      src: "https://kyoranreijo-pr.com/wp/wp-content/uploads/2026/07/%E3%82%AD%E3%83%BC%E3%83%93%E3%82%B8%E3%83%A5%E3%82%A2%E3%83%AB-scaled.jpg",
+      src: "assets/posters/nia-liston-the-merciless-maiden-v2.webp",
       updatedAt: "2026-09-10"
     },
     "sss-class-revival-hunter": { src: "assets/posters/sss-class-revival-hunter.webp", updatedAt: "2026-09-10" }
