@@ -6,25 +6,33 @@
     : Array.isArray(window.animeData) ? window.animeData : [];
   if (!data.length) return;
 
+  const mount = document.getElementById('wishlistRankingMount');
+  const fullMode = mount?.dataset.rankingMode === 'full';
   const animeById = new Map(data.map(anime => [anime.id, anime]));
   const copy = {
     ko: {
-      kicker: 'Wishlist Ranking', title: '위시리스트 인기 순위', desc: 'NewAnime 이용자들이 가장 많이 저장한 작품입니다.',
+      kicker: 'Wishlist Ranking', title: fullMode ? '전체 위시리스트 랭킹' : '위시리스트 인기 순위',
+      desc: fullMode ? 'NewAnime 이용자들이 저장한 작품의 전체 랭킹입니다.' : 'NewAnime 이용자들이 가장 많이 저장한 작품 TOP 5입니다.',
       all: '전체', y2026: '2026', y2027: '2027', movie: '극장판', saved: '위시',
-      empty: '아직 집계된 위시리스트가 없습니다.', error: '랭킹 데이터를 불러오지 못했습니다.',
-      foot: '로그인 계정의 위시리스트를 익명 집계한 결과입니다. 개인별 저장 내역은 공개되지 않습니다.'
+      empty: '아직 공개할 수 있는 위시리스트 집계가 없습니다.', error: '랭킹 데이터를 불러오지 못했습니다.',
+      foot: '로그인 계정의 위시리스트를 익명 집계하며 운영자 계정은 제외합니다. 집계 결과는 매일 00:00(KST)에 한 번만 공개 갱신됩니다.',
+      more: '전체 랭킹 보기', pageTitle: '위시리스트 랭킹', pageDesc: '전날까지 누적된 위시리스트를 매일 00:00(KST)에 공개합니다.'
     },
     ja: {
-      kicker: 'Wishlist Ranking', title: 'ウィッシュリスト人気ランキング', desc: 'NewAnimeユーザーが最も多く保存した作品です。',
+      kicker: 'Wishlist Ranking', title: fullMode ? 'ウィッシュリスト総合ランキング' : 'ウィッシュリスト人気ランキング',
+      desc: fullMode ? 'NewAnimeユーザーが保存した作品の総合ランキングです。' : 'NewAnimeユーザーが最も多く保存した作品TOP 5です。',
       all: '全体', y2026: '2026', y2027: '2027', movie: '劇場版', saved: '保存',
-      empty: '集計されたウィッシュリストはまだありません。', error: 'ランキングデータを読み込めませんでした。',
-      foot: 'ログインユーザーのウィッシュリストを匿名で集計しています。個別の保存内容は公開されません。'
+      empty: '公開できるウィッシュリスト集計はまだありません。', error: 'ランキングデータを読み込めませんでした。',
+      foot: 'ログインユーザーのウィッシュリストを匿名集計し、運営者アカウントは除外します。集計結果は毎日00:00(KST)に一度だけ公開更新されます。',
+      more: '総合ランキングを見る', pageTitle: 'ウィッシュリストランキング', pageDesc: '前日までに累積したウィッシュリストを毎日00:00(KST)に公開します。'
     },
     en: {
-      kicker: 'Wishlist Ranking', title: 'Wishlist Ranking', desc: 'The titles NewAnime users have saved the most.',
+      kicker: 'Wishlist Ranking', title: fullMode ? 'Full Wishlist Ranking' : 'Wishlist Ranking',
+      desc: fullMode ? 'The full ranking of titles saved by NewAnime users.' : 'The TOP 5 titles saved most by NewAnime users.',
       all: 'All', y2026: '2026', y2027: '2027', movie: 'Movies', saved: 'saved',
-      empty: 'No wishlist data has been collected yet.', error: 'Could not load ranking data.',
-      foot: 'Counts are aggregated anonymously from signed-in wishlists. Individual user lists are never exposed.'
+      empty: 'There is no publishable wishlist ranking data yet.', error: 'Could not load ranking data.',
+      foot: 'Signed-in wishlists are aggregated anonymously and the operator account is excluded. Public counts refresh only once per day at 00:00 KST.',
+      more: 'View full ranking', pageTitle: 'Wishlist Ranking', pageDesc: 'Wishlist totals accumulated through the previous day are published daily at 00:00 KST.'
     }
   };
 
@@ -37,7 +45,7 @@
 
   const title = anime => anime?.title?.[lang()] || anime?.title?.ko || anime?.title?.ja || anime?.title?.en || anime?.id || '';
   const year = anime => Number(anime?.schedule?.premiere?.date?.slice?.(0, 4)) || Number(anime?.release?.japan?.year || anime?.release?.global?.year || anime?.release?.korea?.year) || null;
-  const isMovie = anime => Array.isArray(anime?.tags) && anime.tags.includes('movie') || anime?.type === 'movie' || anime?.format === 'movie';
+  const isMovie = anime => (Array.isArray(anime?.tags) && anime.tags.includes('movie')) || anime?.type === 'movie' || anime?.format === 'movie';
   const releaseKey = anime => {
     const date = anime?.schedule?.premiere?.date;
     if (/^\d{4}-\d{2}-\d{2}$/.test(date || '')) return date;
@@ -53,9 +61,15 @@
   let list;
 
   function createSection() {
-    if (document.querySelector('.wishlist-ranking')) return document.querySelector('.wishlist-ranking');
+    const existing = document.querySelector('.wishlist-ranking');
+    if (existing) {
+      section = existing;
+      list = section.querySelector('.wishlist-ranking-list');
+      return existing;
+    }
+
     section = document.createElement('section');
-    section.className = 'wishlist-ranking';
+    section.className = `wishlist-ranking${fullMode ? ' wishlist-ranking-full' : ''}`;
     section.setAttribute('aria-labelledby', 'wishlistRankingTitle');
     section.innerHTML = `
       <div class="wishlist-ranking-head">
@@ -72,9 +86,17 @@
         </div>
       </div>
       <div class="wishlist-ranking-list"></div>
-      <p class="wishlist-ranking-foot"></p>`;
-    const anchor = document.querySelector('.toolbar') || document.querySelector('.source-box');
-    anchor?.parentNode?.insertBefore(section, anchor);
+      <div class="wishlist-ranking-bottom">
+        <p class="wishlist-ranking-foot"></p>
+        ${fullMode ? '' : '<a class="wishlist-ranking-more" href="/ranking/"></a>'}
+      </div>`;
+
+    if (mount) mount.appendChild(section);
+    else {
+      const anchor = document.querySelector('.toolbar') || document.querySelector('.source-box');
+      anchor?.parentNode?.insertBefore(section, anchor);
+    }
+
     list = section.querySelector('.wishlist-ranking-list');
     section.addEventListener('click', event => {
       const button = event.target.closest('[data-ranking-filter]');
@@ -97,10 +119,22 @@
     section.querySelector('[data-ranking-filter="2027"]').textContent = t.y2027;
     section.querySelector('[data-ranking-filter="movie"]').textContent = t.movie;
     section.querySelector('.wishlist-ranking-foot').textContent = t.foot;
+    const more = section.querySelector('.wishlist-ranking-more');
+    if (more) {
+      more.textContent = t.more;
+      more.href = `/ranking/?lang=${lang()}`;
+    }
+    if (fullMode) {
+      const pageTitle = document.getElementById('rankingPageTitle');
+      const pageDesc = document.getElementById('rankingPageDescription');
+      if (pageTitle) pageTitle.textContent = t.pageTitle;
+      if (pageDesc) pageDesc.textContent = t.pageDesc;
+      document.title = `NewAnime - ${t.pageTitle}`;
+    }
   }
 
   function filteredRows() {
-    return rows.filter(row => {
+    const filtered = rows.filter(row => {
       const anime = animeById.get(row.anime_id);
       if (!anime) return false;
       if (activeFilter === '2026') return year(anime) === 2026;
@@ -112,7 +146,8 @@
       const aAnime = animeById.get(a.anime_id);
       const bAnime = animeById.get(b.anime_id);
       return releaseKey(aAnime).localeCompare(releaseKey(bAnime)) || title(aAnime).localeCompare(title(bAnime), lang());
-    }).slice(0, 10);
+    });
+    return fullMode ? filtered : filtered.slice(0, 5);
   }
 
   function render() {
@@ -177,10 +212,19 @@
 
   async function getClient() {
     if (window.NewAnimeAuth?.client) return window.NewAnimeAuth.client;
-    try {
-      await window.NewAnimeAuthBootstrap?.ready;
-    } catch (_) {}
-    return window.NewAnimeAuth?.client || null;
+    try { await window.NewAnimeAuthBootstrap?.ready; } catch (_) {}
+    if (window.NewAnimeAuth?.client) return window.NewAnimeAuth.client;
+
+    const config = window.NEWANIME_AUTH_CONFIG || {};
+    if (window.supabase?.createClient && config.supabaseUrl && config.supabaseAnonKey) {
+      if (!window.NewAnimeWishlistRankingClient) {
+        window.NewAnimeWishlistRankingClient = window.supabase.createClient(config.supabaseUrl, config.supabaseAnonKey, {
+          auth: { persistSession:false, autoRefreshToken:false, detectSessionInUrl:false }
+        });
+      }
+      return window.NewAnimeWishlistRankingClient;
+    }
+    return null;
   }
 
   async function load() {
@@ -196,7 +240,7 @@
       .select('anime_id,wishlist_count')
       .gt('wishlist_count', 0)
       .order('wishlist_count', { ascending: false })
-      .limit(250);
+      .limit(1000);
     if (error) {
       console.warn('Wishlist ranking could not be loaded.', error);
       list.innerHTML = `<div class="wishlist-ranking-error">${(copy[lang()] || copy.ko).error}</div>`;
@@ -206,16 +250,26 @@
     render();
   }
 
-  let reloadTimer = null;
-  const scheduleReload = () => {
-    clearTimeout(reloadTimer);
-    reloadTimer = setTimeout(load, 250);
-  };
+  if (fullMode) {
+    const params = new URLSearchParams(location.search);
+    const requested = params.get('lang');
+    if (['ko','ja','en'].includes(requested)) document.documentElement.lang = requested;
+
+    document.getElementById('languageSwitcher')?.addEventListener('click', event => {
+      const button = event.target.closest('[data-lang]');
+      if (!button) return;
+      const next = button.dataset.lang;
+      if (!['ko','ja','en'].includes(next)) return;
+      document.documentElement.lang = next;
+      document.querySelectorAll('#languageSwitcher [data-lang]').forEach(node => node.classList.toggle('active', node.dataset.lang === next));
+      const url = new URL(location.href);
+      url.searchParams.set('lang', next);
+      history.replaceState(history.state, '', url.pathname + url.search + url.hash);
+      document.dispatchEvent(new CustomEvent('newanime:language', { detail:{ lang:next } }));
+      render();
+    });
+  }
 
   document.addEventListener('newanime:language', render);
-  document.addEventListener('newanime:wishlist-sync', event => {
-    if (event.detail?.status === 'synced') scheduleReload();
-  });
-
   load();
 })();
