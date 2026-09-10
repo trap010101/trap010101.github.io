@@ -22,6 +22,14 @@ function extract(source, pattern, label) {
   return match[0];
 }
 
+function normalizeHomepageChromeAssets() {
+  let home = read(HOME);
+  home = home
+    .replace('href="assets/newanime-logo.svg?v=20260909-logo2"', 'href="/assets/newanime-logo.svg?v=20260909-logo2"')
+    .replace('src="assets/newanime-logo.svg?v=20260909-logo2"', 'src="/assets/newanime-logo.svg?v=20260909-logo2"');
+  return writeIfChanged(HOME, home);
+}
+
 function syncRankingChrome() {
   const home = read(HOME);
   const header = extract(home, /    <header class="site-header">[\s\S]*?    <\/header>/, 'header');
@@ -32,10 +40,11 @@ function syncRankingChrome() {
     .replace(/    <header class="site-header">[\s\S]*?    <\/header>/, header)
     .replace(/    <footer>[\s\S]*?    <\/footer>/, footer)
     .replace('<body class="ranking-page">', '<body class="ranking-page" data-main-chrome-source="homepage">')
-    .replace('/wishlist-ranking-refine.css?v=20260910-refine1', '/wishlist-ranking-refine.css?v=20260910-refine2')
-    .replace('/secondary-header.js?v=20260910-ranking1', '/secondary-header.js?v=20260910-chrome2')
-    .replace('/wishlist-ranking.js?v=20260910-ranking4', '/wishlist-ranking.js?v=20260910-ranking5')
-    .replace('/wishlist-ranking-refine.js?v=20260910-refine1', '/wishlist-ranking-refine.js?v=20260910-refine2');
+    .replace(/\/wishlist-ranking\.css\?v=[^"']+/, '/wishlist-ranking.css?v=20260910-ranking5')
+    .replace(/\/wishlist-ranking-refine\.css\?v=[^"']+/, '/wishlist-ranking-refine.css?v=20260910-refine2')
+    .replace(/\/secondary-header\.js\?v=[^"']+/, '/secondary-header.js?v=20260910-chrome2')
+    .replace(/\/wishlist-ranking\.js\?v=[^"']+/, '/wishlist-ranking.js?v=20260910-ranking5')
+    .replace(/\/wishlist-ranking-refine\.js\?v=[^"']+/, '/wishlist-ranking-refine.js?v=20260910-refine2');
 
   return writeIfChanged(RANKING, ranking);
 }
@@ -55,16 +64,16 @@ function refineHomepageLoader() {
   const file = path.join(ROOT, 'anime-links.js');
   let source = read(file);
   source = source
-    .replace('/wishlist-ranking.css?v=20260910-ranking4', '/wishlist-ranking.css?v=20260910-ranking5')
-    .replace('/wishlist-ranking-refine.css?v=20260910-refine1', '/wishlist-ranking-refine.css?v=20260910-refine2')
-    .replace('/wishlist-ranking.js?v=20260910-ranking4', '/wishlist-ranking.js?v=20260910-ranking5')
-    .replace('/wishlist-ranking-refine.js?v=20260910-refine1', '/wishlist-ranking-refine.js?v=20260910-refine2');
+    .replace(/\/wishlist-ranking\.css\?v=[^"']+/, '/wishlist-ranking.css?v=20260910-ranking5')
+    .replace(/\/wishlist-ranking-refine\.css\?v=[^"']+/, '/wishlist-ranking-refine.css?v=20260910-refine2')
+    .replace(/\/wishlist-ranking\.js\?v=[^"']+/, '/wishlist-ranking.js?v=20260910-ranking5')
+    .replace(/\/wishlist-ranking-refine\.js\?v=[^"']+/, '/wishlist-ranking-refine.js?v=20260910-refine2');
   return writeIfChanged(file, source);
 }
 
 function bustHomepageRankingLoader() {
   let home = read(HOME);
-  home = home.replace('anime-links.js?v=20260910-ranking4', 'anime-links.js?v=20260910-ranking5');
+  home = home.replace(/anime-links\.js\?v=[^"']+/, 'anime-links.js?v=20260910-ranking5');
   return writeIfChanged(HOME, home);
 }
 
@@ -76,6 +85,7 @@ function alignSecondaryHeaderWithHomepageMarkup() {
 }
 
 const changed = [
+  normalizeHomepageChromeAssets(),
   syncRankingChrome(),
   refineRankingSource(),
   refineHomepageLoader(),
