@@ -52,7 +52,8 @@
     "hokuto-no-ken-fist-of-the-north-star-part-2": { src: "assets/posters/hokuto-no-ken-fist-of-the-north-star-part-2-v2.webp", updatedAt: "2026-09-07" },
     "unrewarded-villager-a": { src: "assets/posters/unrewarded-villager-a-v3.webp", updatedAt: "2026-09-07" },
     "glasses-sometimes-yankee-kun": { src: "assets/posters/glasses-sometimes-yankee-kun-v2.webp", updatedAt: "2026-09-07" },
-    "we-are-aliens": { src: "assets/posters/we-are-aliens.webp", updatedAt: "2026-09-07" }
+    "we-are-aliens": { src: "assets/posters/we-are-aliens.webp", updatedAt: "2026-09-07" },
+    "sss-class-revival-hunter": { src: "assets/posters/sss-class-revival-hunter.webp", updatedAt: "2026-09-10" }
   };
 
   for (const anime of window.animeData) {
