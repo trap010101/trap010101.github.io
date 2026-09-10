@@ -101,37 +101,50 @@
     if (ogUrl) ogUrl.content = canonical?.href || location.href;
   }
 
+  function renderProgress(panel) {
+    if (!currentUser || definition?.eligibility_type !== 'wishlist_count' || wishlistCount === null || panel.querySelector('.event-complete')) {
+      panel.querySelector('.event-eligibility-progress')?.remove();
+      return;
+    }
+
+    const required = Math.max(0, Number(definition.eligibility_value || 0));
+    const remaining = Math.max(0, required - wishlistCount);
+    const key = `${getLang()}:${wishlistCount}:${required}:${remaining}`;
+    let block = panel.querySelector('.event-eligibility-progress');
+    if (block?.dataset.renderKey === key) return;
+
+    if (!block) {
+      block = document.createElement('div');
+      block.className = 'event-eligibility-progress';
+      panel.appendChild(block);
+    }
+    block.dataset.renderKey = key;
+    block.classList.toggle('is-ready', remaining === 0);
+    block.innerHTML = `
+      <div class="event-progress-head">
+        <strong>${escapeHtml(t('wishlistProgress')(wishlistCount, required))}</strong>
+        <span>${escapeHtml(remaining === 0 ? t('wishlistReady') : t('wishlistNeed')(remaining))}</span>
+      </div>
+      <div class="event-progress-track" aria-hidden="true"><span style="width:${required > 0 ? Math.min(100, wishlistCount / required * 100) : 100}%"></span></div>
+      ${remaining > 0 ? `<a class="event-browse-link" href="/?lang=${getLang()}">${escapeHtml(t('browseAnime'))} <span aria-hidden="true">→</span></a>` : ''}
+    `;
+  }
+
   function decorateActionPanel() {
     const panel = document.getElementById('eventActionPanel');
     if (!panel || !definition) return;
     const button = panel.querySelector('#participateButton');
     const ended = Date.now() > new Date(definition.ends_at).getTime();
 
-    panel.querySelector('.event-eligibility-progress')?.remove();
-
     if (button && isActive(definition) && !currentUser) {
       button.disabled = false;
       button.dataset.eventLoginCta = 'true';
-      button.textContent = t('loginParticipate');
+      if (button.textContent !== t('loginParticipate')) button.textContent = t('loginParticipate');
       const note = panel.querySelector('.event-action-note');
-      if (note) note.textContent = t('loginHint');
+      if (note && note.textContent !== t('loginHint')) note.textContent = t('loginHint');
     }
 
-    if (currentUser && definition.eligibility_type === 'wishlist_count' && wishlistCount !== null && !panel.querySelector('.event-complete')) {
-      const required = Math.max(0, Number(definition.eligibility_value || 0));
-      const remaining = Math.max(0, required - wishlistCount);
-      const block = document.createElement('div');
-      block.className = `event-eligibility-progress${remaining === 0 ? ' is-ready' : ''}`;
-      block.innerHTML = `
-        <div class="event-progress-head">
-          <strong>${escapeHtml(t('wishlistProgress')(wishlistCount, required))}</strong>
-          <span>${escapeHtml(remaining === 0 ? t('wishlistReady') : t('wishlistNeed')(remaining))}</span>
-        </div>
-        <div class="event-progress-track" aria-hidden="true"><span style="width:${required > 0 ? Math.min(100, wishlistCount / required * 100) : 100}%"></span></div>
-        ${remaining > 0 ? `<a class="event-browse-link" href="/?lang=${getLang()}">${escapeHtml(t('browseAnime'))} <span aria-hidden="true">→</span></a>` : ''}
-      `;
-      panel.appendChild(block);
-    }
+    renderProgress(panel);
 
     const complete = panel.querySelector('.event-complete');
     if (complete && ended) {
@@ -170,9 +183,13 @@
     } catch (_) {}
   }, true);
 
-  const observer = new MutationObserver(() => {
+  const observer = new MutationObserver(mutations => {
     if (!document.getElementById('eventActionPanel')) return;
-    refresh();
+    const relevant = mutations.some(mutation => {
+      if (mutation.target.closest?.('.event-eligibility-progress, .event-entry-locked')) return false;
+      return true;
+    });
+    if (relevant) refresh();
   });
   observer.observe(document.body, { childList: true, subtree: true });
 
