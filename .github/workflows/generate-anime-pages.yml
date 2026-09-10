@@ -17,11 +17,13 @@ on:
       - "data/streaming-jp-20260906.js"
       - "data/streaming-us-20260906.js"
       - "data/streaming-policy-20260905.js"
+      - "data/streaming-kr-20260908.js"
       - "data/updates*.js"
       - "data/changelog*.js"
       - "scripts/generate-anime-pages.js"
       - "scripts/enhance-streaming-regions.js"
       - "scripts/validate-regional-streaming.js"
+      - "scripts/report-pv-streaming-gaps.js"
       - "scripts/generate-schedule-pages.js"
       - "scripts/generate-updates-page.js"
       - "scripts/normalize-updates-chrome.js"
@@ -84,6 +86,9 @@ jobs:
 
       - name: Bump poster-fixes cache version
         run: node scripts/bump-poster-fix-cache.js
+
+      - name: Report PV and previous-series coverage gaps
+        run: node scripts/report-pv-streaming-gaps.js
 
       - name: Validate regional streaming data
         run: node scripts/validate-regional-streaming.js
