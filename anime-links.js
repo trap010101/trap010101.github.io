@@ -127,6 +127,7 @@
 
   loadStylesheet('/wishlist.css?v=20260909-wishlist5');
   loadStylesheet('/wishlist-ranking.css?v=20260910-ranking4');
+  loadStylesheet('/wishlist-ranking-refine.css?v=20260910-refine1');
   const wishlistReady = loadScript('/wishlist.js?v=20260909-wishlist4')
     .then(() => {
       const kicker = document.querySelector('.wishlist-kicker');
@@ -142,6 +143,7 @@
   authReady
     .then(() => loadScript('/wishlist-ranking.js?v=20260910-ranking4'))
     .then(() => loadScript('/wishlist-ranking-preview.js?v=20260910-preview1'))
+    .then(() => loadScript('/wishlist-ranking-refine.js?v=20260910-refine1'))
     .catch(error => console.warn('Wishlist ranking could not be loaded.', error));
 
   Promise.all([wishlistReady, authReady])
