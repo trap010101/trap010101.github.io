@@ -5,6 +5,13 @@ on:
     branches:
       - main
     paths:
+      - "index.html"
+      - "ranking/index.html"
+      - "wishlist-ranking.js"
+      - "wishlist-ranking-refine.js"
+      - "wishlist-ranking-refine.css"
+      - "anime-links.js"
+      - "secondary-header.js"
       - "data/anime.js"
       - "data/anime-20260904.js"
       - "data/title-fixes-20260905.js"
@@ -29,6 +36,7 @@ on:
       - "scripts/generate-schedule-pages.js"
       - "scripts/generate-updates-page.js"
       - "scripts/normalize-updates-chrome.js"
+      - "scripts/sync-main-ranking-chrome.js"
       - "scripts/enhance-anime-seo.js"
       - "scripts/normalize-seo-defaults.js"
       - "scripts/inject-title-wrap-css.js"
@@ -125,12 +133,15 @@ jobs:
       - name: Normalize updates page chrome
         run: node scripts/normalize-updates-chrome.js
 
+      - name: Sync ranking chrome and copy with homepage
+        run: node scripts/sync-main-ranking-chrome.js
+
       - name: Normalize external poster URLs
         run: node scripts/normalize-external-poster-urls.js
 
       - name: Commit generated pages and localized posters
         run: |
-          git add assets/posters data/anime-20260904.js data/poster-fixes-20260905.js data/poster-asset-audit.json data/streaming-policy-20260905.js anime 2026 2027 updates/index.html sitemap.xml index.html about/index.html privacy/index.html policy/index.html
+          git add assets/posters data/anime-20260904.js data/poster-fixes-20260905.js data/poster-asset-audit.json data/streaming-policy-20260905.js anime 2026 2027 updates/index.html ranking/index.html sitemap.xml index.html about/index.html privacy/index.html policy/index.html wishlist-ranking.js wishlist-ranking-refine.js anime-links.js secondary-header.js
           if git diff --cached --quiet; then
             echo "No generated changes."
             exit 0
@@ -140,4 +151,4 @@ jobs:
           git commit -m "Generate static anime pages and maintain poster assets [skip ci]"
           git push
 
-# 2026-09-10: keep updates page chrome, account features, PVs, catch-up links, and new announcements aligned
+# 2026-09-10: ranking page chrome is sourced from the homepage header/footer; new standalone pages should follow the same site-header/footer structure.
