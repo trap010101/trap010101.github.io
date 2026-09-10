@@ -126,7 +126,7 @@
   };
 
   loadStylesheet('/wishlist.css?v=20260909-wishlist5');
-  loadStylesheet('/wishlist-ranking.css?v=20260910-ranking2');
+  loadStylesheet('/wishlist-ranking.css?v=20260910-ranking3');
   const wishlistReady = loadScript('/wishlist.js?v=20260909-wishlist4')
     .then(() => {
       const kicker = document.querySelector('.wishlist-kicker');
@@ -140,7 +140,7 @@
   authReady.catch(error => console.warn('Authentication UI could not be loaded.', error));
 
   authReady
-    .then(() => loadScript('/wishlist-ranking.js?v=20260910-ranking2'))
+    .then(() => loadScript('/wishlist-ranking.js?v=20260910-ranking3'))
     .catch(error => console.warn('Wishlist ranking could not be loaded.', error));
 
   Promise.all([wishlistReady, authReady])
