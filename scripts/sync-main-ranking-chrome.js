@@ -34,6 +34,9 @@ function syncRankingChrome() {
   const home = read(HOME);
   const header = extract(home, /    <header class="site-header">[\s\S]*?    <\/header>/, 'header');
   const footer = extract(home, /    <footer>[\s\S]*?    <\/footer>/, 'footer');
+  const siteInfoHref = home.match(/<link rel="stylesheet" href="(?:\/)?site-info\.css\?v=[^"]+"\s*\/?>/)?.[0]
+    ?.replace('href="site-info.css', 'href="/site-info.css')
+    || '<link rel="stylesheet" href="/site-info.css?v=20260906-info1" />';
 
   let ranking = read(RANKING);
   ranking = ranking
@@ -45,6 +48,15 @@ function syncRankingChrome() {
     .replace(/\/secondary-header\.js\?v=[^"']+/, '/secondary-header.js?v=20260910-chrome2')
     .replace(/\/wishlist-ranking\.js\?v=[^"']+/, '/wishlist-ranking.js?v=20260910-ranking5')
     .replace(/\/wishlist-ranking-refine\.js\?v=[^"']+/, '/wishlist-ranking-refine.js?v=20260910-refine2');
+
+  if (!/href="\/site-info\.css\?v=[^"]+"/.test(ranking)) {
+    ranking = ranking.replace(
+      /(<link rel="stylesheet" href="\/styles\.css\?v=[^"]+"\s*\/?>)/,
+      `$1\n  ${siteInfoHref.trim()}`
+    );
+  } else {
+    ranking = ranking.replace(/<link rel="stylesheet" href="\/site-info\.css\?v=[^"]+"\s*\/?>/, siteInfoHref.trim());
+  }
 
   return writeIfChanged(RANKING, ranking);
 }
