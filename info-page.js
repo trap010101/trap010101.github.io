@@ -88,11 +88,37 @@
       const url = new URL(node.src, location.href);
       return url.origin === target.origin && url.pathname === target.pathname;
     });
-    if (existing) return;
-    const script = document.createElement("script");
-    script.src = src;
-    script.async = false;
-    document.head.appendChild(script);
+    if (existing) {
+      if (existing.dataset.newanimeLoaded === "true" || existing.readyState === "complete") return Promise.resolve(existing);
+      return new Promise((resolve, reject) => {
+        existing.addEventListener("load", () => resolve(existing), { once: true });
+        existing.addEventListener("error", reject, { once: true });
+      });
+    }
+    return new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = false;
+      script.onload = () => {
+        script.dataset.newanimeLoaded = "true";
+        resolve(script);
+      };
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+  }
+
+  function loadStylesheet(href) {
+    const target = new URL(href, location.href);
+    const exists = [...document.querySelectorAll('link[rel="stylesheet"]')].some(node => {
+      const url = new URL(node.href, location.href);
+      return url.origin === target.origin && url.pathname === target.pathname;
+    });
+    if (exists) return;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = href;
+    document.head.appendChild(link);
   }
 
   function prepareSharedShell() {
@@ -318,6 +344,28 @@
   });
 
   applyLanguage(activeLang, !supportedLanguages.includes(requestedLang));
-  loadScript("/language-switcher-compact.js?v=20260910-event1");
-  loadScript("/auth-bootstrap.js?v=20260909-authboot4");
+
+  loadScript("/language-switcher-compact.js?v=20260910-event1")
+    .catch(error => console.warn("Compact language selector could not be loaded.", error));
+
+  loadStylesheet("/wishlist.css?v=20260909-wishlist5");
+  const wishlistReady = Promise.resolve()
+    .then(() => loadScript("/data/anime.js?v=20260907-schedule1"))
+    .then(() => loadScript("/data/anime-20260904.js?v=20260910-data3"))
+    .then(() => loadScript("/data/title-fixes-20260905.js?v=20260909-title2"))
+    .then(() => loadScript("/data/title-hotfix-20260909.js?v=20260909-1"))
+    .then(() => loadScript("/data/poster-fixes-20260905.js?v=20260907-posters4"))
+    .then(() => loadScript("/data/schedule-updates-20260907.js?v=20260910-schedule3"))
+    .then(() => loadScript("/wishlist.js?v=20260909-wishlist4"));
+
+  const authReady = wishlistReady
+    .then(() => loadScript("/auth-bootstrap.js?v=20260909-authboot4"))
+    .then(() => window.NewAnimeAuthBootstrap?.ready || null);
+
+  wishlistReady.catch(error => console.warn("Wishlist UI could not be loaded.", error));
+  authReady.catch(error => console.warn("Authentication UI could not be loaded.", error));
+
+  Promise.all([wishlistReady, authReady])
+    .then(() => loadScript("/wishlist-sync.js?v=20260909-sync2"))
+    .catch(error => console.warn("Account / wishlist sync could not be loaded.", error));
 })();
