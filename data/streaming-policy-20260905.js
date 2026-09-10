@@ -225,3 +225,168 @@
     }
   });
 })();
+
+// 2026-09-10 follow-up official PV audit
+(() => {
+  if (!Array.isArray(window.animeData)) return;
+  const updates = {
+  "tenkaichi-the-greatest-warrior-under-the-rising-sun": [
+    {
+      "label": {
+        "ko": "티저 PV",
+        "ja": "ティザーPV",
+        "en": "Teaser PV"
+      },
+      "url": "https://www.youtube.com/watch?v=-TzkokU9NpY"
+    }
+  ],
+  "the-guy-she-was-interested-in-wasnt-a-guy-at-all": [
+    {
+      "label": {
+        "ko": "티저 PV",
+        "ja": "ティザーPV",
+        "en": "Teaser PV"
+      },
+      "url": "https://www.youtube.com/watch?v=qWJo5abhQ08"
+    }
+  ],
+  "the-strongest-magicmasters-retirement-plan": [
+    {
+      "label": {
+        "ko": "티저 PV",
+        "ja": "ティザーPV",
+        "en": "Teaser PV"
+      },
+      "url": "https://www.youtube.com/watch?v=nEnxKwK3UlY"
+    }
+  ],
+  "soara-and-the-house-of-monsters": [
+    {
+      "label": {
+        "ko": "울트라 티저 PV",
+        "ja": "ウルトラティザーPV",
+        "en": "Ultra Teaser PV"
+      },
+      "url": "https://www.youtube.com/watch?v=3XfUJwvfVq8"
+    }
+  ],
+  "dengeki-daisy": [
+    {
+      "label": {
+        "ko": "티저 PV",
+        "ja": "ティザーPV",
+        "en": "Teaser PV"
+      },
+      "url": "https://www.youtube.com/watch?v=Xjko6DPoACU"
+    }
+  ],
+  "fall-in-love-you-false-angels": [
+    {
+      "label": {
+        "ko": "티저 PV",
+        "ja": "ティザーPV",
+        "en": "Teaser PV"
+      },
+      "url": "https://www.youtube.com/watch?v=3OCNfYqUNlQ"
+    }
+  ],
+  "magic-to-the-limit-reincarnated-elf": [
+    {
+      "label": {
+        "ko": "티저 PV",
+        "ja": "ティザーPV",
+        "en": "Teaser PV"
+      },
+      "url": "https://www.youtube.com/watch?v=7AJmItoJgoM"
+    }
+  ],
+  "glasses-sometimes-yankee-kun": [
+    {
+      "label": {
+        "ko": "티저 PV",
+        "ja": "ティザーPV",
+        "en": "Teaser PV"
+      },
+      "url": "https://www.youtube.com/watch?v=qHM5FvelBxM"
+    }
+  ],
+  "lona": [
+    {
+      "label": {
+        "ko": "티저 PV",
+        "ja": "ティザーPV",
+        "en": "Teaser PV"
+      },
+      "url": "https://www.youtube.com/watch?v=zuhk83AZq2o"
+    }
+  ],
+  "we-are-aliens": [
+    {
+      "label": {
+        "ko": "본예고",
+        "ja": "本予告",
+        "en": "Main Trailer"
+      },
+      "url": "https://www.youtube.com/watch?v=0nk-AWBxZPc"
+    }
+  ],
+  "takopis-original-sin-thank-you-see-you-tomorrow": [
+    {
+      "label": {
+        "ko": "스페셜 영상",
+        "ja": "スペシャル映像",
+        "en": "Special Video"
+      },
+      "url": "https://www.youtube.com/watch?v=F0pqUWNrTXI"
+    }
+  ],
+  "hotel-inhumans-season-2": [
+    {
+      "label": {
+        "ko": "2기 본 PV",
+        "ja": "第2期 本PV",
+        "en": "Season 2 Main PV"
+      },
+      "url": "https://www.youtube.com/watch?v=JxeA37qVwnc"
+    }
+  ],
+  "beat-and-motion": [
+    {
+      "label": {
+        "ko": "PV 1탄",
+        "ja": "第1弾PV",
+        "en": "PV #1"
+      },
+      "url": "https://www.youtube.com/watch?v=NMSPJoELxw4"
+    }
+  ]
+};
+  const auditDate = '2026-09-10';
+  window.animeData.forEach(anime => {
+    const next = updates[anime.id];
+    if (!next?.length) return;
+    const existing = Array.isArray(anime.pvs) ? anime.pvs : [];
+    const seen = new Set();
+    anime.pvs = [...next, ...existing].filter(entry => {
+      if (!entry?.url || seen.has(entry.url)) return false;
+      seen.add(entry.url);
+      return true;
+    });
+    anime.links ||= {};
+    anime.links.pv = anime.pvs[0]?.url || null;
+    anime.verification ||= { verifiedAt:auditDate, sources:[] };
+    anime.verification.sources = Array.isArray(anime.verification.sources) ? anime.verification.sources : [];
+    next.forEach(entry => {
+      if (anime.verification.sources.some(source => source?.url === entry.url)) return;
+      anime.verification.sources.push({
+        type:'official-youtube',
+        url:entry.url,
+        label:`Official YouTube — ${entry.label?.en || 'PV'}`,
+        supports:['pv'],
+        verifiedAt:auditDate
+      });
+    });
+    anime.verification.verifiedAt = auditDate;
+    anime.updatedAt = auditDate;
+  });
+})();
