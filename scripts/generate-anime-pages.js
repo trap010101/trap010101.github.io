@@ -37,6 +37,7 @@ const sourceFiles = [
   'data/pvs-audit-20260905.js',
   'data/platforms.js',
   'data/streaming-policy-20260905.js',
+  'data/schedule-updates-20260907.js',
   'data/schedule-updates-20260907.js'
 ];
 
