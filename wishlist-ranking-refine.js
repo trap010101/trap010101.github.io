@@ -14,6 +14,47 @@
     return 'ko';
   };
 
+  function ensureHeaderActionStyles() {
+    if (document.getElementById('wishlistRankingHeaderActionStyle')) return;
+    const style = document.createElement('style');
+    style.id = 'wishlistRankingHeaderActionStyle';
+    style.textContent = `
+      .wishlist-ranking:not(.wishlist-ranking-full) .wishlist-ranking-head {
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .wishlist-ranking:not(.wishlist-ranking-full) .wishlist-ranking-head .wishlist-ranking-more {
+        flex: 0 0 auto;
+        width: auto;
+        min-width: 0;
+        min-height: 30px;
+        padding: 0 11px;
+        font-size: .6875rem;
+        line-height: 1;
+        white-space: nowrap;
+      }
+
+      .wishlist-ranking:not(.wishlist-ranking-full) .wishlist-ranking-bottom {
+        justify-content: flex-start;
+      }
+
+      @media (max-width: 680px) {
+        .wishlist-ranking:not(.wishlist-ranking-full) .wishlist-ranking-head {
+          gap: 12px;
+        }
+
+        .wishlist-ranking:not(.wishlist-ranking-full) .wishlist-ranking-head .wishlist-ranking-more {
+          width: auto;
+          min-height: 28px;
+          padding: 0 9px;
+          font-size: .625rem;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
   function apply() {
     document.querySelectorAll('.wishlist-ranking-scope').forEach(node => node.remove());
 
@@ -21,9 +62,16 @@
     const nextFoot = copy[lang()] || copy.ko;
     if (foot && foot.textContent !== nextFoot) foot.textContent = nextFoot;
 
+    const mainRanking = document.querySelector('.wishlist-ranking:not(.wishlist-ranking-full)');
+    const head = mainRanking?.querySelector('.wishlist-ranking-head');
+    const more = mainRanking?.querySelector('.wishlist-ranking-more');
+    if (head && more && more.parentElement !== head) head.appendChild(more);
+
     const rankingKicker = document.querySelector('.ranking-page .hero-kicker');
     if (rankingKicker && rankingKicker.textContent !== 'newani.me') rankingKicker.textContent = 'newani.me';
   }
+
+  ensureHeaderActionStyles();
 
   // wishlist-ranking.js already owns rendering. Do not observe the ranking subtree here:
   // changing text inside a MutationObserver callback can recursively enqueue itself.
