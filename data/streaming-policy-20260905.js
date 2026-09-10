@@ -3,6 +3,8 @@
 (() => {
   if (!Array.isArray(window.animeData)) return;
 
+  const auditDate = "2026-09-10";
+
   const verifiedPreviousStreaming = {
     "magical-sisters-lulutto-lilly-part-2": {
       watcha: "https://watcha.com/ko/contents/tEqZ5NY"
@@ -45,7 +47,105 @@
     },
     "haikyu-monsters-go-where": {
       laftel: "https://laftel.net/item/23661"
+    },
+
+    // Korean-region catch-up audit, verified again on 2026-09-10.
+    "maebashi-witches-emoemories": {
+      laftel: "https://laftel.net/item/42780"
+    },
+    "takopis-original-sin-thank-you-see-you-tomorrow": {
+      laftel: "https://laftel.net/item/42947"
+    },
+    "dark-gathering-season-2": {
+      watcha: "https://watcha.com/ko/contents/tE0mdAy"
+    },
+    "gate-season-2": {
+      watcha: "https://watcha.com/ko/contents/tR2gdvD"
+    },
+    "mobile-police-patlabor-ezy-file-3": {
+      watcha: "https://watcha.com/ko/contents/tEZYNOl"
+    },
+    "magical-girl-raising-project-restart": {
+      watcha: "https://watcha.com/ko-KR/contents/tP8kB3R"
+    },
+    "girls-und-panzer-motto-love-love-operation": {
+      netflix: "https://www.netflix.com/kr/title/80205232"
+    },
+    "new-kochikame": {
+      watcha: "https://watcha.com/ko/contents/tRzzWQR"
+    },
+    "dragon-ball-super-beerus": {
+      watcha: "https://watcha.com/ko/contents/tR2Y6vE"
+    },
+    "be-forever-yamato-rebel3199-chapter-7-rainbow-reincarnation": {
+      prime: "https://www.primevideo.com/-/ko/detail/0HT1XEEEQIKKWXFEC473NDA3OS"
+    },
+    "armored-trooper-votoms-the-gray-witch-part-1": {
+      watcha: "https://watcha.com/ko/contents/tR2zvvR"
+    },
+    "duel-masters-lost-condemned-boy": {
+      prime: "https://www.primevideo.com/-/ko/detail/0G7IJBXYGKNPMJ6WY41YLM2DBB"
     }
+  };
+
+  // Direct official PVs confirmed after the September 5 audit.
+  // These are title/rightsholder channels or direct videos cited by official title/publisher pages.
+  const verifiedPvUpdates = {
+    "ice-wall-season-2": [
+      { label: { ko: "2기 결정 PV", ja: "第2期決定PV", en: "Season 2 Announcement PV" }, url: "https://www.youtube.com/watch?v=7OHlkGNvEAE" }
+    ],
+    "arcanadea": [
+      { label: { ko: "티저 PV", ja: "ティザーPV", en: "Teaser PV" }, url: "https://www.youtube.com/watch?v=sS9vinZEljw" }
+    ],
+    "eleceed": [
+      { label: { ko: "메인 PV 1탄", ja: "メインPV第1弾", en: "Main PV #1" }, url: "https://www.youtube.com/watch?v=-Vqya5QAqpc" }
+    ],
+    "kindergarten-wars": [
+      { label: { ko: "애니메이션화 결정 PV", ja: "アニメ化決定PV", en: "Anime Announcement PV" }, url: "https://www.youtube.com/watch?v=jee6QLmJ2mU" }
+    ],
+    "red-riding-hood-detective-story": [
+      { label: { ko: "티저 PV", ja: "ティザーPV", en: "Teaser PV" }, url: "https://www.youtube.com/watch?v=547dTuVUBh4" }
+    ],
+    "new-kochikame": [
+      { label: { ko: "캐릭터 보이스 PV", ja: "キャラクターボイスPV", en: "Character Voice PV" }, url: "https://www.youtube.com/watch?v=hFxEBaTxkX0" }
+    ],
+    "hokuto-no-ken-fist-of-the-north-star-part-2": [
+      { label: { ko: "제2쿨 공개 영상", ja: "第2クール解禁映像", en: "Part 2 Reveal Video" }, url: "https://www.youtube.com/watch?v=zBc0oFYivr4" }
+    ],
+    "beat-and-motion": [
+      { label: { ko: "공식 트레일러", ja: "公式トレーラー", en: "Official Trailer" }, url: "https://www.youtube.com/watch?v=L1NnZectDzY" }
+    ],
+    "unlucky-to-strongest-man": [
+      { label: { ko: "이미지 PV", ja: "イメージPV", en: "Image PV" }, url: "https://www.youtube.com/watch?v=bFi74B3n80o" }
+    ],
+    "my-happy-marriage-special-2026": [
+      { label: { ko: "특별편 티저 PV", ja: "特別篇ティザーPV", en: "Special Episode Teaser PV" }, url: "https://www.youtube.com/watch?v=dXeAqvXkSUM" }
+    ],
+    "rebel-robotica": [
+      { label: { ko: "PV", ja: "PV", en: "PV" }, url: "https://www.youtube.com/watch?v=vO08c2n5fUY" }
+    ],
+    "free-fire-daybreak": [
+      { label: { ko: "공식 PV", ja: "公式PV", en: "Official PV" }, url: "https://www.youtube.com/watch?v=7M4HJfo8YxU" }
+    ],
+    "gate-season-2": [
+      { label: { ko: "PV 1탄", ja: "第1弾PV", en: "PV #1" }, url: "https://www.youtube.com/watch?v=2P40hX1vK1E" }
+    ],
+    "cardfight-vanguard-divinez-fate-star-war-arc": [
+      { label: { ko: "시리즈 완결편 PV", ja: "シリーズ完結編PV", en: "Series Finale PV" }, url: "https://www.youtube.com/watch?v=zxgmRfemSMI" }
+    ],
+    "maebashi-witches-emoemories": [
+      { label: { ko: "극장판 본예고", ja: "劇場版本予告", en: "Movie Main Trailer" }, url: "https://www.youtube.com/watch?v=txDov2HH7xM" }
+    ],
+    "inherit-the-winds-the-beginning": [
+      { label: { ko: "PV 1탄", ja: "PV第1弾", en: "PV #1" }, url: "https://www.youtube.com/watch?v=RWUIMxHyNoM" }
+    ]
+  };
+
+  const streamingLabels = {
+    netflix: "Netflix",
+    laftel: "Laftel",
+    prime: "Prime Video",
+    watcha: "WATCHA"
   };
 
   window.animeData.forEach(anime => {
@@ -77,23 +177,51 @@
     if (anime.links) {
       anime.links.streaming = null;
     }
-  });
 
-  const luluttoLilly = window.animeData.find(item => item.id === "magical-sisters-lulutto-lilly-part-2");
-  if (luluttoLilly) {
-    luluttoLilly.verification ||= { verifiedAt: "2026-09-07", sources: [] };
-    luluttoLilly.verification.sources ||= [];
-
-    const watchaUrl = verifiedPreviousStreaming["magical-sisters-lulutto-lilly-part-2"].watcha;
-    if (!luluttoLilly.verification.sources.some(source => source?.url === watchaUrl)) {
-      luluttoLilly.verification.sources.push({
-        type: "streaming-platform",
-        url: watchaUrl,
-        label: "WATCHA — previous cour",
-        supports: ["previous-streaming"],
-        verifiedAt: "2026-09-07"
+    const pvAdditions = verifiedPvUpdates[anime.id] || [];
+    if (pvAdditions.length) {
+      const existing = Array.isArray(anime.pvs) ? anime.pvs : [];
+      const seen = new Set();
+      anime.pvs = [...pvAdditions, ...existing].filter(entry => {
+        if (!entry?.url || seen.has(entry.url)) return false;
+        seen.add(entry.url);
+        return true;
       });
+      anime.links ||= {};
+      anime.links.pv = anime.pvs[0]?.url || null;
     }
-    luluttoLilly.verification.verifiedAt = "2026-09-07";
-  }
+
+    const auditedStreaming = verifiedPreviousStreaming[anime.id];
+    if (auditedStreaming || pvAdditions.length) {
+      anime.verification ||= { verifiedAt: auditDate, sources: [] };
+      anime.verification.sources = Array.isArray(anime.verification.sources) ? anime.verification.sources : [];
+
+      if (auditedStreaming) {
+        Object.entries(auditedStreaming).forEach(([platform, url]) => {
+          if (anime.verification.sources.some(source => source?.url === url)) return;
+          anime.verification.sources.push({
+            type: "streaming-platform",
+            url,
+            label: `${streamingLabels[platform] || platform} — previous series`,
+            supports: ["previous-streaming"],
+            verifiedAt: auditDate
+          });
+        });
+      }
+
+      pvAdditions.forEach(entry => {
+        if (anime.verification.sources.some(source => source?.url === entry.url)) return;
+        anime.verification.sources.push({
+          type: "official-youtube",
+          url: entry.url,
+          label: `Official YouTube — ${entry.label?.en || "PV"}`,
+          supports: ["pv"],
+          verifiedAt: auditDate
+        });
+      });
+
+      anime.verification.verifiedAt = auditDate;
+      anime.updatedAt = auditDate;
+    }
+  });
 })();
