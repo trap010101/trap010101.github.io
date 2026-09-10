@@ -1,0 +1,91 @@
+.event-eligibility-progress {
+  margin-top: 14px;
+  padding: 14px 15px;
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 14px;
+  background: rgba(255,255,255,.022);
+}
+
+.event-eligibility-progress.is-ready {
+  border-color: rgba(115,221,177,.16);
+  background: rgba(115,221,177,.04);
+}
+
+.event-progress-head {
+  display: grid;
+  gap: 4px;
+}
+
+.event-progress-head strong {
+  color: #e9ecf4;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.event-progress-head span {
+  color: #8e98aa;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.event-eligibility-progress.is-ready .event-progress-head span {
+  color: #a7d9c4;
+}
+
+.event-progress-track {
+  overflow: hidden;
+  height: 5px;
+  margin-top: 11px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.055);
+}
+
+.event-progress-track > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(142,161,255,.8), rgba(181,145,255,.9));
+  transition: width .25s ease;
+}
+
+.event-eligibility-progress.is-ready .event-progress-track > span {
+  background: linear-gradient(90deg, rgba(103,209,165,.8), rgba(135,226,187,.95));
+}
+
+.event-browse-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 12px;
+  color: #bdc6ff;
+  font-size: 11px;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.event-browse-link:hover,
+.event-browse-link:focus-visible {
+  color: #fff;
+  outline: none;
+}
+
+.event-entry-locked {
+  margin-top: 12px !important;
+  padding-top: 11px;
+  border-top: 1px solid rgba(255,255,255,.055);
+  color: #7f899a !important;
+}
+
+.event-page #authMenuButton {
+  order: -1;
+}
+
+@media (max-width: 640px) {
+  .event-eligibility-progress {
+    padding: 13px;
+  }
+
+  .event-browse-link {
+    min-height: 34px;
+  }
+}
