@@ -7,6 +7,10 @@
   <title>NewAnime - 위시리스트 랭킹</title>
   <meta name="description" content="NewAnime 이용자들의 방영 예정 애니메이션 위시리스트 전체 랭킹을 확인하세요. 집계는 매일 00:00(KST)에 공개 갱신됩니다." />
   <link rel="canonical" href="https://newani.me/ranking/?lang=ko" />
+  <link rel="alternate" hreflang="ko" href="https://newani.me/ranking/?lang=ko" />
+  <link rel="alternate" hreflang="ja" href="https://newani.me/ranking/?lang=ja" />
+  <link rel="alternate" hreflang="en" href="https://newani.me/ranking/?lang=en" />
+  <link rel="alternate" hreflang="x-default" href="https://newani.me/ranking/?lang=ko" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=20260909-icon1" />
   <link rel="preload" as="image" href="/assets/newanime-logo.svg?v=20260909-logo2" type="image/svg+xml" fetchpriority="high" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
@@ -75,6 +79,16 @@
     </footer>
   </main>
 
+  <script>
+    (() => {
+      const requested = new URLSearchParams(location.search).get('lang');
+      if (!['ko','ja','en'].includes(requested)) return;
+      document.documentElement.lang = requested;
+      document.querySelectorAll('#languageSwitcher [data-lang]').forEach(button => {
+        button.classList.toggle('active', button.dataset.lang === requested);
+      });
+    })();
+  </script>
   <script src="/data/anime.js?v=20260907-schedule1"></script>
   <script src="/data/anime-20260904.js?v=20260910-data3"></script>
   <script src="/data/title-fixes-20260905.js?v=20260909-title2"></script>
