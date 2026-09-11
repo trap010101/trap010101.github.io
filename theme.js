@@ -6,6 +6,8 @@
   const STORAGE_KEY = 'newanimeTheme';
   const VALID = new Set(['system', 'light', 'dark']);
   const systemDark = window.matchMedia?.('(prefers-color-scheme: dark)');
+  const DARK_LOGO_SRC = '/assets/newanime-logo.svg?v=20260909-logo2';
+  const LIGHT_LOGO_SRC = '/assets/newanime-logo-light.svg?v=20260911-light1';
 
   const COPY = {
     ko: {
@@ -721,9 +723,9 @@
     }
     html[data-theme="light"] body {
       background:
-        radial-gradient(circle at 11% 4%, rgba(113,94,215,.055), transparent 28rem),
-        radial-gradient(circle at 92% 14%, rgba(72,137,219,.045), transparent 32rem),
-        linear-gradient(180deg, #fafbfc 0%, #f6f7f9 48%, #f8f9fb 100%) !important;
+        radial-gradient(circle at 9% 2%, rgba(81,69,113,.075), transparent 27rem),
+        radial-gradient(circle at 92% 18%, rgba(49,89,117,.070), transparent 34rem),
+        linear-gradient(135deg, #fffefe 0%, #f8f6fb 46%, #f2f7fa 100%) !important;
     }
     html[data-theme="light"] .site-header {
       border-color: rgba(31,37,48,.095) !important;
@@ -736,7 +738,7 @@
       box-shadow: inset 0 0 0 1px rgba(31,37,48,.045);
     }
     html[data-theme="light"] .brand-logo {
-      filter: brightness(.56) saturate(.92) contrast(1.12) drop-shadow(0 1px 0 rgba(255,255,255,.5)) !important;
+      filter: none !important;
     }
     html[data-theme="light"] .hero,
     html[data-theme="light"] .archive-hero,
@@ -744,7 +746,7 @@
     html[data-theme="light"] .ranking-page .hero {
       border-color: rgba(31,37,48,.095) !important;
       background:
-        linear-gradient(135deg, rgba(108,91,205,.055), rgba(73,125,195,.025)),
+        linear-gradient(120deg, rgba(81,69,113,.078) 0%, rgba(255,255,255,.92) 48%, rgba(49,89,117,.064) 100%),
         #ffffff !important;
       box-shadow: 0 14px 40px rgba(38,45,61,.085) !important;
     }
@@ -817,7 +819,8 @@
     html[data-theme="light"] .detail-account-dialog {
       border-color: rgba(31,37,48,.10) !important;
       background:
-        radial-gradient(circle at 90% 0%, rgba(93,112,215,.055), transparent 17rem),
+        radial-gradient(circle at 8% 0%, rgba(81,69,113,.055), transparent 15rem),
+        radial-gradient(circle at 96% 0%, rgba(49,89,117,.050), transparent 18rem),
         #ffffff !important;
       box-shadow: 0 26px 72px rgba(38,45,61,.18) !important;
     }
@@ -859,7 +862,8 @@
       color: var(--text) !important;
       border-color: rgba(31,37,48,.10) !important;
       background:
-        radial-gradient(circle at 18% -10%, rgba(93,112,215,.085), transparent 38%),
+        radial-gradient(circle at 14% -10%, rgba(81,69,113,.075), transparent 36%),
+        radial-gradient(circle at 92% 8%, rgba(49,89,117,.045), transparent 28%),
         #ffffff !important;
       box-shadow: 0 26px 72px rgba(38,45,61,.18) !important;
     }
@@ -940,6 +944,13 @@
     meta.content = theme;
   }
 
+  function syncLogo(theme) {
+    const expected = theme === 'light' ? LIGHT_LOGO_SRC : DARK_LOGO_SRC;
+    document.querySelectorAll('img.brand-logo').forEach(img => {
+      if (img.getAttribute('src') !== expected) img.setAttribute('src', expected);
+    });
+  }
+
   function syncControls() {
     document.querySelectorAll('[data-theme-choice]').forEach(button => {
       const selected = button.dataset.themeChoice === preference;
@@ -955,6 +966,7 @@
     document.documentElement.dataset.themePreference = preference;
     document.documentElement.style.colorScheme = theme;
     syncMeta(theme);
+    syncLogo(theme);
     syncControls();
     if (notify) {
       document.dispatchEvent(new CustomEvent('newanime:theme', {

@@ -93,7 +93,7 @@
   stylesheet('/wishlist.css?v=20260909-wishlist5');
 
   const wishlistReady = Promise.resolve()
-    .then(() => script('/language-switcher-compact.js?v=20260911-theme4'))
+    .then(() => script('/language-switcher-compact.js?v=20260911-theme5'))
     .then(() => Array.isArray(window.animeData) ? null : script('/data/anime.js?v=20260907-schedule1'))
     .then(() => script('/data/anime-20260904.js?v=20260910-data3'))
     .then(() => script('/data/title-fixes-20260905.js?v=20260909-title2'))
