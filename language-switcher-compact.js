@@ -1,3 +1,23 @@
+// Shared theme bootstrap. The full controller is loaded once per page.
+(() => {
+  try {
+    const saved = localStorage.getItem('newanimeTheme');
+    const preference = ['system', 'light', 'dark'].includes(saved) ? saved : 'system';
+    const theme = preference === 'system'
+      ? (window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+      : preference;
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.dataset.themePreference = preference;
+  } catch (_) {}
+
+  if (window.NewAnimeTheme?.ready || document.querySelector('script[data-newanime-theme-loader]')) return;
+  const script = document.createElement('script');
+  script.src = '/theme.js?v=20260911-theme1';
+  script.async = false;
+  script.dataset.newanimeThemeLoader = 'true';
+  document.head.appendChild(script);
+})();
+
 // Remove the one-time cache-busting token from the visible URL after navigation.
 (() => {
   const url = new URL(window.location.href);
@@ -7,7 +27,7 @@
   window.history.replaceState(window.history.state, '', cleanUrl);
 })();
 
-// Compact collapsible language selector shared by the homepage, detail, and archive pages.
+// Compact collapsible language selector shared by the site chrome.
 (() => {
   const ROOT_SELECTOR = '#languageSwitcher';
   const LABELS = { ko: 'KR', ja: 'JP', en: 'EN' };
@@ -281,48 +301,4 @@
   document.querySelectorAll('#languageSwitcher [data-lang]').forEach(button => {
     button.addEventListener('click', () => requestAnimationFrame(sync));
   });
-})();
-
-// Detail pages share the homepage account session and cloud wishlist.
-(() => {
-  if (!document.querySelector('.detail-shell') || !window.ANIME_DETAIL) return;
-
-  const script = src => new Promise((resolve, reject) => {
-    const target = new URL(src, location.href);
-    const existing = [...document.scripts].find(node => {
-      if (!node.src) return false;
-      const url = new URL(node.src, location.href);
-      return url.origin === target.origin && url.pathname === target.pathname;
-    });
-    if (existing) return resolve();
-    const node = document.createElement('script');
-    node.src = src;
-    node.async = false;
-    node.onload = resolve;
-    node.onerror = reject;
-    document.head.appendChild(node);
-  });
-
-  const stylesheet = href => {
-    const target = new URL(href, location.href);
-    if ([...document.querySelectorAll('link[rel="stylesheet"]')].some(node => {
-      const url = new URL(node.href, location.href);
-      return url.origin === target.origin && url.pathname === target.pathname;
-    })) return;
-    const node = document.createElement('link');
-    node.rel = 'stylesheet';
-    node.href = href;
-    document.head.appendChild(node);
-  };
-
-  stylesheet('/wishlist.css?v=20260908-wishlist4');
-  stylesheet('/auth.css?v=20260908-auth2');
-  stylesheet('/account-refine.css?v=20260908-authui10');
-  script('/auth-config.js?v=20260908-auth6')
-    .then(() => script('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.115.0'))
-    .then(() => script('https://accounts.google.com/gsi/client'))
-    .then(() => script('/wishlist.js?v=20260908-wishlist3'))
-    .then(() => script('/detail-account.js?v=20260908-detail8'))
-    .then(() => script('/wishlist-sync.js?v=20260908-sync1'))
-    .catch(error => console.warn('Detail account UI could not be loaded.', error));
 })();
