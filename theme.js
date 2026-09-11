@@ -1213,6 +1213,14 @@
       display: none !important;
     }
 
+    /* Archive hero must be completely flat in light mode. */
+    html[data-theme="light"] .archive-hero {
+      background: #fbfcfd !important;
+      background-image: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
     /* Schedule archive pages. */
     html[data-theme="light"] .archive-back,
     html[data-theme="light"] .archive-kicker,
