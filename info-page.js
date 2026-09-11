@@ -356,7 +356,7 @@
     .then(() => loadScript("/data/title-hotfix-20260909.js?v=20260909-1"))
     .then(() => loadScript("/data/poster-fixes-20260905.js?v=20260907-posters4"))
     .then(() => loadScript("/data/schedule-updates-20260907.js?v=20260910-schedule3"))
-    .then(() => loadScript("/wishlist.js?v=20260909-wishlist4"));
+    .then(() => loadScript("/wishlist.js?v=20260911-poster1"));
 
   const authReady = wishlistReady
     .then(() => loadScript("/auth-bootstrap.js?v=20260909-authboot4"))

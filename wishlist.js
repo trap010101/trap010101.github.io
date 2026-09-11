@@ -151,9 +151,17 @@
   const closeButton = modal.querySelector('.wishlist-close');
   let lastFocus = null;
 
+  function posterSrc(anime) {
+    const raw = String(anime?.poster?.src || '').trim();
+    if (!raw) return '';
+    if (/^(?:https?:)?\/\//i.test(raw) || /^(?:data|blob):/i.test(raw)) return raw;
+    return `/${raw.replace(/^\/+/, '')}`;
+  }
+
   function posterMarkup(anime) {
-    if (!anime?.poster?.src) return '<span class="wishlist-poster wishlist-poster-fallback" aria-hidden="true">?</span>';
-    return `<span class="wishlist-poster"><img src="${anime.poster.src}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" style="object-position:${anime.poster.position || 'center center'}" onerror="this.remove();this.parentElement.classList.add('wishlist-poster-fallback');this.parentElement.textContent='?'"></span>`;
+    const src = posterSrc(anime);
+    if (!src) return '<span class="wishlist-poster wishlist-poster-fallback" aria-hidden="true">?</span>';
+    return `<span class="wishlist-poster"><img src="${src}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" style="object-position:${anime.poster.position || 'center center'}" onerror="this.remove();this.parentElement.classList.add('wishlist-poster-fallback');this.parentElement.textContent='?'"></span>`;
   }
 
   function releaseSortKey(anime) {

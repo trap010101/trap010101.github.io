@@ -128,7 +128,7 @@
   loadStylesheet('/wishlist.css?v=20260909-wishlist5');
   loadStylesheet('/wishlist-ranking.css?v=20260910-ranking5');
   loadStylesheet('/wishlist-ranking-refine.css?v=20260910-refine2');
-  const wishlistReady = loadScript('/wishlist.js?v=20260909-wishlist4')
+  const wishlistReady = loadScript('/wishlist.js?v=20260911-poster1')
     .then(() => {
       const kicker = document.querySelector('.wishlist-kicker');
       if (kicker) kicker.textContent = 'newani.me';

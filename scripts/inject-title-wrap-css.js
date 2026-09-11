@@ -12,7 +12,7 @@ const SECONDARY_HEADER_SCRIPT = '/secondary-header.js?v=20260911-theme13';
 const SECONDARY_SCALE_STYLE_HREF = '/secondary-scale.css?v=20260909-6';
 const DETAIL_MOBILE_STYLE_HREF = '/detail-mobile-stable.css?v=20260909-1';
 const SECONDARY_MENU_ORDER_SCRIPT = '/secondary-menu-order.js?v=20260908-2';
-const SECONDARY_AUTH_BOOTSTRAP_SCRIPT = '/secondary-auth-bootstrap.js?v=20260909-18';
+const SECONDARY_AUTH_BOOTSTRAP_SCRIPT = '/secondary-auth-bootstrap.js?v=20260911-wishlist1';
 const DETAIL_LAYOUT_SCRIPT = '/detail-layout-stable.js?v=20260909-2';
 const GOOGLE_BUTTON_STYLE_HREF = '/google-login-button-fit.css?v=20260908-1';
 const GOOGLE_BUTTON_STYLE_LINK = `  <link rel="stylesheet" href="${GOOGLE_BUTTON_STYLE_HREF}" />\n`;
