@@ -1205,9 +1205,9 @@
   function safeGet() {
     try {
       const value = localStorage.getItem(STORAGE_KEY);
-      return VALID.has(value) ? value : 'dark';
+      return VALID.has(value) ? value : 'system';
     } catch (_) {
-      return 'dark';
+      return 'system';
     }
   }
 
@@ -1252,7 +1252,7 @@
   }
 
   function apply(next, { persist = false, notify = true } = {}) {
-    preference = VALID.has(next) ? next : 'dark';
+    preference = VALID.has(next) ? next : 'system';
     if (persist) safeSet(preference);
     const theme = resolved(preference);
     document.documentElement.dataset.theme = theme;

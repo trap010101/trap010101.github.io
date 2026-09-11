@@ -2,7 +2,7 @@
 (() => {
   try {
     const saved = localStorage.getItem('newanimeTheme');
-    const preference = ['system', 'light', 'dark'].includes(saved) ? saved : 'dark';
+    const preference = ['system', 'light', 'dark'].includes(saved) ? saved : 'system';
     const theme = preference === 'system'
       ? (window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
       : preference;
@@ -12,7 +12,7 @@
 
   if (window.NewAnimeTheme?.ready || document.querySelector('script[data-newanime-theme-loader]')) return;
   const script = document.createElement('script');
-  script.src = '/theme.js?v=20260911-theme9';
+  script.src = '/theme.js?v=20260911-theme10';
   script.async = false;
   script.dataset.newanimeThemeLoader = 'true';
   document.head.appendChild(script);
