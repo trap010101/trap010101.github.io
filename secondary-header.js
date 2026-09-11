@@ -3,6 +3,28 @@
 
   const BRAND_LOGO_SRC = '/assets/newanime-logo.svg?v=20260909-logo2';
   const FAVICON_SRC = '/favicon-32x32.png?v=20260909-icon1';
+  const THEME_SCRIPT_SRC = '/theme.js?v=20260911-theme1';
+
+  function bootTheme() {
+    try {
+      const saved = localStorage.getItem('newanimeTheme');
+      const preference = ['system', 'light', 'dark'].includes(saved) ? saved : 'system';
+      const theme = preference === 'system'
+        ? (window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+        : preference;
+      document.documentElement.dataset.theme = theme;
+      document.documentElement.dataset.themePreference = preference;
+    } catch (_) {}
+
+    if (window.NewAnimeTheme?.ready || document.querySelector('script[data-newanime-theme-loader]')) return;
+    const script = document.createElement('script');
+    script.src = THEME_SCRIPT_SRC;
+    script.async = false;
+    script.dataset.newanimeThemeLoader = 'true';
+    document.head.appendChild(script);
+  }
+
+  bootTheme();
 
   const copy = {
     ko: {
