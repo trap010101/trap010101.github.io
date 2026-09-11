@@ -613,12 +613,13 @@
   function updateControlCopy(control) {
     const copy = COPY[language()] || COPY.ko;
     const heading = control.querySelector('[data-theme-heading]');
-    if (heading) heading.textContent = copy.theme;
+    if (heading && heading.textContent !== copy.theme) heading.textContent = copy.theme;
     ['system', 'light', 'dark'].forEach(key => {
       const button = control.querySelector(`[data-theme-choice="${key}"]`);
       const label = button?.querySelector('.theme-choice-label');
-      if (label) label.textContent = copy[key];
-      if (button) button.setAttribute('aria-label', `${copy.theme}: ${copy[key]}`);
+      if (label && label.textContent !== copy[key]) label.textContent = copy[key];
+      const ariaLabel = `${copy.theme}: ${copy[key]}`;
+      if (button && button.getAttribute('aria-label') !== ariaLabel) button.setAttribute('aria-label', ariaLabel);
     });
   }
 
@@ -675,7 +676,9 @@
     if (control) updateControlCopy(control);
   }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 
-  const menuObserver = new MutationObserver(() => mountControl());
+  const menuObserver = new MutationObserver(() => {
+    if (!document.getElementById('themeMenuControl')) mountControl();
+  });
   if (document.body) menuObserver.observe(document.body, { childList: true, subtree: true });
 
   systemDark?.addEventListener?.('change', () => {
