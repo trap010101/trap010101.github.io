@@ -1,0 +1,41 @@
+name: Settings menu and light theme refinement
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/settings-theme-refine.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch settings and theme
+        run: python scripts/settings-theme-refine.py
+
+      - name: Validate JavaScript
+        run: |
+          node --check theme.js
+          node --check language-switcher-compact.js
+          node --check secondary-header.js
+          node --check menu-order.js
+          node --check secondary-menu-order.js
+          node --check app.js
+
+      - name: Commit changes and remove temporary files
+        run: |
+          rm .github/workflows/settings-theme-refine.yml scripts/settings-theme-refine.py
+          git add -A
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Move theme options into settings and refine light mode [skip ci]"
+          git push
