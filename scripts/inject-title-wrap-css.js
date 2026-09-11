@@ -5,7 +5,7 @@ const ROOT = path.resolve(__dirname, '..');
 const STYLE_HREF = '/title-wrap-refine.css?v=20260906-title2';
 const STYLE_LINK = `  <link rel="stylesheet" href="${STYLE_HREF}" />\n`;
 const DETAIL_STYLE_HREF = '/anime-detail.css?v=20260908-ui2';
-const ARCHIVE_STYLE_HREF = '/schedule-archive.css?v=20260908-ui1';
+const ARCHIVE_STYLE_HREF = '/schedule-archive.css?v=20260911-light12';
 const SITE_CHROME_STYLE_HREF = '/site-chrome.css?v=20260909-4';
 const MENU_MOBILE_STYLE_HREF = '/menu-mobile-refine.css?v=20260906-menu1';
 const SECONDARY_HEADER_SCRIPT = '/secondary-header.js?v=20260911-theme11';
