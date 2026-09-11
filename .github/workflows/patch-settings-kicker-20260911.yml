@@ -1,0 +1,47 @@
+name: Patch settings kicker
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/patch-settings-kicker-20260911.py'
+      - '.github/workflows/patch-settings-kicker-20260911.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply patch
+        run: python scripts/patch-settings-kicker-20260911.py
+
+      - name: Validate JavaScript
+        run: node --check theme.js
+
+      - name: Verify settings kicker
+        shell: bash
+        run: |
+          grep -q "settingsKicker: 'newani.me'" theme.js
+          grep -q "copy.settingsKicker" theme.js
+          grep -q "20260911-theme14" language-switcher-compact.js
+
+      - name: Commit patch and remove temporary files
+        shell: bash
+        run: |
+          rm -f scripts/patch-settings-kicker-20260911.py .github/workflows/patch-settings-kicker-20260911.yml
+          git add -A
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Match settings kicker to wishlist style [skip ci]"
+          git push origin main
