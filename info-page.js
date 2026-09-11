@@ -345,7 +345,7 @@
 
   applyLanguage(activeLang, !supportedLanguages.includes(requestedLang));
 
-  loadScript("/language-switcher-compact.js?v=20260911-theme5")
+  loadScript("/language-switcher-compact.js?v=20260911-theme6")
     .catch(error => console.warn("Compact language selector could not be loaded.", error));
 
   loadStylesheet("/wishlist.css?v=20260909-wishlist5");
