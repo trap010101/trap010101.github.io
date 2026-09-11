@@ -45,7 +45,7 @@ function syncRankingChrome() {
     .replace('<body class="ranking-page">', '<body class="ranking-page" data-main-chrome-source="homepage">')
     .replace(/\/wishlist-ranking\.css\?v=[^"']+/, '/wishlist-ranking.css?v=20260910-ranking5')
     .replace(/\/wishlist-ranking-refine\.css\?v=[^"']+/, '/wishlist-ranking-refine.css?v=20260910-refine2')
-    .replace(/\/secondary-header\.js\?v=[^"']+/, '/secondary-header.js?v=20260911-theme7')
+    .replace(/\/secondary-header\.js\?v=[^"']+/, '/secondary-header.js?v=20260911-theme8')
     .replace(/\/wishlist-ranking\.js\?v=[^"']+/, '/wishlist-ranking.js?v=20260910-ranking5')
     .replace(/\/wishlist-ranking-refine\.js\?v=[^"']+/, '/wishlist-ranking-refine.js?v=20260910-refine4');
 
