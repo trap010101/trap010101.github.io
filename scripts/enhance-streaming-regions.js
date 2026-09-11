@@ -90,12 +90,12 @@ for (const [animeId, anime] of animeById) {
   if (html.includes('/language-switcher-compact.js')) {
     html = html.replace(
       /<script src="\/language-switcher-compact\.js\?v=[^"]+"><\/script>/g,
-      '<script src="/language-switcher-compact.js?v=20260911-theme10"></script>'
+      '<script src="/language-switcher-compact.js?v=20260911-theme11"></script>'
     );
   } else {
     html = html.replace(
       '</body>',
-      '  <script src="/language-switcher-compact.js?v=20260911-theme10"></script>\n</body>'
+      '  <script src="/language-switcher-compact.js?v=20260911-theme11"></script>\n</body>'
     );
   }
 
