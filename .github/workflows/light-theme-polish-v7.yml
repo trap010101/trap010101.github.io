@@ -1,0 +1,36 @@
+name: Light theme polish v7
+
+on:
+  push:
+    paths:
+      - 'scripts/light-theme-polish-v7.py'
+      - '.github/workflows/light-theme-polish-v7.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  polish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply light theme polish
+        run: python3 scripts/light-theme-polish-v7.py
+      - name: Validate JavaScript
+        run: |
+          node --check theme.js
+          node --check language-switcher-compact.js
+          node --check secondary-header.js
+          node --check app.js
+      - name: Commit changes and remove temporary files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f scripts/light-theme-polish-v7.py .github/workflows/light-theme-polish-v7.yml
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -m "Polish light theme verification footer and carousel [skip ci]"
+          git push origin main
