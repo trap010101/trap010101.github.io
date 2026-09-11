@@ -1,0 +1,33 @@
+name: Remove hero corner glow
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/remove-hero-corner-glow.py'
+      - '.github/workflows/remove-hero-corner-glow.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Remove decorative hero corner glow
+        run: python scripts/remove-hero-corner-glow.py
+      - name: Validate JavaScript
+        run: node --check app.js && node --check theme.js
+      - name: Commit changes and remove temporary files
+        run: |
+          rm scripts/remove-hero-corner-glow.py
+          rm .github/workflows/remove-hero-corner-glow.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Remove hero corner glow decoration [skip ci]'
+          git push origin main
