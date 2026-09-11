@@ -1691,7 +1691,16 @@
       if (label && label.textContent !== copy[key]) label.textContent = copy[key];
       const descriptionKey = `${key}Description`;
       if (description && description.textContent !== copy[descriptionKey]) description.textContent = copy[descriptionKey];
-      const ariaLabel = `${copy.theme}: ${copy[key]}`;
+      const ariaLabel = `${copy.theme}: ${copy[key]}
+
+    /* Light theme archive hero v13: flat opaque surface, no page gradient bleed. */
+    html[data-theme="light"] .archive-hero {
+      background: #fbfcfd !important;
+      background-image: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+`;
       if (button && button.getAttribute('aria-label') !== ariaLabel) button.setAttribute('aria-label', ariaLabel);
     });
   }
