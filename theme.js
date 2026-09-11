@@ -1170,6 +1170,31 @@
       -webkit-backdrop-filter: blur(20px) saturate(108%) !important;
     }
 
+
+    /* Light theme polish v9: stable year filter states. */
+    html[data-theme="light"] #yearFilters .year-chip:not(.active) {
+      color: #556071 !important;
+      border-color: rgba(31,37,48,.075) !important;
+      background: rgba(255,255,255,.54) !important;
+      box-shadow: none !important;
+    }
+    html[data-theme="light"] #yearFilters .year-chip:not(.active):hover,
+    html[data-theme="light"] #yearFilters .year-chip:not(.active):focus-visible {
+      color: #35405a !important;
+      border-color: rgba(93,112,215,.18) !important;
+      background: rgba(255,255,255,.76) !important;
+      box-shadow: none !important;
+    }
+    html[data-theme="light"] #yearFilters .year-chip.active,
+    html[data-theme="light"] #yearFilters .year-chip.active:hover,
+    html[data-theme="light"] #yearFilters .year-chip.active:focus-visible {
+      color: #33437f !important;
+      border-color: rgba(93,112,215,.30) !important;
+      background: linear-gradient(135deg, rgba(93,112,215,.145), rgba(128,101,211,.105)) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.42), 0 4px 12px rgba(93,112,215,.055) !important;
+      transform: none !important;
+    }
+
   `;
 
   const style = document.createElement('style');
