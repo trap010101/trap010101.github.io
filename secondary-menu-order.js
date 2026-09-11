@@ -13,7 +13,7 @@
       menu.querySelector('#eventMenuLink'),
       menu.querySelector('#updatesMenuLink') || menu.querySelector('[data-secondary-updates]'),
       menu.querySelector('a[href^="mailto:"]'),
-      menu.querySelector('#themeMenuControl'),
+      menu.querySelector('#settingsMenuButton'),
       menu.querySelector('#shareButton') || menu.querySelector('[data-secondary-share]') || menu.querySelector('[data-share]')
     ]);
     if (!desired.length) return;

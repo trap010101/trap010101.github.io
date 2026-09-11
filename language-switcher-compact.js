@@ -12,7 +12,7 @@
 
   if (window.NewAnimeTheme?.ready || document.querySelector('script[data-newanime-theme-loader]')) return;
   const script = document.createElement('script');
-  script.src = '/theme.js?v=20260911-theme3';
+  script.src = '/theme.js?v=20260911-theme4';
   script.async = false;
   script.dataset.newanimeThemeLoader = 'true';
   document.head.appendChild(script);

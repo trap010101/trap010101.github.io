@@ -69,6 +69,7 @@
       eventLink,
       directChild(menu, '#updatesMenuLink, [data-secondary-updates]'),
       directChild(menu, 'a[href^="mailto:"]'),
+      directChild(menu, '#settingsMenuButton'),
       directChild(menu, '#shareButton, [data-secondary-share], [data-share]')
     ].filter((node, index, nodes) => node && nodes.indexOf(node) === index);
 

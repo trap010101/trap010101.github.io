@@ -3,7 +3,7 @@
 
   const BRAND_LOGO_SRC = '/assets/newanime-logo.svg?v=20260909-logo2';
   const FAVICON_SRC = '/favicon-32x32.png?v=20260909-icon1';
-  const THEME_SCRIPT_SRC = '/theme.js?v=20260911-theme3';
+  const THEME_SCRIPT_SRC = '/theme.js?v=20260911-theme4';
 
   function bootTheme() {
     try {
