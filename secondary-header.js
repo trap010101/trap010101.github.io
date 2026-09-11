@@ -3,12 +3,12 @@
 
   const BRAND_LOGO_SRC = '/assets/newanime-logo.svg?v=20260909-logo2';
   const FAVICON_SRC = '/favicon-32x32.png?v=20260909-icon1';
-  const THEME_SCRIPT_SRC = '/theme.js?v=20260911-theme1';
+  const THEME_SCRIPT_SRC = '/theme.js?v=20260911-theme2';
 
   function bootTheme() {
     try {
       const saved = localStorage.getItem('newanimeTheme');
-      const preference = ['system', 'light', 'dark'].includes(saved) ? saved : 'system';
+      const preference = ['system', 'light', 'dark'].includes(saved) ? saved : 'dark';
       const theme = preference === 'system'
         ? (window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
         : preference;
