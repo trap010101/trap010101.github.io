@@ -1,0 +1,38 @@
+name: One-time theme cache bust
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/theme-cache-bust.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  cache-bust:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update shared loader cache keys
+        run: python scripts/theme-cache-bust.py
+
+      - name: Validate shared JavaScript
+        run: |
+          node --check language-switcher-compact.js
+          node --check secondary-header.js
+          node --check theme.js
+
+      - name: Commit cache-bust and remove temporary files
+        run: |
+          rm .github/workflows/theme-cache-bust.yml scripts/theme-cache-bust.py
+          git add -A
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Refresh shared theme loader cache keys [skip ci]"
+          git push
