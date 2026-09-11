@@ -1084,6 +1084,54 @@
       -webkit-backdrop-filter: blur(18px) saturate(112%) !important;
     }
 
+    /* Light theme polish v4: neutral verification, darker footer links, readable carousel. */
+    html[data-theme="light"] .verification-trigger {
+      color: rgba(48, 55, 68, .58) !important;
+      border-color: transparent !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+    html[data-theme="light"] .verification-trigger svg {
+      fill: transparent !important;
+    }
+    html[data-theme="light"] .verification-trigger:hover,
+    html[data-theme="light"] .verification-trigger:focus-visible {
+      color: #3f4858 !important;
+      border-color: transparent !important;
+      background: rgba(31, 37, 48, .035) !important;
+    }
+
+    html[data-theme="light"] footer .site-footer-links a {
+      color: #4f596a !important;
+    }
+    html[data-theme="light"] footer .site-footer-links a:hover,
+    html[data-theme="light"] footer .site-footer-links a:focus-visible {
+      color: #303846 !important;
+    }
+
+    html[data-theme="light"] .upcoming-slide,
+    html[data-theme="light"] .upcoming-slide:is(:hover, :active, :focus, :focus-visible) {
+      background: rgba(250, 251, 253, .94) !important;
+      backdrop-filter: blur(18px) saturate(104%) !important;
+      -webkit-backdrop-filter: blur(18px) saturate(104%) !important;
+    }
+    html[data-theme="light"] .upcoming-slide[data-position="center"] {
+      background: rgba(252, 253, 254, .985) !important;
+    }
+    html[data-theme="light"] .upcoming-body {
+      background: rgba(252, 253, 254, .97) !important;
+      box-shadow: inset 0 1px 0 rgba(31, 37, 48, .035) !important;
+    }
+    html[data-theme="light"] .upcoming-slide[data-position="center"] .upcoming-body {
+      background: rgba(252, 253, 254, .995) !important;
+    }
+    html[data-theme="light"] .upcoming-title {
+      color: #252b35 !important;
+    }
+    html[data-theme="light"] .upcoming-date {
+      color: #606a7b !important;
+    }
+
     @media (max-width: 520px) {
       .settings-modal { padding: 16px; }
       .settings-dialog { width: min(360px, calc(100vw - 24px)); padding: 19px; border-radius: 22px; }
