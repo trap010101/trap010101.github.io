@@ -11,21 +11,21 @@
 
   const COPY = {
     ko: {
-      settings: '설정', settingsTitle: '설정', settingsDescription: '사이트 표시 환경을 설정합니다.',
+      settings: '설정', settingsKicker: 'newani.me', settingsTitle: '설정', settingsDescription: '사이트 표시 환경을 설정합니다.',
       theme: '테마', themeDescription: '화면에 사용할 테마를 선택하세요.', close: '닫기',
       system: '시스템', systemDescription: '기기의 화면 설정을 따릅니다.',
       light: '라이트', lightDescription: '밝은 화면으로 표시합니다.',
       dark: '다크', darkDescription: '어두운 화면으로 표시합니다.'
     },
     ja: {
-      settings: '設定', settingsTitle: '設定', settingsDescription: 'サイトの表示環境を設定します。',
+      settings: '設定', settingsKicker: 'newani.me', settingsTitle: '設定', settingsDescription: 'サイトの表示環境を設定します。',
       theme: 'テーマ', themeDescription: '表示に使用するテーマを選択してください。', close: '閉じる',
       system: 'システム', systemDescription: '端末の表示設定に合わせます。',
       light: 'ライト', lightDescription: '明るいテーマで表示します。',
       dark: 'ダーク', darkDescription: '暗いテーマで表示します。'
     },
     en: {
-      settings: 'SETTINGS', settingsTitle: 'Settings', settingsDescription: 'Customize how NewAnime is displayed.',
+      settings: 'SETTINGS', settingsKicker: 'newani.me', settingsTitle: 'Settings', settingsDescription: 'Customize how NewAnime is displayed.',
       theme: 'Theme', themeDescription: 'Choose the theme used for the site.', close: 'Close',
       system: 'System', systemDescription: 'Follow your device appearance.',
       light: 'Light', lightDescription: 'Use the light appearance.',
@@ -70,12 +70,12 @@
       gap: 16px;
     }
     .settings-kicker {
-      margin: 0 0 7px;
-      color: #91a2ff;
-      font-size: 9px;
+      margin: 0 0 6px;
+      color: #8993a7;
+      font-size: 10px;
       font-weight: 900;
       letter-spacing: .13em;
-      text-transform: uppercase;
+      text-transform: none;
     }
     .settings-dialog h2 {
       margin: 0;
@@ -867,7 +867,7 @@
         #ffffff !important;
       box-shadow: 0 26px 72px rgba(38,45,61,.18) !important;
     }
-    html[data-theme="light"] .settings-kicker { color: #5669c8 !important; }
+    html[data-theme="light"] .settings-kicker { color: #8993a7 !important; }
     html[data-theme="light"] .settings-description,
     html[data-theme="light"] .settings-section-description,
     html[data-theme="light"] .settings-choice-copy small { color: #737d8e !important; }
@@ -1642,7 +1642,7 @@
       <section class="settings-dialog" role="dialog" aria-modal="true" aria-labelledby="settingsDialogTitle" tabindex="-1">
         <div class="settings-dialog-head">
           <div>
-            <div class="settings-kicker" data-settings-kicker>SETTINGS</div>
+            <div class="settings-kicker" data-settings-kicker>newani.me</div>
             <h2 id="settingsDialogTitle" data-settings-title>Settings</h2>
             <p class="settings-description" data-settings-description></p>
           </div>
@@ -1679,7 +1679,7 @@
     const modal = document.getElementById('settingsModal');
     if (!modal) return;
     const bindings = [
-      ['[data-settings-kicker]', copy.settings],
+      ['[data-settings-kicker]', copy.settingsKicker],
       ['[data-settings-title]', copy.settingsTitle],
       ['[data-settings-description]', copy.settingsDescription],
       ['[data-theme-heading]', copy.theme],
