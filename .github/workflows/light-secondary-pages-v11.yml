@@ -1,0 +1,41 @@
+name: Light secondary pages v11
+
+on:
+  push:
+    paths:
+      - 'scripts/light-secondary-pages-v11.py'
+      - '.github/workflows/light-secondary-pages-v11.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Apply secondary page light theme patch
+        run: python3 scripts/light-secondary-pages-v11.py
+      - name: Validate JavaScript
+        run: |
+          node --check theme.js
+          node --check language-switcher-compact.js
+          node --check secondary-header.js
+          node --check app.js
+          node --check scripts/generate-anime-pages.js
+          node --check scripts/generate-schedule-pages.js
+          node --check updates/updates.js
+          node --check event/event.js
+      - name: Commit changes and remove temporary files
+        run: |
+          rm scripts/light-secondary-pages-v11.py
+          rm .github/workflows/light-secondary-pages-v11.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Refine light theme across secondary pages [skip ci]'
+          git push origin main
