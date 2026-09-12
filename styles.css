@@ -2096,3 +2096,12 @@ a.ott-option:hover {
     transition-duration: .01ms !important;
   }
 }
+
+
+/* Homepage rendering performance v1 */
+@supports (content-visibility: auto) {
+  #schedule .month {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+}

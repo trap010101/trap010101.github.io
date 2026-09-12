@@ -888,11 +888,20 @@ function renderMonthNav() {
 }
 
 function renderUndated() {
+  const list = document.getElementById("undatedList");
+  const shouldRender = activeYear === 2027;
+  undatedSection.classList.toggle("hidden", !shouldRender);
+
+  if (!shouldRender) {
+    if (list?.childElementCount) list.replaceChildren();
+    return;
+  }
+
   const undatedAnime = animeData.filter(anime =>
     getPrimaryScheduleRelease(anime)?.status === "year" || getPrimaryScheduleRelease(anime)?.status === "tba"
   );
 
-  document.getElementById("undatedList").innerHTML = undatedAnime.map(anime => `
+  list.innerHTML = undatedAnime.map(anime => `
     <div class="undated-item" id="anime-${anime.id}" data-anime-id="${anime.id}" tabindex="-1">
       <div class="undated-layout">
         ${posterMarkup(anime)}
@@ -912,44 +921,66 @@ function renderUndated() {
       </div>
     </div>
   `).join("");
-
-  undatedSection.classList.toggle("hidden", activeYear !== 2027);
 }
 
-function updateTitleScrolls() {
+function measureTitleWrapper(wrapper) {
+  const inner = wrapper.firstElementChild;
+  if (!inner || wrapper.clientWidth <= 0) return;
+
+  wrapper.classList.remove("is-overflowing", "has-scrolled");
+  wrapper.style.removeProperty("--scroll-distance");
+  wrapper.style.removeProperty("--scroll-duration");
+  inner.style.removeProperty("transform");
+
+  // Measure the natural wrapped title height only when its month is close to
+  // the viewport. This avoids forcing layout for an entire year up front.
+  inner.classList.add("measure-title");
+  const style = getComputedStyle(inner);
+  const lineHeight = parseFloat(style.lineHeight) || parseFloat(style.fontSize) * 1.2;
+  const naturalHeight = inner.scrollHeight;
+  inner.classList.remove("measure-title");
+
+  const exceedsTwoLines = naturalHeight > (lineHeight * 2 + 2);
+  if (!exceedsTwoLines) return;
+
+  wrapper.classList.add("is-overflowing");
+  const overflow = Math.max(0, Math.ceil(inner.scrollWidth - wrapper.clientWidth));
+  wrapper.style.setProperty("--scroll-distance", `${overflow + 8}px`);
+  const duration = Math.max(8, Math.min(22, 6 + overflow / 28));
+  wrapper.style.setProperty("--scroll-duration", `${duration}s`);
+
+  const markScrolled = () => wrapper.classList.add("has-scrolled");
+  inner.addEventListener("animationiteration", markScrolled, { once: true });
+}
+
+function measureTitleSection(section) {
   requestAnimationFrame(() => {
-    document.querySelectorAll(".title-scroll, .undated-title-scroll").forEach(wrapper => {
-      const inner = wrapper.firstElementChild;
-      if (!inner || wrapper.clientWidth <= 0) return;
-
-      wrapper.classList.remove("is-overflowing", "has-scrolled");
-      wrapper.style.removeProperty("--scroll-distance");
-      wrapper.style.removeProperty("--scroll-duration");
-      inner.style.removeProperty("transform");
-
-      // Measure the natural wrapped title height before deciding to marquee.
-      inner.classList.add("measure-title");
-      const style = getComputedStyle(inner);
-      const lineHeight = parseFloat(style.lineHeight) || parseFloat(style.fontSize) * 1.2;
-      const naturalHeight = inner.scrollHeight;
-      inner.classList.remove("measure-title");
-
-      const exceedsTwoLines = naturalHeight > (lineHeight * 2 + 2);
-      if (!exceedsTwoLines) return;
-
-      wrapper.classList.add("is-overflowing");
-
-      // Now that it is single-line, measure the horizontal travel distance.
-      const overflow = Math.max(0, Math.ceil(inner.scrollWidth - wrapper.clientWidth));
-      wrapper.style.setProperty("--scroll-distance", `${overflow + 8}px`);
-
-      const duration = Math.max(8, Math.min(22, 6 + overflow / 28));
-      wrapper.style.setProperty("--scroll-duration", `${duration}s`);
-
-      const markScrolled = () => wrapper.classList.add("has-scrolled");
-      inner.addEventListener("animationiteration", markScrolled, { once: true });
-    });
+    section.querySelectorAll(".title-scroll, .undated-title-scroll").forEach(measureTitleWrapper);
   });
+}
+
+let titleSectionObserver = null;
+function updateTitleScrolls() {
+  const sections = [...document.querySelectorAll("#schedule .month")];
+  const undated = document.querySelector(".undated:not(.hidden)");
+  if (undated) sections.push(undated);
+
+  if (!("IntersectionObserver" in window)) {
+    sections.forEach(measureTitleSection);
+    return;
+  }
+
+  if (!titleSectionObserver) {
+    titleSectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) measureTitleSection(entry.target);
+      });
+    }, { rootMargin: "500px 0px" });
+  } else {
+    titleSectionObserver.disconnect();
+  }
+
+  sections.forEach(section => titleSectionObserver.observe(section));
 }
 
 let titleResizeTimer;
@@ -1129,6 +1160,7 @@ document.getElementById("undatedToggle").addEventListener("click", () => {
   const arrow = document.getElementById("undatedArrow");
   content.classList.toggle("hidden");
   arrow.textContent = content.classList.contains("hidden") ? "＋" : "−";
+  if (!content.classList.contains("hidden")) updateTitleScrolls();
 });
 
 updateStaticLanguage();
