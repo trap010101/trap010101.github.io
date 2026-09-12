@@ -64,11 +64,15 @@ jobs:
           const page = await browser.newPage({ locale: 'ko-KR' });
           const failures = [];
           const errors = [];
+          const ignoredHosts = ['google-analytics.com', 'googletagmanager.com', 'googlesyndication.com', 'doubleclick.net'];
+          const ignored = url => ignoredHosts.some(host => url.includes(host));
           page.on('console', msg => {
-            if (msg.type() === 'error') errors.push(`console: ${msg.text()}`);
+            if (msg.type() === 'error' && !ignored(msg.text())) errors.push(`console: ${msg.text()}`);
           });
           page.on('pageerror', err => errors.push(`pageerror: ${err.message}`));
-          page.on('requestfailed', req => failures.push(`${req.failure()?.errorText || 'failed'} ${req.url()}`));
+          page.on('requestfailed', req => {
+            if (!ignored(req.url())) failures.push(`${req.failure()?.errorText || 'failed'} ${req.url()}`);
+          });
 
           async function visit(url, label) {
             errors.length = 0;
@@ -87,28 +91,30 @@ jobs:
           await visit('https://newani.me/?lang=ko&diag=20260912', 'home');
           const byText = page.getByText('신자 0명 여신님과 시작하는 이세계 공략', { exact: true }).first();
           console.log(`TARGET_TEXT_COUNT ${await byText.count()}`);
+          if (!(await byText.count())) throw new Error('Target title is missing from the rendered homepage');
           const menu = page.locator('#menuToggle');
-          if (await menu.count()) {
-            await menu.click();
-            console.log(`HOME_MENU_EXPANDED ${await menu.getAttribute('aria-expanded')}`);
-          }
+          await menu.click();
+          console.log(`HOME_MENU_EXPANDED ${await menu.getAttribute('aria-expanded')}`);
+          if ((await menu.getAttribute('aria-expanded')) !== 'true') throw new Error('Home hamburger did not open');
 
           await visit('https://newani.me/anime/zero-believers-goddess-isekai-strategy/?diag=20260912', 'detail');
           console.log(`DETAIL_H1 ${await page.locator('h1').first().innerText()}`);
           console.log(`DETAIL_IMG ${await page.locator('.detail-poster').getAttribute('src')}`);
+          if ((await page.locator('h1').first().innerText()).trim() !== '신자 0명 여신님과 시작하는 이세계 공략') throw new Error('Detail title mismatch');
+          if (!(await page.locator('.detail-poster').getAttribute('src'))?.includes('zero-believers-goddess-isekai-strategy-user-20260912.webp')) throw new Error('Detail poster mismatch');
           const detailMenu = page.locator('#menuToggle');
-          if (await detailMenu.count()) {
-            await detailMenu.click();
-            console.log(`DETAIL_MENU_EXPANDED ${await detailMenu.getAttribute('aria-expanded')}`);
-          }
+          await detailMenu.click();
+          console.log(`DETAIL_MENU_EXPANDED ${await detailMenu.getAttribute('aria-expanded')}`);
+          if ((await detailMenu.getAttribute('aria-expanded')) !== 'true') throw new Error('Detail hamburger did not open');
 
           await visit('https://newani.me/event/?lang=ko&diag=20260912', 'event');
           const eventMenu = page.locator('#menuToggle');
-          if (await eventMenu.count()) {
-            await eventMenu.click();
-            console.log(`EVENT_MENU_EXPANDED ${await eventMenu.getAttribute('aria-expanded')}`);
-          }
-          console.log(`EVENT_LIST_CHILDREN ${await page.locator('#eventList').locator(':scope > *').count()}`);
+          await eventMenu.click();
+          console.log(`EVENT_MENU_EXPANDED ${await eventMenu.getAttribute('aria-expanded')}`);
+          if ((await eventMenu.getAttribute('aria-expanded')) !== 'true') throw new Error('Event hamburger did not open');
+          const eventChildren = await page.locator('#eventList').locator(':scope > *').count();
+          console.log(`EVENT_LIST_CHILDREN ${eventChildren}`);
+          if (!eventChildren) throw new Error('Event list is empty after runtime load');
 
           await browser.close();
           JS
