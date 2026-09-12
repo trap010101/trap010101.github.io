@@ -94,11 +94,11 @@
 
   const wishlistReady = Promise.resolve()
     .then(() => script('/language-switcher-compact.js?v=20260911-theme14'))
-    .then(() => Array.isArray(window.animeData) ? null : script('/data/anime.js?v=20260907-schedule1'))
-    .then(() => script('/data/anime-20260904.js?v=20260910-data3'))
-    .then(() => script('/data/title-fixes-20260905.js?v=20260909-title2'))
-    .then(() => script('/data/title-hotfix-20260909.js?v=20260909-1'))
-    .then(() => script('/data/poster-fixes-20260905.js?v=20260907-posters4'))
+    .then(() => Array.isArray(window.animeData) ? null : script('/data/anime.js?v=20260912-zero1'))
+    .then(() => script('/data/anime-20260904.js?v=20260912-zero1'))
+    .then(() => script('/data/title-fixes-20260905.js?v=20260912-zero1'))
+    .then(() => script('/data/title-hotfix-20260909.js?v=20260912-zero1'))
+    .then(() => script('/data/poster-fixes-20260905.js?v=20260912-zero1'))
     .then(() => script('/data/schedule-updates-20260907.js?v=20260907-schedule2'))
     .then(() => script('/wishlist.js?v=20260911-poster1'))
     .then(() => initDetailWishlist());

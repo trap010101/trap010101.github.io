@@ -87,11 +87,11 @@
 
   const wishlistReady = Promise.resolve()
     .then(() => loadScript('/language-switcher-compact.js?v=20260911-theme14'))
-    .then(() => Array.isArray(window.animeData) ? null : loadScript('/data/anime.js?v=20260907-schedule1'))
+    .then(() => Array.isArray(window.animeData) ? null : loadScript('/data/anime.js?v=20260912-zero1'))
     .then(() => loadScript('/data/anime-20260904.js?v=20260905-data2'))
-    .then(() => loadScript('/data/title-fixes-20260905.js?v=20260909-title2'))
-    .then(() => loadScript('/data/title-hotfix-20260909.js?v=20260909-1'))
-    .then(() => loadScript('/data/poster-fixes-20260905.js?v=20260907-posters4'))
+    .then(() => loadScript('/data/title-fixes-20260905.js?v=20260912-zero1'))
+    .then(() => loadScript('/data/title-hotfix-20260909.js?v=20260912-zero1'))
+    .then(() => loadScript('/data/poster-fixes-20260905.js?v=20260912-zero1'))
     .then(() => loadScript('/data/schedule-updates-20260907.js?v=20260907-schedule2'))
     .then(() => loadScript('/wishlist.js?v=20260911-poster1'))
     .then(() => {

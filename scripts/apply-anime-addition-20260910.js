@@ -23,7 +23,7 @@ if (fs.existsSync(INDEX)) {
   let html = fs.readFileSync(INDEX, 'utf8');
   const next = html.replace(
     /data\/anime-20260904\.js\?v=[^\"]+/g,
-    'data/anime-20260904.js?v=20260910-data3'
+    'data/anime-20260904.js?v=20260912-zero1'
   );
   if (next !== html) {
     fs.writeFileSync(INDEX, next);

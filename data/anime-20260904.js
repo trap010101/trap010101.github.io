@@ -307,7 +307,7 @@
     {
       id: "zero-believers-goddess-isekai-strategy",
       title: {
-        ko: "신자 제로의 여신님과 시작하는 이세계 공략",
+        ko: "신자 0명 여신님과 시작하는 이세계 공략",
         ja: "信者ゼロの女神サマと始める異世界攻略",
         en: "Full Clearing Another World under a Goddess with Zero Believers"
       },
@@ -318,7 +318,7 @@
       format: "tv",
       origin: "light-novel",
       tags: ["new", "ln"],
-      poster: null,
+      poster: { src: "assets/posters/zero-believers-goddess-isekai-strategy-user-20260912.webp", position: "center center" },
       links: { pv: null, official: "https://zero-believers-anime.com/", streaming: null },
       streaming: {},
       schedule: tvSchedule("2026-10-11", "23:30", "https://zero-believers-anime.com/"),
@@ -327,7 +327,7 @@
         sources: [officialSource("https://zero-believers-anime.com/", "Official ON AIR — October 11, 23:30 (BS Asahi)", ["announcement", "release", "format"])]
       },
       createdAt: VERIFIED_AT,
-      updatedAt: VERIFIED_AT
+      updatedAt: "2026-09-12"
     },
     {
       id: "romelia-war-chronicle",

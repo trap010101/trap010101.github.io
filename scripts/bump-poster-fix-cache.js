@@ -5,7 +5,7 @@ const indexPath = path.resolve(__dirname, '..', 'index.html');
 const source = fs.readFileSync(indexPath, 'utf8');
 const next = source.replace(
   /data\/poster-fixes-20260905\.js\?v=[^"']+/g,
-  'data/poster-fixes-20260905.js?v=20260907-posters4'
+  'data/poster-fixes-20260905.js?v=20260912-zero1'
 );
 
 if (next === source) {

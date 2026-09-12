@@ -102,11 +102,11 @@
   loadStylesheet('/wishlist.css?v=20260909-wishlist5');
 
   const wishlistDataReady = Promise.resolve()
-    .then(() => loadScript('/data/anime.js?v=20260907-schedule1'))
-    .then(() => loadScript('/data/anime-20260904.js?v=20260910-data3'))
-    .then(() => loadScript('/data/title-fixes-20260905.js?v=20260909-title2'))
-    .then(() => loadScript('/data/title-hotfix-20260909.js?v=20260909-1'))
-    .then(() => loadScript('/data/poster-fixes-20260905.js?v=20260907-posters4'))
+    .then(() => loadScript('/data/anime.js?v=20260912-zero1'))
+    .then(() => loadScript('/data/anime-20260904.js?v=20260912-zero1'))
+    .then(() => loadScript('/data/title-fixes-20260905.js?v=20260912-zero1'))
+    .then(() => loadScript('/data/title-hotfix-20260909.js?v=20260912-zero1'))
+    .then(() => loadScript('/data/poster-fixes-20260905.js?v=20260912-zero1'))
     .then(() => loadScript('/data/schedule-updates-20260907.js?v=20260910-schedule3'));
 
   const wishlistReady = wishlistDataReady

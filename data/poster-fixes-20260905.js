@@ -11,7 +11,7 @@
     "uncle-likes-cute-things": { src: "assets/posters/uncle-likes-cute-things-v3.webp", updatedAt: "2026-09-07" },
     "mission-yozakura-family-season-2-part-2": { src: "assets/posters/mission-yozakura-family-season-2-part-2-v2.webp", updatedAt: "2026-09-07" },
     "dragon-ball-super-beerus": { src: "assets/posters/dragon-ball-super-beerus-v2.webp", updatedAt: "2026-09-07" },
-    "zero-believers-goddess-isekai-strategy": { src: "assets/posters/zero-believers-goddess-isekai-strategy-v2.webp", updatedAt: "2026-09-07" },
+    "zero-believers-goddess-isekai-strategy": { src: "assets/posters/zero-believers-goddess-isekai-strategy-user-20260912.webp", updatedAt: "2026-09-12" },
     "romelia-war-chronicle": { src: "assets/posters/romelia-war-chronicle-v2.webp", updatedAt: "2026-09-07" },
     "hotel-inhumans-season-2": { src: "assets/posters/hotel-inhumans-season-2-v2.webp", updatedAt: "2026-09-07" },
     "the-witch-was-asked-for-a-love-potion": { src: "assets/posters/the-witch-was-asked-for-a-love-potion-user-20260908.webp", updatedAt: "2026-09-08" },
