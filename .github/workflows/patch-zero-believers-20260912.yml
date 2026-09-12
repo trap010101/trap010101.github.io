@@ -19,97 +19,42 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Find matching official key visual and convert to WebP
+      - name: Download verified matching key visual and convert to WebP
         run: |
           set -euo pipefail
+          curl -fL --retry 3 --retry-delay 2 \
+            -A 'Mozilla/5.0' \
+            -e 'https://zero-believers-anime.com/' \
+            'https://zero-believers-anime.com/assets/images/top/mv/main-visual02-pc.jpg?202609111722' \
+            -o /tmp/zero-believers-kv.jpg
           python -m pip install --quiet pillow
           python - <<'PY'
           from pathlib import Path
           from PIL import Image
-          from io import BytesIO
-          from urllib.parse import urljoin
-          from urllib.request import Request, urlopen
-          import re
 
-          SITE = 'https://zero-believers-anime.com/'
-          EXPECTED = int('3d1c34cf16c71f7f053c0a3d2b298c6ba63b9372876f872fcf234533479c0d17', 16)
-          OUTPUT = Path('assets/posters/zero-believers-goddess-isekai-strategy-user-20260912.webp')
-          UA = 'Mozilla/5.0 (NewAnime asset verification)'
+          src = Path('/tmp/zero-believers-kv.jpg')
+          dst = Path('assets/posters/zero-believers-goddess-isekai-strategy-user-20260912.webp')
+          expected = int('3d1c34cf16c71f7f053c0a3d2b298c6ba63b9372876f872fcf234533479c0d17', 16)
 
-          def fetch(url):
-              req = Request(url, headers={'User-Agent': UA, 'Referer': SITE})
-              with urlopen(req, timeout=20) as response:
-                  return response.read()
-
-          def dhash(image):
-              gray = image.convert('L').resize((17, 16), Image.Resampling.LANCZOS)
-              px = list(gray.getdata())
-              value = 0
-              for y in range(16):
-                  row = px[y * 17:(y + 1) * 17]
-                  for x in range(16):
-                      value = (value << 1) | int(row[x] > row[x + 1])
-              return value
-
-          html = fetch(SITE).decode('utf-8', errors='replace')
-          docs = [(SITE, html)]
-
-          # Key visuals can be referenced directly from HTML or indirectly from site CSS.
-          css_refs = set(re.findall(r'''(?:href|src)=["']([^"']+\.css(?:\?[^"']*)?)["']''', html, flags=re.I))
-          for ref in css_refs:
-              url = urljoin(SITE, ref)
-              try:
-                  docs.append((url, fetch(url).decode('utf-8', errors='replace')))
-              except Exception as exc:
-                  print(f'CSS fetch skipped: {url}: {exc}')
-
-          image_refs = set()
-          image_pattern = re.compile(r'''["'(]([^"'()\s]+\.(?:jpe?g|png|webp)(?:\?[^"'()\s]*)?)["')]''', re.I)
-          for base, doc in docs:
-              for ref in image_pattern.findall(doc):
-                  image_refs.add(urljoin(base, ref))
-
-          # Prefer likely key-visual paths, but fall back to all sufficiently large images.
-          def priority(url):
-              low = url.lower()
-              score = 0
-              for token, weight in [('kv', 8), ('visual', 7), ('main', 4), ('top', 2)]:
-                  if token in low:
-                      score += weight
-              return (-score, len(url))
-
-          best = None
-          checked = 0
-          for url in sorted(image_refs, key=priority):
-              try:
-                  raw = fetch(url)
-                  image = Image.open(BytesIO(raw)).convert('RGB')
-              except Exception:
-                  continue
-              if image.width < 600 or image.height < 800:
-                  continue
-              checked += 1
-              distance = (dhash(image) ^ EXPECTED).bit_count()
-              print(f'candidate distance={distance:3d}/256 size={image.size} url={url}')
-              if best is None or distance < best[0]:
-                  best = (distance, image.copy(), url)
-              if distance == 0:
-                  break
-
-          if best is None:
-              raise SystemExit(f'No usable official key visual candidate found ({len(image_refs)} image refs scanned)')
-
-          distance, image, source_url = best
-          print(f'selected distance={distance}/256 size={image.size} url={source_url} checked={checked}')
+          image = Image.open(src).convert('RGB')
+          gray = image.convert('L').resize((17, 16), Image.Resampling.LANCZOS)
+          px = list(gray.getdata())
+          value = 0
+          for y in range(16):
+              row = px[y * 17:(y + 1) * 17]
+              for x in range(16):
+                  value = (value << 1) | int(row[x] > row[x + 1])
+          distance = (value ^ expected).bit_count()
+          print(f'visual size={image.size}, uploaded-reference dHash distance={distance}/256')
           if distance > 48:
-              raise SystemExit('Official-site artwork does not sufficiently match the user-selected image')
+              raise SystemExit('Official visual no longer matches the user-selected artwork')
 
-          OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-          image.save(OUTPUT, 'WEBP', quality=92, method=6)
-          with Image.open(OUTPUT) as converted:
+          dst.parent.mkdir(parents=True, exist_ok=True)
+          image.save(dst, 'WEBP', quality=92, method=6)
+          with Image.open(dst) as converted:
               if converted.format != 'WEBP':
                   raise SystemExit('Converted asset is not WebP')
-              print(f'webp size={converted.size}, bytes={OUTPUT.stat().st_size}')
+              print(f'webp size={converted.size}, bytes={dst.stat().st_size}')
           PY
 
       - name: Apply focused data and generated-page patch
@@ -128,8 +73,8 @@ jobs:
           set -euo pipefail
           test -s assets/posters/zero-believers-goddess-isekai-strategy-user-20260912.webp
           file assets/posters/zero-believers-goddess-isekai-strategy-user-20260912.webp | grep -q 'Web/P image'
-          grep -Fq '신자 0명 여신님과 시작하는 이세계 공략' data/anime.js
-          grep -Fq 'assets/posters/zero-believers-goddess-isekai-strategy-user-20260912.webp' data/anime.js
+          grep -Fq '신자 0명 여신님과 시작하는 이세계 공략' data/anime-20260904.js
+          grep -Fq 'assets/posters/zero-believers-goddess-isekai-strategy-user-20260912.webp' data/anime-20260904.js
           grep -Fq 'assets/posters/zero-believers-goddess-isekai-strategy-user-20260912.webp' data/poster-fixes-20260905.js
           grep -Fq '신자 0명 여신님과 시작하는 이세계 공략' anime/zero-believers-goddess-isekai-strategy/index.html
           grep -Fq 'zero-believers-goddess-isekai-strategy-user-20260912.webp' anime/zero-believers-goddess-isekai-strategy/index.html
