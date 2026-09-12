@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="light dark" />
   <title>NewAnime 소개 - NewAnime</title>
-  <meta name="description" id="metaDescription" content="NewAnime의 운영 목적, 제공 정보, 독립성 및 권리 관련 안내를 확인하세요." />
+  <meta name="description" id="metaDescription" content="NewAnime은 방영 예정 애니메이션의 일정, 공식 출처 및 공식 OTT 제공 정보를 정리하는 독립 운영 정보 서비스입니다. 영상 콘텐츠를 직접 호스팅하거나 시청 서비스를 제공하지 않습니다." />
   <link rel="canonical" id="canonicalLink" href="https://newani.me/about/?lang=ko" />
   <link rel="alternate" hreflang="ko" href="https://newani.me/about/?lang=ko" />
   <link rel="alternate" hreflang="ja" href="https://newani.me/about/?lang=ja" />
@@ -21,22 +21,26 @@
   <link rel="alternate" hreflang="x-default" href="https://newani.me/about/?lang=ko" />
   <meta http-equiv="content-language" id="contentLanguageMeta" content="ko" />
   <meta property="og:title" id="ogTitle" content="NewAnime 소개 - NewAnime" />
-  <meta property="og:description" id="ogDescription" content="NewAnime의 운영 목적, 제공 정보, 독립성 및 권리 관련 안내를 확인하세요." />
+  <meta property="og:description" id="ogDescription" content="NewAnime은 방영 예정 애니메이션의 일정, 공식 출처 및 공식 OTT 제공 정보를 정리하는 독립 운영 정보 서비스입니다. 영상 콘텐츠를 직접 호스팅하거나 시청 서비스를 제공하지 않습니다." />
   <meta property="og:url" id="ogUrl" content="https://newani.me/about/?lang=ko" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" id="ogLocale" content="ko_KR" />
   <meta property="og:image" content="https://newani.me/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" id="twitterTitle" content="NewAnime 소개 - NewAnime" />
-  <meta name="twitter:description" id="twitterDescription" content="NewAnime의 운영 목적, 제공 정보, 독립성 및 권리 관련 안내를 확인하세요." />
+  <meta name="twitter:description" id="twitterDescription" content="NewAnime은 방영 예정 애니메이션의 일정, 공식 출처 및 공식 OTT 제공 정보를 정리하는 독립 운영 정보 서비스입니다. 영상 콘텐츠를 직접 호스팅하거나 시청 서비스를 제공하지 않습니다." />
   <meta name="twitter:image" content="https://newani.me/og-image.png" />
-  <script type="application/ld+json">
+  <script type="application/ld+json" id="aboutStructuredData">
   {
     "@context": "https://schema.org",
     "@type": "AboutPage",
+    "@id": "https://newani.me/about/#about",
     "name": "NewAnime 소개",
-    "url": "https://newani.me/about/",
-    "isPartOf": { "@type": "WebSite", "name": "NewAnime", "url": "https://newani.me/" }
+    "url": "https://newani.me/about/?lang=ko",
+    "description": "NewAnime은 방영 예정 애니메이션의 일정, 공식 출처 및 공식 OTT 제공 정보를 정리하는 독립 운영 정보 서비스입니다. 영상 콘텐츠를 직접 호스팅하거나 시청 서비스를 제공하지 않습니다.",
+    "inLanguage": "ko",
+    "isPartOf": { "@id": "https://newani.me/#website" },
+    "about": { "@type": "WebSite", "@id": "https://newani.me/#website", "name": "NewAnime", "url": "https://newani.me/" }
   }
   </script>
   <link rel="preload" as="image" href="../assets/newanime-logo.webp" type="image/webp" fetchpriority="high" />
@@ -72,29 +76,30 @@
     </header>
 
     <section class="hero">
-      <div class="lang-content" data-lang-content="ko"><div class="hero-kicker">newani.me</div><h1>NewAnime 소개</h1><p>방영 예정 애니메이션의 일정을 빠르게 찾고, 그 정보가 어디에서 확인되었는지 함께 볼 수 있도록 만든 비공식 정보 서비스입니다.</p></div>
-      <div class="lang-content" data-lang-content="ja" hidden><div class="hero-kicker">newani.me</div><h1>NewAnimeについて</h1><p>放送予定アニメのスケジュールを探しやすくし、その情報をどの公式情報源で確認したかも一緒に確認できる非公式の情報サービスです。</p></div>
-      <div class="lang-content" data-lang-content="en" hidden><div class="hero-kicker">newani.me</div><h1>About NewAnime</h1><p>NewAnime is an independent, unofficial service for discovering upcoming anime schedules together with the official sources used to verify that information.</p></div>
+      <div class="lang-content" data-lang-content="ko"><div class="hero-kicker">newani.me</div><h1>NewAnime 소개</h1><p>방영 예정 애니메이션의 일정과 공식 출처, 공식 OTT 제공 정보를 함께 확인할 수 있도록 정리하는 독립 운영 정보 서비스입니다.</p></div>
+      <div class="lang-content" data-lang-content="ja" hidden><div class="hero-kicker">newani.me</div><h1>NewAnimeについて</h1><p>放送予定アニメのスケジュール、公式情報源、公式配信サービスの提供情報をまとめて確認できる独立運営の情報サービスです。</p></div>
+      <div class="lang-content" data-lang-content="en" hidden><div class="hero-kicker">newani.me</div><h1>About NewAnime</h1><p>NewAnime is an independently operated information service for upcoming anime schedules, official sources, and availability on official streaming providers.</p></div>
     </section>
 
     <section class="info-shell">
       <article class="info-panel lang-content" data-lang-content="ko">
-        <div class="info-meta">운영 정보 · 최종 갱신 2026-09-06</div>
+        <div class="info-meta">운영 정보 · 최종 갱신 2026-09-12</div>
         <h2>무엇을 제공하나요?</h2>
-        <p>NewAnime은 방영 예정 애니메이션과 극장판을 연도·월별로 정리하고 작품명, 방영 시기, 원작/형식 태그, 공식 PV, 공식 사이트, 확인 가능한 스트리밍 정보를 제공합니다.</p>
+        <p>NewAnime은 방영 예정 애니메이션과 극장판을 연도·월별로 정리하고 작품명, 방영 시기, 원작/형식 태그, 공식 PV, 공식 사이트, 확인 가능한 공식 OTT 제공 정보를 안내합니다.</p>
+        <div class="info-callout"><p><strong>NewAnime은 영상 콘텐츠를 직접 호스팅하거나 애니메이션 시청·다운로드 서비스를 제공하지 않습니다.</strong> 작품 페이지의 PV·공식 사이트·OTT 링크는 확인 가능한 외부 공식 페이지로 연결하기 위한 정보입니다.</p></div>
         <p>작품별 검증 정보가 있는 경우 마지막 확인일과 출처를 함께 표시하며, 중요한 변경 사항은 <a href="/updates/" data-lang-link="/updates/">최근 업데이트</a>에 기록합니다.</p>
 
         <h2>운영 원칙</h2>
         <ul>
           <li>공식 애니메이션 사이트와 공식 발표를 가장 우선적인 근거로 사용합니다.</li>
           <li>확정되지 않은 방영 시기는 확정된 범위까지만 표시하며 추측으로 날짜를 채우지 않습니다.</li>
-          <li>PV와 스트리밍 링크는 출처와 실제 연결 대상을 확인한 뒤 제공합니다.</li>
+          <li>공식 PV와 공식 OTT 링크는 출처와 실제 연결 대상을 확인한 뒤 제공합니다.</li>
           <li>정보가 변경되면 이전 상태를 고집하지 않고 최신 공식 발표를 기준으로 수정합니다.</li>
         </ul>
         <p>세부 기준은 <a href="/policy/" data-lang-link="/policy/">정보 검증 및 운영 정책</a>에서 확인할 수 있습니다.</p>
 
         <h2>독립성 및 면책</h2>
-        <div class="info-callout"><p><strong>NewAnime은 애니메이션 제작사, 배급사, 방송사, 출판사 또는 스트리밍 사업자가 운영하는 공식 서비스가 아닙니다.</strong></p></div>
+        <div class="info-callout"><p><strong>NewAnime은 독립적으로 운영되는 정보 서비스이며, 애니메이션 제작사, 배급사, 방송사, 출판사 또는 스트리밍 사업자가 운영하는 공식 서비스가 아닙니다.</strong></p></div>
         <p>방영일과 공개 일정은 제작 및 유통 사정에 따라 변경될 수 있습니다. NewAnime은 오류를 줄이기 위해 공식 출처를 확인하지만, 표시된 정보가 향후에도 변경되지 않는다고 보증하지 않습니다.</p>
 
         <h2>저작권 및 상표</h2>
@@ -106,15 +111,16 @@
       </article>
 
       <article class="info-panel lang-content" data-lang-content="ja" hidden>
-        <div class="info-meta">運営情報 · 最終更新 2026-09-06</div>
+        <div class="info-meta">運営情報 · 最終更新 2026-09-12</div>
         <h2>提供している情報</h2>
-        <p>NewAnimeは放送予定アニメと劇場版を年・月ごとに整理し、作品名、放送時期、原作・形式タグ、公式PV、公式サイト、確認できる配信情報を掲載します。</p>
+        <p>NewAnimeは放送予定アニメと劇場版を年・月ごとに整理し、作品名、放送時期、原作・形式タグ、公式PV、公式サイト、確認できる公式配信サービスの提供情報を掲載します。</p>
+        <div class="info-callout"><p><strong>NewAnimeは映像コンテンツを直接ホスティングせず、アニメの視聴・ダウンロードサービスも提供しません。</strong> 作品ページのPV・公式サイト・配信リンクは、確認できる外部の公式ページへ案内するための情報です。</p></div>
         <p>検証情報がある作品では最終確認日と情報源を表示し、重要な変更は<a href="/updates/" data-lang-link="/updates/">最近の更新</a>に記録します。</p>
         <h2>運営方針</h2>
-        <ul><li>アニメ公式サイトと公式発表を最優先の根拠とします。</li><li>未確定の放送時期は確認できた範囲だけを表示し、推測で日付を補いません。</li><li>PVと配信リンクは情報源とリンク先を確認してから掲載します。</li><li>情報が変更された場合は最新の公式発表を基準に修正します。</li></ul>
+        <ul><li>アニメ公式サイトと公式発表を最優先の根拠とします。</li><li>未確定の放送時期は確認できた範囲だけを表示し、推測で日付を補いません。</li><li>公式PVと公式配信サービスへのリンクは情報源とリンク先を確認してから掲載します。</li><li>情報が変更された場合は最新の公式発表を基準に修正します。</li></ul>
         <p>詳細は<a href="/policy/" data-lang-link="/policy/">情報検証・運営ポリシー</a>をご覧ください。</p>
         <h2>独立性と免責</h2>
-        <div class="info-callout"><p><strong>NewAnimeは制作会社、配給会社、放送局、出版社、配信事業者が運営する公式サービスではありません。</strong></p></div>
+        <div class="info-callout"><p><strong>NewAnimeは独立して運営される情報サービスであり、制作会社、配給会社、放送局、出版社、配信事業者が運営する公式サービスではありません。</strong></p></div>
         <p>放送日や公開予定は変更されることがあります。公式情報を確認して正確性の向上に努めていますが、掲載情報が今後も変更されないことを保証するものではありません。</p>
         <h2>著作権・商標</h2>
         <p>作品名、ロゴ、キャラクター、キービジュアル、ポスター、映像、商標に関する権利は各権利者に帰属します。NewAnimeは作品識別と情報提供のために関連資料を使用する場合がありますが、それらの所有権を主張しません。</p>
@@ -123,15 +129,16 @@
       </article>
 
       <article class="info-panel lang-content" data-lang-content="en" hidden>
-        <div class="info-meta">Site information · Last updated September 6, 2026</div>
+        <div class="info-meta">Site information · Last updated September 12, 2026</div>
         <h2>What NewAnime provides</h2>
-        <p>NewAnime organizes upcoming anime and theatrical releases by year and month, with titles, release windows, source/format tags, official PVs, official sites, and verified streaming information where available.</p>
+        <p>NewAnime organizes upcoming anime and theatrical releases by year and month, with titles, release windows, source/format tags, official PVs, official sites, and verified availability information from official streaming providers where available.</p>
+        <div class="info-callout"><p><strong>NewAnime does not host video content or provide an anime viewing or download service.</strong> PV, official-site, and streaming links on title pages are informational links to verified external official pages.</p></div>
         <p>When verification metadata is available, each title can show its latest check date and sources. Material changes are recorded in <a href="/updates/" data-lang-link="/updates/">Recent Updates</a>.</p>
         <h2>Editorial principles</h2>
-        <ul><li>Official anime websites and official announcements are treated as the primary evidence.</li><li>Unconfirmed dates are shown only at the level of precision that has actually been announced.</li><li>PV and streaming links are checked for their source and destination before being listed.</li><li>When information changes, the latest reliable official announcement takes precedence.</li></ul>
+        <ul><li>Official anime websites and official announcements are treated as the primary evidence.</li><li>Unconfirmed dates are shown only at the level of precision that has actually been announced.</li><li>Official PVs and links to official streaming providers are checked for their source and destination before being listed.</li><li>When information changes, the latest reliable official announcement takes precedence.</li></ul>
         <p>See the <a href="/policy/" data-lang-link="/policy/">Verification &amp; Editorial Policy</a> for details.</p>
         <h2>Independence and disclaimer</h2>
-        <div class="info-callout"><p><strong>NewAnime is not an official service operated by anime studios, distributors, broadcasters, publishers, or streaming providers.</strong></p></div>
+        <div class="info-callout"><p><strong>NewAnime is an independently operated information service and is not an official service operated by anime studios, distributors, broadcasters, publishers, or streaming providers.</strong></p></div>
         <p>Release dates and distribution plans can change. NewAnime checks official sources to reduce errors, but does not guarantee that published schedules will remain unchanged.</p>
         <h2>Copyright and trademarks</h2>
         <p>Rights in titles, logos, characters, key visuals, posters, videos, and trademarks belong to their respective rights holders. NewAnime may use relevant materials to identify works and provide information, and does not claim ownership of those materials.</p>
@@ -141,11 +148,12 @@
     </section>
 
     <footer>
-      <div id="footerDescription">방영 예정 애니메이션과 극장판의 일정, PV, 공식 사이트, 스트리밍 정보를 한눈에 정리합니다.</div>
+      <div id="footerDescription">방영 예정 애니메이션과 극장판의 일정, 공식 PV, 공식 사이트 및 공식 OTT 제공 정보를 정리합니다.</div>
       <nav class="site-footer-links" aria-label="Site information"><a href="/about/" data-lang-link="/about/">ABOUT</a><a href="/privacy/" data-lang-link="/privacy/">PRIVACY</a><a href="/policy/" data-lang-link="/policy/">POLICY</a><a href="mailto:admin@newani.me">CONTACT</a></nav>
       <div>© 2026 NewAnime</div>
     </footer>
   </main>
   <script src="../info-page.js?v=20260906-info1"></script>
+  <script src="/seo-clarity.js?v=20260912-search1"></script>
 </body>
 </html>
