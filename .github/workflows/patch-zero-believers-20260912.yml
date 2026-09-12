@@ -1,0 +1,96 @@
+name: Patch Zero Believers poster and title
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/patch-zero-believers-20260912.py'
+      - '.github/workflows/patch-zero-believers-20260912.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download selected official key visual
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --retry-delay 2 \
+            -A 'Mozilla/5.0' \
+            'https://zero-believers-anime.com/assets/img/top/kv.jpg' \
+            -o /tmp/zero-believers-kv.jpg
+          test -s /tmp/zero-believers-kv.jpg
+          file /tmp/zero-believers-kv.jpg
+
+      - name: Verify artwork and convert to WebP
+        run: |
+          set -euo pipefail
+          python -m pip install --quiet pillow
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+
+          src = Path('/tmp/zero-believers-kv.jpg')
+          dst = Path('assets/posters/zero-believers-goddess-isekai-strategy-user-20260912.webp')
+          expected = int('3d1c34cf16c71f7f053c0a3d2b298c6ba63b9372876f872fcf234533479c0d17', 16)
+
+          image = Image.open(src).convert('RGB')
+          gray = image.convert('L').resize((17, 16), Image.Resampling.LANCZOS)
+          px = list(gray.getdata())
+          value = 0
+          for y in range(16):
+              row = px[y * 17:(y + 1) * 17]
+              for x in range(16):
+                  value = (value << 1) | int(row[x] > row[x + 1])
+          distance = (value ^ expected).bit_count()
+          print(f'official image size={image.size}, uploaded-reference dHash distance={distance}/256')
+          if distance > 48:
+              raise SystemExit('Downloaded artwork does not sufficiently match the user-selected image')
+
+          dst.parent.mkdir(parents=True, exist_ok=True)
+          image.save(dst, 'WEBP', quality=92, method=6)
+          with Image.open(dst) as converted:
+              if converted.format != 'WEBP':
+                  raise SystemExit('Converted asset is not WebP')
+              print(f'webp size={converted.size}, bytes={dst.stat().st_size}')
+          PY
+
+      - name: Apply focused data and generated-page patch
+        run: python scripts/patch-zero-believers-20260912.py
+
+      - name: Validate changed JavaScript
+        run: |
+          set -euo pipefail
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+            node --check "$file"
+          done < <(git diff --name-only -- '*.js')
+
+      - name: Verify requested result
+        run: |
+          set -euo pipefail
+          test -s assets/posters/zero-believers-goddess-isekai-strategy-user-20260912.webp
+          file assets/posters/zero-believers-goddess-isekai-strategy-user-20260912.webp | grep -q 'Web/P image'
+          grep -Fq '신자 0명 여신님과 시작하는 이세계 공략' data/anime.js
+          grep -Fq 'assets/posters/zero-believers-goddess-isekai-strategy-user-20260912.webp' data/anime.js
+          grep -Fq 'assets/posters/zero-believers-goddess-isekai-strategy-user-20260912.webp' data/poster-fixes-20260905.js
+          grep -Fq '신자 0명 여신님과 시작하는 이세계 공략' anime/zero-believers-goddess-isekai-strategy/index.html
+          grep -Fq 'zero-believers-goddess-isekai-strategy-user-20260912.webp' anime/zero-believers-goddess-isekai-strategy/index.html
+          ! grep -R -Fq --exclude-dir=.git '신자 제로의 여신님과 시작하는 이세계 공략' .
+
+      - name: Commit patch and remove temporary files
+        run: |
+          set -euo pipefail
+          rm -f scripts/patch-zero-believers-20260912.py .github/workflows/patch-zero-believers-20260912.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Replace Zero Believers poster and Korean title [skip ci]'
+          git push origin main
