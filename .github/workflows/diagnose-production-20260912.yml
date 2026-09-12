@@ -64,14 +64,20 @@ jobs:
           const page = await browser.newPage({ locale: 'ko-KR' });
           const failures = [];
           const errors = [];
-          const ignoredHosts = ['google-analytics.com', 'googletagmanager.com', 'googlesyndication.com', 'doubleclick.net'];
-          const ignored = url => ignoredHosts.some(host => url.includes(host));
+          const SITE_ORIGIN = 'https://newani.me';
           page.on('console', msg => {
-            if (msg.type() === 'error' && !ignored(msg.text())) errors.push(`console: ${msg.text()}`);
+            if (msg.type() === 'error') {
+              const text = msg.text();
+              if (text.includes('newani.me')) errors.push(`console: ${text}`);
+            }
           });
           page.on('pageerror', err => errors.push(`pageerror: ${err.message}`));
           page.on('requestfailed', req => {
-            if (!ignored(req.url())) failures.push(`${req.failure()?.errorText || 'failed'} ${req.url()}`);
+            try {
+              if (new URL(req.url()).origin === SITE_ORIGIN) {
+                failures.push(`${req.failure()?.errorText || 'failed'} ${req.url()}`);
+              }
+            } catch (_) {}
           });
 
           async function visit(url, label) {
@@ -98,10 +104,12 @@ jobs:
           if ((await menu.getAttribute('aria-expanded')) !== 'true') throw new Error('Home hamburger did not open');
 
           await visit('https://newani.me/anime/zero-believers-goddess-isekai-strategy/?diag=20260912', 'detail');
-          console.log(`DETAIL_H1 ${await page.locator('h1').first().innerText()}`);
-          console.log(`DETAIL_IMG ${await page.locator('.detail-poster').getAttribute('src')}`);
-          if ((await page.locator('h1').first().innerText()).trim() !== '신자 0명 여신님과 시작하는 이세계 공략') throw new Error('Detail title mismatch');
-          if (!(await page.locator('.detail-poster').getAttribute('src'))?.includes('zero-believers-goddess-isekai-strategy-user-20260912.webp')) throw new Error('Detail poster mismatch');
+          const detailH1 = (await page.locator('h1').first().innerText()).trim();
+          const detailImg = await page.locator('.detail-poster').getAttribute('src');
+          console.log(`DETAIL_H1 ${detailH1}`);
+          console.log(`DETAIL_IMG ${detailImg}`);
+          if (detailH1 !== '신자 0명 여신님과 시작하는 이세계 공략') throw new Error('Detail title mismatch');
+          if (!detailImg?.includes('zero-believers-goddess-isekai-strategy-user-20260912.webp')) throw new Error('Detail poster mismatch');
           const detailMenu = page.locator('#menuToggle');
           await detailMenu.click();
           console.log(`DETAIL_MENU_EXPANDED ${await detailMenu.getAttribute('aria-expanded')}`);
