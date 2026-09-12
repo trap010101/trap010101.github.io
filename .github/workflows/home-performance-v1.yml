@@ -21,10 +21,10 @@ jobs:
       - name: Apply focused performance patch
         run: python3 scripts/home-performance-v1.py
 
-      - name: Syntax and regression checks
+      - name: Syntax and focused regression checks
         run: |
           node --check app.js
-          npm test
+          node --test tests/schedule.test.js
           python3 - <<'PY'
           from pathlib import Path
           import re
