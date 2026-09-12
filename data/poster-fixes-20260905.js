@@ -54,7 +54,7 @@
     "glasses-sometimes-yankee-kun": { src: "assets/posters/glasses-sometimes-yankee-kun-v2.webp", updatedAt: "2026-09-07" },
     "we-are-aliens": { src: "assets/posters/we-are-aliens.webp", updatedAt: "2026-09-07" },
     "the-timid-max-lady-took-her-shrewd-fiance-s-bet": {
-      src: "https://img2.animatetimes.com/2025/10/eb0a0ae1968806570abb341412f0c1df68edefe58a6b92_92699022_53161abe07df736d0674582b3630719ef224d0a6.jpg",
+      src: "assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-v2.webp",
       updatedAt: "2026-09-12"
     },
     "a-certain-dark-sides-shared-living": {

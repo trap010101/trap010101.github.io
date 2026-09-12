@@ -1,46 +1,22 @@
 {
   "auditedAt": "2026-09-07",
-  "count": 2,
+  "count": 1,
   "posters": [
     {
-      "id": "a-certain-dark-sides-shared-living",
-      "sourceUrl": "https://ogre.natalie.mu/media/news/comic/2026/0222/toaruitem_teaser.jpg?imdensity=1&impolicy=hq&imwidth=1460",
+      "id": "the-timid-max-lady-took-her-shrewd-fiance-s-bet",
+      "sourceUrl": "https://img2.animatetimes.com/2025/10/eb0a0ae1968806570abb341412f0c1df68edefe58a6b92_92699022_53161abe07df736d0674582b3630719ef224d0a6.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/a-certain-dark-sides-shared-living-v2.webp",
+      "localPath": "assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-v2.webp",
       "mime": "image/webp",
-      "bytes": 390220,
-      "width": 1460,
-      "height": 2063,
-      "aspectRatio": 0.708,
+      "bytes": 90150,
+      "width": 1280,
+      "height": 864,
+      "aspectRatio": 1.481,
       "notes": [],
-      "originalLocalPath": "assets/posters/a-certain-dark-sides-shared-living.avif",
-      "originalBytes": 323757,
-      "originalWidth": null,
-      "originalHeight": null,
-      "optimized": true,
-      "optimization": {
-        "format": "webp",
-        "quality": 86,
-        "maxWidth": 1600,
-        "maxHeight": 2200,
-        "withoutEnlargement": true
-      }
-    },
-    {
-      "id": "nia-liston-the-merciless-maiden",
-      "sourceUrl": "https://kyoranreijo-pr.com/wp/wp-content/uploads/2026/07/%E3%82%AD%E3%83%BC%E3%83%93%E3%82%B8%E3%83%A5%E3%82%A2%E3%83%AB-scaled.jpg",
-      "originalUrl": null,
-      "localPath": "assets/posters/nia-liston-the-merciless-maiden-v2.webp",
-      "mime": "image/webp",
-      "bytes": 321170,
-      "width": 1555,
-      "height": 2200,
-      "aspectRatio": 0.707,
-      "notes": [],
-      "originalLocalPath": "assets/posters/nia-liston-the-merciless-maiden.jpg",
-      "originalBytes": 565100,
-      "originalWidth": 1810,
-      "originalHeight": 2560,
+      "originalLocalPath": "assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet.webp",
+      "originalBytes": 109452,
+      "originalWidth": 1280,
+      "originalHeight": 864,
       "optimized": true,
       "optimization": {
         "format": "webp",
@@ -56,9 +32,9 @@
     "quality": 86,
     "maxWidth": 1600,
     "maxHeight": 2200,
-    "optimizedCount": 2,
-    "sourceBytes": 888857,
-    "optimizedBytes": 711390,
-    "savedBytes": 177467
+    "optimizedCount": 1,
+    "sourceBytes": 109452,
+    "optimizedBytes": 90150,
+    "savedBytes": 19302
   }
 }
