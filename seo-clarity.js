@@ -34,6 +34,11 @@
     document.getElementById(id)?.setAttribute("content", value);
   }
 
+  function applySharedFooter(lang) {
+    const footer = document.getElementById("footerDescription");
+    if (footer) footer.textContent = (homeCopy[lang] || homeCopy.ko).footer;
+  }
+
   function applyHome(lang) {
     const copy = homeCopy[lang] || homeCopy.ko;
     setMeta("metaDescription", copy.description);
@@ -42,8 +47,7 @@
 
     const hero = document.getElementById("heroSubtitle");
     if (hero) hero.textContent = copy.hero;
-    const footer = document.getElementById("footerDescription");
-    if (footer) footer.textContent = copy.footer;
+    applySharedFooter(lang);
 
     const pageUrl = `https://newani.me/?lang=${lang}`;
     const schema = document.getElementById("websiteStructuredData");
@@ -84,6 +88,7 @@
     setMeta("metaDescription", description);
     setMeta("ogDescription", description);
     setMeta("twitterDescription", description);
+    applySharedFooter(lang);
 
     const schema = document.getElementById("aboutStructuredData");
     if (schema) {
