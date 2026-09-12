@@ -53,6 +53,10 @@
     "unrewarded-villager-a": { src: "assets/posters/unrewarded-villager-a-v3.webp", updatedAt: "2026-09-07" },
     "glasses-sometimes-yankee-kun": { src: "assets/posters/glasses-sometimes-yankee-kun-v2.webp", updatedAt: "2026-09-07" },
     "we-are-aliens": { src: "assets/posters/we-are-aliens.webp", updatedAt: "2026-09-07" },
+    "the-timid-max-lady-took-her-shrewd-fiance-s-bet": {
+      src: "https://img2.animatetimes.com/2025/10/eb0a0ae1968806570abb341412f0c1df68edefe58a6b92_92699022_53161abe07df736d0674582b3630719ef224d0a6.jpg",
+      updatedAt: "2026-09-12"
+    },
     "a-certain-dark-sides-shared-living": {
       src: "assets/posters/a-certain-dark-sides-shared-living-v2.webp",
       updatedAt: "2026-09-10"
@@ -71,10 +75,22 @@
     anime.updatedAt = fix.updatedAt;
   }
 
-  // User-confirmed Korean title. Keep this final override after the 2027 audit title data.
+  // User-confirmed Korean titles. Keep these final overrides after the canonical data loads.
   const kinioto = window.animeData.find(anime => anime.id === "the-guy-she-was-interested-in-wasnt-a-guy-at-all");
   if (kinioto) {
     kinioto.title = { ...kinioto.title, ko: "신경 쓰이는 사람이 남자가 아니었다" };
     kinioto.updatedAt = "2026-09-07";
+  }
+
+  const timidMax = window.animeData.find(anime => anime.id === "the-timid-max-lady-took-her-shrewd-fiance-s-bet");
+  if (timidMax) {
+    timidMax.title = { ...timidMax.title, ko: "나약MAX 영애인데 수완가 약혼자와 내기를 하고 말았다" };
+    timidMax.updatedAt = "2026-09-12";
+  }
+
+  const mercedes = window.animeData.find(anime => anime.id === "mercedes-and-the-waning-moon");
+  if (mercedes) {
+    mercedes.title = { ...mercedes.title, ko: "이지러진 달의 메르세데스 ~흡혈귀 귀족으로 전생했지만 버려질 운명에 처했으므로 던전을 제패하겠다~" };
+    mercedes.updatedAt = "2026-09-12";
   }
 })();
