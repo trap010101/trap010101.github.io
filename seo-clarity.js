@@ -3,17 +3,20 @@
     ko: {
       description: "NewAnime은 2026~2027년 방영 예정 애니메이션과 극장판의 방영일, 공식 PV, 공식 사이트 및 공식 OTT 제공 정보를 정리하는 독립 운영 정보 서비스입니다.",
       hero: "방영일과 공식 PV, 공식 사이트 및 공식 OTT 제공 정보를 한눈에 확인하세요.",
-      footer: "방영 예정 애니메이션과 극장판의 일정, 공식 PV, 공식 사이트 및 공식 OTT 제공 정보를 정리합니다."
+      footer: "방영 예정 애니메이션과 극장판의 일정, 공식 PV, 공식 사이트 및 공식 OTT 제공 정보를 정리합니다.",
+      scope: "NewAnime은 영상 콘텐츠를 직접 호스팅하거나 애니메이션 시청·다운로드 서비스를 제공하지 않으며, 확인 가능한 외부 공식 페이지 정보를 안내합니다."
     },
     ja: {
       description: "NewAnimeは、2026～2027年放送予定のアニメ・劇場版について、放送日、公式PV、公式サイト、公式配信サービスの提供情報を整理する独立運営の情報サービスです。",
       hero: "放送日、公式PV、公式サイト、公式配信サービスの提供情報をまとめて確認できます。",
-      footer: "放送予定のアニメと劇場版について、放送日、公式PV、公式サイト、公式配信サービスの提供情報を整理しています。"
+      footer: "放送予定のアニメと劇場版について、放送日、公式PV、公式サイト、公式配信サービスの提供情報を整理しています。",
+      scope: "NewAnimeは映像コンテンツを直接ホスティングせず、アニメの視聴・ダウンロードサービスも提供しません。確認できる外部の公式ページ情報を案内します。"
     },
     en: {
       description: "NewAnime is an independently operated information service for upcoming anime and films, organizing release dates, official PVs, official sites, and availability on official streaming providers.",
       hero: "Browse release dates, official PVs, official sites, and availability on official streaming providers at a glance.",
-      footer: "NewAnime organizes upcoming anime and film schedules, official PVs, official sites, and availability on official streaming providers."
+      footer: "NewAnime organizes upcoming anime and film schedules, official PVs, official sites, and availability on official streaming providers.",
+      scope: "NewAnime does not host video content or provide an anime viewing or download service. It points users to verified external official pages."
     }
   };
 
@@ -48,6 +51,17 @@
     const hero = document.getElementById("heroSubtitle");
     if (hero) hero.textContent = copy.hero;
     applySharedFooter(lang);
+
+    const sourceBox = document.querySelector(".source-box");
+    if (sourceBox) {
+      let notice = document.getElementById("serviceScopeNotice");
+      if (!notice) {
+        notice = document.createElement("p");
+        notice.id = "serviceScopeNotice";
+        sourceBox.appendChild(notice);
+      }
+      notice.textContent = copy.scope;
+    }
 
     const pageUrl = `https://newani.me/?lang=${lang}`;
     const schema = document.getElementById("websiteStructuredData");
