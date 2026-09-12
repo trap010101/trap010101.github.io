@@ -57,7 +57,7 @@ jobs:
 
       - name: Runtime browser smoke test
         run: |
-          cat > /tmp/smoke.mjs <<'JS'
+          cat > smoke.mjs <<'JS'
           import { chromium } from 'playwright';
 
           const browser = await chromium.launch({ headless: true });
@@ -85,13 +85,8 @@ jobs:
           }
 
           await visit('https://newani.me/?lang=ko&diag=20260912', 'home');
-          const card = page.locator('[data-anime-id="zero-believers-goddess-isekai-strategy"], [data-id="zero-believers-goddess-isekai-strategy"]').first();
-          console.log(`TARGET_CARD_COUNT ${await card.count()}`);
-          if (await card.count()) {
-            console.log(`TARGET_CARD_TEXT ${(await card.innerText()).replace(/\s+/g, ' ').slice(0, 500)}`);
-            const img = card.locator('img').first();
-            if (await img.count()) console.log(`TARGET_CARD_IMG ${await img.getAttribute('src')}`);
-          }
+          const byText = page.getByText('신자 0명 여신님과 시작하는 이세계 공략', { exact: true }).first();
+          console.log(`TARGET_TEXT_COUNT ${await byText.count()}`);
           const menu = page.locator('#menuToggle');
           if (await menu.count()) {
             await menu.click();
@@ -117,4 +112,4 @@ jobs:
 
           await browser.close();
           JS
-          node /tmp/smoke.mjs
+          node smoke.mjs
