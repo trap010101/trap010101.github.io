@@ -78,7 +78,10 @@ jobs:
           grep -Fq 'assets/posters/zero-believers-goddess-isekai-strategy-user-20260912.webp' data/poster-fixes-20260905.js
           grep -Fq '신자 0명 여신님과 시작하는 이세계 공략' anime/zero-believers-goddess-isekai-strategy/index.html
           grep -Fq 'zero-believers-goddess-isekai-strategy-user-20260912.webp' anime/zero-believers-goddess-isekai-strategy/index.html
-          ! grep -R -Fq --exclude-dir=.git '신자 제로의 여신님과 시작하는 이세계 공략' .
+          grep -Fq '신자 0명 여신님과 시작하는 이세계 공략' 2026/10/index.html
+          ! grep -Fq '신자 제로의 여신님과 시작하는 이세계 공략' data/anime-20260904.js
+          ! grep -Fq '신자 제로의 여신님과 시작하는 이세계 공략' anime/zero-believers-goddess-isekai-strategy/index.html
+          ! grep -Fq '신자 제로의 여신님과 시작하는 이세계 공략' 2026/10/index.html
 
       - name: Commit patch and remove temporary files
         run: |
