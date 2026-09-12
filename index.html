@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="light dark" />
   <title>NewAnime - 방영 예정 애니메이션</title>
-  <meta name="description" id="metaDescription" content="2026~2027년 방영 예정 애니메이션과 극장판의 방영일, PV, 공식 사이트, 스트리밍 정보를 한눈에 확인하세요." />
+  <meta name="description" id="metaDescription" content="NewAnime은 2026~2027년 방영 예정 애니메이션과 극장판의 방영일, 공식 PV, 공식 사이트 및 공식 OTT 제공 정보를 정리하는 독립 운영 정보 서비스입니다." />
   <link rel="canonical" id="canonicalLink" href="https://newani.me/?lang=ko" />
   <link rel="alternate" hreflang="ko" href="https://newani.me/?lang=ko" />
   <link rel="alternate" hreflang="ja" href="https://newani.me/?lang=ja" />
@@ -27,7 +27,7 @@
   <meta http-equiv="content-language" id="contentLanguageMeta" content="ko" />
 
   <meta property="og:title" id="ogTitle" content="NewAnime - 방영 예정 애니메이션" />
-  <meta property="og:description" id="ogDescription" content="2026~2027년 방영 예정 애니메이션과 극장판의 방영일, PV, 공식 사이트, 스트리밍 정보를 한눈에 확인하세요." />
+  <meta property="og:description" id="ogDescription" content="NewAnime은 2026~2027년 방영 예정 애니메이션과 극장판의 방영일, 공식 PV, 공식 사이트 및 공식 OTT 제공 정보를 정리하는 독립 운영 정보 서비스입니다." />
   <meta property="og:url" id="ogUrl" content="https://newani.me/?lang=ko" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" id="ogLocale" content="ko_KR" />
@@ -35,16 +35,37 @@
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" id="twitterTitle" content="NewAnime - 방영 예정 애니메이션" />
-  <meta name="twitter:description" id="twitterDescription" content="2026~2027년 방영 예정 애니메이션과 극장판의 방영일, PV, 공식 사이트, 스트리밍 정보를 한눈에 확인하세요." />
+  <meta name="twitter:description" id="twitterDescription" content="NewAnime은 2026~2027년 방영 예정 애니메이션과 극장판의 방영일, 공식 PV, 공식 사이트 및 공식 OTT 제공 정보를 정리하는 독립 운영 정보 서비스입니다." />
   <meta name="twitter:image" content="https://newani.me/og-image.png" />
 
   <script type="application/ld+json" id="websiteStructuredData">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "NewAnime",
-    "url": "https://newani.me/",
-    "description": "2026~2027년 방영 예정 애니메이션과 극장판의 방영일, PV, 공식 사이트, 스트리밍 정보를 한눈에 확인하세요."
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://newani.me/#organization",
+        "name": "NewAnime",
+        "url": "https://newani.me/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://newani.me/assets/newanime-logo.svg"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://newani.me/#website",
+        "name": "NewAnime",
+        "url": "https://newani.me/?lang=ko",
+        "description": "NewAnime은 2026~2027년 방영 예정 애니메이션과 극장판의 방영일, 공식 PV, 공식 사이트 및 공식 OTT 제공 정보를 정리하는 독립 운영 정보 서비스입니다.",
+        "inLanguage": "ko",
+        "publisher": { "@id": "https://newani.me/#organization" },
+        "about": {
+          "@type": "Thing",
+          "name": "방영 예정 애니메이션 일정 및 공식 출처 정보"
+        }
+      }
+    ]
   }
   </script>
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=20260909-icon1" />
@@ -107,7 +128,7 @@
     <section class="hero">
       <div class="hero-kicker">newani.me</div>
       <h1 id="heroTitle">방영 예정 애니메이션</h1>
-      <p id="heroSubtitle">방영일과 PV, 공식 사이트 및 스트리밍 정보를 한눈에 확인하세요.</p>
+      <p id="heroSubtitle">방영일과 공식 PV, 공식 사이트 및 공식 OTT 제공 정보를 한눈에 확인하세요.</p>
     </section>
 
     <section class="upcoming" id="upcoming" aria-labelledby="upcomingTitle" hidden>
@@ -228,7 +249,7 @@
     </div>
 
     <footer>
-      <div id="footerDescription">방영 예정 애니메이션과 극장판의 일정, PV, 공식 사이트, 스트리밍 정보를 한눈에 정리합니다.</div>
+      <div id="footerDescription">방영 예정 애니메이션과 극장판의 일정, 공식 PV, 공식 사이트 및 공식 OTT 제공 정보를 정리합니다.</div>
       <nav class="site-footer-links" aria-label="Site information">
         <a id="archiveFooterLink" href="/2026/">ARCHIVE</a>
         <a href="/updates/">UPDATES</a>
@@ -264,5 +285,6 @@
 <script defer src="undated-schedule.js?v=20260907-upcoming1"></script>
 <script defer src="pv-modal.js?v=20260905-resource-icons1"></script>
 <script defer src="anime-links.js?v=20260910-ranking5"></script>
+<script defer src="/seo-clarity.js?v=20260912-search1"></script>
 </body>
 </html>
