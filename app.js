@@ -621,6 +621,152 @@ function updateCategoryCollapse() {
   if (icon) icon.textContent = "⌃";
 }
 
+const posterLoader = (() => {
+  const queue = [];
+  const queued = new WeakMap();
+  let active = 0;
+  let sequence = 0;
+  let observer = null;
+
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const effectiveType = String(connection?.effectiveType || "");
+  const isMobile = window.matchMedia("(max-width: 720px)").matches;
+  const maxConcurrent = connection?.saveData || /(?:^|-)2g$/.test(effectiveType)
+    ? 2
+    : isMobile || effectiveType === "3g"
+      ? 3
+      : 5;
+  const rootMargin = connection?.saveData ? "320px 0px" : isMobile ? "720px 0px" : "1100px 0px";
+  const priorityRank = { high: 0, auto: 1, low: 2 };
+
+  function sortQueue() {
+    queue.sort((a, b) =>
+      (priorityRank[a.priority] ?? 1) - (priorityRank[b.priority] ?? 1) ||
+      a.order - b.order
+    );
+  }
+
+  function finish(img, ok) {
+    active = Math.max(0, active - 1);
+    if (ok) {
+      img.dataset.posterState = "loaded";
+      img.style.removeProperty("visibility");
+      img.closest(".poster-frame")?.classList.add("poster-loaded");
+    } else {
+      img.dataset.posterState = "error";
+      img.closest(".poster-frame")?.classList.add("poster-error");
+      img.remove();
+    }
+    pump();
+  }
+
+  function start(item) {
+    const { img, src, priority } = item;
+    queued.delete(img);
+    if (!img.isConnected || !src || img.dataset.posterState === "loaded") return;
+
+    active += 1;
+    img.dataset.posterState = "loading";
+    img.loading = "eager";
+    try { img.fetchPriority = priority; } catch (_) {}
+
+    img.addEventListener("load", () => finish(img, true), { once: true });
+    img.addEventListener("error", () => finish(img, false), { once: true });
+    img.src = src;
+  }
+
+  function pump() {
+    while (active < maxConcurrent && queue.length) {
+      sortQueue();
+      const item = queue.shift();
+      if (!item?.img?.isConnected || item.img.dataset.posterState === "loaded") {
+        if (item?.img) queued.delete(item.img);
+        continue;
+      }
+      start(item);
+    }
+  }
+
+  function request(img, src = img?.dataset?.posterSrc, priority = "auto", order = null) {
+    if (!img || !src) return;
+    const state = img.dataset.posterState;
+    if (state === "loaded" || state === "error") return;
+
+    img.dataset.posterSrc = src;
+    if (!img.style.visibility) img.style.visibility = "hidden";
+
+    if (state === "loading") {
+      if (priority === "high") {
+        try { img.fetchPriority = "high"; } catch (_) {}
+      }
+      return;
+    }
+
+    const existing = queued.get(img);
+    const nextOrder = Number.isFinite(order) ? order : sequence++;
+    if (existing) {
+      if ((priorityRank[priority] ?? 1) < (priorityRank[existing.priority] ?? 1)) existing.priority = priority;
+      existing.order = Math.min(existing.order, nextOrder);
+      sortQueue();
+      pump();
+      return;
+    }
+
+    img.dataset.posterState = "queued";
+    const item = { img, src, priority, order: nextOrder };
+    queued.set(img, item);
+    queue.push(item);
+    sortQueue();
+    pump();
+  }
+
+  function ensureObserver() {
+    if (observer || !("IntersectionObserver" in window)) return observer;
+    observer = new IntersectionObserver(entries => {
+      const candidates = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a, b) =>
+          a.boundingClientRect.top - b.boundingClientRect.top ||
+          a.boundingClientRect.left - b.boundingClientRect.left
+        );
+
+      candidates.forEach((entry, index) => {
+        const img = entry.target;
+        const rect = entry.boundingClientRect;
+        const inViewport = rect.bottom >= -80 && rect.top <= window.innerHeight + 80;
+        request(img, img.dataset.posterSrc, inViewport ? "high" : "auto", index);
+        observer.unobserve(img);
+      });
+    }, { rootMargin, threshold: 0.01 });
+    return observer;
+  }
+
+  function observe(root = document) {
+    const images = [...root.querySelectorAll('img[data-poster-src]')]
+      .filter(img => !["loaded", "loading", "error"].includes(img.dataset.posterState));
+    if (!images.length) return;
+
+    const io = ensureObserver();
+    if (!io) {
+      images.forEach((img, index) => request(img, img.dataset.posterSrc, index < 4 ? "high" : "low", index));
+      return;
+    }
+    images.forEach(img => io.observe(img));
+  }
+
+  return { request, observe };
+})();
+
+window.NewAnimePosterLoader = posterLoader;
+
+function initPosterLoading() {
+  posterLoader.observe(scheduleEl);
+  const undatedContent = document.getElementById("undatedContent");
+  if (undatedSection && undatedContent && !undatedSection.classList.contains("hidden") && !undatedContent.classList.contains("hidden")) {
+    posterLoader.observe(undatedSection);
+  }
+}
+
 function posterMarkup(anime) {
   if (!anime.poster?.src) {
     return `
@@ -633,14 +779,13 @@ function posterMarkup(anime) {
   return `
     <div class="poster-frame has-image" aria-label="${localTitle(anime)}">
       <img
-        src="${anime.poster.src}"
-        alt="${localTitle(anime)}"
-        style="object-position: ${anime.poster.position || "center center"}"
-        loading="lazy"
+        data-poster-src="${anime.poster.src}"
+        data-poster-state="pending"
+        alt=""
+        style="object-position: ${anime.poster.position || "center center"}; visibility: hidden"
         decoding="async"
         fetchpriority="low"
         referrerpolicy="no-referrer"
-        onerror="this.closest('.poster-frame').classList.add('poster-error')"
       >
       <div class="poster-fallback" aria-hidden="true">?</div>
     </div>
@@ -1078,6 +1223,7 @@ function render() {
   }).join("");
 
   renderUndated();
+  initPosterLoading();
   updateTitleScrolls();
 }
 
@@ -1160,7 +1306,10 @@ document.getElementById("undatedToggle").addEventListener("click", () => {
   const arrow = document.getElementById("undatedArrow");
   content.classList.toggle("hidden");
   arrow.textContent = content.classList.contains("hidden") ? "＋" : "−";
-  if (!content.classList.contains("hidden")) updateTitleScrolls();
+  if (!content.classList.contains("hidden")) {
+    initPosterLoading();
+    updateTitleScrolls();
+  }
 });
 
 updateStaticLanguage();
@@ -1189,6 +1338,8 @@ window.newAnimeHomepage = {
     requestAnimationFrame(() => {
       const card = document.getElementById(`anime-${id}`);
       if (!card) return;
+      const poster = card.querySelector("img[data-poster-src]");
+      if (poster) posterLoader.request(poster, poster.dataset.posterSrc, "high", -1);
       if (card.closest(".undated")) {
         card.closest(".undated").classList.remove("hidden");
         card.closest(".undated-content")?.classList.remove("hidden");

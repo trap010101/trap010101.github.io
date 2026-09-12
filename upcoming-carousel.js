@@ -61,14 +61,14 @@
     poster.append(fallback);
     if (entry.anime.poster?.src) {
       const img = document.createElement("img");
-      img.src = entry.anime.poster.src;
+      img.dataset.posterSrc = entry.anime.poster.src;
+      img.dataset.posterState = "pending";
       img.alt = "";
-      img.loading = "lazy";
       img.decoding = "async";
       img.draggable = false;
       img.referrerPolicy = "no-referrer";
       img.style.objectPosition = entry.anime.poster.position || "center";
-      img.addEventListener("error", () => img.remove(), { once: true });
+      img.style.visibility = "hidden";
       poster.append(img);
     }
     const body = document.createElement("span");
@@ -92,6 +92,24 @@
     });
     stage.append(button);
     return button;
+  }
+  function requestCardPoster(card, priority = "auto") {
+    const img = card?.querySelector("img[data-poster-src]");
+    if (!img || !img.dataset.posterSrc) return;
+    if (window.NewAnimePosterLoader?.request) {
+      window.NewAnimePosterLoader.request(img, img.dataset.posterSrc, priority, priority === "high" ? -100 : -50);
+      return;
+    }
+    if (img.dataset.posterState === "loaded" || img.dataset.posterState === "loading") return;
+    img.dataset.posterState = "loading";
+    img.loading = "eager";
+    try { img.fetchPriority = priority; } catch (_) {}
+    img.addEventListener("load", () => {
+      img.dataset.posterState = "loaded";
+      img.style.removeProperty("visibility");
+    }, { once: true });
+    img.addEventListener("error", () => img.remove(), { once: true });
+    img.src = img.dataset.posterSrc;
   }
   function refreshSelection(now) {
     const focusedId = entries[current]?.anime.id;
@@ -130,6 +148,8 @@
     entries.forEach((entry, index) => {
       const card = cards.get(entry.anime.id), slot = slotMap.get(index) || "offstage";
       card.dataset.position = slot;
+      if (slot === "center") requestCardPoster(card, "high");
+      else if (slot === "left" || slot === "right") requestCardPoster(card, "auto");
       card.tabIndex = slot === "center" ? 0 : -1;
       card.setAttribute("aria-hidden", String(slot === "offstage"));
       card.inert = slot === "offstage";
