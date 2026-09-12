@@ -13,8 +13,16 @@
     ["glasses-sometimes-yankee-kun", "안경, 때때로, 불량아"]
   ]);
 
+  const koreanTitleCorrections = new Map([
+    [
+      "보답받지 못한 마을사람 A, 귀족에게 거두어져 익애받는 데다, 사실 가지고 있던 전설급 신 스킬도 각성했다",
+      "보답받지 못했던 마을사람 A, 귀족에게 거둬져 사랑을 듬뿍 받는 데다 사실은 가지고 있던 전설급 신스킬도 각성했다"
+    ]
+  ]);
+
   window.animeData.forEach(item => {
-    const correctedTitle = titleCorrections.get(item?.id);
+    const correctedTitle = titleCorrections.get(item?.id)
+      || koreanTitleCorrections.get(item?.title?.ko);
     if (!correctedTitle) return;
 
     item.title = {
