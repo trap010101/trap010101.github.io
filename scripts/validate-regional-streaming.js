@@ -30,7 +30,8 @@ const sourceFiles = [
   'data/streaming-regions.js',
   'data/streaming-jp-20260906.js',
   'data/streaming-us-20260906.js',
-  'data/streaming-policy-20260905.js'
+  'data/streaming-policy-20260905.js',
+  'data/streaming-kr-20260908.js'
 ];
 
 for (const relative of sourceFiles) {

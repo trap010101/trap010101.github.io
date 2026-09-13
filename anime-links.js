@@ -153,6 +153,7 @@
   Promise.resolve()
     .then(() => loadScript('/data/streaming-jp-20260906.js?v=20260906-region1'))
     .then(() => loadScript('/data/streaming-us-20260906.js?v=20260906-region1'))
+    .then(() => loadScript('/data/streaming-kr-20260908.js?v=20260913-region2'))
     .then(() => loadScript('/streaming-region-country-default.js?v=20260906-country1'))
     .then(() => loadScript('/streaming-region-ui.js?v=20260906-region1'))
     .then(() => loadScript('/streaming-region-compact.js?v=20260906-region4'))
