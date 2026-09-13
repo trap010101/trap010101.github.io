@@ -1,0 +1,57 @@
+name: Fix updates runtime changelog
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/fix-updates-runtime-20260913.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Load September 10-12 changelog data
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('updates/index.html')
+          text = path.read_text(encoding='utf-8')
+
+          old = '''  <script src="../data/changelog.js?v=20260910-history4"></script>
+            <script src="../data/changelog-20260909.js?v=20260910-history4"></script>
+            <script src="updates.js?v=20260910-history4"></script>'''.replace('            <script', '  <script')
+          new = '''  <script src="../data/changelog.js?v=20260913-history5"></script>
+            <script src="../data/changelog-20260909.js?v=20260913-history5"></script>
+            <script src="../data/changelog-20260912.js?v=20260913-history5"></script>
+            <script src="updates.js?v=20260913-history5"></script>'''.replace('            <script', '  <script')
+
+          if new not in text:
+              if old not in text:
+                  raise SystemExit('Expected changelog script block not found')
+              text = text.replace(old, new, 1)
+              path.write_text(text, encoding='utf-8')
+
+          if not Path('data/changelog-20260912.js').exists():
+              raise SystemExit('Missing data/changelog-20260912.js')
+          if text.find('changelog-20260912.js') > text.find('updates.js?v=20260913-history5'):
+              raise SystemExit('Runtime changelog data must load before updates.js')
+          PY
+
+      - name: Commit fix and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add updates/index.html data/changelog-20260912.js
+          git rm .github/workflows/fix-updates-runtime-20260913.yml
+          git commit -m "Load September 10-12 changelog runtime data"
+          git push
