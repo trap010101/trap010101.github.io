@@ -17,122 +17,83 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Fetch exact logo-included teaser visual and encode real WebP
+      - name: Download logo-included teaser and encode real WebP
         run: |
           set -euo pipefail
-          python -m pip install --quiet pillow requests beautifulsoup4
+          python -m pip install --quiet pillow requests
           python - <<'PY'
           from pathlib import Path
           from io import BytesIO
-          from urllib.parse import urljoin
-          from bs4 import BeautifulSoup
           from PIL import Image
           import requests, hashlib
 
-          pages = [
-              'https://natalie.mu/comic/gallery/news/644194/2711940',
-              'https://natalie.mu/comic/news/644194',
-              'https://www.bs-asahi.co.jp/yowaki-max-anime/',
+          urls = [
+              'https://animeanime.jp/imgs/p/jtKDOVlKAvjRrNw8SXAVejagI61Nrq_oqaqr/802998.jpg',
+              'https://s.animeanime.jp/imgs/p/jtKDOVlKAvjRrNw8SXAVejagI61Nrq_oqaqr/802998.jpg',
           ]
           headers = {
               'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/140 Safari/537.36',
-              'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
-              'Accept-Language': 'ja,en-US;q=0.8,en;q=0.7',
+              'Referer': 'https://animeanime.jp/article/2025/10/14/93185.html',
+              'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
           }
-
-          def extract_urls(page_url):
-              r = requests.get(page_url, headers=headers, timeout=30)
-              print('page', page_url, r.status_code, len(r.content))
-              r.raise_for_status()
-              soup = BeautifulSoup(r.text, 'html.parser')
-              urls = []
-              for key in [('property','og:image'), ('name','twitter:image'), ('name','twitter:image:src')]:
-                  tag = soup.find('meta', attrs={key[0]: key[1]})
-                  if tag and tag.get('content'):
-                      urls.append(urljoin(page_url, tag['content']))
-              for img in soup.find_all('img'):
-                  for attr in ('src','data-src','data-original','data-lazy-src'):
-                      value = img.get(attr)
-                      if value:
-                          urls.append(urljoin(page_url, value))
-              out = []
-              seen = set()
-              for u in urls:
-                  if u not in seen:
-                      seen.add(u)
-                      out.append(u)
-              return out
 
           selected = None
           selected_url = None
-          errors = []
-          for page in pages:
+          for url in urls:
               try:
-                  urls = extract_urls(page)
-              except Exception as exc:
-                  errors.append((page, repr(exc)))
-                  continue
-              for index, url in enumerate(urls):
-                  try:
-                      rr = requests.get(url, headers={**headers, 'Referer': page}, timeout=30)
-                      if rr.status_code != 200 or len(rr.content) < 50000:
-                          continue
-                      img = Image.open(BytesIO(rr.content)).convert('RGB')
-                      ratio = img.width / img.height
-                      print('candidate', index, url, img.size, ratio)
-                      if img.height >= 1000 and img.width >= 650 and 0.68 <= ratio <= 0.73:
-                          selected = img
-                          selected_url = url
-                          break
-                  except Exception:
+                  r = requests.get(url, headers=headers, timeout=45, allow_redirects=True)
+                  print('download', url, r.status_code, len(r.content), r.headers.get('content-type'))
+                  if r.status_code != 200 or len(r.content) < 50000:
                       continue
-              if selected is not None:
-                  break
+                  image = Image.open(BytesIO(r.content)).convert('RGB')
+                  ratio = image.width / image.height
+                  print('candidate size=', image.size, 'ratio=', ratio)
+                  if image.height >= 1000 and image.width >= 650 and 0.68 <= ratio <= 0.73:
+                      selected = image
+                      selected_url = url
+                      break
+              except Exception as exc:
+                  print('download failed:', repr(exc))
 
           if selected is None:
-              print('page errors=', errors)
-              raise SystemExit('Could not obtain the logo/catchcopy portrait teaser visual')
+              raise SystemExit('Direct teaser visual download failed')
 
-          # Remove only genuinely blank near-white side gutters, never illustrated content.
+          # Crop only truly blank near-white side gutters. Illustrated bright areas are preserved.
           pix = selected.load()
           w, h = selected.size
           def blank_col(x):
-              samples = 0
-              white = 0
               step = max(1, h // 500)
-              for y in range(0, h, step):
-                  r,g,b = pix[x,y]
-                  samples += 1
-                  if r >= 248 and g >= 248 and b >= 248:
-                      white += 1
-              return white / samples >= 0.995
+              vals = [pix[x,y] for y in range(0, h, step)]
+              return sum(1 for r,g,b in vals if r >= 248 and g >= 248 and b >= 248) / len(vals) >= 0.995
 
           left = 0
-          while left < min(w//8, 160) and blank_col(left):
+          max_crop = min(w // 8, 160)
+          while left < max_crop and blank_col(left):
               left += 1
           right = w
-          while right > max(w*7//8, w-160) and blank_col(right-1):
+          while (w - right) < max_crop and blank_col(right - 1):
               right -= 1
           if left or right < w:
-              print('crop side gutters:', left, w-right)
+              print('cropping side gutters:', left, w-right)
               selected = selected.crop((left, 0, right, h))
 
           target = Path('assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact-v2.webp')
           target.parent.mkdir(parents=True, exist_ok=True)
           selected.save(target, 'WEBP', quality=90, method=6)
+
           raw = target.read_bytes()
           with Image.open(target) as check:
               check.load()
-              print('selected_url=', selected_url)
-              print('final=', check.format, check.size, len(raw))
+              print('source=', selected_url)
+              print('output=', check.format, check.size, len(raw))
               if check.format != 'WEBP':
-                  raise SystemExit('Output is not a real WebP')
+                  raise SystemExit('Output format is not WEBP')
           if raw[:4] != b'RIFF' or raw[8:12] != b'WEBP':
-              raise SystemExit('Invalid WebP RIFF signature')
+              raise SystemExit('Invalid WEBP RIFF signature')
           print('sha256=', hashlib.sha256(raw).hexdigest())
           PY
 
-      - name: Point site references at repaired cache-busted asset
+      - name: Point references to repaired cache-busted asset
         run: |
           set -euo pipefail
           old='the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact.webp'
@@ -140,14 +101,17 @@ jobs:
           grep -RIl --exclude-dir=.git --include='*.js' --include='*.html' "$old" . | while read -r f; do
             sed -i "s/$old/$new/g" "$f"
           done
-          grep -RIl --exclude-dir=.git "$old" . || true
+          if grep -RIl --exclude-dir=.git --include='*.js' --include='*.html' "$old" .; then
+            echo 'Old poster reference remains' >&2
+            exit 1
+          fi
 
-      - name: Remove broken asset and temporary staging fragments
+      - name: Remove broken asset and temporary staging files
         run: |
           rm -f assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact.webp
           rm -f tmp/timid-max-exact-webp.part* tmp/timid-q82-*.b64 tmp/timid-q82-r*.b64
 
-      - name: Commit repaired poster and cleanup
+      - name: Commit repaired poster
         run: |
           set -euo pipefail
           rm -f .github/workflows/fix-timid-max-webp-format.yml
