@@ -1,0 +1,76 @@
+name: Expand Japanese streaming coverage round 5
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/expand-streaming-round5-20260913.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  expand:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Add verified Japanese alternatives
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path('data/streaming-jp-20260906.js')
+          s = p.read_text()
+
+          replacements = {
+            '"everyday-host-new-series": { danime: dAnime("27877") },': '"everyday-host-new-series": { danime: dAnime("27877"), unext: "https://www.video.unext.jp/title/SID0181272" },',
+            '"with-vengeance-sincerely-your-broken-saintess-season-2": {\n      prime: "https://www.primevideo.com/detail/0OUPW1VINFZH941AW52V1U5WFO"\n    },': '"with-vengeance-sincerely-your-broken-saintess-season-2": {\n      prime: "https://www.primevideo.com/detail/0OUPW1VINFZH941AW52V1U5WFO",\n      danime: dAnime("28029"),\n      unext: "https://www.video.unext.jp/title/SID0200182"\n    },'
+          }
+          for old, new in replacements.items():
+              if old not in s:
+                  raise SystemExit(f'missing JP replacement anchor: {old[:80]}')
+              s = s.replace(old, new, 1)
+
+          marker = '    "with-vengeance-sincerely-your-broken-saintess-season-2": {'
+          if marker not in s:
+              raise SystemExit('missing JP insertion marker')
+          entries = '\n'.join([
+            '    "mission-yozakura-family-season-2-part-2": { danime: dAnime("27024"), unext: "https://www.video.unext.jp/title/SID0100044" },',
+            '    "dragon-ball-super-beerus": { danime: dAnime("21739"), unext: "https://www.video.unext.jp/title/SID0029410" },',
+            '    "hotel-inhumans-season-2": { unext: "https://www.video.unext.jp/title/SID0200151" },',
+            '    "marriage-toxin-season-2": { danime: dAnime("28839"), unext: "https://www.video.unext.jp/title/SID0285887" },',
+            '    "midnight-heart-tune-season-2": { unext: "https://www.video.unext.jp/title/SID0249080" },',
+            '    "gate-season-2": { unext: "https://www.video.unext.jp/title/SID0018898" },',
+            '    "new-kochikame": { danime: dAnime("20622"), unext: "https://www.video.unext.jp/title/SID0022028" },',
+            '    "duel-masters-lost-condemned-boy": { unext: "https://www.video.unext.jp/title/SID0157483" },',
+            '    "cardfight-vanguard-divinez-fate-star-war-arc": { unext: "https://www.video.unext.jp/title/SID0096699" },',
+            ''
+          ])
+          s = s.replace(marker, entries + marker, 1)
+          p.write_text(s)
+
+          for path in [Path('index.html'), Path('anime-links.js')]:
+              text = path.read_text()
+              if '20260913-coverage4' not in text:
+                  raise SystemExit(f'missing coverage4 cache key in {path}')
+              path.write_text(text.replace('20260913-coverage4', '20260913-coverage5'))
+          PY
+      - name: Validate regional streaming data
+        run: node scripts/validate-regional-streaming.js
+      - name: Report updated sparse coverage
+        run: node scripts/report-pv-streaming-gaps.js
+      - name: Verify cache refresh
+        run: |
+          grep -n '20260913-coverage5' index.html anime-links.js
+      - name: Commit expansion and clean workflow
+        shell: bash
+        run: |
+          git rm .github/workflows/expand-streaming-round5-20260913.yml
+          git add data/streaming-jp-20260906.js index.html anime-links.js
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Expand Japanese previous-series streaming links"
+          git push
