@@ -1,73 +1,67 @@
-// Region-aware streaming data foundation.
-// UI language and streaming availability are intentionally independent.
 (() => {
   const regionOrder = ["kr", "jp", "us"];
-
-  const streamingRegions = {
-    kr: {
-      id: "kr",
-      countryCode: "KR",
-      locale: "ko-KR",
-      label: { ko: "대한민국", ja: "韓国", en: "South Korea" }
-    },
-    jp: {
-      id: "jp",
-      countryCode: "JP",
-      locale: "ja-JP",
-      label: { ko: "일본", ja: "日本", en: "Japan" }
-    },
-    us: {
-      id: "us",
-      countryCode: "US",
-      locale: "en-US",
-      label: { ko: "미국", ja: "アメリカ", en: "United States" }
-    }
+  const regionLabels = {
+    kr: { ko: "대한민국", ja: "韓国", en: "South Korea" },
+    jp: { ko: "일본", ja: "日本", en: "Japan" },
+    us: { ko: "미국", ja: "アメリカ", en: "United States" }
   };
 
   const platformDefinitions = [
-    { id: "netflix", name: "Netflix", regions: ["kr", "jp", "us"], directUrlPolicy: "verified" },
-    { id: "laftel", name: "Laftel", regions: ["kr"], directUrlPolicy: "verified" },
-    { id: "disney", name: "Disney+", regions: ["kr", "jp", "us"], directUrlPolicy: "verified" },
-    { id: "prime", name: "Prime Video", regions: ["kr", "jp", "us"], directUrlPolicy: "verified" },
-    { id: "crunchyroll", name: "Crunchyroll", regions: ["us"], directUrlPolicy: "verified" },
-    { id: "tving", name: "TVING", regions: ["kr"], directUrlPolicy: "verified" },
-    { id: "watcha", name: "WATCHA", regions: ["kr"], directUrlPolicy: "verified" },
-    { id: "youtube", name: "YouTube", regions: ["kr", "jp", "us"], directUrlPolicy: "verified" },
-    { id: "danime", name: "dアニメストア", regions: ["jp"], directUrlPolicy: "verified" },
-    { id: "unext", name: "U-NEXT", regions: ["jp"], directUrlPolicy: "verified" },
-    { id: "abema", name: "ABEMA", regions: ["jp"], directUrlPolicy: "verified" },
-    { id: "hulu_jp", name: "Hulu Japan", regions: ["jp"], directUrlPolicy: "verified" },
-    { id: "hidive", name: "HIDIVE", regions: ["us"], directUrlPolicy: "verified" },
-    { id: "hulu_us", name: "Hulu", regions: ["us"], directUrlPolicy: "verified" }
+    { id: "netflix", name: "Netflix", regions: ["kr", "jp", "us"] },
+    { id: "laftel", name: "Laftel", regions: ["kr"] },
+    { id: "disney", name: "Disney+", regions: ["kr", "jp", "us"] },
+    { id: "prime", name: "Prime Video", regions: ["kr", "jp", "us"] },
+    { id: "crunchyroll", name: "Crunchyroll", regions: ["us"] },
+    { id: "tving", name: "TVING", regions: ["kr"] },
+    { id: "watcha", name: "WATCHA", regions: ["kr"] },
+    { id: "youtube", name: "YouTube", regions: ["kr", "jp", "us"] },
+    { id: "danime", name: "dアニメストア", regions: ["jp"] },
+    { id: "unext", name: "U-NEXT", regions: ["jp"] },
+    { id: "abema", name: "ABEMA", regions: ["jp"] },
+    { id: "hulu_jp", name: "Hulu", regions: ["jp"] },
+    { id: "hidive", name: "HIDIVE", regions: ["us"] },
+    { id: "hulu_us", name: "Hulu", regions: ["us"] }
   ];
 
   const directServiceMatchers = {
-    netflix: url => url.hostname.endsWith("netflix.com") && url.pathname.includes("/title/"),
-    laftel: url => url.hostname.endsWith("laftel.net") && url.pathname.includes("/item/"),
-    disney: url => url.hostname.endsWith("disneyplus.com") && url.pathname.includes("/browse/entity-"),
-    prime: url => url.hostname.endsWith("primevideo.com") && url.pathname.includes("/detail/"),
+    netflix: url =>
+      (url.hostname === "netflix.com" || url.hostname === "www.netflix.com") &&
+      /^\/(?:[a-z]{2}(?:-[a-z]{2})?\/)?title\/\d+\/?$/i.test(url.pathname),
+    laftel: url =>
+      (url.hostname === "laftel.net" || url.hostname === "www.laftel.net") &&
+      /^\/item\/\d+\/?$/i.test(url.pathname),
+    disney: url =>
+      (url.hostname === "disneyplus.com" || url.hostname === "www.disneyplus.com") &&
+      /^\/(?:[a-z]{2}-[a-z]{2}\/)?browse\/entity-[0-9a-f-]+\/?$/i.test(url.pathname),
+    prime: url =>
+      (url.hostname === "primevideo.com" || url.hostname === "www.primevideo.com") &&
+      /^\/(?:-\/[a-z]{2}\/)?detail\/[^/]+\/?$/i.test(url.pathname),
     crunchyroll: url =>
-      url.hostname.endsWith("crunchyroll.com") &&
-      (url.pathname.includes("/series/") || url.pathname.includes("/watch/")),
-    tving: url => url.hostname.endsWith("tving.com") && url.pathname.includes("/contents/"),
-    watcha: url => url.hostname.endsWith("watcha.com") && url.pathname.includes("/contents/"),
-    youtube: url =>
-      (url.hostname === "youtube.com" || url.hostname.endsWith(".youtube.com")) &&
-      url.pathname === "/playlist" &&
-      url.searchParams.has("list"),
+      (url.hostname === "crunchyroll.com" || url.hostname === "www.crunchyroll.com") &&
+      (/^\/series\/[^/]+(?:\/[^/]+)?\/?$/i.test(url.pathname) ||
+       /^\/watch\/[^/]+(?:\/[^/]+)?\/?$/i.test(url.pathname)),
+    tving: url =>
+      (url.hostname === "tving.com" || url.hostname === "www.tving.com") &&
+      /^\/contents\/[^/]+\/?$/i.test(url.pathname),
+    watcha: url =>
+      (url.hostname === "watcha.com" || url.hostname === "www.watcha.com") &&
+      /^\/(?:ko(?:-KR)?\/)?contents\/[^/]+\/?$/i.test(url.pathname),
+    youtube: url => {
+      const host = url.hostname.toLowerCase();
+      return (host === "youtube.com" || host === "www.youtube.com" || host === "m.youtube.com") &&
+        url.pathname === "/playlist" && url.searchParams.has("list");
+    },
     danime: url =>
-      url.hostname === "animestore.docomo.ne.jp" &&
-      url.pathname.startsWith("/animestore/ci") &&
-      url.searchParams.has("workId"),
+      (url.hostname === "animestore.docomo.ne.jp" || url.hostname === "www.animestore.docomo.ne.jp") &&
+      url.pathname === "/animestore/ci_pc" && /^\d+$/.test(url.searchParams.get("workId") || ""),
     unext: url =>
-      url.hostname === "video.unext.jp" &&
-      /^\/title\/SID[0-9A-Z]+\/?$/i.test(url.pathname),
+      (url.hostname === "video.unext.jp" || url.hostname === "www.video.unext.jp") &&
+      /^\/title\/SID\d+\/?$/i.test(url.pathname),
     abema: url =>
-      url.hostname === "abema.tv" &&
-      url.pathname.startsWith("/video/title/"),
+      (url.hostname === "abema.tv" || url.hostname === "www.abema.tv") &&
+      /^\/video\/title\/[^/]+\/?$/i.test(url.pathname),
     hulu_jp: url => {
-      const hostname = url.hostname.toLowerCase();
-      if (hostname !== "hulu.jp" && hostname !== "www.hulu.jp") return false;
+      if (url.hostname !== "hulu.jp" && url.hostname !== "www.hulu.jp") return false;
       const path = url.pathname.replace(/\/+$/, "");
       if (!path || path === "/") return false;
       return !["/display/", "/comic/", "/features/", "/search", "/categories/"].some(prefix =>
@@ -81,7 +75,7 @@
        /^\/movies?\/[^/]+\/?$/i.test(url.pathname)),
     hulu_us: url =>
       (url.hostname === "hulu.com" || url.hostname === "www.hulu.com") &&
-      /^\/series\/.+-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\/?$/i.test(url.pathname)
+      /^\/series\/(?:.+-)?[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\/?$/i.test(url.pathname)
   };
 
   const platformById = new Map((window.ottPlatforms || []).map(platform => [platform.id, platform]));
@@ -132,82 +126,31 @@
 
   if (Array.isArray(window.animeData)) {
     for (const anime of window.animeData) {
+      anime.streamingByRegion = Object.fromEntries(regionOrder.map(regionId => [regionId, emptyRegionData()]));
+
+      const legacyPrevious = anime.previousStreaming && typeof anime.previousStreaming === "object"
+        ? anime.previousStreaming
+        : {};
+      anime.streamingByRegion.kr.previous = validateLinkMap("kr", legacyPrevious);
+
       // Upcoming installments are intentionally not treated as currently streamable.
-      const krCurrent = {};
-      const krPrevious = { ...(anime.previousStreaming || {}) };
-
-      anime.streamingByRegion = {
-        kr: { current: krCurrent, previous: krPrevious },
-        jp: emptyRegionData(),
-        us: emptyRegionData()
-      };
-
-      anime.currentStreamingByRegion = {
-        kr: anime.streamingByRegion.kr.current,
-        jp: anime.streamingByRegion.jp.current,
-        us: anime.streamingByRegion.us.current
-      };
-      anime.previousStreamingByRegion = {
-        kr: anime.streamingByRegion.kr.previous,
-        jp: anime.streamingByRegion.jp.previous,
-        us: anime.streamingByRegion.us.previous
-      };
+      anime.streaming = {};
     }
   }
 
-  const getAnimeStreamingForRegion = (anime, regionId = "kr") => {
-    const resolvedRegion = isKnownRegion(regionId) ? regionId : "kr";
-    const regionData = anime?.streamingByRegion?.[resolvedRegion] || emptyRegionData();
-    const current = { ...(regionData.current || {}) };
-    const previous = { ...(regionData.previous || {}) };
-    return {
-      region: resolvedRegion,
-      current,
-      previous,
-      all: { ...previous, ...current }
-    };
-  };
-
-  const setAnimeStreamingForRegion = (animeId, regionId, payload = {}) => {
-    if (!isKnownRegion(regionId)) throw new Error(`Unsupported streaming region: ${regionId}`);
-    // The homepage lifecycle removes already-premiered titles from animeData.
-    // Keep streaming audits attached to the preserved source list as well, so a
-    // past title cannot abort every later audit entry during page startup.
-    const activeAnime = Array.isArray(window.animeData) ? window.animeData : [];
-    const completeAnime = Array.isArray(window.allAnimeData) ? window.allAnimeData : [];
-    const anime = activeAnime.find(item => item.id === animeId) ||
-      completeAnime.find(item => item.id === animeId);
-    if (!anime) return null;
-
-    if (Object.keys(payload.current || {}).length) {
-      throw new Error("Current-installment streaming is disabled by NewAnime policy.");
-    }
-
-    const current = {};
-    const previous = validateLinkMap(regionId, payload.previous || {});
-
-    anime.streamingByRegion ||= {};
-    anime.streamingByRegion[regionId] = { current, previous };
-    anime.currentStreamingByRegion ||= {};
-    anime.previousStreamingByRegion ||= {};
-    anime.currentStreamingByRegion[regionId] = current;
-    anime.previousStreamingByRegion[regionId] = previous;
-
-    // Keep the existing homepage/runtime contract Korean-first until the region selector ships.
-    if (regionId === "kr") {
-      anime.currentStreaming = {};
-      anime.previousStreaming = previous;
-      anime.streaming = { ...previous };
-      if (anime.links) anime.links.streaming = null;
-    }
-
-    return getAnimeStreamingForRegion(anime, regionId);
-  };
-
+  window.streamingRegions = regionLabels;
   window.streamingRegionOrder = regionOrder;
-  window.streamingRegions = streamingRegions;
-  window.streamingPlatformDefinitions = platformDefinitions;
   window.isDirectRegionalStreamingUrl = isDirectRegionalStreamingUrl;
-  window.getAnimeStreamingForRegion = getAnimeStreamingForRegion;
-  window.setAnimeStreamingForRegion = setAnimeStreamingForRegion;
+  window.setAnimeStreamingForRegion = (animeId, regionId, payload = {}) => {
+    if (!isKnownRegion(regionId) || !Array.isArray(window.animeData)) return false;
+    const anime = window.animeData.find(item => item.id === animeId);
+    if (!anime) return false;
+    anime.streamingByRegion ||= Object.fromEntries(regionOrder.map(id => [id, emptyRegionData()]));
+    anime.streamingByRegion[regionId] = {
+      current: validateLinkMap(regionId, payload.current || {}),
+      previous: validateLinkMap(regionId, payload.previous || {})
+    };
+    if (regionId === "kr") anime.previousStreaming = { ...anime.streamingByRegion.kr.previous };
+    return true;
+  };
 })();
