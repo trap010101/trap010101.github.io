@@ -23,4 +23,4 @@ jobs:
         run: |
           grep -R -n --exclude-dir=.git -E 'streaming-(jp-20260906|us-20260906|kr-20260908)\.js' . || true
 
-# audit snapshot: 2026-09-13 KR expansion round 2
+# audit snapshot: 2026-09-13 KR/JP/US expansion round 3
