@@ -1,0 +1,1 @@
+Trigger a fresh GitHub Pages deployment from the current main HEAD so the latest /updates/ changelog is published.
