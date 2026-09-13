@@ -62,3 +62,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Expand Japanese previous-series streaming links [skip ci]"
           git push
+
+# Retry after direct U-NEXT URL validation update.
