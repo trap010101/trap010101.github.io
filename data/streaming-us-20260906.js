@@ -9,7 +9,8 @@
       crunchyroll: "https://www.crunchyroll.com/series/GRDQNQW9Y/sound-euphonium"
     },
     "jojos-bizarre-adventure-steel-ball-run-2nd-and-3rd-stage": {
-      crunchyroll: "https://www.crunchyroll.com/series/GYP8DP1MY/jojos-bizarre-adventure"
+      crunchyroll: "https://www.crunchyroll.com/series/GYP8DP1MY/jojos-bizarre-adventure",
+      hulu_us: "https://www.hulu.com/series/3f2ffb64-2424-44a5-b229-4371dccb1d6f"
     },
     "the-new-prince-of-tennis-u-17-world-cup-final-roster-selection": {
       crunchyroll: "https://www.crunchyroll.com/series/G65VP3106/the-prince-of-tennis-ii"
@@ -28,7 +29,8 @@
       crunchyroll: "https://www.crunchyroll.com/series/G0XHWM11X/ave-mujica---the-die-is-cast"
     },
     "rascal-does-not-dream-of-a-dear-friend": {
-      crunchyroll: "https://www.crunchyroll.com/series/GYW4MG9G6"
+      crunchyroll: "https://www.crunchyroll.com/series/GYW4MG9G6",
+      hulu_us: "https://www.hulu.com/series/rascal-does-not-dream-of-bunny-girl-senpai-e4c45f43-dc4b-44ce-a9b8-14139ac1af69"
     },
     "cyberpunk-edgerunners-2": {
       netflix: "https://www.netflix.com/title/81054853"
@@ -84,7 +86,8 @@
       netflix: "https://www.netflix.com/title/81663325"
     },
     "mashle-season-3-divine-visionary-final-exam-arc": {
-      crunchyroll: "https://www.crunchyroll.com/series/GDKHZEP8W/mashle-magic-and-muscles"
+      crunchyroll: "https://www.crunchyroll.com/series/GDKHZEP8W/mashle-magic-and-muscles",
+      hulu_us: "https://www.hulu.com/series/588f6e4a-42f1-48dd-931a-605ae4eec3e4"
     },
     "ramen-akaneko-part-two": {
       crunchyroll: "https://www.crunchyroll.com/series/GVDHX85ZN/ramen-akaneko"
@@ -93,7 +96,8 @@
       crunchyroll: "https://www.crunchyroll.com/series/GY8DWQN5Y/golden-kamuy"
     },
     "shangri-la-frontier-season-3": {
-      crunchyroll: "https://www.crunchyroll.com/series/G79H23Z8P/shangri-la-frontier"
+      crunchyroll: "https://www.crunchyroll.com/series/G79H23Z8P/shangri-la-frontier",
+      hulu_us: "https://www.hulu.com/series/29fc8e6f-1516-4dad-afce-7a216212b11d"
     },
     "akane-banashi-season-2": {
       netflix: "https://www.netflix.com/title/82701514"
@@ -157,7 +161,8 @@
       hulu_us: "https://www.hulu.com/series/the-eminence-in-shadow-66f37cf4-dba5-4511-ae26-e4092df1668b"
     },
     "one-piece-film-god-valley": {
-      crunchyroll: "https://www.crunchyroll.com/series/GRMG8ZQZR/one-piece"
+      crunchyroll: "https://www.crunchyroll.com/series/GRMG8ZQZR/one-piece",
+      hulu_us: "https://www.hulu.com/series/one-piece-c7a08df6-d0d5-4dd3-afff-d1f90133cd4e"
     },
     "magical-girl-raising-project-restart": {
       crunchyroll: "https://www.crunchyroll.com/series/GRQ4MKN4Y/magical-girl-raising-project"
@@ -219,7 +224,7 @@
   window.streamingRegionalAuditMeta ||= {};
   window.streamingRegionalAuditMeta.us = {
     verifiedAt: "2026-09-13",
-    auditedTitles: 53,
+    auditedTitles: Object.keys(audit).length,
     linkedTitles: Object.keys(audit).length,
     unresolvedAnimeIds: [
       "expelled-from-paradise-resonance-of-the-heart",
