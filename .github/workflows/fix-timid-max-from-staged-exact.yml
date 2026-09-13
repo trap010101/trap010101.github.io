@@ -28,27 +28,53 @@ jobs:
           from pathlib import Path
           from PIL import Image
 
-          chunks = [
-              'tmp/timid-q82-00.b64',
-              'tmp/timid-q82-01.b64',
-              'tmp/timid-q82-02.b64',
-              'tmp/timid-q82-r00.b64',
-              'tmp/timid-q82-r01.b64',
-              'tmp/timid-q82-r02.b64',
-              'tmp/timid-q82-r03.b64',
-              'tmp/timid-q82-r04.b64',
-              'tmp/timid-q82-r05.b64',
-              'tmp/timid-q82-r06.b64',
-              'tmp/timid-q82-r07.b64',
+          specs = [
+              ('tmp/timid-q82-00.b64', 15000, '96ed11ab635aa95edc073f821054f2ce6fe9eafae41b2aa019466580b4e58b36'),
+              ('tmp/timid-q82-01.b64', 15000, '620fddbb9934bae64bef7ecc511552c8b85e37b33ff1122a7fcba88cdb9e3eee'),
+              ('tmp/timid-q82-02.b64', 15000, 'e38eed0990045c2d482d1b00bbae7a63d16e789f6e42f9269c66e33c18258dea'),
+              ('tmp/timid-q82-r00.b64', 19000, '01a0e5b282bb6f77b11b2e3a5c0fb3923b92022832503c096955b7a6ee505537'),
+              ('tmp/timid-q82-r01.b64', 19000, '2876b45b402cf7c7c03ae3b36f7bd97504141a64747dd5401c540d28f62404f4'),
+              ('tmp/timid-q82-r02.b64', 19000, 'b17f8cc358a0f82d988be13f4e63dc30da2ce2cf5fc260a255e45fc7b3d567f6'),
+              ('tmp/timid-q82-r03.b64', 19000, '6326154deddd55faa1688b639bbef39c76f92b392fdf7d63965a575784a56815'),
+              ('tmp/timid-q82-r04.b64', 19000, 'b9ae1affc48bce8ec7f1576e7e9a209fd8eae674854aab5a540bf185a8ee5aae'),
+              ('tmp/timid-q82-r05.b64', 19000, 'be87f688dfd7e0becfaa29ea81c2290f287996f0da56eb717149a962bdf9b723'),
+              ('tmp/timid-q82-r06.b64', 19000, 'f3c17271d2b3a0ea3f24c94feace053d4e04df54d29bebbc4338871dc479912f'),
+              ('tmp/timid-q82-r07.b64', 15108, '0f5ed05341f14b8ddaf98fc48e5882c02c8da9ca18b46ea35ded8a8d11f4fb42'),
           ]
-          for p in chunks:
-              if not Path(p).is_file():
-                  raise SystemExit(f'Missing staged chunk: {p}')
 
-          encoded = ''.join(''.join(Path(p).read_text(encoding='utf-8').split()) for p in chunks)
+          corrected = []
+          for path_str, expected_len, expected_sha in specs:
+              path = Path(path_str)
+              if not path.is_file():
+                  raise SystemExit(f'Missing staged chunk: {path_str}')
+              text = ''.join(path.read_text(encoding='utf-8').split())
+              digest = hashlib.sha256(text.encode()).hexdigest()
+              print(path_str, 'len=', len(text), 'sha256=', digest)
+              if len(text) == expected_len and digest == expected_sha:
+                  corrected.append(text)
+                  continue
+
+              # One chunk was staged with one accidental extra character. Recover it
+              # deterministically by removing the single character whose result matches
+              # the exact local-conversion chunk hash.
+              if len(text) == expected_len + 1:
+                  repaired = None
+                  for idx in range(len(text)):
+                      candidate = text[:idx] + text[idx + 1:]
+                      if hashlib.sha256(candidate.encode()).hexdigest() == expected_sha:
+                          repaired = candidate
+                          print('repaired extra character:', path_str, 'index=', idx, 'char=', repr(text[idx]))
+                          break
+                  if repaired is not None:
+                      corrected.append(repaired)
+                      continue
+
+              raise SystemExit(f'Staged chunk mismatch: {path_str} len={len(text)} sha256={digest}')
+
+          encoded = ''.join(corrected)
           print('base64_length=', len(encoded))
           if len(encoded) != 193108:
-              raise SystemExit(f'Unexpected base64 length: {len(encoded)}')
+              raise SystemExit(f'Unexpected corrected base64 length: {len(encoded)}')
 
           data = base64.b64decode(encoded, validate=True)
           digest = hashlib.sha256(data).hexdigest()
