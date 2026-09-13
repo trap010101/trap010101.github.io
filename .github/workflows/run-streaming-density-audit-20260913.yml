@@ -14,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Validate regional streaming data
+        run: node scripts/validate-regional-streaming.js
       - name: Report sparse regional streaming coverage
         run: node scripts/report-pv-streaming-gaps.js
       - name: Locate regional streaming loaders
