@@ -1,0 +1,71 @@
+name: Fix Timid MAX WebP format v3
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-timid-max-webp-format-v3.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch exact logo-included teaser visual
+        run: |
+          set -euo pipefail
+          python -m pip install --quiet pillow
+          python - <<'PY'
+          from io import BytesIO
+          from pathlib import Path
+          from urllib.request import Request, urlopen
+          from PIL import Image
+          import hashlib
+
+          url = 'https://animeanime.jp/imgs/p/jtKDOVlKAvjRrNw8SXAVejagI61Nrq_oqaqr/802998.jpg'
+          req = Request(url, headers={
+              'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36',
+              'Referer': 'https://animeanime.jp/article/2025/10/14/93185.html',
+              'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+          })
+          with urlopen(req, timeout=60) as res:
+              raw = res.read()
+          image = Image.open(BytesIO(raw)).convert('RGB')
+          ratio = image.width / image.height
+          print('source_size=', image.size, 'ratio=', ratio, 'bytes=', len(raw))
+          if image.width < 700 or image.height < 900 or not (0.68 <= ratio <= 0.74):
+              raise SystemExit(f'Unexpected teaser visual dimensions: {image.size}')
+
+          target = Path('assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact.webp')
+          if image.size != (1086, 1536):
+              image = image.resize((1086, 1536), Image.Resampling.LANCZOS)
+          image.save(target, 'WEBP', quality=92, method=6)
+
+          data = target.read_bytes()
+          with Image.open(target) as check:
+              print('target_format=', check.format, 'size=', check.size, 'bytes=', len(data))
+              if check.format != 'WEBP' or check.size != (1086, 1536):
+                  raise SystemExit('Target WebP validation failed')
+          if data[:4] != b'RIFF' or data[8:12] != b'WEBP':
+              raise SystemExit('Invalid WebP RIFF signature')
+          print('sha256=', hashlib.sha256(data).hexdigest())
+          PY
+
+      - name: Cleanup temporary repair files and commit
+        run: |
+          set -euo pipefail
+          rm -f tmp/timid-max-exact-webp.part* tmp/timid-q82-*.b64 tmp/timid-q82-r*.b64
+          rm -f .github/workflows/fix-timid-max-webp-format.yml
+          rm -f .github/workflows/fix-timid-max-webp-format-v2.yml
+          rm -f .github/workflows/fix-timid-max-webp-format-v3.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Repair Timid MAX poster WebP [skip ci]'
+          git push origin main
