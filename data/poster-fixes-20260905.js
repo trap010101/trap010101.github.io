@@ -11,7 +11,7 @@
     "uncle-likes-cute-things": { src: "assets/posters/uncle-likes-cute-things-v3.webp", updatedAt: "2026-09-07" },
     "mission-yozakura-family-season-2-part-2": { src: "assets/posters/mission-yozakura-family-season-2-part-2-v2.webp", updatedAt: "2026-09-07" },
     "dragon-ball-super-beerus": { src: "assets/posters/dragon-ball-super-beerus-v2.webp", updatedAt: "2026-09-07" },
-    "zero-believers-goddess-isekai-strategy": { src: "assets/posters/zero-believers-goddess-isekai-strategy-user-20260912.webp", updatedAt: "2026-09-12" },
+    "zero-believers-goddess-isekai-strategy": { src: "assets/posters/zero-believers-goddess-isekai-strategy-user-20260913.webp", updatedAt: "2026-09-13" },
     "romelia-war-chronicle": { src: "assets/posters/romelia-war-chronicle-v2.webp", updatedAt: "2026-09-07" },
     "hotel-inhumans-season-2": { src: "assets/posters/hotel-inhumans-season-2-v2.webp", updatedAt: "2026-09-07" },
     "the-witch-was-asked-for-a-love-potion": { src: "assets/posters/the-witch-was-asked-for-a-love-potion-user-20260908.webp", updatedAt: "2026-09-08" },
@@ -54,8 +54,8 @@
     "glasses-sometimes-yankee-kun": { src: "assets/posters/glasses-sometimes-yankee-kun-v2.webp", updatedAt: "2026-09-07" },
     "we-are-aliens": { src: "assets/posters/we-are-aliens.webp", updatedAt: "2026-09-07" },
     "the-timid-max-lady-took-her-shrewd-fiance-s-bet": {
-      src: "assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-v2.webp",
-      updatedAt: "2026-09-12"
+      src: "assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913.webp",
+      updatedAt: "2026-09-13"
     },
     "a-certain-dark-sides-shared-living": {
       src: "assets/posters/a-certain-dark-sides-shared-living-v2.webp",
@@ -85,7 +85,7 @@
   const timidMax = window.animeData.find(anime => anime.id === "the-timid-max-lady-took-her-shrewd-fiance-s-bet");
   if (timidMax) {
     timidMax.title = { ...timidMax.title, ko: "나약MAX 영애인데 수완가 약혼자와 내기를 하고 말았다" };
-    timidMax.updatedAt = "2026-09-12";
+    timidMax.updatedAt = "2026-09-13";
   }
 
   const mercedes = window.animeData.find(anime => anime.id === "mercedes-and-the-waning-moon");
