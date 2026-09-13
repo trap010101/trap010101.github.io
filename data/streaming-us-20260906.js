@@ -61,7 +61,8 @@
       crunchyroll: "https://www.crunchyroll.com/series/G4PH0WX5J/aoashi"
     },
     "reincarnated-as-a-sword-ii": {
-      hulu_us: "https://www.hulu.com/series/reincarnated-as-a-sword-200a141e-df62-4506-a7dc-d9fae32c12d5"
+      hulu_us: "https://www.hulu.com/series/reincarnated-as-a-sword-200a141e-df62-4506-a7dc-d9fae32c12d5",
+      hidive: "https://www.hidive.com/tv/reincarnated-as-a-sword"
     },
     "chitose-is-in-the-ramune-bottle-part-2": {
       crunchyroll: "https://www.crunchyroll.com/watch/GE00364785JAJP/the-hazy-spring-moon-above"
@@ -155,10 +156,12 @@
       hidive: "https://www.hidive.com/tv/fate-kaleid-liner-prisma-illya"
     },
     "haikyu-the-movie-vs-the-little-giant": {
-      crunchyroll: "https://www.crunchyroll.com/series/GY8VM8MWY/haikyu"
+      crunchyroll: "https://www.crunchyroll.com/series/GY8VM8MWY/haikyu",
+      netflix: "https://www.netflix.com/title/80090673"
     },
     "the-eminence-in-shadow-lost-echoes": {
-      hulu_us: "https://www.hulu.com/series/the-eminence-in-shadow-66f37cf4-dba5-4511-ae26-e4092df1668b"
+      hulu_us: "https://www.hulu.com/series/the-eminence-in-shadow-66f37cf4-dba5-4511-ae26-e4092df1668b",
+      hidive: "https://www.hidive.com/tv/the-eminence-in-shadow"
     },
     "one-piece-film-god-valley": {
       crunchyroll: "https://www.crunchyroll.com/series/GRMG8ZQZR/one-piece",
@@ -198,7 +201,8 @@
       crunchyroll: "https://www.crunchyroll.com/series/G1XHJV05V/berserk-of-gluttony"
     },
     "haikyu-monsters-go-where": {
-      crunchyroll: "https://www.crunchyroll.com/series/GY8VM8MWY/haikyu"
+      crunchyroll: "https://www.crunchyroll.com/series/GY8VM8MWY/haikyu",
+      netflix: "https://www.netflix.com/title/80090673"
     },
     "kaiju-no-8-narumis-weekday": {
       crunchyroll: "https://www.crunchyroll.com/series/GG5H5XQ7D/kaiju-no-8"
