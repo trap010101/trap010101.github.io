@@ -1,0 +1,90 @@
+name: Fix Timid MAX from exact uploaded artwork
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-timid-max-from-staged-exact.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rebuild exact uploaded WebP from staged chunks
+        run: |
+          set -euo pipefail
+          python -m pip install --quiet pillow
+          python - <<'PY'
+          import base64
+          import hashlib
+          from pathlib import Path
+          from PIL import Image
+
+          chunks = [
+              'tmp/timid-q82-00.b64',
+              'tmp/timid-q82-01.b64',
+              'tmp/timid-q82-02.b64',
+              'tmp/timid-q82-r00.b64',
+              'tmp/timid-q82-r01.b64',
+              'tmp/timid-q82-r02.b64',
+              'tmp/timid-q82-r03.b64',
+              'tmp/timid-q82-r04.b64',
+              'tmp/timid-q82-r05.b64',
+              'tmp/timid-q82-r06.b64',
+              'tmp/timid-q82-r07.b64',
+          ]
+          for p in chunks:
+              if not Path(p).is_file():
+                  raise SystemExit(f'Missing staged chunk: {p}')
+
+          encoded = ''.join(''.join(Path(p).read_text(encoding='utf-8').split()) for p in chunks)
+          print('base64_length=', len(encoded))
+          if len(encoded) != 193108:
+              raise SystemExit(f'Unexpected base64 length: {len(encoded)}')
+
+          data = base64.b64decode(encoded, validate=True)
+          digest = hashlib.sha256(data).hexdigest()
+          print('decoded_bytes=', len(data))
+          print('sha256=', digest)
+          if len(data) != 144830:
+              raise SystemExit(f'Unexpected decoded byte length: {len(data)}')
+          if digest != '334d3ce15d77806d9778f67f06563129df4fcfcf920b5fc5c818a63adefe8770':
+              raise SystemExit('Exact converted-upload SHA256 mismatch')
+          if data[:4] != b'RIFF' or data[8:12] != b'WEBP':
+              raise SystemExit('Decoded file is not a real WebP RIFF container')
+
+          target = Path('assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact.webp')
+          target.write_bytes(data)
+          with Image.open(target) as image:
+              print('format=', image.format, 'size=', image.size)
+              if image.format != 'WEBP' or image.size != (1086, 1536):
+                  raise SystemExit(f'WebP validation failed: {image.format} {image.size}')
+          PY
+
+      - name: Validate site references
+        run: |
+          set -euo pipefail
+          grep -Fq 'the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact.webp' data/poster-fixes-20260905.js
+          grep -Fq 'the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact.webp' anime/the-timid-max-lady-took-her-shrewd-fiance-s-bet/index.html
+
+      - name: Clean staging files and commit exact repaired asset
+        run: |
+          set -euo pipefail
+          rm -f tmp/timid-q82-*.b64 tmp/timid-q82-r*.b64 tmp/timid-max-exact-webp.part*
+          rm -f .github/workflows/fix-timid-max-webp-format.yml
+          rm -f .github/workflows/fix-timid-max-webp-format-v2.yml
+          rm -f .github/workflows/fix-timid-max-webp-format-v3.yml
+          rm -f .github/workflows/fix-timid-max-from-staged-exact.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Fix Timid MAX poster from exact uploaded artwork [skip ci]'
+          git push origin main
