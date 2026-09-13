@@ -17,106 +17,55 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Download logo-included teaser and encode real WebP
+      - name: Rebuild exact uploaded poster as valid WebP
         run: |
           set -euo pipefail
-          python -m pip install --quiet pillow requests
+          python -m pip install --quiet pillow
+          cat tmp/timid-q82-00.b64 tmp/timid-q82-01.b64 tmp/timid-q82-02.b64 tmp/timid-q82-r00.b64 tmp/timid-q82-r01.b64 > /tmp/timid-max-upload.b64
+          base64 --decode /tmp/timid-max-upload.b64 > /tmp/timid-max-upload.webp
           python - <<'PY'
           from pathlib import Path
-          from io import BytesIO
           from PIL import Image
-          import requests, hashlib
-
-          urls = [
-              'https://animeanime.jp/imgs/p/jtKDOVlKAvjRrNw8SXAVejagI61Nrq_oqaqr/802998.jpg',
-              'https://s.animeanime.jp/imgs/p/jtKDOVlKAvjRrNw8SXAVejagI61Nrq_oqaqr/802998.jpg',
-          ]
-          headers = {
-              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/140 Safari/537.36',
-              'Referer': 'https://animeanime.jp/article/2025/10/14/93185.html',
-              'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
-          }
-
-          selected = None
-          selected_url = None
-          for url in urls:
-              try:
-                  r = requests.get(url, headers=headers, timeout=45, allow_redirects=True)
-                  print('download', url, r.status_code, len(r.content), r.headers.get('content-type'))
-                  if r.status_code != 200 or len(r.content) < 50000:
-                      continue
-                  image = Image.open(BytesIO(r.content)).convert('RGB')
-                  ratio = image.width / image.height
-                  print('candidate size=', image.size, 'ratio=', ratio)
-                  if image.height >= 1000 and image.width >= 650 and 0.68 <= ratio <= 0.73:
-                      selected = image
-                      selected_url = url
-                      break
-              except Exception as exc:
-                  print('download failed:', repr(exc))
-
-          if selected is None:
-              raise SystemExit('Direct teaser visual download failed')
-
-          # Crop only truly blank near-white side gutters. Illustrated bright areas are preserved.
-          pix = selected.load()
-          w, h = selected.size
-          def blank_col(x):
-              step = max(1, h // 500)
-              vals = [pix[x,y] for y in range(0, h, step)]
-              return sum(1 for r,g,b in vals if r >= 248 and g >= 248 and b >= 248) / len(vals) >= 0.995
-
-          left = 0
-          max_crop = min(w // 8, 160)
-          while left < max_crop and blank_col(left):
-              left += 1
-          right = w
-          while (w - right) < max_crop and blank_col(right - 1):
-              right -= 1
-          if left or right < w:
-              print('cropping side gutters:', left, w-right)
-              selected = selected.crop((left, 0, right, h))
-
-          target = Path('assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact-v2.webp')
-          target.parent.mkdir(parents=True, exist_ok=True)
-          selected.save(target, 'WEBP', quality=90, method=6)
-
-          raw = target.read_bytes()
-          with Image.open(target) as check:
-              check.load()
-              print('source=', selected_url)
-              print('output=', check.format, check.size, len(raw))
-              if check.format != 'WEBP':
-                  raise SystemExit('Output format is not WEBP')
+          import hashlib
+          src = Path('/tmp/timid-max-upload.webp')
+          raw = src.read_bytes()
           if raw[:4] != b'RIFF' or raw[8:12] != b'WEBP':
-              raise SystemExit('Invalid WEBP RIFF signature')
+              raise SystemExit('Invalid WebP RIFF signature')
+          with Image.open(src) as im:
+              im.load()
+              print('format=', im.format, 'size=', im.size, 'bytes=', len(raw))
+              if im.format != 'WEBP' or im.size != (1086, 1536):
+                  raise SystemExit(f'Invalid rebuilt poster: {im.format} {im.size}')
           print('sha256=', hashlib.sha256(raw).hexdigest())
           PY
+          target='assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact-v3.webp'
+          mkdir -p "$(dirname "$target")"
+          mv /tmp/timid-max-upload.webp "$target"
 
-      - name: Point references to repaired cache-busted asset
+      - name: Point references to repaired poster
         run: |
           set -euo pipefail
-          old='the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact.webp'
-          new='the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact-v2.webp'
-          grep -RIl --exclude-dir=.git --include='*.js' --include='*.html' "$old" . | while read -r f; do
-            sed -i "s/$old/$new/g" "$f"
+          for old in \
+            the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact.webp \
+            the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact-v2.webp
+          do
+            grep -RIl --exclude-dir=.git --include='*.js' --include='*.html' "$old" . | while read -r f; do
+              sed -i "s/$old/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact-v3.webp/g" "$f"
+            done || true
           done
-          if grep -RIl --exclude-dir=.git --include='*.js' --include='*.html' "$old" .; then
-            echo 'Old poster reference remains' >&2
-            exit 1
-          fi
 
-      - name: Remove broken asset and temporary staging files
+      - name: Clean broken and temporary files
         run: |
           rm -f assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact.webp
+          rm -f assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact-v2.webp
           rm -f tmp/timid-max-exact-webp.part* tmp/timid-q82-*.b64 tmp/timid-q82-r*.b64
+          rm -f .github/workflows/fix-timid-max-webp-format.yml
 
       - name: Commit repaired poster
         run: |
           set -euo pipefail
-          rm -f .github/workflows/fix-timid-max-webp-format.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          git commit -m 'Repair Timid MAX logo-included poster asset'
+          git commit -m 'Repair Timid MAX uploaded poster asset'
           git push origin main
