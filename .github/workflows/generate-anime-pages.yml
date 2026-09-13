@@ -157,4 +157,4 @@ jobs:
           git push
 
 # 2026-09-10: ranking page chrome is sourced from the homepage header/footer; new standalone pages should follow the same site-header/footer structure.
-# 2026-09-13: rerun static generation after regional streaming coverage expansion round 5.
+# 2026-09-13: rerun static generation after regional streaming coverage expansion round 8.
