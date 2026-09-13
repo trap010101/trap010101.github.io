@@ -4,7 +4,16 @@
 
   const audit = {
     "maebashi-witches-emoemories": {
-      laftel: "https://laftel.net/item/42780"
+      laftel: "https://laftel.net/item/42780",
+      tving: "https://www.tving.com/contents/P001774211"
+    },
+    "akane-banashi-season-2": {
+      laftel: "https://laftel.net/item/45436",
+      tving: "https://www.tving.com/contents/P001789083"
+    },
+    "hotel-inhumans-season-2": {
+      laftel: "https://laftel.net/item/42939",
+      tving: "https://www.tving.com/contents/P001773673"
     },
     "takopis-original-sin-thank-you-see-you-tomorrow": {
       laftel: "https://laftel.net/item/42947"
