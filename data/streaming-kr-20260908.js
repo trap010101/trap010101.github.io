@@ -69,6 +69,39 @@
       laftel: "https://laftel.net/item/42053",
       watcha: "https://watcha.com/ko-KR/contents/tEg8YJR",
       tving: "https://www.tving.com/contents/P000232344"
+    },
+    "sound-euphonium-the-final-movement-part-2": {
+      laftel: "https://laftel.net/item/42050",
+      watcha: "https://watcha.com/ko-KR/contents/tP8az7d",
+      tving: "https://www.tving.com/contents/P001755380"
+    },
+    "girls-und-panzer-das-finale-part-5": {
+      laftel: "https://laftel.net/item/41941",
+      watcha: "https://watcha.com/ko/contents/mW9pjGB",
+      tving: "https://www.tving.com/contents/M000318838"
+    },
+    "rascal-does-not-dream-of-a-dear-friend": {
+      laftel: "https://laftel.net/item/42927",
+      watcha: "https://watcha.com/ko/contents/tPvb92p",
+      tving: "https://www.tving.com/contents/P001677425"
+    },
+    "made-in-abyss-theatrical-series-part-1-the-awakening-mystery": {
+      tving: "https://www.tving.com/contents/P001668113",
+      watcha: "https://watcha.com/ko-KR/contents/mO8a1Q2"
+    },
+    "black-clover-2nd-season": {
+      netflix: "https://www.netflix.com/kr/title/80238012",
+      watcha: "https://watcha.com/ko-KR/contents/tRB64Av"
+    },
+    "expelled-from-paradise-resonance-of-the-heart": {
+      laftel: "https://laftel.net/item/23251",
+      watcha: "https://watcha.com/ko/contents/mW93njM",
+      tving: "https://www.tving.com/contents/M000360280"
+    },
+    "oblivion-battery-season-2": {
+      laftel: "https://laftel.net/item/42086",
+      watcha: "https://watcha.com/ko-KR/contents/tE15g6N",
+      tving: "https://www.tving.com/contents/P001759524"
     }
   };
 
