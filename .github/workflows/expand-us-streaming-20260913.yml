@@ -1,0 +1,52 @@
+name: Expand US streaming coverage
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/expand-us-streaming-20260913.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  expand:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Add verified Hulu alternatives
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('data/streaming-us-20260906.js')
+          s = p.read_text()
+          replacements = {
+            '"the-apothecary-diaries-season-3-part-1": {\n      crunchyroll: "https://www.crunchyroll.com/series/G3KHEVDJ7/the-apothecary-diaries"\n    },': '"the-apothecary-diaries-season-3-part-1": {\n      crunchyroll: "https://www.crunchyroll.com/series/G3KHEVDJ7/the-apothecary-diaries",\n      hulu_us: "https://www.hulu.com/series/d7b5390e-b8cb-4cc3-ba7c-7ed570355d7d"\n    },',
+            '"black-clover-2nd-season": {\n      crunchyroll: "https://www.crunchyroll.com/series/GRE50KV36/black-clover"\n    },': '"black-clover-2nd-season": {\n      crunchyroll: "https://www.crunchyroll.com/series/GRE50KV36/black-clover",\n      hulu_us: "https://www.hulu.com/series/f6451467-97a8-4ddf-9ae8-e9e4cbb53fc8"\n    },',
+            '"the-apothecary-diaries-the-late-consorts-secret-treasure": {\n      crunchyroll: "https://www.crunchyroll.com/series/G3KHEVDJ7/the-apothecary-diaries"\n    },': '"the-apothecary-diaries-the-late-consorts-secret-treasure": {\n      crunchyroll: "https://www.crunchyroll.com/series/G3KHEVDJ7/the-apothecary-diaries",\n      hulu_us: "https://www.hulu.com/series/d7b5390e-b8cb-4cc3-ba7c-7ed570355d7d"\n    },',
+            '"the-apothecary-diaries-season-3-part-2": {\n      crunchyroll: "https://www.crunchyroll.com/series/G3KHEVDJ7/the-apothecary-diaries"\n    },': '"the-apothecary-diaries-season-3-part-2": {\n      crunchyroll: "https://www.crunchyroll.com/series/G3KHEVDJ7/the-apothecary-diaries",\n      hulu_us: "https://www.hulu.com/series/d7b5390e-b8cb-4cc3-ba7c-7ed570355d7d"\n    },',
+            '"frieren-beyond-journeys-end-season-3-golden-land-arc": {\n      crunchyroll: "https://www.crunchyroll.com/series/GG5H5XQX4/frieren-beyond-journeys-end"\n    },': '"frieren-beyond-journeys-end-season-3-golden-land-arc": {\n      crunchyroll: "https://www.crunchyroll.com/series/GG5H5XQX4/frieren-beyond-journeys-end",\n      hulu_us: "https://www.hulu.com/series/1d4725f8-06d1-43fb-a077-72143ac5502f"\n    },',
+            '"dan-da-dan-season-3": {\n      crunchyroll: "https://www.crunchyroll.com/series/GG5H5XQ0D"\n    },': '"dan-da-dan-season-3": {\n      crunchyroll: "https://www.crunchyroll.com/series/GG5H5XQ0D",\n      hulu_us: "https://www.hulu.com/series/dan-da-dan-bad0bb31-0fa5-4a69-b9a5-5e5ed5032a48"\n    },',
+            '"the-rising-of-the-shield-hero-season-5": {\n      crunchyroll: "https://www.crunchyroll.com/series/G6W4QKX0R/the-rising-of-the-shield-hero"\n    },': '"the-rising-of-the-shield-hero-season-5": {\n      crunchyroll: "https://www.crunchyroll.com/series/G6W4QKX0R/the-rising-of-the-shield-hero",\n      hulu_us: "https://www.hulu.com/series/the-rising-of-the-shield-hero-9bfde086-7d79-48e5-a429-e065cfdc4d07"\n    },'
+          }
+          for old, new in replacements.items():
+              if old not in s:
+                  raise SystemExit(f'missing US audit anchor: {old[:80]}')
+              s = s.replace(old, new, 1)
+          s = s.replace('verifiedAt: "2026-09-06",', 'verifiedAt: "2026-09-13",', 1)
+          p.write_text(s)
+          PY
+      - name: Validate regional data
+        run: node scripts/validate-regional-streaming.js
+      - name: Commit expansion and remove temporary workflow
+        shell: bash
+        run: |
+          git rm .github/workflows/expand-us-streaming-20260913.yml
+          git add data/streaming-us-20260906.js
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Expand US previous-series streaming links [skip ci]"
+          git push
