@@ -1,5 +1,5 @@
 // Japan previous-series streaming audit.
-// Verified against direct streaming title/work pages on 2026-09-06, with targeted re-checks on 2026-09-07.
+// Verified against direct streaming title/work pages on 2026-09-06, with targeted re-checks on 2026-09-13.
 // Upcoming installments remain intentionally excluded by NewAnime policy.
 (() => {
   if (typeof window.setAnimeStreamingForRegion !== "function") return;
@@ -7,20 +7,20 @@
   const dAnime = workId => `https://animestore.docomo.ne.jp/animestore/ci_pc?workId=${workId}`;
 
   const audit = {
-    "sound-euphonium-the-final-movement-part-2": { danime: dAnime("20098") },
+    "sound-euphonium-the-final-movement-part-2": { danime: dAnime("20098"), unext: "https://www.video.unext.jp/title/SID0315530" },
     "jojos-bizarre-adventure-steel-ball-run-2nd-and-3rd-stage": { danime: dAnime("20495") },
     "the-new-prince-of-tennis-u-17-world-cup-final-roster-selection": { danime: dAnime("24509") },
-    "the-apothecary-diaries-season-3-part-1": { danime: dAnime("26610") },
+    "the-apothecary-diaries-season-3-part-1": { danime: dAnime("26610"), unext: "https://www.video.unext.jp/title/SID0163357" },
     "ranma-1-2-season-3": { danime: dAnime("27655") },
-    "girls-und-panzer-das-finale-part-5": { danime: dAnime("20431") },
+    "girls-und-panzer-das-finale-part-5": { danime: dAnime("20431"), unext: "https://www.video.unext.jp/title/SID0002511" },
     "bang-dream-ave-mujica-prima-aurora": { danime: dAnime("27572") },
-    "rascal-does-not-dream-of-a-dear-friend": { danime: dAnime("28053") },
+    "rascal-does-not-dream-of-a-dear-friend": { danime: dAnime("28053"), unext: "https://www.video.unext.jp/title/SID0200159" },
     "cyberpunk-edgerunners-2": { netflix: "https://www.netflix.com/jp/title/81054853" },
-    "made-in-abyss-theatrical-series-part-1-the-awakening-mystery": { danime: dAnime("22458") },
+    "made-in-abyss-theatrical-series-part-1-the-awakening-mystery": { danime: dAnime("22458"), unext: "https://www.video.unext.jp/title/SID0070853" },
     "a-returners-magic-should-be-special-season-2": { danime: dAnime("26631") },
     "tougen-anki-nikko-and-kegon-falls-arc": { danime: dAnime("28009") },
     "tokyo-revengers-three-deities-war-arc": { danime: dAnime("24536") },
-    "black-clover-2nd-season": { danime: dAnime("25854") },
+    "black-clover-2nd-season": { danime: dAnime("25854"), unext: "https://www.video.unext.jp/title/SID0031251" },
     "the-iceblade-sorcerer-shall-rule-the-world-ii": { danime: dAnime("25965") },
     "sasaki-and-peeps-season-2": { danime: dAnime("26811") },
     "aoashi-season-2": { danime: dAnime("25328") },
@@ -34,7 +34,7 @@
       abema: "https://abema.tv/video/title/420-76"
     },
     "expelled-from-paradise-resonance-of-the-heart": { danime: dAnime("22718") },
-    "the-apothecary-diaries-the-late-consorts-secret-treasure": { danime: dAnime("26610") },
+    "the-apothecary-diaries-the-late-consorts-secret-treasure": { danime: dAnime("26610"), unext: "https://www.video.unext.jp/title/SID0163357" },
     "monogatari-series-off-and-monster-season-wazamonogatari-karen-ogre": { danime: dAnime("27567") },
     "bang-dream-its-mygo-ave-mujica-sequel-series": { danime: dAnime("27572") },
     "sakamoto-days-season-2": { danime: dAnime("27537") },
@@ -47,21 +47,21 @@
     "medaka-kuroiwa-is-impervious-to-my-charms-season-2": { danime: dAnime("27594") },
     "medalist-the-movie": { danime: dAnime("27620") },
     "skip-and-loafer-season-2": { danime: dAnime("26254") },
-    "the-apothecary-diaries-season-3-part-2": { danime: dAnime("26610") },
+    "the-apothecary-diaries-season-3-part-2": { danime: dAnime("26610"), unext: "https://www.video.unext.jp/title/SID0163357" },
     "delicious-in-dungeon-season-2": { danime: dAnime("26747") },
-    "frieren-beyond-journeys-end-season-3-golden-land-arc": { danime: dAnime("26609") },
+    "frieren-beyond-journeys-end-season-3-golden-land-arc": { danime: dAnime("26609"), unext: "https://www.video.unext.jp/title/SID0091754" },
     "spice-and-wolf-merchant-meets-the-wise-wolf-season-2": { danime: dAnime("27063") },
-    "dan-da-dan-season-3": { danime: dAnime("27283") },
-    "konosuba-gods-blessing-on-this-wonderful-world-season-4": { danime: dAnime("20525") },
-    "laid-back-camp-season-4": { danime: dAnime("21928") },
-    "the-dangers-in-my-heart-season-3": { danime: dAnime("27390") },
-    "oblivion-battery-season-2": { danime: dAnime("27004") },
+    "dan-da-dan-season-3": { danime: dAnime("27283"), unext: "https://www.video.unext.jp/title/SID0200132" },
+    "konosuba-gods-blessing-on-this-wonderful-world-season-4": { danime: dAnime("20525"), unext: "https://www.video.unext.jp/title/SID0100051" },
+    "laid-back-camp-season-4": { danime: dAnime("21928"), unext: "https://www.video.unext.jp/title/SID0095777" },
+    "the-dangers-in-my-heart-season-3": { danime: dAnime("27390"), unext: "https://www.video.unext.jp/title/SID0096010" },
+    "oblivion-battery-season-2": { danime: dAnime("27004"), unext: "https://www.video.unext.jp/title/SID0100046" },
     "alya-sometimes-hides-her-feelings-in-russian-season-2": { danime: dAnime("27198") },
     "one-punch-man-season-3-part-2": { danime: dAnime("22640") },
-    "the-rising-of-the-shield-hero-season-5": { danime: dAnime("22568") },
+    "the-rising-of-the-shield-hero-season-5": { danime: dAnime("22568"), unext: "https://www.video.unext.jp/title/SID0039229" },
     "fate-kaleid-liner-prisma-illya-finale": { danime: dAnime("11165") },
-    "haikyu-the-movie-vs-the-little-giant": { danime: dAnime("20140") },
-    "the-eminence-in-shadow-lost-echoes": { danime: dAnime("25786") },
+    "haikyu-the-movie-vs-the-little-giant": { danime: dAnime("20140"), unext: "https://www.video.unext.jp/title/SID0045516" },
+    "the-eminence-in-shadow-lost-echoes": { danime: dAnime("25786"), unext: "https://www.video.unext.jp/title/SID0073140" },
     "one-piece-film-god-valley": { unext: "https://video.unext.jp/title/SID0011124" },
     "the-worlds-finest-assassin-season-2": { danime: dAnime("25026") },
     "be-forever-yamato-rebel3199-chapter-7-rainbow-reincarnation": { danime: dAnime("27252") },
@@ -69,7 +69,7 @@
     "armored-trooper-votoms-the-gray-witch-part-1": { danime: dAnime("20211") },
     "mobile-police-patlabor-ezy-file-3": { danime: dAnime("10363") },
     "hokuto-no-ken-fist-of-the-north-star-part-2": { danime: dAnime("10480") },
-    "girls-und-panzer-motto-love-love-operation": { danime: dAnime("20431") },
+    "girls-und-panzer-motto-love-love-operation": { danime: dAnime("20431"), unext: "https://www.video.unext.jp/title/SID0002511" },
     "my-happy-marriage-special-2026": { danime: dAnime("26472") },
     "takopis-original-sin-thank-you-see-you-tomorrow": { danime: dAnime("28000") },
     "ice-wall-season-2": { netflix: "https://www.netflix.com/title/82031882" },
@@ -78,7 +78,7 @@
     },
     "dark-gathering-season-2": { danime: dAnime("26513") },
     "berserk-of-gluttony-season-2": { danime: dAnime("26620") },
-    "haikyu-monsters-go-where": { danime: dAnime("20140") },
+    "haikyu-monsters-go-where": { danime: dAnime("20140"), unext: "https://www.video.unext.jp/title/SID0045516" },
     "kaiju-no-8-narumis-weekday": { danime: dAnime("27039") },
     "a-wild-last-boss-appeared-season-2": { danime: dAnime("28660") },
     "ace-of-diamond-act-ii-second-season-part-2": { danime: dAnime("22678") },
@@ -91,7 +91,7 @@
 
   window.streamingRegionalAuditMeta ||= {};
   window.streamingRegionalAuditMeta.jp = {
-    verifiedAt: "2026-09-07",
+    verifiedAt: "2026-09-13",
     auditedTitles: 54,
     linkedTitles: Object.keys(audit).length,
     unresolvedAnimeIds: ["tiger-coming-in-2"]
