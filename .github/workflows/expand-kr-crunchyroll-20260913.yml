@@ -1,0 +1,90 @@
+name: Expand Korean Crunchyroll streaming coverage
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/expand-kr-crunchyroll-20260913.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  expand:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Enable KR Crunchyroll and add verified links
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          regions = Path('data/streaming-regions.js')
+          s = regions.read_text()
+          old = '{ id: "crunchyroll", name: "Crunchyroll", regions: ["us"] },'
+          new = '{ id: "crunchyroll", name: "Crunchyroll", regions: ["kr", "us"] },'
+          if old not in s:
+              raise SystemExit('missing Crunchyroll region anchor')
+          regions.write_text(s.replace(old, new, 1))
+
+          kr = Path('data/streaming-kr-20260908.js')
+          s = kr.read_text()
+
+          old = '    "takopis-original-sin-thank-you-see-you-tomorrow": {\n      laftel: "https://laftel.net/item/42947"\n    },'
+          new = '    "takopis-original-sin-thank-you-see-you-tomorrow": {\n      laftel: "https://laftel.net/item/42947",\n      crunchyroll: "https://www.crunchyroll.com/series/GKEH2G0X4/takopis-original-sin"\n    },'
+          if old not in s:
+              raise SystemExit('missing Takopi KR anchor')
+          s = s.replace(old, new, 1)
+
+          marker = '    "my-happy-marriage-special-2026": {'
+          if marker not in s:
+              raise SystemExit('missing KR insertion marker')
+          entries = '\n'.join([
+            '    "tougen-anki-nikko-and-kegon-falls-arc": {',
+            '      tving: "https://www.tving.com/contents/P001773985",',
+            '      crunchyroll: "https://www.crunchyroll.com/series/GP5HJ84D2/tougen-anki"',
+            '    },',
+            '    "magical-girl-raising-project-restart": {',
+            '      watcha: "https://watcha.com/ko-KR/contents/tP8kB3R",',
+            '      crunchyroll: "https://www.crunchyroll.com/series/GRQ4MKN4Y/magical-girl-raising-project"',
+            '    },',
+            '    "medaka-kuroiwa-is-impervious-to-my-charms-season-2": {',
+            '      laftel: "https://laftel.net/item/42651",',
+            '      watcha: "https://watcha.com/ko/contents/tRwGXxk",',
+            '      crunchyroll: "https://www.crunchyroll.com/series/G4PH0WJJG/medaka-kuroiwa-is-impervious-to-my-charms"',
+            '    },',
+            '    "marriage-toxin-season-2": {',
+            '      laftel: "https://laftel.net/item/45469",',
+            '      watcha: "https://watcha.com/ko-KR/contents/tRMxWk4",',
+            '      tving: "https://www.tving.com/contents/P001785141"',
+            '    },',
+            ''
+          ])
+          s = s.replace(marker, entries + marker, 1)
+          kr.write_text(s)
+
+          for path in [Path('index.html'), Path('anime-links.js')]:
+              text = path.read_text()
+              if '20260913-coverage5' not in text:
+                  raise SystemExit(f'missing coverage5 cache key in {path}')
+              path.write_text(text.replace('20260913-coverage5', '20260913-coverage6'))
+          PY
+      - name: Validate regional streaming data
+        run: node scripts/validate-regional-streaming.js
+      - name: Report updated sparse coverage
+        run: node scripts/report-pv-streaming-gaps.js
+      - name: Verify cache refresh
+        run: |
+          grep -n '20260913-coverage6' index.html anime-links.js
+      - name: Commit expansion and clean workflow
+        shell: bash
+        run: |
+          git rm .github/workflows/expand-kr-crunchyroll-20260913.yml
+          git add data/streaming-regions.js data/streaming-kr-20260908.js index.html anime-links.js
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Expand Korean previous-series streaming links"
+          git push
