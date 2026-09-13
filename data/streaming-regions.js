@@ -11,7 +11,7 @@
     { id: "laftel", name: "Laftel", regions: ["kr"] },
     { id: "disney", name: "Disney+", regions: ["kr", "jp", "us"] },
     { id: "prime", name: "Prime Video", regions: ["kr", "jp", "us"] },
-    { id: "crunchyroll", name: "Crunchyroll", regions: ["us"] },
+    { id: "crunchyroll", name: "Crunchyroll", regions: ["kr", "us"] },
     { id: "tving", name: "TVING", regions: ["kr"] },
     { id: "watcha", name: "WATCHA", regions: ["kr"] },
     { id: "youtube", name: "YouTube", regions: ["kr", "jp", "us"] },

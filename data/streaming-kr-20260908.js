@@ -16,7 +16,26 @@
       tving: "https://www.tving.com/contents/P001773673"
     },
     "takopis-original-sin-thank-you-see-you-tomorrow": {
-      laftel: "https://laftel.net/item/42947"
+      laftel: "https://laftel.net/item/42947",
+      crunchyroll: "https://www.crunchyroll.com/series/GKEH2G0X4/takopis-original-sin"
+    },
+    "tougen-anki-nikko-and-kegon-falls-arc": {
+      tving: "https://www.tving.com/contents/P001773985",
+      crunchyroll: "https://www.crunchyroll.com/series/GP5HJ84D2/tougen-anki"
+    },
+    "magical-girl-raising-project-restart": {
+      watcha: "https://watcha.com/ko-KR/contents/tP8kB3R",
+      crunchyroll: "https://www.crunchyroll.com/series/GRQ4MKN4Y/magical-girl-raising-project"
+    },
+    "medaka-kuroiwa-is-impervious-to-my-charms-season-2": {
+      laftel: "https://laftel.net/item/42651",
+      watcha: "https://watcha.com/ko/contents/tRwGXxk",
+      crunchyroll: "https://www.crunchyroll.com/series/G4PH0WJJG/medaka-kuroiwa-is-impervious-to-my-charms"
+    },
+    "marriage-toxin-season-2": {
+      laftel: "https://laftel.net/item/45469",
+      watcha: "https://watcha.com/ko-KR/contents/tRMxWk4",
+      tving: "https://www.tving.com/contents/P001785141"
     },
     "my-happy-marriage-special-2026": {
       laftel: "https://laftel.net/item/41528",
