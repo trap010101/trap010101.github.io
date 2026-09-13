@@ -31,12 +31,13 @@ jobs:
           OUT = Path('assets/posters')
           OUT.mkdir(parents=True, exist_ok=True)
 
-          def fetch(url):
+          def fetch(url, referer):
               req = Request(url, headers={
                   'User-Agent': 'Mozilla/5.0 (NewAnime poster asset updater)',
-                  'Referer': url.split('/assets/')[0] + '/',
+                  'Referer': referer,
+                  'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
               })
-              with urlopen(req, timeout=45) as res:
+              with urlopen(req, timeout=60) as res:
                   return res.read()
 
           def crop_white_sides(image):
@@ -69,23 +70,28 @@ jobs:
           sources = [
               {
                   'url': 'https://yowaki-max-anime.com/assets/img/top/visual/visual.jpg',
+                  'referer': 'https://yowaki-max-anime.com/',
                   'path': OUT / 'the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913.webp',
                   'crop_sides': True,
               },
               {
-                  'url': 'https://zero-believers-anime.com/assets/img/top/kv.jpg',
+                  'url': 'https://prcdn.freetls.fastly.net/release_image/84062/151/84062-151-c7d563521b913888a46bf724c1c400d4-1909x2700.jpg',
+                  'referer': 'https://prtimes.jp/',
                   'path': OUT / 'zero-believers-goddess-isekai-strategy-user-20260913.webp',
                   'crop_sides': False,
               },
           ]
 
           for item in sources:
-              raw = fetch(item['url'])
+              raw = fetch(item['url'], item['referer'])
               image = Image.open(BytesIO(raw)).convert('RGB')
               if item['crop_sides']:
                   image = crop_white_sides(image)
               if image.width < 600 or image.height < 800:
                   raise SystemExit(f"Unexpectedly small poster from {item['url']}: {image.size}")
+              ratio = image.width / image.height
+              if not (0.68 <= ratio <= 0.74):
+                  raise SystemExit(f"Unexpected poster aspect ratio from {item['url']}: {image.size}")
               image.save(item['path'], 'WEBP', quality=92, method=6)
               check = Image.open(item['path'])
               print(item['path'], check.format, check.size, item['path'].stat().st_size)
@@ -100,18 +106,18 @@ jobs:
           path = Path('data/poster-fixes-20260905.js')
           text = path.read_text(encoding='utf-8')
 
-          text = text.replace(
-              '"zero-believers-goddess-isekai-strategy": { src: "assets/posters/zero-believers-goddess-isekai-strategy-user-20260912.webp", updatedAt: "2026-09-12" }',
-              '"zero-believers-goddess-isekai-strategy": { src: "assets/posters/zero-believers-goddess-isekai-strategy-user-20260913.webp", updatedAt: "2026-09-13" }'
-          )
-          text = text.replace(
-              'src: "assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-v2.webp",\n      updatedAt: "2026-09-12"',
-              'src: "assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913.webp",\n      updatedAt: "2026-09-13"'
-          )
-          text = text.replace(
-              'timidMax.updatedAt = "2026-09-12";',
-              'timidMax.updatedAt = "2026-09-13";'
-          )
+          old_zero = '"zero-believers-goddess-isekai-strategy": { src: "assets/posters/zero-believers-goddess-isekai-strategy-user-20260912.webp", updatedAt: "2026-09-12" }'
+          new_zero = '"zero-believers-goddess-isekai-strategy": { src: "assets/posters/zero-believers-goddess-isekai-strategy-user-20260913.webp", updatedAt: "2026-09-13" }'
+          if old_zero not in text:
+              raise SystemExit('Zero Believers poster reference pattern not found')
+          text = text.replace(old_zero, new_zero)
+
+          old_timid = 'src: "assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-v2.webp",\n      updatedAt: "2026-09-12"'
+          new_timid = 'src: "assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913.webp",\n      updatedAt: "2026-09-13"'
+          if old_timid not in text:
+              raise SystemExit('Timid MAX poster reference pattern not found')
+          text = text.replace(old_timid, new_timid)
+          text = text.replace('timidMax.updatedAt = "2026-09-12";', 'timidMax.updatedAt = "2026-09-13";')
           path.write_text(text, encoding='utf-8')
           PY
 
