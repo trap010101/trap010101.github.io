@@ -1,4 +1,4 @@
-name: Fix exact Zero Believers poster
+name: Apply requested poster replacements
 
 on:
   push:
@@ -18,86 +18,135 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Verify exact uploaded WebP asset
+      - name: Download, crop, and convert requested posters
         run: |
           set -euo pipefail
           python -m pip install --quiet pillow
           python - <<'PY'
+          from io import BytesIO
           from pathlib import Path
-          from hashlib import sha256
+          from urllib.request import Request, urlopen
           from PIL import Image
 
-          path = Path('assets/posters/zero-believers-goddess-isekai-strategy-user-20260912-r2.webp')
-          raw = path.read_bytes()
-          digest = sha256(raw).hexdigest()
-          print('sha256=', digest)
-          if digest != '62f2e3eb0c90b1c5eecffaddd5c1b89aba468e98f46ce9edcab27c3d6ddfff2b':
-              raise SystemExit('Exact uploaded poster WebP hash mismatch')
-          with Image.open(path) as image:
-              print('format=', image.format, 'size=', image.size)
-              if image.format != 'WEBP' or image.size != (1086, 1536):
-                  raise SystemExit('Unexpected poster format or dimensions')
+          OUT = Path('assets/posters')
+          OUT.mkdir(parents=True, exist_ok=True)
+
+          def fetch(url):
+              req = Request(url, headers={
+                  'User-Agent': 'Mozilla/5.0 (NewAnime poster asset updater)',
+                  'Referer': url.split('/assets/')[0] + '/',
+              })
+              with urlopen(req, timeout=45) as res:
+                  return res.read()
+
+          def crop_white_sides(image):
+              rgb = image.convert('RGB')
+              width, height = rgb.size
+              px = rgb.load()
+
+              def white_fraction(x):
+                  white = 0
+                  for y in range(height):
+                      r, g, b = px[x, y]
+                      if r >= 245 and g >= 245 and b >= 245:
+                          white += 1
+                  return white / height
+
+              left = 0
+              while left < width // 4 and white_fraction(left) >= 0.985:
+                  left += 1
+              right = width - 1
+              while right > width * 3 // 4 and white_fraction(right) >= 0.985:
+                  right -= 1
+
+              if left or right < width - 1:
+                  cropped = rgb.crop((left, 0, right + 1, height))
+                  print(f'cropped white side margins: left={left}px right={width - 1 - right}px; {rgb.size} -> {cropped.size}')
+                  return cropped
+              print(f'no white side margin detected; preserving full artwork {rgb.size}')
+              return rgb
+
+          sources = [
+              {
+                  'url': 'https://yowaki-max-anime.com/assets/img/top/visual/visual.jpg',
+                  'path': OUT / 'the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913.webp',
+                  'crop_sides': True,
+              },
+              {
+                  'url': 'https://zero-believers-anime.com/assets/img/top/kv.jpg',
+                  'path': OUT / 'zero-believers-goddess-isekai-strategy-user-20260913.webp',
+                  'crop_sides': False,
+              },
+          ]
+
+          for item in sources:
+              raw = fetch(item['url'])
+              image = Image.open(BytesIO(raw)).convert('RGB')
+              if item['crop_sides']:
+                  image = crop_white_sides(image)
+              if image.width < 600 or image.height < 800:
+                  raise SystemExit(f"Unexpectedly small poster from {item['url']}: {image.size}")
+              image.save(item['path'], 'WEBP', quality=92, method=6)
+              check = Image.open(item['path'])
+              print(item['path'], check.format, check.size, item['path'].stat().st_size)
           PY
 
-      - name: Replace poster references and bust focused caches
+      - name: Point anime data at the new local WebP assets
         run: |
           set -euo pipefail
           python - <<'PY'
           from pathlib import Path
 
-          OLD = 'zero-believers-goddess-isekai-strategy-user-20260912.webp'
-          NEW = 'zero-believers-goddess-isekai-strategy-user-20260912-r2.webp'
-          replacements = {
-              OLD: NEW,
-              'data/anime-20260904.js?v=20260912-zero1': 'data/anime-20260904.js?v=20260912-zero2',
-              '/data/anime-20260904.js?v=20260912-zero1': '/data/anime-20260904.js?v=20260912-zero2',
-              'data/poster-fixes-20260905.js?v=20260912-zero1': 'data/poster-fixes-20260905.js?v=20260912-zero2',
-              '/data/poster-fixes-20260905.js?v=20260912-zero1': '/data/poster-fixes-20260905.js?v=20260912-zero2',
-          }
-          text_exts = {'.html', '.js', '.json', '.xml', '.md'}
-          changed = []
-          for path in Path('.').rglob('*'):
-              if not path.is_file() or path.suffix.lower() not in text_exts or '.git' in path.parts or 'node_modules' in path.parts:
-                  continue
-              try:
-                  current = path.read_text(encoding='utf-8')
-              except UnicodeDecodeError:
-                  continue
-              updated = current
-              for old, new in replacements.items():
-                  updated = updated.replace(old, new)
-              if updated != current:
-                  path.write_text(updated, encoding='utf-8')
-                  changed.append(str(path))
-          print('changed files:')
-          for path in changed:
-              print(' -', path)
+          path = Path('data/poster-fixes-20260905.js')
+          text = path.read_text(encoding='utf-8')
+
+          text = text.replace(
+              '"zero-believers-goddess-isekai-strategy": { src: "assets/posters/zero-believers-goddess-isekai-strategy-user-20260912.webp", updatedAt: "2026-09-12" }',
+              '"zero-believers-goddess-isekai-strategy": { src: "assets/posters/zero-believers-goddess-isekai-strategy-user-20260913.webp", updatedAt: "2026-09-13" }'
+          )
+          text = text.replace(
+              'src: "assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-v2.webp",\n      updatedAt: "2026-09-12"',
+              'src: "assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913.webp",\n      updatedAt: "2026-09-13"'
+          )
+          text = text.replace(
+              'timidMax.updatedAt = "2026-09-12";',
+              'timidMax.updatedAt = "2026-09-13";'
+          )
+          path.write_text(text, encoding='utf-8')
           PY
 
-      - name: Remove incorrect substituted poster
-        run: rm -f assets/posters/zero-believers-goddess-isekai-strategy-user-20260912.webp
-
-      - name: Validate JavaScript and requested result
+      - name: Refresh cache and generated pages
         run: |
           set -euo pipefail
-          while IFS= read -r file; do
-            [ -z "$file" ] && continue
-            node --check "$file"
-          done < <(git diff --name-only -- '*.js')
-          grep -Fq 'ko: "신자 0명 여신님과 시작하는 이세계 공략"' data/anime-20260904.js
-          grep -Fq 'zero-believers-goddess-isekai-strategy-user-20260912-r2.webp' data/anime-20260904.js
-          grep -Fq 'zero-believers-goddess-isekai-strategy-user-20260912-r2.webp' data/poster-fixes-20260905.js
-          grep -Fq '신자 0명 여신님과 시작하는 이세계 공략' anime/zero-believers-goddess-isekai-strategy/index.html
-          grep -Fq 'zero-believers-goddess-isekai-strategy-user-20260912-r2.webp' anime/zero-believers-goddess-isekai-strategy/index.html
-          test ! -e assets/posters/zero-believers-goddess-isekai-strategy-user-20260912.webp
-          ! grep -R -Fq --exclude-dir=.git --exclude='fix-zero-believers-exact-poster.yml' 'zero-believers-goddess-isekai-strategy-user-20260912.webp' .
+          node scripts/bump-poster-fix-cache.js
+          node scripts/generate-anime-pages.js
+          node scripts/enhance-anime-seo.js
+          node scripts/enhance-streaming-regions.js
+          node scripts/generate-schedule-pages.js
+          node scripts/normalize-seo-defaults.js
+          node scripts/inject-title-wrap-css.js
 
-      - name: Commit final patch and clean workflow
+      - name: Validate requested result
+        run: |
+          set -euo pipefail
+          node --check data/poster-fixes-20260905.js
+          test -s assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913.webp
+          test -s assets/posters/zero-believers-goddess-isekai-strategy-user-20260913.webp
+          grep -Fq 'the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913.webp' data/poster-fixes-20260905.js
+          grep -Fq 'zero-believers-goddess-isekai-strategy-user-20260913.webp' data/poster-fixes-20260905.js
+          grep -Fq 'the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913.webp' anime/the-timid-max-lady-took-her-shrewd-fiance-s-bet/index.html
+          grep -Fq 'zero-believers-goddess-isekai-strategy-user-20260913.webp' anime/zero-believers-goddess-isekai-strategy/index.html
+
+      - name: Commit replacement assets and clean temporary workflow
         run: |
           set -euo pipefail
           rm -f .github/workflows/fix-zero-believers-exact-poster.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          git commit -m 'Use exact uploaded Zero Believers poster [skip ci]'
+          if git diff --cached --quiet; then
+            echo 'No changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Replace Timid MAX and Zero Believers posters [skip ci]'
           git push origin main
