@@ -24,23 +24,25 @@ jobs:
 
           kr = Path('data/streaming-kr-20260908.js')
           s = kr.read_text()
-          s = s.replace(
-            '    "maebashi-witches-emoemories": {\n      laftel: "https://laftel.net/item/42780"\n    },',
-            '    "maebashi-witches-emoemories": {\n      laftel: "https://laftel.net/item/42780",\n      tving: "https://www.tving.com/contents/P001774211"\n    },',
-            1
-          )
+          old = '    "maebashi-witches-emoemories": {\n      laftel: "https://laftel.net/item/42780"\n    },'
+          new = '    "maebashi-witches-emoemories": {\n      laftel: "https://laftel.net/item/42780",\n      tving: "https://www.tving.com/contents/P001774211"\n    },'
+          if old not in s:
+              raise SystemExit('missing KR maebashi anchor')
+          s = s.replace(old, new, 1)
           marker = '    "takopis-original-sin-thank-you-see-you-tomorrow": {'
           if marker not in s:
               raise SystemExit('missing KR insertion marker')
-          extra = '''    "akane-banashi-season-2": {
-      laftel: "https://laftel.net/item/45436",
-      tving: "https://www.tving.com/contents/P001789083"
-    },
-    "hotel-inhumans-season-2": {
-      laftel: "https://laftel.net/item/42939",
-      tving: "https://www.tving.com/contents/P001773673"
-    },
-'''
+          extra = '\n'.join([
+              '    "akane-banashi-season-2": {',
+              '      laftel: "https://laftel.net/item/45436",',
+              '      tving: "https://www.tving.com/contents/P001789083"',
+              '    },',
+              '    "hotel-inhumans-season-2": {',
+              '      laftel: "https://laftel.net/item/42939",',
+              '      tving: "https://www.tving.com/contents/P001773673"',
+              '    },',
+              ''
+          ])
           s = s.replace(marker, extra + marker, 1)
           kr.write_text(s)
 
@@ -72,8 +74,7 @@ jobs:
               text = path.read_text()
               if '20260913-coverage3' not in text:
                   raise SystemExit(f'missing coverage3 cache key in {path}')
-              text = text.replace('20260913-coverage3', '20260913-coverage4')
-              path.write_text(text)
+              path.write_text(text.replace('20260913-coverage3', '20260913-coverage4'))
           PY
       - name: Validate regional streaming data
         run: node scripts/validate-regional-streaming.js
