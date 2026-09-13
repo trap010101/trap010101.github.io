@@ -54,7 +54,7 @@
     "glasses-sometimes-yankee-kun": { src: "assets/posters/glasses-sometimes-yankee-kun-v2.webp", updatedAt: "2026-09-07" },
     "we-are-aliens": { src: "assets/posters/we-are-aliens.webp", updatedAt: "2026-09-07" },
     "the-timid-max-lady-took-her-shrewd-fiance-s-bet": {
-      src: "assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913.webp",
+      src: "assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact.webp",
       updatedAt: "2026-09-13"
     },
     "a-certain-dark-sides-shared-living": {
