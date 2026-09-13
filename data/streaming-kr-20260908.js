@@ -162,6 +162,15 @@
       watcha: "https://watcha.com/ko/contents/tEqZAaY",
       tving: "https://www.tving.com/contents/P001754888"
     },
+    "tiger-coming-in-2": {
+      laftel: "https://laftel.net/item/42320",
+      watcha: "https://watcha.com/ko/contents/tRbq6Lg",
+      tving: "https://www.tving.com/contents/P001775884"
+    },
+    "girls-und-panzer-motto-love-love-operation": {
+      netflix: "https://www.netflix.com/kr/title/80205232",
+      watcha: "https://watcha.com/ko/contents/mOVPgwY"
+    },
     "one-piece-film-god-valley": {
       netflix: "https://www.netflix.com/kr/title/80107103",
       tving: "https://www.tving.com/contents/P000327935"

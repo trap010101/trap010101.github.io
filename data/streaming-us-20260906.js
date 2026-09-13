@@ -107,7 +107,8 @@
       crunchyroll: "https://www.crunchyroll.com/series/G4PH0WJJG/medaka-kuroiwa-is-impervious-to-my-charms"
     },
     "medalist-the-movie": {
-      hulu_us: "https://www.hulu.com/series/medalist-bb33d0c2-b077-4bc0-a549-d2ca27d4afa8"
+      hulu_us: "https://www.hulu.com/series/medalist-bb33d0c2-b077-4bc0-a549-d2ca27d4afa8",
+      disney: "https://www.disneyplus.com/browse/entity-da70811f-59de-4f75-97f2-6b534c44626d"
     },
     "skip-and-loafer-season-2": {
       crunchyroll: "https://www.crunchyroll.com/series/G9VHN9185/skip-and-loafer"
@@ -189,13 +190,15 @@
       netflix: "https://www.netflix.com/title/82031882"
     },
     "mission-yozakura-family-season-2-part-2": {
-      hulu_us: "https://www.hulu.com/series/mission-yozakura-family-ac689bea-f955-4d95-8693-7b87b5a309cb"
+      hulu_us: "https://www.hulu.com/series/mission-yozakura-family-ac689bea-f955-4d95-8693-7b87b5a309cb",
+      disney: "https://www.disneyplus.com/browse/entity-b151ff3b-c3d2-4e8f-9fc2-dc07af6dbcc5"
     },
     "with-vengeance-sincerely-your-broken-saintess-season-2": {
       prime: "https://www.primevideo.com/detail/0OUPW1VINFZH941AW52V1U5WFO"
     },
     "gate-season-2": {
-      crunchyroll: "https://www.crunchyroll.com/series/GRGG9PN7R/gate"
+      crunchyroll: "https://www.crunchyroll.com/series/GRGG9PN7R/gate",
+      hulu_us: "https://www.hulu.com/series/ce311a68-cf4d-417c-902d-a188af25a6b0"
     },
     "berserk-of-gluttony-season-2": {
       crunchyroll: "https://www.crunchyroll.com/series/G1XHJV05V/berserk-of-gluttony"
