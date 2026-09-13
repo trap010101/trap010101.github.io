@@ -109,11 +109,21 @@
     },
     "fate-kaleid-liner-prisma-illya-finale": {
       laftel: "https://laftel.net/item/33300",
+      watcha: "https://watcha.com/ko/contents/tPynagl",
       tving: "https://www.tving.com/contents/P001764603"
     },
     "dragon-ball-super-beerus": {
       watcha: "https://watcha.com/ko/contents/tR2Y6vE",
       tving: "https://www.tving.com/contents/P001682333"
+    },
+    "ace-of-diamond-act-ii-second-season-part-2": {
+      laftel: "https://laftel.net/item/45434",
+      watcha: "https://watcha.com/ko/contents/tRX5x1Q",
+      tving: "https://www.tving.com/contents/P001785058"
+    },
+    "midnight-heart-tune-season-2": {
+      laftel: "https://laftel.net/item/44233",
+      tving: "https://www.tving.com/contents/P001781386"
     }
   };
 
