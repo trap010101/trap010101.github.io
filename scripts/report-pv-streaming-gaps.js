@@ -70,9 +70,11 @@ const directPv = value => {
 
 const title = anime => anime?.title?.ko || anime?.title?.ja || anime?.title?.en || anime?.id || '';
 const isSeriesCandidate = anime => Array.isArray(anime?.tags) && anime.tags.includes('series') && !anime.tags.includes('new');
+const regions = ['kr', 'jp', 'us'];
 
 const pvGaps = [];
-const krGaps = [];
+const regionalSparse = { kr: [], jp: [], us: [] };
+
 for (const anime of animeData) {
   const pvCandidates = [
     ...(Array.isArray(anime.pvs) ? anime.pvs.map(entry => entry?.url) : []),
@@ -83,18 +85,32 @@ for (const anime of animeData) {
   }
 
   if (!isSeriesCandidate(anime)) continue;
-  const previous = anime?.streamingByRegion?.kr?.previous || anime?.previousStreaming || {};
-  if (Object.keys(previous).length) continue;
-  const legacy = legacyStreaming.get(anime.id) || {};
-  krGaps.push({ id: anime.id, title: title(anime), legacy });
+
+  for (const region of regions) {
+    const previous = anime?.streamingByRegion?.[region]?.previous || (region === 'kr' ? anime?.previousStreaming : {}) || {};
+    const entries = Object.entries(previous);
+    if (entries.length >= 2) continue;
+    regionalSparse[region].push({
+      id: anime.id,
+      title: title(anime),
+      count: entries.length,
+      links: Object.fromEntries(entries)
+    });
+  }
 }
 
 console.log(`PV gap candidates: ${pvGaps.length}`);
 for (const item of pvGaps) {
   console.log(`PV_GAP\t${item.id}\t${item.title}\t${item.current || '-'}`);
 }
-console.log(`KR previous-series gap candidates: ${krGaps.length}`);
-for (const item of krGaps) {
-  const legacy = Object.entries(item.legacy).map(([platform, url]) => `${platform}=${url}`).join(',');
-  console.log(`KR_GAP\t${item.id}\t${item.title}\t${legacy || '-'}`);
+
+for (const region of regions) {
+  const items = regionalSparse[region];
+  const empty = items.filter(item => item.count === 0).length;
+  const single = items.filter(item => item.count === 1).length;
+  console.log(`${region.toUpperCase()} sparse previous-series candidates: ${items.length} (0 links: ${empty}, 1 link: ${single})`);
+  for (const item of items) {
+    const links = Object.entries(item.links).map(([platform, url]) => `${platform}=${url}`).join(',');
+    console.log(`${region.toUpperCase()}_SPARSE\t${item.count}\t${item.id}\t${item.title}\t${links || '-'}`);
+  }
 }
