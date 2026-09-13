@@ -124,6 +124,19 @@
     "midnight-heart-tune-season-2": {
       laftel: "https://laftel.net/item/44233",
       tving: "https://www.tving.com/contents/P001781386"
+    },
+    "reincarnated-as-a-sword-ii": {
+      prime: "https://www.primevideo.com/-/ko/detail/0SMRJS9YUTPHZO3CHCX2OX9AIX",
+      tving: "https://www.tving.com/contents/P001655168"
+    },
+    "kaiju-no-8-narumis-weekday": {
+      laftel: "https://laftel.net/item/42047",
+      watcha: "https://watcha.com/ko/contents/tEqZAaY",
+      tving: "https://www.tving.com/contents/P001754888"
+    },
+    "one-piece-film-god-valley": {
+      netflix: "https://www.netflix.com/kr/title/80107103",
+      tving: "https://www.tving.com/contents/P000327935"
     }
   };
 
