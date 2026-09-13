@@ -2164,7 +2164,7 @@ window.animeData = [
       "ln"
     ],
     "poster": {
-      "src": "assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-v2.webp",
+      "src": "assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-v3.webp",
       "position": null
     },
     "links": {
