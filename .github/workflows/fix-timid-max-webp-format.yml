@@ -17,31 +17,60 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Re-encode mislabeled poster as real WebP
+      - name: Fetch exact logo-included teaser visual and encode as real WebP
         run: |
           set -euo pipefail
           python -m pip install --quiet pillow
           python - <<'PY'
+          from io import BytesIO
           from pathlib import Path
+          from urllib.request import Request, urlopen
           from PIL import Image
           import hashlib
 
-          path = Path('assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact.webp')
-          if not path.exists():
-              raise SystemExit(f'Missing poster: {path}')
+          target = Path('assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact.webp')
+          target.parent.mkdir(parents=True, exist_ok=True)
 
-          with Image.open(path) as image:
-              print('source_format=', image.format, 'size=', image.size)
-              if image.size != (1086, 1536):
-                  raise SystemExit(f'Unexpected source dimensions: {image.size}')
-              rgb = image.convert('RGB')
+          sources = [
+              ('https://www.animatetimes.com/wp-content/uploads/2025/10/eb0a0ae1968806570abb341412f0c1df68edefe58a6b92_92699022_53161abe07df736d0674582b3630719ef224d0a6.jpg', 'https://animatetimes.com/news/details.php?id=1760423441'),
+              ('https://img2.animatetimes.com/2025/10/eb0a0ae1968806570abb341412f0c1df68edefe58a6b92_92699022_53161abe07df736d0674582b3630719ef224d0a6.jpg', 'https://animatetimes.com/news/details.php?id=1760423441'),
+          ]
 
-          tmp = path.with_suffix('.tmp.webp')
-          rgb.save(tmp, 'WEBP', quality=92, method=6)
-          tmp.replace(path)
+          image = None
+          used = None
+          for url, referer in sources:
+              try:
+                  req = Request(url, headers={
+                      'User-Agent': 'Mozilla/5.0',
+                      'Referer': referer,
+                      'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+                  })
+                  with urlopen(req, timeout=60) as res:
+                      raw = res.read()
+                  candidate = Image.open(BytesIO(raw)).convert('RGB')
+                  ratio = candidate.width / candidate.height
+                  print('candidate=', url, 'size=', candidate.size, 'ratio=', ratio)
+                  if candidate.width >= 700 and candidate.height >= 900 and 0.68 <= ratio <= 0.74:
+                      image = candidate
+                      used = url
+                      break
+              except Exception as exc:
+                  print('source failed:', url, repr(exc))
 
-          raw = path.read_bytes()
-          with Image.open(path) as check:
+          if image is None:
+              raise SystemExit('Could not fetch a valid logo-included portrait teaser visual')
+
+          # Normalize to the exact dimensions of the user-uploaded poster while preserving the same artwork.
+          if image.size != (1086, 1536):
+              image = image.resize((1086, 1536), Image.Resampling.LANCZOS)
+
+          tmp = target.with_suffix('.tmp.webp')
+          image.save(tmp, 'WEBP', quality=92, method=6)
+          tmp.replace(target)
+
+          raw = target.read_bytes()
+          with Image.open(target) as check:
+              print('used_source=', used)
               print('target_format=', check.format, 'size=', check.size, 'bytes=', len(raw))
               if check.format != 'WEBP' or check.size != (1086, 1536):
                   raise SystemExit('Re-encoded poster validation failed')
@@ -61,5 +90,5 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          git commit -m 'Fix Timid MAX poster WebP encoding [skip ci]'
+          git commit -m 'Fix Timid MAX poster with logo-included teaser visual [skip ci]'
           git push origin main
