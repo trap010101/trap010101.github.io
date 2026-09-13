@@ -102,6 +102,18 @@
       laftel: "https://laftel.net/item/42086",
       watcha: "https://watcha.com/ko-KR/contents/tE15g6N",
       tving: "https://www.tving.com/contents/P001759524"
+    },
+    "the-new-prince-of-tennis-u-17-world-cup-final-roster-selection": {
+      laftel: "https://laftel.net/item/42413",
+      tving: "https://www.tving.com/contents/P001628588"
+    },
+    "fate-kaleid-liner-prisma-illya-finale": {
+      laftel: "https://laftel.net/item/33300",
+      tving: "https://www.tving.com/contents/P001764603"
+    },
+    "dragon-ball-super-beerus": {
+      watcha: "https://watcha.com/ko/contents/tR2Y6vE",
+      tving: "https://www.tving.com/contents/P001682333"
     }
   };
 
