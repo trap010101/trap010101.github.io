@@ -1,0 +1,107 @@
+name: Fix Timid MAX WebP format v4
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-timid-max-webp-format-v4.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch exact logo-included teaser and encode valid WebP
+        run: |
+          set -euo pipefail
+          python -m pip install --quiet pillow
+          python - <<'PY'
+          from io import BytesIO
+          from pathlib import Path
+          from urllib.request import Request, urlopen
+          from PIL import Image
+          from hashlib import sha256
+
+          url = 'https://animeanime.jp/imgs/zoom/802998.jpg'
+          req = Request(url, headers={'User-Agent':'Mozilla/5.0','Referer':'https://animeanime.jp/article/2025/10/14/93185.html'})
+          with urlopen(req, timeout=60) as r:
+              raw = r.read()
+          print('downloaded bytes=', len(raw))
+          im = Image.open(BytesIO(raw)).convert('RGB')
+          print('source=', im.format, im.size)
+          if im.width < 1000 or im.height < 1400:
+              raise SystemExit(f'Unexpectedly small source: {im.size}')
+          # Match the exact uploaded artwork canvas size without cropping.
+          if im.size != (1086, 1536):
+              im = im.resize((1086, 1536), Image.Resampling.LANCZOS)
+          out = Path('assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-fixed.webp')
+          im.save(out, 'WEBP', quality=92, method=6)
+          data = out.read_bytes()
+          print('output bytes=', len(data), 'sha256=', sha256(data).hexdigest())
+          if data[:4] != b'RIFF' or data[8:12] != b'WEBP':
+              raise SystemExit('Output is not a real WebP')
+          with Image.open(out) as chk:
+              print('output=', chk.format, chk.size)
+              if chk.format != 'WEBP' or chk.size != (1086, 1536):
+                  raise SystemExit('Unexpected WebP result')
+          PY
+
+      - name: Point Timid MAX at valid asset and regenerate
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          old = 'the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact.webp'
+          new = 'the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-fixed.webp'
+          p = Path('data/poster-fixes-20260905.js')
+          s = p.read_text(encoding='utf-8')
+          if old not in s:
+              raise SystemExit('Old Timid MAX poster reference not found')
+          p.write_text(s.replace(old, new), encoding='utf-8')
+          PY
+          node scripts/bump-poster-fix-cache.js
+          node scripts/generate-anime-pages.js
+          node scripts/enhance-anime-seo.js
+          node scripts/enhance-streaming-regions.js
+          node scripts/generate-schedule-pages.js
+          node scripts/normalize-seo-defaults.js
+          node scripts/inject-title-wrap-css.js
+          python - <<'PY'
+          from pathlib import Path
+          for p in Path('.').rglob('*.html'):
+              s = p.read_text(encoding='utf-8', errors='ignore')
+              t = s.replace('src="/https://', 'src="https://')
+              if t != s:
+                  p.write_text(t, encoding='utf-8')
+          PY
+
+      - name: Validate final references
+        run: |
+          set -euo pipefail
+          NEW='the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-fixed.webp'
+          grep -Fq "$NEW" data/poster-fixes-20260905.js
+          grep -Fq "$NEW" anime/the-timid-max-lady-took-her-shrewd-fiance-s-bet/index.html
+          grep -Fq "og:image" anime/the-timid-max-lady-took-her-shrewd-fiance-s-bet/index.html
+          ! grep -R -Fq 'src="/https://' --include='*.html' .
+
+      - name: Commit fix and remove temporary files
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/fix-timid-max-webp-format-v2.yml
+          rm -f .github/workflows/fix-timid-max-webp-format-v3.yml
+          rm -f .github/workflows/fix-timid-max-webp-format-v4.yml
+          rm -f tmp-marker
+          rm -f tmp/timid-max-exact-webp.part0 tmp/timid-max-exact-webp.part1
+          rm -f tmp/timid-q82-*.b64
+          rm -f assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact.webp
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Fix Timid MAX poster WebP encoding [skip ci]'
+          git push origin main
