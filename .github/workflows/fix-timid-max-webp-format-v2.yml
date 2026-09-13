@@ -1,0 +1,80 @@
+name: Fix Timid MAX WebP format v2
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-timid-max-webp-format-v2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch logo-included teaser visual and encode real WebP
+        run: |
+          set -euo pipefail
+          python -m pip install --quiet pillow
+          python - <<'PY'
+          from io import BytesIO
+          from pathlib import Path
+          from urllib.request import Request, urlopen
+          from PIL import Image
+          import hashlib
+
+          target = Path('assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact.webp')
+          target.parent.mkdir(parents=True, exist_ok=True)
+          sources = [
+              ('https://www.animatetimes.com/wp-content/uploads/2025/10/eb0a0ae1968806570abb341412f0c1df68edefe58a6b92_92699022_53161abe07df736d0674582b3630719ef224d0a6.jpg', 'https://animatetimes.com/news/details.php?id=1760423441'),
+              ('https://img2.animatetimes.com/2025/10/eb0a0ae1968806570abb341412f0c1df68edefe58a6b92_92699022_53161abe07df736d0674582b3630719ef224d0a6.jpg', 'https://animatetimes.com/news/details.php?id=1760423441'),
+          ]
+          image = None
+          used = None
+          for url, referer in sources:
+              try:
+                  req = Request(url, headers={'User-Agent':'Mozilla/5.0','Referer':referer,'Accept':'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8'})
+                  with urlopen(req, timeout=60) as res:
+                      raw = res.read()
+                  candidate = Image.open(BytesIO(raw)).convert('RGB')
+                  ratio = candidate.width / candidate.height
+                  print('candidate=', url, 'size=', candidate.size, 'ratio=', ratio)
+                  if candidate.width >= 700 and candidate.height >= 900 and 0.68 <= ratio <= 0.74:
+                      image = candidate
+                      used = url
+                      break
+              except Exception as exc:
+                  print('source failed:', url, repr(exc))
+          if image is None:
+              raise SystemExit('Could not fetch a valid portrait teaser visual')
+          if image.size != (1086, 1536):
+              image = image.resize((1086, 1536), Image.Resampling.LANCZOS)
+          tmp = target.with_suffix('.tmp.webp')
+          image.save(tmp, 'WEBP', quality=92, method=6)
+          tmp.replace(target)
+          raw = target.read_bytes()
+          with Image.open(target) as check:
+              print('used_source=', used)
+              print('target_format=', check.format, 'size=', check.size, 'bytes=', len(raw))
+              if check.format != 'WEBP' or check.size != (1086, 1536):
+                  raise SystemExit('Re-encoded poster validation failed')
+          if raw[:4] != b'RIFF' or raw[8:12] != b'WEBP':
+              raise SystemExit('WebP RIFF signature validation failed')
+          print('sha256=', hashlib.sha256(raw).hexdigest())
+          PY
+
+      - name: Cleanup and commit
+        run: |
+          set -euo pipefail
+          rm -f tmp/timid-max-exact-webp.part* tmp/timid-q82-*.b64 tmp/timid-q82-r*.b64
+          rm -f .github/workflows/fix-timid-max-webp-format.yml .github/workflows/fix-timid-max-webp-format-v2.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Fix Timid MAX poster with logo-included teaser visual [skip ci]'
+          git push origin main
