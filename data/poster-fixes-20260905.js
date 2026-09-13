@@ -54,7 +54,7 @@
     "glasses-sometimes-yankee-kun": { src: "assets/posters/glasses-sometimes-yankee-kun-v2.webp", updatedAt: "2026-09-07" },
     "we-are-aliens": { src: "assets/posters/we-are-aliens.webp", updatedAt: "2026-09-07" },
     "the-timid-max-lady-took-her-shrewd-fiance-s-bet": {
-      src: "assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact.webp",
+      src: "assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-v3.webp",
       updatedAt: "2026-09-13"
     },
     "a-certain-dark-sides-shared-living": {
@@ -84,7 +84,7 @@
 
   const timidMax = window.animeData.find(anime => anime.id === "the-timid-max-lady-took-her-shrewd-fiance-s-bet");
   if (timidMax) {
-    timidMax.title = { ...timidMax.title, ko: "나약MAX 영애인데 수완가 약혼자와 내기를 하고 말았다" };
+    timidMax.title = { ...timidMax.title, ko: "소심 MAX 영애인데 수완 좋은 약혼자의 내기에 올라타 버렸다" };
     timidMax.updatedAt = "2026-09-13";
   }
 
