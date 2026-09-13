@@ -1,5 +1,5 @@
 // United States previous-series streaming audit.
-// Verified against direct streaming pages and current US availability evidence on 2026-09-06.
+// Verified against direct streaming pages and current US availability evidence on 2026-09-13.
 // Upcoming installments remain intentionally excluded by NewAnime policy.
 (() => {
   if (typeof window.setAnimeStreamingForRegion !== "function") return;
@@ -15,7 +15,8 @@
       crunchyroll: "https://www.crunchyroll.com/series/G65VP3106/the-prince-of-tennis-ii"
     },
     "the-apothecary-diaries-season-3-part-1": {
-      crunchyroll: "https://www.crunchyroll.com/series/G3KHEVDJ7/the-apothecary-diaries"
+      crunchyroll: "https://www.crunchyroll.com/series/G3KHEVDJ7/the-apothecary-diaries",
+      hulu_us: "https://www.hulu.com/series/d7b5390e-b8cb-4cc3-ba7c-7ed570355d7d"
     },
     "ranma-1-2-season-3": {
       netflix: "https://www.netflix.com/title/81171925"
@@ -45,7 +46,8 @@
       hulu_us: "https://www.hulu.com/series/tokyo-revengers-1a195a35-e19c-4e36-b609-3b1c451f6ce4"
     },
     "black-clover-2nd-season": {
-      crunchyroll: "https://www.crunchyroll.com/series/GRE50KV36/black-clover"
+      crunchyroll: "https://www.crunchyroll.com/series/GRE50KV36/black-clover",
+      hulu_us: "https://www.hulu.com/series/f6451467-97a8-4ddf-9ae8-e9e4cbb53fc8"
     },
     "the-iceblade-sorcerer-shall-rule-the-world-ii": {
       prime: "https://www.primevideo.com/detail/0PSZZ48DV17ZKGJ3NBESJHAF85"
@@ -69,7 +71,8 @@
       netflix: "https://www.netflix.com/title/81663323"
     },
     "the-apothecary-diaries-the-late-consorts-secret-treasure": {
-      crunchyroll: "https://www.crunchyroll.com/series/G3KHEVDJ7/the-apothecary-diaries"
+      crunchyroll: "https://www.crunchyroll.com/series/G3KHEVDJ7/the-apothecary-diaries",
+      hulu_us: "https://www.hulu.com/series/d7b5390e-b8cb-4cc3-ba7c-7ed570355d7d"
     },
     "monogatari-series-off-and-monster-season-wazamonogatari-karen-ogre": {
       crunchyroll: "https://www.crunchyroll.com/series/GNVHKN9W2/monogatari-series-off--monster-season"
@@ -105,19 +108,22 @@
       crunchyroll: "https://www.crunchyroll.com/series/G9VHN9185/skip-and-loafer"
     },
     "the-apothecary-diaries-season-3-part-2": {
-      crunchyroll: "https://www.crunchyroll.com/series/G3KHEVDJ7/the-apothecary-diaries"
+      crunchyroll: "https://www.crunchyroll.com/series/G3KHEVDJ7/the-apothecary-diaries",
+      hulu_us: "https://www.hulu.com/series/d7b5390e-b8cb-4cc3-ba7c-7ed570355d7d"
     },
     "delicious-in-dungeon-season-2": {
       netflix: "https://www.netflix.com/title/81564899"
     },
     "frieren-beyond-journeys-end-season-3-golden-land-arc": {
-      crunchyroll: "https://www.crunchyroll.com/series/GG5H5XQX4/frieren-beyond-journeys-end"
+      crunchyroll: "https://www.crunchyroll.com/series/GG5H5XQX4/frieren-beyond-journeys-end",
+      hulu_us: "https://www.hulu.com/series/1d4725f8-06d1-43fb-a077-72143ac5502f"
     },
     "spice-and-wolf-merchant-meets-the-wise-wolf-season-2": {
       crunchyroll: "https://www.crunchyroll.com/series/G1XHJV08M/spice-and-wolf-merchant-meets-the-wise-wolf"
     },
     "dan-da-dan-season-3": {
-      crunchyroll: "https://www.crunchyroll.com/series/GG5H5XQ0D"
+      crunchyroll: "https://www.crunchyroll.com/series/GG5H5XQ0D",
+      hulu_us: "https://www.hulu.com/series/dan-da-dan-bad0bb31-0fa5-4a69-b9a5-5e5ed5032a48"
     },
     "konosuba-gods-blessing-on-this-wonderful-world-season-4": {
       crunchyroll: "https://www.crunchyroll.com/series/GYE5K3GQR/konosuba--gods-blessing-on-this-wonderful-world"
@@ -138,7 +144,8 @@
       hulu_us: "https://www.hulu.com/series/one-punch-man-54a25fcf-a472-4d40-9968-13e2957e5abf"
     },
     "the-rising-of-the-shield-hero-season-5": {
-      crunchyroll: "https://www.crunchyroll.com/series/G6W4QKX0R/the-rising-of-the-shield-hero"
+      crunchyroll: "https://www.crunchyroll.com/series/G6W4QKX0R/the-rising-of-the-shield-hero",
+      hulu_us: "https://www.hulu.com/series/the-rising-of-the-shield-hero-9bfde086-7d79-48e5-a429-e065cfdc4d07"
     },
     "fate-kaleid-liner-prisma-illya-finale": {
       hidive: "https://www.hidive.com/tv/fate-kaleid-liner-prisma-illya"
@@ -211,7 +218,7 @@
 
   window.streamingRegionalAuditMeta ||= {};
   window.streamingRegionalAuditMeta.us = {
-    verifiedAt: "2026-09-06",
+    verifiedAt: "2026-09-13",
     auditedTitles: 53,
     linkedTitles: Object.keys(audit).length,
     unresolvedAnimeIds: [
