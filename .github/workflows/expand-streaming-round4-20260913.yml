@@ -1,0 +1,93 @@
+name: Expand regional streaming coverage round 4
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/expand-streaming-round4-20260913.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  expand:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Add verified Korean and Japanese alternatives
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          kr = Path('data/streaming-kr-20260908.js')
+          s = kr.read_text()
+          s = s.replace(
+            '    "maebashi-witches-emoemories": {\n      laftel: "https://laftel.net/item/42780"\n    },',
+            '    "maebashi-witches-emoemories": {\n      laftel: "https://laftel.net/item/42780",\n      tving: "https://www.tving.com/contents/P001774211"\n    },',
+            1
+          )
+          marker = '    "takopis-original-sin-thank-you-see-you-tomorrow": {'
+          if marker not in s:
+              raise SystemExit('missing KR insertion marker')
+          extra = '''    "akane-banashi-season-2": {
+      laftel: "https://laftel.net/item/45436",
+      tving: "https://www.tving.com/contents/P001789083"
+    },
+    "hotel-inhumans-season-2": {
+      laftel: "https://laftel.net/item/42939",
+      tving: "https://www.tving.com/contents/P001773673"
+    },
+'''
+          s = s.replace(marker, extra + marker, 1)
+          kr.write_text(s)
+
+          jp = Path('data/streaming-jp-20260906.js')
+          s = jp.read_text()
+          replacements = {
+            '"jojos-bizarre-adventure-steel-ball-run-2nd-and-3rd-stage": { danime: dAnime("20495") },': '"jojos-bizarre-adventure-steel-ball-run-2nd-and-3rd-stage": { danime: dAnime("20495"), unext: "https://www.video.unext.jp/title/SID0013083" },',
+            '"ranma-1-2-season-3": { danime: dAnime("27655") },': '"ranma-1-2-season-3": { danime: dAnime("27655"), unext: "https://www.video.unext.jp/title/SID0167254" },',
+            '"a-returners-magic-should-be-special-season-2": { danime: dAnime("26631") },': '"a-returners-magic-should-be-special-season-2": { danime: dAnime("26631"), unext: "https://www.video.unext.jp/title/SID0091741" },',
+            '"the-iceblade-sorcerer-shall-rule-the-world-ii": { danime: dAnime("25965") },': '"the-iceblade-sorcerer-shall-rule-the-world-ii": { danime: dAnime("25965"), unext: "https://www.video.unext.jp/title/SID0076899" },',
+            '"the-detective-is-already-dead-season-2": { danime: dAnime("24809") },': '"the-detective-is-already-dead-season-2": { danime: dAnime("24809"), unext: "https://www.video.unext.jp/title/SID0058467" },',
+            '"mashle-season-3-divine-visionary-final-exam-arc": { danime: dAnime("26297") },': '"mashle-season-3-divine-visionary-final-exam-arc": { danime: dAnime("26297"), unext: "https://www.video.unext.jp/title/SID0079685" },',
+            '"medalist-the-movie": { danime: dAnime("27620") },': '"medalist-the-movie": { danime: dAnime("27620"), unext: "https://www.video.unext.jp/title/SID0163336" },',
+            '"one-punch-man-season-3-part-2": { danime: dAnime("22640") },': '"one-punch-man-season-3-part-2": { danime: dAnime("22640"), unext: "https://www.video.unext.jp/title/SID0020051" },',
+            '"hokuto-no-ken-fist-of-the-north-star-part-2": { danime: dAnime("10480") },': '"hokuto-no-ken-fist-of-the-north-star-part-2": { danime: dAnime("10480"), unext: "https://www.video.unext.jp/title/SID0013395" },',
+            '"takopis-original-sin-thank-you-see-you-tomorrow": { danime: dAnime("28000") },': '"takopis-original-sin-thank-you-see-you-tomorrow": { danime: dAnime("28000"), unext: "https://www.video.unext.jp/title/SID0196501" },',
+            '"dark-gathering-season-2": { danime: dAnime("26513") },': '"dark-gathering-season-2": { danime: dAnime("26513"), unext: "https://www.video.unext.jp/title/SID0087607" },',
+            '"kaiju-no-8-narumis-weekday": { danime: dAnime("27039") },': '"kaiju-no-8-narumis-weekday": { danime: dAnime("27039"), unext: "https://www.video.unext.jp/title/SID0100076" },',
+            '"a-wild-last-boss-appeared-season-2": { danime: dAnime("28660") },': '"a-wild-last-boss-appeared-season-2": { danime: dAnime("28660"), unext: "https://www.video.unext.jp/title/SID0236478" },',
+            '"ace-of-diamond-act-ii-second-season-part-2": { danime: dAnime("22678") },': '"ace-of-diamond-act-ii-second-season-part-2": { danime: dAnime("22678"), unext: "https://www.video.unext.jp/title/SID0040533" },'
+          }
+          for old, new in replacements.items():
+              if old not in s:
+                  raise SystemExit(f'missing JP anchor: {old}')
+              s = s.replace(old, new, 1)
+          jp.write_text(s)
+
+          for path in [Path('index.html'), Path('anime-links.js')]:
+              text = path.read_text()
+              if '20260913-coverage3' not in text:
+                  raise SystemExit(f'missing coverage3 cache key in {path}')
+              text = text.replace('20260913-coverage3', '20260913-coverage4')
+              path.write_text(text)
+          PY
+      - name: Validate regional streaming data
+        run: node scripts/validate-regional-streaming.js
+      - name: Report updated sparse coverage
+        run: node scripts/report-pv-streaming-gaps.js
+      - name: Verify cache refresh
+        run: |
+          grep -n '20260913-coverage4' index.html anime-links.js
+      - name: Commit expansion and clean workflow
+        shell: bash
+        run: |
+          git rm .github/workflows/expand-streaming-round4-20260913.yml
+          git add data/streaming-kr-20260908.js data/streaming-jp-20260906.js index.html anime-links.js
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Expand KR and JP previous-series streaming links"
+          git push
