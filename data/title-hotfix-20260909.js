@@ -83,6 +83,50 @@
     lookingForZombies.updatedAt = "2026-09-14";
   }
 
+  const horemajo = window.animeData.find(item => item?.id === "the-witch-was-asked-for-a-love-potion");
+  if (horemajo) {
+    const sourceUrl = "https://x.com/horemajo_anime/status/2099422907017634249";
+    horemajo.release = horemajo.release || {};
+    horemajo.release.japan = {
+      status: "date",
+      year: 2026,
+      month: 10,
+      day: 5
+    };
+    horemajo.schedule = horemajo.schedule || {};
+    horemajo.schedule.premiere = {
+      type: "tv",
+      date: "2026-10-05",
+      time: null,
+      timezone: "Asia/Tokyo",
+      displayTime: null
+    };
+    horemajo.schedule.source = sourceUrl;
+    horemajo.schedule.verifiedAt = "2026-09-14";
+    horemajo.updatedAt = "2026-09-14";
+
+    horemajo.verification = horemajo.verification || { verifiedAt: null, sources: [] };
+    horemajo.verification.verifiedAt = "2026-09-14";
+    horemajo.verification.sources = Array.isArray(horemajo.verification.sources)
+      ? horemajo.verification.sources
+      : [];
+    const existingHoremajoSource = horemajo.verification.sources.find(source => source?.url === sourceUrl);
+    if (existingHoremajoSource) {
+      existingHoremajoSource.type = "official-x";
+      existingHoremajoSource.label = "Official X — October 5, 2026 premiere";
+      existingHoremajoSource.supports = ["release"];
+      existingHoremajoSource.verifiedAt = "2026-09-14";
+    } else {
+      horemajo.verification.sources.push({
+        type: "official-x",
+        url: sourceUrl,
+        label: "Official X — October 5, 2026 premiere",
+        supports: ["release"],
+        verifiedAt: "2026-09-14"
+      });
+    }
+  }
+
   // Fallback for the Takopi entry if its historical ID changes again.
   const takopi = window.animeData.find(item => {
     const ja = item?.title?.ja || "";
