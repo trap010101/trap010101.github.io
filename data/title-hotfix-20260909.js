@@ -11,7 +11,8 @@
     ["demons-are-plotting", "마물들은 계획한다"],
     ["unlucky-to-strongest-man", "불운으로부터의 최강남"],
     ["glasses-sometimes-yankee-kun", "안경, 때때로, 불량아"],
-    ["looking-for-zombies", "좀비를 찾습니다"]
+    ["looking-for-zombies", "좀비를 찾습니다"],
+    ["the-timid-max-lady-took-her-shrewd-fiance-s-bet", "나약MAX 영애인데 수완가 약혼자와 내기를 하고 말았다"]
   ]);
 
   const koreanTitleCorrections = new Map([
@@ -36,8 +37,21 @@
     };
     item.updatedAt = item.id === "takopis-original-sin-thank-you-see-you-tomorrow"
       ? "2026-09-09"
-      : "2026-09-12";
+      : item.id === "the-timid-max-lady-took-her-shrewd-fiance-s-bet"
+        ? "2026-09-14"
+        : "2026-09-12";
   });
+
+  const timidMaxLady = window.animeData.find(
+    item => item?.id === "the-timid-max-lady-took-her-shrewd-fiance-s-bet"
+  );
+  if (timidMaxLady && Array.isArray(timidMaxLady.aliases)) {
+    timidMaxLady.aliases = timidMaxLady.aliases.map(alias =>
+      alias === "弱気MAX令嬢なのに、辣腕婚約者様の賭けに乗ってしまった (소심 MAX 영애인데 수완 좋은 약혼자의 내기에 올라타 버렸다)"
+        ? "弱気MAX令嬢なのに、辣腕婚約者様の賭けに乗ってしまった (나약MAX 영애인데 수완가 약혼자와 내기를 하고 말았다)"
+        : alias
+    );
+  }
 
   const lookingForZombies = window.animeData.find(item => item?.id === "looking-for-zombies");
   if (lookingForZombies) {
