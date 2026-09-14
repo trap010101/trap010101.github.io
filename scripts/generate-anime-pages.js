@@ -32,6 +32,7 @@ const sourceFiles = [
   'data/anime-20260904.js',
   'data/title-fixes-20260905.js',
   'data/title-hotfix-20260909.js',
+
   'data/poster-fixes-20260905.js',
   'data/official-sites-20260905.js',
   'data/pvs.js',
