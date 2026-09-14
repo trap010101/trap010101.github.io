@@ -124,6 +124,11 @@
 
   const emptyRegionData = () => ({ current: {}, previous: {} });
   const hasOwn = (object, key) => Object.prototype.hasOwnProperty.call(object || {}, key);
+  const confirmedCurrentIds = new Set([
+    "ranma-1-2-season-3",
+    "blue-box-season-2",
+    "sakamoto-days-season-2"
+  ]);
 
   if (Array.isArray(window.animeData)) {
     for (const anime of window.animeData) {
@@ -136,10 +141,11 @@
         ? anime.previousStreaming
         : {};
 
-      // Preserve already verified current-installment links before later policy layers run.
-      // Some older runtime code intentionally clears anime.currentStreaming for pre-release titles,
-      // so this immutable snapshot is the source of truth for confirmed direct platform pages.
-      anime.verifiedCurrentStreaming = validateLinkMap("kr", legacyCurrent);
+      // Preserve only explicit current-installment confirmations before the later
+      // upcoming-title policy clears runtime currentStreaming fields.
+      anime.verifiedCurrentStreaming = confirmedCurrentIds.has(anime.id)
+        ? validateLinkMap("kr", legacyCurrent)
+        : {};
       anime.streamingByRegion.kr.current = { ...anime.verifiedCurrentStreaming };
       anime.streamingByRegion.kr.previous = validateLinkMap("kr", legacyPrevious);
       anime.streaming = {
@@ -187,10 +193,7 @@
 
     anime.streamingByRegion ||= Object.fromEntries(regionOrder.map(id => [id, emptyRegionData()]));
     const existing = anime.streamingByRegion[regionId] || emptyRegionData();
-
-    const currentFallback = regionId === "kr"
-      ? { ...(anime.verifiedCurrentStreaming || {}), ...(existing.current || {}) }
-      : { ...(existing.current || {}) };
+    const currentFallback = { ...(existing.current || {}) };
 
     const current = hasOwn(payload, "current")
       ? validateLinkMap(regionId, payload.current || {})
