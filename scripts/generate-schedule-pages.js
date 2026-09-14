@@ -31,7 +31,6 @@ const sourceFiles = [
   'data/anime.js',
   'data/anime-20260904.js',
   'data/title-fixes-20260905.js',
-  'data/title-hotfix-20260909.js',
 
   'data/poster-fixes-20260905.js',
   'data/official-sites-20260905.js',
@@ -40,8 +39,7 @@ const sourceFiles = [
   'data/platforms.js',
   'data/streaming-policy-20260905.js',
   'data/schedule-updates-20260907.js',
-
-  'data/schedule-updates-20260907.js'
+  'data/title-hotfix-20260909.js'
 ];
 
 for (const relative of sourceFiles) {
