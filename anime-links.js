@@ -135,6 +135,29 @@
       outline: 2px solid var(--accent, #8ea1ff);
       outline-offset: -3px;
     }
+
+    /* Active card resources share the same accent family as Streaming.
+       Streaming stays slightly stronger as the primary CTA. */
+    .card a.resource-btn:not(.disabled),
+    .undated-item a.resource-btn:not(.disabled) {
+      color: #e8edff;
+      border-color: rgba(142,161,255,.24);
+      background: linear-gradient(135deg, rgba(142,161,255,.105), rgba(178,140,255,.06));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.012);
+    }
+    .card a.resource-btn:not(.disabled):hover,
+    .undated-item a.resource-btn:not(.disabled):hover {
+      color: #fff;
+      border-color: rgba(142,161,255,.42);
+      background: linear-gradient(135deg, rgba(142,161,255,.17), rgba(178,140,255,.10));
+    }
+    .card .resource-btn.disabled,
+    .undated-item .resource-btn.disabled {
+      opacity: .42;
+      color: #616979;
+      background: rgba(255,255,255,.012);
+      border-color: rgba(255,255,255,.035);
+    }
   `;
   document.head.appendChild(style);
 
@@ -170,11 +193,9 @@
       return scriptUrl.origin === targetUrl.origin && scriptUrl.pathname === targetUrl.pathname;
     });
     if (existing) {
-      if (existing.dataset.loaded === 'true' || existing.dataset.newanimeLoaded === 'true' || existing.readyState === 'complete') resolve();
-      else {
-        existing.addEventListener('load', resolve, { once: true });
-        existing.addEventListener('error', reject, { once: true });
-      }
+      // Existing scripts earlier in the defer chain have already executed by the time
+      // anime-links.js runs. Do not wait for a load event that has already fired.
+      resolve();
       return;
     }
     const script = document.createElement('script');
@@ -226,12 +247,11 @@
     .then(() => loadScript('/wishlist-sync.js?v=20260909-sync2'))
     .catch(error => console.warn('Account / wishlist sync could not be loaded.', error));
 
+  // Regional data files are already loaded before this script in index.html.
+  // Loading them again used to stall the chain because their load events had already fired.
   Promise.resolve()
-    .then(() => loadScript('/data/streaming-jp-20260906.js?v=20260913-coverage8'))
-    .then(() => loadScript('/data/streaming-us-20260906.js?v=20260913-coverage8'))
-    .then(() => loadScript('/data/streaming-kr-20260908.js?v=20260913-coverage8'))
     .then(() => loadScript('/streaming-region-country-default.js?v=20260906-country1'))
-    .then(() => loadScript('/streaming-region-ui.js?v=20260906-region1'))
+    .then(() => loadScript('/streaming-region-ui.js?v=20260914-region2'))
     .then(() => loadScript('/streaming-region-compact.js?v=20260906-region4'))
     .catch(error => console.warn('Regional streaming UI could not be loaded.', error));
 })();
