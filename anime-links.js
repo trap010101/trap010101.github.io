@@ -51,7 +51,7 @@
     const extraCount = Math.max(0, badges.length - 2);
     let overflow = meta.querySelector('.badge-overflow');
     if (!extraCount) {
-      overflow?.remove();
+      if (overflow) overflow.remove();
       return;
     }
 
@@ -60,8 +60,11 @@
       overflow.className = 'badge badge-overflow';
       meta.appendChild(overflow);
     }
-    overflow.textContent = `+${extraCount}`;
-    overflow.setAttribute('aria-label', (detailCopy[activeLanguage()] || detailCopy.ko).extraTags(extraCount));
+
+    const nextText = `+${extraCount}`;
+    const nextLabel = (detailCopy[activeLanguage()] || detailCopy.ko).extraTags(extraCount);
+    if (overflow.textContent !== nextText) overflow.textContent = nextText;
+    if (overflow.getAttribute('aria-label') !== nextLabel) overflow.setAttribute('aria-label', nextLabel);
   }
 
   function linkCards(root = document) {
