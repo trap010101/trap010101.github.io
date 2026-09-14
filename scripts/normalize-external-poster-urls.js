@@ -25,4 +25,20 @@ for (const file of roots.flatMap(root => walk(root))) {
   changed += 1;
 }
 
-console.log(`Normalized external poster URLs in ${changed} generated pages.`);
+// inject-title-wrap-css.js intentionally normalizes shared chrome before this script runs.
+// Pin the latest homepage runtime versions here so generated commits cannot roll back
+// card refinements or regional streaming fixes to stale cache keys.
+const homepage = path.join(ROOT, 'index.html');
+if (fs.existsSync(homepage)) {
+  const before = fs.readFileSync(homepage, 'utf8');
+  const after = before
+    .replace(/href="\/title-wrap-refine\.css\?v=[^"]+"/g, 'href="/title-wrap-refine.css?v=20260914-card3"')
+    .replace(/src="\/?anime-links\.js\?v=[^"]+"/g, 'src="anime-links.js?v=20260914-streaming3"')
+    .replace(/src="\/?data\/streaming-regions\.js\?v=[^"]+"/g, 'src="data/streaming-regions.js?v=20260914-regions3"');
+  if (after !== before) {
+    fs.writeFileSync(homepage, after);
+    changed += 1;
+  }
+}
+
+console.log(`Normalized external poster URLs and homepage runtime versions in ${changed} files.`);
