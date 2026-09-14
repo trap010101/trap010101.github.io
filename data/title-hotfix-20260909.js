@@ -1,5 +1,5 @@
 // Narrow title hotfixes that must apply regardless of historical ID drift.
-// Static-page regeneration trigger: 2026-09-12.
+// Static-page regeneration trigger: 2026-09-14.
 (() => {
   if (!Array.isArray(window.animeData)) return;
 
@@ -37,7 +37,7 @@
     };
     item.updatedAt = item.id === "takopis-original-sin-thank-you-see-you-tomorrow"
       ? "2026-09-09"
-      : item.id === "the-timid-max-lady-took-her-shrewd-fiance-s-bet"
+      : ["looking-for-zombies", "the-timid-max-lady-took-her-shrewd-fiance-s-bet"].includes(item.id)
         ? "2026-09-14"
         : "2026-09-12";
   });
@@ -55,6 +55,14 @@
 
   const lookingForZombies = window.animeData.find(item => item?.id === "looking-for-zombies");
   if (lookingForZombies) {
+    if (Array.isArray(lookingForZombies.aliases)) {
+      lookingForZombies.aliases = lookingForZombies.aliases.map(alias =>
+        alias === "#ゾンビさがしてます (#좀비를 찾고 있습니다)"
+          ? "#ゾンビさがしてます (좀비를 찾습니다)"
+          : alias
+      );
+    }
+
     lookingForZombies.release = lookingForZombies.release || {};
     lookingForZombies.release.japan = {
       status: "date",
