@@ -10,7 +10,6 @@ const TARGETS = [
 
 const SCHEDULE_SOURCE = "  'data/schedule-updates-20260907.js',";
 const TITLE_HOTFIX_SOURCE = "  'data/title-hotfix-20260909.js',";
-const GENERATOR_ANCHOR = "  'data/streaming-policy-20260905.js',";
 
 let changed = 0;
 
@@ -20,14 +19,23 @@ function syncGeneratorSources(original, file) {
     .replace(/^\s*'data\/title-hotfix-20260909\.js',?\s*$/gm, '')
     .replace(/\n{3,}/g, '\n\n');
 
-  if (!source.includes(GENERATOR_ANCHOR)) {
+  const anchorPattern = /^(\s*)'data\/streaming-policy-20260905\.js',?\s*$/m;
+  if (!anchorPattern.test(source)) {
     throw new Error(`Could not find sourceFiles anchor in ${path.relative(ROOT, file)}`);
   }
 
-  return source.replace(
-    GENERATOR_ANCHOR,
-    `${GENERATOR_ANCHOR}\n${SCHEDULE_SOURCE}\n${TITLE_HOTFIX_SOURCE}`
+  source = source.replace(
+    anchorPattern,
+    `$1'data/streaming-policy-20260905.js',\n${SCHEDULE_SOURCE}\n${TITLE_HOTFIX_SOURCE}`
   );
+
+  // If the hotfix became the last source entry, remove its trailing comma for clean JS style.
+  source = source.replace(
+    /('data\/title-hotfix-20260909\.js'),\n(\s*\];)/,
+    '$1\n$2'
+  );
+
+  return source;
 }
 
 for (const file of TARGETS) {
