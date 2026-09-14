@@ -16,6 +16,12 @@
 
   ambiguous.forEach(key => titleToId.delete(key));
 
+  const detailCopy = {
+    ko: { detail: '상세 정보', extraTags: n => `추가 태그 ${n}개` },
+    ja: { detail: '詳細情報', extraTags: n => `追加タグ ${n}件` },
+    en: { detail: 'details', extraTags: n => `${n} more tag${n === 1 ? '' : 's'}` }
+  };
+
   const activeLanguage = () => {
     const value = document.documentElement.lang?.toLowerCase() || 'ko';
     if (value.startsWith('ja')) return 'ja';
@@ -28,23 +34,73 @@
     return value === '2027' ? '2027' : '2026';
   };
 
+  function detailLabel(title) {
+    const copy = detailCopy[activeLanguage()] || detailCopy.ko;
+    return `${title} · ${copy.detail}`;
+  }
+
+  function refineMeta(card) {
+    const meta = card.querySelector('.meta');
+    if (!meta) return;
+
+    const badges = [...meta.querySelectorAll('.badge:not(.badge-overflow)')];
+    badges.forEach((badge, index) => {
+      badge.classList.toggle('card-tag-overflow-hidden', index >= 2);
+    });
+
+    const extraCount = Math.max(0, badges.length - 2);
+    let overflow = meta.querySelector('.badge-overflow');
+    if (!extraCount) {
+      overflow?.remove();
+      return;
+    }
+
+    if (!overflow) {
+      overflow = document.createElement('span');
+      overflow.className = 'badge badge-overflow';
+      meta.appendChild(overflow);
+    }
+    overflow.textContent = `+${extraCount}`;
+    overflow.setAttribute('aria-label', (detailCopy[activeLanguage()] || detailCopy.ko).extraTags(extraCount));
+  }
+
   function linkCards(root = document) {
     root.querySelectorAll('.card, .undated-item').forEach(card => {
       const titleEl = card.querySelector('.title, .undated-title');
-      if (!titleEl || titleEl.querySelector('.anime-detail-title-link')) return;
+      if (!titleEl) return;
 
       const title = titleEl.textContent.trim();
-      const id = titleToId.get(title);
+      const id = card.dataset.animeId || titleToId.get(title);
       if (!id) return;
 
-      const link = document.createElement('a');
-      link.className = 'anime-detail-title-link';
-      link.href = `/anime/${encodeURIComponent(id)}/?lang=${activeLanguage()}`;
-      link.textContent = title;
-      link.setAttribute('aria-label', `${title} 상세 정보`);
-      titleEl.textContent = '';
-      titleEl.appendChild(link);
       card.dataset.animeId = id;
+      const href = `/anime/${encodeURIComponent(id)}/?lang=${activeLanguage()}`;
+
+      let titleLink = titleEl.querySelector('.anime-detail-title-link');
+      if (!titleLink) {
+        titleLink = document.createElement('a');
+        titleLink.className = 'anime-detail-title-link';
+        titleLink.textContent = title;
+        titleEl.textContent = '';
+        titleEl.appendChild(titleLink);
+      }
+      if (titleLink.getAttribute('href') !== href) titleLink.href = href;
+      titleLink.setAttribute('aria-label', detailLabel(titleLink.textContent.trim() || title));
+
+      const posterFrame = card.querySelector('.poster-frame');
+      if (posterFrame) {
+        let posterLink = posterFrame.querySelector('.anime-detail-poster-link');
+        if (!posterLink) {
+          posterLink = document.createElement('a');
+          posterLink.className = 'anime-detail-poster-link';
+          posterFrame.appendChild(posterLink);
+        }
+        if (posterLink.getAttribute('href') !== href) posterLink.href = href;
+        posterLink.setAttribute('aria-label', detailLabel(titleLink.textContent.trim() || title));
+      }
+
+      refineMeta(card);
+      card.classList.add('card-refined');
     });
   }
 
@@ -66,6 +122,16 @@
       text-decoration-thickness: 1px;
       text-underline-offset: 3px;
     }
+    .anime-detail-poster-link {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      border-radius: inherit;
+    }
+    .anime-detail-poster-link:focus-visible {
+      outline: 2px solid var(--accent, #8ea1ff);
+      outline-offset: -3px;
+    }
   `;
   document.head.appendChild(style);
 
@@ -76,6 +142,13 @@
     const target = document.getElementById(id);
     if (!target) return;
     new MutationObserver(() => linkCards(target)).observe(target, { childList: true, subtree: true });
+  });
+
+  document.addEventListener('newanime:language', () => {
+    requestAnimationFrame(() => {
+      linkCards();
+      updateScheduleArchiveLink();
+    });
   });
 
   document.getElementById('languageSwitcher')?.addEventListener('click', () => {
