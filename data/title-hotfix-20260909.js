@@ -85,7 +85,8 @@
 
   const horemajo = window.animeData.find(item => item?.id === "the-witch-was-asked-for-a-love-potion");
   if (horemajo) {
-    const sourceUrl = "https://x.com/horemajo_anime/status/2099422907017634249";
+    const officialSiteUrl = "https://horemajo-anime.com/";
+    const officialXUrl = "https://x.com/horemajo_anime/status/2099422907017634249";
     horemajo.release = horemajo.release || {};
     horemajo.release.japan = {
       status: "date",
@@ -97,11 +98,11 @@
     horemajo.schedule.premiere = {
       type: "tv",
       date: "2026-10-05",
-      time: null,
+      time: "21:30",
       timezone: "Asia/Tokyo",
-      displayTime: null
+      displayTime: "21:30"
     };
-    horemajo.schedule.source = sourceUrl;
+    horemajo.schedule.source = officialSiteUrl;
     horemajo.schedule.verifiedAt = "2026-09-14";
     horemajo.updatedAt = "2026-09-14";
 
@@ -110,21 +111,27 @@
     horemajo.verification.sources = Array.isArray(horemajo.verification.sources)
       ? horemajo.verification.sources
       : [];
-    const existingHoremajoSource = horemajo.verification.sources.find(source => source?.url === sourceUrl);
-    if (existingHoremajoSource) {
-      existingHoremajoSource.type = "official-x";
-      existingHoremajoSource.label = "Official X — October 5, 2026 premiere";
-      existingHoremajoSource.supports = ["release"];
-      existingHoremajoSource.verifiedAt = "2026-09-14";
-    } else {
-      horemajo.verification.sources.push({
-        type: "official-x",
-        url: sourceUrl,
-        label: "Official X — October 5, 2026 premiere",
-        supports: ["release"],
-        verifiedAt: "2026-09-14"
-      });
-    }
+
+    const upsertHoremajoSource = source => {
+      const existing = horemajo.verification.sources.find(item => item?.url === source.url);
+      if (existing) Object.assign(existing, source);
+      else horemajo.verification.sources.push(source);
+    };
+
+    upsertHoremajoSource({
+      type: "official-site",
+      url: officialSiteUrl,
+      label: "Official website — October 5, 21:30 (JST)",
+      supports: ["release"],
+      verifiedAt: "2026-09-14"
+    });
+    upsertHoremajoSource({
+      type: "official-x",
+      url: officialXUrl,
+      label: "Official X — October 5, 2026 premiere",
+      supports: ["release"],
+      verifiedAt: "2026-09-14"
+    });
   }
 
   // Fallback for the Takopi entry if its historical ID changes again.
