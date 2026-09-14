@@ -123,34 +123,90 @@
   };
 
   const emptyRegionData = () => ({ current: {}, previous: {} });
+  const hasOwn = (object, key) => Object.prototype.hasOwnProperty.call(object || {}, key);
 
   if (Array.isArray(window.animeData)) {
     for (const anime of window.animeData) {
       anime.streamingByRegion = Object.fromEntries(regionOrder.map(regionId => [regionId, emptyRegionData()]));
 
+      const legacyCurrent = anime.currentStreaming && typeof anime.currentStreaming === "object"
+        ? anime.currentStreaming
+        : {};
       const legacyPrevious = anime.previousStreaming && typeof anime.previousStreaming === "object"
         ? anime.previousStreaming
         : {};
-      anime.streamingByRegion.kr.previous = validateLinkMap("kr", legacyPrevious);
 
-      // Upcoming installments are intentionally not treated as currently streamable.
-      anime.streaming = {};
+      // Preserve already verified current-installment links before later policy layers run.
+      // Some older runtime code intentionally clears anime.currentStreaming for pre-release titles,
+      // so this immutable snapshot is the source of truth for confirmed direct platform pages.
+      anime.verifiedCurrentStreaming = validateLinkMap("kr", legacyCurrent);
+      anime.streamingByRegion.kr.current = { ...anime.verifiedCurrentStreaming };
+      anime.streamingByRegion.kr.previous = validateLinkMap("kr", legacyPrevious);
+      anime.streaming = {
+        ...anime.streamingByRegion.kr.previous,
+        ...anime.streamingByRegion.kr.current
+      };
     }
   }
+
+  const resolveAnime = animeOrId => {
+    if (!Array.isArray(window.animeData)) return null;
+    if (animeOrId && typeof animeOrId === "object") return animeOrId;
+    return window.animeData.find(item => item.id === animeOrId) || null;
+  };
 
   window.streamingRegions = regionLabels;
   window.streamingRegionOrder = regionOrder;
   window.isDirectRegionalStreamingUrl = isDirectRegionalStreamingUrl;
+
+  window.getAnimeStreamingForRegion = (animeOrId, regionId) => {
+    const anime = resolveAnime(animeOrId);
+    if (!anime || !isKnownRegion(regionId)) {
+      return { region: regionId, current: {}, previous: {}, all: {} };
+    }
+
+    const stored = anime.streamingByRegion?.[regionId] || emptyRegionData();
+    const current = {
+      ...(regionId === "kr" ? (anime.verifiedCurrentStreaming || {}) : {}),
+      ...(stored.current || {})
+    };
+    const previous = { ...(stored.previous || {}) };
+
+    return {
+      region: regionId,
+      current,
+      previous,
+      all: { ...previous, ...current }
+    };
+  };
+
   window.setAnimeStreamingForRegion = (animeId, regionId, payload = {}) => {
     if (!isKnownRegion(regionId) || !Array.isArray(window.animeData)) return false;
     const anime = window.animeData.find(item => item.id === animeId);
     if (!anime) return false;
+
     anime.streamingByRegion ||= Object.fromEntries(regionOrder.map(id => [id, emptyRegionData()]));
-    anime.streamingByRegion[regionId] = {
-      current: validateLinkMap(regionId, payload.current || {}),
-      previous: validateLinkMap(regionId, payload.previous || {})
-    };
-    if (regionId === "kr") anime.previousStreaming = { ...anime.streamingByRegion.kr.previous };
+    const existing = anime.streamingByRegion[regionId] || emptyRegionData();
+
+    const currentFallback = regionId === "kr"
+      ? { ...(anime.verifiedCurrentStreaming || {}), ...(existing.current || {}) }
+      : { ...(existing.current || {}) };
+
+    const current = hasOwn(payload, "current")
+      ? validateLinkMap(regionId, payload.current || {})
+      : currentFallback;
+    const previous = hasOwn(payload, "previous")
+      ? validateLinkMap(regionId, payload.previous || {})
+      : { ...(existing.previous || {}) };
+
+    anime.streamingByRegion[regionId] = { current, previous };
+
+    if (regionId === "kr") {
+      anime.currentStreaming = { ...current };
+      anime.previousStreaming = { ...previous };
+      anime.streaming = { ...previous, ...current };
+      if (anime.links) anime.links.streaming = Object.values(current)[0] || null;
+    }
     return true;
   };
 })();
