@@ -61,6 +61,26 @@ function syncRankingChrome() {
   return writeIfChanged(RANKING, ranking);
 }
 
+function normalizeRankingMetadataOrder() {
+  let ranking = read(RANKING);
+  const titleTagMatch = ranking.match(/<script src="\/data\/title-hotfix-20260909\.js\?v=[^"]+"><\/script>\s*/);
+  const scheduleTagMatch = ranking.match(/<script src="\/data\/schedule-updates-20260907\.js\?v=[^"]+"><\/script>\s*/);
+  if (!titleTagMatch || !scheduleTagMatch) return false;
+
+  const titleTag = titleTagMatch[0].trim().replace(/\?v=[^"]+/, '?v=20260914-title2');
+  const scheduleTag = scheduleTagMatch[0].trim();
+
+  ranking = ranking.replace(titleTagMatch[0], '');
+  ranking = ranking.replace(scheduleTagMatch[0], '');
+
+  const posterAnchor = /(<script src="\/data\/poster-fixes-20260905\.js\?v=[^"]+"><\/script>)/;
+  if (!posterAnchor.test(ranking)) throw new Error('Could not find ranking poster metadata anchor.');
+
+  ranking = ranking.replace(posterAnchor, `$1\n  ${scheduleTag}\n  ${titleTag}`);
+  ranking = ranking.replace(/\n{3,}/g, '\n\n');
+  return writeIfChanged(RANKING, ranking);
+}
+
 function refineRankingSource() {
   const file = path.join(ROOT, 'wishlist-ranking.js');
   let source = read(file);
@@ -99,6 +119,7 @@ function alignSecondaryHeaderWithHomepageMarkup() {
 const changed = [
   normalizeHomepageChromeAssets(),
   syncRankingChrome(),
+  normalizeRankingMetadataOrder(),
   refineRankingSource(),
   refineHomepageLoader(),
   bustHomepageRankingLoader(),
