@@ -10,7 +10,8 @@
     ["the-strongest-magicmasters-retirement-plan", "최강 마법사의 은퇴 계획"],
     ["demons-are-plotting", "마물들은 계획한다"],
     ["unlucky-to-strongest-man", "불운으로부터의 최강남"],
-    ["glasses-sometimes-yankee-kun", "안경, 때때로, 불량아"]
+    ["glasses-sometimes-yankee-kun", "안경, 때때로, 불량아"],
+    ["looking-for-zombies", "좀비를 찾습니다"]
   ]);
 
   const koreanTitleCorrections = new Map([
@@ -37,6 +38,28 @@
       ? "2026-09-09"
       : "2026-09-12";
   });
+
+  const lookingForZombies = window.animeData.find(item => item?.id === "looking-for-zombies");
+  if (lookingForZombies) {
+    lookingForZombies.release = lookingForZombies.release || {};
+    lookingForZombies.release.japan = {
+      status: "date",
+      year: 2026,
+      month: 10,
+      day: 3
+    };
+    lookingForZombies.schedule = lookingForZombies.schedule || {};
+    lookingForZombies.schedule.premiere = {
+      type: "tv",
+      date: "2026-10-03",
+      time: "23:30",
+      timezone: "Asia/Tokyo",
+      displayTime: "23:30"
+    };
+    lookingForZombies.schedule.source = "https://www.tv-asahi.co.jp/imanimation/";
+    lookingForZombies.schedule.verifiedAt = "2026-09-14";
+    lookingForZombies.updatedAt = "2026-09-14";
+  }
 
   // Fallback for the Takopi entry if its historical ID changes again.
   const takopi = window.animeData.find(item => {
