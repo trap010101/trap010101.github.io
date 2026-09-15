@@ -1,186 +1,34 @@
 {
-  "auditedAt": "2026-09-15T10:33:24.484Z",
+  "auditedAt": "2026-09-15T10:51:27.533Z",
   "mode": "prune",
-  "totalAssetsBefore": 245,
-  "referencedAssets": 201,
-  "deletedCount": 44,
-  "deletedBytes": 5568526,
+  "totalAssetsBefore": 201,
+  "referencedAssets": 195,
+  "deletedCount": 6,
+  "deletedBytes": 575077,
   "deleted": [
     {
-      "path": "assets/posters/a-certain-dark-sides-shared-living-user-20260910-v2.webp",
-      "bytes": 11322
+      "path": "assets/posters/remote-15242bfb1084d17a22.webp",
+      "bytes": 56328
     },
     {
-      "path": "assets/posters/a-certain-dark-sides-shared-living-user-20260910.webp",
-      "bytes": 9508
+      "path": "assets/posters/remote-5b11072af9641032e9.webp",
+      "bytes": 122642
     },
     {
-      "path": "assets/posters/horror-collector-v2.webp",
-      "bytes": 101236
+      "path": "assets/posters/remote-60540946b11822549f.webp",
+      "bytes": 144306
     },
     {
-      "path": "assets/posters/im-a-reincarnated-goblin-any-questions-user-20260907-r2.webp",
+      "path": "assets/posters/remote-7dd72ae6168cd8a221.webp",
+      "bytes": 95520
+    },
+    {
+      "path": "assets/posters/remote-d8b0d02ca1080c3e33.webp",
       "bytes": 15009
     },
     {
-      "path": "assets/posters/im-a-reincarnated-goblin-any-questions-user-20260907-r3.jpg",
-      "bytes": 703392
-    },
-    {
-      "path": "assets/posters/im-a-reincarnated-goblin-any-questions-user-20260907.webp",
-      "bytes": 15009
-    },
-    {
-      "path": "assets/posters/me-and-big-bro-yuu.webp",
-      "bytes": 14998
-    },
-    {
-      "path": "assets/posters/nia-liston-the-merciless-maiden-user-20260910-v2.webp",
-      "bytes": 10521
-    },
-    {
-      "path": "assets/posters/nia-liston-the-merciless-maiden-user-20260910.webp",
-      "bytes": 7950
-    },
-    {
-      "path": "assets/posters/remote-010c0c17ae8ea45a46.webp",
-      "bytes": 240864
-    },
-    {
-      "path": "assets/posters/remote-2554745e8bfb700c89.webp",
-      "bytes": 133720
-    },
-    {
-      "path": "assets/posters/remote-32746cbf4ed9e764b8.webp",
-      "bytes": 172050
-    },
-    {
-      "path": "assets/posters/remote-39cdb01fbd88fa7157.webp",
-      "bytes": 50024
-    },
-    {
-      "path": "assets/posters/remote-42fb7f41cafa6c6cea.webp",
-      "bytes": 135160
-    },
-    {
-      "path": "assets/posters/remote-4c7eb93d66b7dbee05.webp",
-      "bytes": 131324
-    },
-    {
-      "path": "assets/posters/remote-5cb7efc74792cd8e24.webp",
-      "bytes": 23996
-    },
-    {
-      "path": "assets/posters/remote-71c64e15dfc2dda8a9.webp",
-      "bytes": 56336
-    },
-    {
-      "path": "assets/posters/remote-7b6cd57cd4a71c0426.webp",
-      "bytes": 145458
-    },
-    {
-      "path": "assets/posters/remote-81010940394ffa9f5a.webp",
-      "bytes": 46288
-    },
-    {
-      "path": "assets/posters/remote-88c08222739dc09923.webp",
-      "bytes": 36434
-    },
-    {
-      "path": "assets/posters/remote-8d68a196f8d4efdc3c.webp",
-      "bytes": 161430
-    },
-    {
-      "path": "assets/posters/remote-91eaa0413071849ff7.webp",
-      "bytes": 54168
-    },
-    {
-      "path": "assets/posters/remote-ab87799b7503fbc2a9.webp",
-      "bytes": 259952
-    },
-    {
-      "path": "assets/posters/remote-b708db73b8f26a3718.webp",
-      "bytes": 147336
-    },
-    {
-      "path": "assets/posters/remote-bd83b7494c018f6046.webp",
-      "bytes": 52620
-    },
-    {
-      "path": "assets/posters/remote-c63fa3c91537f55520.webp",
-      "bytes": 38004
-    },
-    {
-      "path": "assets/posters/remote-ca7df2dcf278aa5d5f.webp",
-      "bytes": 117422
-    },
-    {
-      "path": "assets/posters/remote-ccf6129ead9c77534f.webp",
-      "bytes": 94768
-    },
-    {
-      "path": "assets/posters/remote-ce006b1492f39120c9.webp",
-      "bytes": 28614
-    },
-    {
-      "path": "assets/posters/remote-e87374e741334ca991.webp",
-      "bytes": 71414
-    },
-    {
-      "path": "assets/posters/remote-ed728b3d1f5cc6775b.webp",
-      "bytes": 42618
-    },
-    {
-      "path": "assets/posters/remote-f7520df246b53d29f8.webp",
-      "bytes": 54358
-    },
-    {
-      "path": "assets/posters/skip-and-loafer-s2.webp",
-      "bytes": 58416
-    },
-    {
-      "path": "assets/posters/the-guy-she-was-interested-in-wasnt-a-guy-at-all-user-20260907-r2.webp",
-      "bytes": 15009
-    },
-    {
-      "path": "assets/posters/the-guy-she-was-interested-in-wasnt-a-guy-at-all-user-20260907-r3.jpg",
-      "bytes": 265748
-    },
-    {
-      "path": "assets/posters/the-guy-she-was-interested-in-wasnt-a-guy-at-all-user-20260907.webp",
-      "bytes": 15009
-    },
-    {
-      "path": "assets/posters/the-guy-she-was-interested-in-wasnt-a-guy-at-all-v2.webp",
-      "bytes": 15009
-    },
-    {
-      "path": "assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-exact.webp",
-      "bytes": 14998
-    },
-    {
-      "path": "assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913-v2.webp",
-      "bytes": 786445
-    },
-    {
-      "path": "assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-user-20260913.webp",
-      "bytes": 786445
-    },
-    {
-      "path": "assets/posters/the-timid-max-lady-took-her-shrewd-fiance-s-bet-v2.webp",
-      "bytes": 90150
-    },
-    {
-      "path": "assets/posters/the-witch-was-asked-for-a-love-potion-v3.webp",
-      "bytes": 211216
-    },
-    {
-      "path": "assets/posters/zero-believers-goddess-isekai-strategy-user-20260912-r2.webp",
-      "bytes": 14998
-    },
-    {
-      "path": "assets/posters/zero-believers-goddess-isekai-strategy-v2.webp",
-      "bytes": 111780
+      "path": "assets/posters/those-who-inherit-the-wind-user-20260908.webp",
+      "bytes": 141272
     }
   ]
 }

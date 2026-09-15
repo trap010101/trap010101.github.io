@@ -606,7 +606,7 @@ window.animeData = [
       "ln"
     ],
     "poster": {
-      "src": "assets/posters/remote-7dd72ae6168cd8a221.webp",
+      "src": "assets/posters/a-certain-dark-sides-shared-living-v2.webp",
       "position": null
     },
     "links": {
@@ -2051,7 +2051,7 @@ window.animeData = [
       "ln"
     ],
     "poster": {
-      "src": "assets/posters/remote-5b11072af9641032e9.webp",
+      "src": "assets/posters/nia-liston-the-merciless-maiden-v2.webp",
       "position": null
     },
     "links": {
@@ -2718,7 +2718,7 @@ window.animeData = [
       "comic"
     ],
     "poster": {
-      "src": "assets/posters/remote-d8b0d02ca1080c3e33.webp",
+      "src": "assets/posters/im-a-reincarnated-goblin-any-questions-user-20260907-r4.webp",
       "position": null
     },
     "links": {
@@ -2774,7 +2774,7 @@ window.animeData = [
       "original"
     ],
     "poster": {
-      "src": "assets/posters/remote-15242bfb1084d17a22.webp",
+      "src": "assets/posters/magical-sisters-lulutto-lilly-part-2-cropped-v2.webp",
       "position": null
     },
     "links": {
@@ -4747,7 +4747,7 @@ window.animeData = [
       "new"
     ],
     "poster": {
-      "src": "assets/posters/remote-60540946b11822549f.webp",
+      "src": "assets/posters/me-and-big-bro-yuu-v2.webp",
       "position": null
     },
     "links": {
@@ -4950,7 +4950,7 @@ window.animeData = [
       "original"
     ],
     "poster": {
-      "src": "assets/posters/those-who-inherit-the-wind-user-20260908.webp",
+      "src": "assets/posters/those-who-inherit-the-wind-v2.webp",
       "position": null
     },
     "links": {
