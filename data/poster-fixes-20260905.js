@@ -23,6 +23,10 @@
       src: "assets/posters/horror-collector-user-20260915-r4.webp",
       updatedAt: "2026-09-15"
     },
+    "tetsuryo-meet-with-tetsudo-musume": {
+      src: "assets/posters/tetsuryo-meet-with-tetsudo-musume-user-20260916.webp",
+      updatedAt: "2026-09-16"
+    },
     "those-who-inherit-the-wind": {
       src: "assets/posters/those-who-inherit-the-wind-v2.webp",
       updatedAt: "2026-09-15"
