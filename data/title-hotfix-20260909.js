@@ -1,5 +1,5 @@
 // Narrow title hotfixes that must apply regardless of historical ID drift.
-// Static-page regeneration trigger: 2026-09-14.
+// Static-page regeneration trigger: 2026-09-15.
 (() => {
   if (!Array.isArray(window.animeData)) return;
 
@@ -12,7 +12,14 @@
     ["unlucky-to-strongest-man", "불운으로부터의 최강남"],
     ["glasses-sometimes-yankee-kun", "안경, 때때로, 불량아"],
     ["looking-for-zombies", "좀비를 찾습니다"],
-    ["the-timid-max-lady-took-her-shrewd-fiance-s-bet", "나약MAX 영애인데 수완가 약혼자와 내기를 하고 말았다"]
+    ["the-timid-max-lady-took-her-shrewd-fiance-s-bet", "나약MAX 영애인데 수완가 약혼자와 내기를 하고 말았다"],
+    ["the-jack-of-all-trades-support-mage-realizes-hes-the-strongest", "잡용 부여술사가 자신의 강함을 눈치챌 때까지"],
+    ["sudachis-demon-kings-castle", "홀로서기 마왕성"],
+    ["the-principle-of-a-philosopher-by-eternal-fool-asley", "영원한 바보 아즈리가 쓰는 현자의 서"],
+    ["hirayasumi", "매일, 휴일"],
+    ["mashle-season-3-divine-visionary-final-exam-arc", "마슐 삼마 대항 신각자 최종 시험 편"],
+    ["welcome-to-demon-school-iruma-kun-if-episode-of-mafia", "마계학교 이루마군 if Episode of 魔fia"],
+    ["reincarnated-in-a-game-world-dungeon-activity", "게임 세계 전생 〈던활〉~게이머는 【던전 취업 준비의 추천】을 〈처음부터〉 플레이 한다~"]
   ]);
 
   const koreanTitleCorrections = new Map([
@@ -26,6 +33,22 @@
     ]
   ]);
 
+  const september15TitleIds = new Set([
+    "the-jack-of-all-trades-support-mage-realizes-hes-the-strongest",
+    "sudachis-demon-kings-castle",
+    "the-principle-of-a-philosopher-by-eternal-fool-asley",
+    "hirayasumi",
+    "mashle-season-3-divine-visionary-final-exam-arc",
+    "welcome-to-demon-school-iruma-kun-if-episode-of-mafia",
+    "reincarnated-in-a-game-world-dungeon-activity"
+  ]);
+
+  const aliasTitleReplacements = new Map([
+    ["sudachis-demon-kings-castle", ["스다치의 마왕성", "홀로서기 마왕성"]],
+    ["mashle-season-3-divine-visionary-final-exam-arc", ["마슐-MASHLE- 3기 「삼마대쟁 신각자 최종시험편」", "마슐 삼마 대항 신각자 최종 시험 편"]],
+    ["welcome-to-demon-school-iruma-kun-if-episode-of-mafia", ["마계학교! 이루마군 if Episode of 마피아", "마계학교 이루마군 if Episode of 魔fia"]]
+  ]);
+
   window.animeData.forEach(item => {
     const correctedTitle = titleCorrections.get(item?.id)
       || koreanTitleCorrections.get(item?.title?.ko);
@@ -35,11 +58,22 @@
       ...item.title,
       ko: correctedTitle
     };
-    item.updatedAt = item.id === "takopis-original-sin-thank-you-see-you-tomorrow"
-      ? "2026-09-09"
-      : ["looking-for-zombies", "the-timid-max-lady-took-her-shrewd-fiance-s-bet"].includes(item.id)
-        ? "2026-09-14"
-        : "2026-09-12";
+
+    const aliasReplacement = aliasTitleReplacements.get(item?.id);
+    if (aliasReplacement && Array.isArray(item.aliases)) {
+      const [from, to] = aliasReplacement;
+      item.aliases = item.aliases.map(alias =>
+        typeof alias === "string" ? alias.replace(from, to) : alias
+      );
+    }
+
+    item.updatedAt = september15TitleIds.has(item.id)
+      ? "2026-09-15"
+      : item.id === "takopis-original-sin-thank-you-see-you-tomorrow"
+        ? "2026-09-09"
+        : ["looking-for-zombies", "the-timid-max-lady-took-her-shrewd-fiance-s-bet"].includes(item.id)
+          ? "2026-09-14"
+          : "2026-09-12";
   });
 
   const timidMaxLady = window.animeData.find(
