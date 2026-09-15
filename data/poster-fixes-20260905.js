@@ -20,7 +20,7 @@
       updatedAt: "2026-09-15"
     },
     "horror-collector": {
-      src: "assets/posters/horror-collector-user-20260915.webp",
+      src: "https://prcdn.freetls.fastly.net/release_image/7006/19336/7006-19336-2c09ead813fbea758e908ada8fffed86-1910x2700.jpg",
       updatedAt: "2026-09-15"
     },
     "those-who-inherit-the-wind": {
