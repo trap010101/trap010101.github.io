@@ -46,6 +46,7 @@ on:
       - "scripts/normalize-external-poster-urls.js"
       - "scripts/localize-external-posters.js"
       - "scripts/optimize-poster-assets.js"
+      - "scripts/prune-unused-poster-assets.js"
       - "scripts/bump-poster-fix-cache.js"
       - "anime-detail.css"
       - "anime-breadcrumb.css"
@@ -145,9 +146,16 @@ jobs:
       - name: Normalize external poster URLs
         run: node scripts/normalize-external-poster-urls.js
 
+      - name: Prune unreferenced poster assets
+        env:
+          POSTER_PRUNE_MAX_DELETE: "120"
+          POSTER_PRUNE_MAX_RATIO: "0.35"
+        run: node scripts/prune-unused-poster-assets.js --prune
+
       - name: Commit generated pages and localized posters
         run: |
-          git add assets/posters data/anime-20260904.js data/poster-fixes-20260905.js data/poster-asset-audit.json data/streaming-policy-20260905.js anime 2026 2027 updates/index.html ranking/index.html sitemap.xml index.html about/index.html privacy/index.html policy/index.html wishlist-ranking.js wishlist-ranking-refine.js anime-links.js secondary-header.js scripts/generate-anime-pages.js scripts/generate-schedule-pages.js
+          git add -A assets/posters
+          git add data/anime-20260904.js data/poster-fixes-20260905.js data/poster-asset-audit.json data/poster-prune-audit.json data/streaming-policy-20260905.js anime 2026 2027 updates/index.html ranking/index.html sitemap.xml index.html about/index.html privacy/index.html policy/index.html wishlist-ranking.js wishlist-ranking-refine.js anime-links.js secondary-header.js scripts/generate-anime-pages.js scripts/generate-schedule-pages.js
           if git diff --cached --quiet; then
             echo "No generated changes."
             exit 0
@@ -159,3 +167,4 @@ jobs:
 
 # 2026-09-10: ranking page chrome is sourced from the homepage header/footer; new standalone pages should follow the same site-header/footer structure.
 # 2026-09-13: rerun static generation after regional streaming coverage expansion round 8.
+# 2026-09-15: orphan poster assets are pruned only after static regeneration and dangling-reference validation.
