@@ -23,6 +23,10 @@
       src: "assets/posters/horror-collector-user-20260915.webp",
       updatedAt: "2026-09-15"
     },
+    "those-who-inherit-the-wind": {
+      src: "https://d111jwrw4u3bt.cloudfront.net/anime-posters/poster-62483.webp",
+      updatedAt: "2026-09-15"
+    },
     "me-and-big-bro-yuu": { src: "assets/posters/me-and-big-bro-yuu-v2.webp", updatedAt: "2026-09-05" },
     "magical-sisters-lulutto-lilly-part-2": { src: "assets/posters/magical-sisters-lulutto-lilly-part-2-cropped-v2.webp", updatedAt: "2026-09-07" },
     "ice-wall-season-2": { src: "assets/posters/ice-wall-season-2-v2.webp", updatedAt: "2026-09-07" },
