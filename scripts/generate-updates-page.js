@@ -139,7 +139,7 @@ html = html.replace(/\n\s*<script src="\.\.\/data\/anime-20260904\.js\?[^\"]*"><
 html = html.replace(/\n\s*<script src="\.\.\/data\/updates(?:-[^\"]+)?\.js\?[^\"]*"><\/script>/g, '');
 html = html.replace(/\n\s*<script src="\.\.\/data\/changelog(?:-[^\"]+)?\.js\?[^\"]*"><\/script>/g, '');
 html = html.replace(/\n\s*<script src="updates\.js\?[^\"]*"><\/script>/g, '');
-html = html.replace(/\s*<\/body>/, '\n  <script src="../data/changelog.js?v=20260913-history5"></script>\n  <script src="../data/changelog-20260909.js?v=20260913-history5"></script>\n  <script src="../data/changelog-20260912.js?v=20260913-history5"></script>\n  <script src="updates.js?v=20260913-history5"></script>\n</body>');
+html = html.replace(/\s*<\/body>/, '\n  <script src="../data/changelog.js?v=20260915-history6"></script>\n  <script src="../data/changelog-20260909.js?v=20260915-history6"></script>\n  <script src="../data/changelog-20260912.js?v=20260915-history6"></script>\n  <script src="updates.js?v=20260915-history6"></script>\n</body>');
 
 fs.writeFileSync(UPDATES_PATH, html);
 
