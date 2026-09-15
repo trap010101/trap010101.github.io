@@ -1,4 +1,4 @@
-// Curated public changelog additions for September 10-12, 2026.
+// Curated public changelog additions for September 10-15, 2026.
 // Only user-visible final results are included here.
 (() => {
   const changelog = Array.isArray(window.siteChangelog) ? window.siteChangelog : [];
@@ -120,7 +120,101 @@
     ]
   };
 
-  for (const day of [day0910, day0911, day0912]) {
+  const day0913 = {
+    date: "2026-09-13",
+    groups: [
+      {
+        id: "app-experience",
+        title: { ko: "앱·기기 연동", ja: "アプリ・端末連携", en: "App and device integration" },
+        entries: [
+          {
+            id: "2026-09-13-pwa-install-support",
+            title: { ko: "웹앱 설치 지원", ja: "Webアプリのインストール対応", en: "Installable web app support" },
+            summary: {
+              ko: "Chrome 등 지원 브라우저에서 NewAnime을 홈 화면 또는 앱처럼 설치할 수 있도록 웹앱 매니페스트와 설치용 아이콘을 정비했습니다. 앱 아이콘은 원본 캐릭터 비율과 중앙 배치를 유지하도록 다시 조정했습니다.",
+              ja: "Chromeなどの対応ブラウザでNewAnimeをホーム画面やアプリとしてインストールできるよう、Webアプリマニフェストとインストール用アイコンを整備しました。アプリアイコンは元のキャラクター比率と中央配置を保つよう再調整しました。",
+              en: "Added installable web-app support for browsers such as Chrome, with a web app manifest and dedicated install icons. The app icon was refined to preserve the original character proportions and centered framing."
+            }
+          }
+        ]
+      }
+    ]
+  };
+
+  const day0914 = {
+    date: "2026-09-14",
+    groups: [
+      {
+        id: "homepage-cards",
+        title: { ko: "메인 작품 카드", ja: "トップ作品カード", en: "Homepage title cards" },
+        entries: [
+          {
+            id: "2026-09-14-homepage-card-hierarchy",
+            title: { ko: "작품 카드 정보 구조 개선", ja: "作品カードの情報構造を改善", en: "Improved title-card information hierarchy" },
+            summary: {
+              ko: "방영일·제목·태그·공식 리소스의 읽는 순서를 정리하고, 주요 태그는 두 개까지 우선 표시한 뒤 나머지는 개수로 축약하도록 개선했습니다. 제목과 포스터에서 상세 페이지로 바로 이동할 수 있게 하고 모바일 카드 밀도도 함께 조정했습니다.",
+              ja: "放送日・タイトル・タグ・公式リソースの読み順を整理し、主要タグは2件まで優先表示して残りを件数でまとめるよう改善しました。タイトルとポスターから詳細ページへ直接移動できるようにし、モバイルのカード密度も調整しました。",
+              en: "Reworked the reading order for release date, title, tags, and official resources. Cards now prioritize up to two tags with an overflow count, link both the title and poster to the detail page, and use tighter mobile spacing."
+            }
+          }
+        ]
+      },
+      {
+        id: "content-schedule",
+        title: { ko: "작품명·방영 일정", ja: "作品名・放送スケジュール", en: "Titles and broadcast schedule" },
+        entries: [
+          {
+            id: "2026-09-14-looking-for-zombies-title-schedule",
+            title: { ko: "「좀비를 찾습니다」 제목·방영 시간 정정", ja: "『#ゾンビを探しています』のタイトル・放送時刻を更新", en: "Updated Looking for Zombies title and airtime" },
+            summary: {
+              ko: "한국어 작품명을 「좀비를 찾습니다」로 바로잡고, 10월 3일 23시 30분 방영 정보를 곧 공개 일정에 반영했습니다.",
+              ja: "韓国語タイトルを『좀비를 찾습니다』に修正し、10月3日23時30分の放送情報を「まもなく公開」のスケジュールに反映しました。",
+              en: "Corrected the Korean display title to ‘좀비를 찾습니다’ and added the October 3, 23:30 broadcast time to the coming-soon schedule."
+            },
+            href: "/anime/looking-for-zombies/"
+          }
+        ]
+      }
+    ]
+  };
+
+  const day0915 = {
+    date: "2026-09-15",
+    groups: [
+      {
+        id: "catalog",
+        title: { ko: "작품 데이터", ja: "作品データ", en: "Title data" },
+        entries: [
+          {
+            id: "2026-09-15-catalog-coverage-refresh",
+            title: { ko: "작품 목록·일정·포스터 보강", ja: "作品一覧・スケジュール・ポスターを補強", en: "Expanded title, schedule, and poster coverage" },
+            summary: {
+              ko: "추가 확인된 작품을 목록에 반영하고 공식 발표를 기준으로 공개 일정과 링크를 보강했습니다. 새로 등록된 포스터는 로컬 WebP 자산으로 정리했으며, 이미 다른 지역에서 먼저 공개된 작품은 NewAnime의 첫 공개 기준에 맞춰 목록에서 제외했습니다.",
+              ja: "追加確認した作品を一覧へ反映し、公式発表を基準に公開スケジュールとリンクを補強しました。新規ポスターはローカルWebP素材として整理し、別地域ですでに先行公開されていた作品はNewAnimeの初回公開基準に合わせて一覧から除外しました。",
+              en: "Added newly verified titles, expanded release schedules and official links, localized new posters as WebP assets, and removed a title that had already premiered in another region to keep the catalog aligned with NewAnime's first-release policy."
+            }
+          }
+        ]
+      },
+      {
+        id: "localization",
+        title: { ko: "제목 현지화", ja: "タイトルローカライズ", en: "Title localization" },
+        entries: [
+          {
+            id: "2026-09-15-korean-title-corrections",
+            title: { ko: "한국어 작품명 추가 정비", ja: "韓国語作品名を追加整備", en: "Additional Korean title corrections" },
+            summary: {
+              ko: "최근 등록·검수한 작품 가운데 일곱 작품의 한국어 표기를 다시 맞추고, 관련 별칭과 상세·랭킹 화면에도 동일한 제목이 표시되도록 동기화했습니다.",
+              ja: "最近登録・確認した作品のうち7作品の韓国語表記を再調整し、関連する別名と詳細・ランキング画面にも同じタイトルが表示されるよう同期しました。",
+              en: "Corrected Korean display names for seven recently reviewed titles and synchronized related aliases so the same names appear across detail and ranking views."
+            }
+          }
+        ]
+      }
+    ]
+  };
+
+  for (const day of [day0910, day0911, day0912, day0913, day0914, day0915]) {
     if (!changelog.some(item => item?.date === day.date)) changelog.unshift(day);
   }
 
