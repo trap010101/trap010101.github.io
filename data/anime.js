@@ -1525,7 +1525,7 @@ window.animeData = [
       "new"
     ],
     "poster": {
-      "src": "assets/posters/remote-6746ae5a6ac6ff8840.webp",
+      "src": "assets/posters/tetsuryo-meet-with-tetsudo-musume-user-20260916.webp",
       "position": null
     },
     "links": {
