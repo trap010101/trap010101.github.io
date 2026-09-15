@@ -4,6 +4,7 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const HOME = path.join(ROOT, 'index.html');
 const RANKING = path.join(ROOT, 'ranking', 'index.html');
+const TITLE_HOTFIX_CACHE = '20260915-title3';
 
 function read(file) {
   return fs.readFileSync(file, 'utf8');
@@ -67,7 +68,7 @@ function normalizeRankingMetadataOrder() {
   const scheduleTagMatch = ranking.match(/<script src="\/data\/schedule-updates-20260907\.js\?v=[^"]+"><\/script>\s*/);
   if (!titleTagMatch || !scheduleTagMatch) return false;
 
-  const titleTag = titleTagMatch[0].trim().replace(/\?v=[^"]+/, '?v=20260914-title2');
+  const titleTag = titleTagMatch[0].trim().replace(/\?v=[^"]+/, `?v=${TITLE_HOTFIX_CACHE}`);
   const scheduleTag = scheduleTagMatch[0].trim();
 
   ranking = ranking.replace(titleTagMatch[0], '');
