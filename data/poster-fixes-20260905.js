@@ -20,7 +20,7 @@
       updatedAt: "2026-09-15"
     },
     "horror-collector": {
-      src: "assets/posters/horror-collector-v2.webp",
+      src: "assets/posters/horror-collector-user-20260915-r4.webp",
       updatedAt: "2026-09-15"
     },
     "those-who-inherit-the-wind": {
