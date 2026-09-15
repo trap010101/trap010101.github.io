@@ -3,20 +3,20 @@
   "count": 1,
   "posters": [
     {
-      "id": "those-who-inherit-the-wind",
-      "sourceUrl": "https://d111jwrw4u3bt.cloudfront.net/anime-posters/poster-62483.webp",
+      "id": "horror-collector",
+      "sourceUrl": "https://prcdn.freetls.fastly.net/release_image/7006/19336/7006-19336-2c09ead813fbea758e908ada8fffed86-1910x2700.jpg",
       "originalUrl": null,
-      "localPath": "assets/posters/those-who-inherit-the-wind-v2.webp",
+      "localPath": "assets/posters/horror-collector-v2.webp",
       "mime": "image/webp",
-      "bytes": 43800,
-      "width": 425,
-      "height": 600,
-      "aspectRatio": 0.708,
+      "bytes": 509718,
+      "width": 1556,
+      "height": 2200,
+      "aspectRatio": 0.707,
       "notes": [],
-      "originalLocalPath": "assets/posters/those-who-inherit-the-wind.webp",
-      "originalBytes": 45140,
-      "originalWidth": 425,
-      "originalHeight": 600,
+      "originalLocalPath": "assets/posters/horror-collector.jpg",
+      "originalBytes": 857809,
+      "originalWidth": 1910,
+      "originalHeight": 2700,
       "optimized": true,
       "optimization": {
         "format": "webp",
@@ -33,8 +33,8 @@
     "maxWidth": 1600,
     "maxHeight": 2200,
     "optimizedCount": 1,
-    "sourceBytes": 45140,
-    "optimizedBytes": 43800,
-    "savedBytes": 1340
+    "sourceBytes": 857809,
+    "optimizedBytes": 509718,
+    "savedBytes": 348091
   }
 }

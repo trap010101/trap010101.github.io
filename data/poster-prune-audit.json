@@ -1,34 +1,14 @@
 {
-  "auditedAt": "2026-09-15T10:51:27.533Z",
+  "auditedAt": "2026-09-15T11:04:41.867Z",
   "mode": "prune",
-  "totalAssetsBefore": 201,
+  "totalAssetsBefore": 196,
   "referencedAssets": 195,
-  "deletedCount": 6,
-  "deletedBytes": 575077,
+  "deletedCount": 1,
+  "deletedBytes": 14998,
   "deleted": [
     {
-      "path": "assets/posters/remote-15242bfb1084d17a22.webp",
-      "bytes": 56328
-    },
-    {
-      "path": "assets/posters/remote-5b11072af9641032e9.webp",
-      "bytes": 122642
-    },
-    {
-      "path": "assets/posters/remote-60540946b11822549f.webp",
-      "bytes": 144306
-    },
-    {
-      "path": "assets/posters/remote-7dd72ae6168cd8a221.webp",
-      "bytes": 95520
-    },
-    {
-      "path": "assets/posters/remote-d8b0d02ca1080c3e33.webp",
-      "bytes": 15009
-    },
-    {
-      "path": "assets/posters/those-who-inherit-the-wind-user-20260908.webp",
-      "bytes": 141272
+      "path": "assets/posters/horror-collector-user-20260915.webp",
+      "bytes": 14998
     }
   ]
 }
