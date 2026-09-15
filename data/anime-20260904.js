@@ -640,3 +640,276 @@
     updatedAt: verifiedAt
   });
 })();
+
+
+// 2026-09-15: requested catalog additions, removal, and title correction
+(() => {
+  if (!Array.isArray(window.animeData)) return;
+
+  const verifiedAt = '2026-09-15';
+  const officialSource = (url, label, supports) => ({
+    type: 'official-site',
+    url,
+    label,
+    supports,
+    verifiedAt
+  });
+  const officialYoutube = (url, label) => ({
+    type: 'official-youtube',
+    url,
+    label,
+    supports: ['pv'],
+    verifiedAt
+  });
+  const dateRelease = (year, month, day) => ({ status: 'date', year, month, day });
+  const monthRelease = (year, month) => ({ status: 'month', year, month, day: null });
+  const tvSchedule = (date, time, sourceUrl) => ({
+    premiere: {
+      type: 'tv',
+      date,
+      time,
+      timezone: 'Asia/Tokyo',
+      displayTime: time
+    },
+    source: sourceUrl,
+    verifiedAt
+  });
+  const addIfMissing = anime => {
+    if (!window.animeData.some(item => item?.id === anime.id)) window.animeData.push(anime);
+  };
+
+  // NewAnime indexes first-run titles. This title already premiered in China before
+  // the Japanese broadcast window, so remove it from every runtime/static consumer.
+  const forbiddenCityIndex = window.animeData.findIndex(item => item?.id === 'forbidden-city-cat-guard-room');
+  if (forbiddenCityIndex >= 0) window.animeData.splice(forbiddenCityIndex, 1);
+
+  // User-confirmed Korean display title for the second season/arc.
+  const tougenAnki = window.animeData.find(item => item?.id === 'tougen-anki-nikko-and-kegon-falls-arc');
+  if (tougenAnki) {
+    tougenAnki.title = {
+      ...tougenAnki.title,
+      ko: '도원암귀 ~일광·화엄 폭포 편~'
+    };
+    tougenAnki.updatedAt = verifiedAt;
+  }
+
+  addIfMissing({
+    id: 'from-old-country-bumpkin-to-master-swordsman-season-2',
+    title: {
+      ko: '촌구석 아저씨, 검성이 되다 Ⅱ',
+      ja: '片田舎のおっさん、剣聖になるII',
+      en: 'From Old Country Bumpkin to Master Swordsman Season 2'
+    },
+    aliases: [
+      '片田舎のおっさん、剣聖になる 第2期',
+      'From Old Country Bumpkin to Master Swordsman II'
+    ],
+    release: { japan: dateRelease(2026, 7, 8), korea: null, global: null },
+    productionStatus: 'scheduled',
+    season: '2026-summer',
+    format: 'tv',
+    origin: 'light-novel',
+    tags: ['series', 'ln'],
+    poster: null,
+    links: {
+      pv: 'https://www.youtube.com/watch?v=7n7FDNqtBHg',
+      official: 'https://ossan-kensei.com/',
+      streaming: 'https://ossan-kensei.com/onair/'
+    },
+    streaming: {},
+    schedule: tvSchedule('2026-07-08', '23:45', 'https://ossan-kensei.com/onair/'),
+    verification: {
+      verifiedAt,
+      sources: [
+        officialSource(
+          'https://ossan-kensei.com/onair/',
+          'Official ON AIR — July 8, 23:45 (TV Asahi network); Prime Video world-exclusive streaming from July 9',
+          ['release', 'format', 'streaming']
+        ),
+        officialSource(
+          'https://ossan-kensei.com/news/index00120000.html',
+          'Official website — Season 2 key visual and PV 3',
+          ['announcement', 'poster', 'pv']
+        ),
+        officialYoutube(
+          'https://www.youtube.com/watch?v=7n7FDNqtBHg',
+          'NBCUniversal Anime/Music — Season 2 PV 3'
+        )
+      ]
+    },
+    createdAt: verifiedAt,
+    updatedAt: verifiedAt
+  });
+
+  addIfMissing({
+    id: 'the-exiled-heavy-knight-knows-how-to-game-the-system',
+    title: {
+      ko: '추방 당한 전생 중기사는 게임 지식으로 무쌍한다',
+      ja: '追放された転生重騎士はゲーム知識で無双する',
+      en: 'The Exiled Heavy Knight Knows How to Game the System'
+    },
+    aliases: [
+      '追放された転生重騎士',
+      'Tsuihou sareta Tensei Juukishi wa Game Chishiki de Musou suru'
+    ],
+    release: { japan: dateRelease(2026, 7, 2), korea: null, global: null },
+    productionStatus: 'scheduled',
+    season: '2026-summer',
+    format: 'tv',
+    origin: 'web-novel',
+    tags: ['new', 'webnovel', 'comic'],
+    poster: null,
+    links: {
+      pv: 'https://www.youtube.com/watch?v=uC13b3_8riU',
+      official: 'https://sh-anime.shochiku.co.jp/jukishi-anime/',
+      streaming: 'https://sh-anime.shochiku.co.jp/jukishi-anime/onair/'
+    },
+    streaming: {},
+    schedule: tvSchedule('2026-07-02', '24:26', 'https://sh-anime.shochiku.co.jp/jukishi-anime/onair/'),
+    verification: {
+      verifiedAt,
+      sources: [
+        officialSource(
+          'https://sh-anime.shochiku.co.jp/jukishi-anime/onair/',
+          'Official ON AIR — July 2, 24:26; two consecutive cours; official streaming schedule',
+          ['release', 'format', 'streaming']
+        ),
+        officialSource(
+          'https://sh-anime.shochiku.co.jp/jukishi-anime/news/67/',
+          'Official news — Main PV 2 and streaming information',
+          ['release', 'pv', 'streaming']
+        ),
+        officialYoutube(
+          'https://www.youtube.com/watch?v=uC13b3_8riU',
+          'SHOCHIKU anime Channel — Main PV 2'
+        )
+      ]
+    },
+    createdAt: verifiedAt,
+    updatedAt: verifiedAt
+  });
+
+  addIfMissing({
+    id: 'uchi-no-otouto-domo-ga-sumimasen',
+    title: {
+      ko: '우리 남동생들이 죄송합니다',
+      ja: 'うちの弟どもがすみません',
+      en: 'Uchi no Otouto-domo ga Sumimasen'
+    },
+    aliases: ['うち弟', 'Uchioto'],
+    release: { japan: dateRelease(2026, 7, 3), korea: null, global: null },
+    productionStatus: 'scheduled',
+    season: '2026-summer',
+    format: 'tv',
+    origin: 'manga',
+    tags: ['new', 'comic'],
+    poster: null,
+    links: {
+      pv: 'https://youtu.be/P927_ZvgUUg',
+      official: 'https://uchioto-anime.com/',
+      streaming: 'https://uchioto-anime.com/onair/'
+    },
+    streaming: {},
+    schedule: tvSchedule('2026-07-03', '24:00', 'https://uchioto-anime.com/onair/'),
+    verification: {
+      verifiedAt,
+      sources: [
+        officialSource(
+          'https://uchioto-anime.com/onair/',
+          'Official ON AIR — July 3, 24:00; two consecutive cours / 24 episodes; official streaming schedule',
+          ['release', 'format', 'streaming']
+        ),
+        officialSource(
+          'https://uchioto-anime.com/news/?article_id=70251',
+          'Official news — key visual, cast, broadcast details and PV 1',
+          ['announcement', 'release', 'format', 'poster', 'pv']
+        )
+      ]
+    },
+    createdAt: verifiedAt,
+    updatedAt: verifiedAt
+  });
+
+  addIfMissing({
+    id: 'onegai-aipri',
+    title: {
+      ko: '부탁해 아이프리',
+      ja: 'おねがいアイプリ',
+      en: 'Onegai AiPri'
+    },
+    aliases: ['お願いアイプリ', 'Onegai Aipri'],
+    release: { japan: dateRelease(2026, 4, 5), korea: null, global: null },
+    productionStatus: 'scheduled',
+    season: '2026-spring',
+    format: 'tv',
+    origin: 'game',
+    tags: ['series', 'game'],
+    poster: null,
+    links: {
+      pv: 'https://www.youtube.com/watch?v=j5MgjyhhUBc',
+      official: 'https://aipri.jp/anime/',
+      streaming: 'https://aipri.jp/anime/onair/'
+    },
+    streaming: {},
+    schedule: tvSchedule('2026-04-05', '09:30', 'https://aipri.jp/anime/onair/'),
+    verification: {
+      verifiedAt,
+      sources: [
+        officialSource(
+          'https://aipri.jp/anime/onair/',
+          'Official ON AIR — April 5, 09:30 (TV Tokyo six-station network)',
+          ['release', 'format']
+        ),
+        officialSource(
+          'https://aipri.jp/anime/topics/post-1/',
+          'Official website renewal — Onegai AiPri launch and April 5 premiere',
+          ['announcement', 'release', 'format']
+        )
+      ]
+    },
+    createdAt: verifiedAt,
+    updatedAt: verifiedAt
+  });
+
+  addIfMissing({
+    id: 'horror-collector',
+    title: {
+      ko: '공포 스쿨',
+      ja: '恐怖コレクター',
+      en: 'Horror Collector'
+    },
+    aliases: ['공포 컬렉터', 'Kyoufu Collector'],
+    release: { japan: monthRelease(2026, 10), korea: null, global: null },
+    productionStatus: 'scheduled',
+    season: '2026-fall',
+    format: 'tv',
+    origin: 'novel',
+    tags: ['new'],
+    poster: null,
+    links: {
+      pv: null,
+      official: 'https://www.nhk-character.com/chara/kyoufucollector/',
+      streaming: null
+    },
+    streaming: {},
+    verification: {
+      verifiedAt,
+      sources: [
+        officialSource(
+          'https://www.nhk-character.com/chara/kyoufucollector/news/20260725_48.html',
+          'Official anime site — NHK General TV start in October 2026',
+          ['announcement', 'release', 'format']
+        ),
+        {
+          type: 'publisher',
+          url: 'https://www.kadokawa.co.jp/topics/15231/',
+          label: 'KADOKAWA — TV anime adaptation / Fall 2026; Kadokawa Tsubasa Bunko novel',
+          supports: ['announcement', 'release', 'format', 'origin'],
+          verifiedAt
+        }
+      ]
+    },
+    createdAt: verifiedAt,
+    updatedAt: verifiedAt
+  });
+})();

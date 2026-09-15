@@ -3,6 +3,26 @@
   if (!Array.isArray(window.animeData)) return;
 
   const fixes = {
+    "from-old-country-bumpkin-to-master-swordsman-season-2": {
+      src: "assets/posters/from-old-country-bumpkin-to-master-swordsman-season-2-v2.webp",
+      updatedAt: "2026-09-15"
+    },
+    "the-exiled-heavy-knight-knows-how-to-game-the-system": {
+      src: "assets/posters/the-exiled-heavy-knight-knows-how-to-game-the-system-v2.webp",
+      updatedAt: "2026-09-15"
+    },
+    "uchi-no-otouto-domo-ga-sumimasen": {
+      src: "assets/posters/uchi-no-otouto-domo-ga-sumimasen-v2.webp",
+      updatedAt: "2026-09-15"
+    },
+    "onegai-aipri": {
+      src: "assets/posters/onegai-aipri-v2.webp",
+      updatedAt: "2026-09-15"
+    },
+    "horror-collector": {
+      src: "assets/posters/horror-collector-v2.webp",
+      updatedAt: "2026-09-15"
+    },
     "me-and-big-bro-yuu": { src: "assets/posters/me-and-big-bro-yuu-v2.webp", updatedAt: "2026-09-05" },
     "magical-sisters-lulutto-lilly-part-2": { src: "assets/posters/magical-sisters-lulutto-lilly-part-2-cropped-v2.webp", updatedAt: "2026-09-07" },
     "ice-wall-season-2": { src: "assets/posters/ice-wall-season-2-v2.webp", updatedAt: "2026-09-07" },
