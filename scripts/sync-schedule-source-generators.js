@@ -10,6 +10,7 @@ const TARGETS = [
 
 const SCHEDULE_SOURCE = "  'data/schedule-updates-20260907.js',";
 const TITLE_HOTFIX_SOURCE = "  'data/title-hotfix-20260909.js',";
+const TITLE_HOTFIX_CACHE = '20260915-title3';
 
 let changed = 0;
 
@@ -59,7 +60,7 @@ const titleTagMatch = home.match(/<script(?:\s+defer)?\s+src="data\/title-hotfix
 
 if (scheduleTagMatch && titleTagMatch) {
   const scheduleTag = scheduleTagMatch[0].trim();
-  const titleTag = titleTagMatch[0].trim().replace(/\?v=[^"]+/, '?v=20260914-title2');
+  const titleTag = titleTagMatch[0].trim().replace(/\?v=[^"]+/, `?v=${TITLE_HOTFIX_CACHE}`);
 
   home = home.replace(scheduleTagMatch[0], '');
   home = home.replace(titleTagMatch[0], '');
