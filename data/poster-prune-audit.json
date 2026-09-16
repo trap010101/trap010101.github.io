@@ -1,14 +1,18 @@
 {
-  "auditedAt": "2026-09-15T23:59:39.607Z",
+  "auditedAt": "2026-09-16T00:29:42.753Z",
   "mode": "prune",
-  "totalAssetsBefore": 196,
+  "totalAssetsBefore": 197,
   "referencedAssets": 195,
-  "deletedCount": 1,
-  "deletedBytes": 113564,
+  "deletedCount": 2,
+  "deletedBytes": 1093056,
   "deleted": [
     {
-      "path": "assets/posters/remote-6746ae5a6ac6ff8840.webp",
-      "bytes": 113564
+      "path": "assets/posters/horror-collector-user-20260915-r4.webp",
+      "bytes": 867060
+    },
+    {
+      "path": "assets/posters/tetsuryo-meet-with-tetsudo-musume-user-20260916.webp",
+      "bytes": 225996
     }
   ]
 }
