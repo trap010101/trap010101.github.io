@@ -4,10 +4,18 @@
     {
       "id": "tetsuryo-meet-with-tetsudo-musume",
       "path": "assets/posters/tetsuryo-meet-with-tetsudo-musume-user-20260916.webp",
-      "sourceUrl": "https://eastfish.co.jp/efs_wp/wp-content/uploads/84367187a53cc96d0bc863ae8daa1cef-2.jpg",
+      "sourceUrl": "https://img2.animatetimes.com/2026/07/07556d5d4ffaaa99d94620b8fee917e56a54da6f5f5309_98172630_ab116813bc3ff2770ed5847b5111851e39b62cb5.jpg",
       "minWidth": 900,
       "minHeight": 1200,
-      "note": "Production studio visual source; used only to recover a missing or undecodable local asset."
+      "note": "Published second key visual matching the user-provided train-interior artwork; recovery only."
+    },
+    {
+      "id": "horror-collector",
+      "path": "assets/posters/horror-collector-user-20260915-r4.webp",
+      "sourceUrl": "https://prcdn.freetls.fastly.net/release_image/7006/19336/7006-19336-2c09ead813fbea758e908ada8fffed86-1910x2700.jpg",
+      "minWidth": 1000,
+      "minHeight": 1400,
+      "note": "KADOKAWA/PR TIMES anime visual matching the user-provided red-and-black city key visual; recovery only."
     }
   ]
 }
