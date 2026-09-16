@@ -18,6 +18,7 @@ on:
       - "data/title-fixes-20260905.js"
       - "data/title-hotfix-20260909.js"
       - "data/poster-fixes-20260905.js"
+      - "data/poster-recovery-sources.json"
       - "data/official-sites-20260905.js"
       - "data/schedule-updates-20260907.js"
       - "data/pvs.js"
@@ -50,6 +51,7 @@ on:
       - "scripts/optimize-poster-assets.js"
       - "scripts/prune-unused-poster-assets.js"
       - "scripts/validate-poster-assets.js"
+      - "scripts/repair-known-poster-assets.js"
       - "scripts/bump-poster-fix-cache.js"
       - "anime-detail.css"
       - "anime-breadcrumb.css"
@@ -82,6 +84,9 @@ jobs:
 
       - name: Install poster tooling
         run: npm install --no-save --package-lock=false sharp
+
+      - name: Recover missing or undecodable known poster assets
+        run: node scripts/repair-known-poster-assets.js
 
       - name: Apply newly announced anime additions
         run: node scripts/apply-anime-addition-20260910.js
@@ -177,4 +182,4 @@ jobs:
 # 2026-09-13: rerun static generation after regional streaming coverage expansion round 8.
 # 2026-09-15: orphan poster assets are pruned only after static regeneration and dangling-reference validation.
 # 2026-09-15: active poster overrides are synced into canonical anime data before pruning so retired assets cannot be kept alive by stale canonical references.
-# 2026-09-16: poster asset changes trigger regeneration, and every referenced WebP is decoded after checkout before static generation can succeed.
+# 2026-09-16: poster asset changes trigger regeneration, known damaged assets are recovered before use, and every referenced WebP is decoded after checkout before static generation can succeed.
