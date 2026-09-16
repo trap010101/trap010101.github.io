@@ -20,11 +20,11 @@
       updatedAt: "2026-09-15"
     },
     "horror-collector": {
-      src: "assets/posters/horror-collector-user-20260915-r4.webp",
-      updatedAt: "2026-09-15"
+      src: "assets/posters/horror-collector-user-20260915-r5.webp",
+      updatedAt: "2026-09-16"
     },
     "tetsuryo-meet-with-tetsudo-musume": {
-      src: "assets/posters/tetsuryo-meet-with-tetsudo-musume-user-20260916.webp",
+      src: "assets/posters/tetsuryo-meet-with-tetsudo-musume-user-20260916-r2.webp",
       updatedAt: "2026-09-16"
     },
     "those-who-inherit-the-wind": {

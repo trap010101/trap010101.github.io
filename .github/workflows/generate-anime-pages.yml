@@ -52,6 +52,7 @@ on:
       - "scripts/prune-unused-poster-assets.js"
       - "scripts/validate-poster-assets.js"
       - "scripts/repair-known-poster-assets.js"
+      - "scripts/verify-live-poster-assets.js"
       - "scripts/bump-poster-fix-cache.js"
       - "anime-detail.css"
       - "anime-breadcrumb.css"
@@ -171,15 +172,23 @@ jobs:
           git add data/anime.js data/anime-20260904.js data/poster-fixes-20260905.js data/poster-asset-audit.json data/poster-prune-audit.json data/streaming-policy-20260905.js anime 2026 2027 updates/index.html ranking/index.html sitemap.xml index.html about/index.html privacy/index.html policy/index.html wishlist-ranking.js wishlist-ranking-refine.js anime-links.js secondary-header.js scripts/generate-anime-pages.js scripts/generate-schedule-pages.js
           if git diff --cached --quiet; then
             echo "No generated changes."
-            exit 0
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Generate static anime pages and maintain poster assets [skip ci]"
+            git push
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Generate static anime pages and maintain poster assets [skip ci]"
-          git push
+
+      - name: Verify poster assets on live newani.me
+        env:
+          POSTER_VERIFY_BASE_SHA: ${{ github.event.before }}
+          POSTER_VERIFY_ATTEMPTS: "18"
+          POSTER_VERIFY_RETRY_MS: "10000"
+        run: node scripts/verify-live-poster-assets.js
 
 # 2026-09-10: ranking page chrome is sourced from the homepage header/footer; new standalone pages should follow the same site-header/footer structure.
 # 2026-09-13: rerun static generation after regional streaming coverage expansion round 8.
 # 2026-09-15: orphan poster assets are pruned only after static regeneration and dangling-reference validation.
 # 2026-09-15: active poster overrides are synced into canonical anime data before pruning so retired assets cannot be kept alive by stale canonical references.
 # 2026-09-16: poster asset changes trigger regeneration, known damaged assets are recovered before use, and every referenced WebP is decoded after checkout before static generation can succeed.
+# 2026-09-16: poster work is not accepted until the deployed newani.me asset bytes match the repository and live runtime/detail/archive references all point to it.
