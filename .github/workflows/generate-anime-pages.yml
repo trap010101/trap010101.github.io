@@ -12,6 +12,7 @@ on:
       - "wishlist-ranking-refine.css"
       - "anime-links.js"
       - "secondary-header.js"
+      - "assets/posters/**"
       - "data/anime.js"
       - "data/anime-20260904.js"
       - "data/title-fixes-20260905.js"
@@ -48,6 +49,7 @@ on:
       - "scripts/sync-poster-fixes-to-canonical.js"
       - "scripts/optimize-poster-assets.js"
       - "scripts/prune-unused-poster-assets.js"
+      - "scripts/validate-poster-assets.js"
       - "scripts/bump-poster-fix-cache.js"
       - "anime-detail.css"
       - "anime-breadcrumb.css"
@@ -78,6 +80,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install poster tooling
+        run: npm install --no-save --package-lock=false sharp
+
       - name: Apply newly announced anime additions
         run: node scripts/apply-anime-addition-20260910.js
 
@@ -97,13 +102,12 @@ jobs:
             echo "needed=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Install poster optimizer
-        if: steps.poster_opt.outputs.needed == 'true'
-        run: npm install --no-save --package-lock=false sharp
-
       - name: Optimize localized poster assets
         if: steps.poster_opt.outputs.needed == 'true'
         run: node scripts/optimize-poster-assets.js
+
+      - name: Validate referenced poster binaries
+        run: node scripts/validate-poster-assets.js
 
       - name: Bump poster-fixes cache version
         run: node scripts/bump-poster-fix-cache.js
@@ -173,3 +177,4 @@ jobs:
 # 2026-09-13: rerun static generation after regional streaming coverage expansion round 8.
 # 2026-09-15: orphan poster assets are pruned only after static regeneration and dangling-reference validation.
 # 2026-09-15: active poster overrides are synced into canonical anime data before pruning so retired assets cannot be kept alive by stale canonical references.
+# 2026-09-16: poster asset changes trigger regeneration, and every referenced WebP is decoded after checkout before static generation can succeed.
