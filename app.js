@@ -54,7 +54,7 @@ const uiLocales = {
     "streaming": "스트리밍",
     "noItems": "현재 검색·필터 조건에 맞는 작품 없음",
     "noConfirmed": "현재 확정된 주요 작품 없음",
-    "undated": "2027년 방영 예정 · 월 미정",
+    "undated": "방영 예정 · 월 미정",
     "updated": "업데이트",
     "streamKicker": "스트리밍",
     "streamDesc": "스트리밍 서비스를 선택하세요.",
@@ -134,7 +134,7 @@ const uiLocales = {
     "streaming": "配信",
     "noItems": "検索・フィルター条件に一致する作品はありません",
     "noConfirmed": "現時点で主要作品の確定情報はありません",
-    "undated": "2027年放送予定・月未定",
+    "undated": "放送予定・月未定",
     "updated": "更新",
     "streamKicker": "配信サービス",
     "streamDesc": "配信サービスを選択してください。",
@@ -214,7 +214,7 @@ const uiLocales = {
     "streaming": "Streaming",
     "noItems": "No titles match the current search or filters",
     "noConfirmed": "No major titles confirmed yet",
-    "undated": "Scheduled for 2027 · Month TBA",
+    "undated": "Scheduled · Month TBA",
     "updated": "Updated",
     "streamKicker": "Streaming",
     "streamDesc": "Choose a streaming service.",
@@ -470,7 +470,12 @@ document.querySelectorAll("#languageSwitcher .language-btn").forEach(btn => {
   });
 
   const undatedLabel = document.querySelector("#undatedToggle > span:first-child");
-  if (undatedLabel) undatedLabel.textContent = t("undated");
+  if (undatedLabel) {
+    undatedLabel.textContent =
+      activeLang === "ko" ? `${activeYear}년 방영 예정 · 월 미정` :
+      activeLang === "ja" ? `${activeYear}年放送予定・月未定` :
+      `Scheduled for ${activeYear} · Month TBA`;
+  }
   updateCategoryCollapse();
   updateToolbarCollapse();
 }
@@ -1034,17 +1039,25 @@ function renderMonthNav() {
 
 function renderUndated() {
   const list = document.getElementById("undatedList");
-  const shouldRender = activeYear === 2027;
+  const undatedAnime = animeData.filter(anime => {
+    const release = getPrimaryScheduleRelease(anime);
+    return release?.year === activeYear && (release.status === "year" || release.status === "tba");
+  });
+  const shouldRender = undatedAnime.length > 0;
   undatedSection.classList.toggle("hidden", !shouldRender);
+
+  const undatedLabel = document.querySelector("#undatedToggle > span:first-child");
+  if (undatedLabel) {
+    undatedLabel.textContent =
+      activeLang === "ko" ? `${activeYear}년 방영 예정 · 월 미정` :
+      activeLang === "ja" ? `${activeYear}年放送予定・月未定` :
+      `Scheduled for ${activeYear} · Month TBA`;
+  }
 
   if (!shouldRender) {
     if (list?.childElementCount) list.replaceChildren();
     return;
   }
-
-  const undatedAnime = animeData.filter(anime =>
-    getPrimaryScheduleRelease(anime)?.status === "year" || getPrimaryScheduleRelease(anime)?.status === "tba"
-  );
 
   list.innerHTML = undatedAnime.map(anime => `
     <div class="undated-item" id="anime-${anime.id}" data-anime-id="${anime.id}" tabindex="-1">
