@@ -3,25 +3,12 @@
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://newani.me/?lang=ko</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://newani.me/?lang=ko" />
+    <loc>https://newani.me/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://newani.me/" />
     <xhtml:link rel="alternate" hreflang="ja" href="https://newani.me/?lang=ja" />
     <xhtml:link rel="alternate" hreflang="en" href="https://newani.me/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://newani.me/?lang=ko" />
-  </url>
-  <url>
-    <loc>https://newani.me/?lang=ja</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://newani.me/?lang=ko" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://newani.me/?lang=ja" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://newani.me/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://newani.me/?lang=ko" />
-  </url>
-  <url>
-    <loc>https://newani.me/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://newani.me/?lang=ko" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://newani.me/?lang=ja" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://newani.me/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://newani.me/?lang=ko" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://newani.me/" />
   </url>
   <url>
     <loc>https://newani.me/updates/?lang=ko</loc>
