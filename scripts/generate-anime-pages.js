@@ -253,6 +253,10 @@ function makePage(anime) {
   <title>${esc(ko.title)} | NewAnime</title>
   <meta name="description" content="${esc(ko.description)}" />
   <link rel="canonical" href="${canonical}" />
+  <link rel="alternate" hreflang="ko" href="${canonical}" />
+  <link rel="alternate" hreflang="ja" href="${canonical}?lang=ja" />
+  <link rel="alternate" hreflang="en" href="${canonical}?lang=en" />
+  <link rel="alternate" hreflang="x-default" href="${canonical}" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="NewAnime" />
   <meta property="og:title" content="${esc(ko.title)} | NewAnime" />
@@ -300,8 +304,7 @@ function makePage(anime) {
     const params = new URLSearchParams(location.search);
     const requested = params.get('lang');
     const saved = (() => { try { return localStorage.getItem('animeScheduleLang'); } catch (_) { return null; } })();
-    const browser = (navigator.language || '').toLowerCase();
-    let lang = supported.includes(requested) ? requested : supported.includes(saved) ? saved : browser.startsWith('ja') ? 'ja' : browser.startsWith('ko') ? 'ko' : 'en';
+    let lang = supported.includes(requested) ? requested : supported.includes(saved) ? saved : 'ko';
     const apply = next => {
       lang = supported.includes(next) ? next : 'ko';
       document.documentElement.lang = lang;
@@ -314,11 +317,14 @@ function makePage(anime) {
       document.querySelector('meta[property="og:description"]')?.setAttribute('content', localized.description);
       document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', localized.title + ' | NewAnime');
       document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', localized.description);
+      const pageUrl = lang === 'ko' ? data.canonical : data.canonical + '?lang=' + lang;
+      document.querySelector('link[rel="canonical"]')?.setAttribute('href', pageUrl);
+      document.querySelector('meta[property="og:url"]')?.setAttribute('content', pageUrl);
       document.querySelector('[data-back-label]').textContent = data.copy[lang].back;
       document.querySelector('[data-share]').textContent = data.copy[lang].share;
       try { localStorage.setItem('animeScheduleLang', lang); } catch (_) {}
       const url = new URL(location.href);
-      url.searchParams.set('lang', lang);
+      if (lang === 'ko') url.searchParams.delete('lang'); else url.searchParams.set('lang', lang);
       history.replaceState(null, '', url);
     };
     document.querySelectorAll('[data-lang]').forEach(btn => btn.addEventListener('click', () => apply(btn.dataset.lang)));
