@@ -1,8 +1,8 @@
 (() => {
   const homeCopy = {
     ko: {
-      description: "NewAnime은 2026~2027년 방영 예정 애니메이션과 극장판의 방영일, 공식 PV, 공식 사이트 및 공식 OTT 제공 정보를 정리하는 독립 운영 정보 서비스입니다.",
-      hero: "방영일과 공식 PV, 공식 사이트 및 공식 OTT 제공 정보를 한눈에 확인하세요.",
+      description: "2026·2027년 신작·방영 예정 애니메이션과 극장판의 방영일, 공식 PV, 공식 사이트 및 공식 OTT 정보를 한눈에 확인하세요.",
+      hero: "2026·2027년 신작·후속작의 방영일과 공식 PV, 공식 사이트 및 OTT 정보를 한눈에 확인하세요.",
       footer: "방영 예정 애니메이션과 극장판의 일정, 공식 PV, 공식 사이트 및 공식 OTT 제공 정보를 정리합니다.",
       scope: "NewAnime은 영상 콘텐츠를 직접 호스팅하거나 애니메이션 시청·다운로드 서비스를 제공하지 않으며, 확인 가능한 외부 공식 페이지 정보를 안내합니다."
     },
@@ -63,7 +63,7 @@
       notice.textContent = copy.scope;
     }
 
-    const pageUrl = `https://newani.me/?lang=${lang}`;
+    const pageUrl = lang === "ko" ? "https://newani.me/" : `https://newani.me/?lang=${lang}`;
     const schema = document.getElementById("websiteStructuredData");
     if (schema) {
       schema.textContent = JSON.stringify({
