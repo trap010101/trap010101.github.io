@@ -132,8 +132,8 @@ function pageCopy(year, type, month, lang) {
   if (type === 'month') {
     const label = monthName(year, month, lang);
     if (lang === 'ko') return {
-      title: `${label} 방영 예정 애니메이션`,
-      description: `${label} 방영·공개 예정 애니메이션과 극장판의 일정, 작품 정보, PV 및 공식 링크를 확인하세요.`,
+      title: `${label} 신작 애니 방영 일정`,
+      description: `${label} 신작·후속작·극장판의 방영·공개 일정, 방영일, 공식 PV, 공식 사이트와 OTT 정보를 확인하세요.`,
       kicker: '월별 방영 일정'
     };
     if (lang === 'ja') return {
@@ -167,8 +167,8 @@ function pageCopy(year, type, month, lang) {
   }
 
   if (lang === 'ko') return {
-    title: `${year}년 방영 예정 애니메이션`,
-    description: `${year}년 방영·공개 예정 애니메이션과 극장판을 월별로 확인하세요. 방영일, PV, 공식 사이트 및 검증된 출처를 정리합니다.`,
+    title: `${year}년 방영 예정 애니메이션 총정리`,
+    description: `${year}년 신작·후속작·극장판을 월별로 확인하세요. 방영일, 공식 PV, 공식 사이트, OTT 정보와 검증된 출처를 정리합니다.`,
     kicker: '연간 방영 일정'
   };
   if (lang === 'ja') return {
@@ -281,6 +281,32 @@ function sectionMarkup(section, cardOffset) {
   </section>`;
 }
 
+function searchSummaryMarkup(year, type, month, items) {
+  if (type !== 'month' || !items.length) return '';
+  const exactCount = items.filter(anime => primaryRelease(anime)?.status === 'date').length;
+  const monthOnlyCount = items.filter(anime => primaryRelease(anime)?.status === 'month').length;
+  const tvCount = items.filter(anime => anime?.format === 'tv').length;
+  const movieCount = items.filter(anime => anime?.format === 'movie').length;
+  const seriesCount = items.filter(anime => (anime?.tags || []).includes('series')).length;
+  const otherYear = year === 2026 ? 2027 : 2026;
+
+  return `<section class="archive-search-summary" data-ko-search-summary aria-labelledby="archiveSearchSummaryTitle">
+    <div class="archive-search-summary-kicker">Search Guide</div>
+    <h2 id="archiveSearchSummaryTitle">${year}년 ${month}월 신작 애니 일정 한눈에 보기</h2>
+    <p>현재 NewAnime에 등록된 ${year}년 ${month}월 방영·공개 예정 작품은 <strong>${items.length}편</strong>입니다. 정확한 날짜가 확인된 작품은 <strong>${exactCount}편</strong>, 월만 확정된 작품은 <strong>${monthOnlyCount}편</strong>이며 공식 사이트·제작사·방송사 발표를 기준으로 계속 갱신합니다.</p>
+    <div class="archive-search-stats" aria-label="일정 요약">
+      <span><strong>${tvCount}</strong>TV</span>
+      <span><strong>${movieCount}</strong>극장판</span>
+      <span><strong>${seriesCount}</strong>시리즈·후속작</span>
+    </div>
+    <nav class="archive-related-links" aria-label="관련 방영 일정">
+      <a href="/${year}/">${year}년 방영 예정 애니 전체 일정</a>
+      <a href="/${otherYear}/">${otherYear}년 방영 예정 애니</a>
+      <a href="/">전체 방영 예정 애니메이션</a>
+    </nav>
+  </section>`;
+}
+
 function makePage({ year, type, month = null }) {
   const allYearItems = yearItems(year);
   const availableMonths = [...new Set(allYearItems.map(anime => primaryRelease(anime)?.month).filter(Boolean))].sort((a, b) => a - b);
@@ -335,6 +361,7 @@ function makePage({ year, type, month = null }) {
     return html;
   }).join('');
   const summaryCount = type === 'year' ? allYearItems.length : items.length;
+  const searchSummaryHtml = searchSummaryMarkup(year, type, month, items);
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -370,10 +397,10 @@ function makePage({ year, type, month = null }) {
   <title>${esc(localized.ko.title)} | NewAnime</title>
   <meta name="description" content="${esc(localized.ko.description)}" />
   <link rel="canonical" href="${canonical}" />
-  <link rel="alternate" hreflang="ko" href="${canonical}?lang=ko" />
+  <link rel="alternate" hreflang="ko" href="${canonical}" />
   <link rel="alternate" hreflang="ja" href="${canonical}?lang=ja" />
   <link rel="alternate" hreflang="en" href="${canonical}?lang=en" />
-  <link rel="alternate" hreflang="x-default" href="${canonical}?lang=ko" />
+  <link rel="alternate" hreflang="x-default" href="${canonical}" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="NewAnime" />
   <meta property="og:title" content="${esc(localized.ko.title)} | NewAnime" />
@@ -390,7 +417,7 @@ function makePage({ year, type, month = null }) {
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css" />
   <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-jp.css" />
-  <link rel="stylesheet" href="/schedule-archive.css?v=20260906-seo2" />
+  <link rel="stylesheet" href="/schedule-archive.css?v=20260921-seo1" />
 </head>
 <body>
   <main class="archive-shell">
@@ -411,6 +438,7 @@ function makePage({ year, type, month = null }) {
       <div class="archive-summary"><span>${year}</span><span data-summary-count>${summaryCount}작품</span></div>
     </section>
     <nav class="archive-nav" aria-label="Schedule archive">${navMarkup(year, type, month, availableMonths, undated.length > 0)}</nav>
+    ${searchSummaryHtml}
     <div class="archive-content">${sectionHtml || '<div class="archive-empty">등록된 작품이 없습니다.</div>'}</div>
     <footer class="archive-footer">
       <a href="/">HOME</a><a href="/${year}/">ARCHIVE</a><a href="/updates/">UPDATES</a><a href="/about/">ABOUT</a><a href="/privacy/">PRIVACY</a><a href="/policy/">POLICY</a>
@@ -424,8 +452,7 @@ function makePage({ year, type, month = null }) {
     const params = new URLSearchParams(location.search);
     const requested = params.get('lang');
     const saved = (() => { try { return localStorage.getItem('animeScheduleLang'); } catch (_) { return null; } })();
-    const browser = (navigator.language || '').toLowerCase();
-    let lang = supported.includes(requested) ? requested : supported.includes(saved) ? saved : browser.startsWith('ja') ? 'ja' : browser.startsWith('ko') ? 'ko' : 'en';
+    let lang = supported.includes(requested) ? requested : supported.includes(saved) ? saved : 'ko';
 
     function altTitle(item, lang) {
       if (lang === 'ko') return item.titles.ja || item.titles.en || '';
@@ -444,6 +471,10 @@ function makePage({ year, type, month = null }) {
       document.querySelector('meta[property="og:description"]')?.setAttribute('content', page.description);
       document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', page.title + ' | NewAnime');
       document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', page.description);
+      const pageUrl = lang === 'ko' ? data.canonical : data.canonical + '?lang=' + lang;
+      document.querySelector('link[rel="canonical"]')?.setAttribute('href', pageUrl);
+      document.querySelector('meta[property="og:url"]')?.setAttribute('content', pageUrl);
+      document.querySelectorAll('[data-ko-search-summary]').forEach(el => { el.hidden = lang !== 'ko'; });
       document.querySelector('[data-page-title]').textContent = page.title;
       document.querySelector('[data-description]').textContent = page.description;
       document.querySelector('[data-kicker]').textContent = page.kicker;
@@ -495,7 +526,9 @@ function makePage({ year, type, month = null }) {
       });
 
       try { localStorage.setItem('animeScheduleLang', lang); } catch (_) {}
-      const url = new URL(location.href); url.searchParams.set('lang', lang); history.replaceState(null, '', url);
+      const url = new URL(location.href);
+      if (lang === 'ko') url.searchParams.delete('lang'); else url.searchParams.set('lang', lang);
+      history.replaceState(null, '', url);
     }
 
     document.querySelectorAll('[data-lang]').forEach(btn => btn.addEventListener('click', () => apply(btn.dataset.lang)));
