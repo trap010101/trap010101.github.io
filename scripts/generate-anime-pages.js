@@ -175,43 +175,41 @@ function tagsMarkup(anime, lang) {
 }
 
 function localizedSections(anime) {
-  return ['ko', 'ja', 'en'].map(lang => {
-    const payload = localizedPayload(anime, lang);
-    const langHidden = lang === 'ko' ? '' : ' hidden';
-    const official = anime.links?.official;
-    const pv = anime.links?.pv;
-    const verifiedAt = anime.verification?.verifiedAt || '—';
-    return `
-      <section class="anime-localized" data-lang-panel="${lang}"${langHidden}>
-        <div class="detail-kicker">newani.me · ${esc(copy[lang].siteTitle)}</div>
-        <h1>${esc(payload.title)}</h1>
-        <div class="alternate-titles">
+  const lang = 'ko';
+  const payload = localizedPayload(anime, lang);
+  const official = anime.links?.official;
+  const pv = anime.links?.pv;
+  const verifiedAt = anime.verification?.verifiedAt || '—';
+  return `
+      <section class="anime-localized" data-lang-panel="ko">
+        <div class="detail-kicker" data-detail-kicker>newani.me · ${esc(copy.ko.siteTitle)}</div>
+        <h1 data-detail-title>${esc(payload.title)}</h1>
+        <div class="alternate-titles" data-detail-alt-titles>
           ${anime.title?.ja && anime.title.ja !== payload.title ? `<span lang="ja">${esc(anime.title.ja)}</span>` : ''}
           ${anime.title?.en && anime.title.en !== payload.title ? `<span lang="en">${esc(anime.title.en)}</span>` : ''}
         </div>
-        <div class="detail-badges">${tagsMarkup(anime, lang)}</div>
+        <div class="detail-badges" data-detail-badges>${tagsMarkup(anime, lang)}</div>
         <section class="detail-panel detail-release-panel">
-          <span class="panel-label">${esc(copy[lang].release)}</span>
-          <strong class="release-value">${esc(payload.release)}</strong>
+          <span class="panel-label" data-detail-release-label>${esc(copy.ko.release)}</span>
+          <strong class="release-value" data-detail-release>${esc(payload.release)}</strong>
         </section>
         <section class="detail-panel">
-          <div class="panel-heading"><h2>${esc(copy[lang].resources)}</h2></div>
-          <div class="detail-actions">
-            ${resourceLink(pv, copy[lang].pv)}
-            ${resourceLink(official, copy[lang].official)}
+          <div class="panel-heading"><h2 data-detail-resources-title>${esc(copy.ko.resources)}</h2></div>
+          <div class="detail-actions" data-detail-actions>
+            ${resourceLink(pv, copy.ko.pv)}
+            ${resourceLink(official, copy.ko.official)}
           </div>
         </section>
         <section class="detail-panel">
-          <div class="panel-heading"><h2>${esc(copy[lang].streaming)}</h2></div>
-          <p class="panel-note">${esc(copy[lang].streamingNote)}</p>
+          <div class="panel-heading"><h2 data-detail-streaming-title>${esc(copy.ko.streaming)}</h2></div>
+          <p class="panel-note" data-detail-streaming-note>${esc(copy.ko.streamingNote)}</p>
           <div class="streaming-list">${streamingMarkup(anime, lang)}</div>
         </section>
         <section class="detail-panel">
-          <div class="panel-heading source-heading"><h2>${esc(copy[lang].sources)}</h2><span>${esc(copy[lang].checked)} · ${esc(verifiedAt)}</span></div>
-          <div class="source-list-detail">${sourcesMarkup(anime, lang)}</div>
+          <div class="panel-heading source-heading"><h2 data-detail-sources-title>${esc(copy.ko.sources)}</h2><span data-detail-verified>${esc(copy.ko.checked)} · ${esc(verifiedAt)}</span></div>
+          <div class="source-list-detail" data-detail-sources>${sourcesMarkup(anime, lang)}</div>
         </section>
       </section>`;
-  }).join('');
 }
 
 function makePage(anime) {
@@ -241,6 +239,12 @@ function makePage(anime) {
       ja: localizedPayload(anime, 'ja'),
       en: localizedPayload(anime, 'en')
     },
+    tags: anime.tags || [],
+    tagLabels,
+    sourceTypeLabels,
+    sources: anime.verification?.sources || [],
+    verifiedAt: anime.verification?.verifiedAt || '—',
+    links: { official: anime.links?.official || '', pv: anime.links?.pv || '' },
     copy
   };
 
@@ -305,12 +309,20 @@ function makePage(anime) {
     const requested = params.get('lang');
     const saved = (() => { try { return localStorage.getItem('animeScheduleLang'); } catch (_) { return null; } })();
     let lang = supported.includes(requested) ? requested : supported.includes(saved) ? saved : 'ko';
+    const escHtml = value => String(value ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
     const apply = next => {
       lang = supported.includes(next) ? next : 'ko';
       document.documentElement.lang = lang;
-      document.querySelectorAll('[data-lang-panel]').forEach(el => el.hidden = el.dataset.langPanel !== lang);
+      const panel = document.querySelector('[data-lang-panel]');
+      if (panel) panel.dataset.langPanel = lang;
       document.querySelectorAll('[data-lang]').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
       const localized = data.localized[lang] || data.localized.ko;
+      const labels = data.copy[lang] || data.copy.ko;
       document.title = localized.title + ' | NewAnime';
       document.querySelector('meta[name="description"]')?.setAttribute('content', localized.description);
       document.querySelector('meta[property="og:title"]')?.setAttribute('content', localized.title + ' | NewAnime');
@@ -320,8 +332,59 @@ function makePage(anime) {
       const pageUrl = lang === 'ko' ? data.canonical : data.canonical + '?lang=' + lang;
       document.querySelector('link[rel="canonical"]')?.setAttribute('href', pageUrl);
       document.querySelector('meta[property="og:url"]')?.setAttribute('content', pageUrl);
-      document.querySelector('[data-back-label]').textContent = data.copy[lang].back;
-      document.querySelector('[data-share]').textContent = data.copy[lang].share;
+
+      const titleEl = document.querySelector('[data-detail-title]');
+      if (titleEl) titleEl.textContent = localized.title;
+      const posterEl = document.querySelector('.detail-poster');
+      if (posterEl?.tagName === 'IMG') posterEl.alt = localized.title;
+      const kicker = document.querySelector('[data-detail-kicker]');
+      if (kicker) kicker.textContent = 'newani.me · ' + labels.siteTitle;
+
+      const altTitles = document.querySelector('[data-detail-alt-titles]');
+      if (altTitles) {
+        const order = lang === 'ko' ? ['ja','en'] : lang === 'ja' ? ['ko','en'] : ['ko','ja'];
+        altTitles.innerHTML = order
+          .map(code => data.titles?.[code] && data.titles[code] !== localized.title
+            ? '<span lang="' + code + '">' + escHtml(data.titles[code]) + '</span>'
+            : '')
+          .join('');
+      }
+
+      const badges = document.querySelector('[data-detail-badges]');
+      if (badges) badges.innerHTML = (data.tags || []).map(tag => {
+        const label = data.tagLabels?.[tag]?.[lang] || data.tagLabels?.[tag]?.ko || tag;
+        return '<span class="detail-badge badge-' + escHtml(tag) + '">' + escHtml(label) + '</span>';
+      }).join('');
+
+      document.querySelector('[data-detail-release-label]')?.replaceChildren(document.createTextNode(labels.release));
+      document.querySelector('[data-detail-release]')?.replaceChildren(document.createTextNode(localized.release));
+      document.querySelector('[data-detail-resources-title]')?.replaceChildren(document.createTextNode(labels.resources));
+      document.querySelector('[data-detail-streaming-title]')?.replaceChildren(document.createTextNode(labels.streaming));
+      document.querySelector('[data-detail-streaming-note]')?.replaceChildren(document.createTextNode(labels.streamingNote));
+      document.querySelector('[data-detail-sources-title]')?.replaceChildren(document.createTextNode(labels.sources));
+      document.querySelector('[data-detail-verified]')?.replaceChildren(document.createTextNode(labels.checked + ' · ' + data.verifiedAt));
+
+      const actions = document.querySelector('[data-detail-actions]');
+      if (actions) {
+        const links = [];
+        if (data.links?.pv) links.push('<a class="detail-action" href="' + escHtml(data.links.pv) + '" target="_blank" rel="noopener noreferrer">' + escHtml(labels.pv) + '<span aria-hidden="true">↗</span></a>');
+        if (data.links?.official) links.push('<a class="detail-action" href="' + escHtml(data.links.official) + '" target="_blank" rel="noopener noreferrer">' + escHtml(labels.official) + '<span aria-hidden="true">↗</span></a>');
+        actions.innerHTML = links.join('');
+      }
+
+      const sources = document.querySelector('[data-detail-sources]');
+      if (sources) {
+        sources.innerHTML = (data.sources || []).length
+          ? data.sources.map(source => {
+              const typeLabel = data.sourceTypeLabels?.[source.type]?.[lang] || data.sourceTypeLabels?.other?.[lang] || source.type || '';
+              const small = source.label ? '<small>' + escHtml(source.label) + '</small>' : '';
+              return '<a class="source-link" href="' + escHtml(source.url) + '" target="_blank" rel="noopener noreferrer"><span><strong>' + escHtml(typeLabel) + '</strong>' + small + '</span><span aria-hidden="true">↗</span></a>';
+            }).join('')
+          : '<p class="empty-state">' + escHtml(labels.noSources) + '</p>';
+      }
+
+      document.querySelector('[data-back-label]').textContent = labels.back;
+      document.querySelector('[data-share]').textContent = labels.share;
       try { localStorage.setItem('animeScheduleLang', lang); } catch (_) {}
       const url = new URL(location.href);
       if (lang === 'ko') url.searchParams.delete('lang'); else url.searchParams.set('lang', lang);
@@ -330,7 +393,7 @@ function makePage(anime) {
     document.querySelectorAll('[data-lang]').forEach(btn => btn.addEventListener('click', () => apply(btn.dataset.lang)));
     document.querySelector('[data-share]')?.addEventListener('click', async () => {
       const localized = data.localized[lang] || data.localized.ko;
-      const shareData = { title: localized.title + ' | NewAnime', text: localized.description, url: data.canonical + '?lang=' + lang };
+      const shareData = { title: localized.title + ' | NewAnime', text: localized.description, url: lang === 'ko' ? data.canonical : data.canonical + '?lang=' + lang };
       try {
         if (navigator.share) await navigator.share(shareData);
         else await navigator.clipboard.writeText(shareData.url);
