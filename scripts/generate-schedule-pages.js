@@ -584,3 +584,5 @@ if (fs.existsSync(sitemapPath)) {
 }
 
 console.log(`Generated ${generatedUrls.length} year/month schedule archive pages.`);
+
+// 2026-09-21: Korean canonical URLs are the default search surface; language query variants are explicit alternates.
