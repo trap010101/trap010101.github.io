@@ -7,10 +7,10 @@
   <title>2027년 방영 예정 · 월 미정 애니메이션 | NewAnime</title>
   <meta name="description" content="2027년 방영 또는 공개가 확정됐지만 정확한 월이 아직 발표되지 않은 애니메이션과 극장판을 확인하세요." />
   <link rel="canonical" href="https://newani.me/2027/tba/" />
-  <link rel="alternate" hreflang="ko" href="https://newani.me/2027/tba/?lang=ko" />
+  <link rel="alternate" hreflang="ko" href="https://newani.me/2027/tba/" />
   <link rel="alternate" hreflang="ja" href="https://newani.me/2027/tba/?lang=ja" />
   <link rel="alternate" hreflang="en" href="https://newani.me/2027/tba/?lang=en" />
-  <link rel="alternate" hreflang="x-default" href="https://newani.me/2027/tba/?lang=ko" />
+  <link rel="alternate" hreflang="x-default" href="https://newani.me/2027/tba/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="NewAnime" />
   <meta property="og:title" content="2027년 방영 예정 · 월 미정 애니메이션 | NewAnime" />
@@ -81,6 +81,7 @@
       <div class="archive-summary"><span>2027</span><span data-summary-count>50작품</span></div>
     </section>
     <nav class="archive-nav" aria-label="Schedule archive"><a href="/2026/">2026</a><a href="/2027/">2027</a><a href="/2027/01/" data-nav-month="1">1월</a><a href="/2027/02/" data-nav-month="2">2월</a><a href="/2027/03/" data-nav-month="3">3월</a><a href="/2027/04/" data-nav-month="4">4월</a><a href="/2027/10/" data-nav-month="10">10월</a><a href="/2027/tba/" data-nav-tba aria-current="page">월 미정</a></nav>
+    
     <div class="archive-content"><section class="archive-section">
     <div class="archive-section-head">
       <h2><span data-section-title="tba">월 미정</span></h2>
@@ -609,8 +610,7 @@
     const params = new URLSearchParams(location.search);
     const requested = params.get('lang');
     const saved = (() => { try { return localStorage.getItem('animeScheduleLang'); } catch (_) { return null; } })();
-    const browser = (navigator.language || '').toLowerCase();
-    let lang = supported.includes(requested) ? requested : supported.includes(saved) ? saved : browser.startsWith('ja') ? 'ja' : browser.startsWith('ko') ? 'ko' : 'en';
+    let lang = supported.includes(requested) ? requested : supported.includes(saved) ? saved : 'ko';
 
     function altTitle(item, lang) {
       if (lang === 'ko') return item.titles.ja || item.titles.en || '';
@@ -629,6 +629,10 @@
       document.querySelector('meta[property="og:description"]')?.setAttribute('content', page.description);
       document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', page.title + ' | NewAnime');
       document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', page.description);
+      const pageUrl = lang === 'ko' ? data.canonical : data.canonical + '?lang=' + lang;
+      document.querySelector('link[rel="canonical"]')?.setAttribute('href', pageUrl);
+      document.querySelector('meta[property="og:url"]')?.setAttribute('content', pageUrl);
+      document.querySelectorAll('[data-ko-search-summary]').forEach(el => { el.hidden = lang !== 'ko'; });
       document.querySelector('[data-page-title]').textContent = page.title;
       document.querySelector('[data-description]').textContent = page.description;
       document.querySelector('[data-kicker]').textContent = page.kicker;
@@ -680,7 +684,9 @@
       });
 
       try { localStorage.setItem('animeScheduleLang', lang); } catch (_) {}
-      const url = new URL(location.href); url.searchParams.set('lang', lang); history.replaceState(null, '', url);
+      const url = new URL(location.href);
+      if (lang === 'ko') url.searchParams.delete('lang'); else url.searchParams.set('lang', lang);
+      history.replaceState(null, '', url);
     }
 
     document.querySelectorAll('[data-lang]').forEach(btn => btn.addEventListener('click', () => apply(btn.dataset.lang)));
