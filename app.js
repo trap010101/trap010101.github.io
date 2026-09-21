@@ -18,9 +18,9 @@ const uiLocales = {
     "upcomingHours": "{h}시간 {m}분 후",
     "upcomingView": "작품 카드로 이동",
     "upcomingSelect": "이 작품 선택",
-    "title": "방영 예정 애니메이션",
-    "tabTitle": "NewAnime - 방영 예정 애니메이션",
-    "description": "2026~2027년 방영 예정 애니메이션과 극장판의 방영일, PV, 공식 사이트, 스트리밍 정보를 한눈에 확인하세요.",
+    "title": "2026·2027 방영 예정 애니메이션 일정",
+    "tabTitle": "2026·2027 신작 애니 방영 일정·OTT | NewAnime",
+    "description": "2026·2027년 신작·방영 예정 애니메이션과 극장판의 방영일, 공식 PV, 공식 사이트 및 OTT 정보를 한눈에 확인하세요.",
     "footerDescription": "방영 예정 애니메이션과 극장판의 일정, PV, 공식 사이트, 스트리밍 정보를 한눈에 정리합니다.",
     "languageLabel": "언어 선택",
     "close": "닫기",
@@ -31,7 +31,7 @@ const uiLocales = {
     "shareCopied": "링크를 복사했습니다.",
     "shareFailed": "공유 기능을 사용할 수 없습니다.",
     "shareText": "NewAnime에서 방영 예정 애니메이션 일정을 확인하세요.",
-    "hero": "방영일과 PV, 공식 사이트 및 스트리밍 정보를 한눈에 확인하세요.",
+    "hero": "2026·2027년 신작·후속작의 방영일과 공식 PV, 공식 사이트 및 OTT 정보를 한눈에 확인하세요.",
     "search": "작품명 검색...",
     "reset": "필터 초기화",
     "year": "연도",
@@ -306,7 +306,7 @@ let activeLang = supportedLanguages.includes(requestedLang)
   ? requestedLang
   : supportedLanguages.includes(savedLang)
     ? savedLang
-    : detectPreferredLanguage();
+    : "ko";
 
 function t(key) {
   return uiLocales[activeLang]?.[key] ?? uiLocales.ko[key] ?? key;
@@ -397,10 +397,11 @@ function updateStaticLanguage() {
   const mobileToolbarTitle = document.getElementById("mobileToolbarTitle");
   const languageSwitcher = document.getElementById("languageSwitcher");
   const footerDescription = document.getElementById("footerDescription");
+  const searchEntry = document.getElementById("searchEntry");
   const closeButtons = document.querySelectorAll(".stream-close");
   const menuToggle = document.getElementById("menuToggle");
   const updatesMenuLink = document.getElementById("updatesMenuLink");
-  const pageUrl = `https://newani.me/?lang=${activeLang}`;
+  const pageUrl = activeLang === "ko" ? "https://newani.me/" : `https://newani.me/?lang=${activeLang}`;
   const locale = activeLang === "ko" ? "ko_KR" : activeLang === "ja" ? "ja_JP" : "en_US";
 
   if (heroTitle) heroTitle.textContent = t("title");
@@ -418,6 +419,7 @@ function updateStaticLanguage() {
   document.getElementById("twitterDescription")?.setAttribute("content", t("description"));
   if (languageSwitcher) languageSwitcher.setAttribute("aria-label", t("languageLabel"));
   if (footerDescription) footerDescription.textContent = t("footerDescription");
+  if (searchEntry) searchEntry.hidden = activeLang !== "ko";
   closeButtons.forEach(button => button.setAttribute("aria-label", t("close")));
   if (menuToggle) {
     menuToggle.setAttribute("aria-label", t("menu"));
@@ -1245,7 +1247,8 @@ document.querySelectorAll("#languageSwitcher .language-btn").forEach(btn => {
     activeLang = btn.dataset.lang;
     safeStorageSet("animeScheduleLang", activeLang);
     const nextUrl = new URL(window.location.href);
-    nextUrl.searchParams.set("lang", activeLang);
+    if (activeLang === "ko") nextUrl.searchParams.delete("lang");
+    else nextUrl.searchParams.set("lang", activeLang);
     history.replaceState(null, "", nextUrl);
     updateStaticLanguage();
     document.dispatchEvent(new CustomEvent("newanime:language"));
